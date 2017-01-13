@@ -1,0 +1,36 @@
+@import '../plugins/bootstrap/scss/_variables.scss';
+@import '../plugins/bootstrap/scss/_mixins.scss';
+@import '../plugins/bootstrap/scss/_grid.scss';
+@import 'fonts.scss';
+@import 'basic.scss';
+
+.container {
+  max-width: 900px;
+  margin-top: 70px;
+}
+
+.portrait {
+  img {
+    max-width: 100%;
+  }
+}
+
+.content {
+  padding-left: 30px;
+
+  .section {
+    p {
+      margin-bottom: 10px;
+    }
+    hr {
+      border-top: 1px solid #D8D8D8;
+      margin-bottom: 25px;
+    }
+  }
+
+  footer {
+    font-family: "Poppins", sans-serif;;
+    font-size: 14px;
+    color: #A8A8A8;
+  }
+}

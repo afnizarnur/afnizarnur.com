@@ -1,0 +1,6 @@
+@mixin opacity($opacity, $important: 0) {
+  opacity: $opacity;
+}
+@mixin translucent-background($color: white, $alpha: 1) {
+  background-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+}
