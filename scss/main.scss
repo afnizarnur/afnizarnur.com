@@ -1,6 +1,7 @@
 @import '../plugins/bootstrap/scss/_variables.scss';
 @import '../plugins/bootstrap/scss/_mixins.scss';
 @import '../plugins/bootstrap/scss/_grid.scss';
+@import 'mixins.scss';
 @import 'fonts.scss';
 @import 'basic.scss';
 
@@ -25,6 +26,37 @@
     hr {
       border-top: 1px solid #D8D8D8;
       margin-bottom: 25px;
+    }
+  }
+
+  .copy-to-clipboard {
+    cursor: pointer;
+  }
+
+  .social {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    a:hover {
+      background: none;
+      opacity: .5;
+    }
+    img {
+      width: 17px;
+    }
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: inline;
+        margin-right: 10px;
+
+        &:first-child {
+          position: relative;
+          top: -2px;
+        }
+      }
     }
   }
 

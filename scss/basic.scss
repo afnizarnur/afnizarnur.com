@@ -12,7 +12,6 @@ html {
     text-rendering: optimizeLegibility;
     -webkit-font-feature-settings: "liga", "dlig";
     font-feature-settings: "liga", "dlig";
-    font-size: 20px;
 }
 
 body {
@@ -31,7 +30,7 @@ h5 {
 
 h1 {
   font-weight: 500;
-  font-size: 28px;
+  font-size: em(28px);
   margin-bottom: 25px;;
 }
 
@@ -47,6 +46,6 @@ a {
 
 p {
   margin-bottom: 30px;
-  font-size: 18px;
-  line-height: 34px;
+  font-size: em(18px);
+  line-height: 32px;
 }
