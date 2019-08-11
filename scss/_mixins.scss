@@ -2,7 +2,12 @@
   opacity: $opacity;
 }
 @mixin translucent-background($color: white, $alpha: 1) {
-  background-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+  background-color: hsla(
+    hue($color),
+    saturation($color),
+    lightness($color),
+    $alpha
+  );
 }
 
 $browser-context: 16; // Default

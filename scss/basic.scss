@@ -8,15 +8,14 @@
 }
 
 html {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -webkit-font-feature-settings: "liga", "dlig";
-    font-feature-settings: "liga", "dlig";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: 'liga', 'dlig';
+  font-feature-settings: 'liga', 'dlig';
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  color: #6C6C6C;
+  color: #6c6c6c;
 }
 
 h1,
@@ -24,28 +23,29 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Poppins', sans-serif;
   color: #000;
 }
 
 h1 {
-  font-weight: 500;
-  font-size: em(28px);
-  margin-bottom: 25px;;
+  font-weight: 700;
+  font-size: 5.25em;
+  margin-bottom: 25px;
+  letter-spacing: -5px;
+  line-height: 85px;
 }
 
 a {
   color: #000;
   text-decoration: none;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   &:hover {
-    background: rgba(0,0,0,.09);
+    background: rgba(0, 0, 0, 0.09);
     border-radius: 5px;
   }
 }
 
 p {
   margin-bottom: 30px;
-  font-size: em(18px);
+  font-size: 1.125em;
   line-height: 32px;
 }
