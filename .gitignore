@@ -1,6 +1,5 @@
-css/.sass-cache
-css/.sass-cache/*
-.sass-cache
-.sass-cache/*
-*.css.map
-node_modules/
+node_modules
+public
+.cache
+*.log
+.vscode

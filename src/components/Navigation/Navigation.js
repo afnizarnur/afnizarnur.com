@@ -1,0 +1,92 @@
+import React from "react"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import { Flex, Text, Button } from "rebass"
+import { List, ListItem } from "../Typography"
+import SkipNavLink from "./SkipNavLink"
+import Logo from "./Logo"
+import { themeHover } from "../../utils/styles"
+
+const NavItem = styled(ListItem)`
+  display: inline-block;
+`
+
+const NavText = styled(Text)`
+  font-weight: bold;
+  text-decoration: underline;
+  letter-spacing: -0.2px;
+
+  .active & {
+    border-color: ${({ theme }) => theme.colors.black};
+  }
+
+  ${themeHover};
+`
+
+const NavLink = ({ children, to, ...props }) => {
+  const isActive = ({ location, href, isPartiallyCurrent }) => {
+    if (location.pathname === "/" && href === "/") {
+      return { className: "active" }
+    } else if (isPartiallyCurrent && href !== "/") {
+      return { className: "active" }
+    }
+
+    return null
+  }
+
+  return (
+    <NavItem {...props}>
+      <Text as={Link} to={to} getProps={isActive}>
+        <NavText as="span" px={1} pb={1}>
+          {children}
+        </NavText>
+      </Text>
+    </NavItem>
+  )
+}
+
+NavLink.propTypes = {
+  children: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+}
+
+const Navigation = () => (
+  <Flex
+    as="nav"
+    alignItems="center"
+    justifyContent="space-between"
+    mt={[0, 0, 2]}
+    css="position: relative"
+  >
+    <SkipNavLink />
+
+    <Flex alignItems="center">
+      <Logo />
+    </Flex>
+
+    <List fontSize={[2]}>
+      <NavLink to="/" mr={[2, 3]}>
+        Works
+      </NavLink>
+
+      <NavLink to="/about/" mr={[2, 3]}>
+        About
+      </NavLink>
+
+      <NavLink to="/projects/" mr={[2, 3]}>
+        Talks
+      </NavLink>
+
+      <NavLink to="/blog/" mr={[2, 4]}>
+        Writing
+      </NavLink>
+
+      <a href="mailto:afnizarhilmi@gmail.com">
+        <Button variant="primary">Contact</Button>
+      </a>
+    </List>
+  </Flex>
+)
+
+export default Navigation
