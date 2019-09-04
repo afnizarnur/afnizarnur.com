@@ -56,7 +56,7 @@ const Navigation = () => (
     as="nav"
     alignItems="center"
     justifyContent="space-between"
-    mt={[0, 0, 2]}
+    mt={[0, 0, 4]}
     css="position: relative"
   >
     <SkipNavLink />
@@ -83,7 +83,9 @@ const Navigation = () => (
       </NavLink>
 
       <a href="mailto:afnizarhilmi@gmail.com">
-        <Button variant="primary">Contact</Button>
+        <Button css="padding: 0.75rem 1rem!important" variant="primary">
+          Contact
+        </Button>
       </a>
     </List>
   </Flex>

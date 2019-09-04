@@ -96,10 +96,6 @@ const buttons = {
   primary: {
     backgroundColor: colors.gray[0],
     color: colors.black,
-    paddingTop: space[3],
-    paddingBottom: space[3],
-    paddingLeft: space[4],
-    paddingRight: space[4],
     borderRadius: 0,
     "&:hover": {
       backgroundColor: colors.black,

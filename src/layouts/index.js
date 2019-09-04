@@ -24,8 +24,6 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 
   ::selection {

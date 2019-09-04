@@ -43,6 +43,7 @@ const Project = ({ ...props }) => {
             width="24px"
             height="24px"
             css="display: inline-block"
+            mb="2px"
           />
           <Text css="display: inline-box" ml={2} mr={2}>
             {props.company}
