@@ -1,13 +1,13 @@
-import React from "react";
-import Header from "../components/Header";
-import ProjectFeatured from "../components/ProjectFeatured";
-import { Title, Paragraph } from "../components/Typography";
-import ProjectList from "../components/ProjectList";
-import DesignProcess from "../components/DesignProcess";
-import { Box, Flex } from "rebass";
-import Navigation from "../components/Navigation";
-import DefaultLayout from "../components/Layouts/Default";
-import FullLayout from "../components/Layouts/Full";
+import React from "react"
+import Header from "../components/Header"
+import ProjectFeatured from "../components/ProjectFeatured"
+import { Title, Paragraph } from "../components/Typography"
+import ProjectList from "../components/ProjectList"
+import DesignProcess from "../components/DesignProcess"
+import { Box, Flex } from "rebass"
+import Navigation from "../components/Navigation"
+import DefaultLayout from "../components/Layouts/Default"
+import FullLayout from "../components/Layouts/Full"
 
 const IndexPage = () => {
   return (
@@ -66,7 +66,7 @@ const IndexPage = () => {
         </main>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage

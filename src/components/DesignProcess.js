@@ -1,17 +1,18 @@
-import React from "react";
-import styled from "styled-components";
-import { Box, Link, Flex, Text } from "rebass";
-import { themeHover } from "../utils/styles";
-import { Title, Paragraph } from "../components/Typography";
-import FullLayout from "../components/Layouts/Full";
-import DefaultLayout from "../components/Layouts/Default";
-import DesignProcessItem from "../components/DesignProcessItem";
+import React from "react"
+import styled from "styled-components"
+import { Box, Link, Flex, Text } from "rebass"
+import { themeHover } from "../utils/styles"
+import { Title, Paragraph } from "../components/Typography"
+import FullLayout from "../components/Layouts/Full"
+import DefaultLayout from "../components/Layouts/Default"
+import DesignProcessItem from "../components/DesignProcessItem"
 
 const DesignProcess = () => {
   return (
     <FullLayout>
       <Flex
-        py="173px"
+        paddingTop="173px"
+        paddingBottom="109px"
         css="background-image: linear-gradient(180deg, rgba(25,26,27,.07) 0%, rgba(255,255,255,0) 100%);"
       >
         <DefaultLayout>
@@ -24,6 +25,32 @@ const DesignProcess = () => {
           </Paragraph>
           <Box>
             <DesignProcessItem
+              number="1"
+              name="Research"
+              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+            />
+            <DesignProcessItem
+              number="2"
+              name="Research"
+              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+            />
+            <DesignProcessItem
+              number="3"
+              name="Research"
+              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+            />
+            <DesignProcessItem
+              number="4"
+              name="Research"
+              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+            />
+            <DesignProcessItem
+              number="5"
+              name="Research"
+              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+            />
+            <DesignProcessItem
+              number="6"
               name="Research"
               description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
             />
@@ -31,7 +58,7 @@ const DesignProcess = () => {
         </DefaultLayout>
       </Flex>
     </FullLayout>
-  );
-};
+  )
+}
 
-export default DesignProcess;
+export default DesignProcess

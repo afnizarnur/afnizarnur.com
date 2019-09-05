@@ -4,21 +4,6 @@ const colors = {
   black: "#191a1b",
   white: "#ffffff",
   gray: ["#F0F0F0", "#6C6C6C"],
-
-  orange: "#f2930d",
-  oranges: [
-    "#fdf2e1",
-    "#fbe3c2",
-    "#f9d49e",
-    "#f7c276",
-    "#f5ad47",
-    "#f2930d",
-    "#da840b",
-    "#bf740a",
-    "#9f6008",
-    "#724506",
-  ],
-
   grays: [
     "#ffffff",
     "#f9f9f8",
