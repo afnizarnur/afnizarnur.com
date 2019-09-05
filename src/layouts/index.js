@@ -8,7 +8,6 @@ import { useSiteMetadata } from "../utils/hooks"
 import "sanitize.css"
 
 const GlobalStyles = createGlobalStyle`
-  @import url('fonts/inter.css');
   html {
     background-color: ${({ theme }) => theme.colors.white};
     line-height: ${({ theme }) => theme.lineHeights.copy};
