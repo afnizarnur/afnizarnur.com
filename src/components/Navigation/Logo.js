@@ -23,7 +23,7 @@ const Logo = () => (
       mr={3}
       css="outline:none"
     >
-      <Image src={"assets/avatar.png"} width="38" mb={2} />
+      <Image src={"../assets/avatar.png"} width="38" mb={2} />
     </Link>
 
     <Wordmark

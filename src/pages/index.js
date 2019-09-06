@@ -4,6 +4,7 @@ import ProjectFeatured from "../components/ProjectFeatured"
 import { Title, Paragraph } from "../components/Typography"
 import ProjectList from "../components/ProjectList"
 import DesignProcess from "../components/DesignProcess"
+import TalkList from "../components/TalkList"
 import { Box, Flex } from "rebass"
 import Navigation from "../components/Navigation"
 import DefaultLayout from "../components/Layouts/Default"
@@ -61,7 +62,7 @@ const IndexPage = () => {
 
           <FullLayout>
             <DesignProcess />
-            <Box bg="black" py={8}></Box>
+            <TalkList />
           </FullLayout>
         </main>
       </Box>
