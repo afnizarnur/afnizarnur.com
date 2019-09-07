@@ -2,7 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Helmet from "react-helmet"
 import Header from "../components/Header"
-import ProjectPreview from "../components/ProjectPreview"
+import ProjectPreview from "../components/Works/ProjectPreview"
 import { Title } from "../components/Typography"
 import { useSiteMetadata } from "../utils/hooks"
 
@@ -33,7 +33,7 @@ const ProjectsPage = () => {
 
       <article>
         <Header>
-          <Title>First-World Problem&nbsp;Solvers</Title>
+          <Title>Talks</Title>
         </Header>
 
         <main>

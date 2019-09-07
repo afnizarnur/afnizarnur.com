@@ -71,8 +71,7 @@ const fontWeights = {
   black: 900,
 }
 const fonts = {
-  "sans-serif":
-    'system-ui, -apple-system, Inter, Segoe UI, Roboto, Ubuntu, Cantarell, Oxygen, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+  sans: '"Inter", sans-serif, system-ui, -apple-system',
   monospace:
     "Menlo, Consolas, Roboto Mono, Ubuntu Monospace, Oxygen Mono, Liberation Mono, monospace",
 }

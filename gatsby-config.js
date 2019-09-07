@@ -1,67 +1,74 @@
 const plugins = [
   {
-    resolve: 'gatsby-source-filesystem',
+    resolve: "gatsby-source-filesystem",
     options: {
-      name: 'pages',
-      path: `${__dirname}/src/pages/`,
-    },
+      name: "pages",
+      path: `${__dirname}/src/pages/`
+    }
   },
   {
-    resolve: 'gatsby-source-filesystem',
+    resolve: "gatsby-source-filesystem",
     options: {
-      name: 'data',
-      path: `${__dirname}/src/data/`,
-    },
+      name: "data",
+      path: `${__dirname}/src/data/`
+    }
   },
   {
-    resolve: 'gatsby-transformer-remark',
+    resolve: "gatsby-source-filesystem",
+    options: {
+      name: "images",
+      path: `${__dirname}/src/images/`
+    }
+  },
+  {
+    resolve: "gatsby-transformer-remark",
     options: {
       plugins: [
         {
           resolve: `gatsby-remark-autolink-headers`,
           options: {
-            offsetY: 16,
-          },
+            offsetY: 16
+          }
         },
         {
-          resolve: 'gatsby-remark-images',
+          resolve: "gatsby-remark-images",
           options: {
             maxWidth: 1536,
-            linkImagesToOriginal: false,
-          },
+            linkImagesToOriginal: false
+          }
         },
-        'gatsby-remark-copy-linked-files',
-        'gatsby-remark-prismjs',
-        'gatsby-remark-smartypants',
-        'gatsby-remark-widows',
-      ],
-    },
+        "gatsby-remark-copy-linked-files",
+        "gatsby-remark-prismjs",
+        "gatsby-remark-smartypants",
+        "gatsby-remark-widows"
+      ]
+    }
   },
   {
-    resolve: 'gatsby-plugin-manifest',
+    resolve: "gatsby-plugin-manifest",
     options: {
-      name: 'afnizarnur',
-      short_name: 'afnizarnur',
-      start_url: '/',
-      background_color: '#ffffff',
-      theme_color: '#000000',
-      display: 'standalone',
+      name: "Afnizar Nur Ghifari, Designer",
+      short_name: "afnizarnur",
+      start_url: "/",
+      background_color: "#ffffff",
+      theme_color: "#191a1b",
+      display: "standalone",
       icons: [
         {
-          src: '/android-chrome-192x192.png',
-          sizes: '192x192',
-          type: 'image/png',
+          src: "/android-chrome-192x192.png",
+          sizes: "192x192",
+          type: "image/png"
         },
         {
-          src: '/android-chrome-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-        },
-      ],
-    },
+          src: "/android-chrome-512x512.png",
+          sizes: "512x512",
+          type: "image/png"
+        }
+      ]
+    }
   },
   {
-    resolve: 'gatsby-plugin-feed',
+    resolve: "gatsby-plugin-feed",
     options: {
       query: `
           {
@@ -84,7 +91,7 @@ const plugins = [
                 date: edge.node.frontmatter.date,
                 url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                 guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                custom_elements: [{ 'content:encoded': edge.node.html }],
+                custom_elements: [{ "content:encoded": edge.node.html }]
               })
             })
           },
@@ -108,45 +115,28 @@ const plugins = [
                 }
               }
             `,
-          output: '/rss.xml',
-          title: 'Gatsby RSS Feed',
-        },
-      ],
-    },
+          output: "/rss.xml",
+          title: "Gatsby RSS Feed"
+        }
+      ]
+    }
   },
-  'gatsby-transformer-json',
-  'gatsby-transformer-sharp',
-  'gatsby-plugin-catch-links',
-  'gatsby-plugin-layout',
-  'gatsby-plugin-react-helmet',
-  'gatsby-plugin-remove-serviceworker',
-  'gatsby-plugin-sharp',
-  'gatsby-plugin-sitemap',
-  'gatsby-plugin-styled-components',
+  "gatsby-transformer-json",
+  "gatsby-transformer-sharp",
+  "gatsby-plugin-catch-links",
+  "gatsby-plugin-layout",
+  "gatsby-plugin-react-helmet",
+  "gatsby-plugin-sharp",
+  "gatsby-plugin-sitemap",
+  "gatsby-plugin-styled-components",
+  "gatsby-plugin-offline"
 ]
-
-if (
-  process.env.FATHOM_URL &&
-  process.env.FATHOM_ID &&
-  process.env.USE_ANALYTICS
-) {
-  plugins.push({
-    resolve: 'gatsby-plugin-fathom',
-    options: {
-      trackingUrl: process.env.FATHOM_URL,
-      siteId: process.env.FATHOM_ID,
-    },
-  })
-}
-
-// Needs to be last plugin loaded
-plugins.push('gatsby-plugin-netlify')
 
 module.exports = {
   siteMetadata: {
-    title: 'Afnizar Nur Ghifari, Designer',
-    description: '',
-    siteUrl: 'https://afnizarnur.com',
+    title: "Afnizar Nur Ghifari, Designer",
+    description: "The personal site, writing, and portfolio of Afnizar Nur Ghifari. The personal site, writing, and portfolio of Afnizar Nur Ghifari. I'm a process-driven designer that has a mission to bring impactful experiences for people.",
+    siteUrl: "https://afnizarnur.com"
   },
-  plugins,
+  plugins
 }

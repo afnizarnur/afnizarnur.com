@@ -20,6 +20,7 @@ const SkipNavLink = styled(Link).attrs({
   color: ${({ theme }) => theme.colors.black};
   opacity: 0;
   pointer-events: none;
+  z-index: 99;
 
   &:focus {
     pointer-events: auto;

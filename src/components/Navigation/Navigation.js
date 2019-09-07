@@ -51,44 +51,46 @@ NavLink.propTypes = {
   to: PropTypes.string.isRequired,
 }
 
-const Navigation = () => (
-  <Flex
-    as="nav"
-    alignItems="center"
-    justifyContent="space-between"
-    mt={[0, 0, 4]}
-    css="position: relative"
-  >
-    <SkipNavLink />
+const Navigation = ({ ...props }) => {
+  return (
+    <Flex
+      as="nav"
+      alignItems="center"
+      justifyContent="space-between"
+      mt={[3, 4, 4]}
+      css="position: relative"
+    >
+      <SkipNavLink />
 
-    <Flex alignItems="center">
-      <Logo />
+      <Flex alignItems="center">
+        <Logo avatar={props.avatar} />
+      </Flex>
+
+      <List fontSize={[2]}>
+        <NavLink to="/" mr={[2, 3]}>
+          Works
+        </NavLink>
+
+        <NavLink to="/about/" mr={[2, 3]}>
+          About
+        </NavLink>
+
+        <NavLink to="/projects/" mr={[2, 3]}>
+          Talks
+        </NavLink>
+
+        <NavLink to="/writing/" mr={[2, 4]}>
+          Writing
+        </NavLink>
+
+        <a href="mailto:afnizarhilmi@gmail.com">
+          <Button css="padding: 0.75rem 1rem!important" variant="primary">
+            Contact
+          </Button>
+        </a>
+      </List>
     </Flex>
-
-    <List fontSize={[2]}>
-      <NavLink to="/" mr={[2, 3]}>
-        Works
-      </NavLink>
-
-      <NavLink to="/about/" mr={[2, 3]}>
-        About
-      </NavLink>
-
-      <NavLink to="/projects/" mr={[2, 3]}>
-        Talks
-      </NavLink>
-
-      <NavLink to="/blog/" mr={[2, 4]}>
-        Writing
-      </NavLink>
-
-      <a href="mailto:afnizarhilmi@gmail.com">
-        <Button css="padding: 0.75rem 1rem!important" variant="primary">
-          Contact
-        </Button>
-      </a>
-    </List>
-  </Flex>
-)
+  )
+}
 
 export default Navigation

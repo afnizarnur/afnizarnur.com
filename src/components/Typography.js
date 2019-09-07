@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Text, Heading } from "rebass"
+import theme from "../layouts/theme"
 
 const Title = ({ children, ...props }) => (
   <Heading
@@ -9,6 +10,9 @@ const Title = ({ children, ...props }) => (
     fontSize={[5, 6]}
     letterSpacing="-5px"
     lineHeight={[1, "5.25rem"]}
+    css="
+    animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+    "
     {...props}
   >
     {children}
@@ -23,8 +27,8 @@ const Title2 = ({ children, ...props }) => (
   <Heading
     as="h2"
     mb={3}
-    fontSize={[5, 5]}
-    letterSpacing="-3.57px"
+    fontSize={[4, 5]}
+    letterSpacing={["-2.86px", "-3.57px"]}
     lineHeight={[1, "4rem"]}
     {...props}
   >
@@ -71,7 +75,13 @@ Subtitle.propTypes = {
 }
 
 const Paragraph = ({ children, ...props }) => (
-  <Text as="p" fontSize={[1, 2]} lineHeight="copy" color="#6C6C6C" {...props}>
+  <Text
+    as="p"
+    fontSize={[1, 2]}
+    lineHeight="copy"
+    color={theme.colors.gray[1]}
+    {...props}
+  >
     {children}
   </Text>
 )

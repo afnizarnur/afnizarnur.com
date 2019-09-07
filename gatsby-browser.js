@@ -1,3 +1,2 @@
-const themeProvider = require('./src/layouts/themeProvider')
-exports.wrapRootElement = themeProvider
-require('typeface-inter')
+const themeProvider = require("./src/layouts/themeProvider");
+exports.wrapRootElement = themeProvider;

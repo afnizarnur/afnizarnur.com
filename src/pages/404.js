@@ -14,7 +14,7 @@ const HaikuLink = styled(Link)`
 const errorPage = () => (
   <>
     <Helmet>
-      <title>I goofed it.</title>
+      <title>404 Error Page</title>
     </Helmet>
 
     <article>
@@ -25,7 +25,6 @@ const errorPage = () => (
       </Header>
 
       <main>
-        {/* have to ugily do this because somewhere whitespace gets removed */}
         <Text
           as="pre"
           fontSize={[2, 3]}
