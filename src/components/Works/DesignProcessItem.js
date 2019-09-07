@@ -1,11 +1,16 @@
 import React from "react"
-import theme from "../layouts/theme"
-import { Box, Link, Flex, Text } from "rebass"
-import { Title, Paragraph } from "../components/Typography"
+import theme from "../../layouts/theme"
+import { Box, Text } from "rebass"
+import { Paragraph } from "../Typography"
 
 const DesignProcessItem = ({ ...props }) => {
   return (
-    <Box css="display: inline-block" pr={4} pb={6} width={[1, 1 / 2, 1 / 3]}>
+    <Box
+      css="display: inline-block"
+      pr={4}
+      pb={6}
+      width={[1 / 2, 1 / 2, 1 / 3]}
+    >
       <Box
         css="display: inline-block;"
         fontWeight="bold"

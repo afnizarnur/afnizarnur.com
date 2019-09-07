@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import { Box, Link, Text, Image } from "rebass"
-import { themeHover } from "../utils/styles"
-import { Title3, Paragraph } from "../components/Typography"
+import { themeHover } from "../../utils/styles"
+import { Paragraph } from "../Typography"
 
 const ViewProject = styled(Link)`
   font-weight: bold;
@@ -25,7 +25,7 @@ const Project = ({ ...props }) => {
     <Box
       css="display: inline-block"
       pr={4}
-      pb={6}
+      mb={["3rem", 6, 6]}
       width={[1, 1 / 2, 1 / 3]}
       {...props}
     >
@@ -43,7 +43,7 @@ const Project = ({ ...props }) => {
             width="24px"
             height="24px"
             css="display: inline-block"
-            mb="2px"
+            mb="0.125rem"
           />
           <Text css="display: inline-box" ml={2} mr={2}>
             {props.company}

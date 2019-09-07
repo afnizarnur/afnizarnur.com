@@ -1,9 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import { Box, Link, Flex } from "rebass"
-import { themeHover } from "../utils/styles"
-import { Title3, Paragraph } from "../components/Typography"
-import Project from "../components/Project"
+import { Box, Link } from "rebass"
+import { themeHover } from "../../utils/styles"
+import { Title3, Paragraph } from "../Typography"
+import Project from "../Works/Project"
+import theme from "../../layouts/theme"
 
 const GoToLink = styled(Link)`
   font-weight: bold;
@@ -19,8 +20,8 @@ const GoToLink = styled(Link)`
 
 const ProjectList = ({ title, description, ...props }) => {
   return (
-    <Box mb="114px" {...props}>
-      <Title3 mb="40px">Not just three, but there is more</Title3>
+    <Box mb={["7.125rem"]} {...props}>
+      <Title3 mb="2.5rem">Not just three, but there is more</Title3>
       <Project
         name="DANA"
         link=""
@@ -76,7 +77,7 @@ const ProjectList = ({ title, description, ...props }) => {
         date="Oct 2019"
       />
 
-      <Paragraph color={({ theme }) => theme.colors.black} fontSize={[3]}>
+      <Paragraph color={theme.colors.black} fontSize={[3]}>
         Still curious for my another work? Send me an email about your project
         and I will prepare a detailed portfolio with relevant work samples.{" "}
         <GoToLink href="mailto:afnizarhilmi@gmail.com">Get in touch</GoToLink>.

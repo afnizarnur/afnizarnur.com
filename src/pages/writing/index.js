@@ -5,7 +5,6 @@ import Helmet from "react-helmet"
 import styled from "styled-components"
 import { Box, Flex, Heading } from "rebass"
 import Header from "../../components/Header"
-import ArrowLink from "../../components/ArrowLink"
 import { Title, Paragraph } from "../../components/Typography"
 import { useSiteMetadata } from "../../utils/hooks"
 import { themeHover } from "../../utils/styles"
@@ -76,7 +75,7 @@ const BlogPage = () => {
 
       <article>
         <Header>
-          <Title>Eloquent Writings About&nbsp;Stuff</Title>
+          <Title>Writing</Title>
         </Header>
 
         <main>
@@ -110,7 +109,7 @@ const BlogPage = () => {
                     {unwidow(frontmatter.description)}
                   </Paragraph>
 
-                  <ArrowLink to={fields.slug}>Read More</ArrowLink>
+                  <Link to={fields.slug}>Read More</Link>
                 </Box>
               </Flex>
             )

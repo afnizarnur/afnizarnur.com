@@ -1,9 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { Box, Link, Image } from "rebass"
-import { themeHover } from "../utils/styles"
-import { Title2, Paragraph } from "../components/Typography"
+import { Box, Link } from "rebass"
+import { themeHover } from "../../utils/styles"
+import { Title2, Paragraph } from "../Typography"
+import Img from "gatsby-image"
 
 const ViewProject = styled(Link)`
   font-weight: bold;
@@ -17,23 +18,26 @@ const ViewProject = styled(Link)`
   ${themeHover};
 `
 
+const imageStyle = {
+  width: "100%",
+  marginBottom: "0.5rem",
+  marginTop: "2rem",
+}
+
 const ProjectFeatured = ({ title, description, ...props }) => {
   return (
-    <Box mb="173px" {...props}>
+    <Box mb={["7.5rem", "10.8125rem"]} {...props}>
       <Title2>{title}</Title2>
-      <Paragraph fontSize={[2, 3]} mt={[5]} mb={4}>
+      <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={4}>
         {description}
       </Paragraph>
-      <ViewProject fontSize={3} fontWeight="bold" href={props.link}>
+      <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
         View Project
       </ViewProject>
-      <Image
-        src={props.image}
-        mt={5}
-        width={1}
-        sx={{
-          width: ["100%"],
-        }}
+      <Img
+        style={imageStyle}
+        alt="Featured Project"
+        sizes={props.featuredimage}
       />
     </Box>
   )

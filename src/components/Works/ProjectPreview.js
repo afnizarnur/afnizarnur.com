@@ -1,11 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { Box, Heading } from "rebass"
-import ArrowLink from "./ArrowLink"
-import { Paragraph } from "./Typography"
-import { themeHover } from "../utils/styles"
-import unwidow from "../utils/unwidow"
+import { Box, Heading, Link } from "rebass"
+import { Paragraph } from "../Typography"
+import { themeHover } from "../../utils/styles"
+import unwidow from "../../utils/unwidow"
 
 const ProjectTitle = styled(Heading).attrs({
   my: 0,
@@ -34,13 +33,13 @@ const ProjectPreview = ({ project, level, ...props }) => (
 
     {project.website && (
       <InlineBox {...(project.website && project.repo ? { mr: 4 } : {})}>
-        <ArrowLink href={project.website}>Website</ArrowLink>
+        <Link href={project.website}>Website</Link>
       </InlineBox>
     )}
 
     {project.repo && (
       <InlineBox>
-        <ArrowLink href={project.repo}>Repository</ArrowLink>
+        <Link href={project.repo}>Repository</Link>
       </InlineBox>
     )}
   </Box>
