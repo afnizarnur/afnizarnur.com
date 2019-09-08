@@ -116,7 +116,7 @@ const plugins = [
               }
             `,
           output: "/rss.xml",
-          title: "Gatsby RSS Feed"
+          title: "Afnizar Nur Ghifari RSS Feed"
         }
       ]
     }

@@ -9,6 +9,8 @@ import { Title, Paragraph } from "../../components/Typography"
 import { useSiteMetadata } from "../../utils/hooks"
 import { themeHover } from "../../utils/styles"
 import unwidow from "../../utils/unwidow"
+import DefaultLayout from "../../components/Layouts/Default"
+import Navigation from "../../components/Navigation"
 
 const YearContainer = styled(Box)`
   display: none;
@@ -25,7 +27,7 @@ const YearTitle = ({ children }) => (
 )
 
 YearTitle.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired
 }
 
 const PostTitle = ({ children }) => (
@@ -40,7 +42,7 @@ const PostTitle = ({ children }) => (
 )
 
 PostTitle.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 const BlogPage = () => {
@@ -73,49 +75,70 @@ const BlogPage = () => {
         <title>Blog • {title}</title>
       </Helmet>
 
-      <article>
-        <Header>
-          <Title>Writing</Title>
-        </Header>
+      <Box as="main" id="main-content" mb={[5, 6]}>
+        <DefaultLayout>
+          <Header>
+            <Title mt={9}>Writing</Title>
 
-        <main>
-          {posts.map(({ node }, index) => {
-            const { fields, frontmatter } = node
-            const thisYear = frontmatter.year
-            let YearComponent
+            <Paragraph
+              maxWidth="90%"
+              fontSize={[2, 3]}
+              mt={[4, 5]}
+              mb={["6.25rem", "10.8125rem"]}
+              css="
+              animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+              "
+            >
+              Torquatos nostros? quos dolores eos, qui haec putat, ut alterum
+              esse ratione neque. Ut placet, inquam tum dicere exorsus est
+              laborum et argumentandum et accusamus et.
+            </Paragraph>
+          </Header>
 
-            if (thisYear !== year) {
-              YearComponent = <YearTitle>{frontmatter.year}</YearTitle>
-              year = thisYear
-            }
+          <main>
+            {posts.map(({ node }, index) => {
+              const { fields, frontmatter } = node
+              const thisYear = frontmatter.year
+              let YearComponent
 
-            return (
-              <Flex
-                key={fields.slug}
-                flexDirection="row"
-                alignItems="flex-start"
-                {...(index + 1 === posts.length ? {} : { mb: [4, 5] })}
-              >
-                <YearContainer width={1 / 5}>{YearComponent}</YearContainer>
+              if (thisYear !== year) {
+                YearComponent = <YearTitle>{frontmatter.year}</YearTitle>
+                year = thisYear
+              }
 
-                <Box width={[1, 4 / 5]}>
-                  <PostTitle>
-                    <Link to={fields.slug} css={themeHover}>
-                      {unwidow(frontmatter.title)}
-                    </Link>
-                  </PostTitle>
+              return (
+                <Flex
+                  key={fields.slug}
+                  flexDirection="row"
+                  alignItems="flex-start"
+                  {...(index + 1 === posts.length ? {} : { mb: [4, 5] })}
+                >
+                  <YearContainer width={1 / 5}>{YearComponent}</YearContainer>
 
-                  <Paragraph fontSize={[1, 2]} lineHeight="copy" mt={3} mb={2}>
-                    {unwidow(frontmatter.description)}
-                  </Paragraph>
+                  <Box width={[1, 4 / 5]}>
+                    <PostTitle>
+                      <Link to={fields.slug} css={themeHover}>
+                        {unwidow(frontmatter.title)}
+                      </Link>
+                    </PostTitle>
 
-                  <Link to={fields.slug}>Read More</Link>
-                </Box>
-              </Flex>
-            )
-          })}
-        </main>
-      </article>
+                    <Paragraph
+                      fontSize={[1, 2]}
+                      lineHeight="copy"
+                      mt={3}
+                      mb={2}
+                    >
+                      {unwidow(frontmatter.description)}
+                    </Paragraph>
+
+                    <Link to={fields.slug}>Read More</Link>
+                  </Box>
+                </Flex>
+              )
+            })}
+          </main>
+        </DefaultLayout>
+      </Box>
     </>
   )
 }

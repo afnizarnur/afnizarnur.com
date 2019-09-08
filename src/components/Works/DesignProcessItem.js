@@ -9,7 +9,7 @@ const DesignProcessItem = ({ ...props }) => {
       css="display: inline-block"
       pr={4}
       pb={6}
-      width={[1 / 2, 1 / 2, 1 / 3]}
+      width={[1 / 1, 1 / 2, 1 / 3]}
     >
       <Box
         css="display: inline-block;"

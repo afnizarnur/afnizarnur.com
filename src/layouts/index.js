@@ -4,10 +4,9 @@ import Helmet from "react-helmet"
 import { createGlobalStyle, withTheme } from "styled-components"
 import { useSiteMetadata } from "../utils/hooks"
 import "sanitize.css"
+import "./fonts/inter.css"
 
 const GlobalStyles = createGlobalStyle`
-  @import "fonts/inter.css";
-
   * {
     font-family: "Inter", system-ui, -apple-system, sans-serif!important;
   }
