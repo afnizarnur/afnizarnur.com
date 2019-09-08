@@ -27,7 +27,7 @@ const YearTitle = ({ children }) => (
 )
 
 YearTitle.propTypes = {
-  children: PropTypes.string.isRequired
+  children: PropTypes.string.isRequired,
 }
 
 const PostTitle = ({ children }) => (
@@ -42,7 +42,7 @@ const PostTitle = ({ children }) => (
 )
 
 PostTitle.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 const BlogPage = () => {

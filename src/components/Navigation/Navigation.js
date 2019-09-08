@@ -75,7 +75,7 @@ const Navigation = ({ ...props }) => {
           About
         </NavLink>
 
-        <NavLink to="/projects/" mr={[2, 3]}>
+        <NavLink to="/#talks" mr={[2, 3]}>
           Talks
         </NavLink>
 

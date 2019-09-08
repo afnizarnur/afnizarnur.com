@@ -29,6 +29,7 @@ const TalkList = ({ ...props }) => {
 
   return (
     <Box
+      id="talks"
       py={[7, "7.3125rem", "7.3125rem"]}
       color="white"
       bg={theme.colors.black}

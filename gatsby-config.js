@@ -9,13 +9,6 @@ const plugins = [
   {
     resolve: "gatsby-source-filesystem",
     options: {
-      name: "data",
-      path: `${__dirname}/src/data/`
-    }
-  },
-  {
-    resolve: "gatsby-source-filesystem",
-    options: {
       name: "images",
       path: `${__dirname}/src/images/`
     }
@@ -135,7 +128,7 @@ const plugins = [
 module.exports = {
   siteMetadata: {
     title: "Afnizar Nur Ghifari, Designer",
-    description: "The personal site, writing, and portfolio of Afnizar Nur Ghifari. The personal site, writing, and portfolio of Afnizar Nur Ghifari. I'm a process-driven designer that has a mission to bring impactful experiences for people.",
+    description: "The personal site, writing, and portfolio of Afnizar Nur Ghifari. I'm a process-driven designer that has a mission to bring impactful experiences for people.",
     siteUrl: "https://afnizarnur.com"
   },
   plugins
