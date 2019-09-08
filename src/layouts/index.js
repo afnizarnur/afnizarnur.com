@@ -109,7 +109,7 @@ const Layout = ({ children, theme }) => {
 
 Layout.propTypes = {
   children: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 }
 
 export default withTheme(Layout)

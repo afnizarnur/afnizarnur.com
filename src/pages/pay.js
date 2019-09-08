@@ -5,6 +5,7 @@ import FullLayout from "../components/Layouts/Full"
 import { Flex, Box, Text } from "rebass"
 import { Title } from "../components/Typography"
 import Logo from "../components/Navigation/Logo"
+import PayItem from "../components/Pay/PayItem"
 
 var quotes = [
   <Text>
@@ -39,7 +40,11 @@ const PayPage = props => {
       </Helmet>
 
       <FullLayout>
-        <Box py={4} width={[1, "50%"]} css="position: fixed">
+        <Box
+          py={4}
+          width={[1, "50%"]}
+          css="height: 100%; border-right: 1px solid #F0F0F0; position: fixed"
+        >
           <Box px={[5]}>
             <Flex alignItems="center">
               <Logo />
@@ -58,17 +63,17 @@ const PayPage = props => {
             </Title>
           </Box>
         </Box>
-        <Box paddingTop={[7, 5]} paddingLeft={[0, "50%"]}>
-          <Box px={[5]}>
-            <Title>
-              Minum kopi bikin tenang, bayar utang lebih tenang. Minum kopi
-              bikin tenang, bayar utang lebih tenang. Minum kopi bikin tenang,
-              bayar utang lebih tenang. Minum kopi bikin tenang, bayar utang
-              lebih tenang. Minum kopi bikin tenang, bayar utang lebih tenang.
-              Minum kopi bikin tenang, bayar utang lebih tenang. Minum kopi
-              bikin tenang, bayar utang lebih tenang. Minum kopi bikin tenang,
-              bayar utang lebih tenang.
-            </Title>
+        <Box paddingLeft={[0, "50%"]}>
+          <Box paddingTop={[7, 5]} px={[5]}>
+            <PayItem />
+            <PayItem />
+            <PayItem />
+            <PayItem />
+            <PayItem />
+            <PayItem />
+            <PayItem />
+            <PayItem />
+            <PayItem />
           </Box>
         </Box>
       </FullLayout>

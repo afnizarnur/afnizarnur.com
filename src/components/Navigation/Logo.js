@@ -23,18 +23,18 @@ const imageStyle = {
 
 const Logo = () => {
   const data = useStaticQuery(graphql`
-  query {
-    avatar: file(relativePath: { eq: "avatar.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 38, maxHeight: 38) {
-          ...GatsbyImageSharpFluid
+    query {
+      avatar: file(relativePath: { eq: "avatar.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 38, maxHeight: 38) {
+            ...GatsbyImageSharpFluid
+          }
         }
       }
     }
-  }
-`)
+  `)
 
-console.log(data)
+  console.log(data)
   return (
     <>
       <Link
