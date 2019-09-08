@@ -5,7 +5,6 @@ import FullLayout from "../components/Layouts/Full"
 import { Flex, Box, Text } from "rebass"
 import { Title } from "../components/Typography"
 import Logo from "../components/Navigation/Logo"
-import { graphql } from "gatsby"
 
 var quotes = [
   <Text>
@@ -43,7 +42,7 @@ const PayPage = props => {
         <Box py={4} width={[1, "50%"]} css="position: fixed">
           <Box px={[5]}>
             <Flex alignItems="center">
-              <Logo avatar={props.data.avatar.childImageSharp.fluid} />
+              <Logo />
             </Flex>
 
             <Title
@@ -76,17 +75,5 @@ const PayPage = props => {
     </>
   )
 }
-
-export const pageQuery = graphql`
-  query payQuery {
-    avatar: file(relativePath: { eq: "avatar.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 38, maxHeight: 38) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
 
 export default PayPage

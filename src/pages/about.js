@@ -1,5 +1,4 @@
 import React from "react"
-import { graphql } from "gatsby"
 import Helmet from "react-helmet"
 import Header from "../components/Header"
 import { Title, Paragraph } from "../components/Typography"
@@ -19,7 +18,7 @@ const AboutPage = props => {
 
       <Box>
         <DefaultLayout>
-          <Navigation avatar={props.data.avatar.childImageSharp.fluid} />
+          <Navigation />
         </DefaultLayout>
         <Box as="main" id="main-content" mb={[5, 6]}>
           <DefaultLayout>
@@ -52,17 +51,5 @@ const AboutPage = props => {
     </>
   )
 }
-
-export const pageQuery = graphql`
-  query AboutQuery {
-    avatar: file(relativePath: { eq: "avatar.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 38, maxHeight: 38) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
 
 export default AboutPage

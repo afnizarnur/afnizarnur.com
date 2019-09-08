@@ -6,6 +6,10 @@ import { useSiteMetadata } from "../utils/hooks"
 import "sanitize.css"
 import "./fonts/inter.css"
 
+if (typeof window !== "undefined") {
+  require("smooth-scroll")('a[href*="#"]')
+}
+
 const GlobalStyles = createGlobalStyle`
   * {
     font-family: "Inter", system-ui, -apple-system, sans-serif!important;
@@ -23,8 +27,8 @@ const GlobalStyles = createGlobalStyle`
     text-decoration-skip-ink: auto;
   }
 
-  .small-menu {
-    background: #fff;
+  .logoImage:hover {
+    transform: scale(1.1);
   }
 
   @media print {
@@ -105,7 +109,7 @@ const Layout = ({ children, theme }) => {
 
 Layout.propTypes = {
   children: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
 }
 
 export default withTheme(Layout)

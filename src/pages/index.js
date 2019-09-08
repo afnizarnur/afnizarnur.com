@@ -16,7 +16,7 @@ const IndexPage = props => {
   return (
     <Box>
       <DefaultLayout>
-        <Navigation avatar={props.data.avatar.childImageSharp.fluid} />
+        <Navigation />
       </DefaultLayout>
       <Box as="main" id="main-content" mb={[5, 6]}>
         <DefaultLayout>
@@ -85,13 +85,6 @@ const IndexPage = props => {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    avatar: file(relativePath: { eq: "avatar.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 38, maxHeight: 38) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
     imageplaceholder: file(relativePath: { eq: "image-placeholder.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {

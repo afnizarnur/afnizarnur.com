@@ -51,6 +51,7 @@
     "react-helmet": "^5.2.1",
     "rebass": "^3.2.2",
     "sanitize.css": "^7.0.3",
+    "smooth-scroll": "^16.1.0",
     "styled-components": "^4.3.2",
     "unfetch": "^4.1.0"
   },

@@ -1,47 +1,41 @@
 import React from "react"
-import { Link } from "gatsby"
 import Helmet from "react-helmet"
-import styled from "styled-components"
-import { Text } from "rebass"
+import { Box } from "rebass"
 import Header from "../components/Header"
-import { Title, Subtitle } from "../components/Typography"
-import { themeHover } from "../utils/styles"
+import { Title, Paragraph } from "../components/Typography"
+import DefaultLayout from "../components/Layouts/Default"
+import Navigation from "../components/Navigation"
 
-const HaikuLink = styled(Link)`
-  ${themeHover};
-`
-
-const errorPage = () => (
+const errorPage = props => (
   <>
     <Helmet>
       <title>404 Error Page</title>
     </Helmet>
 
-    <article>
-      <Header>
-        <Title>Error 404</Title>
+    <Box>
+      <DefaultLayout>
+        <Navigation />
+      </DefaultLayout>
+      <Box as="main" id="main-content" mb={[5, 6]}>
+        <DefaultLayout>
+          <Header>
+            <Title mt={9}>Error 404</Title>
 
-        <Subtitle>Requested Page Not&nbsp;Found</Subtitle>
-      </Header>
-
-      <main>
-        <Text
-          as="pre"
-          fontSize={[2, 3]}
-          fontFamily="monospace"
-          lineHeight="title"
-        >
-          &ldquo;
-          <HaikuLink to="/">Click here to go home</HaikuLink>
-          &rdquo;
-          <br />
-          &nbsp;is over-used and boring,
-          <br />
-          &nbsp;but at least it&rsquo;s clear.
-          <br />
-        </Text>
-      </main>
-    </article>
+            <Paragraph
+              maxWidth="90%"
+              fontSize={[2, 3]}
+              mt={[4, 5]}
+              mb={["6.25rem", "10.8125rem"]}
+              css="
+              animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+              "
+            >
+              Requested Page Not Found
+            </Paragraph>
+          </Header>
+        </DefaultLayout>
+      </Box>
+    </Box>
   </>
 )
 

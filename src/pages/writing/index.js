@@ -63,6 +63,13 @@ const BlogPage = () => {
           }
         }
       }
+      avatar: file(relativePath: { eq: "avatar.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 38, maxHeight: 38) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `)
 
@@ -72,72 +79,75 @@ const BlogPage = () => {
   return (
     <>
       <Helmet>
-        <title>Blog • {title}</title>
+        <title>Writing • {title}</title>
       </Helmet>
 
-      <Box as="main" id="main-content" mb={[5, 6]}>
+      <Box>
         <DefaultLayout>
-          <Header>
-            <Title mt={9}>Writing</Title>
-
-            <Paragraph
-              maxWidth="90%"
-              fontSize={[2, 3]}
-              mt={[4, 5]}
-              mb={["6.25rem", "10.8125rem"]}
-              css="
-              animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;
-              "
-            >
-              Torquatos nostros? quos dolores eos, qui haec putat, ut alterum
-              esse ratione neque. Ut placet, inquam tum dicere exorsus est
-              laborum et argumentandum et accusamus et.
-            </Paragraph>
-          </Header>
-
-          <main>
-            {posts.map(({ node }, index) => {
-              const { fields, frontmatter } = node
-              const thisYear = frontmatter.year
-              let YearComponent
-
-              if (thisYear !== year) {
-                YearComponent = <YearTitle>{frontmatter.year}</YearTitle>
-                year = thisYear
-              }
-
-              return (
-                <Flex
-                  key={fields.slug}
-                  flexDirection="row"
-                  alignItems="flex-start"
-                  {...(index + 1 === posts.length ? {} : { mb: [4, 5] })}
-                >
-                  <YearContainer width={1 / 5}>{YearComponent}</YearContainer>
-
-                  <Box width={[1, 4 / 5]}>
-                    <PostTitle>
-                      <Link to={fields.slug} css={themeHover}>
-                        {unwidow(frontmatter.title)}
-                      </Link>
-                    </PostTitle>
-
-                    <Paragraph
-                      fontSize={[1, 2]}
-                      lineHeight="copy"
-                      mt={3}
-                      mb={2}
-                    >
-                      {unwidow(frontmatter.description)}
-                    </Paragraph>
-
-                    <Link to={fields.slug}>Read More</Link>
-                  </Box>
-                </Flex>
-              )
-            })}
-          </main>
+          <Navigation />
         </DefaultLayout>
+        <Box as="main" id="main-content" mb={[5, 6]}>
+          <DefaultLayout>
+            <Header>
+              <Title mt={9}>Writing</Title>
+
+              <Paragraph
+                maxWidth="90%"
+                fontSize={[2, 3]}
+                mt={[4, 5]}
+                mb={["6.25rem", "10.8125rem"]}
+                css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+              >
+                Torquatos nostros? quos dolores eos, qui haec putat, ut alterum
+                esse ratione neque. Ut placet, inquam tum dicere exorsus est
+                laborum et argumentandum et accusamus et.
+              </Paragraph>
+            </Header>
+
+            <main>
+              {posts.map(({ node }, index) => {
+                const { fields, frontmatter } = node
+                const thisYear = frontmatter.year
+                let YearComponent
+
+                if (thisYear !== year) {
+                  YearComponent = <YearTitle>{frontmatter.year}</YearTitle>
+                  year = thisYear
+                }
+
+                return (
+                  <Flex
+                    key={fields.slug}
+                    flexDirection="row"
+                    alignItems="flex-start"
+                    {...(index + 1 === posts.length ? {} : { mb: [4, 5] })}
+                  >
+                    <YearContainer width={1 / 5}>{YearComponent}</YearContainer>
+
+                    <Box width={[1, 4 / 5]}>
+                      <PostTitle>
+                        <Link to={fields.slug} css={themeHover}>
+                          {unwidow(frontmatter.title)}
+                        </Link>
+                      </PostTitle>
+
+                      <Paragraph
+                        fontSize={[1, 2]}
+                        lineHeight="copy"
+                        mt={3}
+                        mb={2}
+                      >
+                        {unwidow(frontmatter.description)}
+                      </Paragraph>
+
+                      <Link to={fields.slug}>Read More</Link>
+                    </Box>
+                  </Flex>
+                )
+              })}
+            </main>
+          </DefaultLayout>
+        </Box>
       </Box>
     </>
   )

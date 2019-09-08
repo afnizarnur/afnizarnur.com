@@ -1,5 +1,5 @@
 import React from "react"
-import { Link as GatsbyLink } from "gatsby"
+import { graphql, useStaticQuery, Link as GatsbyLink } from "gatsby"
 import styled from "styled-components"
 import { Link, Text } from "rebass"
 import Img from "gatsby-image"
@@ -18,9 +18,23 @@ const imageStyle = {
   borderRadius: "50%",
   height: 38,
   marginBottom: "0.5rem",
+  transition: "all .2s ease-in-out",
 }
 
-const Logo = ({ ...props }) => {
+const Logo = () => {
+  const data = useStaticQuery(graphql`
+  query {
+    avatar: file(relativePath: { eq: "avatar.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 38, maxHeight: 38) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`)
+
+console.log(data)
   return (
     <>
       <Link
@@ -35,7 +49,8 @@ const Logo = ({ ...props }) => {
         <Img
           style={imageStyle}
           alt="Afnizar Nur Ghifari"
-          sizes={props.avatar}
+          sizes={data.avatar.childImageSharp.fluid}
+          className="logoImage"
         />
       </Link>
 
