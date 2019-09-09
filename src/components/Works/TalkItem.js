@@ -30,7 +30,7 @@ const TalkItem = ({ ...props }) => {
       </ViewLink>
       <Paragraph
         color={theme.colors.white}
-        css="opacity: .5"
+        css="opacity: .8"
         fontSize={[2]}
         mt={[2]}
       >

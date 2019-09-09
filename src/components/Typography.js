@@ -7,9 +7,10 @@ const Title = ({ children, ...props }) => (
   <Heading
     as="h1"
     mb={3}
-    fontSize={[5, 6]}
-    letterSpacing="-5px"
-    lineHeight={[1, "5.25rem"]}
+    fontSize={["2.5rem", 5, 6]}
+    letterSpacing={["-2.8px", "-5px", "-5px"]}
+    lineHeight={["2.8rem", 1, "5.25rem"]}
+    color={theme.colors.black}
     css="
     animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;
     "
@@ -27,9 +28,10 @@ const Title2 = ({ children, ...props }) => (
   <Heading
     as="h2"
     mb={3}
-    fontSize={[4, 5]}
-    letterSpacing={["-2.86px", "-3.57px"]}
-    lineHeight={[1, "4rem"]}
+    fontSize={["2.5rem", 4, 5]}
+    letterSpacing={["-2.2px", "-2.8px", "-3.57px"]}
+    lineHeight={["2.8rem", 1, "4rem"]}
+    color={theme.colors.black}
     {...props}
   >
     {children}
@@ -44,9 +46,10 @@ const Title3 = ({ children, ...props }) => (
   <Heading
     as="h3"
     mb={3}
-    fontSize={[4, 4]}
-    letterSpacing="-2.86px"
+    fontSize={["2.5rem", 4, 4]}
+    letterSpacing={["-2.8px"]}
     lineHeight={[1, "4rem"]}
+    color={theme.colors.black}
     {...props}
   >
     {children}

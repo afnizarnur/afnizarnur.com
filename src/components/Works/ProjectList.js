@@ -20,7 +20,7 @@ const GoToLink = styled(Link)`
 
 const ProjectList = ({ title, description, ...props }) => {
   return (
-    <Box mb={["7.125rem"]} {...props}>
+    <Box mb={["3.5rem", "7.125rem"]} {...props}>
       <Title3 mb="2.5rem">Not just three, but there is more</Title3>
       <Project
         name="DANA"
@@ -77,7 +77,7 @@ const ProjectList = ({ title, description, ...props }) => {
         date="Oct 2019"
       />
 
-      <Paragraph color={theme.colors.black} fontSize={[3]}>
+      <Paragraph color={theme.colors.black} fontSize={[2, 3]}>
         Still curious for my another work? Send me an email about your project
         and I will prepare a detailed portfolio with relevant work samples.{" "}
         <GoToLink href="mailto:afnizarhilmi@gmail.com">Get in touch</GoToLink>.

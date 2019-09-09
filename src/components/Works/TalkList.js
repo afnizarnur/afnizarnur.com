@@ -30,14 +30,14 @@ const TalkList = ({ ...props }) => {
   return (
     <Box
       id="talks"
-      py={[7, "7.3125rem", "7.3125rem"]}
+      py={[6, "7.3125rem", "7.3125rem"]}
       color="white"
       bg={theme.colors.black}
       css={backgroundStyle}
       {...props}
     >
       <DefaultLayout>
-        <Title2 mb="5.1875rem">
+        <Title2 color="white" mb="5.1875rem">
           I love being able to share and help others achieve more through my
           work.
         </Title2>
@@ -73,7 +73,7 @@ const TalkList = ({ ...props }) => {
         <Paragraph
           paddingTop={[4, 0, 0]}
           color={theme.colors.white}
-          fontSize={[3]}
+          fontSize={[2, 3]}
         >
           Still curious for my another work? Send me an email about your project
           and I will prepare a detailed portfolio with relevant work samples.{" "}

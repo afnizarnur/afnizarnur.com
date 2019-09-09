@@ -8,6 +8,7 @@ const ViewProject = styled(Link)`
   font-weight: bold;
   text-decoration: underline;
   letter-spacing: -0.2px;
+  color: ${({ theme }) => theme.colors.black} !important;
 
   .active & {
     border-color: ${({ theme }) => theme.colors.black};
@@ -29,7 +30,7 @@ const Project = ({ ...props }) => {
       width={[1, 1 / 2, 1 / 3]}
       {...props}
     >
-      <ViewProject fontSize={3} fontWeight="bold" href={props.link}>
+      <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
         {props.name}
       </ViewProject>
       <Paragraph fontSize={[2]} mt={[2]}>
@@ -45,12 +46,12 @@ const Project = ({ ...props }) => {
             css="display: inline-block"
             mb="0.125rem"
           />
-          <Text css="display: inline-box" ml={2} mr={2}>
+          <Text css="display: inline-box; color: #191a1b" ml={2} mr={2}>
             {props.company}
           </Text>
         </InlineBox>
         <span css="color: #d8d8d8">|</span>
-        <Text ml={2} css="display: inline-box">
+        <Text ml={2} css="display: inline-box; color: #191a1b">
           {props.date}
         </Text>
       </Box>

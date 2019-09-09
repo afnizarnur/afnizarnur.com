@@ -16,6 +16,7 @@ const NavText = styled(Text)`
   font-weight: bold;
   text-decoration: underline;
   letter-spacing: -0.2px;
+  color: ${({ theme }) => theme.colors.black}!important;
 
   .active & {
     border-color: ${({ theme }) => theme.colors.black};

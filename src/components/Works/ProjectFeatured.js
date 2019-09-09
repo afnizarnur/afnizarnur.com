@@ -10,6 +10,7 @@ const ViewProject = styled(Link)`
   font-weight: bold;
   text-decoration: underline;
   letter-spacing: -0.2px;
+  color: ${({ theme }) => theme.colors.black}!important;
 
   .active & {
     border-color: ${({ theme }) => theme.colors.black};
@@ -20,13 +21,12 @@ const ViewProject = styled(Link)`
 
 const imageStyle = {
   width: "100%",
-  marginBottom: "0.5rem",
   marginTop: "2rem",
 }
 
 const ProjectFeatured = ({ title, description, ...props }) => {
   return (
-    <Box mb={["7.5rem", "10.8125rem"]} {...props}>
+    <Box mb={["4.5rem", "7.5rem", "10.8125rem"]} {...props}>
       <Title2>{title}</Title2>
       <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={4}>
         {description}
