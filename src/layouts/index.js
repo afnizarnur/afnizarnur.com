@@ -7,7 +7,9 @@ import "sanitize.css"
 import "./fonts/inter.css"
 
 if (typeof window !== "undefined") {
-  require("smooth-scroll")('a[href*="#"]')
+  require("smooth-scroll")('a[href*="#"]', {
+    speed: 200,
+  })
 }
 
 const GlobalStyles = createGlobalStyle`
@@ -29,6 +31,14 @@ const GlobalStyles = createGlobalStyle`
 
   .logoImage:hover {
     transform: scale(1.1);
+  }
+
+  .scrollImage {
+    transition: all .2s ease-in-out; 
+  }
+
+  .scroll:hover .scrollImage {
+    transform: translateY(-10px);
   }
 
   @media print {
@@ -102,6 +112,7 @@ const Layout = ({ children, theme }) => {
         />
       </Helmet>
 
+      <a id="top"></a>
       {children}
     </>
   )

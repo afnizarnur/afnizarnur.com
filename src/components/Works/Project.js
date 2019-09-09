@@ -30,9 +30,22 @@ const Project = ({ ...props }) => {
       width={[1, 1 / 2, 1 / 3]}
       {...props}
     >
-      <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
-        {props.name}
-      </ViewProject>
+      {props.link && (
+        <ViewProject
+          fontSize={[2, 3]}
+          fontWeight="bold"
+          target="blank"
+          href={props.link}
+        >
+          {props.name}
+        </ViewProject>
+      )}
+      {!props.link && (
+        <Paragraph color={"#191a1b"} fontSize={[2, 3]} fontWeight="bold">
+          {props.name}
+        </Paragraph>
+      )}
+
       <Paragraph fontSize={[2]} mt={[2]}>
         {props.description}
       </Paragraph>

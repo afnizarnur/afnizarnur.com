@@ -8,8 +8,8 @@ const Title = ({ children, ...props }) => (
     as="h1"
     mb={3}
     fontSize={["2.5rem", 5, 6]}
-    letterSpacing={["-2.8px", "-5px", "-5px"]}
-    lineHeight={["2.8rem", 1, "5.25rem"]}
+    letterSpacing={["-2.2px", "-3.57px", "-5px"]}
+    lineHeight={["2.5rem", "4rem", "5.25rem"]}
     color={theme.colors.black}
     css="
     animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;
@@ -30,7 +30,7 @@ const Title2 = ({ children, ...props }) => (
     mb={3}
     fontSize={["2.5rem", 4, 5]}
     letterSpacing={["-2.2px", "-2.8px", "-3.57px"]}
-    lineHeight={["2.8rem", 1, "4rem"]}
+    lineHeight={["2.5rem", 1, "4rem"]}
     color={theme.colors.black}
     {...props}
   >

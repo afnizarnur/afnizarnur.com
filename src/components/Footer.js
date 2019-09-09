@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import theme from "../layouts/theme"
-import { Box, Link, Flex, Text, Button } from "rebass"
+import { Box, Link, Flex, Text, Button, Image } from "rebass"
 import { Title, Paragraph } from "../components/Typography"
 import DefaultLayout from "../components/Layouts/Default"
 import FullLayout from "../components/Layouts/Full"
@@ -43,29 +43,45 @@ const Footer = ({ ...props }) => {
               </Button>
             </a>
           </Box>
-          <Text
-            lineHeight="1.6rem"
-            fontSize={2}
-            color={theme.colors.gray[1]}
+          <Flex
+            alignItems="center"
+            justifyContent="space-between"
             mt={[6, "9.0rem", "9.0rem"]}
           >
-            Follow me for more thoughts and regular updates on{" "}
-            <ViewLink target="blank" href="https://twitter.com/afnizarnur">
-              Twitter
-            </ViewLink>
-            ,&nbsp;
-            <ViewLink target="blank" href="https://dribbble.com/afnizarnur">
-              Dribbble
-            </ViewLink>
-            , and{" "}
-            <ViewLink
-              target="blank"
-              href="https://www.linkedin.com/in/afnizarnur/"
-            >
-              Linkedin
-            </ViewLink>
-            .
-          </Text>
+            <Box>
+              <Text
+                lineHeight="1.6rem"
+                fontSize={2}
+                color={theme.colors.gray[1]}
+              >
+                Follow me for more thoughts and regular updates on{" "}
+                <ViewLink target="blank" href="https://twitter.com/afnizarnur">
+                  Twitter
+                </ViewLink>
+                ,&nbsp;
+                <ViewLink target="blank" href="https://dribbble.com/afnizarnur">
+                  Dribbble
+                </ViewLink>
+                , and{" "}
+                <ViewLink
+                  target="blank"
+                  href="https://www.linkedin.com/in/afnizarnur/"
+                >
+                  Linkedin
+                </ViewLink>
+                .
+              </Text>
+            </Box>
+            <Box>
+              <Link className="scroll" href="#top">
+                <Image
+                  className="scrollImage"
+                  css="max-width: 1000%; width:14px; height: 14px"
+                  src={"assets/arrow-up.svg"}
+                />
+              </Link>
+            </Box>
+          </Flex>
         </DefaultLayout>
       </Flex>
     </FullLayout>

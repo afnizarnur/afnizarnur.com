@@ -22,7 +22,7 @@ const TalkItem = ({ ...props }) => {
     <Box
       css="display: inline-block"
       pr={4}
-      mb={[5, 5, 6]}
+      mb={[5, 5, "3rem"]}
       width={[1, 1 / 2, 1 / 2]}
     >
       <ViewLink fontSize={3} fontWeight="bold" mb={2} href={props.link}>

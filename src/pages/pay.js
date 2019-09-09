@@ -13,10 +13,6 @@ var quotes = [
     <span css="text-decoration: underline">lebih</span> tenang.
   </Text>,
   <Text>
-    Hidup sederhana tanpa hutang lebih damai, daripada{" "}
-    <span css="text-decoration: underline">kelihatan kaya</span> karena hutang.
-  </Text>,
-  <Text>
     Dilan, yang berat itu bukan rindu,{" "}
     <span css="text-decoration: underline">tapi nagih hutang!</span>
   </Text>,

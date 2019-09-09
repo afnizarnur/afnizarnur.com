@@ -42,16 +42,16 @@ const ProjectList = ({ title, description, ...props }) => {
       />
       <Project
         name="Ayo Indonesia"
-        link=""
+        link="https://ayo.co.id/"
         imageurl="assets/logo-st.png"
-        imagealt=""
+        imagealt="Sixty Two"
         description="Primum igitur, quid aut in sanguinem suum tam egregios."
         company="Sixty Two"
         date="Oct 2019"
       />
       <Project
         name="Sinon.JS"
-        link=""
+        link="https://sinonjs.org/"
         imageurl="assets/logo-os.png"
         imagealt="Open Source"
         description="Primum igitur, quid aut in sanguinem suum tam egregios."
@@ -60,7 +60,7 @@ const ProjectList = ({ title, description, ...props }) => {
       />
       <Project
         name="Limakilo"
-        link=""
+        link="http://limakilo.id/"
         imageurl="assets/logo-limakilo.png"
         imagealt="Limakilo"
         description="Primum igitur, quid aut in sanguinem suum tam egregios."

@@ -23,7 +23,10 @@ const AboutPage = props => {
         <Box as="main" id="main-content" mb={[5, 6]}>
           <DefaultLayout>
             <Header>
-              <Title mt={9}>About</Title>
+              <Title mt={9}>
+                It’s a nice to <br />
+                meet you here.
+              </Title>
 
               <Paragraph
                 maxWidth="90%"
