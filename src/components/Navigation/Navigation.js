@@ -23,6 +23,10 @@ const NavText = styled(Text)`
   }
 
   ${themeHover};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
+    display: none;
+  }
 `
 
 const NavLink = ({ children, to, ...props }) => {
