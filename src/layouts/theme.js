@@ -21,19 +21,26 @@ const colors = {
   ],
 }
 
-// Box-sizing & borders
 const space = [
-  0,
-  "0.25rem",
-  "0.5rem",
-  "0.75rem",
-  "1rem",
-  "2rem",
-  "4rem",
-  "8rem",
-  "16rem",
-  "7.5rem",
+  0, // 0px - 0
+  "0.25rem", // 4px - 1
+  "0.5rem", // 8px - 2
+  "0.75rem", // 12px - 3
+  "1rem", // 16px - 4
+  "1.5rem", // 24px - 5
+  "4rem", // 64px - 6
+  "8rem", // 128px - 7
+  "16rem", // 256px - 8
+  "7.5rem", // 120px - 9
+  "6.25rem", // 100px - 10
+  "10.75rem", // 172px - 11
+  "3rem", // 48px - 12
+  "2.5rem", // 40px - 13
+  "5.5rem", // 88px - 14
+  "9.0rem", // 144px - 15
+  "1.25rem", // 20px - 16
 ]
+
 const borders = [
   0,
   "0.125rem solid",
@@ -42,9 +49,9 @@ const borders = [
   "1rem solid",
   "2rem solid",
 ]
+
 const radii = [0, "0.125rem", "0.25rem", "0.5rem", "1rem", "100%"]
 
-// Typography
 const fontSizes = [
   "0.875rem",
   "1rem",
@@ -55,10 +62,12 @@ const fontSizes = [
   "5.25rem",
   "6rem",
 ]
+
 const lineHeights = {
   title: 1.25,
   copy: 1.5,
 }
+
 const fontWeights = {
   thin: 100,
   "extra-light": 200,

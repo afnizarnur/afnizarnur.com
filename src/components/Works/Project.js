@@ -26,7 +26,7 @@ const Project = ({ ...props }) => {
     <Box
       css="display: inline-block"
       pr={4}
-      mb={["3rem", 6, 6]}
+      mb={[12, 6, 6]}
       width={[1, 1 / 2, 1 / 3]}
       {...props}
     >

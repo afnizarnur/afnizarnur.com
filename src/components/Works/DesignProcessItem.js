@@ -8,14 +8,14 @@ const DesignProcessItem = ({ ...props }) => {
     <Box
       css="display: inline-block"
       pr={[0, 4, 4]}
-      pb={[5, 6]}
+      pb={[13, 6]}
       width={[1 / 1, 1 / 2, 1 / 3]}
     >
       <Box
         css="display: inline-block;"
         fontWeight="bold"
         fontSize={2}
-        mb={["1.5rem"]}
+        mb={[4, 5]}
         px={4}
         py={2}
         bg={theme.colors.gray[0]}

@@ -89,13 +89,18 @@ const BlogPage = () => {
         <Box as="main" id="main-content" mb={[5, 6]}>
           <DefaultLayout>
             <Header>
-              <Title mt={9}>Writing</Title>
+              <Title
+                css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+                mt={9}
+              >
+                Writing
+              </Title>
 
               <Paragraph
                 maxWidth="90%"
                 fontSize={[2, 3]}
                 mt={[4, 5]}
-                mb={["6.25rem", "10.8125rem"]}
+                mb={[10, 11]}
                 css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
               >
                 Torquatos nostros? quos dolores eos, qui haec putat, ut alterum

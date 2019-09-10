@@ -20,8 +20,8 @@ const GoToLink = styled(Link)`
 
 const ProjectList = ({ title, description, ...props }) => {
   return (
-    <Box mb={["3.5rem", "7.125rem"]} {...props}>
-      <Title3 mb="2.5rem">Not just three, but there is more</Title3>
+    <Box mb={["3.5rem", 14]} {...props}>
+      <Title3 mb={[5, 13]}>Not just three, but there is more</Title3>
       <Project
         name="DANA"
         link=""

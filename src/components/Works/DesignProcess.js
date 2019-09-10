@@ -9,13 +9,13 @@ const DesignProcess = () => {
   return (
     <FullLayout>
       <Flex
-        paddingTop={[6, 7, "10.8125rem"]}
-        paddingBottom={[4, 6, "6.8125rem"]}
+        paddingTop={[6, 7, 9]}
+        paddingBottom={[4, 6, 6]}
         css="background-image: linear-gradient(180deg, rgba(25,26,27,.07) 0%, rgba(255,255,255,0) 100%);"
       >
         <DefaultLayout>
           <Title>Building user experience with design process</Title>
-          <Paragraph fontSize={[2, 3]} mt={[4, 4, 5]} mb={[6, 6, "5.5rem"]}>
+          <Paragraph fontSize={[2, 3]} mt={[4, 4, 5]} mb={[12, 6, 14]}>
             I believe design process should be flexible. I follow an end-to-end
             design process that starts with research and continues with product
             thinking, interaction design, user testing, visual design and

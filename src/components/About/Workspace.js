@@ -1,10 +1,11 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { Box, Flex, Image } from "rebass"
-import { Title, Paragraph } from "../Typography"
+import { Box, Flex } from "rebass"
+import { Paragraph, Title2, Title3 } from "../Typography"
 import DefaultLayout from "../Layouts/Default"
 import theme from "../../layouts/theme"
 import Img from "gatsby-image"
+import AppList from "./AppList"
 
 const Workspace = () => {
   const data = useStaticQuery(graphql`
@@ -40,41 +41,81 @@ const Workspace = () => {
     }
   `)
   return (
-    <Box
+    <Flex
       id="workspace"
-      paddingTop={[6, 7, "10.8125rem"]}
-      paddingBottom={[4, 6, "6.8125rem"]}
+      paddingTop={[6, "7.3125rem", 9]}
+      paddingBottom={[4, 6, 9]}
       color="white"
       bg={theme.colors.black}
     >
       <DefaultLayout>
-        <Title color="white" mb={[6, 6, "5.5rem"]}>
-          My workspace and things I use to get the job done.
-        </Title>
-        <Flex>
-          <Box marginBottom={"1.25rem"} width={1 / 1}>
-            <Img
-              alt="Workspace"
-              sizes={data.workspace4.childImageSharp.fluid}
-            />
-          </Box>
-        </Flex>
-        <Flex>
-          <Box marginRight={"1.25rem"} width={1 / 2}>
-            <Img
-              alt="Workspace"
-              sizes={data.workspace2.childImageSharp.fluid}
-            />
-          </Box>
-          <Box width={1 / 2}>
-            <Img
-              alt="Workspace"
-              sizes={data.workspace1.childImageSharp.fluid}
-            />
-          </Box>
-        </Flex>
+        <Box>
+          <Title2 color="white">
+            My workspace and things I use to get the job done.
+          </Title2>
+          <Paragraph
+            color={theme.colors.white}
+            css="opacity: .8"
+            fontSize={[2, 3]}
+            mt={[4, 4, 5]}
+            mb={[12, 6, 13]}
+          >
+            I believe design process should be flexible. I follow an end-to-end
+            design process that starts with research and continues with product
+            thinking, interaction design, user testing, visual design and
+            post-launch support.
+          </Paragraph>
+          <Flex>
+            <Box marginBottom={"1.25rem"} width={1 / 1}>
+              <Img
+                alt="Workspace"
+                sizes={data.workspace4.childImageSharp.fluid}
+              />
+            </Box>
+          </Flex>
+          <Flex marginBottom={"1.25rem"}>
+            <Box marginRight={"1.25rem"} width={1 / 2}>
+              <Img
+                alt="Workspace"
+                sizes={data.workspace2.childImageSharp.fluid}
+              />
+            </Box>
+            <Box width={1 / 2}>
+              <Img
+                alt="Workspace"
+                sizes={data.workspace1.childImageSharp.fluid}
+              />
+            </Box>
+          </Flex>
+          <Flex>
+            <Box width={1 / 1}>
+              <Img
+                alt="Workspace"
+                sizes={data.workspace3.childImageSharp.fluid}
+              />
+            </Box>
+          </Flex>
+        </Box>
+        <Box mt={[14]}>
+          <Title3 color={theme.colors.white} mb={[5, 5]}>
+            Applications & Tools
+          </Title3>
+          <Paragraph
+            color={theme.colors.white}
+            css="opacity: .8"
+            fontSize={[2, 3]}
+            mb={[12, 6, 12]}
+          >
+            I believe design process should be flexible. I follow an end-to-end
+            design process that starts with research and continues with product
+            thinking, interaction design, user testing, visual design and
+            post-launch support.
+          </Paragraph>
+
+          <AppList />
+        </Box>
       </DefaultLayout>
-    </Box>
+    </Flex>
   )
 }
 

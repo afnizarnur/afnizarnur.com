@@ -21,7 +21,10 @@ const IndexPage = props => {
       <Box as="main" id="main-content" mb={[5, 6]}>
         <DefaultLayout>
           <Header>
-            <Title mt={["6.25rem", 9, 9]}>
+            <Title
+              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+              mt={[10, 9, 9]}
+            >
               Make things
               <br />
               better together.
@@ -31,10 +34,8 @@ const IndexPage = props => {
               maxWidth="90%"
               fontSize={[2, 3]}
               mt={[4, 5]}
-              mb={["6.25rem", "10.8125rem"]}
-              css="
-              animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;
-              "
+              mb={[10, 11]}
+              css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
             >
               Torquatos nostros? quos dolores eos, qui haec putat, ut alterum
               esse ratione neque. Ut placet, inquam tum dicere exorsus est
@@ -64,7 +65,7 @@ const IndexPage = props => {
               description="Tum dicere exorsus est primum igitur, inquit, sic agam, ut alterum aspernandum sentiamus alii autem, quibus ego cum teneam sententiam, quid malum. "
               link="/bukabike/"
               featuredimage={props.data.imageplaceholder.childImageSharp.fluid}
-              mb="7.125rem"
+              mb={14}
             />
 
             <ProjectList />

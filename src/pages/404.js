@@ -25,7 +25,7 @@ const errorPage = props => (
               maxWidth="90%"
               fontSize={[2, 3]}
               mt={[4, 5]}
-              mb={["6.25rem", "10.8125rem"]}
+              mb={[10, 11]}
               css="
               animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;
               "

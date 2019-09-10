@@ -11,9 +11,6 @@ const Title = ({ children, ...props }) => (
     letterSpacing={["-2.2px", "-3.57px", "-5px"]}
     lineHeight={["2.5rem", "4rem", "5.25rem"]}
     color={theme.colors.black}
-    css="
-    animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;
-    "
     {...props}
   >
     {children}

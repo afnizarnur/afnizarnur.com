@@ -44,14 +44,15 @@ const TalkList = ({ ...props }) => {
   return (
     <Box
       id="talks"
-      py={[6, "7.3125rem", "7.3125rem"]}
+      paddingTop={[6, "7.3125rem", 9]}
+      paddingBottom={[6, "7.3125rem", 14]}
       color="white"
       bg={theme.colors.black}
       css={backgroundStyle}
       {...props}
     >
       <DefaultLayout>
-        <Title2 color="white" mb={[6, 6, "5.5rem"]}>
+        <Title2 color="white" mb={[6, 6, 14]}>
           I love being able to share and help others achieve more through my
           work.
         </Title2>
@@ -114,7 +115,7 @@ const TalkList = ({ ...props }) => {
               >
                 Load More Talks
               </Button>
-              <Box css="position: absolute; width: 100%; height: 200px; bottom: 52px; z-index: 1; background: linear-gradient(180deg, rgba(25, 26, 27, 0.0) 0%, #191a1b 100%)"></Box>
+              <Box css="position: absolute; width: 100%; height: 300px; bottom: 52px; z-index: 1; background: linear-gradient(180deg, rgba(25, 26, 27, 0.0) 0%, #191a1b 100%)"></Box>
             </Box>
           )}
         </Box>
@@ -123,7 +124,7 @@ const TalkList = ({ ...props }) => {
           paddingTop={[4, 0, 0]}
           color={theme.colors.white}
           fontSize={[2, 3]}
-          marginTop={"5rem"}
+          marginTop={6}
         >
           Still curious for my another work? Send me an email about your project
           and I will prepare a detailed portfolio with relevant work samples.{" "}

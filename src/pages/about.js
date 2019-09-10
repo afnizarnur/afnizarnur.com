@@ -26,7 +26,11 @@ const AboutPage = () => {
         <Box as="main" id="main-content" mb={[5, 6]}>
           <DefaultLayout>
             <Header>
-              <Title mt={9} mb={9}>
+              <Title
+                css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+                mt={9}
+                mb={9}
+              >
                 It’s a nice to <br />
                 meet you here.
               </Title>

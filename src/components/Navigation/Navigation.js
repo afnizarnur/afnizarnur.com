@@ -68,19 +68,19 @@ const Navigation = ({ ...props }) => {
       <SkipNavLink />
 
       <Flex alignItems="center">
-        <Logo avatar={props.avatar} />
+        <Logo />
       </Flex>
 
       <List fontSize={[2]}>
-        <NavLink to="/" mr={[2, 3]}>
+        <NavLink to="/" mr={[2, 4]}>
           Works
         </NavLink>
 
-        <NavLink to="/about/" mr={[2, 3]}>
+        <NavLink to="/about/" mr={[2, 4]}>
           About
         </NavLink>
 
-        <NavLink to="/#talks" mr={[2, 3]}>
+        <NavLink to="/#talks" mr={[2, 4]}>
           Talks
         </NavLink>
 

@@ -22,7 +22,7 @@ const TalkItem = ({ ...props }) => {
     <Box
       css="display: inline-block"
       pr={4}
-      mb={[5, 5, "3rem"]}
+      mb={[5, 5, 12]}
       width={[1, 1 / 2, 1 / 2]}
       verticalAlign="text-top"
     >

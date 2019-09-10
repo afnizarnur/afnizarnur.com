@@ -21,12 +21,11 @@ const ViewProject = styled(Link)`
 
 const imageStyle = {
   width: "100%",
-  marginTop: "2rem",
 }
 
 const ProjectFeatured = ({ title, description, ...props }) => {
   return (
-    <Box mb={["4.5rem", "7.5rem", "10.8125rem"]} {...props}>
+    <Box mb={["4.5rem", 9, 11]} {...props}>
       <Title2>{title}</Title2>
       <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={4}>
         {description}
@@ -34,11 +33,13 @@ const ProjectFeatured = ({ title, description, ...props }) => {
       <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
         View Project
       </ViewProject>
-      <Img
-        style={imageStyle}
-        alt="Featured Project"
-        sizes={props.featuredimage}
-      />
+      <Box mt={[5, 13]}>
+        <Img
+          style={imageStyle}
+          alt="Featured Project"
+          sizes={props.featuredimage}
+        />
+      </Box>
     </Box>
   )
 }

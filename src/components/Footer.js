@@ -22,7 +22,7 @@ const Footer = ({ ...props }) => {
   return (
     <FullLayout>
       <Flex
-        paddingTop={[6, 7, "10.8125rem"]}
+        paddingTop={[6, 7, 11]}
         paddingBottom={[6, 7, "5.1875rem"]}
         bg="white"
       >
@@ -31,7 +31,7 @@ const Footer = ({ ...props }) => {
             I'm always down for a coffee or just say hi, feel free to get in
             touch!
           </Title>
-          <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={[5, 5, "2.5rem"]}>
+          <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={[5, 5, 12]}>
             Epicurus in armatum hostem impetum fecisse aut fugit, sed et quale
             sit voluptatem. In oculis quidem faciunt, ut ad eam non numquam eius
             modi tempora incidunt.
@@ -46,7 +46,7 @@ const Footer = ({ ...props }) => {
           <Flex
             alignItems="center"
             justifyContent="space-between"
-            mt={[6, "9.0rem", "9.0rem"]}
+            mt={[6, 15, 15]}
           >
             <Box>
               <Text

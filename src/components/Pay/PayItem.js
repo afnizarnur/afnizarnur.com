@@ -6,7 +6,7 @@ const PayItem = ({ ...props }) => {
   return (
     <Box
       marginBottom={"2.25rem"}
-      paddingBottom={"1.5rem"}
+      paddingBottom={5}
       css="border-bottom: 1px solid #F0F0F0"
     >
       <Flex>
