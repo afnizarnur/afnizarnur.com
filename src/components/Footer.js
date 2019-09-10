@@ -53,6 +53,7 @@ const Footer = ({ ...props }) => {
                 lineHeight="1.6rem"
                 fontSize={2}
                 color={theme.colors.gray[1]}
+                paddingRight={4}
               >
                 Follow me for more thoughts and regular updates on{" "}
                 <ViewLink target="blank" href="https://twitter.com/afnizarnur">

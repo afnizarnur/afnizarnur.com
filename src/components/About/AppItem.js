@@ -12,10 +12,15 @@ const imageStyle = {
 const AppItem = ({ ...props }) => {
   return (
     <Box
-      css="display: inline-block"
+      css="
+      @media only screen and (max-width: 48em) {
+        border-bottom: 1px solid rgba(255,255,255, .2);
+        margin-bottom: 1.5rem;
+      }
+      display: inline-block"
       pr={4}
       paddingBottom={[5, 13]}
-      width={[1 / 2, 1 / 3, 1 / 3]}
+      width={[1 / 1, 1 / 3, 1 / 3]}
       verticalAlign="text-top"
     >
       <Box mb={4}>

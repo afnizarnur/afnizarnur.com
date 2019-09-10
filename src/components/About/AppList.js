@@ -36,7 +36,15 @@ const AppList = () => {
         <Box css={"margin: 0 "}>
           <Box
             mb={[5, 13, 13]}
-            css="border-bottom: 1px solid rgba(255,255,255, .2)"
+            css="
+              @media only screen and (min-width: 64em) {
+                border-bottom: 1px solid rgba(255,255,255, .2)
+              }
+              @media only screen and (max-width: 48em) {
+                border-bottom: none;
+                margin-bottom: 0!important;
+              }
+            "
           >
             <AppItem
               imgsrc={data.sketchicon.childImageSharp.fluid}
@@ -54,10 +62,20 @@ const AppList = () => {
               description="Laudem et expedita distinctio nam libero tempore, cum teneam sententiam, quid sit numeranda."
             />
           </Box>
-          <Box css="border-bottom: 1px solid rgba(255,255,255, .2)">
+          <Box
+            css="
+              @media only screen and (min-width: 64em) {
+                border-bottom: 1px solid rgba(255,255,255, .2)
+              }
+              @media only screen and (max-width: 48em) {
+                border-bottom: none;
+                margin-bottom: 0!important;
+              }
+            "
+          >
             <AppItem
               imgsrc={data.sketchicon.childImageSharp.fluid}
-              title="Sketch"
+              title="Framer"
               description="Laudem et expedita distinctio nam libero tempore, cum teneam sententiam, quid sit numeranda."
             />
             <AppItem
@@ -73,7 +91,7 @@ const AppList = () => {
           </Box>
         </Box>
         <Box {...innerCollapseProps({ style: { margin: 0 } })}>
-          <Box paddingTop={[13]}>
+          <Box>
             <AppItem
               imgsrc={data.sketchicon.childImageSharp.fluid}
               title="Sketch"

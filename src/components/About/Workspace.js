@@ -31,20 +31,13 @@ const Workspace = () => {
           }
         }
       }
-      workspace4: file(relativePath: { eq: "about/workspace-4.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
     }
   `)
   return (
     <Flex
       id="workspace"
       paddingTop={[6, "7.3125rem", 9]}
-      paddingBottom={[4, 6, 9]}
+      paddingBottom={[6, 6, 9]}
       color="white"
       bg={theme.colors.black}
     >
@@ -69,7 +62,7 @@ const Workspace = () => {
             <Box marginBottom={"1.25rem"} width={1 / 1}>
               <Img
                 alt="Workspace"
-                sizes={data.workspace4.childImageSharp.fluid}
+                sizes={data.workspace3.childImageSharp.fluid}
               />
             </Box>
           </Flex>
@@ -87,16 +80,8 @@ const Workspace = () => {
               />
             </Box>
           </Flex>
-          <Flex>
-            <Box width={1 / 1}>
-              <Img
-                alt="Workspace"
-                sizes={data.workspace3.childImageSharp.fluid}
-              />
-            </Box>
-          </Flex>
         </Box>
-        <Box mt={[14]}>
+        <Box mt={[6, 14]}>
           <Title3 color={theme.colors.white} mb={[5, 5]}>
             Applications & Tools
           </Title3>

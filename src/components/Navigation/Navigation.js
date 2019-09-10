@@ -2,11 +2,13 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { Flex, Text, Button } from "rebass"
+import { Flex, Text, Button, Box } from "rebass"
 import { List, ListItem } from "../Typography"
 import SkipNavLink from "./SkipNavLink"
 import Logo from "./Logo"
 import { themeHover } from "../../utils/styles"
+import DefaultLayout from "../Layouts/Default"
+import theme from "../../layouts/theme"
 
 const NavItem = styled(ListItem)`
   display: inline-block;
@@ -58,43 +60,50 @@ NavLink.propTypes = {
 
 const Navigation = ({ ...props }) => {
   return (
-    <Flex
-      as="nav"
-      alignItems="center"
-      justifyContent="space-between"
-      mt={[3, 4, 4]}
-      css="position: relative"
+    <Box
+      bg={theme.colors.white}
+      py={[3, 3, 3]}
+      css="z-index: 999; position: fixed; top: 0; left: 0; width: 100%"
     >
-      <SkipNavLink />
+      <DefaultLayout>
+        <Flex
+          as="nav"
+          alignItems="center"
+          justifyContent="space-between"
+          css="position: relative"
+        >
+          <SkipNavLink />
 
-      <Flex alignItems="center">
-        <Logo />
-      </Flex>
+          <Flex alignItems="center">
+            <Logo />
+          </Flex>
 
-      <List fontSize={[2]}>
-        <NavLink to="/" mr={[2, 4]}>
-          Works
-        </NavLink>
+          <List fontSize={[2]}>
+            <NavLink to="/" mr={[2, 4]}>
+              Works
+            </NavLink>
 
-        <NavLink to="/about/" mr={[2, 4]}>
-          About
-        </NavLink>
+            <NavLink to="/about/" mr={[2, 4]}>
+              About
+            </NavLink>
 
-        <NavLink to="/#talks" mr={[2, 4]}>
-          Talks
-        </NavLink>
+            <NavLink to="/#talks" mr={[2, 4]}>
+              Talks
+            </NavLink>
 
-        <NavLink to="/writing/" mr={[2, 4]}>
-          Writing
-        </NavLink>
+            <NavLink to="/writing/" mr={[2, 4]}>
+              Writing
+            </NavLink>
 
-        <a href="mailto:afnizarhilmi@gmail.com">
-          <Button css="padding: 0.75rem 1rem!important" variant="primary">
-            Contact
-          </Button>
-        </a>
-      </List>
-    </Flex>
+            <a href="mailto:afnizarhilmi@gmail.com">
+              <Button css="padding: 0.75rem 1rem!important" variant="primary">
+                Contact
+              </Button>
+            </a>
+          </List>
+        </Flex>
+      </DefaultLayout>
+    </Box>
   )
 }
 
