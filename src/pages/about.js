@@ -6,8 +6,11 @@ import { useSiteMetadata } from "../utils/hooks"
 import { Box } from "rebass"
 import DefaultLayout from "../components/Layouts/Default"
 import Navigation from "../components/Navigation"
+import FullLayout from "../components/Layouts/Full"
+import Footer from "../components/Footer"
+import Workspace from "../components/About/Workspace"
 
-const AboutPage = props => {
+const AboutPage = () => {
   const { title } = useSiteMetadata()
 
   return (
@@ -23,32 +26,17 @@ const AboutPage = props => {
         <Box as="main" id="main-content" mb={[5, 6]}>
           <DefaultLayout>
             <Header>
-              <Title mt={9}>
+              <Title mt={9} mb={9}>
                 It’s a nice to <br />
                 meet you here.
               </Title>
-
-              <Paragraph
-                maxWidth="90%"
-                fontSize={[2, 3]}
-                mt={[4, 5]}
-                mb={["6.25rem", "10.8125rem"]}
-                css="
-              animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;
-              "
-              >
-                Torquatos nostros? quos dolores eos, qui haec putat, ut alterum
-                esse ratione neque. Ut placet, inquam tum dicere exorsus est
-                laborum et argumentandum et accusamus et.
-              </Paragraph>
             </Header>
-
-            <main>
-              <Paragraph fontSize={[1, 2]} lineHeight="copy" mt={5} mb={3}>
-                Hello
-              </Paragraph>
-            </main>
           </DefaultLayout>
+
+          <main>
+            <Workspace />
+            <Footer />
+          </main>
         </Box>
       </Box>
     </>

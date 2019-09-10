@@ -73,11 +73,12 @@ const Footer = ({ ...props }) => {
               </Text>
             </Box>
             <Box>
-              <Link className="scroll" href="#top">
+              <Link className="scroll" aria-label="Scroll to Top" href="#top">
                 <Image
                   className="scrollImage"
                   css="max-width: 1000%; width:14px; height: 14px"
-                  src={"assets/arrow-up.svg"}
+                  src={"../assets/arrow-up.svg"}
+                  alt="Scroll to Top"
                 />
               </Link>
             </Box>

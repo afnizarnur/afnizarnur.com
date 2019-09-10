@@ -1,4 +1,4 @@
-const React = require("react");
-const themeProvider = require("./src/layouts/themeProvider");
+const React = require("react")
+const themeProvider = require("./src/layouts/themeProvider")
 
-exports.wrapRootElement = themeProvider;
+exports.wrapRootElement = themeProvider

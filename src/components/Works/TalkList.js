@@ -51,7 +51,7 @@ const TalkList = ({ ...props }) => {
       {...props}
     >
       <DefaultLayout>
-        <Title2 color="white" mb="5.1875rem">
+        <Title2 color="white" mb={[6, 6, "5.5rem"]}>
           I love being able to share and help others achieve more through my
           work.
         </Title2>
@@ -69,32 +69,37 @@ const TalkList = ({ ...props }) => {
               short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
             />
             <TalkItem
-              link="/hello/"
-              title="Easily Structure & Communicate Ideas using Wireframe"
+              link="https://speakerdeck.com/afnizarnur/designing-experience-and-interface"
+              title="Designing Experience and Interface"
               short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
             />
             <TalkItem
-              link="/hello/"
-              title="Easily Structure & Communicate Ideas using Wireframe"
+              link="https://speakerdeck.com/afnizarnur/craft-solution-using-design-thinking"
+              title="Craft Solution using Design Thinking"
               short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
             />
           </Box>
           <Box {...innerCollapseProps({ style: { margin: 0 } })}>
             <TalkItem
-              link="/hello/"
-              title="Easily Structure & Communicate Ideas using Wireframe"
+              link="https://speakerdeck.com/afnizarnur/building-instagram-like-prototype-using-framer"
+              title="Building Instagram-like Prototype using Framer"
               short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
             />
             <TalkItem
-              link="/hello/"
-              title="Easily Structure & Communicate Ideas using Wireframe"
+              link="https://speakerdeck.com/afnizarnur/design-system-of-component"
+              title="Design System of Component"
+              short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
+            />
+            <TalkItem
+              link="https://speakerdeck.com/afnizarnur/be-awesome-with-git"
+              title="Be Awesome with Git"
               short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
             />
           </Box>
           {innerOpen && (
             <Button
               py={4}
-              css="font-size: 1.125rem; background: rgba(255,255,255,0.1); width: 100%;"
+              css="outline: none; font-size: 1.125rem; background: rgba(255,255,255,0.1); width: 100%;"
               {...innerToggleProps({ style: { display: "block" } })}
             >
               Collapse Talks
@@ -104,12 +109,12 @@ const TalkList = ({ ...props }) => {
             <Box>
               <Button
                 py={4}
-                css="font-size: 1.125rem; background: rgba(255,255,255,0.1); width: 100%;"
+                css="outline: none; font-size: 1.125rem; z-index: 2; background: rgba(255,255,255,0.1); width: 100%;"
                 {...innerToggleProps({ style: { display: "block" } })}
               >
                 Load More Talks
               </Button>
-              <Box css="position: absolute; width: 100%; height: 200px; bottom: 50px; z-index: 1; background: linear-gradient(180deg, rgba(25, 26, 27, 0.1) 0%, #191a1b 100%)"></Box>
+              <Box css="position: absolute; width: 100%; height: 200px; bottom: 52px; z-index: 1; background: linear-gradient(180deg, rgba(25, 26, 27, 0.0) 0%, #191a1b 100%)"></Box>
             </Box>
           )}
         </Box>
