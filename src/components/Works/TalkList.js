@@ -44,8 +44,8 @@ const TalkList = ({ ...props }) => {
   return (
     <Box
       id="talks"
-      paddingTop={[6, "7.3125rem", 9]}
-      paddingBottom={[6, "7.3125rem", 14]}
+      paddingTop={[6, 6, 9]}
+      paddingBottom={[6, 6, 14]}
       color="white"
       bg={theme.colors.black}
       css={backgroundStyle}

@@ -15,7 +15,7 @@ const Wordmark = styled(Link)`
 
 const imageStyle = {
   width: 38,
-  borderRadius: "50%",
+  borderRadius: "100%",
   height: 38,
   marginBottom: "0.5rem",
   transition: "all .2s ease-in-out",

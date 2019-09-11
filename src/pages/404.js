@@ -19,8 +19,7 @@ const errorPage = props => (
       <Box as="main" id="main-content" mb={[5, 6]}>
         <DefaultLayout>
           <Header>
-            <Title mt={9}>Error 404</Title>
-
+            <Title mt={[11, "12.4375rem"]}>Error 404</Title>
             <Paragraph
               maxWidth="90%"
               fontSize={[2, 3]}

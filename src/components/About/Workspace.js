@@ -36,7 +36,7 @@ const Workspace = () => {
   return (
     <Flex
       id="workspace"
-      paddingTop={[6, "7.3125rem", 9]}
+      paddingTop={[6, 6, 9]}
       paddingBottom={[6, 6, 9]}
       color="white"
       bg={theme.colors.black}
@@ -51,7 +51,7 @@ const Workspace = () => {
             css="opacity: .8"
             fontSize={[2, 3]}
             mt={[4, 4, 5]}
-            mb={[12, 6, 13]}
+            mb={[12, 13, 13]}
           >
             I believe design process should be flexible. I follow an end-to-end
             design process that starts with research and continues with product
@@ -81,7 +81,7 @@ const Workspace = () => {
             </Box>
           </Flex>
         </Box>
-        <Box mt={[6, 14]}>
+        <Box mt={[14, 14]}>
           <Title3 color={theme.colors.white} mb={[5, 5]}>
             Applications & Tools
           </Title3>
@@ -89,7 +89,7 @@ const Workspace = () => {
             color={theme.colors.white}
             css="opacity: .8"
             fontSize={[2, 3]}
-            mb={[12, 6, 12]}
+            mb={[12, 12, 12]}
           >
             I believe design process should be flexible. I follow an end-to-end
             design process that starts with research and continues with product

@@ -23,7 +23,7 @@ const Footer = ({ ...props }) => {
     <FullLayout>
       <Flex
         paddingTop={[6, 7, 11]}
-        paddingBottom={[6, 7, "5.1875rem"]}
+        paddingBottom={[6, 6, "5.1875rem"]}
         bg="white"
       >
         <DefaultLayout>

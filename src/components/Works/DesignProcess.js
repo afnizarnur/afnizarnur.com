@@ -9,8 +9,8 @@ const DesignProcess = () => {
   return (
     <FullLayout>
       <Flex
-        paddingTop={[6, 7, 9]}
-        paddingBottom={[4, 6, 6]}
+        paddingTop={[6, 6, 9]}
+        paddingBottom={[4, 4, 6]}
         css="background-image: linear-gradient(180deg, rgba(25,26,27,.07) 0%, rgba(255,255,255,0) 100%);"
       >
         <DefaultLayout>

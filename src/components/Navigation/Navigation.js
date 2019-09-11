@@ -62,7 +62,7 @@ const Navigation = ({ ...props }) => {
   return (
     <Box
       bg={theme.colors.white}
-      py={[3, 3, 3]}
+      py={[2]}
       css="z-index: 999; position: fixed; top: 0; left: 0; width: 100%"
     >
       <DefaultLayout>
