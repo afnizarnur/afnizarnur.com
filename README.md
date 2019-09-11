@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/fabe/gatsby-universal">
+  <a href="https://github.com/afnizarnur">
     <img src="https://user-images.githubusercontent.com/4648648/64487168-1ce5e580-d261-11e9-901b-934a010aa1d1.png" width="44">
   </a>
 </p>
