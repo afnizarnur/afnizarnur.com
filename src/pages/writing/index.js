@@ -79,7 +79,7 @@ const BlogPage = () => {
   return (
     <>
       <Helmet>
-        <title>Writing • {title}</title>
+        <title>Writing / {title}</title>
       </Helmet>
 
       <Box>

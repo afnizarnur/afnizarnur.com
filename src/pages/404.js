@@ -9,7 +9,7 @@ import Navigation from "../components/Navigation"
 const errorPage = props => (
   <>
     <Helmet>
-      <title>404 Error Page</title>
+      <title>Whoops, that page is gone</title>
     </Helmet>
 
     <Box>

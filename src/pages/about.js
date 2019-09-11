@@ -21,7 +21,7 @@ const AboutPage = ({ ...props }) => {
   return (
     <>
       <Helmet>
-        <title>About • {title}</title>
+        <title>About / {title}</title>
       </Helmet>
 
       <Box>

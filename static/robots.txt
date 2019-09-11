@@ -1,4 +1,4 @@
 User-Agent: *
-Disallow:
+Disallow: /pay/
 
 Sitemap: https://afnizarnur.com/sitemap.xml

@@ -19,7 +19,6 @@
   </a>
 </p>
 
-
 <p align="center">
   Hello, welcome! This is the source code of my portfolio site. Proudly built with <a href="https://www.gatsbyjs.org">Gatsby</a> and hosted with Netlify.
 </p>
@@ -30,7 +29,7 @@
   </strong>
 </p>
 
-***
+---
 
 ## Background
 
