@@ -1,10 +1,36 @@
-<div align="center">
-  <a href="https://github.com/bukalapak/blds-illustration/tree/master/dist/illustration-zip">
+<p align="center">
+  <a href="https://github.com/fabe/gatsby-universal">
     <img src="https://user-images.githubusercontent.com/4648648/64487168-1ce5e580-d261-11e9-901b-934a010aa1d1.png" width="44">
   </a>
-</div>
-<h1 align="center">Afnizar Nur Ghifari</h1>
-<p align="center">Hello, welcome! This is the source code of <a href="https://afnizarnur.com/">my portfolio site</a>. Proudly built with <a href="https://www.gatsbyjs.org">Gatsby</a> and hosted with Netlify.</p>
+</p>
+
+<p align="center">
+  <a href="https://app.netlify.com/sites/afnizarnur/deploys">
+    <img
+      src="https://api.netlify.com/api/v1/badges/39910d3d-7848-4020-914c-209c03d34b82/deploy-status"
+      alt="Netlify Status"
+    />
+  </a>
+  <a href="https://github.com/styled-components/styled-components">
+    <img
+      src="https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e"
+      alt="styled with styled-components"
+    />
+  </a>
+</p>
+
+
+<p align="center">
+  Hello, welcome! This is the source code of my portfolio site. Proudly built with <a href="https://www.gatsbyjs.org">Gatsby</a> and hosted with Netlify.
+</p>
+
+<p align="center">
+  <strong>
+    You can access my portfolio site at <a href="http://afnizarnur.com">afnizarnur.com</a>.
+  </strong>
+</p>
+
+***
 
 ## Background
 
