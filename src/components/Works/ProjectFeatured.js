@@ -19,11 +19,10 @@ const ViewProject = styled(Link)`
   ${themeHover};
 `
 
-const imageStyle = {
-  width: "100%",
-}
-
 const ProjectFeatured = ({ title, description, ...props }) => {
+  const imageStyle = {
+    width: "100%",
+  }
   return (
     <Box mb={["4.5rem", 9, 11]} {...props}>
       <Title2>{title}</Title2>

@@ -37,7 +37,7 @@ const Workspace = () => {
     <Flex
       id="workspace"
       paddingTop={[6, 6, 9]}
-      paddingBottom={[6, 6, 9]}
+      paddingBottom={[6, 6, 6]}
       color="white"
       bg={theme.colors.black}
     >
