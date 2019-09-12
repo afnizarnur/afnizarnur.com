@@ -25,6 +25,7 @@ const Footer = ({ ...props }) => {
         paddingTop={[6, 7, 11]}
         paddingBottom={[6, 6, "5.1875rem"]}
         bg="white"
+        {...props}
       >
         <DefaultLayout>
           <Title>
@@ -77,6 +78,7 @@ const Footer = ({ ...props }) => {
               <Link className="scroll" aria-label="Scroll to Top" href="#top">
                 <Image
                   className="scrollImage"
+                  mr={[3, 0]}
                   css="max-width: 1000%; width:14px; height: 14px"
                   src={"../assets/arrow-up.svg"}
                   alt="Scroll to Top"

@@ -10,10 +10,6 @@ const ViewProject = styled(Link)`
   letter-spacing: -0.2px;
   color: ${({ theme }) => theme.colors.black} !important;
 
-  .active & {
-    border-color: ${({ theme }) => theme.colors.black};
-  }
-
   ${themeHover};
 `
 

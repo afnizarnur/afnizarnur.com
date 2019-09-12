@@ -2,8 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import Helmet from "react-helmet"
-import styled from "styled-components"
-import { Box, Flex, Heading } from "rebass"
+import { Box, Flex, Heading, Text } from "rebass"
 import Header from "../../components/Header"
 import { Title, Paragraph } from "../../components/Typography"
 import { useSiteMetadata } from "../../utils/hooks"
@@ -11,31 +10,18 @@ import { themeHover } from "../../utils/styles"
 import unwidow from "../../utils/unwidow"
 import DefaultLayout from "../../components/Layouts/Default"
 import Navigation from "../../components/Navigation"
-
-const YearContainer = styled(Box)`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
-    display: block;
-  }
-`
-
-const YearTitle = ({ children }) => (
-  <Heading fontSize={[2, 3]} fontWeight="medium" lineHeight="title">
-    {children}
-  </Heading>
-)
-
-YearTitle.propTypes = {
-  children: PropTypes.string.isRequired,
-}
+import Footer from "../../components/Footer"
+import theme from "../../layouts/theme"
+import Img from "gatsby-image"
 
 const PostTitle = ({ children }) => (
   <Heading
     as="h3"
     fontSize={[2, 3]}
     lineHeight="title"
-    css="display: inline-block"
+    color={theme.colors.black}
+    mb={3}
+    css="letter-spacing: -0.2px; text-decoration: underline;"
   >
     {children}
   </Heading>
@@ -54,8 +40,16 @@ const BlogPage = () => {
           node {
             frontmatter {
               title
+              featuredimage {
+                childImageSharp {
+                  fluid(maxWidth: 800) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
               description
-              year: date(formatString: "YYYY")
+              date: date(formatString: "MMMM Do, YYYY")
+              category
             }
             fields {
               slug
@@ -63,18 +57,10 @@ const BlogPage = () => {
           }
         }
       }
-      avatar: file(relativePath: { eq: "avatar.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 38, maxHeight: 38) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
     }
   `)
 
   const posts = data.allMarkdownRemark.edges
-  let year = "0"
 
   return (
     <>
@@ -100,58 +86,56 @@ const BlogPage = () => {
                 maxWidth="90%"
                 fontSize={[2, 3]}
                 mt={[4, 5]}
-                mb={[10, 11]}
+                mb={[10, 14]}
                 css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
               >
-                Torquatos nostros? quos dolores eos, qui haec putat, ut alterum
-                esse ratione neque. Ut placet, inquam tum dicere exorsus est
-                laborum et argumentandum et accusamus et.
+                I occasionally write about what work I’ve been doing and share
+                my thoughts on design.
               </Paragraph>
             </Header>
 
             <main>
-              {posts.map(({ node }, index) => {
-                const { fields, frontmatter } = node
-                const thisYear = frontmatter.year
-                let YearComponent
+              <Flex flexDirection="row" flexWrap="wrap" alignSelf="flex-end">
+                {posts.map(({ node }, index) => {
+                  const { fields, frontmatter } = node
 
-                if (thisYear !== year) {
-                  YearComponent = <YearTitle>{frontmatter.year}</YearTitle>
-                  year = thisYear
-                }
-
-                return (
-                  <Flex
-                    key={fields.slug}
-                    flexDirection="row"
-                    alignItems="flex-start"
-                    {...(index + 1 === posts.length ? {} : { mb: [4, 5] })}
-                  >
-                    <YearContainer width={1 / 5}>{YearComponent}</YearContainer>
-
-                    <Box width={[1, 4 / 5]}>
+                  return (
+                    <Box
+                      key={fields.slug}
+                      width={[1, 1 / 2, 1 / 2]}
+                      paddingRight={6}
+                      {...(index + 1 === posts.length ? {} : { mb: [12, 6] })}
+                    >
+                      <Box mb={5}>
+                        <Link to={fields.slug}>
+                          <Img
+                            fluid={
+                              frontmatter.featuredimage.childImageSharp.fluid
+                            }
+                          />
+                        </Link>
+                      </Box>
+                      <Paragraph mb={4}>{frontmatter.category}</Paragraph>
                       <PostTitle>
                         <Link to={fields.slug} css={themeHover}>
                           {unwidow(frontmatter.title)}
                         </Link>
                       </PostTitle>
 
-                      <Paragraph
-                        fontSize={[1, 2]}
-                        lineHeight="copy"
-                        mt={3}
-                        mb={2}
-                      >
+                      <Paragraph fontSize={[1, 2]} lineHeight="copy" mb={4}>
                         {unwidow(frontmatter.description)}
                       </Paragraph>
 
-                      <Link to={fields.slug}>Read More</Link>
+                      <Text color={theme.colors.black}>{frontmatter.date}</Text>
                     </Box>
-                  </Flex>
-                )
-              })}
+                  )
+                })}
+              </Flex>
             </main>
           </DefaultLayout>
+          <Box mt={10} css="border-top: 1px solid #d8d8d8">
+            <Footer />
+          </Box>
         </Box>
       </Box>
     </>
