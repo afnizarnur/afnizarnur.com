@@ -95,15 +95,18 @@ const BlogPage = () => {
             </Header>
 
             <main>
-              <Flex flexDirection="row" flexWrap="wrap" alignSelf="flex-end">
+              <Flex
+                flexDirection="row"
+                justifyContent="space-between"
+                flexWrap="wrap"
+              >
                 {posts.map(({ node }, index) => {
                   const { fields, frontmatter } = node
 
                   return (
                     <Box
                       key={fields.slug}
-                      width={[1, 1 / 2, 1 / 2]}
-                      paddingRight={6}
+                      width={[1, 1 / 2.05, 1 / 2.05]}
                       {...(index + 1 === posts.length ? {} : { mb: [12, 6] })}
                     >
                       <Box mb={5}>
