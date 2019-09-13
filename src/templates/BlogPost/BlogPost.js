@@ -3,10 +3,13 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import Helmet from "react-helmet"
 import Header from "../../components/Header"
-import { Title, Subtitle } from "../../components/Typography"
+import { Title, Paragraph } from "../../components/Typography"
 import MarkdownContent from "./MarkdownContent"
 import { useSiteMetadata } from "../../utils/hooks"
 import unwidow from "../../utils/unwidow"
+import DefaultLayout from "../../components/Layouts/Default"
+import { Box } from "rebass"
+import Navigation from "../../components/Navigation"
 
 const BlogPostTemplate = ({ data }) => {
   const { title, siteUrl } = useSiteMetadata()
@@ -17,11 +20,10 @@ const BlogPostTemplate = ({ data }) => {
     <>
       <Helmet>
         <title>
-          {post.frontmatter.title} • {title}
+          {post.frontmatter.title} / {title}
         </title>
 
         <meta name="description" content={post.frontmatter.description} />
-
         <meta name="twitter:site" content="@afnizarnur" />
         <meta name="twitter:card" content="summary" />
         <meta property="og:site_name" content={title} />
@@ -37,25 +39,34 @@ const BlogPostTemplate = ({ data }) => {
           content={post.frontmatter.description}
         />
       </Helmet>
+      <Box>
+        <DefaultLayout>
+          <Navigation />
+        </DefaultLayout>
 
-      <article>
-        <Header>
-          <Title>{unwidow(post.frontmatter.title)}</Title>
+        <article>
+          <DefaultLayout>
+            <Header>
+              <Title mt={[10, "12.4375rem", "12.4375rem"]}>
+                {unwidow(post.frontmatter.title)}
+              </Title>
 
-          <Subtitle as="p">
-            <time dateTime={post.frontmatter.datetime}>
-              {post.frontmatter.date}
-            </time>
-          </Subtitle>
-        </Header>
+              <Paragraph>
+                <time dateTime={post.frontmatter.datetime}>
+                  {post.frontmatter.date}
+                </time>
+              </Paragraph>
+            </Header>
 
-        <MarkdownContent
-          as="main"
-          lineHeight="copy"
-          fontSize={[1, 2]}
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
-      </article>
+            <MarkdownContent
+              as="main"
+              lineHeight="copy"
+              fontSize={[1, 2]}
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
+          </DefaultLayout>
+        </article>
+      </Box>
     </>
   )
 }

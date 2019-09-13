@@ -19,11 +19,7 @@ const InlineBox = styled(Box)`
 
 const Project = ({ ...props }) => {
   return (
-    <Box
-      mb={[12, 12, 6]}
-      width={[1, 1 / 2.1, 1 / 3.2]}
-      {...props}
-    >
+    <Box mb={[12, 12, 6]} width={[1, 1 / 2.1, 1 / 3.2]} {...props}>
       {props.link && (
         <ViewProject
           fontSize={[2, 3]}

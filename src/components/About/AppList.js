@@ -202,7 +202,11 @@ const AppList = () => {
           />
         </Box>
       </Flex>
-      <Flex justifyContent="space-between" flexWrap="wrap" {...innerCollapseProps({ style: { margin: 0 } })}>
+      <Flex
+        justifyContent="space-between"
+        flexWrap="wrap"
+        {...innerCollapseProps({ style: { margin: 0 } })}
+      >
         <Box
           mb={[5, 5, 13]}
           css="

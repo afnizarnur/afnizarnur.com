@@ -5,10 +5,7 @@ import { Paragraph } from "../Typography"
 
 const DesignProcessItem = ({ ...props }) => {
   return (
-    <Box
-      pb={[13, 6]}
-      width={[1 / 1, 1 / 2.1, 1 / 3.2]}
-    >
+    <Box pb={[13, 6]} width={[1 / 1, 1 / 2.1, 1 / 3.2]}>
       <Box
         css="display: inline-block;"
         fontWeight="bold"
