@@ -20,10 +20,8 @@ const InlineBox = styled(Box)`
 const Project = ({ ...props }) => {
   return (
     <Box
-      css="display: inline-block"
-      pr={4}
       mb={[12, 12, 6]}
-      width={[1, 1 / 2, 1 / 3]}
+      width={[1, 1 / 2.1, 1 / 3.2]}
       {...props}
     >
       {props.link && (

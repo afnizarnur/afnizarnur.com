@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Flex } from "rebass"
+import { Flex } from "rebass"
 import { Title, Paragraph } from "../Typography"
 import FullLayout from "../Layouts/Full"
 import DefaultLayout from "../Layouts/Default"
@@ -21,7 +21,7 @@ const DesignProcess = () => {
             thinking, interaction design, user testing, visual design and
             post-launch support.
           </Paragraph>
-          <Box>
+          <Flex justifyContent="space-between" flexWrap="wrap">
             <DesignProcessItem
               number="1"
               name="Research"
@@ -52,7 +52,7 @@ const DesignProcess = () => {
               name="Research"
               description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
             />
-          </Box>
+          </Flex>
         </DefaultLayout>
       </Flex>
     </FullLayout>

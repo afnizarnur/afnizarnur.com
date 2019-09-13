@@ -85,7 +85,6 @@ const Layout = ({ children, theme }) => {
         <meta name="twitter:image" content={siteUrl + "/thumbnail.jpg"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="apple-mobile-web-app-title" content="Afnizar Nur Ghifari" />
-        >
         <meta name="application-name" content="Afnizar Nur Ghifari" />
         <meta name="msapplication-TileColor" content={theme.colors.black} />
         <link

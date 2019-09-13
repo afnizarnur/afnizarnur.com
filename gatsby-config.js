@@ -100,7 +100,6 @@ const plugins = [
                       fields { slug }
                       frontmatter {
                         title
-                        featuredimage
                         description
                         date
                         category

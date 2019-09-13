@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { Box, Link, Button } from "rebass"
+import { Flex, Box, Link, Button } from "rebass"
 import { themeHover } from "../../utils/styles"
 import { Title2, Paragraph } from "../Typography"
 import DefaultLayout from "../Layouts/Default"

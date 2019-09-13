@@ -34,7 +34,6 @@ const Logo = () => {
     }
   `)
 
-  console.log(data)
   return (
     <>
       <Link
