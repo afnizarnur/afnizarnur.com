@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import styled from "styled-components"
@@ -58,103 +58,53 @@ NavLink.propTypes = {
   to: PropTypes.string.isRequired,
 }
 
-const Transition = styled.div`
-  .active {
-    visibility: visible;
-    transition: all 200ms ease-in-out;
-  }
-  .hidden {
-    visibility: hidden;
-    transition: all 200ms ease-in-out;
-    transform: translate(0, -100%);
-  }
-`
+const Navigation = ({ ...props }) => {
+  return (
+    <Box
+      bg={theme.colors.white}
+      py={[2]}
+      css="z-index: 999; position: fixed; top: 0; left: 0; width: 100%"
+    >
+      <DefaultLayout>
+        <Flex
+          as="nav"
+          alignItems="center"
+          justifyContent="space-between"
+          css="position: relative"
+        >
+          <SkipNavLink />
 
-export default class Navigation extends Component {
-  constructor(props) {
-    super(props)
-    if (typeof window !== `undefined`) {
-      this.state = {
-        prevScrollpos: window.pageYOffset,
-        visible: true,
-      }
-    }
-  }
+          <Flex alignItems="center">
+            <Logo />
+          </Flex>
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll)
-  }
+          <List fontSize={[2]}>
+            <NavLink to="/" mr={[2, 4]}>
+              Works
+            </NavLink>
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll)
-  }
+            <NavLink to="/about/" mr={[2, 4]}>
+              About
+            </NavLink>
 
-  handleScroll = () => {
-    const { prevScrollpos } = this.state
+            <NavLink to="/#talks" mr={[2, 4]}>
+              Talks
+            </NavLink>
 
-    const currentScrollPos = window.pageYOffset
-    const visible = prevScrollpos > currentScrollPos
+            <NavLink to="/writing/" mr={[2, 4]}>
+              Writing
+            </NavLink>
 
-    this.setState({
-      prevScrollpos: currentScrollPos,
-      visible,
-    })
-  }
-
-  render() {
-    return (
-      <Transition>
-        {typeof window !== "undefined" ? (
-          <Box
-            bg={theme.colors.white}
-            py={[2]}
-            css="z-index: 999; position: fixed; top: 0; left: 0; width: 100%"
-            className={this.state.visible ? "active" : "hidden"}
-          >
-            <DefaultLayout>
-              <Flex
-                as="nav"
-                alignItems="center"
-                justifyContent="space-between"
-                css="position: relative"
-              >
-                <SkipNavLink />
-
-                <Flex alignItems="center">
-                  <Logo />
-                </Flex>
-
-                <List fontSize={[2]}>
-                  <NavLink to="/" mr={[2, 4]}>
-                    Works
-                  </NavLink>
-
-                  <NavLink to="/about/" mr={[2, 4]}>
-                    About
-                  </NavLink>
-
-                  <NavLink to="/#talks" mr={[2, 4]}>
-                    Talks
-                  </NavLink>
-
-                  <NavLink to="/writing/" mr={[2, 4]}>
-                    Writing
-                  </NavLink>
-
-                  <a href="mailto:afnizarhilmi@gmail.com">
-                    <Button
-                      css="padding: 0.75rem 1rem!important"
-                      variant="primary"
-                    >
-                      Contact
-                    </Button>
-                  </a>
-                </List>
-              </Flex>
-            </DefaultLayout>
-          </Box>
-        ) : null}
-      </Transition>
-    )
-  }
+            <a href="mailto:afnizarhilmi@gmail.com">
+              <Button css="padding: 0.75rem 1rem!important" variant="primary">
+                Contact
+              </Button>
+            </a>
+          </List>
+        </Flex>
+      </DefaultLayout>
+    </Box>
+  )
 }
+
+export default Navigation
