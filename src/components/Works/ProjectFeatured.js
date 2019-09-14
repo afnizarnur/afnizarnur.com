@@ -5,6 +5,9 @@ import { Box, Link } from "rebass"
 import { themeHover } from "../../utils/styles"
 import { Title2, Paragraph } from "../Typography"
 import Img from "gatsby-image"
+import ReactDOM from "react-dom"
+import { Carousel } from "react-responsive-carousel"
+import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 const ViewProject = styled(Link)`
   font-weight: bold;
@@ -33,11 +36,36 @@ const ProjectFeatured = ({ title, description, ...props }) => {
         View Project
       </ViewProject>
       <Box mt={[5, 13]}>
-        <Img
-          style={imageStyle}
-          alt="Featured Project"
-          sizes={props.featuredimage}
-        />
+        <Carousel
+          emulateTouch
+          showStatus={false}
+          showArrows={false}
+          infiniteLoop
+          autoPlay
+          showThumbs={false}
+        >
+          <div>
+            <Img
+              style={imageStyle}
+              alt="Featured Project"
+              sizes={props.featuredimage}
+            />
+          </div>
+          <div>
+            <Img
+              style={imageStyle}
+              alt="Featured Project"
+              sizes={props.featuredimage}
+            />
+          </div>
+          <div>
+            <Img
+              style={imageStyle}
+              alt="Featured Project"
+              sizes={props.featuredimage}
+            />
+          </div>
+        </Carousel>
       </Box>
     </Box>
   )

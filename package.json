@@ -51,6 +51,7 @@
     "react-collapsed": "^2.2.1",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
+    "react-responsive-carousel": "^3.1.50",
     "rebass": "^3.2.2",
     "sanitize.css": "^7.0.3",
     "smooth-scroll": "^16.1.0",
