@@ -73,11 +73,12 @@ const Transition = styled.div`
 export default class Navigation extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      show: true,
-      scrollPos: 0,
+    if (typeof window !== `undefined`) {
+      this.state = {
+        prevScrollpos: window.pageYOffset,
+        visible: true,
+      }
     }
-    this.handleScroll = this.handleScroll.bind(this)
   }
 
   componentDidMount() {
@@ -88,65 +89,71 @@ export default class Navigation extends Component {
     window.removeEventListener("scroll", this.handleScroll)
   }
 
-  handleScroll() {
-    const { scrollPos } = this.state
+  handleScroll = () => {
+    const { prevScrollpos } = this.state
+
+    const currentScrollPos = window.pageYOffset
+    const visible = prevScrollpos > currentScrollPos
+
     this.setState({
-      scrollPos: document.body.getBoundingClientRect().top,
-      show: document.body.getBoundingClientRect().top > scrollPos,
+      prevScrollpos: currentScrollPos,
+      visible,
     })
   }
 
   render() {
     return (
       <Transition>
-        <Box
-          bg={theme.colors.white}
-          py={[2]}
-          css="z-index: 999; position: fixed; top: 0; left: 0; width: 100%"
-          className={this.state.show ? "active" : "hidden"}
-        >
-          <DefaultLayout>
-            <Flex
-              as="nav"
-              alignItems="center"
-              justifyContent="space-between"
-              css="position: relative"
-            >
-              <SkipNavLink />
+        {typeof window !== "undefined" ? (
+          <Box
+            bg={theme.colors.white}
+            py={[2]}
+            css="z-index: 999; position: fixed; top: 0; left: 0; width: 100%"
+            className={this.state.visible ? "active" : "hidden"}
+          >
+            <DefaultLayout>
+              <Flex
+                as="nav"
+                alignItems="center"
+                justifyContent="space-between"
+                css="position: relative"
+              >
+                <SkipNavLink />
 
-              <Flex alignItems="center">
-                <Logo />
+                <Flex alignItems="center">
+                  <Logo />
+                </Flex>
+
+                <List fontSize={[2]}>
+                  <NavLink to="/" mr={[2, 4]}>
+                    Works
+                  </NavLink>
+
+                  <NavLink to="/about/" mr={[2, 4]}>
+                    About
+                  </NavLink>
+
+                  <NavLink to="/#talks" mr={[2, 4]}>
+                    Talks
+                  </NavLink>
+
+                  <NavLink to="/writing/" mr={[2, 4]}>
+                    Writing
+                  </NavLink>
+
+                  <a href="mailto:afnizarhilmi@gmail.com">
+                    <Button
+                      css="padding: 0.75rem 1rem!important"
+                      variant="primary"
+                    >
+                      Contact
+                    </Button>
+                  </a>
+                </List>
               </Flex>
-
-              <List fontSize={[2]}>
-                <NavLink to="/" mr={[2, 4]}>
-                  Works
-                </NavLink>
-
-                <NavLink to="/about/" mr={[2, 4]}>
-                  About
-                </NavLink>
-
-                <NavLink to="/#talks" mr={[2, 4]}>
-                  Talks
-                </NavLink>
-
-                <NavLink to="/writing/" mr={[2, 4]}>
-                  Writing
-                </NavLink>
-
-                <a href="mailto:afnizarhilmi@gmail.com">
-                  <Button
-                    css="padding: 0.75rem 1rem!important"
-                    variant="primary"
-                  >
-                    Contact
-                  </Button>
-                </a>
-              </List>
-            </Flex>
-          </DefaultLayout>
-        </Box>
+            </DefaultLayout>
+          </Box>
+        ) : null}
       </Transition>
     )
   }
