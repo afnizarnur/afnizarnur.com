@@ -5,7 +5,6 @@ import { Box, Link } from "rebass"
 import { themeHover } from "../../utils/styles"
 import { Title2, Paragraph } from "../Typography"
 import Img from "gatsby-image"
-import ReactDOM from "react-dom"
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
@@ -35,7 +34,7 @@ const ProjectFeatured = ({ title, description, ...props }) => {
       <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
         View Project
       </ViewProject>
-      <Box mt={[5, 13]}>
+      <Box mt={[5, 13]} css="cursor: pointer">
         <Carousel
           emulateTouch
           showStatus={false}

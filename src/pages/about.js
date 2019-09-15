@@ -33,7 +33,7 @@ const AboutPage = ({ ...props }) => {
             <Header>
               <Title
                 css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
-                mt={[11, "12.4375rem"]}
+                mt={[9, 9]}
                 mb={[6, 9, 9]}
               >
                 It’s a nice to <br />

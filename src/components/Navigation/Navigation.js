@@ -9,6 +9,7 @@ import Logo from "./Logo"
 import { themeHover } from "../../utils/styles"
 import DefaultLayout from "../Layouts/Default"
 import theme from "../../layouts/theme"
+import Headroom from "react-headroom"
 
 const NavItem = styled(ListItem)`
   display: inline-block;
@@ -60,50 +61,46 @@ NavLink.propTypes = {
 
 const Navigation = ({ ...props }) => {
   return (
-    <Box
-      bg={theme.colors.white}
-      py={[2]}
-      css="z-index: 999; position: fixed; top: 0; left: 0; width: 100%"
-    >
-      <DefaultLayout>
-        <Flex
-          as="nav"
-          alignItems="center"
-          justifyContent="space-between"
-          css="position: relative"
-        >
-          <SkipNavLink />
+    <Headroom style={{ zIndex: 999, background: theme.colors.white }}>
+      <Flex
+        as="nav"
+        alignItems="center"
+        justifyContent="space-between"
+        py={[2]}
+        css="max-width: 960px; height: 100%"
+        mx="auto"
+      >
+        <SkipNavLink />
 
-          <Flex alignItems="center">
-            <Logo />
-          </Flex>
-
-          <List fontSize={[2]}>
-            <NavLink to="/" mr={[2, 4]}>
-              Works
-            </NavLink>
-
-            <NavLink to="/about/" mr={[2, 4]}>
-              About
-            </NavLink>
-
-            <NavLink to="/#talks" mr={[2, 4]}>
-              Talks
-            </NavLink>
-
-            <NavLink to="/writing/" mr={[2, 4]}>
-              Writing
-            </NavLink>
-
-            <a href="mailto:afnizarhilmi@gmail.com">
-              <Button css="padding: 0.75rem 1rem!important" variant="primary">
-                Contact
-              </Button>
-            </a>
-          </List>
+        <Flex alignItems="center">
+          <Logo />
         </Flex>
-      </DefaultLayout>
-    </Box>
+
+        <List fontSize={[2]}>
+          <NavLink to="/" mr={[2, 4]}>
+            Works
+          </NavLink>
+
+          <NavLink to="/about/" mr={[2, 4]}>
+            About
+          </NavLink>
+
+          <NavLink to="/#talks" mr={[2, 4]}>
+            Talks
+          </NavLink>
+
+          <NavLink to="/writing/" mr={[2, 4]}>
+            Writing
+          </NavLink>
+
+          <a href="mailto:afnizarhilmi@gmail.com">
+            <Button css="padding: 0.75rem 1rem!important" variant="primary">
+              Contact
+            </Button>
+          </a>
+        </List>
+      </Flex>
+    </Headroom>
   )
 }
 

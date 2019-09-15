@@ -41,6 +41,10 @@ const GlobalStyles = createGlobalStyle`
     transform: translateY(-10px);
   }
 
+  .carousel .control-dots {
+    padding: 0;
+  }
+
   @media print {
     nav, footer {
       display: none !important;
@@ -63,6 +67,17 @@ const GlobalStyles = createGlobalStyle`
   
       opacity: 1;
     }
+  }
+
+  @media only screen and (max-width: 64em) {
+    .headroom--unpinned {
+      padding-right: 1.5rem!important;
+      padding-left: 1.5rem!important;
+    }
+   .headroom--pinned {
+     padding-right: 1.5rem!important;
+     padding-left: 1.5rem!important;
+   }
   }
 `
 const Layout = ({ children, theme }) => {
