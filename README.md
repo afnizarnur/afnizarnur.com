@@ -5,18 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="https://app.netlify.com/sites/afnizarnur/deploys">
-    <img
-      src="https://api.netlify.com/api/v1/badges/39910d3d-7848-4020-914c-209c03d34b82/deploy-status"
-      alt="Netlify Status"
-    />
-  </a>
-  <a href="https://github.com/styled-components/styled-components">
-    <img
-      src="https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e"
-      alt="styled with styled-components"
-    />
-  </a>
+  <a href="https://app.netlify.com/sites/afnizarnur/deploys"><img src="https://api.netlify.com/api/v1/badges/39910d3d-7848-4020-914c-209c03d34b82/deploy-status" alt="Netlify Status" /></a>
+  <a href="https://github.com/styled-components/styled-components"><img src="https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e" alt="styled with styled-components" /></a>
 </p>
 
 <p align="center">

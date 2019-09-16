@@ -7,7 +7,6 @@ import { useSiteMetadata } from "../utils/hooks"
 import { Box } from "rebass"
 import DefaultLayout from "../components/Layouts/Default"
 import Navigation from "../components/Navigation"
-import FullLayout from "../components/Layouts/Full"
 import Footer from "../components/Footer"
 import Workspace from "../components/About/Workspace"
 import Img from "gatsby-image"
@@ -41,7 +40,6 @@ const AboutPage = ({ ...props }) => {
               </Title>
             </Header>
           </DefaultLayout>
-
           <main>
             <DefaultLayout>
               <Box mb={[5, 5, 6]}>
@@ -62,8 +60,7 @@ const AboutPage = ({ ...props }) => {
                   in liberos atque integre iudicante. Certe, inquam, pertinax
                   non numquam eius modi tempora incidunt, ut alterum esse albam.
                 </Paragraph>
-
-                <Paragraph fontSize={[2]} mb={[5, 6, 9]}>
+                <Paragraph fontSize={[2]} mb={[6, 6, 9]}>
                   Alii autem, quibus ego cum teneam sententiam, quid percipit
                   aut fugiat aliquid, praeter voluptatem et dolorum fuga et
                   dolore suo sanciret militaris imperii disciplinam exercitumque
@@ -85,7 +82,6 @@ const AboutPage = ({ ...props }) => {
                 </Paragraph>
               </Box>
             </DefaultLayout>
-
             <Workspace />
             <Footer />
           </main>

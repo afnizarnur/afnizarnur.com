@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/test"
+  to = "https://test.afnizarnur.com"
+  status = 301
+  force = true
