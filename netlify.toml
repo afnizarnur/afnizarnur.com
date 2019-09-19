@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/test"
-  to = "https://test.afnizarnur.com"
-  status = 301
+  from = "https://test.afnizarnur.com/*"
+  to = "https://afnizarnur.com/test/:splat"
+  status = 200
   force = true
