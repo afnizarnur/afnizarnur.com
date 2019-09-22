@@ -7,10 +7,11 @@ import ProjectList from "../components/Works/ProjectList"
 import DesignProcess from "../components/Works/DesignProcess"
 import TalkList from "../components/Works/TalkList"
 import Footer from "../components/Footer"
-import { Box } from "rebass"
+import { Box, Button, Image, Link } from "rebass"
 import Navigation from "../components/Navigation"
 import DefaultLayout from "../components/Layouts/Default"
 import FullLayout from "../components/Layouts/Full"
+import theme from "../layouts/theme"
 
 const IndexPage = props => {
   return (
@@ -21,30 +22,46 @@ const IndexPage = props => {
       <Box as="main" id="main-content" mb={[5, 6]}>
         <DefaultLayout>
           <Header>
-            <Title
-              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
-              mt={[9, 9]}
-            >
-              Make things
-              <br />
-              better together.
-            </Title>
-
-            <Paragraph
-              maxWidth="90%"
-              fontSize={[2, 3]}
-              mt={[4, 5]}
-              mb={[10, 11]}
-              css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
-            >
-              Torquatos nostros? quos dolores eos, qui haec putat, ut alterum
-              esse ratione neque. Ut placet, inquam tum dicere exorsus est
-              laborum et argumentandum et accusamus et.
+            <Paragraph color={theme.colors.black} fontSize={[2, 3]} mt={[6, 9]}>
+              Afnizar Nur Ghifari, Designer at Bukalapak
             </Paragraph>
+            <Title
+              mt={[5, 6]}
+              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+            >
+              Crafting digital <br /> experiences that <br /> help people.
+            </Title>
+            <Box mt={[5, 12]} mb={[10, 15]}>
+              <Button
+                fontSize={2}
+                css="padding: 0.75rem 1rem!important"
+                variant="primary"
+                mr={4}
+                className="btnSelectedWork"
+              >
+                <Link color={theme.colors.black} href="#selectedwork">
+                  Selected Work
+                  <Image
+                    className="scrollWork"
+                    ml={[4]}
+                    css="transform: rotate(180deg); max-width: 1000%; width:14px; height: 14px"
+                    src={"../assets/arrow-up.svg"}
+                    alt="Scroll to Selected Work"
+                  />
+                </Link>
+              </Button>
+              <Button
+                fontSize={2}
+                css="padding: 0.75rem 1rem!important"
+                variant="secondary"
+              >
+                Download Resume
+              </Button>
+            </Box>
           </Header>
         </DefaultLayout>
 
-        <main>
+        <main id="selectedwork">
           <DefaultLayout>
             <ProjectFeatured
               title="Recently, I design a bike sharing system, BukaBike. A cheaper, faster, and more flexible transport."

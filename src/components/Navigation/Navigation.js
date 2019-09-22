@@ -2,12 +2,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { Flex, Text, Button, Box } from "rebass"
+import { Flex, Text, Button } from "rebass"
 import { List, ListItem } from "../Typography"
 import SkipNavLink from "./SkipNavLink"
 import Logo from "./Logo"
 import { themeHover } from "../../utils/styles"
-import DefaultLayout from "../Layouts/Default"
 import theme from "../../layouts/theme"
 import Headroom from "react-headroom"
 
@@ -66,7 +65,7 @@ const Navigation = ({ ...props }) => {
         as="nav"
         alignItems="center"
         justifyContent="space-between"
-        py={[2]}
+        py={[3]}
         css="max-width: 960px; height: 100%"
         mx="auto"
       >

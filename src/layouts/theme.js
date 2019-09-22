@@ -89,7 +89,21 @@ const buttons = {
   primary: {
     backgroundColor: colors.gray[0],
     color: colors.black,
-    borderRadius: 0,
+    borderRadius: 4,
+    fontSize: fontSizes[2],
+    "&:hover": {
+      backgroundColor: colors.black,
+      color: colors.white,
+      cursor: "pointer",
+      transition: "all ease .2s",
+    },
+  },
+  secondary: {
+    backgroundColor: colors.white,
+    color: colors.black,
+    border: "1px solid" + colors.gray[0],
+    borderRadius: 4,
+    fontSize: fontSizes[2],
     "&:hover": {
       backgroundColor: colors.black,
       color: colors.white,

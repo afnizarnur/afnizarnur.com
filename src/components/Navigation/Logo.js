@@ -37,7 +37,6 @@ const Logo = () => {
   return (
     <>
       <Link
-        mt={[1, 0, 0]}
         as={GatsbyLink}
         to="/"
         tabIndex="-1"
@@ -52,20 +51,6 @@ const Logo = () => {
           className="logoImage"
         />
       </Link>
-
-      <Wordmark
-        as={GatsbyLink}
-        to="/"
-        tabIndex="-1"
-        aria-hidden="true"
-        color="black"
-        css="outline:none"
-      >
-        <Text fontWeight="bold" fontSize={2} mb={1}>
-          Afnizar Nur Ghifari
-        </Text>
-        <Text fontSize={2}>Designer</Text>
-      </Wordmark>
     </>
   )
 }

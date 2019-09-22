@@ -34,7 +34,7 @@ const ProjectFeatured = ({ title, description, ...props }) => {
       <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
         View Project
       </ViewProject>
-      <Box mt={[5, 13]} css="cursor: pointer">
+      <Box mt={[5, 13]}>
         <Carousel
           emulateTouch
           showStatus={false}

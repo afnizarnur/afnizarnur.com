@@ -8,7 +8,7 @@ import "./fonts/inter.css"
 
 if (typeof window !== "undefined") {
   require("smooth-scroll")('a[href*="#"]', {
-    speed: 200,
+    speed: 300,
   })
 }
 
@@ -39,6 +39,14 @@ const GlobalStyles = createGlobalStyle`
 
   .scroll:hover .scrollImage {
     transform: translateY(-10px);
+  }
+
+  .btnSelectedWork:hover .scrollWork {
+    filter: invert(100%);
+  }
+
+  .btnSelectedWork:hover a {
+    color: white;
   }
 
   .carousel .control-dots {
