@@ -3,3 +3,9 @@
   to = "https://afnizarnur.com/test/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "https://pay.afnizarnur.com/*"
+  to = "https://afnizarnur.com/pay/:splat"
+  status = 200
+  force = true

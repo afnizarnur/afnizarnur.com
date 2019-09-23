@@ -50,7 +50,7 @@ const Footer = ({ ...props }) => {
             mt={[6, 15, 15]}
           >
             <Box>
-              <Text
+              <Paragraph
                 lineHeight="1.6rem"
                 fontSize={2}
                 color={theme.colors.gray[1]}
@@ -72,7 +72,7 @@ const Footer = ({ ...props }) => {
                   Linkedin
                 </ViewLink>
                 .
-              </Text>
+              </Paragraph>
             </Box>
             <Box>
               <Link className="scroll" aria-label="Scroll to Top" href="#top">

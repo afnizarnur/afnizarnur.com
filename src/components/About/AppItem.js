@@ -4,12 +4,11 @@ import { Box, Text } from "rebass"
 import { Paragraph } from "../Typography"
 import Img from "gatsby-image"
 
-const imageStyle = {
-  width: 48,
-  height: 48,
-}
-
 const AppItem = ({ ...props }) => {
+  const imageStyle = {
+    width: 48,
+    height: 48,
+  }
   return (
     <Box
       css="

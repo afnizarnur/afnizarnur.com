@@ -52,6 +52,7 @@
     "react-dom": "^16.9.0",
     "react-headroom": "^2.2.8",
     "react-helmet": "^5.2.1",
+    "react-medium-image-zoom": "^3.1.1",
     "react-responsive-carousel": "^3.1.50",
     "rebass": "^3.2.2",
     "sanitize.css": "^7.0.3",
