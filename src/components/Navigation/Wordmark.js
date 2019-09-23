@@ -5,7 +5,6 @@ import { Link, Text } from "rebass"
 import Img from "gatsby-image"
 
 const WordmarkLogo = styled(Link)`
-  display: none;
   letter-spacing: -0.2px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {

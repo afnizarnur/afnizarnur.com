@@ -109,7 +109,8 @@ const PayPage = props => {
           py={4}
           pr={12}
           width={[1, "50%"]}
-          css="z-index: 99; height: 100%; border-right: 1px solid #F0F0F0; position: fixed"
+          height={[0, 1, 1]}
+          css="z-index: 99; border-right: 1px solid #F0F0F0; position: fixed"
         >
           <Box px={[5]}>
             <Flex alignItems="center">

@@ -21,7 +21,15 @@ const PayItem = ({ ...props }) => {
               <Img alt={props.imgalt} fixed={props.imgsrc} />
             </Box>
             <Box>
-              <Paragraph color={theme.colors.black}>{props.username}</Paragraph>
+              <Paragraph
+                css="
+                @media only screen and (max-width: 48em) {
+                  display: none
+                }"
+                color={theme.colors.black}
+              >
+                {props.username}
+              </Paragraph>
             </Box>
           </Flex>
 
@@ -60,7 +68,7 @@ const PayItem = ({ ...props }) => {
                   width: "110px",
                 },
               }}
-              zoomMargin="350"
+              zoomMargin="160"
               zoomImage={{
                 src: props.qrimgsrc,
                 alt: props.qrimgalt,
