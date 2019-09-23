@@ -22,7 +22,12 @@ const IndexPage = props => {
       <Box as="main" id="main-content" mb={[5, 6]}>
         <DefaultLayout>
           <Header>
-            <Paragraph color={theme.colors.black} fontSize={[2, 3]} mt={[6, 9]}>
+            <Paragraph
+              css="animation: fadeInBottom 1s 0.25s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+              color={theme.colors.black}
+              fontSize={[2, 3]}
+              mt={[6, 9]}
+            >
               Afnizar Nur Ghifari, Designer at Bukalapak
             </Paragraph>
             <Title
@@ -31,13 +36,18 @@ const IndexPage = props => {
             >
               Crafting digital <br /> experiences that <br /> help people.
             </Title>
-            <Box mt={[5, 12]} mb={[10, 15]}>
+            <Box
+              css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+              mt={[13, 12]}
+              mb={[10, 15]}
+            >
               <Button
                 fontSize={2}
                 css="padding: 0.75rem 1rem!important"
                 variant="primary"
                 mr={4}
                 className="btnSelectedWork"
+                mb={[3, 0, 0]}
               >
                 <Link color={theme.colors.black} href="#selectedwork">
                   Selected Work
@@ -50,13 +60,15 @@ const IndexPage = props => {
                   />
                 </Link>
               </Button>
-              <Button
-                fontSize={2}
-                css="padding: 0.75rem 1rem!important"
-                variant="secondary"
-              >
-                Download Resume
-              </Button>
+              <a target="blank" href="/resume.pdf">
+                <Button
+                  fontSize={2}
+                  css="padding: 0.75rem 1rem!important"
+                  variant="secondary"
+                >
+                  Download Resume
+                </Button>
+              </a>
             </Box>
           </Header>
         </DefaultLayout>

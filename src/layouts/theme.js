@@ -101,7 +101,7 @@ const buttons = {
   secondary: {
     backgroundColor: colors.white,
     color: colors.black,
-    border: "1px solid" + colors.gray[0],
+    border: "1px solid #d8d8d8",
     borderRadius: 4,
     fontSize: fontSizes[2],
     "&:hover": {

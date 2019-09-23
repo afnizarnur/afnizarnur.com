@@ -8,8 +8,10 @@ import MarkdownContent from "./MarkdownContent"
 import { useSiteMetadata } from "../../utils/hooks"
 import unwidow from "../../utils/unwidow"
 import DefaultLayout from "../../components/Layouts/Default"
+import BlogLayout from "../../components/Layouts/Blog"
 import { Box } from "rebass"
 import Navigation from "../../components/Navigation"
+import Footer from "../../components/Footer"
 
 const BlogPostTemplate = ({ data }) => {
   const { title, siteUrl } = useSiteMetadata()
@@ -45,27 +47,38 @@ const BlogPostTemplate = ({ data }) => {
         </DefaultLayout>
 
         <article>
-          <DefaultLayout>
+          <BlogLayout>
             <Header>
-              <Title mt={[10, "12.4375rem", "12.4375rem"]}>
-                {unwidow(post.frontmatter.title)}
-              </Title>
-
-              <Paragraph>
+              <Paragraph fontSize={[2, 3]} mt={[6, 9]}>
+                Posted on{" "}
                 <time dateTime={post.frontmatter.datetime}>
                   {post.frontmatter.date}
                 </time>
               </Paragraph>
+              <Title mt={"2.0rem"}>{unwidow(post.frontmatter.title)}</Title>
+              <Paragraph fontSize={[2, 3]} mt={[16]} mb={12}>
+                {post.frontmatter.description}
+              </Paragraph>
+              <hr
+                style={{
+                  border: "none",
+                  borderTop: "1px solid #d8d8d8",
+                }}
+              />
             </Header>
 
             <MarkdownContent
               as="main"
               lineHeight="copy"
               fontSize={[1, 2]}
+              mt={12}
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
-          </DefaultLayout>
+          </BlogLayout>
         </article>
+        <Box mt={10} css="border-top: 1px solid #d8d8d8">
+          <Footer />
+        </Box>
       </Box>
     </>
   )

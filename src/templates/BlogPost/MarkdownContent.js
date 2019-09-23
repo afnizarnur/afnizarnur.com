@@ -13,13 +13,13 @@ const MarkdownContent = styled(Text)`
 
     /* margin top to all child elements */
     & + * {
-      margin-top: ${({ theme }) => theme.space[3]};
+      margin-top: ${({ theme }) => theme.space[5]};
     }
 
     /* bigger margin top on headers */
     & + h1,
     & + h2 {
-      margin-top: ${({ theme }) => theme.space[5]};
+      margin-top: 3.0rem;
     }
 
     & + h3,
@@ -35,14 +35,7 @@ const MarkdownContent = styled(Text)`
   h5,
   h6 {
     line-height: ${({ theme }) => theme.lineHeights.title};
-  }
-
-  p,
-  ul,
-  ol,
-  dl,
-  address {
-    max-width: 33em;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   /* Headers */
@@ -96,12 +89,16 @@ const MarkdownContent = styled(Text)`
 
   /* Type Elements */
 
+  p {
+    color: ${({ theme }) => theme.colors.black};
+  }
+
   hr {
     max-width: 4rem;
     height: ${({ theme }) => theme.space[1]};
     margin: ${({ theme }) => theme.space[4]} 0;
     border: 0;
-    background-color: ${({ theme }) => theme.colors.orange};
+    background-color: #d6d6d6;
   }
 
   ul,
@@ -142,7 +139,7 @@ const MarkdownContent = styled(Text)`
     ${themeUnderline};
 
     &:hover code {
-      color: ${({ theme }) => theme.colors.orange};
+     opacity: .8;
     }
 
     @media print {
@@ -163,7 +160,25 @@ const MarkdownContent = styled(Text)`
     }
   }
 
-  blockquote,
+  blockquote {
+    font-size: 2.25rem;
+    font-weight: bold;
+    line-height: 2.5rem;
+    letter-spacing: -2.14px;
+    margin: 2.75rem 0;
+    
+    > :first-child {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    > :last-child {
+      margin-bottom: 0;
+      font-weight: normal;
+      letter-spacing: -0.2px;
+      font-size: ${({ theme }) => theme.fontSizes[2]}
+    }
+  }
+
   details {
     margin-top: ${({ theme }) => theme.space[4]};
     margin-right: 0;
@@ -210,13 +225,11 @@ const MarkdownContent = styled(Text)`
   pre {
     width: 100%;
     overflow-x: scroll;
-    margin-top: ${({ theme }) => theme.space[4]};
-    margin-bottom: ${({ theme }) => theme.space[4]};
-    border-left: ${({ theme }) => theme.borders[3]}
-      ${({ theme }) => theme.colors.orange};
-    border-radius: ${({ theme }) => theme.radii[1]};
+    margin-top: 2.75rem;
+    margin-bottom: 2.75rem;
+    border-radius: ${({ theme }) => theme.radii[2]};
     padding: ${({ theme }) => theme.space[3]};
-    background-color: ${({ theme }) => theme.colors.grays[11]};
+    background-color: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.grays[1]};
     font-size: ${({ theme }) => theme.fontSizes[0]};
     font-family: ${({ theme }) => theme.fonts.monospace};
@@ -235,10 +248,12 @@ const MarkdownContent = styled(Text)`
   img {
     display: block;
     width: 100%;
-    max-width: 48rem;
-    margin-top: ${({ theme }) => theme.space[4]};
-    margin-bottom: ${({ theme }) => theme.space[4]};
-    border-radius: ${({ theme }) => theme.radii[1]};
+    border-radius: ${({ theme }) => theme.radii[2]};
+  }
+
+  .gatsby-resp-image-wrapper {
+    margin-top: 2.75rem;
+    margin-bottom: 3.25rem;
   }
 
   iframe {
