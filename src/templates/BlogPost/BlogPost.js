@@ -12,6 +12,7 @@ import BlogLayout from "../../components/Layouts/Blog"
 import { Box } from "rebass"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
+import "../BlogPost/prism.css"
 
 const BlogPostTemplate = ({ data }) => {
   const { title, siteUrl } = useSiteMetadata()

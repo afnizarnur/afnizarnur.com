@@ -13,7 +13,7 @@ if (typeof window !== "undefined") {
 }
 
 const GlobalStyles = createGlobalStyle`
-  * {
+  *:not(code, pre) {
     font-family: "Inter", system-ui, -apple-system, sans-serif!important;
   }
 

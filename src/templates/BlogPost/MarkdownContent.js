@@ -19,7 +19,7 @@ const MarkdownContent = styled(Text)`
     /* bigger margin top on headers */
     & + h1,
     & + h2 {
-      margin-top: 3.0rem;
+      margin-top: 3rem;
     }
 
     & + h3,
@@ -139,7 +139,7 @@ const MarkdownContent = styled(Text)`
     ${themeUnderline};
 
     &:hover code {
-     opacity: .8;
+      opacity: 0.8;
     }
 
     @media print {
@@ -166,7 +166,7 @@ const MarkdownContent = styled(Text)`
     line-height: 2.5rem;
     letter-spacing: -2.14px;
     margin: 2.75rem 0;
-    
+
     > :first-child {
       margin-top: 0;
       margin-bottom: 0;
@@ -175,7 +175,7 @@ const MarkdownContent = styled(Text)`
       margin-bottom: 0;
       font-weight: normal;
       letter-spacing: -0.2px;
-      font-size: ${({ theme }) => theme.fontSizes[2]}
+      font-size: ${({ theme }) => theme.fontSizes[2]};
     }
   }
 
@@ -254,6 +254,7 @@ const MarkdownContent = styled(Text)`
   .gatsby-resp-image-wrapper {
     margin-top: 2.75rem;
     margin-bottom: 3.25rem;
+    border-radius: ${({ theme }) => theme.radii[2]};
   }
 
   iframe {
