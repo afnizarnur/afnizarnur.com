@@ -203,7 +203,7 @@ const MarkdownContent = styled(Text)`
   }
 
   code {
-    font-family: ${({ theme }) => theme.fonts.monospace};
+    font-family: ${({ theme }) => theme.fonts.monospace}!important;
   }
 
   p code,
@@ -232,7 +232,7 @@ const MarkdownContent = styled(Text)`
     background-color: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.grays[1]};
     font-size: ${({ theme }) => theme.fontSizes[0]};
-    font-family: ${({ theme }) => theme.fonts.monospace};
+    font-family: ${({ theme }) => theme.fonts.monospace}!important;
     white-space: pre;
 
     @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {

@@ -109,7 +109,7 @@ const PayPage = props => {
           py={4}
           pr={12}
           width={[1, "50%"]}
-          height={[0, 1, 1]}
+          height={[0, "100%", "100%"]}
           css="z-index: 99; border-right: 1px solid #F0F0F0; position: fixed"
         >
           <Box px={[5]}>

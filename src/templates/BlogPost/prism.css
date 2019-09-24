@@ -9,7 +9,7 @@ code[class*="language-"],
 pre[class*="language-"] {
 	color: white;
 	background: none;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: Menlo, Consolas, Roboto Mono, Ubuntu Monospace, Oxygen Mono, Liberation Mono, monospace!important;
 	font-size: 1em;
 	text-align: left;
 	text-shadow: 0 -.1em .2em black;
@@ -73,6 +73,10 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	box-shadow: 1px 1px .3em -.1em black inset;
 	padding: .15em .2em .05em;
 	white-space: normal;
+}
+
+.token {
+	font-family: Menlo, Consolas, Roboto Mono, Ubuntu Monospace, Oxygen Mono, Liberation Mono, monospace!important;
 }
 
 .token.comment,
