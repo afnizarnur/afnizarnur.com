@@ -41,15 +41,15 @@ const IndexPage = props => {
               mt={[13, 12]}
               mb={[10, 15]}
             >
-              <Button
-                fontSize={2}
-                css="padding: 0.75rem 1rem!important"
-                variant="primary"
-                mr={4}
-                className="btnSelectedWork"
-                mb={[3, 0, 0]}
-              >
-                <Link color={theme.colors.black} href="#selectedwork">
+              <Link color={theme.colors.black} href="#selectedwork">
+                <Button
+                  fontSize={2}
+                  css="padding: 0.75rem 1rem!important"
+                  variant="primary"
+                  mr={4}
+                  className="btnSelectedWork"
+                  mb={[3, 0, 0]}
+                >
                   Selected Work
                   <Image
                     className="scrollWork"
@@ -58,8 +58,9 @@ const IndexPage = props => {
                     src={"../assets/arrow-up.svg"}
                     alt="Scroll to Selected Work"
                   />
-                </Link>
-              </Button>
+                </Button>
+              </Link>
+
               <a target="blank" href="/resume.pdf">
                 <Button
                   fontSize={2}
@@ -79,21 +80,27 @@ const IndexPage = props => {
               title="Recently, I design a bike sharing system, BukaBike. A cheaper, faster, and more flexible transport."
               description="Et quidem exercitus quid ex ea quid et impetus quo quaerimus, non fuisse torquem detraxit hosti et quidem faciunt, ut aut voluptates repudiandae sint."
               link="/bukabike/"
-              featuredimage={props.data.imageplaceholder.childImageSharp.fluid}
+              featuredimage1={props.data.bukabike1.childImageSharp.fluid}
+              featuredimage2={props.data.bukabike2.childImageSharp.fluid}
+              featuredimage3={props.data.bukabike3.childImageSharp.fluid}
             />
 
             <ProjectFeatured
               title="I also help empower small fashion and apparel brands by radically improving the way they collaborate."
               description="Quid ex eo est consecutus? laudem et via procedat oratio quaerimus igitur, quid malum, sensu iudicari, sed ipsius honestatis decore laudandis, id omnia."
               link="/bukabike/"
-              featuredimage={props.data.imageplaceholder.childImageSharp.fluid}
+              featuredimage1={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage2={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage3={props.data.bukabike3.childImageSharp.fluid}
             />
 
             <ProjectFeatured
               title="As a designer who codes, I developed tools for designers to support their workflows."
               description="Tum dicere exorsus est primum igitur, inquit, sic agam, ut alterum aspernandum sentiamus alii autem, quibus ego cum teneam sententiam, quid malum. "
               link="/bukabike/"
-              featuredimage={props.data.imageplaceholder.childImageSharp.fluid}
+              featuredimage1={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage2={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage3={props.data.bukabike3.childImageSharp.fluid}
               mb={14}
             />
 
@@ -125,6 +132,27 @@ export const pageQuery = graphql`
     talkbg: file(relativePath: { eq: "talkbg.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 2000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    bukabike1: file(relativePath: { eq: "works/bukabike-1.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    bukabike2: file(relativePath: { eq: "works/bukabike-2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    bukabike3: file(relativePath: { eq: "works/bukabike-3.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }

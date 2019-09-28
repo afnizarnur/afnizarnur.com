@@ -40,28 +40,27 @@ const ProjectFeatured = ({ title, description, ...props }) => {
           showStatus={false}
           showArrows={false}
           infiniteLoop
-          autoPlay
           showThumbs={false}
         >
           <div>
             <Img
               style={imageStyle}
               alt="Featured Project"
-              sizes={props.featuredimage}
+              sizes={props.featuredimage1}
             />
           </div>
           <div>
             <Img
               style={imageStyle}
               alt="Featured Project"
-              sizes={props.featuredimage}
+              sizes={props.featuredimage2}
             />
           </div>
           <div>
             <Img
               style={imageStyle}
               alt="Featured Project"
-              sizes={props.featuredimage}
+              sizes={props.featuredimage3}
             />
           </div>
         </Carousel>

@@ -53,6 +53,11 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
+  .carousel .control-dots li.dot {
+    background-color: ${({ theme }) => theme.colors.gray[1]};
+    box-shadow: none;
+  }
+
   @media print {
     nav, footer {
       display: none !important;
