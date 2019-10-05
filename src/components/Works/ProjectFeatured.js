@@ -31,35 +31,38 @@ const ProjectFeatured = ({ title, description, ...props }) => {
       <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={4}>
         {description}
       </Paragraph>
+
+      {props.link ? 
       <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
         View Project
       </ViewProject>
+      : null }
       <Box mt={[5, 13]}>
         <Carousel
           emulateTouch
           showStatus={false}
-          showArrows={false}
+          showArrows={true}
           infiniteLoop
           showThumbs={false}
         >
           <div>
             <Img
               style={imageStyle}
-              alt="Featured Project"
+              alt={props.featuredimage1alt}
               sizes={props.featuredimage1}
             />
           </div>
           <div>
             <Img
               style={imageStyle}
-              alt="Featured Project"
+              alt={props.featuredimage2alt}
               sizes={props.featuredimage2}
             />
           </div>
           <div>
             <Img
               style={imageStyle}
-              alt="Featured Project"
+              alt={props.featuredimage3alt}
               sizes={props.featuredimage3}
             />
           </div>

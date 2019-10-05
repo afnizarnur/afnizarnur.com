@@ -49,22 +49,27 @@ const GlobalStyles = createGlobalStyle`
     color: white;
   }
 
+  .carousel .slide {
+    background-color: ${({ theme }) => theme.colors.white}!important;
+  }
+
   .carousel .control-dots {
     padding: 0;
+    position: relative!important;
   }
 
   .carousel .control-dots li.dot {
-    background-color: ${({ theme }) => theme.colors.gray[1]};
+    background-color: ${({ theme }) => theme.colors.black};
     box-shadow: none;
   }
 
   @media print {
     nav, footer {
-      display: none !important;
+      display: none!important;
     }
 
     #main-content {
-      margin-bottom: 0 !important;
+      margin-bottom: 0!important;
     }
   }
 

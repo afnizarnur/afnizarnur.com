@@ -83,24 +83,31 @@ const IndexPage = props => {
               featuredimage1={props.data.bukabike1.childImageSharp.fluid}
               featuredimage2={props.data.bukabike2.childImageSharp.fluid}
               featuredimage3={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage1alt="BukaBike Featured Image"
+              featuredimage2alt="BukaBike Screen History, Trip Detail, Open Bike"
+              featuredimage3alt="BukaBike Screen Reservation, Open Bike Reservation, Info when opening BukaBike"
             />
 
             <ProjectFeatured
               title="I also help empower small fashion and apparel brands by radically improving the way they collaborate."
               description="Quid ex eo est consecutus? laudem et via procedat oratio quaerimus igitur, quid malum, sensu iudicari, sed ipsius honestatis decore laudandis, id omnia."
-              link="/bukabike/"
               featuredimage1={props.data.bukabike3.childImageSharp.fluid}
               featuredimage2={props.data.bukabike3.childImageSharp.fluid}
               featuredimage3={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage1alt=""
+              featuredimage2alt=""
+              featuredimage3alt=""
             />
 
             <ProjectFeatured
               title="As a designer who codes, I developed tools for designers to support their workflows."
               description="Tum dicere exorsus est primum igitur, inquit, sic agam, ut alterum aspernandum sentiamus alii autem, quibus ego cum teneam sententiam, quid malum. "
-              link="/bukabike/"
-              featuredimage1={props.data.bukabike3.childImageSharp.fluid}
-              featuredimage2={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage1={props.data.dt1.childImageSharp.fluid}
+              featuredimage2={props.data.dt2.childImageSharp.fluid}
               featuredimage3={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage1alt="Color Finder"
+              featuredimage2alt="Illustration Organizer Sketch Plugin"
+              featuredimage3alt="Context"
               mb={14}
             />
 
@@ -122,35 +129,49 @@ const IndexPage = props => {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    imageplaceholder: file(relativePath: { eq: "image-placeholder.png" }) {
+    imageplaceholder: file(relativePath: { eq: "image-placeholder.webp" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    talkbg: file(relativePath: { eq: "talkbg.jpg" }) {
+    talkbg: file(relativePath: { eq: "talkbg.webp" }) {
       childImageSharp {
         fluid(maxWidth: 2000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    bukabike1: file(relativePath: { eq: "works/bukabike-1.png" }) {
+    bukabike1: file(relativePath: { eq: "works/bukabike-1.webp" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    bukabike2: file(relativePath: { eq: "works/bukabike-2.png" }) {
+    bukabike2: file(relativePath: { eq: "works/bukabike-2.webp" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    bukabike3: file(relativePath: { eq: "works/bukabike-3.png" }) {
+    bukabike3: file(relativePath: { eq: "works/bukabike-3.webp" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    dt1: file(relativePath: { eq: "works/designtools-1.webp" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    dt2: file(relativePath: { eq: "works/designtools-2.webp" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid

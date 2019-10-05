@@ -93,7 +93,7 @@ const AboutPage = ({ ...props }) => {
 
 export const pageQuery = graphql`
   query AboutQuery {
-    imageplaceholder: file(relativePath: { eq: "image-placeholder.png" }) {
+    imageplaceholder: file(relativePath: { eq: "image-placeholder.webp" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
