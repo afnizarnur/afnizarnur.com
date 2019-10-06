@@ -32,11 +32,11 @@ const ProjectFeatured = ({ title, description, ...props }) => {
         {description}
       </Paragraph>
 
-      {props.link ? 
-      <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
-        View Project
-      </ViewProject>
-      : null }
+      {props.link ? (
+        <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
+          View Project
+        </ViewProject>
+      ) : null}
       <Box mt={[5, 13]}>
         <Carousel
           emulateTouch

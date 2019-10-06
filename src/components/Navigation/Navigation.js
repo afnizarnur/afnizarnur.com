@@ -2,13 +2,14 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { Flex, Text, Button } from "rebass"
+import { Flex, Text, Button, Box } from "rebass"
 import { List, ListItem } from "../Typography"
 import SkipNavLink from "./SkipNavLink"
 import Logo from "./Logo"
 import { themeHover } from "../../utils/styles"
 import theme from "../../layouts/theme"
 import Headroom from "react-headroom"
+import Menu from "../Navigation/Menu"
 
 const NavItem = styled(ListItem)`
   display: inline-block;
@@ -76,27 +77,52 @@ const Navigation = ({ ...props }) => {
         </Flex>
 
         <List fontSize={[2]}>
-          <NavLink to="/" mr={[2, 4]}>
-            Works
-          </NavLink>
+          <Box
+            css="
+            @media only screen and (max-width: 48em) {
+                display: none;
+                visibility: hidden;
+            }"
+          >
+            <NavLink to="/" mr={[2, 4]}>
+              Works
+            </NavLink>
 
-          <NavLink to="/about/" mr={[2, 4]}>
-            About
-          </NavLink>
+            <NavLink to="/about/" mr={[2, 4]}>
+              About
+            </NavLink>
 
-          <NavLink to="/#talks" mr={[2, 4]}>
-            Talks
-          </NavLink>
+            <NavLink to="/#talks" mr={[2, 4]}>
+              Talks
+            </NavLink>
 
-          <NavLink to="/writing/" mr={[2, 4]}>
-            Writing
-          </NavLink>
+            <NavLink to="/writing/" mr={[2, 4]}>
+              Writing
+            </NavLink>
 
-          <a href="mailto:afnizarhilmi@gmail.com">
-            <Button css="padding: 0.75rem 1rem!important" variant="primary">
-              Contact
-            </Button>
-          </a>
+            <a href="mailto:afnizarhilmi@gmail.com">
+              <Button css="padding: 0.75rem 1rem" variant="primary">
+                Contact
+              </Button>
+            </a>
+          </Box>
+
+          <Box
+            css="display: inline; 
+            .menu { 
+              display: none; 
+              visibility: hidden; 
+            }  
+            
+            @media only screen and (max-width: 48em) {
+              .menu {
+                display: inline-block;
+                visibility: visible;
+              }
+            }"
+          >
+            <Menu />
+          </Box>
         </List>
       </Flex>
     </Headroom>
