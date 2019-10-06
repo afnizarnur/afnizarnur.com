@@ -15,7 +15,12 @@ const Menu = ({ ...props }) => {
   const toggle = () => setToggle(!isToggledOn)
   return (
     <Box className="menu" css="display: inline">
-      <Button css="padding: 0.75rem 1rem" variant="primary" onClick={toggle}>
+      <Button
+        aria-label={`${isToggledOn ? "Close Menu" : "Open Menu"}`}
+        css="padding: 0.75rem 1rem"
+        variant="primary"
+        onClick={toggle}
+      >
         {!isToggledOn ? "Menu" : "Close"}
       </Button>
 
