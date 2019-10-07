@@ -51,7 +51,7 @@ const BlogPostTemplate = ({ data }) => {
           <BlogLayout>
             <Header>
               <Paragraph fontSize={[2, 3]} mt={[6, 9]}>
-                Posted on{" "}
+                Published on{" "}
                 <time dateTime={post.frontmatter.datetime}>
                   {post.frontmatter.date}
                 </time>
@@ -97,8 +97,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM D, YYYY")
-        datetime: date(formatString: "YYYY-MM-DD")
+        datetime: date(formatString: "MMMM Do, YYYY")
         description
+        category
       }
       fields {
         slug

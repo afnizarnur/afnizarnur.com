@@ -51,7 +51,6 @@ const MarkdownContent = styled(Text)`
   h2 {
     font-size: ${({ theme }) => theme.fontSizes[2]};
     font-weight: 600;
-
     @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
       font-size: ${({ theme }) => theme.fontSizes[3]};
     }
@@ -60,6 +59,8 @@ const MarkdownContent = styled(Text)`
   h3 {
     font-size: ${({ theme }) => theme.fontSizes[1]};
     font-weight: 600;
+    letter-spacing: -1px;
+
 
     @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
       font-size: ${({ theme }) => theme.fontSizes[2]};
@@ -70,7 +71,7 @@ const MarkdownContent = styled(Text)`
   h5,
   h6 {
     font-size: ${({ theme }) => theme.fontSizes[1]};
-    font-weight: 500;
+    font-weight: 600;
 
     @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
       font-size: ${({ theme }) => theme.fontSizes[2]};

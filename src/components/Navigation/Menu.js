@@ -10,7 +10,7 @@ const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.black};
 `
 
-const Menu = ({ ...props }) => {
+const Menu = () => {
   const [isToggledOn, setToggle] = useState(false)
   const toggle = () => setToggle(!isToggledOn)
   return (
@@ -45,6 +45,9 @@ const Menu = ({ ...props }) => {
             <NavLink onClick={toggle} to="/writing">
               Writing
             </NavLink>
+            <Box css="font-weight: bold; text-decoration: underline; letter-spacing: -0.2px;">
+              <a href="mailto:afnizarhilmi@gmail.com">Contact</a>
+            </Box>
             <Box>
               <Button
                 css="padding: 0.75rem 1rem"

@@ -63,6 +63,10 @@ const Footer = ({ ...props }) => {
                 ,&nbsp;
                 <ViewLink target="blank" href="https://dribbble.com/afnizarnur">
                   Dribbble
+                </ViewLink> 
+                ,&nbsp;
+                <ViewLink target="blank" href="https://behance.net/afnizarnur">
+                  Behance
                 </ViewLink>
                 , and{" "}
                 <ViewLink

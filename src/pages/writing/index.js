@@ -129,7 +129,7 @@ const BlogPage = () => {
                         {unwidow(frontmatter.description)}
                       </Paragraph>
 
-                      <Text color={theme.colors.black}>{frontmatter.date}</Text>
+                      <Paragraph fontSize={[2]}>Published on {frontmatter.date}</Paragraph>
                     </Box>
                   )
                 })}
