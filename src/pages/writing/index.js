@@ -43,7 +43,7 @@ const BlogPage = () => {
               featuredimage {
                 childImageSharp {
                   fluid(maxWidth: 800) {
-                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluid_noBase64
                   }
                 }
               }
@@ -77,7 +77,7 @@ const BlogPage = () => {
             <Header>
               <Title
                 css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
-                mt={[9, 9, 9]}
+                mt={[6, 9]}
               >
                 Writing
               </Title>
@@ -109,15 +109,18 @@ const BlogPage = () => {
                       width={[1, 1 / 2.05, 1 / 2.05]}
                       {...(index + 1 === posts.length ? {} : { mb: [12, 6] })}
                     >
-                      <Box mb={5}>
-                        <Link to={fields.slug}>
-                          <Img
-                            fluid={
-                              frontmatter.featuredimage.childImageSharp.fluid
-                            }
-                          />
-                        </Link>
-                      </Box>
+                      {frontmatter.featuredimage ? (
+                        <Box mb={5}>
+                          <Link to={fields.slug}>
+                            <Img
+                              fluid={
+                                frontmatter.featuredimage.childImageSharp.fluid
+                              }
+                              backgroundColor={true}
+                            />
+                          </Link>
+                        </Box>
+                      ) : null}
                       <Paragraph mb={4}>{frontmatter.category}</Paragraph>
                       <PostTitle>
                         <Link to={fields.slug} css={themeHover}>
@@ -129,7 +132,9 @@ const BlogPage = () => {
                         {unwidow(frontmatter.description)}
                       </Paragraph>
 
-                      <Paragraph fontSize={[2]}>Published on {frontmatter.date}</Paragraph>
+                      <Paragraph fontSize={[1, 2]}>
+                        Published on {frontmatter.date}
+                      </Paragraph>
                     </Box>
                   )
                 })}

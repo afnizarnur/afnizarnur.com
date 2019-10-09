@@ -3,7 +3,7 @@ const breakpoints = ["48em", "64em"]
 const colors = {
   black: "#191a1b",
   white: "#ffffff",
-  gray: ["#F0F0F0", "#6C6C6C"],
+  gray: ["#F0F0F0", "#595959", "#6c6c6c"],
   grays: [
     "#ffffff",
     "#f9f9f8",

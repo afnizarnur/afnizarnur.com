@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import theme from "../layouts/theme"
-import { Box, Link, Flex, Text, Button, Image } from "rebass"
+import { Box, Link, Flex, Button, Image } from "rebass"
 import { Title, Paragraph } from "../components/Typography"
 import DefaultLayout from "../components/Layouts/Default"
 import FullLayout from "../components/Layouts/Full"
@@ -63,7 +63,7 @@ const Footer = ({ ...props }) => {
                 ,&nbsp;
                 <ViewLink target="blank" href="https://dribbble.com/afnizarnur">
                   Dribbble
-                </ViewLink> 
+                </ViewLink>
                 ,&nbsp;
                 <ViewLink target="blank" href="https://behance.net/afnizarnur">
                   Behance

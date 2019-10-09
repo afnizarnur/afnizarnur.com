@@ -62,6 +62,7 @@ const Workspace = () => {
             <Box marginBottom={"1.25rem"} width={1 / 1}>
               <Img
                 alt="Workspace"
+                backgroundColor={true}
                 sizes={data.workspace3.childImageSharp.fluid}
               />
             </Box>
@@ -70,12 +71,14 @@ const Workspace = () => {
             <Box marginRight={"1.25rem"} width={1 / 2}>
               <Img
                 alt="Workspace"
+                backgroundColor={true}
                 sizes={data.workspace2.childImageSharp.fluid}
               />
             </Box>
             <Box width={1 / 2}>
               <Img
                 alt="Workspace"
+                backgroundColor={true}
                 sizes={data.workspace1.childImageSharp.fluid}
               />
             </Box>

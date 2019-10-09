@@ -12,6 +12,15 @@ import Navigation from "../components/Navigation"
 import DefaultLayout from "../components/Layouts/Default"
 import FullLayout from "../components/Layouts/Full"
 import theme from "../layouts/theme"
+import styled from "styled-components"
+
+const Main = styled("main")`
+  padding-top: ${({ theme }) => theme.space[15]};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
+    padding-top: ${({ theme }) => theme.space[10]};
+  }
+`
 
 const IndexPage = props => {
   return (
@@ -39,7 +48,6 @@ const IndexPage = props => {
             <Box
               css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
               mt={[13, 12]}
-              mb={[10, 15]}
             >
               <Link color={theme.colors.black} href="#selectedwork">
                 <Button
@@ -74,12 +82,11 @@ const IndexPage = props => {
           </Header>
         </DefaultLayout>
 
-        <main id="selectedwork">
+        <Main id="selectedwork">
           <DefaultLayout>
             <ProjectFeatured
               title="Recently, I design a bike sharing system, BukaBike. A cheaper, faster, and more flexible transport."
               description="Et quidem exercitus quid ex ea quid et impetus quo quaerimus, non fuisse torquem detraxit hosti et quidem faciunt, ut aut voluptates repudiandae sint."
-              link="/bukabike/"
               featuredimage1={props.data.bukabike1.childImageSharp.fluid}
               featuredimage2={props.data.bukabike2.childImageSharp.fluid}
               featuredimage3={props.data.bukabike3.childImageSharp.fluid}
@@ -104,7 +111,7 @@ const IndexPage = props => {
               description="Tum dicere exorsus est primum igitur, inquit, sic agam, ut alterum aspernandum sentiamus alii autem, quibus ego cum teneam sententiam, quid malum. "
               featuredimage1={props.data.dt1.childImageSharp.fluid}
               featuredimage2={props.data.dt2.childImageSharp.fluid}
-              featuredimage3={props.data.bukabike3.childImageSharp.fluid}
+              featuredimage3={props.data.dt3.childImageSharp.fluid}
               featuredimage1alt="Color Finder"
               featuredimage2alt="Illustration Organizer Sketch Plugin"
               featuredimage3alt="Context"
@@ -121,7 +128,7 @@ const IndexPage = props => {
             />
             <Footer />
           </FullLayout>
-        </main>
+        </Main>
       </Box>
     </Box>
   )
@@ -129,49 +136,56 @@ const IndexPage = props => {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    imageplaceholder: file(relativePath: { eq: "image-placeholder.webp" }) {
+    imageplaceholder: file(relativePath: { eq: "image-placeholder.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    talkbg: file(relativePath: { eq: "talkbg.webp" }) {
+    talkbg: file(relativePath: { eq: "talkbg.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 2000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    bukabike1: file(relativePath: { eq: "works/bukabike-1.webp" }) {
+    bukabike1: file(relativePath: { eq: "works/bukabike-1.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    bukabike2: file(relativePath: { eq: "works/bukabike-2.webp" }) {
+    bukabike2: file(relativePath: { eq: "works/bukabike-2.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    bukabike3: file(relativePath: { eq: "works/bukabike-3.webp" }) {
+    bukabike3: file(relativePath: { eq: "works/bukabike-3.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    dt1: file(relativePath: { eq: "works/designtools-1.webp" }) {
+    dt1: file(relativePath: { eq: "works/designtools-1.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    dt2: file(relativePath: { eq: "works/designtools-2.webp" }) {
+    dt2: file(relativePath: { eq: "works/designtools-2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    dt3: file(relativePath: { eq: "works/designtools-3.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid

@@ -32,7 +32,7 @@ const AboutPage = ({ ...props }) => {
             <Header>
               <Title
                 css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
-                mt={[9, 9]}
+                mt={[6, 9]}
                 mb={[6, 9, 9]}
               >
                 It’s a nice to <br />
@@ -93,7 +93,7 @@ const AboutPage = ({ ...props }) => {
 
 export const pageQuery = graphql`
   query AboutQuery {
-    imageplaceholder: file(relativePath: { eq: "image-placeholder.webp" }) {
+    imageplaceholder: file(relativePath: { eq: "image-placeholder.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid

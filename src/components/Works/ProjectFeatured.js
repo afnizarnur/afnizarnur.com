@@ -41,7 +41,7 @@ const ProjectFeatured = ({ title, description, ...props }) => {
         <Carousel
           emulateTouch
           showStatus={false}
-          showArrows={true}
+          showArrows={false}
           infiniteLoop
           showThumbs={false}
         >

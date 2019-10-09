@@ -61,7 +61,6 @@ const MarkdownContent = styled(Text)`
     font-weight: 600;
     letter-spacing: -1px;
 
-
     @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
       font-size: ${({ theme }) => theme.fontSizes[2]};
     }
@@ -91,7 +90,7 @@ const MarkdownContent = styled(Text)`
   /* Type Elements */
 
   p {
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.gray[1]};
   }
 
   hr {
@@ -106,6 +105,7 @@ const MarkdownContent = styled(Text)`
   ol,
   dl {
     padding-left: ${({ theme }) => theme.space[4]};
+    color: ${({ theme }) => theme.colors.gray[1]};
   }
 
   ul ul,
@@ -167,10 +167,12 @@ const MarkdownContent = styled(Text)`
     line-height: 2.5rem;
     letter-spacing: -2.14px;
     margin: 2.75rem 0;
+    color: ${({ theme }) => theme.colors.black};
 
     > :first-child {
       margin-top: 0;
       margin-bottom: 0;
+      color: ${({ theme }) => theme.colors.black};
     }
     > :last-child {
       margin-bottom: 0;
@@ -214,7 +216,7 @@ const MarkdownContent = styled(Text)`
     padding-left: ${({ theme }) => theme.space[1]};
     padding-right: ${({ theme }) => theme.space[1]};
     background-color: ${({ theme }) => theme.colors.grays[1]};
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.gray[1]};
     font-size: ${({ theme }) => theme.fontSizes[0]};
     white-space: nowrap;
 
