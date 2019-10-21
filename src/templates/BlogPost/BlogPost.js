@@ -50,14 +50,28 @@ const BlogPostTemplate = ({ data }) => {
         <article>
           <BlogLayout>
             <Header>
-              <Paragraph fontSize={[2, 3]} mt={[6, 9]}>
+              <Paragraph
+                css="animation: fadeInBottom 1s 0.25s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+                fontSize={[2, 3]}
+                mt={[6, 9]}
+              >
                 Published on{" "}
                 <time dateTime={post.frontmatter.datetime}>
                   {post.frontmatter.date}
                 </time>
               </Paragraph>
-              <Title mt={"2.0rem"}>{unwidow(post.frontmatter.title)}</Title>
-              <Paragraph fontSize={[2, 3]} mt={[16]} mb={12}>
+              <Title
+                css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+                mt={"2.0rem"}
+              >
+                {unwidow(post.frontmatter.title)}
+              </Title>
+              <Paragraph
+                css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+                fontSize={[2, 3]}
+                mt={[16]}
+                mb={12}
+              >
                 {post.frontmatter.description}
               </Paragraph>
               <hr
@@ -77,7 +91,7 @@ const BlogPostTemplate = ({ data }) => {
             />
           </BlogLayout>
         </article>
-        <Box mt={10} css="border-top: 1px solid #d8d8d8">
+        <Box mt={[10]} css="border-top: 1px solid #d8d8d8">
           <Footer />
         </Box>
       </Box>

@@ -26,7 +26,7 @@ const Wordmark = () => {
       avatar: file(relativePath: { eq: "avatar.png" }) {
         childImageSharp {
           fluid(maxWidth: 38, maxHeight: 38) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid
           }
         }
       }
@@ -49,7 +49,6 @@ const Wordmark = () => {
           alt="Afnizar Nur Ghifari"
           sizes={data.avatar.childImageSharp.fluid}
           className="logoImage"
-          backgroundColor={true}
         />
       </Link>
 

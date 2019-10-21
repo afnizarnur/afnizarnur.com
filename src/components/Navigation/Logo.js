@@ -27,7 +27,7 @@ const Logo = () => {
       avatar: file(relativePath: { eq: "avatar.png" }) {
         childImageSharp {
           fluid(maxWidth: 38, maxHeight: 38) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid
           }
         }
       }
@@ -42,14 +42,13 @@ const Logo = () => {
         tabIndex="-1"
         aria-hidden="true"
         mr={3}
-        css="outline:none"
+        css="outline:none; :focus{ outline: none }"
       >
         <Img
           style={imageStyle}
           alt="Afnizar Nur Ghifari"
           sizes={data.avatar.childImageSharp.fluid}
           className="logoImage"
-          backgroundColor={true}
         />
       </Link>
     </>

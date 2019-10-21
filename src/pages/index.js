@@ -22,6 +22,36 @@ const Main = styled("main")`
   }
 `
 
+const ButtonPrimary = styled(Link)`
+  background: ${({ theme }) => theme.colors.gray[0]};
+  color: ${({ theme }) => theme.colors.black};
+  border-radius: 4px;
+  font-size: ${({ theme }) => theme.fontSizes[2]};
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  &:hover {
+    background: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
+    cursor: "pointer";
+    transition: "all ease .2s";
+  }
+`
+const ButtonSecondary = styled(Link)`
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  font-size: ${({ theme }) => theme.fontSizes[2]};
+  &:hover {
+    background: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
+    cursor: "pointer";
+    transition: "all ease .2s";
+  }
+`
+
 const IndexPage = props => {
   return (
     <Box>
@@ -48,36 +78,26 @@ const IndexPage = props => {
             <Box
               css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
               mt={[13, 12]}
+              mb={[3]}
             >
-              <Link color={theme.colors.black} href="#selectedwork">
-                <Button
-                  fontSize={2}
-                  css="padding: 0.75rem 1rem!important"
-                  variant="primary"
-                  mr={4}
-                  className="btnSelectedWork"
-                  mb={[3, 0, 0]}
-                >
-                  Selected Work
-                  <Image
-                    className="scrollWork"
-                    ml={[4]}
-                    css="transform: rotate(180deg); max-width: 1000%; width:14px; height: 14px"
-                    src={"../assets/arrow-up.svg"}
-                    alt="Scroll to Selected Work"
-                  />
-                </Button>
-              </Link>
+              <ButtonPrimary
+                className="btnSelectedWork"
+                href="#selectedwork"
+                mr={4}
+              >
+                Selected Work
+                <Image
+                  className="scrollWork"
+                  ml={[4]}
+                  css="transform: rotate(180deg); max-width: 1000%; width:14px; height: 14px"
+                  src={"../assets/arrow-up.svg"}
+                  alt="Scroll to Selected Work"
+                />
+              </ButtonPrimary>
 
-              <a target="blank" href="/resume.pdf">
-                <Button
-                  fontSize={2}
-                  css="padding: 0.75rem 1rem!important"
-                  variant="secondary"
-                >
-                  Download Resume
-                </Button>
-              </a>
+              <ButtonSecondary href="/resume.pdf" target="blank">
+                Download Resume
+              </ButtonSecondary>
             </Box>
           </Header>
         </DefaultLayout>
@@ -93,17 +113,6 @@ const IndexPage = props => {
               featuredimage1alt="BukaBike Featured Image"
               featuredimage2alt="BukaBike Screen History, Trip Detail, Open Bike"
               featuredimage3alt="BukaBike Screen Reservation, Open Bike Reservation, Info when opening BukaBike"
-            />
-
-            <ProjectFeatured
-              title="I also help empower small fashion and apparel brands by radically improving the way they collaborate."
-              description="Quid ex eo est consecutus? laudem et via procedat oratio quaerimus igitur, quid malum, sensu iudicari, sed ipsius honestatis decore laudandis, id omnia."
-              featuredimage1={props.data.bukabike3.childImageSharp.fluid}
-              featuredimage2={props.data.bukabike3.childImageSharp.fluid}
-              featuredimage3={props.data.bukabike3.childImageSharp.fluid}
-              featuredimage1alt=""
-              featuredimage2alt=""
-              featuredimage3alt=""
             />
 
             <ProjectFeatured

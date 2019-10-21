@@ -5,9 +5,12 @@ import styled from "styled-components"
 
 const NavLink = styled(Link)`
   font-weight: bold;
-  text-decoration: underline;
   letter-spacing: -0.2px;
   color: ${({ theme }) => theme.colors.black};
+
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 const Menu = () => {
@@ -30,7 +33,7 @@ const Menu = () => {
             flexDirection="column"
             justifyContent="space-evenly"
             alignItems="center"
-            height="40vh"
+            height="50vh"
             margin="auto 0"
           >
             <NavLink onClick={toggle} to="/">
@@ -45,7 +48,7 @@ const Menu = () => {
             <NavLink onClick={toggle} to="/writing">
               Writing
             </NavLink>
-            <Box css="font-weight: bold; text-decoration: underline; letter-spacing: -0.2px;">
+            <Box css="font-weight: bold;  &:hover { text-decoration: underline; } letter-spacing: -0.2px;">
               <a href="mailto:afnizarhilmi@gmail.com">Contact</a>
             </Box>
             <Box>

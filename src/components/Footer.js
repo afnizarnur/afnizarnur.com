@@ -38,11 +38,15 @@ const Footer = ({ ...props }) => {
             modi tempora incidunt.
           </Paragraph>
           <Box fontSize={2}>
-            <a href="mailto:afnizarhilmi@gmail.com">
-              <Button css="padding: 0.75rem 1rem!important" variant="primary">
+            <form
+              style={{ display: "inline-block" }}
+              action="mailto:afnizarhilmi@gmail.com"
+              method="GET"
+            >
+              <Button css="padding: 0.75rem 1rem" variant="primary">
                 Contact
               </Button>
-            </a>
+            </form>
           </Box>
           <Flex
             alignItems="center"

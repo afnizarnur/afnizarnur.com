@@ -17,7 +17,6 @@ const NavItem = styled(ListItem)`
 
 const NavText = styled(Text)`
   font-weight: bold;
-  text-decoration: underline;
   letter-spacing: -0.2px;
   color: ${({ theme }) => theme.colors.black}!important;
 
@@ -25,7 +24,9 @@ const NavText = styled(Text)`
     border-color: ${({ theme }) => theme.colors.black};
   }
 
-  ${themeHover};
+  &:hover {
+    text-decoration: underline;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
     display: none;
@@ -100,11 +101,15 @@ const Navigation = ({ ...props }) => {
               Writing
             </NavLink>
 
-            <a href="mailto:afnizarhilmi@gmail.com">
+            <form
+              style={{ display: "inline-block" }}
+              action="mailto:afnizarhilmi@gmail.com"
+              method="GET"
+            >
               <Button css="padding: 0.75rem 1rem" variant="primary">
                 Contact
               </Button>
-            </a>
+            </form>
           </Box>
 
           <Box

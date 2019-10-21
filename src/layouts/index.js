@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.colors.black};
   }
 
+
   a {
     color: inherit;
     text-decoration: none;
@@ -29,6 +30,11 @@ const GlobalStyles = createGlobalStyle`
     text-decoration-skip-ink: auto;
   }
 
+  a:focus, button:focus, .carousel .control-dots li.dot:focus{
+    outline: 1px dotted;
+    outline-offset: 4px;
+  }
+  
   .logoImage:hover {
     transform: scale(1.1);
   }

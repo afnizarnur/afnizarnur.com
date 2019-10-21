@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import Helmet from "react-helmet"
-import { Box, Flex, Heading, Text } from "rebass"
+import { Box, Flex, Heading } from "rebass"
 import Header from "../../components/Header"
 import { Title, Paragraph } from "../../components/Typography"
 import { useSiteMetadata } from "../../utils/hooks"
@@ -13,19 +13,25 @@ import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
 import theme from "../../layouts/theme"
 import Img from "gatsby-image"
+import styled from "styled-components"
 
 const PostTitle = ({ children }) => (
   <Heading
     as="h3"
-    fontSize={[2, 3]}
+    fontSize={[3]}
     lineHeight="title"
     color={theme.colors.black}
     mb={3}
-    css="letter-spacing: -0.2px; text-decoration: underline;"
+    css="letter-spacing: -0.2px;"
   >
     {children}
   </Heading>
 )
+
+const ViewLink = styled(Link)`
+  text-decoration: underline;
+  ${themeHover};
+`
 
 PostTitle.propTypes = {
   children: PropTypes.node.isRequired,
@@ -43,7 +49,7 @@ const BlogPage = () => {
               featuredimage {
                 childImageSharp {
                   fluid(maxWidth: 800) {
-                    ...GatsbyImageSharpFluid_noBase64
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
@@ -116,16 +122,15 @@ const BlogPage = () => {
                               fluid={
                                 frontmatter.featuredimage.childImageSharp.fluid
                               }
-                              backgroundColor={true}
                             />
                           </Link>
                         </Box>
                       ) : null}
                       <Paragraph mb={4}>{frontmatter.category}</Paragraph>
                       <PostTitle>
-                        <Link to={fields.slug} css={themeHover}>
+                        <ViewLink to={fields.slug} css={themeHover}>
                           {unwidow(frontmatter.title)}
-                        </Link>
+                        </ViewLink>
                       </PostTitle>
 
                       <Paragraph fontSize={[1, 2]} lineHeight="copy" mb={4}>

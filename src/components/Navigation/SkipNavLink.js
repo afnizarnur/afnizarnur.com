@@ -8,7 +8,7 @@ const SkipNavLink = styled(Link).attrs({
   children: "Skip to main content",
 })`
   position: absolute;
-  top: 0;
+  top: 0.5rem;
   right: 0;
   bottom: 0;
   left: 0;
@@ -25,6 +25,8 @@ const SkipNavLink = styled(Link).attrs({
   &:focus {
     pointer-events: auto;
     opacity: 1;
+    outline: 1px dotted;
+    outline-offset: 4px;
   }
 `
 
