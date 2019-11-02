@@ -31,9 +31,9 @@ const Project = ({ ...props }) => {
         </ViewProject>
       )}
       {!props.link && (
-        <Paragraph color={"#191a1b"} fontSize={[2, 3]} fontWeight="bold">
+        <Text color={"#191a1b"} fontSize={[2, 3]} fontWeight="bold">
           {props.name}
-        </Paragraph>
+        </Text>
       )}
 
       <Paragraph fontSize={[2]} mt={[2]}>

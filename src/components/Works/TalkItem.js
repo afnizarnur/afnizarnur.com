@@ -26,13 +26,7 @@ const TalkItem = ({ ...props }) => {
       width={[1, 1 / 2, 1 / 2]}
       verticalAlign="text-top"
     >
-      <ViewLink
-        target="blank"
-        fontSize={3}
-        fontWeight="bold"
-        mb={2}
-        href={props.link}
-      >
+      <ViewLink fontSize={3} fontWeight="bold" mb={2} href={props.link}>
         {props.title}
       </ViewLink>
       <Paragraph

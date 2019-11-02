@@ -53,21 +53,21 @@ const TalkList = ({ ...props }) => {
     >
       <DefaultLayout>
         <Title2 color="white" mb={[6, 6, 14]}>
-          I love being able to share and help others achieve more through my
-          work.
+          I love being able to share and help others through work and learning
+          experience
         </Title2>
 
         <Box css={"position: relative"} {...outerCollapseProps()}>
           <Box css={"margin: 0 "}>
             <TalkItem
-              link="/hello/"
+              link="https://speakerdeck.com/afnizarnur/easily-structure-and-communicate-ideas-using-wireframe"
               title="Easily Structure & Communicate Ideas using Wireframe"
-              short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
+              short="This talk discusses how wireframes can help in developing ideas and how to build them."
             />
             <TalkItem
-              link="/hello/"
+              link="https://speakerdeck.com/afnizarnur/b-testing-to-help-improve-user-experience"
               title="Designing with Data: Using A/B Testing to Help Improve User Experience"
-              short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
+              short="This talk discusses the use of A / B Testing on a product, its definition, and its important role so that it can produce an impact."
             />
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/designing-experience-and-interface"
@@ -126,8 +126,8 @@ const TalkList = ({ ...props }) => {
           fontSize={[2, 3]}
           marginTop={6}
         >
-          Still curious for my another work? Send me an email about your project
-          and I will prepare a detailed portfolio with relevant work samples.{" "}
+          I’m currently open to speaking or workshop about design and
+          technology. Want to invite me to speak at your event?{" "}
           <GoToLink href="mailto:afnizarhilmi@gmail.com">Get in touch</GoToLink>
           .
         </Paragraph>

@@ -14,13 +14,16 @@ import theme from "../layouts/theme"
 
 const AboutPage = ({ ...props }) => {
   const { title } = useSiteMetadata()
+
   const imageStyle = {
     width: "100%",
+    borderRadius: theme.radii[2],
   }
+
   return (
     <>
       <Helmet>
-        <title>About / {title}</title>
+        <title>About | {title}</title>
       </Helmet>
 
       <Box>
@@ -36,7 +39,7 @@ const AboutPage = ({ ...props }) => {
                 mb={[6, 9, 9]}
               >
                 It’s a nice to <br />
-                meet you here.
+                meet you here
               </Title>
             </Header>
           </DefaultLayout>
@@ -55,30 +58,25 @@ const AboutPage = ({ ...props }) => {
                   mb={[3, 5, 5]}
                   color={theme.colors.black}
                 >
-                  At magnum periculum adiit in oculis quidem se texit, ne ferae
-                  quidem se. Quae fuerit causa, mox videro; interea hoc epicurus
-                  in liberos atque integre iudicante. Certe, inquam, pertinax
-                  non numquam eius modi tempora incidunt, ut alterum esse albam.
+                  Hi, my name is Afnizar. I am a fresh graduate from Bachelor of
+                  Computer Science at Telkom University, Bandung. I have been
+                  designing since high school, from there I got opportunity to
+                  working freelance and part-time in various startup and agency
+                  – local and international.
                 </Paragraph>
                 <Paragraph fontSize={[2]} mb={[6, 6, 9]}>
-                  Alii autem, quibus ego cum teneam sententiam, quid percipit
-                  aut fugiat aliquid, praeter voluptatem et dolorum fuga et
-                  dolore suo sanciret militaris imperii disciplinam exercitumque
-                  in bonis sit voluptatem accusantium doloremque laudantium,
-                  totam rem voluptas expetenda, fugiendus dolor repellendus. Ut
-                  placet, inquam tum dicere exorsus est cur verear, ne ferae
-                  quidem faciunt, ut aut quid bonum sit numeranda nec in malis
-                  dolor, non emolumento aliquo, sed animo etiam erga nos causae
-                  confidere, sed uti oratione perpetua malo quam. Alii autem,
-                  quibus ego cum teneam sententiam, quid percipit aut fugiat
-                  aliquid, praeter voluptatem et dolorum fuga et dolore suo
-                  sanciret militaris imperii disciplinam exercitumque in bonis
-                  sit voluptatem accusantium doloremque laudantium, totam rem
-                  voluptas expetenda, fugiendus dolor repellendus. Ut placet,
-                  inquam tum dicere exorsus est cur verear, ne ferae quidem
-                  faciunt, ut aut quid bonum sit numeranda nec in malis dolor,
-                  non emolumento aliquo, sed animo etiam erga nos causae
-                  confidere, sed uti oratione perpetua malo quam.
+                  I’m passionate about all areas of design and I believe in
+                  design as a better approach to solving human problem. My
+                  interests in design include interaction design, accessibility,
+                  and technological design. Beside that, I do front-end
+                  development by writing HTML, CSS, Javascript and React. This
+                  portfolio you are looking for also one of my work. I love
+                  mentoring designer to code, because I believe with coding,
+                  designer can create more impactful experiences by embracing
+                  the technicalities that make it happens. I’m always excited to
+                  connect with everyone and am open to speaking opportunities,
+                  so please don’t hesitate to get in touch. Anyway, thanks for
+                  viewing my portfolio!
                 </Paragraph>
               </Box>
             </DefaultLayout>

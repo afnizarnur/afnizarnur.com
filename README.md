@@ -38,7 +38,3 @@ Clone the repository and install the dependencies:
 
     # Build as production-ready
     gatsby build
-
-## License
-
-MIT

@@ -11,7 +11,7 @@ import DefaultLayout from "../../components/Layouts/Default"
 import BlogLayout from "../../components/Layouts/Blog"
 import { Box } from "rebass"
 import Navigation from "../../components/Navigation"
-import Footer from "../../components/Footer"
+import Footer from "../../components/Footer/Mini"
 import "../BlogPost/prism.css"
 
 const BlogPostTemplate = ({ data }) => {
@@ -23,7 +23,7 @@ const BlogPostTemplate = ({ data }) => {
     <>
       <Helmet>
         <title>
-          {post.frontmatter.title} / {title}
+          {post.frontmatter.title} | {title}
         </title>
 
         <meta name="description" content={post.frontmatter.description} />
@@ -47,7 +47,7 @@ const BlogPostTemplate = ({ data }) => {
           <Navigation />
         </DefaultLayout>
 
-        <article>
+        <article id="main-content">
           <BlogLayout>
             <Header>
               <Paragraph
@@ -92,7 +92,12 @@ const BlogPostTemplate = ({ data }) => {
           </BlogLayout>
         </article>
         <Box mt={[10]} css="border-top: 1px solid #d8d8d8">
-          <Footer />
+          <DefaultLayout>
+            <Footer
+              paddingTop={[6, 6, "5.1875rem"]}
+              paddingBottom={[6, 6, "5.1875rem"]}
+            />
+          </DefaultLayout>
         </Box>
       </Box>
     </>

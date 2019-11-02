@@ -7,7 +7,7 @@ import ProjectList from "../components/Works/ProjectList"
 import DesignProcess from "../components/Works/DesignProcess"
 import TalkList from "../components/Works/TalkList"
 import Footer from "../components/Footer"
-import { Box, Button, Image, Link } from "rebass"
+import { Box, Image, Link } from "rebass"
 import Navigation from "../components/Navigation"
 import DefaultLayout from "../components/Layouts/Default"
 import FullLayout from "../components/Layouts/Full"
@@ -33,7 +33,7 @@ const ButtonPrimary = styled(Link)`
     background: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.white};
     cursor: "pointer";
-    transition: "all ease .2s";
+    transition: all ease 0.2s;
   }
 `
 const ButtonSecondary = styled(Link)`
@@ -48,7 +48,7 @@ const ButtonSecondary = styled(Link)`
     background: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.white};
     cursor: "pointer";
-    transition: "all ease .2s";
+    transition: all ease 0.2s;
   }
 `
 
@@ -58,7 +58,7 @@ const IndexPage = props => {
       <DefaultLayout>
         <Navigation />
       </DefaultLayout>
-      <Box as="main" id="main-content" mb={[5, 6]}>
+      <Box as="main" id="main-content">
         <DefaultLayout>
           <Header>
             <Paragraph
@@ -73,17 +73,21 @@ const IndexPage = props => {
               mt={[5, 6]}
               css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
             >
-              Crafting digital <br /> experiences that <br /> help people.
+              Crafting meaningful digital experiences through design
             </Title>
             <Box
-              css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+              css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+              @media only screen and (max-width: 48em) {
+                a { display: inline-block; }
+              }"
               mt={[13, 12]}
-              mb={[3]}
+              mb={3}
             >
               <ButtonPrimary
                 className="btnSelectedWork"
                 href="#selectedwork"
                 mr={4}
+                mb={3}
               >
                 Selected Work
                 <Image
@@ -105,8 +109,8 @@ const IndexPage = props => {
         <Main id="selectedwork">
           <DefaultLayout>
             <ProjectFeatured
-              title="Recently, I design a bike sharing system, BukaBike. A cheaper, faster, and more flexible transport."
-              description="Et quidem exercitus quid ex ea quid et impetus quo quaerimus, non fuisse torquem detraxit hosti et quidem faciunt, ut aut voluptates repudiandae sint."
+              title="BukaBike: A cheaper, faster, and more flexible bike sharing system"
+              description="Recently, I helped Bukalapak to design multimodal transportation that is cheap, fast, and flexible for the community in Indonesia."
               featuredimage1={props.data.bukabike1.childImageSharp.fluid}
               featuredimage2={props.data.bukabike2.childImageSharp.fluid}
               featuredimage3={props.data.bukabike3.childImageSharp.fluid}
@@ -116,8 +120,8 @@ const IndexPage = props => {
             />
 
             <ProjectFeatured
-              title="As a designer who codes, I developed tools for designers to support their workflows."
-              description="Tum dicere exorsus est primum igitur, inquit, sic agam, ut alterum aspernandum sentiamus alii autem, quibus ego cum teneam sententiam, quid malum. "
+              title="Design Tooling: I help designers to improve their workflows"
+              description="As designer who codes, I try to help my design team by building tools like web app and sketch plugin to help improve their workflows."
               featuredimage1={props.data.dt1.childImageSharp.fluid}
               featuredimage2={props.data.dt2.childImageSharp.fluid}
               featuredimage3={props.data.dt3.childImageSharp.fluid}

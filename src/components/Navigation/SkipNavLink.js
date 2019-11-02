@@ -8,7 +8,7 @@ const SkipNavLink = styled(Link).attrs({
   children: "Skip to main content",
 })`
   position: absolute;
-  top: 0.5rem;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;

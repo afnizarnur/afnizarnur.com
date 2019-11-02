@@ -8,6 +8,10 @@ import Img from "gatsby-image"
 import AppList from "./AppList"
 
 const Workspace = () => {
+  const imageStyle = {
+    borderRadius: theme.radii[2],
+  }
+
   const data = useStaticQuery(graphql`
     query {
       workspace1: file(relativePath: { eq: "about/workspace-1.png" }) {
@@ -44,7 +48,7 @@ const Workspace = () => {
       <DefaultLayout>
         <Box>
           <Title2 color="white">
-            My workspace and things I use to get the job done.
+            My workspace and things I use to get the job done
           </Title2>
           <Paragraph
             color={theme.colors.white}
@@ -53,25 +57,25 @@ const Workspace = () => {
             mt={[4, 4, 5]}
             mb={[12, 13, 13]}
           >
-            I believe design process should be flexible. I follow an end-to-end
-            design process that starts with research and continues with product
-            thinking, interaction design, user testing, visual design and
-            post-launch support.
+            Below are some things I use on the daily basis from hardware,
+            software, and services.
           </Paragraph>
           <Flex>
             <Box marginBottom={"1.25rem"} width={1 / 1}>
               <Img
                 alt="Workspace"
                 backgroundColor={true}
+                style={imageStyle}
                 sizes={data.workspace3.childImageSharp.fluid}
               />
             </Box>
           </Flex>
-          <Flex marginBottom={"1.25rem"}>
+          <Flex>
             <Box marginRight={"1.25rem"} width={1 / 2}>
               <Img
                 alt="Workspace"
                 backgroundColor={true}
+                style={imageStyle}
                 sizes={data.workspace2.childImageSharp.fluid}
               />
             </Box>
@@ -79,27 +83,16 @@ const Workspace = () => {
               <Img
                 alt="Workspace"
                 backgroundColor={true}
+                style={imageStyle}
                 sizes={data.workspace1.childImageSharp.fluid}
               />
             </Box>
           </Flex>
         </Box>
         <Box mt={[14, 14]}>
-          <Title3 color={theme.colors.white} mb={[5, 5]}>
-            Applications & Tools
+          <Title3 color={theme.colors.white} mb={[13, 13]}>
+            Applications and Tools
           </Title3>
-          <Paragraph
-            color={theme.colors.white}
-            css="opacity: .8"
-            fontSize={[2, 3]}
-            mb={[12, 12, 12]}
-          >
-            I believe design process should be flexible. I follow an end-to-end
-            design process that starts with research and continues with product
-            thinking, interaction design, user testing, visual design and
-            post-launch support.
-          </Paragraph>
-
           <AppList />
         </Box>
       </DefaultLayout>

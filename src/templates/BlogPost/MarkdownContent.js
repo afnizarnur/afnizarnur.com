@@ -2,8 +2,6 @@ import styled from "styled-components"
 import { Text } from "rebass"
 import { themeHover, themeUnderline } from "../../utils/styles"
 
-// this component basically exists as a giant stylesheet that inherits from the
-// theme. it's for markdown content (hence the name). it's kind of a b
 const MarkdownContent = styled(Text)`
   /* Vertical Rhythm */
   & > * {
@@ -24,7 +22,12 @@ const MarkdownContent = styled(Text)`
 
     & + h3,
     & + h4 {
-      margin-top: ${({ theme }) => theme.space[4]};
+      margin-top: 2.5rem;
+
+      @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
+        margin-top: 2rem;
+        margin-bottom: -0.5rem;
+      }
     }
   }
 
@@ -40,28 +43,30 @@ const MarkdownContent = styled(Text)`
 
   /* Headers */
   h1 {
-    font-size: ${({ theme }) => theme.fontSizes[3]};
-    font-weight: 600;
-
-    @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
-      font-size: ${({ theme }) => theme.fontSizes[4]};
+    font-size: ${({ theme }) => theme.fontSizes[4]};
+    letter-spacing: -2.2px;
+    font-weight: 800;
+    @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
+      letter-spacing: 0px;
+      font-size: ${({ theme }) => theme.fontSizes[3]};
     }
   }
 
   h2 {
-    font-size: ${({ theme }) => theme.fontSizes[2]};
-    font-weight: 600;
-    @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    font-weight: 800;
+    @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
+      letter-spacing: 0px;
       font-size: ${({ theme }) => theme.fontSizes[3]};
     }
   }
 
   h3 {
-    font-size: ${({ theme }) => theme.fontSizes[1]};
+    font-size: 2rem;
     font-weight: 600;
-    letter-spacing: -1px;
 
-    @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
+    @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
       font-size: ${({ theme }) => theme.fontSizes[2]};
     }
   }
@@ -72,7 +77,7 @@ const MarkdownContent = styled(Text)`
     font-size: ${({ theme }) => theme.fontSizes[1]};
     font-weight: 600;
 
-    @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
+    @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
       font-size: ${({ theme }) => theme.fontSizes[2]};
     }
   }
@@ -94,17 +99,15 @@ const MarkdownContent = styled(Text)`
   }
 
   hr {
-    max-width: 4rem;
-    height: ${({ theme }) => theme.space[1]};
-    margin: ${({ theme }) => theme.space[4]} 0;
-    border: 0;
-    background-color: #d6d6d6;
+    margin: ${({ theme }) => theme.space[6]} 0;
+    border: none;
+    border-top: 1px solid #d8d8d8;
   }
 
   ul,
   ol,
   dl {
-    padding-left: ${({ theme }) => theme.space[4]};
+    padding-left: ${({ theme }) => theme.space[5]};
     color: ${({ theme }) => theme.colors.gray[1]};
   }
 
@@ -141,6 +144,10 @@ const MarkdownContent = styled(Text)`
 
     &:hover code {
       opacity: 0.8;
+    }
+
+    &.anchor {
+      margin-left: -24px;
     }
 
     @media print {
@@ -211,12 +218,11 @@ const MarkdownContent = styled(Text)`
 
   p code,
   li code {
-    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: ${({ theme }) => theme.radii[1]};
     padding-left: ${({ theme }) => theme.space[1]};
     padding-right: ${({ theme }) => theme.space[1]};
     background-color: ${({ theme }) => theme.colors.grays[1]};
-    color: ${({ theme }) => theme.colors.gray[1]};
+    color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSizes[0]};
     white-space: nowrap;
 

@@ -14,43 +14,43 @@ const DesignProcess = () => {
         css="background-image: linear-gradient(180deg, rgba(25,26,27,.07) 0%, rgba(255,255,255,0) 100%);"
       >
         <DefaultLayout>
-          <Title>Building user experience with design process</Title>
+          <Title>My typical design process for building products</Title>
           <Paragraph fontSize={[2, 3]} mt={[4, 4, 5]} mb={[12, 6, 14]}>
-            I believe design process should be flexible. I follow an end-to-end
-            design process that starts with research and continues with product
-            thinking, interaction design, user testing, visual design and
-            post-launch support.
+            I believe design process should be flexible. This design process
+            gives me time-tested and trusted ways to do good work, sometimes
+            it’s as linear as it looks, other times it’s a zigzag. Sometimes I
+            build something completely new.
           </Paragraph>
           <Flex justifyContent="space-between" flexWrap="wrap">
             <DesignProcessItem
               number="1"
               name="Research"
-              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+              description="Understand the problem to be solved by certain methods."
             />
             <DesignProcessItem
               number="2"
-              name="Research"
-              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+              name="Define"
+              description="Analyze the results of research and synthesize them to define the main problem."
             />
             <DesignProcessItem
               number="3"
-              name="Research"
-              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+              name="Ideate"
+              description="Looking for new solutions based on the main problems that exist."
             />
             <DesignProcessItem
               number="4"
-              name="Research"
-              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+              name="Build"
+              description="Investigate the problem and build prototypes that would fix the problem."
             />
             <DesignProcessItem
               number="5"
-              name="Research"
-              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+              name="Testing"
+              description="Test the results of the prototype and refine based the problem that are present."
             />
             <DesignProcessItem
               number="6"
-              name="Research"
-              description="Filium morte multavit si sine metu degendae praesidia firmissima filium morte multavit si sine."
+              name="Support"
+              description="Support the development team in implementing solutions in real environments."
             />
           </Flex>
         </DefaultLayout>

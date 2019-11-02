@@ -68,17 +68,21 @@ const BlogPage = () => {
 
   const posts = data.allMarkdownRemark.edges
 
+  const imageStyle = {
+    borderRadius: theme.radii[2],
+  }
+
   return (
     <>
       <Helmet>
-        <title>Writing / {title}</title>
+        <title>Writing | {title}</title>
       </Helmet>
 
       <Box>
         <DefaultLayout>
           <Navigation />
         </DefaultLayout>
-        <Box as="main" id="main-content" mb={[5, 6]}>
+        <Box as="main" id="main-content">
           <DefaultLayout>
             <Header>
               <Title
@@ -119,6 +123,7 @@ const BlogPage = () => {
                         <Box mb={5}>
                           <Link to={fields.slug}>
                             <Img
+                              style={imageStyle}
                               fluid={
                                 frontmatter.featuredimage.childImageSharp.fluid
                               }

@@ -6,7 +6,6 @@ import { Flex, Text, Button, Box } from "rebass"
 import { List, ListItem } from "../Typography"
 import SkipNavLink from "./SkipNavLink"
 import Logo from "./Logo"
-import { themeHover } from "../../utils/styles"
 import theme from "../../layouts/theme"
 import Headroom from "react-headroom"
 import Menu from "../Navigation/Menu"
@@ -63,6 +62,7 @@ NavLink.propTypes = {
 const Navigation = ({ ...props }) => {
   return (
     <Headroom style={{ zIndex: 999, background: theme.colors.white }}>
+      <SkipNavLink css="max-width: 960px; height: 100%" mx="auto" />
       <Flex
         as="nav"
         alignItems="center"
@@ -71,8 +71,6 @@ const Navigation = ({ ...props }) => {
         css="max-width: 960px; height: 100%"
         mx="auto"
       >
-        <SkipNavLink />
-
         <Flex alignItems="center">
           <Logo />
         </Flex>
