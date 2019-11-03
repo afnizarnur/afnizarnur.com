@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import { Link as LinkGatsby } from "gatsby"
 import styled from "styled-components"
-import { Flex, Text, Button, Box } from "rebass"
+import { Flex, Text, Box, Link } from "rebass"
 import { List, ListItem } from "../Typography"
 import SkipNavLink from "./SkipNavLink"
 import Logo from "./Logo"
@@ -32,6 +32,21 @@ const NavText = styled(Text)`
   }
 `
 
+const ButtonPrimary = styled(Link)`
+  background: ${({ theme }) => theme.colors.gray[0]};
+  color: ${({ theme }) => theme.colors.black};
+  border-radius: 4px;
+  font-size: ${({ theme }) => theme.fontSizes[2]};
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  &:hover {
+    background: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
+    cursor: "pointer";
+    transition: all ease 0.2s;
+  }
+`
+
 const NavLink = ({ children, to, ...props }) => {
   const isActive = ({ location, href, isPartiallyCurrent }) => {
     if (location.pathname === "/" && href === "/") {
@@ -45,7 +60,7 @@ const NavLink = ({ children, to, ...props }) => {
 
   return (
     <NavItem {...props}>
-      <Text as={Link} to={to} getProps={isActive}>
+      <Text as={LinkGatsby} to={to} getProps={isActive}>
         <NavText as="span" px={1} pb={1}>
           {children}
         </NavText>
@@ -99,15 +114,9 @@ const Navigation = ({ ...props }) => {
               Writing
             </NavLink>
 
-            <form
-              style={{ display: "inline-block" }}
-              action="mailto:afnizarhilmi@gmail.com"
-              method="GET"
-            >
-              <Button css="padding: 0.75rem 1rem" variant="primary">
-                Contact
-              </Button>
-            </form>
+            <ButtonPrimary href="mailto:afnizarhilmi@gmail.com">
+              Contact
+            </ButtonPrimary>
           </Box>
 
           <Box
