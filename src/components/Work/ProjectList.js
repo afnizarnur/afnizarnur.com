@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Flex, Box, Link } from "rebass"
 import { themeHover } from "../../utils/styles"
 import { Title3, Paragraph } from "../Typography"
-import Project from "../Works/Project"
+import Project from "../Work/Project"
 import theme from "../../layouts/theme"
 
 const GoToLink = styled(Link)`

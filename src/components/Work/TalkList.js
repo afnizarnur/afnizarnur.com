@@ -4,7 +4,7 @@ import { Flex, Box, Link, Button } from "rebass"
 import { themeHover } from "../../utils/styles"
 import { Title2, Paragraph } from "../Typography"
 import DefaultLayout from "../Layouts/Default"
-import TalkItem from "../Works/TalkItem"
+import TalkItem from "../Work/TalkItem"
 import theme from "../../layouts/theme"
 import useCollapse from "react-collapsed"
 

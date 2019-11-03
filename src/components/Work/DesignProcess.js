@@ -3,7 +3,7 @@ import { Flex } from "rebass"
 import { Title, Paragraph } from "../Typography"
 import FullLayout from "../Layouts/Full"
 import DefaultLayout from "../Layouts/Default"
-import DesignProcessItem from "../Works/DesignProcessItem"
+import DesignProcessItem from "./DesignProcessItem"
 
 const DesignProcess = () => {
   return (
@@ -16,10 +16,9 @@ const DesignProcess = () => {
         <DefaultLayout>
           <Title>My typical design process for building products</Title>
           <Paragraph fontSize={[2, 3]} mt={[4, 4, 5]} mb={[12, 6, 14]}>
-            I believe design process should be flexible. This design process
-            gives me time-tested and trusted ways to do good work, sometimes
-            it’s as linear as it looks, other times it’s a zigzag. Sometimes I
-            build something completely new.
+            This design process gives me time-tested and trusted ways to do good
+            work, sometimes it’s as linear as it looks, other times it’s a
+            zigzag. Sometimes I build something completely new.
           </Paragraph>
           <Flex justifyContent="space-between" flexWrap="wrap">
             <DesignProcessItem

@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Header from "../components/Header"
-import ProjectFeatured from "../components/Works/ProjectFeatured"
+import ProjectFeatured from "../components/Work/ProjectFeatured"
 import { Title, Paragraph } from "../components/Typography"
-import ProjectList from "../components/Works/ProjectList"
-import DesignProcess from "../components/Works/DesignProcess"
-import TalkList from "../components/Works/TalkList"
+import ProjectList from "../components/Work/ProjectList"
+import DesignProcess from "../components/Work/DesignProcess"
+import TalkList from "../components/Work/TalkList"
 import Footer from "../components/Footer"
 import { Box, Image, Link } from "rebass"
 import Navigation from "../components/Navigation"
@@ -163,42 +163,42 @@ export const pageQuery = graphql`
         }
       }
     }
-    bukabike1: file(relativePath: { eq: "works/bukabike-1.png" }) {
+    bukabike1: file(relativePath: { eq: "work/bukabike-1.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    bukabike2: file(relativePath: { eq: "works/bukabike-2.png" }) {
+    bukabike2: file(relativePath: { eq: "work/bukabike-2.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    bukabike3: file(relativePath: { eq: "works/bukabike-3.png" }) {
+    bukabike3: file(relativePath: { eq: "work/bukabike-3.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    dt1: file(relativePath: { eq: "works/designtools-1.png" }) {
+    dt1: file(relativePath: { eq: "work/designtools-1.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    dt2: file(relativePath: { eq: "works/designtools-2.png" }) {
+    dt2: file(relativePath: { eq: "work/designtools-2.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    dt3: file(relativePath: { eq: "works/designtools-3.png" }) {
+    dt3: file(relativePath: { eq: "work/designtools-3.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid

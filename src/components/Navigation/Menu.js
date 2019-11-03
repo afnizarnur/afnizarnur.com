@@ -37,7 +37,7 @@ const Menu = () => {
             margin="auto 0"
           >
             <NavLink onClick={toggle} to="/">
-              Works
+              Work
             </NavLink>
             <NavLink onClick={toggle} to="/about">
               About

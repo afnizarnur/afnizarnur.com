@@ -84,7 +84,7 @@ const Navigation = ({ ...props }) => {
             }"
           >
             <NavLink to="/" mr={[2, 4]}>
-              Works
+              Work
             </NavLink>
 
             <NavLink to="/about/" mr={[2, 4]}>
