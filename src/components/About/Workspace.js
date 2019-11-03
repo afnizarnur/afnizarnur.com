@@ -70,8 +70,8 @@ const Workspace = () => {
               />
             </Box>
           </Flex>
-          <Flex>
-            <Box marginRight={"1.25rem"} width={1 / 2}>
+          <Flex justifyContent="space-between" flexWrap="wrap">
+            <Box marginBottom={theme.space[16]} width={[1, 1 / 2.05, 1 / 2.05]}>
               <Img
                 alt="Workspace"
                 backgroundColor={true}
@@ -79,7 +79,7 @@ const Workspace = () => {
                 sizes={data.workspace2.childImageSharp.fluid}
               />
             </Box>
-            <Box width={1 / 2}>
+            <Box width={[1, 1 / 2.05, 1 / 2.05]}>
               <Img
                 alt="Workspace"
                 backgroundColor={true}
@@ -89,7 +89,7 @@ const Workspace = () => {
             </Box>
           </Flex>
         </Box>
-        <Box mt={[14, 14]}>
+        <Box mt={[12, 13]}>
           <Title3 color={theme.colors.white} mb={[13, 13]}>
             Applications and Tools
           </Title3>

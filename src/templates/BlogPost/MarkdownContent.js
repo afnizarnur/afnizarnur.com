@@ -198,7 +198,7 @@ const MarkdownContent = styled(Text)`
       ${({ theme }) => theme.colors.orange};
     border-radius: ${({ theme }) => theme.radii[1]};
     padding: ${({ theme }) => theme.space[3]};
-    background-color: ${({ theme }) => theme.colors.grays[1]};
+    background-color: ${({ theme }) => theme.colors.white};
 
     p {
       max-width: 30em;
@@ -221,7 +221,7 @@ const MarkdownContent = styled(Text)`
     border-radius: ${({ theme }) => theme.radii[1]};
     padding-left: ${({ theme }) => theme.space[1]};
     padding-right: ${({ theme }) => theme.space[1]};
-    background-color: ${({ theme }) => theme.colors.grays[1]};
+    background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSizes[0]};
     white-space: nowrap;
@@ -239,7 +239,7 @@ const MarkdownContent = styled(Text)`
     border-radius: ${({ theme }) => theme.radii[2]};
     padding: ${({ theme }) => theme.space[3]};
     background-color: ${({ theme }) => theme.colors.black};
-    color: ${({ theme }) => theme.colors.grays[1]};
+    color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSizes[0]};
     font-family: ${({ theme }) => theme.fonts.monospace}!important;
     white-space: pre;
@@ -269,7 +269,7 @@ const MarkdownContent = styled(Text)`
   iframe {
     margin-top: ${({ theme }) => theme.space[4]};
     margin-bottom: ${({ theme }) => theme.space[4]};
-    border: 1px solid ${({ theme }) => theme.colors.grays[2]};
+    border: 1px solid ${({ theme }) => theme.colors.white};
   }
 `
 

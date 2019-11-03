@@ -4,21 +4,6 @@ const colors = {
   black: "#191a1b",
   white: "#ffffff",
   gray: ["#F0F0F0", "#595959"],
-  grays: [
-    "#ffffff",
-    "#f9f9f8",
-    "#efedea",
-    "#e3e0db",
-    "#d6d2cb",
-    "#c9c2ba",
-    "#b9b1a6",
-    "#a89e90",
-    "#938776",
-    "#756a5b",
-    "#443e35",
-    "#39342d",
-    "#2a2722",
-  ],
 }
 
 const space = [
@@ -98,6 +83,7 @@ const buttons = {
       transition: "all ease .2s",
     },
   },
+
   secondary: {
     backgroundColor: colors.white,
     color: colors.black,

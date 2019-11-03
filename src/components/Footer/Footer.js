@@ -34,7 +34,7 @@ const Footer = ({ ...props }) => {
               </Button>
             </form>
           </Box>
-          
+
           <Mini mt={[6, 15, 15]} />
         </DefaultLayout>
       </Flex>

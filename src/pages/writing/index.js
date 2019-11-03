@@ -151,7 +151,7 @@ const BlogPage = () => {
               </Flex>
             </main>
           </DefaultLayout>
-          <Box mt={10} css="border-top: 1px solid #d8d8d8">
+          <Box mt={14} css="border-top: 1px solid #d8d8d8">
             <Footer />
           </Box>
         </Box>

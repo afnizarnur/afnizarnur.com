@@ -38,6 +38,12 @@ const plugins = [
     },
   },
   {
+    resolve: `gatsby-plugin-google-analytics`,
+    options: {
+      trackingId: "UA-54216523-3",
+    },
+  },
+  {
     resolve: "gatsby-plugin-manifest",
     options: {
       name: "Afnizar Nur Ghifari, Designer",

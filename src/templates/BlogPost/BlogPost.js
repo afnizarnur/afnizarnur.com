@@ -9,10 +9,22 @@ import { useSiteMetadata } from "../../utils/hooks"
 import unwidow from "../../utils/unwidow"
 import DefaultLayout from "../../components/Layouts/Default"
 import BlogLayout from "../../components/Layouts/Blog"
-import { Box } from "rebass"
+import { Box, Text, Link, Flex } from "rebass"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer/Mini"
 import "../BlogPost/prism.css"
+import styled from "styled-components"
+import { themeHover } from "../../utils/styles"
+import theme from "../../layouts/theme"
+
+const ViewLink = styled(Link)`
+  text-decoration: underline;
+  letter-spacing: -0.2px;
+  font-size: ${({ theme }) => theme.fontSizes[2]};
+  color: ${({ theme }) => theme.colors.black}!important;
+
+  ${themeHover};
+`
 
 const BlogPostTemplate = ({ data }) => {
   const { title, siteUrl } = useSiteMetadata()
@@ -89,14 +101,39 @@ const BlogPostTemplate = ({ data }) => {
               mt={12}
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
+            <Box mt={6}>
+              <Text color={theme.colors.gray[1]}>
+                Help me to share this post
+              </Text>
+              <Flex mt={3}>
+                <ViewLink
+                  target="blank"
+                  href={`https://twitter.com/intent/tweet/?text=${post.frontmatter.title}&url=${siteUrl}${post.fields.slug}&via=afnizarnur`}
+                  mr={5}
+                >
+                  Twitter
+                </ViewLink>
+                <ViewLink
+                  target="blank"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${siteUrl}${post.fields.slug}`}
+                  mr={5}
+                >
+                  Facebook
+                </ViewLink>
+                <ViewLink
+                  target="blank"
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${siteUrl}${post.fields.slug}`}
+                  mr={5}
+                >
+                  LinkedIn
+                </ViewLink>
+              </Flex>
+            </Box>
           </BlogLayout>
         </article>
-        <Box mt={[10]} css="border-top: 1px solid #d8d8d8">
+        <Box mt={[6]} css="border-top: 1px solid #d8d8d8">
           <DefaultLayout>
-            <Footer
-              paddingTop={[6, 6, "5.1875rem"]}
-              paddingBottom={[6, 6, "5.1875rem"]}
-            />
+            <Footer paddingTop={[6]} paddingBottom={[6]} />
           </DefaultLayout>
         </Box>
       </Box>

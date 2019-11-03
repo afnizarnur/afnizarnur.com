@@ -69,16 +69,6 @@ const GlobalStyles = createGlobalStyle`
     box-shadow: none;
   }
 
-  @media print {
-    nav, footer {
-      display: none!important;
-    }
-
-    #main-content {
-      margin-bottom: 0!important;
-    }
-  }
-
   @keyframes fadeInBottom {
     0% {
       transform: translateY(20px);

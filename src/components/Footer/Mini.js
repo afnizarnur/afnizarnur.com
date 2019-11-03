@@ -25,16 +25,10 @@ const Mini = ({ ...props }) => {
       {...props}
     >
       <Box>
-        <Paragraph
-          fontSize={2}
-          color={theme.colors.gray[1]}
-          paddingRight={4}
-        >
+        <Paragraph fontSize={2} color={theme.colors.gray[1]} paddingRight={4}>
           Follow me for more thoughts and regular updates on{" "}
-          <ViewLink href="https://twitter.com/afnizarnur">Twitter</ViewLink>
-          ,{" "}
-          <ViewLink href="https://dribbble.com/afnizarnur">Dribbble</ViewLink>
-          ,{" "}
+          <ViewLink href="https://twitter.com/afnizarnur">Twitter</ViewLink>,{" "}
+          <ViewLink href="https://dribbble.com/afnizarnur">Dribbble</ViewLink>,{" "}
           <ViewLink href="https://behance.net/afnizarnur">Behance</ViewLink>,
           and{" "}
           <ViewLink href="https://www.linkedin.com/in/afnizarnur/">
