@@ -21,14 +21,14 @@ const Workspace = () => {
           }
         }
       }
-      workspace2: file(relativePath: { eq: "about/workspace-2.png" }) {
+      workspace2: file(relativePath: { eq: "about/workspace-2.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      workspace3: file(relativePath: { eq: "about/workspace-3.png" }) {
+      workspace3: file(relativePath: { eq: "about/workspace-3.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
             ...GatsbyImageSharpFluid
@@ -63,7 +63,7 @@ const Workspace = () => {
           <Flex>
             <Box marginBottom={"1.25rem"} width={1 / 1}>
               <Img
-                alt="Workspace"
+                alt="Laptop, Laptop Stand, Mechanical Keyboard and Mouse"
                 backgroundColor={true}
                 style={imageStyle}
                 sizes={data.workspace3.childImageSharp.fluid}
@@ -73,7 +73,7 @@ const Workspace = () => {
           <Flex justifyContent="space-between" flexWrap="wrap">
             <Box marginBottom={theme.space[16]} width={[1, 1 / 2.05, 1 / 2.05]}>
               <Img
-                alt="Workspace"
+                alt="Mechanical Keyboard"
                 backgroundColor={true}
                 style={imageStyle}
                 sizes={data.workspace2.childImageSharp.fluid}

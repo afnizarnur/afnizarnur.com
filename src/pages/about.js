@@ -48,8 +48,8 @@ const AboutPage = ({ ...props }) => {
               <Box mb={[5, 5, 6]}>
                 <Img
                   style={imageStyle}
-                  alt="Afnizar Nur Ghifari"
-                  sizes={props.data.imageplaceholder.childImageSharp.fluid}
+                  alt="About Afnizar Nur Ghifari"
+                  sizes={props.data.headerphoto.childImageSharp.fluid}
                 />
               </Box>
               <Box>
@@ -91,7 +91,7 @@ const AboutPage = ({ ...props }) => {
 
 export const pageQuery = graphql`
   query AboutQuery {
-    imageplaceholder: file(relativePath: { eq: "image-placeholder.png" }) {
+    headerphoto: file(relativePath: { eq: "about/header-photo.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
