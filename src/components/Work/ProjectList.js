@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import { Flex, Box, Link } from "rebass"
 import { themeHover } from "../../utils/styles"
@@ -19,13 +20,56 @@ const GoToLink = styled(Link)`
 `
 
 const ProjectList = ({ title, description, ...props }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      logobl: file(relativePath: { eq: "about/companies/logo-bl.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 48) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      logolimakilo: file(
+        relativePath: { eq: "about/companies/logo-limakilo.png" }
+      ) {
+        childImageSharp {
+          fluid(maxWidth: 48) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      logoos: file(relativePath: { eq: "about/companies/logo-os.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 48) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      logost: file(relativePath: { eq: "about/companies/logo-st.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 48) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      logots: file(
+        relativePath: { eq: "about/companies/logo-tacklestudio.png" }
+      ) {
+        childImageSharp {
+          fluid(maxWidth: 48) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
   return (
     <Box mb={["3.5rem", "3.5rem", 14]} {...props}>
       <Title3 mb={[5, 13]}>A few project I have worked with</Title3>
       <Flex justifyContent="space-between" flexWrap="wrap">
         <Project
           name="DANA"
-          imageurl="assets/logo-bl.png"
+          imageurl={data.logobl.childImageSharp.fluid}
           imagealt="Bukalapak"
           description="Integrate payment wallet into eCommerce system."
           company="Bukalapak"
@@ -33,7 +77,7 @@ const ProjectList = ({ title, description, ...props }) => {
         />
         <Project
           name="BBM Shopping"
-          imageurl="assets/logo-bl.png"
+          imageurl={data.logobl.childImageSharp.fluid}
           imagealt="Bukalapak"
           description="Redesign and building the design system of the apps."
           company="Bukalapak"
@@ -42,7 +86,7 @@ const ProjectList = ({ title, description, ...props }) => {
         <Project
           name="Ayo Indonesia"
           link="https://ayo.co.id/"
-          imageurl="assets/logo-st.png"
+          imageurl={data.logost.childImageSharp.fluid}
           imagealt="Sixty Two"
           description="Matchmaking service for futsal players in Indonesia."
           company="Sixty Two"
@@ -52,6 +96,7 @@ const ProjectList = ({ title, description, ...props }) => {
           name="Sinon.JS"
           link="https://sinonjs.org/"
           imageurl="assets/logo-os.png"
+          imageurl={data.logoos.childImageSharp.fluid}
           imagealt="Open Source"
           description="Redesign the documentation of javascript unit testing library."
           company="Open Source"
@@ -60,7 +105,7 @@ const ProjectList = ({ title, description, ...props }) => {
         <Project
           name="Limakilo"
           link="http://limakilo.id/"
-          imageurl="assets/logo-limakilo.png"
+          imageurl={data.logolimakilo.childImageSharp.fluid}
           imagealt="Limakilo"
           description="Buy food commodities directly from farmers."
           company="Limakilo"
@@ -69,7 +114,7 @@ const ProjectList = ({ title, description, ...props }) => {
         <Project
           name="CoCare"
           link=""
-          imageurl="assets/logo-tacklestudio.png"
+          imageurl={data.logots.childImageSharp.fluid}
           imagealt="Tackle Studio"
           description="More flexible ways of delivering care possible."
           company="Tackle Studio"

@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Box, Link, Text, Image } from "rebass"
 import { themeHover } from "../../utils/styles"
 import { Paragraph } from "../Typography"
+import Img from "gatsby-image"
 
 const ViewProject = styled(Link)`
   font-weight: bold;
@@ -18,6 +19,12 @@ const InlineBox = styled(Box)`
 `
 
 const Project = ({ ...props }) => {
+  const imageStyle = {
+    width: "24px",
+    height: "24px",
+    display: "inline-block",
+    marginBottom: "-0.3rem",
+  }
   return (
     <Box mb={[12, 12, 6]} width={[1, 1 / 2.1, 1 / 3.2]} {...props}>
       {props.link && (
@@ -41,14 +48,7 @@ const Project = ({ ...props }) => {
       </Paragraph>
       <Box mt="1.25rem">
         <InlineBox>
-          <Image
-            src={props.imageurl}
-            alt={props.imagealt}
-            width="24px"
-            height="24px"
-            css="display: inline-block"
-            mb="0.125rem"
-          />
+          <Img style={imageStyle} alt={props.imagealt} sizes={props.imageurl} />
           <Text css="display: inline-box; color: #191a1b" ml={2} mr={2}>
             {props.company}
           </Text>
