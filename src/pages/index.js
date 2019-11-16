@@ -93,7 +93,7 @@ const IndexPage = props => {
                 <Image
                   className="scrollWork"
                   ml={[4]}
-                  css="transform: rotate(180deg); max-width: 1000%; width:14px; height: 14px"
+                  css="max-width: 1000%; width:14px; height: 14px; animation: slideDown 1s 0.75s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;"
                   src={"../assets/arrow-up.svg"}
                   alt="Scroll to Selected Work"
                 />

@@ -72,14 +72,26 @@ const GlobalStyles = createGlobalStyle`
   @keyframes fadeInBottom {
     0% {
       transform: translateY(20px);
-  
       opacity: 0;
     }
   
     100% {
       transform: translateY(0);
-  
       opacity: 1;
+    }
+  }
+
+  @keyframes slideDown{
+    0% {
+      transform: translateY(5px) rotate(180deg);
+    }
+
+    50% {
+      transform: translateY(-2px) rotate(180deg);
+    }
+  
+    100% {
+      transform: translateY(5px) rotate(180deg);
     }
   }
 
