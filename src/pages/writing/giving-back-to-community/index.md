@@ -1,6 +1,6 @@
 ---
 title: Giving Back to Community
-featuredimage: ./image-placeholder.png
+featuredimage: ./giving-back-to-community.jpg
 date: 2019-10-07
 description: Pemikiran dalam berbagi ilmu dan suatu aksi untuk memulai untuk menulis kembali.
 category: Personal

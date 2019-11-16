@@ -37,7 +37,7 @@ const MarkdownContent = styled(Text)`
   h4,
   h5,
   h6 {
-    line-height: ${({ theme }) => theme.lineHeights1.title};
+    line-height: ${({ theme }) => theme.lineHeights.title1};
     color: ${({ theme }) => theme.colors.black};
   }
 
