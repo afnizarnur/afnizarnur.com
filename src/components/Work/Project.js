@@ -19,12 +19,12 @@ const InlineBox = styled(Box)`
 `
 
 const Project = ({ ...props }) => {
-  const imageStyle = {
+  const imageWrapperStyle = {
+    display: "inline-block",
     width: "24px",
     height: "24px",
-    display: "inline-block",
-    marginBottom: "-0.3rem",
   }
+
   return (
     <Box mb={[12, 12, 6]} width={[1, 1 / 2.1, 1 / 3.2]} {...props}>
       {props.link && (
@@ -47,16 +47,20 @@ const Project = ({ ...props }) => {
         {props.description}
       </Paragraph>
       <Box mt="1.25rem">
-        <InlineBox>
-          <Img style={imageStyle} alt={props.imagealt} sizes={props.imageurl} />
+        <Img
+          style={imageWrapperStyle}
+          alt={props.imagealt}
+          sizes={props.imageurl}
+        />
+        <InlineBox css="position: relative; top: -0.326rem">
           <Text css="display: inline-box; color: #191a1b" ml={2} mr={2}>
             {props.company}
           </Text>
+          <span css="color: #d8d8d8">|</span>
+          <Text ml={2} css="display: inline-box; color: #191a1b">
+            {props.date}
+          </Text>
         </InlineBox>
-        <span css="color: #d8d8d8">|</span>
-        <Text ml={2} css="display: inline-box; color: #191a1b">
-          {props.date}
-        </Text>
       </Box>
     </Box>
   )
