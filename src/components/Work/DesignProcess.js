@@ -14,7 +14,7 @@ const DesignProcess = () => {
         css="background-image: linear-gradient(180deg, rgba(25,26,27,.07) 0%, rgba(255,255,255,0) 100%);"
       >
         <DefaultLayout>
-          <Title>My typical design process for building products</Title>
+          <Title>My design process for building products</Title>
           <Paragraph fontSize={[2, 3]} mt={[4, 4, 5]} mb={[12, 6, 14]}>
             This design process gives me time-tested and trusted ways to do good
             work, sometimes it’s as linear as it looks, other times it’s a

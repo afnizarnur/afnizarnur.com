@@ -80,7 +80,7 @@ const IndexPage = props => {
               @media only screen and (max-width: 48em) {
                 a { display: inline-block; }
               }"
-              mt={[13, 12]}
+              mt={[13, 13, 12]}
               mb={3}
             >
               <ButtonPrimary

@@ -49,8 +49,14 @@ const fontSizes = [
 ]
 
 const lineHeights = {
-  title: 1.25,
+  title1: 1.25,
+  title2: 1.1,
   copy: 1.75,
+}
+
+const letterSpacings = {
+  title1: "-2.5px",
+  title2: "-2px",
 }
 
 const fontWeights = {
@@ -109,6 +115,7 @@ const theme = {
   fontSizes,
   fontWeights,
   lineHeights,
+  letterSpacings,
   buttons,
 }
 

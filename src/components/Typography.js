@@ -8,8 +8,8 @@ const Title = ({ children, ...props }) => (
     as="h1"
     mb={3}
     fontSize={["2.5rem", 5, 6]}
-    letterSpacing={["-2.2px", "-3.57px", "-5px"]}
-    lineHeight={["2.5rem", "4rem", "5.25rem"]}
+    letterSpacing={[theme.letterSpacings.title1]}
+    lineHeight={[theme.lineHeights.title1, theme.lineHeights.title2]}
     color={theme.colors.black}
     {...props}
   >
@@ -26,8 +26,8 @@ const Title2 = ({ children, ...props }) => (
     as="h2"
     mb={3}
     fontSize={["2.5rem", 4, 5]}
-    letterSpacing={["-2.2px", "-2.8px", "-3.57px"]}
-    lineHeight={["2.5rem", 1, "4rem"]}
+    letterSpacing={[theme.letterSpacings.title1]}
+    lineHeight={[theme.lineHeights.title1, theme.lineHeights.title2]}
     color={theme.colors.black}
     {...props}
   >
@@ -44,8 +44,8 @@ const Title3 = ({ children, ...props }) => (
     as="h3"
     mb={3}
     fontSize={["2.5rem", 4, 4]}
-    letterSpacing={["-2.8px"]}
-    lineHeight={[1, "4rem"]}
+    letterSpacing={[theme.letterSpacings.title2]}
+    lineHeight={[theme.lineHeights.title1, theme.lineHeights.title2]}
     color={theme.colors.black}
     {...props}
   >
