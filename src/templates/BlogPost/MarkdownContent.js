@@ -3,18 +3,14 @@ import { Text } from "rebass"
 import { themeHover, themeUnderline } from "../../utils/styles"
 
 const MarkdownContent = styled(Text)`
-  /* Vertical Rhythm */
   & > * {
-    /* reset all margins */
     margin-top: 0;
     margin-bottom: 0;
 
-    /* margin top to all child elements */
     & + * {
       margin-top: ${({ theme }) => theme.space[5]};
     }
 
-    /* bigger margin top on headers */
     & + h1,
     & + h2 {
       margin-top: 3rem;
@@ -22,10 +18,10 @@ const MarkdownContent = styled(Text)`
 
     & + h3,
     & + h4 {
-      margin-top: 2.5rem;
+      margin-top: 3rem;
 
       @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
-        margin-top: 2rem;
+        margin-top: 2.5rem;
         margin-bottom: -0.5rem;
       }
     }
@@ -38,13 +34,12 @@ const MarkdownContent = styled(Text)`
   h5,
   h6 {
     line-height: ${({ theme }) => theme.lineHeights.title1};
-    color: ${({ theme }) => theme.colors.black};
   }
 
   /* Headers */
   h1 {
     font-size: ${({ theme }) => theme.fontSizes[4]};
-    letter-spacing: -2.2px;
+    letter-spacing: ${({ theme }) => theme.letterSpacings.title2};
     font-weight: 800;
     @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
       letter-spacing: 0px;
@@ -54,8 +49,8 @@ const MarkdownContent = styled(Text)`
 
   h2 {
     font-size: 2.5rem;
-    letter-spacing: -1px;
-    font-weight: 800;
+    letter-spacing: ${({ theme }) => theme.letterSpacings.title3};
+    font-weight: 600;
     @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
       letter-spacing: 0px;
       font-size: ${({ theme }) => theme.fontSizes[3]};
@@ -95,20 +90,36 @@ const MarkdownContent = styled(Text)`
   /* Type Elements */
 
   p {
-    color: ${({ theme }) => theme.colors.gray[1]};
+    color: ${({ theme }) => theme.colors.gray[2]};
   }
 
   hr {
-    margin: ${({ theme }) => theme.space[6]} 0;
+    overflow: visible; /* For IE */
+    padding: 0;
     border: none;
-    border-top: 1px solid #d8d8d8;
+    color: ${({ theme }) => theme.colors.gray[2]};
+    text-align: center;
+    margin: ${({ theme }) => theme.space[6]} 0;
+  }
+
+  hr:after {
+    content: "...";
+    letter-spacing: 0.5em;
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    background: white;
   }
 
   ul,
   ol,
   dl {
-    padding-left: ${({ theme }) => theme.space[5]};
-    color: ${({ theme }) => theme.colors.gray[1]};
+    color: ${({ theme }) => theme.colors.gray[2]};
+  }
+
+  ul {
+    list-style-type: square;
   }
 
   ul ul,
@@ -169,44 +180,29 @@ const MarkdownContent = styled(Text)`
   }
 
   blockquote {
-    font-size: 2.25rem;
-    font-weight: bold;
-    line-height: 2.5rem;
-    letter-spacing: -2.14px;
-    margin: 2.75rem 0;
-    color: ${({ theme }) => theme.colors.black};
-
-    > :first-child {
-      margin-top: 0;
-      margin-bottom: 0;
-      color: ${({ theme }) => theme.colors.black};
-    }
-    > :last-child {
-      margin-bottom: 0;
-      font-weight: normal;
-      letter-spacing: -0.2px;
-      font-size: ${({ theme }) => theme.fontSizes[2]};
-    }
+    margin: 2.75rem -1.7rem;
+    border-left: 4px solid ${({ theme }) => theme.colors.black};
+    padding: 0 ${({ theme }) => theme.space[5]};
+    font-style: italic;
   }
 
   details {
     margin-top: ${({ theme }) => theme.space[4]};
-    margin-right: 0;
     margin-bottom: ${({ theme }) => theme.space[4]};
-    margin-left: 0;
-    border-left: ${({ theme }) => theme.borders[3]}
-      ${({ theme }) => theme.colors.orange};
-    border-radius: ${({ theme }) => theme.radii[1]};
-    padding: ${({ theme }) => theme.space[3]};
-    background-color: ${({ theme }) => theme.colors.white};
+    border-radius: ${({ theme }) => theme.radii[2]};
+    padding: ${({ theme }) => theme.space[4]};
+    background-color: ${({ theme }) => theme.colors.gray[0]};
 
     p {
-      max-width: 30em;
+      outline: none !important;
     }
 
     > :first-child {
       margin-top: 0;
+      outline: none;
+      font-weight: bold;
     }
+
     > :last-child {
       margin-bottom: 0;
     }
@@ -221,14 +217,20 @@ const MarkdownContent = styled(Text)`
     border-radius: ${({ theme }) => theme.radii[1]};
     padding-left: ${({ theme }) => theme.space[1]};
     padding-right: ${({ theme }) => theme.space[1]};
-    background-color: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.white};
-    font-size: ${({ theme }) => theme.fontSizes[0]};
     white-space: nowrap;
+    box-shadow: none !important;
+    border: none !important;
 
     @media (min-width: ${({ theme }) => theme.breakpoints[0]}) {
       font-size: ${({ theme }) => theme.fontSizes[1]};
     }
+  }
+
+  p code {
+    background-color: ${({ theme }) => theme.colors.gray[0]}!important;
+    color: ${({ theme }) => theme.colors.gray[2]};
+    text-shadow: none;
+    padding: 0.2em 0.3em !important;
   }
 
   pre {
@@ -238,7 +240,7 @@ const MarkdownContent = styled(Text)`
     margin-bottom: 2.75rem;
     border-radius: ${({ theme }) => theme.radii[2]};
     padding: ${({ theme }) => theme.space[3]};
-    background-color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.gray[2]};
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSizes[0]};
     font-family: ${({ theme }) => theme.fonts.monospace}!important;
@@ -250,7 +252,7 @@ const MarkdownContent = styled(Text)`
 
     @media print {
       background-color: transparent;
-      color: ${({ theme }) => theme.colors.black};
+      color: ${({ theme }) => theme.colors.gray[2]};
     }
   }
 
