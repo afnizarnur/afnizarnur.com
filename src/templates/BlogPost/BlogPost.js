@@ -101,10 +101,9 @@ const BlogPostTemplate = ({ data }) => {
               mt={12}
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
+
             <Box mt={6}>
-              <Text color={theme.colors.gray[1]}>
-                Help me to share this post
-              </Text>
+              <Text color={theme.colors.gray[1]}>Share</Text>
               <Flex mt={3}>
                 <ViewLink
                   target="blank"

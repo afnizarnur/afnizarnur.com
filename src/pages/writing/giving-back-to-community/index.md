@@ -14,8 +14,6 @@ Flash back kembali di tahun 2014, pada saat saya kelas 2 SMA, di kelas bahasa in
 
 Saya ingat betul ketika bapak guru memberi komentar terhadap apa yang saya ucapkan. Ia berpesan bahwa, "Berlatih saja tidak cukup. Bagilah ilmumu setelah itu, tidak perlu menguasai sepenuhnya untuk membagikan ilmu, ilmu itu tidak akan habis manfaatnya ketika seseorang menerima ilmu itu hingga akhir hayatnya". Dari hal tersebut, saya mulai mengambil banyak kesempatan untuk berbagi, dengan menjadi instruktur di kepramukaan, memimpin organisasi komputer, berbicara di depan banyak orang, dan menjadi fasilitator workshop. Ini adalah foto saya ketika berbagi terkait proses pembuatan UI di dalam industri, yang bertempat di Tegal, Jawa Tengah.
 
-## Manfaat Berbagi Versi Saya
-
 ### Relasi
 
 To start the design you need to know which content will be asynchronous and which content won't be, so it will be synchronous. If you just take care of the design part or you just landed on the project, you'll have to ask your front-end colleagues what content the API is sending and most importantly: what content you already know you're going to show anyways.

@@ -10,7 +10,6 @@ pre[class*="language-"] {
 	color: white;
 	background: none;
 	font-family: Menlo, Consolas, Roboto Mono, Ubuntu Monospace, Oxygen Mono, Liberation Mono, monospace!important;
-	font-size: 1em;
 	text-align: left;
 	text-shadow: 0 -.1em .2em black;
 	white-space: pre;

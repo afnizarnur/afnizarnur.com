@@ -3,7 +3,7 @@ const breakpoints = ["48em", "64em"]
 const colors = {
   black: "#191a1b",
   white: "#ffffff",
-  gray: ["#F0F0F0", "#595959"],
+  gray: ["#F0F0F0", "#595959", "#404040"],
 }
 
 const space = [
@@ -57,6 +57,7 @@ const lineHeights = {
 const letterSpacings = {
   title1: "-2.5px",
   title2: "-2px",
+  title3: "-1px",
 }
 
 const fontWeights = {
