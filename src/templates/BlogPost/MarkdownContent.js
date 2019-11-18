@@ -97,7 +97,7 @@ const MarkdownContent = styled(Text)`
     overflow: visible; /* For IE */
     padding: 0;
     border: none;
-    color: ${({ theme }) => theme.colors.gray[2]};
+    color: ${({ theme }) => theme.colors.gray[1]};
     text-align: center;
     margin: ${({ theme }) => theme.space[6]} 0;
   }

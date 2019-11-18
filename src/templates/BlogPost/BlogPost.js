@@ -21,7 +21,7 @@ const ViewLink = styled(Link)`
   text-decoration: underline;
   letter-spacing: -0.2px;
   font-size: ${({ theme }) => theme.fontSizes[2]};
-  color: ${({ theme }) => theme.colors.black}!important;
+  color: ${({ theme }) => theme.colors.gray[2]}!important;
 
   ${themeHover};
 `
