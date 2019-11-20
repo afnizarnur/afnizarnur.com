@@ -120,7 +120,7 @@ const BlogPage = () => {
                       {...(index + 1 === posts.length ? {} : { mb: [12, 6] })}
                     >
                       {frontmatter.featuredimage ? (
-                        <Box mb={5}>
+                        <Box mb={[4, 5]}>
                           <Link to={fields.slug}>
                             <Img
                               style={imageStyle}

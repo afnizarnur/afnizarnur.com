@@ -4,6 +4,7 @@ featuredimage: ./memahami-aksesibilitas.jpg
 date: 2019-11-19
 description: Pemikiran dalam berbagi ilmu dan suatu aksi untuk memulai untuk menulis kembali.
 category: Accessibility
+tags: ["thoughts", "accessibility", "inclusive"]
 ---
 
 Ketika saya memulai belajar desain di tahun 2013 ketika SMA saya ingat sumber pembelajaran dengan bahasa Indonesia masih sangat sedikit. Beberapa contohnya dengan berbahasa Indonesia antara lain [Jurus Grafis](https://www.facebook.com/jurusgrafis) yang di kelola oleh [Richard Fang](https://id.linkedin.com/in/rfang) dengan konten tutorial desain grafis, sayang sekali saat ini website tersebut sudah tidak bisa di akses. Selain itu ada [Jaka Zulham](https://jakajulham.com/), dia menuliskan tutorial desain grafis yang sangat mudah untuk dimengerti dan menarik. Selain itu, majuter.us oleh mas [Leo Ari Wibowo](https://www.behance.net/LeoAW), sayang sekali juga websitenya sudah tidak aktif.

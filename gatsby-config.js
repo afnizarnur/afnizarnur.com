@@ -109,6 +109,7 @@ const plugins = [
                         description
                         date
                         category
+                        tags
                       }
                     }
                   }
