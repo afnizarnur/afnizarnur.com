@@ -2,12 +2,38 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link, graphql } from "gatsby"
 import Navigation from "../components/Navigation"
-import { Box } from "rebass"
+import { Box, Heading, Flex } from "rebass"
 import Header from "../components/Header"
-import { Title3 } from "../components/Typography"
+import { Title3, Paragraph } from "../components/Typography"
 import DefaultLayout from "../components/Layouts/Default"
 import styled from "styled-components"
 import theme from "../layouts/theme"
+import { themeHover } from "../utils/styles"
+import Img from "gatsby-image"
+import unwidow from "../utils/unwidow"
+import Footer from "../components/Footer"
+
+const PostTitle = ({ children }) => (
+  <Heading
+    as="h3"
+    fontSize={[3]}
+    lineHeight="title"
+    color={theme.colors.black}
+    mb={3}
+    css="letter-spacing: -0.2px;"
+  >
+    {children}
+  </Heading>
+)
+
+const ViewLink = styled(Link)`
+  text-decoration: underline;
+  ${themeHover};
+`
+
+PostTitle.propTypes = {
+  children: PropTypes.node.isRequired,
+}
 
 const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext
@@ -15,6 +41,10 @@ const Tags = ({ pageContext, data }) => {
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? "" : "s"
   } tagged with "${tag}"`
+
+  const imageStyle = {
+    borderRadius: theme.radii[2],
+  }
 
   return (
     <>
@@ -26,27 +56,62 @@ const Tags = ({ pageContext, data }) => {
       <Box as="main" id="main-content">
         <DefaultLayout>
           <Header>
-            <Title3 mt={[6, 9]} mb={[12]}>
+            <Title3 mt={[6, 9]} mb={[6, 14]}>
               {tagHeader}
             </Title3>
           </Header>
 
           <main>
-            <ul>
-              {edges.map(({ node }) => {
+            <Flex
+              flexDirection="row"
+              justifyContent="space-between"
+              flexWrap="wrap"
+            >
+              {edges.map(({ node }, index) => {
                 const { slug } = node.fields
-                const { title } = node.frontmatter
                 return (
-                  <li key={slug}>
-                    <Link to={slug}>{title}</Link>
-                  </li>
+                  <Box
+                    key={slug}
+                    width={[1, 1 / 2.05, 1 / 2.05]}
+                    {...(index + 1 === edges.length ? {} : { mb: [12, 6] })}
+                  >
+                    {node.frontmatter.featuredimage ? (
+                      <Box mb={[4, 5]}>
+                        <Link to={slug}>
+                          <Img
+                            style={imageStyle}
+                            fluid={
+                              node.frontmatter.featuredimage.childImageSharp
+                                .fluid
+                            }
+                          />
+                        </Link>
+                      </Box>
+                    ) : null}
+                    <Paragraph mb={4}>{node.frontmatter.category}</Paragraph>
+                    <PostTitle>
+                      <ViewLink to={slug} css={themeHover}>
+                        {unwidow(node.frontmatter.title)}
+                      </ViewLink>
+                    </PostTitle>
+
+                    <Paragraph fontSize={[1, 2]} lineHeight="copy" mb={4}>
+                      {unwidow(node.frontmatter.description)}
+                    </Paragraph>
+
+                    <Paragraph fontSize={[1, 2]}>
+                      Published on {node.frontmatter.date}
+                    </Paragraph>
+                  </Box>
                 )
               })}
-            </ul>
+            </Flex>
           </main>
         </DefaultLayout>
+        <Box mt={14} css="border-top: 1px solid #d8d8d8">
+          <Footer />
+        </Box>
       </Box>
-      \
     </>
   )
 }
@@ -91,6 +156,16 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            description
+            date: date(formatString: "MMMM Do, YYYY")
+            category
           }
         }
       }
