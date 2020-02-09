@@ -72,29 +72,24 @@ const TalkList = ({ ...props }) => {
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/designing-experience-and-interface"
               title="Designing Experience and Interface"
-              short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
+              short="This talk is about introduction designing experience in building product."
             />
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/craft-solution-using-design-thinking"
               title="Craft Solution using Design Thinking"
-              short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
+              short="Facilitate workshop about design thinking, how identifying problem to crafting the solution."
             />
           </Box>
           <Box {...innerCollapseProps({ style: { margin: 0 } })}>
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/building-instagram-like-prototype-using-framer"
               title="Building Instagram-like Prototype using Framer"
-              short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
-            />
-            <TalkItem
-              link="https://speakerdeck.com/afnizarnur/design-system-of-component"
-              title="Design System of Component"
-              short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
+              short="Facilitate workshop to create prototype using Framer."
             />
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/be-awesome-with-git"
               title="Be Awesome with Git"
-              short="Si sine causa? quae fuerit causa, nollem me ab illo inventore veritatis et impetus quo ignorare vos arbitrer, sed ut labore et."
+              short="Facilitate workshop hwo to use Git in development project."
             />
           </Box>
           {innerOpen && (

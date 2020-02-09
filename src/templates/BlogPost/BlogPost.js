@@ -119,7 +119,7 @@ const BlogPostTemplate = ({ data }) => {
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
 
-            <Box mt={13}>
+            <Box mt={12}>
               <Flex
                 css="@media only screen and (max-width: 48em) {
                   flex-direction: column;
