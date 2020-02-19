@@ -1,5 +1,11 @@
 [[redirects]]
-  from = "/gema-venue"
-  to = "https://goo.gl/maps/rnwbF9uFdMLjAqDa6"
+  from = "/dribbble"
+  to = "https://dribbble.com/afnizarnur"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/twitter"
+  to = "https://twitter.com/afnizarnur"
   status = 200
   force = true
