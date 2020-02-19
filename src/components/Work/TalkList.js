@@ -89,7 +89,7 @@ const TalkList = ({ ...props }) => {
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/be-awesome-with-git"
               title="Be Awesome with Git"
-              short="Facilitate workshop hwo to use Git in development project."
+              short="Facilitate workshop how to use Git in development project."
             />
           </Box>
           {innerOpen && (

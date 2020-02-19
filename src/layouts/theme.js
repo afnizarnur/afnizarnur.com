@@ -55,8 +55,8 @@ const lineHeights = {
 }
 
 const letterSpacings = {
-  title1: "-2.5px",
-  title2: "-2px",
+  title1: "-1.8px",
+  title2: "-1.5px",
   title3: "-1px",
 }
 

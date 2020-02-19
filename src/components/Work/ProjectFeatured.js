@@ -21,6 +21,15 @@ const ViewProject = styled(Link)`
   ${themeHover};
 `
 
+const DisabledButton = styled(Box)`
+  font-weight: bold;
+  text-decoration: underline;
+  letter-spacing: -0.2px;
+  color: ${({ theme }) => theme.colors.black}!important;
+  opacity: 0.4;
+  margin-top: ${({ theme }) => theme.space[5]};
+`
+
 const ProjectFeatured = ({ title, description, ...props }) => {
   const imageStyle = {
     width: "100%",
@@ -36,13 +45,23 @@ const ProjectFeatured = ({ title, description, ...props }) => {
         <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
           View Project
         </ViewProject>
-      ) : null}
+      ) : (
+        <DisabledButton
+          title="I'm still writing the case study, will publish it soon!"
+          className="disable"
+          fontSize={[2, 2]}
+          fontWeight="bold"
+        >
+          Case Study In Progress
+        </DisabledButton>
+      )}
       <Box mt={[5, 13]}>
         <Carousel
           emulateTouch
           showStatus={false}
           showArrows={false}
           infiniteLoop
+          autoPlay
           showThumbs={false}
         >
           <div>
