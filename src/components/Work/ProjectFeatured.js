@@ -28,6 +28,7 @@ const DisabledButton = styled(Box)`
   color: ${({ theme }) => theme.colors.black}!important;
   opacity: 0.4;
   margin-top: ${({ theme }) => theme.space[5]};
+  cursor: no-drop;
 `
 
 const ProjectFeatured = ({ title, description, ...props }) => {

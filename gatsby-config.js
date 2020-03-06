@@ -47,7 +47,7 @@ const plugins = [
     resolve: "gatsby-plugin-manifest",
     options: {
       name: "Afnizar Nur Ghifari, Designer",
-      short_name: "afnizarnur",
+      short_name: "Afnizar Nur Ghifari, Designer",
       start_url: "/",
       background_color: "#ffffff",
       theme_color: "#191a1b",
