@@ -7,7 +7,6 @@ import Header from "../../components/Header"
 import { Title, Paragraph } from "../../components/Typography"
 import { useSiteMetadata } from "../../utils/hooks"
 import { themeHover } from "../../utils/styles"
-import unwidow from "../../utils/unwidow"
 import DefaultLayout from "../../components/Layouts/Default"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
@@ -134,12 +133,12 @@ const BlogPage = () => {
                       <Paragraph mb={4}>{frontmatter.category}</Paragraph>
                       <PostTitle>
                         <ViewLink to={fields.slug} css={themeHover}>
-                          {unwidow(frontmatter.title)}
+                          {frontmatter.title}
                         </ViewLink>
                       </PostTitle>
 
                       <Paragraph fontSize={[1, 2]} lineHeight="copy" mb={4}>
-                        {unwidow(frontmatter.description)}
+                        {frontmatter.description}
                       </Paragraph>
 
                       <Paragraph fontSize={[1, 2]}>

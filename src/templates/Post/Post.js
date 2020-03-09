@@ -6,13 +6,12 @@ import Header from "../../components/Header"
 import { Title, Paragraph } from "../../components/Typography"
 import MarkdownContent from "./MarkdownContent"
 import { useSiteMetadata } from "../../utils/hooks"
-import unwidow from "../../utils/unwidow"
 import DefaultLayout from "../../components/Layouts/Default"
 import BlogLayout from "../../components/Layouts/Blog"
 import { Box, Text, Link, Flex } from "rebass"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer/Mini"
-import "../BlogPost/prism.css"
+import "../Post/prism.css"
 import styled from "styled-components"
 import { themeHover } from "../../utils/styles"
 import kebabCase from "lodash/kebabCase"
@@ -40,7 +39,7 @@ const TagButton = styled(LinkGatsby)`
   }
 `
 
-const BlogPostTemplate = ({ data }) => {
+const PostTemplate = ({ data }) => {
   const { title, siteUrl } = useSiteMetadata()
   const post = data.markdownRemark
 
@@ -93,7 +92,7 @@ const BlogPostTemplate = ({ data }) => {
                 css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
                 mt={"2.0rem"}
               >
-                {unwidow(post.frontmatter.title)}
+                {post.frontmatter.title}
               </Title>
               <Paragraph
                 css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
@@ -181,12 +180,12 @@ const BlogPostTemplate = ({ data }) => {
   )
 }
 
-BlogPostTemplate.propTypes = {
+PostTemplate.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query PostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       id
@@ -205,4 +204,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default BlogPostTemplate
+export default PostTemplate

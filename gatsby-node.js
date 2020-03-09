@@ -4,8 +4,8 @@ const { createFilePath } = require("gatsby-source-filesystem")
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const blogPost = path.resolve("./src/templates/BlogPost/BlogPost.js")
-  const tagTemplate = path.resolve("./src/templates/tags.js")
+  const post = path.resolve("./src/templates/Post/Post.js")
+  const tagTemplate = path.resolve("./src/templates/Tags.js")
   const result = await graphql(`
     {
       allMarkdownRemark(limit: 1000) {
@@ -37,7 +37,7 @@ exports.createPages = async ({ graphql, actions }) => {
   result.data.allMarkdownRemark.edges.forEach(edge => {
     createPage({
       path: edge.node.fields.slug,
-      component: blogPost,
+      component: post,
       context: { slug: edge.node.fields.slug },
     })
   })

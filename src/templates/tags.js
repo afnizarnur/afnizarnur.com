@@ -10,7 +10,6 @@ import styled from "styled-components"
 import theme from "../layouts/theme"
 import { themeHover } from "../utils/styles"
 import Img from "gatsby-image"
-import unwidow from "../utils/unwidow"
 import Footer from "../components/Footer"
 
 const PostTitle = ({ children }) => (
@@ -91,12 +90,12 @@ const Tags = ({ pageContext, data }) => {
                     <Paragraph mb={4}>{node.frontmatter.category}</Paragraph>
                     <PostTitle>
                       <ViewLink to={slug} css={themeHover}>
-                        {unwidow(node.frontmatter.title)}
+                        {node.frontmatter.title}
                       </ViewLink>
                     </PostTitle>
 
                     <Paragraph fontSize={[1, 2]} lineHeight="copy" mb={4}>
-                      {unwidow(node.frontmatter.description)}
+                      {node.frontmatter.description}
                     </Paragraph>
 
                     <Paragraph fontSize={[1, 2]}>
