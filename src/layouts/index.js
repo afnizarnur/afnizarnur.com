@@ -107,7 +107,7 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 const Layout = ({ children, theme }) => {
-  const { title, description, siteUrl } = useSiteMetadata()
+  const { title, description, siteUrl, image } = useSiteMetadata()
 
   return (
     <>
@@ -119,11 +119,11 @@ const Layout = ({ children, theme }) => {
         <meta name="theme-color" content={theme.colors.black} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={siteUrl + "/thumbnail.jpg"} />
+        <meta property="og:image" content={siteUrl + image} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:site" content="@afnizarnur" />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={siteUrl + "/thumbnail.jpg"} />
+        <meta name="twitter:image" content={siteUrl + image} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="apple-mobile-web-app-title" content="Afnizar Nur Ghifari" />
         <meta name="application-name" content="Afnizar Nur Ghifari" />

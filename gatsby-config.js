@@ -49,6 +49,7 @@ const plugins = [
       name: "Afnizar Nur Ghifari, Designer",
       short_name: "Afnizar Nur Ghifari, Designer",
       start_url: "/",
+      lang: "en",
       background_color: "#ffffff",
       theme_color: "#191a1b",
       display: "standalone",
@@ -137,8 +138,13 @@ module.exports = {
   siteMetadata: {
     title: "Afnizar Nur Ghifari, Designer",
     description:
-      "The personal site, writing, and portfolio of Afnizar Nur Ghifari. I'm a process-driven designer that has a mission to bring impactful experiences for people.",
+      "The personal site, writing, and portfolio of Afnizar Nur Ghifari.",
     siteUrl: "https://afnizarnur.com",
+    image: `assets/meta-image-default.jpg`,
+    headline: "Afnizar Nur Ghifari, Designer",
+    siteLanguage: "en",
+    author: "Afnizar Nur Ghifari",
+    twitter: "afnizarnur",
   },
   plugins,
 }
