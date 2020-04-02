@@ -34,7 +34,7 @@ PostTitle.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-const PostTags = ({ pageContext, data }) => {
+const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark
   const tagHeader = `${totalCount} post${
@@ -115,7 +115,7 @@ const PostTags = ({ pageContext, data }) => {
   )
 }
 
-PostTags.propTypes = {
+Tags.propTypes = {
   pageContext: PropTypes.shape({
     tag: PropTypes.string.isRequired,
   }),
@@ -138,7 +138,7 @@ PostTags.propTypes = {
   }),
 }
 
-export default PostTags
+export default Tags
 
 export const pageQuery = graphql`
   query($tag: String) {
