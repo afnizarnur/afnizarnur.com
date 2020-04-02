@@ -1,15 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Img from "gatsby-image"
 import { Link, graphql } from "gatsby"
 import Navigation from "../components/Navigation"
 import { Box, Heading, Flex } from "rebass"
 import Header from "../components/Header"
-import { Title3, Paragraph } from "../components/Typography"
 import DefaultLayout from "../components/Layouts/Default"
+import { Title3, Paragraph } from "../components/Typography"
 import styled from "styled-components"
 import theme from "../layouts/theme"
 import { themeHover } from "../utils/styles"
-import Img from "gatsby-image"
 import Footer from "../components/Footer"
 
 const PostTitle = ({ children }) => (
