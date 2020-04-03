@@ -140,7 +140,6 @@ module.exports = {
     description:
       "The personal site, writing, and portfolio of Afnizar Nur Ghifari.",
     siteUrl: "https://afnizarnur.com",
-    image: `assets/meta-image-default.jpg`,
     headline: "Afnizar Nur Ghifari, Designer",
     siteLanguage: "en",
     author: "Afnizar Nur Ghifari",
