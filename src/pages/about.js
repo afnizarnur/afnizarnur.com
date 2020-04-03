@@ -50,6 +50,7 @@ const AboutPage = ({ ...props }) => {
                   style={imageStyle}
                   alt="About Afnizar Nur Ghifari"
                   sizes={props.data.headerphoto.childImageSharp.fluid}
+                  backgroundColor={theme.colors.gray[0]}
                 />
               </Box>
               <Box>
@@ -94,7 +95,7 @@ export const pageQuery = graphql`
     headerphoto: file(relativePath: { eq: "about/header-photo.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }

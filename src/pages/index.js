@@ -152,56 +152,56 @@ export const pageQuery = graphql`
     imageplaceholder: file(relativePath: { eq: "image-placeholder.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }
     talkbg: file(relativePath: { eq: "talkbg.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 2000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }
     bukabike1: file(relativePath: { eq: "work/bukabike-1.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }
     bukabike2: file(relativePath: { eq: "work/bukabike-2.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }
     bukabike3: file(relativePath: { eq: "work/bukabike-3.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }
     dt1: file(relativePath: { eq: "work/designtools-1.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }
     dt2: file(relativePath: { eq: "work/designtools-2.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }
     dt3: file(relativePath: { eq: "work/designtools-3.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }

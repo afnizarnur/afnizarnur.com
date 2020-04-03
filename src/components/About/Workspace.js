@@ -17,21 +17,21 @@ const Workspace = () => {
       workspace1: file(relativePath: { eq: "about/workspace-1.png" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_noBase64
           }
         }
       }
       workspace2: file(relativePath: { eq: "about/workspace-2.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_noBase64
           }
         }
       }
       workspace3: file(relativePath: { eq: "about/workspace-3.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_noBase64
           }
         }
       }
@@ -64,7 +64,7 @@ const Workspace = () => {
             <Box marginBottom={"1.25rem"} width={1 / 1}>
               <Img
                 alt="Laptop, Laptop Stand, Mechanical Keyboard and Mouse"
-                backgroundColor={true}
+                backgroundColor={theme.colors.black}
                 style={imageStyle}
                 sizes={data.workspace3.childImageSharp.fluid}
               />
@@ -74,7 +74,7 @@ const Workspace = () => {
             <Box marginBottom={theme.space[16]} width={[1, 1 / 2.05, 1 / 2.05]}>
               <Img
                 alt="Mechanical Keyboard"
-                backgroundColor={true}
+                backgroundColor={theme.colors.black}
                 style={imageStyle}
                 sizes={data.workspace2.childImageSharp.fluid}
               />
@@ -82,7 +82,7 @@ const Workspace = () => {
             <Box width={[1, 1 / 2.05, 1 / 2.05]}>
               <Img
                 alt="Workspace"
-                backgroundColor={true}
+                backgroundColor={theme.colors.black}
                 style={imageStyle}
                 sizes={data.workspace1.childImageSharp.fluid}
               />

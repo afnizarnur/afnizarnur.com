@@ -48,7 +48,7 @@ const BlogPage = () => {
               featuredimage {
                 childImageSharp {
                   fluid(maxWidth: 800) {
-                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluid_noBase64
                   }
                 }
               }
