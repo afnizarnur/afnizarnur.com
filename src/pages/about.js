@@ -1,5 +1,4 @@
 import React from "react"
-import { graphql } from "gatsby"
 import Helmet from "react-helmet"
 import Header from "../components/Header"
 import { Title, Paragraph } from "../components/Typography"
@@ -9,7 +8,6 @@ import DefaultLayout from "../components/Layouts/Default"
 import Navigation from "../components/Navigation"
 import Footer from "../components/Footer"
 import Workspace from "../components/About/Workspace"
-import Img from "gatsby-image"
 import theme from "../layouts/theme"
 
 const AboutPage = ({ ...props }) => {
@@ -45,14 +43,6 @@ const AboutPage = ({ ...props }) => {
           </DefaultLayout>
           <main>
             <DefaultLayout>
-              <Box mb={[5, 5, 6]}>
-                <Img
-                  style={imageStyle}
-                  alt="About Afnizar Nur Ghifari"
-                  sizes={props.data.headerphoto.childImageSharp.fluid}
-                  backgroundColor={theme.colors.gray[0]}
-                />
-              </Box>
               <Box>
                 <Paragraph
                   fontSize={[2, 3]}
@@ -89,17 +79,5 @@ const AboutPage = ({ ...props }) => {
     </>
   )
 }
-
-export const pageQuery = graphql`
-  query AboutQuery {
-    headerphoto: file(relativePath: { eq: "about/header-photo.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-  }
-`
 
 export default AboutPage
