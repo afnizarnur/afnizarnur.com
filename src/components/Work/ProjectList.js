@@ -65,7 +65,7 @@ const ProjectList = ({ title, description, ...props }) => {
   `)
   return (
     <Box mb={["3.5rem", "3.5rem", 14]} {...props}>
-      <Title3 mb={[5, 13]}>A few project I have worked with</Title3>
+      <Title3 mb={[5, 13]}>A few projects that I have worked on</Title3>
       <Flex justifyContent="space-between" flexWrap="wrap">
         <Project
           name="DANA"
@@ -79,7 +79,7 @@ const ProjectList = ({ title, description, ...props }) => {
           name="BBM Shopping"
           imageurl={data.logobl.childImageSharp.fluid}
           imagealt="Bukalapak"
-          description="Redesign and building the design system of the apps."
+          description="Redesign and create the design system of the apps."
           company="Bukalapak"
           date="Sep 2017"
         />
@@ -122,8 +122,8 @@ const ProjectList = ({ title, description, ...props }) => {
         />
       </Flex>
       <Paragraph color={theme.colors.black} fontSize={[2, 3]}>
-        Still curious for my another work? Send me an email about your project
-        and I will prepare a detailed portfolio with relevant work samples.{" "}
+        Still curious of my other work? Send me an email about your project and
+        I will prepare a detailed portfolio with relevant work samples.{" "}
         <GoToLink href="mailto:afnizarhilmi@gmail.com">Get in touch</GoToLink>.
       </Paragraph>
     </Box>

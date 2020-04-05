@@ -121,7 +121,7 @@ const IndexPage = props => {
 
             <ProjectFeatured
               title="Design Tooling: I help designers to improve their workflows"
-              description="As designer who codes, I try to help my design team by building tools like web app and sketch plugin to help improve their workflows."
+              description="As a designer who codes, I try to help my design team by building tools like web app and sketch plugin to improve their workflows."
               featuredimage1={props.data.dt1.childImageSharp.fluid}
               featuredimage2={props.data.dt2.childImageSharp.fluid}
               featuredimage3={props.data.dt3.childImageSharp.fluid}
