@@ -138,7 +138,7 @@ module.exports = {
   siteMetadata: {
     title: "Afnizar Nur Ghifari, Designer",
     description:
-      "The personal site, writing, and portfolio of Afnizar Nur Ghifari.",
+      "The personal site, writing, and portfolio of Afnizar Nur Ghifari, a designer at Bukalapak, based in Jakarta, Indonesia.",
     siteUrl: "https://afnizarnur.com",
     headline: "Afnizar Nur Ghifari, Designer",
     siteLanguage: "en",
