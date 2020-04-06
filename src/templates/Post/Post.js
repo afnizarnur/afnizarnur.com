@@ -126,7 +126,7 @@ const PostTemplate = ({ data }) => {
                 flexDirection="row"
                 justifyContent="space-between"
               >
-                <Box width={[1 / 1, 1 / 2]}>
+                <Box>
                   <ul style={{ padding: 0, margin: 0, display: "block" }}>
                     {post.frontmatter.tags.map(tag => (
                       <li
@@ -145,29 +145,6 @@ const PostTemplate = ({ data }) => {
                       </li>
                     ))}
                   </ul>
-                </Box>
-                <Box mt={[3, 0, 0]}>
-                  <ViewLink
-                    target="blank"
-                    href={`https://twitter.com/intent/tweet/?text=${post.frontmatter.title}&url=${siteUrl}${post.fields.slug}&via=afnizarnur`}
-                    mr={4}
-                  >
-                    Twitter
-                  </ViewLink>
-                  <ViewLink
-                    target="blank"
-                    href={`https://www.facebook.com/sharer/sharer.php?u=${siteUrl}${post.fields.slug}`}
-                    mr={4}
-                  >
-                    Facebook
-                  </ViewLink>
-                  <ViewLink
-                    target="blank"
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${siteUrl}${post.fields.slug}`}
-                    mr={4}
-                  >
-                    LinkedIn
-                  </ViewLink>
                 </Box>
               </Flex>
             </Box>
