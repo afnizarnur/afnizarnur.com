@@ -23,7 +23,7 @@ const PayItem = ({ ...props }) => {
             <Box>
               <Paragraph
                 css="
-                @media only screen and (max-width: 48em) {
+                @media only screen and (max-width: 64em) {
                   display: none
                 }"
                 color={theme.colors.black}
@@ -66,6 +66,7 @@ const PayItem = ({ ...props }) => {
                 alt: props.qrimgalt,
                 style: {
                   width: "110px",
+                  height: "110px",
                 },
               }}
               zoomMargin="160"

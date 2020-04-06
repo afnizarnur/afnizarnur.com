@@ -4,7 +4,7 @@ import { useSiteMetadata } from "../../utils/hooks"
 import FullLayout from "../../components/Layouts/Full"
 import { Flex, Box, Text } from "rebass"
 import { Title } from "../../components/Typography"
-import Wordmark from "../../components/Navigation/Wordmark"
+import Wordmark from "../../components/Pay/Wordmark"
 import PayItem from "../../components/Pay/PayItem"
 import { graphql, useStaticQuery } from "gatsby"
 
@@ -35,63 +35,63 @@ const PayPage = props => {
       gopay: file(relativePath: { eq: "pay/gopay.png" }) {
         childImageSharp {
           fixed(height: 29) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
       dana: file(relativePath: { eq: "pay/dana.png" }) {
         childImageSharp {
           fixed(height: 29) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
       bca: file(relativePath: { eq: "pay/bca.png" }) {
         childImageSharp {
           fixed(height: 29) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
       ovo: file(relativePath: { eq: "pay/ovo.png" }) {
         childImageSharp {
           fixed(height: 29) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
       jenius: file(relativePath: { eq: "pay/jenius.png" }) {
         childImageSharp {
           fixed(height: 29) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
       qrgopay: file(relativePath: { eq: "pay/qr/gopay.jpg" }) {
         childImageSharp {
           fixed(height: 234, width: 234) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
       qrbca: file(relativePath: { eq: "pay/qr/bca.jpg" }) {
         childImageSharp {
           fixed(height: 234, width: 234) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
       qrdana: file(relativePath: { eq: "pay/qr/dana.jpg" }) {
         childImageSharp {
           fixed(height: 234, width: 234) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
       qrovo: file(relativePath: { eq: "pay/qr/ovo.jpg" }) {
         childImageSharp {
           fixed(height: 117, width: 117) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
@@ -101,7 +101,7 @@ const PayPage = props => {
   return (
     <>
       <Helmet>
-        <title>Pay Anything to Afnizar</title>
+        <title>Afnizar's Digital Wallet</title>
       </Helmet>
 
       <FullLayout>
