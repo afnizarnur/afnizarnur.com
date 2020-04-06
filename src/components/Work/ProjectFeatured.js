@@ -23,10 +23,9 @@ const ViewProject = styled(Link)`
 
 const DisabledButton = styled(Box)`
   font-weight: bold;
-  text-decoration: underline;
   letter-spacing: -0.2px;
   color: ${({ theme }) => theme.colors.black}!important;
-  opacity: 0.4;
+  opacity: 0.5;
   margin-top: ${({ theme }) => theme.space[5]};
   cursor: no-drop;
 `
