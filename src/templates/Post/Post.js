@@ -44,7 +44,7 @@ const PostTemplate = ({ data }) => {
   const post = data.markdownRemark
 
   const listTags = post.frontmatter.tags.map(tag => (
-    <TagButton to={`/tags/${kebabCase(tag)}/`}>{tag}</TagButton>
+    <TagButton to={`writing/tags/${kebabCase(tag)}/`}>{tag}</TagButton>
   ))
 
   return (
@@ -136,7 +136,10 @@ const PostTemplate = ({ data }) => {
                           display: "inline-block",
                         }}
                       >
-                        <TagButton to={`/tags/${kebabCase(tag)}/`} key={tag}>
+                        <TagButton
+                          to={`writing/tags/${kebabCase(tag)}/`}
+                          key={tag}
+                        >
                           {tag}
                         </TagButton>
                       </li>

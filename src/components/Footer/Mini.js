@@ -48,7 +48,7 @@ const Mini = ({ ...props }) => {
             className="scrollImage"
             mr={[3, 0]}
             css="max-width: 1000%; width:14px; height: 14px"
-            src={"../../assets/arrow-up.svg"}
+            src={"/assets/arrow-up.svg"}
             alt="Scroll to Top"
           />
         </Link>
