@@ -48,6 +48,7 @@ const ButtonSecondary = styled(Link)`
     background: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.white};
     cursor: "pointer";
+    border: 1px solid transparent;
     transition: all ease 0.2s;
   }
 `
