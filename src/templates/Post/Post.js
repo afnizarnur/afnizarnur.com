@@ -56,7 +56,7 @@ const PostTemplate = ({ data }) => {
 
         <meta name="description" content={post.frontmatter.description} />
         <meta name="twitter:site" content="@afnizarnur" />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:site_name" content={title} />
         <meta
           property="og:title"
@@ -68,6 +68,18 @@ const PostTemplate = ({ data }) => {
           property="og:description"
           name="twitter:description"
           content={post.frontmatter.description}
+        />
+        <meta
+          property="og:image"
+          content={`https://afnizarnur-og-image-generator.now.sh/api?title=${encodeURIComponent(
+            String(post.frontmatter.title)
+          )}`}
+        />
+        <meta
+          name="twitter:image"
+          content={`https://afnizarnur-og-image-generator.now.sh/api?title=${encodeURIComponent(
+            String(post.frontmatter.title)
+          )}`}
         />
       </Helmet>
       <Box>
