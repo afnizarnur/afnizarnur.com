@@ -67,7 +67,7 @@ const GlobalStyles = createGlobalStyle`
   .carousel .control-dots li.dot {
     background-color: ${({ theme }) => theme.colors.black};
     box-shadow: none;
-    border-radius: 2px;
+    border-radius: ${({ theme }) => theme.radii[0]};
   }
 
   @keyframes fadeInBottom {

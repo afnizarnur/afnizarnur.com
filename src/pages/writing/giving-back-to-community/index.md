@@ -2,37 +2,35 @@
 title: Giving Back to Community
 featuredimage: ./giving-back-to-community.jpg
 date: 2019-10-07
-description: Pemikiran dalam berbagi ilmu dan suatu aksi untuk memulai untuk menulis kembali.
+description: Thought in sharing knowledge and action to start to write again.
 category: Personal
 tags: ["thoughts", "community", "sharing"]
 ---
 
-Ketika saya memulai belajar desain di tahun 2013 ketika SMA saya ingat sumber pembelajaran dengan bahasa Indonesia masih sangat sedikit. Beberapa contohnya dengan berbahasa Indonesia antara lain [Jurus Grafis](https://www.facebook.com/jurusgrafis) yang di kelola oleh [Richard Fang](https://id.linkedin.com/in/rfang) dengan konten tutorial desain grafis, sayang sekali saat ini website tersebut sudah tidak bisa di akses. Selain itu ada [Jaka Zulham](https://jakajulham.com/), dia menuliskan tutorial desain grafis yang sangat mudah untuk dimengerti dan menarik. Selain itu, majuter.us oleh mas [Leo Ari Wibowo](https://www.behance.net/LeoAW), sayang sekali juga websitenya sudah tidak aktif.
+When I started self-taught design in 2013–in vocational high school, I remembered that learning resources with the Indonesian language are very few. Some examples there are [Jurus Grafis](https://www.facebook.com/jurusgrafis) that managed by [Richard Fang](https://id.linkedin.com/in/rfang), [Jaka Zulham](https://jakajulham.com/), and majuter.us by [Leo Ari Wibowo](https://www.behance.net/LeoAW). But unfortunately, all of the websites I mentioned is no longer active.
 
-Kendala bahasa membuat saya mewajibkan untuk mempelajari bahasa lainnya yaitu bahasa Inggris. Pada dasarnya, ketika saya di bangku sekolah dasar, saya mengikut les privat dengan tante saya. Namun entah kenapa, hingga SMA saya masih belum memahami bahasa Inggris yang baik. Sepertinya memang benar kata orang-orang yang ada di Internet, kita perlu melatihnya terus menerus setiap hari dengan menulis maupun berbicara dengan bahasa Inggris. Ya kata kunci pertama dalam menguasai sesuatu adalah berlatih! Namun berlatih pun sebenernya tidak cukup.
+Language barriers make me obliged to learn more English. Basically, when I was in elementary school, I took private lessons with my aunt. But somehow, until high school, I still did not understand enough with English. It seems to be true the words of people on the Internet, we need to practice it continuously every day by writing and speaking English.
 
-Flash back kembali di tahun 2014, pada saat saya kelas 2 SMA, di kelas bahasa inggris, bapak guru memberi tugas untuk setiap orang bercerita di depan kelas tentang hobi masing-masing. Pada saat itu, saya menceritakan diri saya selalu mendesain di photoshop selama 8 jam setiap minggunya karena katanya perlu 1000 jam untuk seseorang menguasai sesuatu. Sungguh saat itu saya sangat senang mendesain di photoshop, walaupun selalu not responding setelah 2 jam 😅 Maklum, laptop saat itu hanya laptop Compaq, dengan ram 2gb, dengan prosesor Core 2 Duo pinjaman dari Ayah ketika SMP kelas 2.
+> The first keyword in mastering something is practice, but practicing is actually not enough.
 
-Saya ingat betul ketika bapak guru memberi komentar terhadap apa yang saya ucapkan. Ia berpesan bahwa, "Berlatih saja tidak cukup. Bagilah ilmumu setelah itu, tidak perlu menguasai sepenuhnya untuk membagikan ilmu, ilmu itu tidak akan habis manfaatnya ketika seseorang menerima ilmu itu hingga akhir hayatnya". Dari hal tersebut, saya mulai mengambil banyak kesempatan untuk berbagi, dengan menjadi instruktur di kepramukaan, memimpin organisasi komputer, berbicara di depan banyak orang, dan menjadi fasilitator workshop. Ini adalah foto saya ketika berbagi terkait proses pembuatan UI di dalam industri, yang bertempat di Tegal, Jawa Tengah.
+## About Learning
 
-### Relasi
+One year later, in 2014, when I was in the second year of high school, at that time, there was an English class. The teacher gives the task to tell in front of the class our hobbies. I told to everyone in front of the class, that my hobby is designing in Photoshop for 8 hours every week because I heard it took 1000 hours for someone to master something. At that time, I was thrilled to design in Photoshop because of the strong desire to participate and win in a competition. Although Photoshop always not responding after 2 hours 😅. Understandably, the laptop at that time was only a laptop with 2GB RAM, with a Core 2 Duo processor, I borrow from my Dad when I was in 7th grade. Thanks, Dad! Even though the laptop eventually became my personal laptop until I graduated from vocational high school.
 
-To start the design you need to know which content will be asynchronous and which content won't be, so it will be synchronous. If you just take care of the design part or you just landed on the project, you'll have to ask your front-end colleagues what content the API is sending and most importantly: what content you already know you're going to show anyways.
+Back in English class, I remember very well when the teacher commented on what I said. He said:
 
-### Bisa belajar lebih banyak
+> Practicing is not enough. Share your knowledge, no need to master it to share it, knowledge will not be used up when someone receives that knowledge until the end of your life.
 
-To start the design you need to know which content will be asynchronous and which content won't be, so it will be synchronous. If you just take care of the design part or you just landed on the project, you'll have to ask your front-end colleagues what content the API is sending and most importantly: what content you already know you're going to show anyways.
+From his comment, I was intrigued and started to take many opportunities to share by becoming a scout instructor (yes, I am a scout!), leading a computer organization, speaking in front of many people, and being a workshop facilitator. This is a photo of me sharing about the process of UI Design in the industry, the event located in Tegal, Central Java.
 
-### Dapat perspektif baru
-
-To start the design you need to know which content will be asynchronous and which content won't be, so it will be synchronous. If you just take care of the design part or you just landed on the project, you'll have to ask your front-end colleagues what content the API is sending and most importantly: what content you already know you're going to show anyways.
+![Workshop at Tegal, Jawa Tengah](./afnizar-tegal-invofest.jpg "Workshop at Tegal, Jawa Tengah")
 
 ---
 
-## Memulai untuk menulis
+## Starting to write more
 
-Namun ada satu hal yang belum pernah konsisten hingga saat ini, yaitu menulis! 2 tahun lalu saya sudah pernah setup blog dan sudah menulis satu postingan, walaupun hanya 'Hello World' 😆. Tidak hanya desain yang perlu konsisten, konsisten dalam menulis memang sulit. Jika kamu tidak percaya, berikut penjelasan ilmiah yang menjelaskan kenapa konsisten dalam menulis itu sulit.
+But there is one thing that has never been consistent until now, writing! 2 years ago I once set up a blog and have written one post, even though it's only 'Hello World'. Not only design that needs to be consistent, consistent in writing is difficult.
 
-Dengan adanya area baru dalam menulis ini, saya harap saya bisa lebih konsisten dalam menulis, karena dengan menulis saya percaya saya bisa membagikan lebih banyak ilmu dan keahlian yang saya miliki sehingga membantu lebih banyak orang untuk berani memulai atau yang sudah memulai untuk terjun dalam dunia product design. **It's time to giving back to community**.
+With this new zone in writing, I hope I can be more consistent in writing because, by writing, I believe I can share more of my knowledge and expertise so that it help=s more people to dare to start or who have started to get involved in the design world. **Yes, it's time to give back to the community**.
 
-Terima kasih jika kamu membaca ini sampai akhir. Ngomong-ngomong website ini adalah website versi kedua saya yang berisi portfolio kerjaan dan memang sengaja saya desain dan kembangkan sebagai tempat untuk mendokumentasikan pekerjaan dan berbagi ilmu. Tulisan selanjutnya saya akan membagikan tentang bagaimana cara membangun portfolio dan tetap konsisten untuk membangunnya. Kamu bisa follow saya di Twitter [@afnizarnur](https://twitter.com/afnizarnur) untuk tetap stay up to date.
+Thank you if you read this until the end. By the way, this website is my second version of the website, which contains a portfolio of work, and indeed I deliberately design and develop it as a place to document work and share knowledge. You can follow me on Twitter [@afnizarnur](https://twitter.com/afnizarnur) to stay up to date.

@@ -262,6 +262,20 @@ const MarkdownContent = styled(Text)`
     border-radius: ${({ theme }) => theme.radii[2]};
   }
 
+  .gatsby-resp-image-figure .gatsby-resp-image-wrapper {
+    margin-bottom: ${({ theme }) => theme.space[4]};
+    border-radius: ${({ theme }) => theme.radii[2]};
+  }
+
+  .gatsby-resp-image-figure .gatsby-resp-image-figcaption {
+    text-align: center;
+    font-style: italic;
+  }
+
+  .gatsby-resp-image-background-image {
+    border-radius: ${({ theme }) => theme.radii[2]};
+  }
+
   .gatsby-resp-image-wrapper {
     margin-top: 2.75rem;
     margin-bottom: 3.25rem;

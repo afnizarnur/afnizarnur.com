@@ -130,6 +130,7 @@ const PostTemplate = ({ data }) => {
                   <ul style={{ padding: 0, margin: 0, display: "block" }}>
                     {post.frontmatter.tags.map(tag => (
                       <li
+                        key={tag}
                         style={{
                           marginRight: theme.space[2],
                           marginBottom: "1.8rem",
