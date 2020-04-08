@@ -43,6 +43,8 @@ const plugins = [
     resolve: `gatsby-plugin-google-analytics`,
     options: {
       trackingId: "UA-54216523-3",
+      head: true,
+      anonymize: true,
     },
   },
   {
