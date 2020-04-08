@@ -11,6 +11,8 @@ import styled from "styled-components"
 import theme from "../layouts/theme"
 import { themeHover } from "../utils/styles"
 import Footer from "../components/Footer"
+import Helmet from "react-helmet"
+import { useSiteMetadata } from "../utils/hooks"
 
 const PostTitle = ({ children }) => (
   <Heading
@@ -35,6 +37,7 @@ PostTitle.propTypes = {
 }
 
 const Tags = ({ pageContext, data }) => {
+  const { title } = useSiteMetadata()
   const { tag } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark
   const tagHeader = `${totalCount} post${
@@ -47,6 +50,14 @@ const Tags = ({ pageContext, data }) => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          Tags {tag} | {title}
+        </title>
+        <meta property="og:site_name" content={title} />
+        <meta property="og:title" content={"Tags " + tag + " | " + title} />
+        <meta name="twitter:title" content={"Tags " + tag + " | " + title} />
+      </Helmet>
       <Box>
         <DefaultLayout>
           <Navigation />

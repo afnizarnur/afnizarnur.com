@@ -3,13 +3,13 @@ import PropTypes from "prop-types"
 import kebabCase from "lodash/kebabCase"
 import { Helmet } from "react-helmet"
 import { Link, graphql } from "gatsby"
-import Navigation from "../components/Navigation"
+import Navigation from "../../components/Navigation"
 import { Box } from "rebass"
-import Header from "../components/Header"
-import { Title2 } from "../components/Typography"
-import DefaultLayout from "../components/Layouts/Default"
+import Header from "../../components/Header"
+import { Title2 } from "../../components/Typography"
+import DefaultLayout from "../../components/Layouts/Default"
 import styled from "styled-components"
-import theme from "../layouts/theme"
+import theme from "../../layouts/theme"
 
 const TagButton = styled(Link)`
   background: ${({ theme }) => theme.colors.gray[0]};

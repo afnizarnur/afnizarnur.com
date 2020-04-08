@@ -76,8 +76,8 @@ const BlogPage = () => {
       <Helmet>
         <title>Writing | {title}</title>
         <meta property="og:site_name" content={title} />
-        <meta property="og:title" content={"Writing | " + { title }} />
-        <meta name="twitter:title" content={"Writing | " + { title }} />
+        <meta property="og:title" content={"Writing | " + title} />
+        <meta name="twitter:title" content={"Writing | " + title} />
       </Helmet>
 
       <Box>
