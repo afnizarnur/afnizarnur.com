@@ -102,6 +102,9 @@ const PayPage = props => {
     <>
       <Helmet>
         <title>Afnizar's Digital Wallet</title>
+        <meta property="og:site_name" content={title} />
+        <meta property="og:title" content="Afnizar's Digital Wallet" />
+        <meta name="twitter:title" content="Afnizar's Digital Wallet" />
       </Helmet>
 
       <FullLayout>

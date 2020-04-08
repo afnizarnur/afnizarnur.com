@@ -37,6 +37,9 @@ const TagsPage = ({
     <>
       <Helmet>
         <title>Tags | {title}</title>
+        <meta property="og:site_name" content={title} />
+        <meta property="og:title" content={"Tags | " + { title }} />
+        <meta name="twitter:title" content={"Tags | " + { title }} />
       </Helmet>
 
       <Box>
