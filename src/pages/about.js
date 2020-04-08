@@ -22,7 +22,7 @@ const AboutPage = ({ ...props }) => {
     <>
       <Helmet>
         <title>About | {title}</title>
-        <meta property="og:site_name" content={"About | " + title} />
+        <meta property="og:site_name" content={title} />
         <meta property="og:title" content={"About | " + title} />
         <meta name="twitter:title" content={"About | " + title} />
       </Helmet>
