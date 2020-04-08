@@ -14,7 +14,7 @@ const Workspace = () => {
 
   const data = useStaticQuery(graphql`
     query {
-      workspace1: file(relativePath: { eq: "about/workspace-1.png" }) {
+      workspace1: file(relativePath: { eq: "about/workspace-1.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
             ...GatsbyImageSharpFluid_noBase64
