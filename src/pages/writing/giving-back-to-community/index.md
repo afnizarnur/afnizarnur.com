@@ -1,0 +1,36 @@
+---
+title: Giving Back to Community
+featuredimage: ./giving-back-to-community.jpg
+date: 2019-10-07
+description: Thought in sharing knowledge and action to start to write again.
+category: Personal
+tags: ["thoughts", "community", "sharing"]
+---
+
+When I started self-taught design in 2013–in vocational high school, I remembered that learning resources with the Indonesian language are very few. Some examples there are [Jurus Grafis](https://www.facebook.com/jurusgrafis) that managed by [Richard Fang](https://id.linkedin.com/in/rfang), [Jaka Zulham](https://jakajulham.com/), and majuter.us by [Leo Ari Wibowo](https://www.behance.net/LeoAW). But unfortunately, all of the websites I mentioned is no longer active.
+
+Language barriers make me obliged to learn more English. Basically, when I was in elementary school, I took private lessons with my aunt. But somehow, until high school, I still did not understand enough with English. It seems to be true the words of people on the Internet, we need to practice it continuously every day by writing and speaking English.
+
+> The first keyword in mastering something is practice, but practicing is actually not enough.
+
+## About Learning
+
+One year later, in 2014, when I was in the second year of high school, at that time, there was an English class. The teacher gives the task to tell in front of the class our hobbies. I told to everyone in front of the class, that my hobby is designing in Photoshop for 8 hours every week because I heard it took 1000 hours for someone to master something. At that time, I was thrilled to design in Photoshop because of the strong desire to participate and win in a competition. Although Photoshop always not responding after 2 hours 😅. Understandably, the laptop at that time was only a laptop with 2GB RAM, with a Core 2 Duo processor, I borrow from my Dad when I was in 7th grade. Thanks, Dad! Even though the laptop eventually became my personal laptop until I graduated from vocational high school.
+
+Back in English class, I remember very well when the teacher commented on what I said. He said:
+
+> Practicing is not enough. Share your knowledge, no need to master it to share it, knowledge will not be used up when someone receives that knowledge until the end of your life.
+
+From his comment, I was intrigued and started to take many opportunities to share by becoming a scout instructor (yes, I am a scout!), leading a computer organization, speaking in front of many people, and being a workshop facilitator. This is a photo of me sharing about the process of UI Design in the industry, the event located in Tegal, Central Java.
+
+![Workshop at Tegal, Jawa Tengah](./afnizar-tegal-invofest.jpg "Workshop at Tegal, Jawa Tengah")
+
+---
+
+## Starting to write more
+
+But there is one thing that has never been consistent until now, writing! 2 years ago I once set up a blog and have written one post, even though it's only 'Hello World'. Not only design that needs to be consistent, consistent in writing is difficult.
+
+With this new zone in writing, I hope I can be more consistent in writing because, by writing, I believe I can share more of my knowledge and expertise so that it help=s more people to dare to start or who have started to get involved in the design world. **Yes, it's time to give back to the community**.
+
+Thank you if you read this until the end. By the way, this website is my second version of the website, which contains a portfolio of work, and indeed I deliberately design and develop it as a place to document work and share knowledge. You can follow me on Twitter [@afnizarnur](https://twitter.com/afnizarnur) to stay up to date.
