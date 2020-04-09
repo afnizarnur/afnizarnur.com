@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "https://pay.afnizarnur.com/*"
-  to = "https://afnizarnur.com/pay/:splat"
-  status = 200
+  from = "https://pay.afnizarnur.com/"
+  to = "https://afnizarnur.com/pay/"
+  status = 301
   force = true
