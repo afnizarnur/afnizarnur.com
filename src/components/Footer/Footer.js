@@ -1,6 +1,6 @@
 import React from "react"
 import { Box, Flex, Link } from "rebass"
-import { Title, Paragraph } from "../Typography"
+import { Title2, Paragraph } from "../Typography"
 import DefaultLayout from "../Layouts/Default"
 import FullLayout from "../Layouts/Full"
 import Mini from "./Mini"
@@ -25,19 +25,18 @@ const Footer = ({ ...props }) => {
   return (
     <FullLayout>
       <Flex
-        paddingTop={[6, 7, 11]}
+        paddingTop={[6, 7, 7]}
         paddingBottom={[6, 6, "5.1875rem"]}
         bg="white"
         {...props}
       >
         <DefaultLayout>
-          <Title>
+          <Title2>
             I'm always down for a coffee, feel free to get in touch!
-          </Title>
+          </Title2>
           <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={[5, 5, 12]}>
             Let’s talk about anything from design, accessibility, front-end
-            development, prototyping, and technology. Shoot me an email and we
-            can work something out.
+            development, prototyping, and technology.
           </Paragraph>
           <Box fontSize={2}>
             <ButtonPrimary href="mailto:afnizarhilmi@gmail.com">

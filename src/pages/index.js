@@ -82,7 +82,7 @@ const IndexPage = props => {
                 a { display: inline-block; }
               }"
               mt={[13, 13, 12]}
-              mb={3}
+              mb={[13, 13, 12]}
             >
               <ButtonPrimary
                 className="btnSelectedWork"
@@ -129,7 +129,6 @@ const IndexPage = props => {
               featuredimage1alt="Color Finder"
               featuredimage2alt="Illustration Organizer Sketch Plugin"
               featuredimage3alt="Context"
-              mb={14}
             />
 
             <ProjectList />
