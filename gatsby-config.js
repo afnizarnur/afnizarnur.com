@@ -127,13 +127,26 @@ const plugins = [
       ],
     },
   },
+  {
+    resolve: `gatsby-plugin-sitemap`,
+    options: {
+      exclude: [`/pay/*`],
+    },
+  },
+  {
+    resolve: "gatsby-plugin-robots-txt",
+    options: {
+      host: "https://afnizarnur.com",
+      sitemap: "https://afnizarnur.com/sitemap.xml",
+      policy: [{ userAgent: "*", allow: "/", disallow: ["/pay"] }],
+    },
+  },
   "gatsby-transformer-json",
   "gatsby-transformer-sharp",
   "gatsby-plugin-catch-links",
   "gatsby-plugin-react-helmet",
   "gatsby-plugin-sharp",
   "gatsby-plugin-layout",
-  "gatsby-plugin-sitemap",
   "gatsby-plugin-styled-components",
   "gatsby-plugin-offline",
 ]
