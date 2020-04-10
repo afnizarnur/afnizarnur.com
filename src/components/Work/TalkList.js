@@ -53,8 +53,8 @@ const TalkList = ({ ...props }) => {
     >
       <DefaultLayout>
         <Title2 color="white" mb={[6, 6, 14]}>
-          I love being able to share and help others through work and learning
-          experience
+          In between my works, I love to share and help others by speaking and
+          run workshops
         </Title2>
 
         <Box css={"position: relative"} {...outerCollapseProps()}>
