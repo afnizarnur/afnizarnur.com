@@ -17,21 +17,21 @@ const Workspace = () => {
       workspace1: file(relativePath: { eq: "about/workspace-1.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid
           }
         }
       }
       workspace2: file(relativePath: { eq: "about/workspace-2.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid
           }
         }
       }
       workspace3: file(relativePath: { eq: "about/workspace-3.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid
           }
         }
       }
