@@ -26,7 +26,7 @@ const Mini = ({ ...props }) => {
     >
       <Box>
         <Paragraph fontSize={2} color={theme.colors.gray[1]} paddingRight={4}>
-          Follow me for more thoughts and regular updates on{" "}
+          Follow me for more thoughts and updates on{" "}
           <ViewLink href="https://twitter.com/afnizarnur">Twitter</ViewLink>,{" "}
           <ViewLink href="https://dribbble.com/afnizarnur">Dribbble</ViewLink>,{" "}
           <ViewLink href="https://behance.net/afnizarnur">Behance</ViewLink>,
