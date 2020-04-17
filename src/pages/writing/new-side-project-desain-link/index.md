@@ -7,8 +7,6 @@ category: Side Project
 tags: ["side project", "web design", "design", "bookmark"]
 ---
 
-
-
 In this situation of COVID-19 pandemic, to stay sane and to stay productive, we've to keep doing that makes us happy, so it will maintain our mental health is on track. There a lot of things that can help, for example, by doing our hobbies, writing, reading, playing games, volunteering, or doing side project! Yes, another side project 😂.
 
 Announcing my newest side project [desain.link](https://desain.link)!

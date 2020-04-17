@@ -102,7 +102,7 @@ const BlogPage = () => {
                 css="animation: fadeInBottom 1s 0.75s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
               >
                 I occasionally write about what work I’ve been doing and share
-                my thoughts on design.
+                my thoughts on anything from design to personal life.
               </Paragraph>
             </Header>
 
