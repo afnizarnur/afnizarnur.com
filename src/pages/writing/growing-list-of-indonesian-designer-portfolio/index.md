@@ -35,7 +35,7 @@ So, here's the list:
 
 - [Briandito Priambodo](https://www.briandito.co/)
 
-  Brianindito is a Product Designer at Wego. He run the belajardesain.io.
+  Briandito Priambodo is a Product Designer at Wego. He run the belajardesain.io.
 
 - [Ilyas Fahreza](https://ilyasf.design/index.html)
 
