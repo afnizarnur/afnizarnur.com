@@ -39,7 +39,7 @@ So, here's the list:
 
 - [Ilyas Fahreza](https://ilyasf.design/index.html)
 
-  Ilyas Fahreza is product designer at Traveloka.
+  Ilyas Fahreza is product designer at Traveloka. He is one of my friend with great illustration skill!
 
 - [Thomas Budiman](https://thebuddyman.com/)
 
@@ -48,5 +48,8 @@ So, here's the list:
 - [Fares Farhan](http://f.madebychocaholic.com/)
 
   Fares Farhan is head of user experience & design at Smartfren. Previously, he worked at DBS Bank, Dropbox, and Xamarin.
+
+- [Nunki Rehuellany](https://www.heynunki.com/)
+  Nunki Rehuellany is interaction designer at Gojek.
 
 If you know someone has a portfolio site, let me know by send me DM on [Twitter](https://twitter.com/afnizarnur). I'll keep this post updated.
