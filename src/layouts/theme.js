@@ -49,9 +49,9 @@ const fontSizes = [
 ]
 
 const lineHeights = {
-  title1: 1.25,
-  title2: 1.1,
-  copy: 1.75,
+  title1: 1.2,
+  title2: 1.2,
+  copy: 1.5,
 }
 
 const letterSpacings = {

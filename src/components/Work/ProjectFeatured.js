@@ -36,26 +36,7 @@ const ProjectFeatured = ({ title, description, ...props }) => {
   }
   return (
     <Box mb={["4.5rem", 9, 11]} {...props}>
-      <Title2>{title}</Title2>
-      <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={4}>
-        {description}
-      </Paragraph>
-
-      {props.link ? (
-        <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
-          View Project
-        </ViewProject>
-      ) : (
-        <DisabledButton
-          title="I'm still writing the case study, will publish it soon!"
-          className="disable"
-          fontSize={[2, 2]}
-          fontWeight="bold"
-        >
-          Case Study In Progress
-        </DisabledButton>
-      )}
-      <Box mt={[5, 13]}>
+      <Box mb={[5, 13]}>
         <Carousel
           emulateTouch
           showStatus={false}
@@ -87,6 +68,26 @@ const ProjectFeatured = ({ title, description, ...props }) => {
           </div>
         </Carousel>
       </Box>
+
+      <Title2>{title}</Title2>
+      <Paragraph fontSize={[2, 3]} mt={[4, 5]} mb={4}>
+        {description}
+      </Paragraph>
+
+      {props.link ? (
+        <ViewProject fontSize={[2, 3]} fontWeight="bold" href={props.link}>
+          View Project
+        </ViewProject>
+      ) : (
+        <DisabledButton
+          title="I'm still writing the case study, will publish it soon!"
+          className="disable"
+          fontSize={[2, 2]}
+          fontWeight="bold"
+        >
+          Case Study In Progress
+        </DisabledButton>
+      )}
     </Box>
   )
 }
