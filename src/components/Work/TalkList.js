@@ -60,6 +60,11 @@ const TalkList = ({ ...props }) => {
         <Box css={"position: relative"} {...outerCollapseProps()}>
           <Box css={"margin: 0 "}>
             <TalkItem
+              link="https://www.figma.com/community/file/840269596065453337/Careers-101%3A-Prepare-to-applying-jobs-or-intern"
+              title="Careers 101: Prepare to applying jobs or intern"
+              short="This talk is about what to prepare when applying jobs or intern. Presented in my high school community called Jagongan Stematel."
+            />
+            <TalkItem
               link="https://speakerdeck.com/afnizarnur/easily-structure-and-communicate-ideas-using-wireframe"
               title="Easily Structure & Communicate Ideas using Wireframe"
               short="This talk discusses how wireframes can help in developing ideas and how to build them."
@@ -74,13 +79,13 @@ const TalkList = ({ ...props }) => {
               title="Designing Experience and Interface"
               short="This talk is about introduction of designing experience in building product."
             />
+          </Box>
+          <Box {...innerCollapseProps({ style: { margin: 0 } })}>
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/craft-solution-using-design-thinking"
               title="Craft Solution using Design Thinking"
               short="Facilitate workshop about design thinking, from identifying the problem to crafting the solution."
             />
-          </Box>
-          <Box {...innerCollapseProps({ style: { margin: 0 } })}>
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/building-instagram-like-prototype-using-framer"
               title="Building Instagram-like Prototype using Framer"
