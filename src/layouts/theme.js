@@ -49,7 +49,7 @@ const fontSizes = [
 ]
 
 const lineHeights = {
-  title1: 1.2,
+  title1: 1.1,
   title2: 1.2,
   copy: 1.5,
 }
