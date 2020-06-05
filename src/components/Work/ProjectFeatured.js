@@ -55,6 +55,7 @@ const ProjectFeatured = ({ title, description, ...props }) => {
           Case Study In Progress
         </DisabledButton>
       )}
+
       <Box mt={[5, 13]}>
         <Carousel
           emulateTouch

@@ -9,7 +9,7 @@ const Title = ({ children, ...props }) => (
     mb={3}
     fontSize={["2.5rem", 5, 6]}
     letterSpacing={[theme.letterSpacings.title2, theme.letterSpacings.title1]}
-    lineHeight={[theme.lineHeights.title1, theme.lineHeights.title2]}
+    lineHeight={[theme.lineHeights.title1, theme.lineHeights.title1]}
     color={theme.colors.black}
     {...props}
   >

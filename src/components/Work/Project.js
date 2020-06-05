@@ -43,10 +43,10 @@ const Project = ({ ...props }) => {
         </Text>
       )}
 
-      <Paragraph fontSize={[2]} mt={[2]}>
+      <Paragraph fontSize={[2]} mt={[4]}>
         {props.description}
       </Paragraph>
-      <Box mt="1.25rem">
+      <Box mt={[5]}>
         <Img
           style={imageWrapperStyle}
           alt={props.imagealt}

@@ -16,10 +16,10 @@ const DesignProcessItem = ({ ...props }) => {
       >
         {props.number}
       </Box>
-      <Text fontSize={[2, 3]} fontWeight="bold" mb={2}>
+      <Text fontSize={[2, 3]} fontWeight="bold">
         {props.name}
       </Text>
-      <Paragraph fontSize={[2]} mt={[2]}>
+      <Paragraph fontSize={[2]} mt={4}>
         {props.description}
       </Paragraph>
     </Box>
