@@ -25,14 +25,14 @@ const AppItem = ({ ...props }) => {
       <Box mb={4}>
         <Img alt={props.alticon} sizes={props.imgsrc} style={imageStyle} />
       </Box>
-      <Text target="blank" fontSize={3} fontWeight="bold" mb={2}>
+      <Text target="blank" fontSize={3} fontWeight="bold">
         {props.title}
       </Text>
       <Paragraph
         color={theme.colors.white}
         css="opacity: .8"
         fontSize={[2]}
-        mt={[2]}
+        mt={[4]}
       >
         {props.description}
       </Paragraph>

@@ -26,14 +26,14 @@ const TalkItem = ({ ...props }) => {
       width={[1, 1 / 2, 1 / 2]}
       verticalAlign="text-top"
     >
-      <ViewLink fontSize={3} fontWeight="bold" mb={2} href={props.link}>
+      <ViewLink fontSize={3} fontWeight="bold" href={props.link}>
         {props.title}
       </ViewLink>
       <Paragraph
         color={theme.colors.white}
         css="opacity: .8"
         fontSize={[2]}
-        mt={[2]}
+        mt={4}
       >
         {props.short}
       </Paragraph>

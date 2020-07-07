@@ -35,11 +35,11 @@ So, here's the list:
 
 - [Briandito Priambodo](https://www.briandito.co/)
 
-  Brianindito is a Product Designer at Wego. He run the belajardesain.io.
+  Briandito Priambodo is a Product Designer at Wego. He run the belajardesain.io.
 
 - [Ilyas Fahreza](https://ilyasf.design/index.html)
 
-  Ilyas Fahreza is product designer at Traveloka.
+  Ilyas Fahreza is product designer at Traveloka. He is one of my friend with great illustration skill!
 
 - [Thomas Budiman](https://thebuddyman.com/)
 
@@ -52,5 +52,9 @@ So, here's the list:
 - [Arie](https://arieare.co/)
 
   Arie is design lead at Traveloka.
+  
+- [Nunki Rehuellany](https://www.heynunki.com/)
+
+  Nunki Rehuellany is interaction designer at Gojek.
 
 If you know someone has a portfolio site, let me know by send me DM on [Twitter](https://twitter.com/afnizarnur). I'll keep this post updated.

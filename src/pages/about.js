@@ -58,19 +58,23 @@ const AboutPage = ({ ...props }) => {
                   working freelance and part-time in various startup and agency
                   – local and international.
                 </Paragraph>
-                <Paragraph fontSize={[2]} mb={[6, 6, 9]}>
+                <Paragraph fontSize={[2]} mb={[3]}>
                   I’m passionate about all areas of design and I believe in
                   design as a better approach to solving human problem. My
                   interests in design include interaction design, accessibility,
-                  and technological design. Beside that, I do front-end
-                  development by writing HTML, CSS, Javascript and React. This
-                  portfolio you are looking for also one of my work. I love
-                  mentoring designer to code, because I believe with coding,
-                  designer can create more impactful experiences by embracing
-                  the technicalities that make it happens. I’m always excited to
-                  connect with everyone and am open to speaking opportunities,
-                  so please don’t hesitate to get in touch. Anyway, thanks for
-                  viewing my portfolio!
+                  and technological design.
+                </Paragraph>
+                <Paragraph fontSize={[2]} mb={[3]}>
+                  In between my works, I do front-end development and mentoring
+                  designer to code. I believe with coding, designer can create
+                  more impactful experiences by embracing the technicalities
+                  that make it happens. I enjoy writing HTML, CSS, Javascript
+                  and React.
+                </Paragraph>
+                <Paragraph fontSize={[2]} mb={[6, 6, 9]}>
+                  I’m always excited to connect with everyone and am open to
+                  speaking opportunities, so please don’t hesitate to get in
+                  touch. Anyway, thanks for viewing my portfolio!
                 </Paragraph>
               </Box>
             </DefaultLayout>

@@ -65,7 +65,7 @@ const ProjectList = ({ title, description, ...props }) => {
   `)
   return (
     <Box mb={["3.5rem", "3.5rem", 14]} {...props}>
-      <Title3 mb={[5, 13]}>A few projects that I have worked on</Title3>
+      <Title3 mb={[5, 6]}>A few projects that I have worked on</Title3>
       <Flex justifyContent="space-between" flexWrap="wrap">
         <Project
           name="DANA"
