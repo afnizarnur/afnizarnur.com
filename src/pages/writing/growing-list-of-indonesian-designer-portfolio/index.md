@@ -49,4 +49,8 @@ So, here's the list:
 
   Fares Farhan is head of user experience & design at Smartfren. Previously, he worked at DBS Bank, Dropbox, and Xamarin.
 
+- [Arie](https://arieare.co/)
+
+  Arie is design lead at Traveloka.
+
 If you know someone has a portfolio site, let me know by send me DM on [Twitter](https://twitter.com/afnizarnur). I'll keep this post updated.
