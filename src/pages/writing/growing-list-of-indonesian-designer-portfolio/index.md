@@ -49,6 +49,10 @@ So, here's the list:
 
   Fares Farhan is head of user experience & design at Smartfren. Previously, he worked at DBS Bank, Dropbox, and Xamarin.
 
+- [Arie](https://arieare.co/)
+
+  Arie is design lead at Traveloka.
+  
 - [Nunki Rehuellany](https://www.heynunki.com/)
 
   Nunki Rehuellany is interaction designer at Gojek.
