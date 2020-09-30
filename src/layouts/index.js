@@ -84,15 +84,15 @@ const GlobalStyles = createGlobalStyle`
 
   @keyframes slideDown{
     0% {
-      transform: translateY(5px) rotate(180deg);
+      transform: translateY(5px);
     }
 
     50% {
-      transform: translateY(-2px) rotate(180deg);
+      transform: translateY(-2px);
     }
   
     100% {
-      transform: translateY(5px) rotate(180deg);
+      transform: translateY(5px);
     }
   }
 

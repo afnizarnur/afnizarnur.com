@@ -46,6 +46,7 @@ const fontSizes = [
   "3.75rem",
   "5.25rem",
   "6rem",
+  "4.5rem",
 ]
 
 const lineHeights = {

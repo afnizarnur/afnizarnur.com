@@ -71,8 +71,8 @@ const IndexPage = props => {
               Afnizar Nur Ghifari, Designer at Bukalapak
             </Paragraph>
             <Title
-              mt={[5, 6]}
-              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+              mt={[5]}
+              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards; width: 70%;"
             >
               Crafting meaningful digital experiences through design
             </Title>
@@ -95,7 +95,7 @@ const IndexPage = props => {
                   className="scrollWork"
                   ml={[4]}
                   css="max-width: 1000%; width:14px; height: 14px; animation: slideDown 1s 0.75s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;"
-                  src={"../assets/arrow-up.svg"}
+                  src={"../assets/arrow-down.svg"}
                   alt="Scroll to Selected Work"
                 />
               </ButtonPrimary>
