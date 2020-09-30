@@ -13,15 +13,14 @@ if (typeof window !== "undefined") {
 }
 
 const GlobalStyles = createGlobalStyle`
-  * {
-    font-family: "Inter", system-ui, -apple-system, sans-serif;
-  }
-
   ::selection {
     background-color: ${({ theme }) => theme.colors.gray[0]};
     color: ${({ theme }) => theme.colors.black};
   }
 
+  body {
+    font-family: ${({ theme }) => theme.fonts.sans}
+  }
 
   a {
     color: inherit;
