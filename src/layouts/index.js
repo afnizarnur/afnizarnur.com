@@ -167,7 +167,7 @@ const Layout = ({ children, theme }) => {
         />
       </Helmet>
 
-      <a id="top"></a>
+      <div id="top"></div>
       {children}
     </>
   )
