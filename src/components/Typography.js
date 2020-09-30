@@ -7,8 +7,8 @@ const Title = ({ children, ...props }) => (
   <Heading
     as="h1"
     mb={3}
-    fontSize={["2.5rem", 4, 8]}
-    letterSpacing={[theme.letterSpacings.title1]}
+    fontSize={["2.5rem", 8]}
+    letterSpacing={[theme.letterSpacings.title2, theme.letterSpacings.title1]}
     lineHeight={[theme.lineHeights.title1, theme.lineHeights.title1]}
     color={theme.colors.black}
     {...props}

@@ -72,7 +72,7 @@ const IndexPage = props => {
             </Paragraph>
             <Title
               mt={[5]}
-              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards; width: 70%;"
+              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards; width: 80%;"
             >
               Crafting meaningful digital experiences through design
             </Title>
@@ -122,7 +122,7 @@ const IndexPage = props => {
 
             <ProjectFeatured
               title="Design Tooling: I help designers to improve their workflows"
-              description="As a designer who codes, I try to help my design team by building tools like web app and sketch plugin to improve their workflows."
+              description="As a designer who codes, I try to help my design team by building tools like web app, Sketch plugin, or Figma plugin to improve their workflows."
               featuredimage1={props.data.dt1.childImageSharp.fluid}
               featuredimage2={props.data.dt2.childImageSharp.fluid}
               featuredimage3={props.data.dt3.childImageSharp.fluid}
