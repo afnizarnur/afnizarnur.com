@@ -52,7 +52,7 @@ So, here's the list:
 - [Arie](https://arieare.co/)
 
   Arie is design lead at Traveloka.
-  
+
 - [Nunki Rehuellany](https://www.heynunki.com/)
 
   Nunki Rehuellany is interaction designer at Gojek.
