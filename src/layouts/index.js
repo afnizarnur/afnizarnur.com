@@ -55,6 +55,14 @@ const GlobalStyles = createGlobalStyle`
     color: white;
   }
 
+  .carousel .slider-wrapper {
+    border-radius: 20px!important;
+  }
+
+  .carousel.carousel-slider .control-arrow:hover {
+    background: none!important;
+  }
+
   .carousel .slide {
     background-color: ${({ theme }) => theme.colors.white}!important;
   }
