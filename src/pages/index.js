@@ -72,7 +72,12 @@ const IndexPage = props => {
             </Paragraph>
             <Title
               mt={[5]}
-              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards; width: 80%;"
+              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards; @media only screen and (min-width: 48em) {
+                width: 80%;
+              }
+              @media only screen and (max-width: 48em) {
+                width: 100%;
+              }"
             >
               Crafting meaningful digital experiences through design
             </Title>
