@@ -21,7 +21,7 @@
 
 ---
 
-![meta-image-default](https://user-images.githubusercontent.com/4648648/80457340-56d33b80-8959-11ea-83d7-0dd3ed1d1571.jpg)
+![meta-image-default](https://user-images.githubusercontent.com/4648648/101443739-b6aead80-3950-11eb-82b1-5248352ea170.jpg)
 
 ## Background
 
