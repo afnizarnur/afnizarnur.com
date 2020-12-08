@@ -13,11 +13,6 @@ import theme from "../layouts/theme"
 const AboutPage = ({ ...props }) => {
   const { title } = useSiteMetadata()
 
-  const imageStyle = {
-    width: "100%",
-    borderRadius: theme.radii[2],
-  }
-
   return (
     <>
       <Helmet>
@@ -52,7 +47,7 @@ const AboutPage = ({ ...props }) => {
                   mb={[3, 5, 5]}
                   color={theme.colors.black}
                 >
-                  Hi, my name is Afnizar. I am a fresh graduate from Bachelor of
+                  Hi, my name is Afnizar. I am a designer with background of engineering. I graduate from Bachelor of
                   Computer Science at Telkom University, Bandung. I have been
                   designing since high school, from there I got opportunity to
                   working freelance and part-time in various startup and agency
@@ -68,7 +63,7 @@ const AboutPage = ({ ...props }) => {
                   In between my works, I do front-end development and mentoring
                   designer to code. I believe with coding, designer can create
                   more impactful experiences by embracing the technicalities
-                  that make it happens. I enjoy writing HTML, CSS, Javascript
+                  that make it happens. I enjoy writing HTML, CSS, Javascript,
                   and React.
                 </Paragraph>
                 <Paragraph fontSize={[2]} mb={[6, 6, 9]}>
