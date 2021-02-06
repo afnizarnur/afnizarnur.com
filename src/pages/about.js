@@ -47,11 +47,12 @@ const AboutPage = ({ ...props }) => {
                   mb={[3, 5, 5]}
                   color={theme.colors.black}
                 >
-                  Hi, my name is Afnizar. I am a designer with background of engineering. I graduate from Bachelor of
-                  Computer Science at Telkom University, Bandung. I have been
-                  designing since high school, from there I got opportunity to
-                  working freelance and part-time in various startup and agency
-                  – local and international.
+                  Hi, my name is Afnizar. I am a designer with background of
+                  engineering. I graduate from Bachelor of Computer Science at
+                  Telkom University, Bandung. I have been designing since high
+                  school, from there I got opportunity to working freelance and
+                  part-time in various startup and agency – local and
+                  international.
                 </Paragraph>
                 <Paragraph fontSize={[2]} mb={[3]}>
                   I’m passionate about all areas of design and I believe in
