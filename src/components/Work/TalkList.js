@@ -121,8 +121,8 @@ const TalkList = ({ ...props }) => {
           fontSize={[2, 3]}
           marginTop={6}
         >
-          I'm currently open for speaking or workshop about design and
-          technology. Want to invite me to speak at your event?{" "}
+          I'm currently not available for speaking or workshop about design and
+          technology. Still want to invite me to speak at your event?{" "}
           <GoToLink href="mailto:afnizarhilmi@gmail.com">Get in touch</GoToLink>
           .
         </Paragraph>
