@@ -68,7 +68,7 @@ const IndexPage = props => {
               fontSize={[2, 3]}
               mt={[6, 9]}
             >
-              Afnizar Nur Ghifari, Designer
+              Afnizar Nur Ghifari, Product Designer
             </Paragraph>
             <Title
               mt={[5]}
