@@ -1,9 +1,12 @@
 .nav {
+    display: flex;
+    align-items: center;
     &__menu {
         display: none;
         position: absolute;
         left: 0;
         right: 0;
+        top: 80px;
         background-color: #fff;
     }
     &__link {
