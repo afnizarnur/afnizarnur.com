@@ -1,0 +1,38 @@
+.nav {
+    &__menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+    }
+    &__link {
+        display: block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        color: $black-01;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__toggle {
+        @include button-reset;
+    }
+
+    @include mq-down(lg) {
+        &.is-open &__menu {
+            display: block;
+        }
+    }
+
+    @include mq(lg) {
+        &__toggle {
+            display: none;
+        }
+        &__menu {
+            display: flex;
+            position: static;
+            background-color: transparent;
+        }
+    }
+}

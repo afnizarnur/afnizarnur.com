@@ -1,2 +1,26 @@
-[[plugins]]
-  package = "netlify-plugin-gatsby-cache"
+[build]
+    command = "npm run build"
+    publish = "dist"
+
+[context.production.environment]
+    ELEVENTY_ENV = "production"
+
+[[headers]]
+    for = "/*"
+    [headers.values]
+        X-Frame-Options = "DENY"
+        X-XSS-Protection = "1; mode=block"
+        X-Content-Type-Options = "nosniff"
+        Referrer-Policy= "no-referrer-when-downgrade"
+        Permissions-Policy = "interest-cohort=()"
+
+# [[redirects]]
+#     from = "https://eleventastic.netlify.com/*"
+#     to = "https://eleventastic.dev/:splat"
+#     status = 301
+#     force = true
+
+[[redirects]]
+    from = "*"
+    to = "/404"
+    status = 404
