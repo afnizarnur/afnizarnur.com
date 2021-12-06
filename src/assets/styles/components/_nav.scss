@@ -13,7 +13,7 @@
         display: block;
         padding: 0.5em 1em;
         text-decoration: none;
-        color: $black-01;
+        color: var(--color-text);
         &:hover {
             text-decoration: underline;
         }

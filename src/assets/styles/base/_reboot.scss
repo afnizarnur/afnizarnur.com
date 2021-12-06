@@ -70,8 +70,11 @@ html {
 html {
     // Sets a specific default `font-size` for user with `rem` type scales.
     font-size: $font-size-root;
+    font-size: var(--font-size-root, #{$font-size-root});
     // Changes the default tap highlight to be completely transparent in iOS.
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    --font-family-base: #{$font-family-base};
+    --font-family-display: #{$font-family-serif};
 }
 
 body {
@@ -80,8 +83,8 @@ body {
     font-size: $font-size-base;
     line-height: $line-height;
 
-    color: $text-color;
-    background-color: $bg-color;
+    color: var(--color-text);
+    background-color: var(--color-bg);
 
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -230,4 +233,13 @@ input[type='search'] {
     // be added to `.form-control` as it's not specific enough. For details, see
     // https://github.com/twbs/bootstrap/issues/11586.
     -webkit-appearance: none;
+}
+
+::selection {
+    background: var(--color-secondary);
+    color: #fff;
+}
+::-moz-selection {
+    background: var(--color-secondary);
+    color: #fff;
 }

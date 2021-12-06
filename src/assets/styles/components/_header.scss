@@ -8,11 +8,7 @@
     }
 
     &__logo {
-        background-image: url("http://localhost:8080/assets/images/header-logo.svg");
-        background-size: 79px;
-        width: 78px;
-        height: 78px;
-
+        fill: var(--color-text);
         &:hover {
             animation-play-state: paused;
         }
@@ -20,6 +16,18 @@
 
     &__right {
         display: flex;
+        align-items: center;
+    }
+
+    &__themebtn {
+        margin-left: 1em;
+        transition: 0.1s ease-in-out;
+        fill: red;
+
+        &:hover {
+            opacity: .5;
+            transition: 0.1s ease-in-out;
+        }
     }
 
 }

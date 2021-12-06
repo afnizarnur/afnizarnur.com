@@ -20,5 +20,9 @@ module.exports = {
             chars.unshift(['&#', str[i].charCodeAt(), ';'].join(''))
         }
         return chars.join('')
-    }
+    },
+
+    findById: function (array, id) {
+        return array.find((i) => i.id === id)
+    },
 }
