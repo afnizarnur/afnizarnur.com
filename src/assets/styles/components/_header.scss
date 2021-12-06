@@ -12,6 +12,10 @@
         background-size: 79px;
         width: 78px;
         height: 78px;
+
+        &:hover {
+            animation-play-state: paused;
+        }
     }
 
     &__right {

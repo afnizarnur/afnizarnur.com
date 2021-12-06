@@ -3,7 +3,6 @@
 //--------------------
 
 // Grid breakpoints
-//
 // Define the minimum and maximum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
@@ -13,10 +12,9 @@ $breakpoints: (
     xl: 1260px
 );
 
-$container-max-width: 1200px;
+$container-max-width: 1248px;
 
 // Z-Index Stack
-//
 // Control the order of layers in the application
 $z-layers: (
     'modal': 999,
@@ -25,7 +23,6 @@ $z-layers: (
 );
 
 // Colors
-//
 // Grayscale.
 
 
@@ -65,7 +62,6 @@ $font-size-base: 1.125rem;
 $line-height: 1.5;
 
 // Animation
-//
 // Default easing curves, Transitions, etc
 
 $animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1);
@@ -74,7 +70,6 @@ $animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1);
 $animation-curve-default: $animation-curve-fast-out-slow-in;
 
 // Misc Shared
-//
 // common shared styles
 
 $spacing-x: 2rem;
