@@ -4,7 +4,7 @@
         "name": "Default",
         "colors": {
             "primary": "#ff335f",
-            "secondary": "#43a9a3",
+            "secondary": "#191A1B",
             "text": "#191A1B",
             "border": "#eceeef",
             "background": "#ffffff",
@@ -18,7 +18,7 @@
         "name": "Dark",
         "colors": {
             "primary": "#ff5277",
-            "secondary": "#43a9a3",
+            "secondary": "#818588",
             "text": "#ffffff",
             "border": "#2d2d2d",
             "background": "#0e141b",
@@ -32,7 +32,7 @@
         "name": "Gray",
         "colors": {
             "primary": "#ff335f",
-            "secondary": "#43a9a3",
+            "secondary": "#191A1B",
             "text": "#191A1B",
             "border": "#eceeef",
             "background": "#D1D1D1",
