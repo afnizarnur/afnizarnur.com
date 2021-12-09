@@ -29,13 +29,30 @@ class ThemePicker {
     }
 
     bindEvents() {
-        let themeList = ["default", "dark"]
-
         this.toggleBtn.addEventListener("click", () =>
-            this.setTheme(
-                themeList[Math.floor(Math.random() * themeList.length)]
-            )
+            this.themeRoller(this.activeTheme)
         )
+    }
+
+    themeRoller(theme) {
+        let nextTheme
+        if (theme === "default") {
+            nextTheme = "dark"
+        } else if (theme === "dark") {
+            nextTheme = "gray"
+        } else if (theme === "gray") {
+            nextTheme = "blue"
+        } else if (theme === "blue") {
+            nextTheme = "pink"
+        } else if (theme === "pink") {
+            nextTheme = "purple"
+        } else if (theme === "purple") {
+            nextTheme = "hacker"
+        } else {
+            nextTheme = "default"
+        }
+
+        return this.setTheme(nextTheme)
     }
 
     getSystemPreference() {
@@ -57,7 +74,6 @@ class ThemePicker {
         document.documentElement.setAttribute("data-theme", id)
 
         if (this.hasLocalStorage) {
-            console.log(id)
             localStorage.setItem(THEME_STORAGE_KEY, id)
         }
     }

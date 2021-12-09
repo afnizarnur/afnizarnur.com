@@ -5,7 +5,7 @@
         "colors": {
             "primary": "#ff335f",
             "secondary": "#43a9a3",
-            "text": "#373a3c",
+            "text": "#191A1B",
             "border": "#eceeef",
             "background": "#ffffff",
             "primaryOffset": "#ff1447",
@@ -22,6 +22,76 @@
             "text": "#ffffff",
             "border": "#2d2d2d",
             "background": "#0e141b",
+            "primaryOffset": "#ff2957",
+            "textOffset": "#818a91",
+            "backgroundOffset": "#252526"
+        }
+    },
+    {
+        "id": "gray",
+        "name": "Gray",
+        "colors": {
+            "primary": "#ff335f",
+            "secondary": "#43a9a3",
+            "text": "#191A1B",
+            "border": "#eceeef",
+            "background": "#D1D1D1",
+            "primaryOffset": "#ff1447",
+            "textOffset": "#818a91",
+            "backgroundOffset": "#f7f7f9"
+        }
+    },
+    {
+        "id": "blue",
+        "name": "Blue",
+        "colors": {
+            "primary": "#ff335f",
+            "secondary": "#43a9a3",
+            "text": "#ffffff",
+            "border": "#eceeef",
+            "background": "#0F5FEF",
+            "primaryOffset": "#ff1447",
+            "textOffset": "#818a91",
+            "backgroundOffset": "#f7f7f9"
+        }
+    }, 
+    {
+        "id": "pink",
+        "name": "Pink",
+        "colors": {
+            "primary": "#ff5277",
+            "secondary": "#43a9a3",
+            "text": "#ffffff",
+            "border": "#2d2d2d",
+            "background": "#C59BBE",
+            "primaryOffset": "#ff2957",
+            "textOffset": "#818a91",
+            "backgroundOffset": "#252526"
+        }
+    },
+    {
+        "id": "purple",
+        "name": "Purple",
+        "colors": {
+            "primary": "#ff335f",
+            "secondary": "#43a9a3",
+            "text": "#9E78E5",
+            "border": "#eceeef",
+            "background": "#000000",
+            "primaryOffset": "#ff1447",
+            "textOffset": "#818a91",
+            "backgroundOffset": "#f7f7f9"
+        }
+    },
+    {
+        "id": "hacker",
+        "name": "Hacker",
+        "colors": {
+            "primary": "#ff5277",
+            "secondary": "#43a9a3",
+            "text": "#00CF35",
+            "border": "#2d2d2d",
+            "background": "#000000",
             "primaryOffset": "#ff2957",
             "textOffset": "#818a91",
             "backgroundOffset": "#252526"
