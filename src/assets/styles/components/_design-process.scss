@@ -1,0 +1,26 @@
+.design-process {
+    h2 {
+        font-weight: normal;
+        font-size: 2.25rem;
+        line-height: 1.2;
+        margin-bottom: 32px;
+        color: #191A1B;
+    }
+
+    &--card {
+        padding: 28px 28px 32px 28px;
+        border-radius: 32px;
+    }
+    &--observe {
+        background: #e3f3ea;
+        color: #474a4c;
+    }
+    &--reflect {
+        background: #fae7f7;
+        color: #474a4c;
+    }
+    &--make {
+        background: #f3f4f8;
+        color: #474a4c;
+    }
+}
