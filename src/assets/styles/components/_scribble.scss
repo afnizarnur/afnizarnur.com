@@ -1,0 +1,56 @@
+.scribble {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    line-height: 1.2;
+
+    &--label {
+        display: block;
+        font-family: "Nanum Pen Script", -apple-system, BlinkMacSystemFont,
+            "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+            "Helvetica Neue", sans-serif;
+        font-size: 1.625rem;
+    }
+
+    &--path {
+        display: block;
+        align-self: center;
+
+        svg {
+            fill: var(--color-text);
+        }
+    }
+}
+
+.scribble--design-process {
+    top: -50%;
+    left: 10%;
+
+    .scribble--label {
+        transform: rotate(-3deg);
+    }
+
+    .scribble--path {
+        display: block;
+        align-self: center;
+
+        transform: rotate(18.45deg) translateY(12px);
+    }
+}
+
+.scribble--intro-video {
+    top: -50%;
+    left: 10%;
+
+    .scribble--label {
+        transform: rotate(8deg);
+    }
+
+    .scribble--path {
+        display: block;
+        align-self: center;
+        transform: rotate(-8deg) translateY(4px);
+    }
+}

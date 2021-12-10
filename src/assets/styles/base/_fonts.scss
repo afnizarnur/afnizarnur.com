@@ -1,13 +1,3 @@
-// @font-face {
-//     font-family: 'Noe Display';
-//     font-style: normal;
-//     font-display: swap;
-//     font-weight: 400;
-//     src: local('Noe Display'), local('NoeDisplay-Regular'),
-//         url('/assets/fonts/noe-display-regular.woff2') format('woff2'),
-//         url('/assets/fonts/noe-display-regular.woff') format('woff');
-// }
-
 /**
  * @license
  *
@@ -18,90 +8,105 @@
  *
 */
 
+@font-face {
+    font-family: "Switzer-Regular";
+    src: url("/assets/fonts/Switzer-Regular.woff2") format("woff2"),
+        url("/assets/fonts/Switzer-Regular.woff") format("woff"),
+        url("/assets/fonts/Switzer-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
 
-  @font-face {
-    font-family: 'Switzer-Regular';
-    src: url('/assets/fonts/Switzer-Regular.woff2') format('woff2'),
-         url('/assets/fonts/Switzer-Regular.woff') format('woff'),
-         url('/assets/fonts/Switzer-Regular.ttf') format('truetype');
-         font-weight: 400;
-         font-display: swap;
-         font-style: normal;
-  }
-  
-  
-  @font-face {
-    font-family: 'Switzer-Italic';
-    src: url('/assets/fonts/Switzer-Italic.woff2') format('woff2'),
-         url('/assets/fonts/Switzer-Italic.woff') format('woff'),
-         url('/assets/fonts/Switzer-Italic.ttf') format('truetype');
-         font-weight: 400;
-         font-display: swap;
-         font-style: italic;
-  }
-  
-  
-  @font-face {
-    font-family: 'Switzer-Medium';
-    src: url('/assets/fonts/Switzer-Medium.woff2') format('woff2'),
-         url('/assets/fonts/Switzer-Medium.woff') format('woff'),
-         url('/assets/fonts/Switzer-Medium.ttf') format('truetype');
-         font-weight: 500;
-         font-display: swap;
-         font-style: normal;
-  }
-  
-  
-  @font-face {
-    font-family: 'Switzer-MediumItalic';
-    src: url('/assets/fonts/Switzer-MediumItalic.woff2') format('woff2'),
-         url('/assets/fonts/Switzer-MediumItalic.woff') format('woff'),
-         url('/assets/fonts/Switzer-MediumItalic.ttf') format('truetype');
-         font-weight: 500;
-         font-display: swap;
-         font-style: italic;
-  }
-  
-  
-  @font-face {
-    font-family: 'Switzer-Semibold';
-    src: url('/assets/fonts/Switzer-Semibold.woff2') format('woff2'),
-         url('/assets/fonts/Switzer-Semibold.woff') format('woff'),
-         url('/assets/fonts/Switzer-Semibold.ttf') format('truetype');
-         font-weight: 600;
-         font-display: swap;
-         font-style: normal;
-  }
-  
-  
-  @font-face {
-    font-family: 'Switzer-SemiboldItalic';
-    src: url('/assets/fonts/Switzer-SemiboldItalic.woff2') format('woff2'),
-         url('/assets/fonts/Switzer-SemiboldItalic.woff') format('woff'),
-         url('/assets/fonts/Switzer-SemiboldItalic.ttf') format('truetype');
-         font-weight: 600;
-         font-display: swap;
-         font-style: italic;
-  }
-  
-  
-  @font-face {
-    font-family: 'Switzer-Bold';
-    src: url('/assets/fonts/Switzer-Bold.woff2') format('woff2'),
-         url('/assets/fonts/Switzer-Bold.woff') format('woff'),
-         url('/assets/fonts/Switzer-Bold.ttf') format('truetype');
-         font-weight: 700;
-         font-display: swap;
-         font-style: normal;
-  }
-  
-  
-  @font-face {
-    font-family: 'Switzer-BoldItalic';
-    src: url('/assets/fonts/Switzer-BoldItalic.woff2') format('woff2'),
-         url('/assets/fonts/Switzer-BoldItalic.woff') format('woff'),
-         url('/assets/fonts/Switzer-BoldItalic.ttf') format('truetype');
-         font-weight: 700;
-         font-display: swap;
-         font-style: italic;
-  }
+@font-face {
+    font-family: "Switzer-Italic";
+    src: url("/assets/fonts/Switzer-Italic.woff2") format("woff2"),
+        url("/assets/fonts/Switzer-Italic.woff") format("woff"),
+        url("/assets/fonts/Switzer-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Switzer-Medium";
+    src: url("/assets/fonts/Switzer-Medium.woff2") format("woff2"),
+        url("/assets/fonts/Switzer-Medium.woff") format("woff"),
+        url("/assets/fonts/Switzer-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Switzer-MediumItalic";
+    src: url("/assets/fonts/Switzer-MediumItalic.woff2") format("woff2"),
+        url("/assets/fonts/Switzer-MediumItalic.woff") format("woff"),
+        url("/assets/fonts/Switzer-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-display: swap;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Switzer-Semibold";
+    src: url("/assets/fonts/Switzer-Semibold.woff2") format("woff2"),
+        url("/assets/fonts/Switzer-Semibold.woff") format("woff"),
+        url("/assets/fonts/Switzer-Semibold.ttf") format("truetype");
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Switzer-SemiboldItalic";
+    src: url("/assets/fonts/Switzer-SemiboldItalic.woff2") format("woff2"),
+        url("/assets/fonts/Switzer-SemiboldItalic.woff") format("woff"),
+        url("/assets/fonts/Switzer-SemiboldItalic.ttf") format("truetype");
+    font-weight: 600;
+    font-display: swap;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Switzer-Bold";
+    src: url("/assets/fonts/Switzer-Bold.woff2") format("woff2"),
+        url("/assets/fonts/Switzer-Bold.woff") format("woff"),
+        url("/assets/fonts/Switzer-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Switzer-BoldItalic";
+    src: url("/assets/fonts/Switzer-BoldItalic.woff2") format("woff2"),
+        url("/assets/fonts/Switzer-BoldItalic.woff") format("woff"),
+        url("/assets/fonts/Switzer-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-display: swap;
+    font-style: italic;
+}
+
+/* nanum-pen-script-regular - latin */
+@font-face {
+    font-family: "Nanum Pen Script";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/assets/fonts/nanum-pen-script-v15-latin-regular.eot"); /* IE9 Compat Modes */
+    src: local(""),
+        url("/assets/fonts/nanum-pen-script-v15-latin-regular.eot?#iefix")
+            format("embedded-opentype"),
+        /* IE6-IE8 */
+            url("/assets/fonts/nanum-pen-script-v15-latin-regular.woff2")
+            format("woff2"),
+        /* Super Modern Browsers */
+            url("/assets/fonts/nanum-pen-script-v15-latin-regular.woff")
+            format("woff"),
+        /* Modern Browsers */
+            url("/assets/fonts/nanum-pen-script-v15-latin-regular.ttf")
+            format("truetype"),
+        /* Safari, Android, iOS */
+            url("/assets/fonts/nanum-pen-script-v15-latin-regular.svg#NanumPenScript")
+            format("svg"); /* Legacy iOS */
+}
