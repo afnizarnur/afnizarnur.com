@@ -4,10 +4,12 @@
     &__menu {
         display: none;
         position: absolute;
-        left: 0;
-        right: 0;
-        top: 80px;
-        background-color: #fff;
+        right: 10%;
+        z-index: -1;
+        padding: 20px;
+        border: 4px solid #FFF;
+        top: 40px;
+        background-color: var(--color-bg);
     }
     &__link {
         display: block;
