@@ -27,11 +27,15 @@ class Navigation {
         this.toggleBtn.classList.toggle(CLASSES.open, this.isOpen)
         this.toggleBtn.setAttribute("aria-expanded", String(this.isOpen))
 
-        // if (this.isOpen) {
-        //     this.focusTrap.activate()
-        // } else {
-        //     this.focusTrap.deactivate()
-        // }
+        if (this.isOpen) {
+            //     this.focusTrap.activate()
+            document.getElementsByTagName("body")[0].style =
+                "overflow: hidden; height: 100%;"
+        } else {
+            //     this.focusTrap.deactivate()
+
+            document.getElementsByTagName("body")[0].style = "overflow: visible"
+        }
     }
 }
 
