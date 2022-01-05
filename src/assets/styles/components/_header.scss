@@ -1,16 +1,30 @@
 .header {
-    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
 
     &__inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: 2px solid var(--color-text);
+        padding: 1.6rem 0;
+    }
+
+    @include mq-down(lg) {
+        &__inner {
+            padding: 1.2rem 0;
+        }
     }
 
     &__logo {
         fill: var(--color-text);
-        &:hover {
-            animation-play-state: paused;
+    }
+
+    &__left {
+        a.logo {
+            color: var(--color-text);
+            text-decoration: none;
         }
     }
 
@@ -18,16 +32,4 @@
         display: flex;
         align-items: center;
     }
-
-    &__themebtn {
-        margin-left: 1em;
-        transition: 0.1s ease-in-out;
-        fill: red;
-
-        &:hover {
-            opacity: .5;
-            transition: 0.1s ease-in-out;
-        }
-    }
-
 }

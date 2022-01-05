@@ -38,35 +38,35 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: "Switzer-MediumItalic";
-    src: url("/assets/fonts/Switzer-MediumItalic.woff2") format("woff2"),
-        url("/assets/fonts/Switzer-MediumItalic.woff") format("woff"),
-        url("/assets/fonts/Switzer-MediumItalic.ttf") format("truetype");
-    font-weight: 500;
-    font-display: swap;
-    font-style: italic;
-}
+// @font-face {
+//     font-family: "Switzer-MediumItalic";
+//     src: url("/assets/fonts/Switzer-MediumItalic.woff2") format("woff2"),
+//         url("/assets/fonts/Switzer-MediumItalic.woff") format("woff"),
+//         url("/assets/fonts/Switzer-MediumItalic.ttf") format("truetype");
+//     font-weight: 500;
+//     font-display: swap;
+//     font-style: italic;
+// }
 
-@font-face {
-    font-family: "Switzer-Semibold";
-    src: url("/assets/fonts/Switzer-Semibold.woff2") format("woff2"),
-        url("/assets/fonts/Switzer-Semibold.woff") format("woff"),
-        url("/assets/fonts/Switzer-Semibold.ttf") format("truetype");
-    font-weight: 600;
-    font-display: swap;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: "Switzer-Semibold";
+//     src: url("/assets/fonts/Switzer-Semibold.woff2") format("woff2"),
+//         url("/assets/fonts/Switzer-Semibold.woff") format("woff"),
+//         url("/assets/fonts/Switzer-Semibold.ttf") format("truetype");
+//     font-weight: 600;
+//     font-display: swap;
+//     font-style: normal;
+// }
 
-@font-face {
-    font-family: "Switzer-SemiboldItalic";
-    src: url("/assets/fonts/Switzer-SemiboldItalic.woff2") format("woff2"),
-        url("/assets/fonts/Switzer-SemiboldItalic.woff") format("woff"),
-        url("/assets/fonts/Switzer-SemiboldItalic.ttf") format("truetype");
-    font-weight: 600;
-    font-display: swap;
-    font-style: italic;
-}
+// @font-face {
+//     font-family: "Switzer-SemiboldItalic";
+//     src: url("/assets/fonts/Switzer-SemiboldItalic.woff2") format("woff2"),
+//         url("/assets/fonts/Switzer-SemiboldItalic.woff") format("woff"),
+//         url("/assets/fonts/Switzer-SemiboldItalic.ttf") format("truetype");
+//     font-weight: 600;
+//     font-display: swap;
+//     font-style: italic;
+// }
 
 @font-face {
     font-family: "Switzer-Bold";
@@ -88,7 +88,6 @@
     font-style: italic;
 }
 
-/* nanum-pen-script-regular - latin */
 @font-face {
     font-family: "Nanum Pen Script";
     font-style: normal;

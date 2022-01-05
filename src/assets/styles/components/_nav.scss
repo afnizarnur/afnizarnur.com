@@ -1,6 +1,12 @@
 .nav {
     display: flex;
     align-items: center;
+    &__item {
+        margin: 0px 16px;
+        &--active {
+            text-decoration: underline;
+        }
+    }
     &__menu {
         display: none;
         position: absolute;
@@ -10,7 +16,6 @@
     }
     &__link {
         display: block;
-        padding: 0.5em 1em;
         text-decoration: none;
         color: var(--color-text);
         &:hover {
@@ -19,6 +24,16 @@
     }
     &__toggle {
         @include button-reset;
+    }
+
+    &__themebtn {
+        margin-left: 1em;
+        transition: all 0.1s ease-in-out;
+        background: transparent;
+
+        &:hover {
+            box-shadow: 0px 0px 0px 2px var(--color-text);
+        }
     }
 
     @include mq-down(lg) {
@@ -33,6 +48,7 @@
         }
         &__menu {
             display: flex;
+            align-items: center;
             position: static;
             background-color: transparent;
         }

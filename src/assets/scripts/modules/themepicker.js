@@ -41,12 +41,8 @@ class ThemePicker {
         } else if (theme === "dark") {
             nextTheme = "gray"
         } else if (theme === "gray") {
-            nextTheme = "blue"
-        } else if (theme === "blue") {
             nextTheme = "pink"
         } else if (theme === "pink") {
-            nextTheme = "purple"
-        } else if (theme === "purple") {
             nextTheme = "hacker"
         } else {
             nextTheme = "default"

@@ -42,20 +42,6 @@
         }
     },
     {
-        "id": "blue",
-        "name": "Blue",
-        "colors": {
-            "primary": "#ff335f",
-            "secondary": "#43a9a3",
-            "text": "#ffffff",
-            "border": "#eceeef",
-            "background": "#0F5FEF",
-            "primaryOffset": "#ff1447",
-            "textOffset": "#818a91",
-            "backgroundOffset": "#f7f7f9"
-        }
-    }, 
-    {
         "id": "pink",
         "name": "Pink",
         "colors": {
@@ -67,20 +53,6 @@
             "primaryOffset": "#ff2957",
             "textOffset": "#818a91",
             "backgroundOffset": "#252526"
-        }
-    },
-    {
-        "id": "purple",
-        "name": "Purple",
-        "colors": {
-            "primary": "#ff335f",
-            "secondary": "#43a9a3",
-            "text": "#9E78E5",
-            "border": "#eceeef",
-            "background": "#000000",
-            "primaryOffset": "#ff1447",
-            "textOffset": "#818a91",
-            "backgroundOffset": "#f7f7f9"
         }
     },
     {

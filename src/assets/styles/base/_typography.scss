@@ -5,22 +5,56 @@ h4,
 h5,
 h6 {
     margin: 0;
-}
-
-h1 {
-    font-size: 4.25rem;
-    font-weight: 400;
-    line-height: 1.2;
     text-rendering: optimizeLegibility;
 }
 
+h1 {
+    font-size: 3.815rem;
+    line-height: 4.578125rem;
+    font-weight: 400;
+}
+
 h2 {
-    font-size: 2.125rem;
-    font-weight: 700;
+    font-size: 3.051875rem;
+    line-height: 3.6625rem;
+    font-weight: 400;
+
+    @include mq-down(md) {
+        font-size: 2.44125rem;
+        line-height: 2.929375rem;
+    }
+}
+
+h3 {
+    font-size: 2.44125rem;
+    line-height: 2.929375rem;
+    font-weight: 400;
+}
+
+h4 {
+    font-size: 1.953125rem;
+    line-height: 2.34375rem;
+    font-weight: 400;
+}
+
+p.subtitle {
+    font-size: 1.563125rem;
+    line-height: 2.344375rem;
 }
 
 p {
     margin: 0;
+    line-height: 1.5rem;
+}
+
+p.body-large {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+}
+
+small {
+    font-size: 0.8rem;
+    line-height: 0.96rem;
 }
 
 .lead {
