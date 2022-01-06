@@ -1,28 +1,36 @@
 .design-process {
     position: relative;
-
-    h2 {
-        font-weight: normal;
-        font-size: 2.25rem;
-        line-height: 1.2;
-        margin-bottom: 32px;
-        color: #191a1b;
-    }
+    margin-bottom: 200px;
 
     &--card {
-        padding: 28px 28px 32px 28px;
         border-radius: 32px;
+        overflow: hidden;
+        margin-bottom: 24px;
+
+        h3 {
+            color: var(--text-on-surface-primary);
+            padding: 28px 28px 24px 28px;
+        }
+
+        p {
+            padding: 0px 28px 24px 28px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
     }
     &--observe {
-        background: #e3f3ea;
-        color: #474a4c;
+        background: var(--surface-green);
+        color: var(--text-on-surface-secondary);
     }
     &--reflect {
-        background: #fae7f7;
-        color: #474a4c;
+        background: var(--surface-pink);
+        color: var(--text-on-surface-secondary);
     }
     &--make {
-        background: #f3f4f8;
-        color: #474a4c;
+        background: var(--surface-gray);
+        color: var(--text-on-surface-secondary);
     }
 }

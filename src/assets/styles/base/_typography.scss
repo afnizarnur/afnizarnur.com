@@ -16,6 +16,11 @@ h1 {
     &.bold {
         font-weight: 500;
     }
+
+    @include mq-down(lg) {
+        font-size: 3.051875rem;
+        line-height: 3.6625rem;
+    }
 }
 
 h2 {

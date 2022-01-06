@@ -1,32 +1,45 @@
 <div class="design-process">
-    <div class="scribble scribble--design-process">
-        <span class="scribble--label">my typical design process</span>
-        <span class="scribble--path" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" width="53" height="32" fill="none" viewBox="0 0 53 32">
-                <path d="M47.29 31.166c.506.257 1.098.072 1.32-.415l3.628-7.933c.222-.487-.008-1.09-.516-1.348-.507-.258-1.098-.072-1.32.415l-3.225 7.051-7.345-3.732c-.507-.258-1.098-.072-1.32.415-.224.486.007 1.09.514 1.348l8.263 4.199zM.844 3.252c17.07-1.86 28.514 4.981 35.72 12.268 3.616 3.656 6.17 7.433 7.821 10.298a44.819 44.819 0 011.81 3.468 28.952 28.952 0 01.532 1.216l.024.06a2.78 2.78 0 01.006.016l.934-.294c.935-.293.934-.294.934-.294v-.002l-.003-.007-.008-.02a10.057 10.057 0 00-.147-.36 31.21 31.21 0 00-.461-1.039 47.009 47.009 0 00-1.898-3.638c-1.72-2.983-4.384-6.925-8.166-10.75C30.352 6.5 18.282-.67.484 1.27l.361 1.983z"/>
-            </svg>
-        </span>
-    </div>
-    <r-grid  columns="12">
-        <r-cell class="design-process--observe design-process--card" span="4" span-s="row" span-m="1-2">
-            <h2>Observe</h2>
+    <r-grid columns-l="12" columns-m="8">
+        <r-cell
+            class="design-process--observe design-process--card"
+            span-l="1-4"
+            span-m="1-4"
+            span-s="row"
+        >
+            <h3>Observe</h3>
             <p>
-By observing, I believe we can develop a greater understanding of user experience and needs by observing them in their natural environment. 
-        </p>
+                <strong>By observing</strong>, I believe we can develop a greater understanding of user experience and needs by observing them in their natural environment. 
+            </p>
+
+            <img src="{{ '/assets/images/observe.png' | url }}" loading="lazy" alt="Microscope"/>
         </r-cell>
-        <r-cell class="design-process--reflect design-process--card" span="4" span-s="row" span-m="1-2">
-            <h2>Reflect</h2>
+        <r-cell
+            class="design-process--reflect design-process--card"
+            span-l="5-8"
+            span-m="5-8"
+            span-s="row"
+        >
+            <h3>Reflect</h3>
 
             <p>
-Reflecting on my work, take into account different perspectives and be prepared to change in order to stay true to the team's values. 
-        </p>
+                <strong>Reflecting on my work</strong>, take into account different perspectives and be prepared to change in order to stay true to the team's values. 
+            </p>
+
+            <img src="{{ '/assets/images/reflect.png' | url }}" loading="lazy" alt="Mirror"/>
         </r-cell>
-        <r-cell class="design-process--make design-process--card" span="4" span-s="row" span-m="1-2">
-            <h2>Make</h2>
+        <r-cell
+            class="design-process--make design-process--card"
+            span-l="9-12"
+            span-m="row"
+            span-s="row"
+        >
+            <h3>Make</h3>
 
             <p>
-The sooner you make, the more quickly you learn. By make, giving you the opportunity to try out new ideas and see them take effect in the real world.
-        </p>
+                <strong>The sooner you make, the more quickly you learn</strong>. By make, giving you the opportunity to try out new ideas and see them take effect in the real world.
+            </p>
+
+            <img src="{{ '/assets/images/make.png' | url }}" loading="lazy" alt="Prisma"/>
         </r-cell>
     </r-grid>
 </div>

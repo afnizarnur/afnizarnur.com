@@ -1,5 +1,4 @@
 <nav class="nav" role="navigation" tabindex="-1">
-    {# Menu Toggle Button #}
     <button
         class="nav__toggle js-nav-toggle"
         aria-expanded="false"
@@ -13,7 +12,6 @@
         </span>
     </button>
 
-    {# Nav Links #}
     <ul class="nav__menu">
         {%- for item in collections.all | eleventyNavigation -%}
             {%- if item.url

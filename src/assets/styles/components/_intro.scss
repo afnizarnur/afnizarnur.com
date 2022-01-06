@@ -1,0 +1,16 @@
+.intro {
+    &__main {
+        padding-top: 294px;
+        padding-bottom: 200px;
+
+        @include mq-down(lg) {
+            padding-top: 222px;
+            padding-bottom: 144px;
+        }
+
+        @include mq-down(sm) {
+            padding-top: 198px;
+            padding-bottom: 120px;
+        }
+    }
+}

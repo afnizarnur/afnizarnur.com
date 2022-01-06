@@ -35,10 +35,9 @@
 @import "components/mobile-nav";
 @import "components/icon";
 @import "components/button";
-@import "components/headliner";
+@import "components/intro";
 @import "components/intro-video";
 @import "components/design-process";
-@import "components/scribble";
 
 //--------------------
 // VENDOR
@@ -46,3 +45,4 @@
 //--------------------
 
 @import "vendor/raster.grid";
+@import "vendor/raster.grid.custom";
