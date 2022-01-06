@@ -12,6 +12,9 @@ class ThemePicker {
         this.activeTheme = "default"
         this.hasLocalStorage = typeof Storage !== "undefined"
         this.toggleBtn = document.querySelector(SELECTORS.toggleBtn)
+        this.toggleBtnMenu = document.querySelector(
+            ".js-themepicker-toggle-menu"
+        )
         this.init()
     }
 
@@ -30,6 +33,10 @@ class ThemePicker {
 
     bindEvents() {
         this.toggleBtn.addEventListener("click", () =>
+            this.themeRoller(this.activeTheme)
+        )
+
+        this.toggleBtnMenu.addEventListener("click", () =>
             this.themeRoller(this.activeTheme)
         )
     }

@@ -2,6 +2,7 @@ import { createFocusTrap } from "focus-trap"
 
 const SELECTORS = {
     nav: ".nav__mobile-nav",
+    header: ".header",
     toggleBtn: ".js-nav-toggle"
 }
 
@@ -15,6 +16,7 @@ class Navigation {
 
         this.nav = document.querySelector(SELECTORS.nav)
         this.toggleBtn = document.querySelector(SELECTORS.toggleBtn)
+        this.header = document.querySelector(SELECTORS.header)
         this.focusTrap = createFocusTrap(this.nav)
 
         this.toggleBtn.addEventListener("click", () => this.toggleMenu())
@@ -24,13 +26,14 @@ class Navigation {
         this.isOpen = typeof force === "boolean" ? force : !this.isOpen
 
         this.nav.classList.toggle(CLASSES.open, this.isOpen)
+        this.header.classList.toggle(CLASSES.open, this.isOpen)
         this.toggleBtn.classList.toggle(CLASSES.open, this.isOpen)
         this.toggleBtn.setAttribute("aria-expanded", String(this.isOpen))
 
         if (this.isOpen) {
             //     this.focusTrap.activate()
             document.getElementsByTagName("body")[0].style =
-                "overflow: hidden; height: 100%;"
+                "overflow: hidden; height: 100vh;"
         } else {
             //     this.focusTrap.deactivate()
 

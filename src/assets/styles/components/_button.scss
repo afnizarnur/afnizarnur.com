@@ -12,7 +12,7 @@
         margin: auto; // iOS Safari compat
     }
 
-    @include hover-focus {
-        filter: brightness(0.95) saturate(140%);
-    }
+    // @include hover-focus {
+    //     filter: brightness(0.95) saturate(140%);
+    // }
 }

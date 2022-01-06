@@ -3,6 +3,13 @@
     width: 100%;
     z-index: 10;
 
+    &.is-open {
+        .header__inner {
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s $animation-curve-default;
+        }
+    }
+
     &__inner {
         display: flex;
         justify-content: space-between;
