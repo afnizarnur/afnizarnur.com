@@ -1,0 +1,51 @@
+.selectedwork {
+    margin-bottom: 144px;
+    &__card {
+        border-radius: 32px;
+    }
+
+    &__featured {
+        background: var(--surface-blue);
+        margin-top: 72px;
+        margin-bottom: 36px;
+        h3 {
+            margin-bottom: 12px;
+            color: var(--text-on-surface-primary);
+        }
+        p {
+            color: var(--text-on-surface-secondary);
+        }
+        .featured__header {
+            padding: 44px 44px 16px;
+        }
+    }
+
+    &__general {
+        margin-bottom: 36px;
+
+        .general__header {
+            padding: 40px 36px 0px;
+
+            h4 {
+                margin-bottom: 16px;
+                color: var(--text-on-surface-primary);
+            }
+
+            p {
+                color: var(--text-on-surface-secondary);
+            }
+        }
+        &.work-dashboard-km {
+            background: var(--surface-green);
+        }
+        &.work-rapor-pendidikan {
+            background: var(--surface-pink);
+        }
+        &.work-natatoko {
+            background: var(--surface-purple);
+        }
+        &.work-bukabike {
+            background: var(--surface-orange);
+        }
+    }
+}
