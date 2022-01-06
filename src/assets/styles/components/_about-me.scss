@@ -1,0 +1,28 @@
+.aboutme {
+    padding: 224px 0px 224px 0px;
+
+    @include mq-down(lg) {
+        padding: 160px 0px;
+    }
+
+    @include mq-down(md) {
+        padding: 96px 0px;
+    }
+
+    &__main {
+        h2 {
+            margin-bottom: 64px;
+
+            @include mq-down(md) {
+                margin-bottom: 32px;
+            }
+        }
+    }
+
+    &__subtitle {
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+    }
+}

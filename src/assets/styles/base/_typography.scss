@@ -63,6 +63,11 @@ h4 {
 p.subtitle {
     font-size: 1.563125rem;
     line-height: 2.344375rem;
+
+    @include mq-down(sm) {
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+    }
 }
 
 // Body
@@ -81,4 +86,9 @@ p.body-large {
 small {
     font-size: 0.8rem;
     line-height: 0.96rem;
+}
+
+// Strong
+strong {
+    font-weight: 500;
 }

@@ -1,6 +1,6 @@
 .intro-video {
-    position: fixed;
-    z-index: 10;
+    position: sticky;
+    z-index: 8;
     bottom: 24px;
     right: 24px;
     transition: all 0.25s ease-in-out;
@@ -9,7 +9,7 @@
     background: #ffffff;
     box-sizing: border-box;
     width: 197px;
-
+    margin-left: auto;
     &__container {
         width: 100%;
         height: 100%;
@@ -22,5 +22,9 @@
         height: 100%;
         object-fit: cover;
         border-radius: 12px;
+    }
+
+    @include mq-down(lg) {
+        display: none;
     }
 }
