@@ -83,8 +83,8 @@ body {
     font-size: $font-size-base;
     line-height: $line-height;
 
-    color: var(--color-text);
-    background-color: var(--color-bg);
+    color: var(--text-primary);
+    background-color: var(--background-default);
 
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -144,7 +144,7 @@ img {
 // for traditionally non-focusable elements with role="button"
 // see https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
 
-[role='button'] {
+[role="button"] {
     cursor: pointer;
 }
 
@@ -161,7 +161,7 @@ img {
 a,
 area,
 button,
-[role='button'],
+[role="button"],
 input,
 label,
 select,
@@ -229,7 +229,7 @@ legend {
     border: 0;
 }
 
-input[type='search'] {
+input[type="search"] {
     // Undo Normalize's default here to match our global overrides.
     box-sizing: inherit;
     // This overrides the extra rounded corners on search inputs in iOS so that our
@@ -237,13 +237,4 @@ input[type='search'] {
     // be added to `.form-control` as it's not specific enough. For details, see
     // https://github.com/twbs/bootstrap/issues/11586.
     -webkit-appearance: none;
-}
-
-::selection {
-    background: var(--color-secondary);
-    color: #fff;
-}
-::-moz-selection {
-    background: var(--color-secondary);
-    color: #fff;
 }

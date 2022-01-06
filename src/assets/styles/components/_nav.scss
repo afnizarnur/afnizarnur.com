@@ -12,12 +12,12 @@
         position: absolute;
         right: 10%;
         top: 40px;
-        background-color: var(--color-bg);
+        background-color: var(--background-default);
     }
     &__link {
         display: block;
         text-decoration: none;
-        color: var(--color-text);
+        color: var(--text-primary);
         &:hover {
             text-decoration: underline;
         }
@@ -32,7 +32,7 @@
         background: transparent;
 
         &:hover {
-            box-shadow: 0px 0px 0px 2px var(--color-text);
+            box-shadow: 0px 0px 0px 2px var(--text-primary);
         }
     }
 

@@ -12,12 +12,20 @@ h1 {
     font-size: 3.815rem;
     line-height: 4.578125rem;
     font-weight: 400;
+
+    &.bold {
+        font-weight: 500;
+    }
 }
 
 h2 {
     font-size: 3.051875rem;
     line-height: 3.6625rem;
     font-weight: 400;
+
+    &.bold {
+        font-weight: 500;
+    }
 
     @include mq-down(md) {
         font-size: 2.44125rem;
@@ -29,6 +37,10 @@ h3 {
     font-size: 2.44125rem;
     line-height: 2.929375rem;
     font-weight: 400;
+
+    &.bold {
+        font-weight: 500;
+    }
 }
 
 h4 {
@@ -37,32 +49,26 @@ h4 {
     font-weight: 400;
 }
 
+// Subtitle
 p.subtitle {
     font-size: 1.563125rem;
     line-height: 2.344375rem;
 }
 
+// Body
 p {
     margin: 0;
     line-height: 1.5rem;
 }
 
+// Body large
 p.body-large {
     font-size: 1.25rem;
     line-height: 1.875rem;
 }
 
+// Body small
 small {
     font-size: 0.8rem;
     line-height: 0.96rem;
-}
-
-.lead {
-    font-size: 1.5rem;
-    font-weight: 300;
-    line-height: 1.4;
-
-    @include mq(md) {
-        font-size: 2rem;
-    }
 }

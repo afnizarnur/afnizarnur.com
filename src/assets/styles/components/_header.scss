@@ -14,7 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 2px solid var(--color-text);
+        border-bottom: 2px solid var(--text-primary);
         padding: 1.6rem 0;
     }
 
@@ -25,12 +25,12 @@
     }
 
     &__logo {
-        fill: var(--color-text);
+        fill: var(--text-primary);
     }
 
     &__left {
         a.logo {
-            color: var(--color-text);
+            color: var(--text-primary);
             text-decoration: none;
         }
     }
