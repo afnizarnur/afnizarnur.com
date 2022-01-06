@@ -46,6 +46,11 @@ h3 {
     &.bold {
         font-weight: 500;
     }
+
+    @include mq-down(sm) {
+        font-size: 1.953125rem;
+        line-height: 2.34375rem;
+    }
 }
 
 h4 {

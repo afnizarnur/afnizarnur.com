@@ -36,7 +36,6 @@ class Navigation {
                 "overflow: hidden; height: 100vh;"
         } else {
             //     this.focusTrap.deactivate()
-
             document.getElementsByTagName("body")[0].style = "overflow: visible"
         }
     }
