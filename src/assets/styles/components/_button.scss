@@ -1,4 +1,4 @@
-.iconbtn {
+.icon-button {
     @include button-reset;
     justify-content: center;
     align-items: center;
@@ -15,4 +15,12 @@
     // @include hover-focus {
     //     filter: brightness(0.95) saturate(140%);
     // }
+}
+
+.btnicon {
+    @include button-reset;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
