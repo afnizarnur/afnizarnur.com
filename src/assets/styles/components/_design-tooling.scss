@@ -1,0 +1,35 @@
+.designtooling {
+    padding: 92px 96px;
+    background: var(--surface-primary-inverse);
+
+    &__main {
+        color: var(--text-on-surface-primary-inverse);
+
+        section {
+            h2 {
+                margin-bottom: 24px;
+            }
+
+            p {
+                color: var(--text-on-surface-secondary-inverse);
+                margin-bottom: 64px;
+            }
+        }
+    }
+
+    &__card {
+        border-radius: 32px;
+        background: var(--surface-secondary-inverse);
+        margin-bottom: 36px;
+
+        .general__header {
+            h4 {
+                padding: 36px 36px 16px 36px;
+            }
+            p {
+                color: var(--text-on-surface-secondary-inverse);
+                padding: 0px 36px;
+            }
+        }
+    }
+}
