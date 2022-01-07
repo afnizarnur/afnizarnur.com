@@ -30,6 +30,10 @@
         border-radius: 32px;
         background: var(--surface-secondary-inverse);
         margin-bottom: 36px;
+        display: flex;
+        flex-flow: column wrap;
+        overflow: hidden;
+        justify-content: space-between;
 
         @include mq-down(md) {
             margin-bottom: 24px;
@@ -47,6 +51,27 @@
                 @include mq-down(md) {
                     padding: 0px 28px;
                 }
+            }
+        }
+
+        .image-preview {
+            background: url("/assets/images/design-tooling-bg.svg") repeat
+                center bottom;
+            width: 100%;
+            height: 300px;
+            position: relative;
+
+            .software-badge {
+                padding: 8px 16px;
+                display: inline-flex;
+                border-radius: 44px;
+                background: var(--surface-primary-inverse);
+                color: var(--text-on-surface-primary-inverse);
+                align-items: center;
+                gap: 8px;
+                position: absolute;
+                bottom: 24px;
+                right: 24px;
             }
         }
     }
