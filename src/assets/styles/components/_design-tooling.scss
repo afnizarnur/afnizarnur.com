@@ -37,10 +37,16 @@
         .general__header {
             h4 {
                 padding: 36px 36px 16px 36px;
+                @include mq-down(md) {
+                    padding: 28px 28px 16px 28px;
+                }
             }
             p {
                 color: var(--text-on-surface-secondary-inverse);
                 padding: 0px 36px;
+                @include mq-down(md) {
+                    padding: 0px 28px;
+                }
             }
         }
     }

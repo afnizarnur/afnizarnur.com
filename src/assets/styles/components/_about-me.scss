@@ -17,6 +17,37 @@
                 margin-bottom: 32px;
             }
         }
+
+        .image-text {
+            position: relative;
+
+            .text {
+                text-decoration: underline;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .image-text-hidden {
+            display: none;
+        }
+
+        .image-text:hover .image-text-hidden {
+            display: block;
+            position: absolute;
+            top: -150px;
+            left: 50%;
+
+            &.mini {
+                transform: rotate(4deg);
+            }
+
+            &.mino {
+                transform: rotate(-4deg);
+            }
+        }
     }
 
     &__subtitle {

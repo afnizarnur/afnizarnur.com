@@ -12,10 +12,18 @@
         h3 {
             color: var(--text-on-surface-primary);
             padding: 28px 28px 24px 28px;
+
+            @include mq-down(sm) {
+                padding: 28px 28px 16px 28px;
+            }
         }
 
         p {
             padding: 0px 28px 24px 28px;
+
+            @include mq-down(md) {
+                padding: 0px 28px 16px 28px;
+            }
         }
 
         img {
