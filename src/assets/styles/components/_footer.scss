@@ -1,3 +1,8 @@
+.footer__wrapper {
+    position: sticky;
+    top: 0;
+}
+
 .contact {
     background: var(--surface-primary-inverse);
 
@@ -49,6 +54,10 @@
             max-width: 100%;
         }
     }
+}
+
+footer {
+    background: var(--background-default);
 }
 
 .footer {
