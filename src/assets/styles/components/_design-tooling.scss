@@ -1,7 +1,9 @@
 .designtooling {
-    padding: 92px 96px;
+    padding: 92px 0px;
     background: var(--surface-primary-inverse);
-
+    @include mq-down(md) {
+        padding: 64px 0px 40px 0px;
+    }
     &__main {
         color: var(--text-on-surface-primary-inverse);
 
@@ -13,6 +15,10 @@
             p {
                 color: var(--text-on-surface-secondary-inverse);
                 margin-bottom: 64px;
+
+                @include mq-down(md) {
+                    margin-bottom: 32px;
+                }
             }
         }
     }
@@ -22,6 +28,9 @@
         background: var(--surface-secondary-inverse);
         margin-bottom: 36px;
 
+        @include mq-down(md) {
+            margin-bottom: 24px;
+        }
         .general__header {
             h4 {
                 padding: 36px 36px 16px 36px;
