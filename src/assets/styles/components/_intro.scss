@@ -12,5 +12,13 @@
             padding-top: 198px;
             padding-bottom: 120px;
         }
+
+        .intro__heading {
+            overflow: hidden;
+        }
+
+        .char {
+            will-change: transform;
+        }
     }
 }
