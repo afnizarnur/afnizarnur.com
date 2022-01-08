@@ -30,9 +30,15 @@
         margin-left: 1em;
         transition: all 0.1s ease-in-out;
         background: transparent;
+        transition: all 0.2s $animation-curve-default;
 
         &:hover {
             box-shadow: 0px 0px 0px 2px var(--text-primary);
+            transition: all 0.2s $animation-curve-default;
+        }
+        &:active {
+            transform: translateY(-5px);
+            transition: all 0.2s $animation-curve-default;
         }
     }
 

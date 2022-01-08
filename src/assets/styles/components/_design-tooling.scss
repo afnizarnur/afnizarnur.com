@@ -1,7 +1,7 @@
 .designtooling {
-    position: sticky;
-    top: 0;
-    padding: 92px 0px;
+    // position: sticky;
+    // top: 0;
+    padding: 92px 0px 56px 0px;
     background: var(--surface-primary-inverse);
     @include mq-down(md) {
         padding: 64px 0px 40px 0px;
