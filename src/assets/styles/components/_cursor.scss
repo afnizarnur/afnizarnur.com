@@ -1,0 +1,18 @@
+.cursor {
+    display: none;
+}
+
+@media (any-pointer: fine) {
+    .cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: block;
+        pointer-events: none;
+    }
+    .cursor__inner {
+        fill: none;
+        stroke: var(--text-primary);
+        stroke-width: 2px;
+    }
+}
