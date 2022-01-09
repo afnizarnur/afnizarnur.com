@@ -18,7 +18,7 @@ const timelineSettings = {
 }
 
 const timelineIntro = gsap
-    .timeline({ paused: true, delay: 2 })
+    .timeline({ paused: true, delay: 1.8 })
     .set(DOM.chars, {
         ease: "Power3.easeOut",
         y: "100%",

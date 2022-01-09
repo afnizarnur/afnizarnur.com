@@ -1,29 +1,6 @@
+import imagesLoaded from "imagesloaded"
 import { gsap } from "gsap"
 import Splitting from "splitting"
-
-// Loader
-// let perfData = window.PerformanceNavigationTiming,
-//     EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart),
-//     time = parseInt((EstimatedTime / 1000) % 60) * 100
-
-// function animateLoader(start, end, duration) {
-//     let range = end - start,
-//         current = start,
-//         increment = end > start ? 1 : -1,
-//         stepTime = Math.abs(Math.floor(duration / range)),
-//         textTarget = document.querySelector(".loader__percentage")
-
-//     let timer = setInterval(function () {
-//         current += increment
-//         textTarget.innerHTML = current + "%"
-
-//         if (current == end) {
-//             clearInterval(timer)
-//         }
-//     }, stepTime)
-// }
-
-// animateLoader(0, 100, time)
 
 // Animation
 Splitting()
@@ -36,13 +13,81 @@ let DOM = {
         )
     }
 }
+let imgLoad = imagesLoaded(".main")
+
+let progressBar = document.querySelector(".loader__fill"),
+    count = document.querySelector(".loader__percentage"),
+    images = document.getElementsByTagName("img").length,
+    loadedCount = 0,
+    loadingProgress = 0
 
 const timelineSettings = {
     staggerValue: 0.014,
     charsDuration: 0.5
 }
 
-const timelineHeading = gsap
+imgLoad.on("progress", function () {
+    loadProgress()
+})
+
+function loadProgress() {
+    loadedCount++
+    loadingProgress = loadedCount / images
+    tl.progress(loadingProgress)
+}
+
+document.getElementsByTagName("body")[0].style =
+    "overflow: hidden; height: 100vh;"
+
+const tl = gsap.timeline({
+    paused: true,
+    delay: 1.5,
+    onUpdate: function () {
+        var newPercent = (tl.progress() * 100).toFixed()
+        count.innerHTML = newPercent + "%"
+    },
+    onComplete: loadComplete()
+})
+
+tl.set(progressBar, {
+    ease: "Power3.easeInOut",
+    width: "0%"
+}).to(progressBar, {
+    ease: "Power3.easeInOut",
+    duration: 1.2,
+    width: "100%"
+})
+
+const tlPercentage = gsap
+    .timeline({ delay: 1.5 })
+    .set(count, {
+        ease: "Power3.easeOut",
+        y: "0%"
+    })
+    .to(count, {
+        duration: timelineSettings.charsDuration,
+        ease: "Power3.easeOut",
+        y: "100%"
+    })
+
+function loadComplete() {
+    const tlComplete = gsap
+        .timeline({ delay: 1.5 })
+        .set(document.querySelector(".loader"), {
+            ease: "Power3.easeInOut",
+            autoAlpha: 1
+        })
+        .to(document.querySelector(".loader"), {
+            duration: 1.5,
+            ease: "Power3.easeInOut",
+            autoAlpha: 0,
+            onComplete: () => {
+                document.querySelector(".loader").style.display = "none"
+            }
+        })
+}
+
+const tlheading = gsap
     .timeline({ paused: true, delay: 1 })
     .set(DOM.chars, {
         ease: "Power3.easeOut",
@@ -55,53 +100,6 @@ const timelineHeading = gsap
         stagger: timelineSettings.staggerValue
     })
 
-// const timelinePercentage = gsap
-//     .timeline({ paused: true, delay: 1.5 })
-//     .set(document.querySelector(".loader__percentage"), {
-//         ease: "Power3.easeOut",
-//         y: "0%"
-//     })
-//     .to(document.querySelector(".loader__percentage"), {
-//         duration: timelineSettings.charsDuration,
-//         ease: "Power3.easeOut",
-//         y: "100%",
-//         stagger: timelineSettings.staggerValue
-//     })
+tlheading.play()
 
-// const timelineLine = gsap
-//     .timeline({ paused: true, delay: 1 })
-//     .set(document.querySelector(".loader__line .loader__fill"), {
-//         ease: "Power3.easeInOut",
-//         width: "0%"
-//     })
-//     .to(document.querySelector(".loader__line .loader__fill"), {
-//         duration: 1.2,
-//         ease: "Power3.easeInOut",
-//         width: "100%"
-//     })
-//     .set(document.querySelector(".loader"), {
-//         ease: "Power3.easeInOut",
-//         autoAlpha: 1
-//     })
-//     .to(document.querySelector(".loader"), {
-//         duration: 1,
-//         ease: "Power3.easeInOut",
-//         autoAlpha: 0
-//     })
-
-// timelineLine.play()
-timelineHeading.play()
-// timelinePercentage.play()
-
-// document.getElementsByTagName("body")[0].style =
-//     "overflow: hidden; height: 100vh;"
-
-// var bt = document.querySelector("[data-js-preloader]"),
-//     Et = setTimeout(function () {
-//         ;(bt.style.visibility = "hidden"),
-//             (document.getElementsByTagName("body")[0].style =
-//                 "overflow: visible")
-//     }, 2500)
-// window.addEventListener("load", function () {
-//     return Et
-// })
+tl.play()
