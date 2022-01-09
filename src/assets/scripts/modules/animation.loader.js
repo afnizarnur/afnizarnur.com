@@ -1,6 +1,31 @@
 import { gsap } from "gsap"
 import Splitting from "splitting"
 
+// Loader
+let perfData = window.PerformanceNavigationTiming,
+    EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart),
+    time = parseInt((EstimatedTime / 1000) % 60) * 100
+
+function animateLoader(start, end, duration) {
+    let range = end - start,
+        current = start,
+        increment = end > start ? 1 : -1,
+        stepTime = Math.abs(Math.floor(duration / range)),
+        textTarget = document.querySelector(".loader__percentage")
+
+    let timer = setInterval(function () {
+        current += increment
+        textTarget.innerHTML = current + "%"
+
+        if (current == end) {
+            clearInterval(timer)
+        }
+    }, stepTime)
+}
+
+animateLoader(0, 100, time)
+
+// Animation
 Splitting()
 
 let DOM = {
@@ -64,9 +89,9 @@ const timelineLine = gsap
         autoAlpha: 0
     })
 
+timelineLine.play()
 timelineHeading.play()
 timelinePercentage.play()
-timelineLine.play()
 
 // document.getElementsByTagName("body")[0].style =
 //     "overflow: hidden; height: 100vh;"
