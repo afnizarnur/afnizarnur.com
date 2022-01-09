@@ -17,19 +17,19 @@ const timelineSettings = {
     charsDuration: 0.5
 }
 
-const timeline = gsap
-    .timeline({ paused: true })
+const timelineIntro = gsap
+    .timeline({ paused: true, delay: 2 })
     .set(DOM.chars, {
-        ease: "Power3.out",
+        ease: "Power3.easeOut",
         y: "100%",
         opacity: 0
     })
     .to(DOM.chars, {
         duration: timelineSettings.charsDuration,
-        ease: "Power3.out",
+        ease: "Power3.easeOut",
         y: "0%",
         opacity: 1,
         stagger: timelineSettings.staggerValue
     })
 
-timeline.play()
+timelineIntro.play()
