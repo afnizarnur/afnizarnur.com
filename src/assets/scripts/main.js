@@ -2,12 +2,14 @@
 import "focus-visible"
 
 // Internal Modules
+import "./modules/loader"
 import "./modules/nav"
 import "./modules/themepicker"
 import "./modules/onscroll"
 import "./modules/cursor"
 import "./modules/animation.intro"
 import "./modules/animation.loader"
+import "./modules/loader"
 
 // document.addEventListener("DOMContentLoaded", function (event) {
 //     // wait until window is loaded - meaning all images, stylesheets, js, fonts, media assets, and links

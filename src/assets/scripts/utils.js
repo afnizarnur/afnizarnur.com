@@ -8,4 +8,5 @@ const getMousePos = (e) => {
         y: e.clientY
     }
 }
+
 export { lerp, getMousePos }
