@@ -2,7 +2,6 @@ import imagesLoaded from "imagesloaded"
 import { gsap } from "gsap"
 import Splitting from "splitting"
 
-// Animation
 Splitting()
 
 let DOM = {
@@ -36,30 +35,25 @@ function loadProgress() {
     tl.progress(loadingProgress)
 }
 
-document.getElementsByTagName("body")[0].style =
-    "overflow: hidden; height: 100vh;"
-
-const tl = gsap.timeline({
-    paused: true,
-    delay: 1.5,
-    onUpdate: function () {
-        var newPercent = (tl.progress() * 100).toFixed()
-        count.innerHTML = newPercent + "%"
-    },
-    onComplete: loadComplete()
-})
-
-tl.set(progressBar, {
-    ease: "Power3.easeInOut",
-    width: "0%"
-}).to(progressBar, {
-    ease: "Power3.easeInOut",
-    duration: 1.2,
-    width: "100%"
-})
+const tl = gsap
+    .timeline({
+        paused: true,
+        delay: 1.2,
+        onUpdate: function () {
+            var newPercent = (tl.progress() * 100).toFixed()
+            count.innerHTML = newPercent + "%"
+        },
+        onComplete: loadComplete()
+    })
+    .set(progressBar, {
+        ease: "Power3.easeInOut"
+    })
+    .to(progressBar, {
+        ease: "Power3.easeInOut"
+    })
 
 const tlPercentage = gsap
-    .timeline({ delay: 1.5 })
+    .timeline({ delay: 2 })
     .set(count, {
         ease: "Power3.easeOut",
         y: "0%"
@@ -72,18 +66,30 @@ const tlPercentage = gsap
 
 function loadComplete() {
     const tlComplete = gsap
-        .timeline({ delay: 1.5 })
+        .timeline({ delay: 1.8 })
         .set(document.querySelector(".loader"), {
             ease: "Power3.easeInOut",
             autoAlpha: 1
         })
         .to(document.querySelector(".loader"), {
-            duration: 1.5,
+            duration: 1.2,
             ease: "Power3.easeInOut",
             autoAlpha: 0,
             onComplete: () => {
                 document.querySelector(".loader").style.display = "none"
             }
+        })
+
+    const tlComplete2 = gsap
+        .timeline({ delay: 1.2 })
+        .set(progressBar, {
+            ease: "Power3.easeInOut",
+            width: "0%"
+        })
+        .to(progressBar, {
+            ease: "Power3.easeInOut",
+            duration: 1.2,
+            width: "100%"
         })
 }
 
