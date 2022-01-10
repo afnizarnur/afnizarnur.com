@@ -91,7 +91,7 @@ const tlPercentage = gsap
 
 function loadComplete() {
     const tlComplete = gsap
-        .timeline({ delay: 1.7 })
+        .timeline({ delay: 2.2 })
         .set(document.querySelector(".loader"), {
             ease: "Power3.easeInOut",
             autoAlpha: 1

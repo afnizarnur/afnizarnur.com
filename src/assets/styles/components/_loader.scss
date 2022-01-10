@@ -38,6 +38,8 @@
 
         @include mq-down(md) {
             text-align: left;
+            bottom: 32px;
+            position: absolute;
         }
     }
 }
