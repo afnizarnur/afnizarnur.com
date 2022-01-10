@@ -1,6 +1,9 @@
 import gsap from "gsap"
 import Splitting from "splitting"
 import imagesLoaded from "imagesloaded"
+import IntroAnimation from "./animation.intro"
+
+Splitting()
 
 const LoaderAnimation = () => {
     const timelineSettings = {
@@ -24,8 +27,6 @@ const LoaderAnimation = () => {
         images = document.getElementsByTagName("img").length,
         loadedCount = 0,
         loadingProgress = 0
-
-    Splitting()
 
     imgLoad.on("progress", function () {
         loadProgress()
@@ -76,9 +77,11 @@ const LoaderAnimation = () => {
                 },
                 {
                     duration: 1,
-                    width: "100%"
-                },
-                "loaderProgressBarExit"
+                    width: "100%",
+                    onComplete: () => {
+                        IntroAnimation().play()
+                    }
+                }
             )
             .addLabel("percentageExit")
             .fromTo(
@@ -112,3 +115,4 @@ const LoaderAnimation = () => {
 }
 
 export default LoaderAnimation
+LoaderAnimation()
