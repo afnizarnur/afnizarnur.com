@@ -4,7 +4,7 @@ import Splitting from "splitting"
 
 Splitting()
 
-let DOM = {
+let DOMLoader = {
     section: document.querySelector(".loader__main"),
     get chars() {
         return this.section.querySelectorAll(
@@ -12,6 +12,16 @@ let DOM = {
         )
     }
 }
+
+let DOMIntro = {
+    section: document.querySelector(".intro__main"),
+    get chars() {
+        return this.section.querySelectorAll(
+            ".intro__heading .word > .char, .whitespace"
+        )
+    }
+}
+
 let imgLoad = imagesLoaded(".main")
 
 let progressBar = document.querySelector(".loader__fill"),
@@ -22,8 +32,18 @@ let progressBar = document.querySelector(".loader__fill"),
 
 const timelineSettings = {
     staggerValue: 0.014,
-    charsDuration: 0.5
+    charsDuration: 0.4
 }
+
+export const timelineIntro = gsap
+    .timeline({ paused: true })
+    .to(DOMIntro.chars, {
+        duration: timelineSettings.charsDuration,
+        ease: "Power3.easeInOut",
+        y: "0%",
+        autoAlpha: 1,
+        stagger: timelineSettings.staggerValue
+    })
 
 imgLoad.on("progress", function () {
     loadProgress()
@@ -51,6 +71,11 @@ const tl = gsap
     .to(progressBar, {
         ease: "Power3.easeInOut"
     })
+    .set(DOMIntro.chars, {
+        ease: "Power3.easeOut",
+        y: "100%",
+        autoAlpha: 0
+    })
 
 const tlPercentage = gsap
     .timeline({ delay: 2 })
@@ -66,13 +91,13 @@ const tlPercentage = gsap
 
 function loadComplete() {
     const tlComplete = gsap
-        .timeline({ delay: 1.8 })
+        .timeline({ delay: 1.7 })
         .set(document.querySelector(".loader"), {
             ease: "Power3.easeInOut",
             autoAlpha: 1
         })
         .to(document.querySelector(".loader"), {
-            duration: 1.2,
+            duration: 0.8,
             ease: "Power3.easeInOut",
             autoAlpha: 0,
             onComplete: () => {
@@ -89,17 +114,20 @@ function loadComplete() {
         .to(progressBar, {
             ease: "Power3.easeInOut",
             duration: 1.2,
-            width: "100%"
+            width: "100%",
+            onComplete: () => {
+                timelineIntro.play()
+            }
         })
 }
 
 const tlheading = gsap
     .timeline({ paused: true, delay: 1 })
-    .set(DOM.chars, {
+    .set(DOMLoader.chars, {
         ease: "Power3.easeOut",
         y: "0%"
     })
-    .to(DOM.chars, {
+    .to(DOMLoader.chars, {
         duration: timelineSettings.charsDuration,
         ease: "Power3.easeOut",
         y: "100%",
@@ -107,5 +135,4 @@ const tlheading = gsap
     })
 
 tlheading.play()
-
 tl.play()
