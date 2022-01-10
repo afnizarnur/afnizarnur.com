@@ -13,6 +13,10 @@
         background: var(--text-primary);
         margin-top: 32px;
 
+        @include mq-down(md) {
+            margin-top: 24px;
+        }
+
         .loader__fill {
             width: 0%;
             height: 2px;

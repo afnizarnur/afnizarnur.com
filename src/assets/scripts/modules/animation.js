@@ -32,7 +32,7 @@ let progressBar = document.querySelector(".loader__fill"),
 
 const timelineSettings = {
     staggerValue: 0.014,
-    charsDuration: 0.5
+    charsDuration: 0.4
 }
 
 export const timelineIntro = gsap

@@ -15,14 +15,3 @@ tl.to(".design-process", {
 }).to(".aboutme", {
     opacity: 1
 })
-
-let tl2 = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".designtooling",
-        scrub: true
-    }
-})
-
-tl2.to("footer", {
-    opacity: 0
-})
