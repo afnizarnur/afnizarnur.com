@@ -1,7 +1,7 @@
 import { createFocusTrap } from "focus-trap"
 
 const SELECTORS = {
-    nav: ".nav__mobile-nav",
+    nav: ".nav__mobile",
     header: ".header",
     toggleBtn: ".js-nav-toggle"
 }

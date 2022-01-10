@@ -1,11 +1,11 @@
-const pluginRss = require('@11ty/eleventy-plugin-rss')
-const pluginNavigation = require('@11ty/eleventy-navigation')
-const pluginSvgSprite = require("eleventy-plugin-svg-sprite");
-const markdownIt = require('markdown-it')
+const pluginRss = require("@11ty/eleventy-plugin-rss")
+const pluginNavigation = require("@11ty/eleventy-navigation")
+const pluginSvgSprite = require("eleventy-plugin-svg-sprite")
+const markdownIt = require("markdown-it")
 
-const filters = require('./utils/filters.js')
-const transforms = require('./utils/transforms.js')
-const shortcodes = require('./utils/shortcodes.js')
+const filters = require("./utils/filters.js")
+const transforms = require("./utils/transforms.js")
+const shortcodes = require("./utils/shortcodes.js")
 
 module.exports = function (config) {
     // Plugins
@@ -32,11 +32,11 @@ module.exports = function (config) {
     })
 
     // Asset Watch Targets
-    config.addWatchTarget('./src/assets')
+    config.addWatchTarget("./src/assets")
 
     // Markdown
     config.setLibrary(
-        'md',
+        "md",
         markdownIt({
             html: true,
             breaks: true,
@@ -46,15 +46,16 @@ module.exports = function (config) {
     )
 
     // Layouts
-    config.addLayoutAlias('base', 'base.njk')
-    config.addLayoutAlias('post', 'post.njk')
+    config.addLayoutAlias("base", "base.njk")
+    config.addLayoutAlias("post", "post.njk")
 
     // Pass-through files
-    config.addPassthroughCopy('src/robots.txt')
-    config.addPassthroughCopy('src/site.webmanifest')
-    config.addPassthroughCopy('src/assets/images')
-    config.addPassthroughCopy('src/assets/fonts')
-    config.addPassthroughCopy('src/assets/videos')
+    config.addPassthroughCopy("src/robots.txt")
+    config.addPassthroughCopy("src/site.webmanifest")
+    config.addPassthroughCopy("src/assets/images")
+    config.addPassthroughCopy("src/assets/fonts")
+    config.addPassthroughCopy("src/assets/videos")
+    config.addPassthroughCopy({ static: "/" })
 
     // Deep-Merge
     config.setDataDeepMerge(true)
@@ -62,14 +63,14 @@ module.exports = function (config) {
     // Base Config
     return {
         dir: {
-            input: 'src',
-            output: 'dist',
-            includes: 'includes',
-            layouts: 'layouts',
-            data: 'data'
+            input: "src",
+            output: "dist",
+            includes: "includes",
+            layouts: "layouts",
+            data: "data"
         },
-        templateFormats: ['njk', 'md', '11ty.js'],
-        htmlTemplateEngine: 'njk',
-        markdownTemplateEngine: 'njk'
+        templateFormats: ["njk", "md", "11ty.js"],
+        htmlTemplateEngine: "njk",
+        markdownTemplateEngine: "njk"
     }
 }
