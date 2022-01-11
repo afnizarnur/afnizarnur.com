@@ -1,7 +1,7 @@
 import gsap from "gsap"
 import Splitting from "splitting"
 import imagesLoaded from "imagesloaded"
-import IntroAnimation from "./animation/animation.intro"
+import IntroAnimation from "./animation.intro"
 
 Splitting()
 
