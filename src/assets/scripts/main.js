@@ -6,5 +6,6 @@ import "./modules/nav"
 import "./modules/themepicker"
 import "./modules/onscroll"
 import "./modules/cursor"
-import "./modules/animation.loader"
-import "./modules/animation.home"
+
+// Handle interactive animation
+import "./index"

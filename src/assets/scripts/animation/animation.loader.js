@@ -1,7 +1,7 @@
 import gsap from "gsap"
 import Splitting from "splitting"
 import imagesLoaded from "imagesloaded"
-import IntroAnimation from "./animation.intro"
+import IntroAnimation from "./animation/animation.intro"
 
 Splitting()
 
@@ -54,7 +54,7 @@ const LoaderAnimation = () => {
 
     function loadComplete() {
         const tlc = gsap
-            .timeline({ delay: 1.5 })
+            .timeline({ delay: 1 })
             .addLabel("loaderHeadingExit")
             .fromTo(
                 el.loaderHeadingChars,
@@ -79,7 +79,9 @@ const LoaderAnimation = () => {
                     duration: 1,
                     width: "100%",
                     onComplete: () => {
-                        IntroAnimation().play()
+                        if (document.querySelector(".intro__main")) {
+                            IntroAnimation().play()
+                        }
                     }
                 }
             )
@@ -112,7 +114,8 @@ const LoaderAnimation = () => {
                 "percentageExit"
             )
     }
+
+    return tl
 }
 
 export default LoaderAnimation
-LoaderAnimation()
