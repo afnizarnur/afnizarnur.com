@@ -1,6 +1,4 @@
 .designtooling {
-    // position: sticky;
-    // top: 0;
     padding: 92px 0px 56px 0px;
     background: var(--surface-primary-inverse);
     @include mq-down(md) {
@@ -58,8 +56,20 @@
             background: url("/assets/images/design-tooling-bg.svg") repeat
                 center bottom;
             width: 100%;
-            height: 300px;
+            padding-top: 24px;
+            height: 395px;
             position: relative;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+
+            &.colorfinder-webapp {
+                justify-content: end;
+            }
+
+            img {
+                margin: 0 auto;
+            }
 
             .software-badge {
                 padding: 8px 16px;
