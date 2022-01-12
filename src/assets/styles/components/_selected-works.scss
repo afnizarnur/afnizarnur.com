@@ -1,83 +1,62 @@
 .selectedwork {
-    margin-bottom: 144px;
-    @include mq(md) {
-        margin-bottom: 56px;
+    margin-bottom: 64px;
+
+    h2 {
+        margin-bottom: 64px;
     }
-    @include mq-down(md) {
-        margin-bottom: 40px;
-    }
+
     &__card {
-        border-radius: 32px;
-        margin-bottom: 36px;
+        margin-bottom: 44px;
 
-        @include mq-down(md) {
-            margin-bottom: 24px;
-        }
-    }
+        .content__title {
+            padding: 44px;
 
-    &__featured {
-        background: var(--surface-blue);
-        margin-top: 72px;
+            @include mq-down(sm) {
+                padding: 32px 0px;
+            }
 
-        @include mq(md) {
-            margin-top: 64px;
-        }
-        @include mq-down(md) {
-            margin-top: 48px;
-        }
+            a:hover {
+                text-decoration: none;
+            }
 
-        h3 {
-            margin-bottom: 12px;
-            color: var(--text-on-surface-primary);
-
-            @include mq-down(md) {
+            h3 {
                 margin-bottom: 16px;
-            }
-        }
-        p {
-            color: var(--text-on-surface-secondary);
-
-            @include mq-down(md) {
-                line-height: 1.5rem;
-                font-size: 1rem;
-            }
-        }
-        .featured__header {
-            padding: 44px 44px 0px;
-
-            @include mq-down(md) {
-                padding: 28px 28px 0px;
-            }
-        }
-    }
-
-    &__general {
-        .general__header {
-            padding: 40px 36px 0px;
-
-            @include mq-down(md) {
-                padding: 28px 28px 0px;
-            }
-
-            h4 {
-                margin-bottom: 16px;
-                color: var(--text-on-surface-primary);
+                color: var(--text-primary);
             }
 
             p {
-                color: var(--text-on-surface-secondary);
+                color: var(--text-secondary);
             }
         }
-        &.work-dashboard-km {
+
+        .image {
+            height: 765px;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 32px;
+
+            @include mq-down(sm) {
+                height: 450px;
+            }
+        }
+
+        &.work-ds-govtech .image {
+            background: var(--surface-blue);
+        }
+
+        &.work-dashboard-km .image {
             background: var(--surface-green);
         }
-        &.work-rapor-pendidikan {
-            background: var(--surface-pink);
-        }
-        &.work-natatoko {
+
+        &.work-natatoko .image {
             background: var(--surface-purple);
         }
-        &.work-bukabike {
+
+        &.work-rapor-pendidikan .image {
+            background: var(--surface-pink);
+        }
+
+        &.work-bukabike .image {
             background: var(--surface-orange);
         }
     }

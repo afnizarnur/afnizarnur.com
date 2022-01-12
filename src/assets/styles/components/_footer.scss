@@ -1,8 +1,3 @@
-.footer__wrapper {
-    // position: sticky;
-    // top: 0;
-}
-
 .contact {
     background: var(--surface-primary-inverse);
 
@@ -15,10 +10,10 @@
         }
     }
     &__main {
-        padding: 144px 0px;
+        padding: 144px 0px 120px 0px;
 
         @include mq(md) {
-            padding: 128px 0px;
+            padding: 128px 0px 116px 0px;
         }
 
         @include mq-down(md) {
@@ -44,16 +39,18 @@
     }
 
     &__illustration {
-        margin: 0 auto;
-        display: flex;
-        max-width: 1440px;
+        width: 100%;
+        height: 664px;
+        background: url("/assets/images/afnizarnur-footer-illustration.svg")
+            no-repeat center top;
+        background-size: auto 100%;
 
-        @include mq(md) {
-            max-width: 100%;
+        @include mq-down(lg) {
+            height: 442px;
         }
 
-        @include mq-down(md) {
-            max-width: 100%;
+        @include mq-down(sm) {
+            height: 173px;
         }
     }
 }
