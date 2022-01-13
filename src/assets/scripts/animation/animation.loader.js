@@ -23,18 +23,23 @@ const LoaderAnimation = () => {
         count: document.querySelector(".loader__percentage")
     }
 
-    let imgLoad = imagesLoaded(".main"),
+    let imgLoad = imagesLoaded("body"),
         images = document.getElementsByTagName("img").length,
         loadedCount = 0,
         loadingProgress = 0
 
-    imgLoad.on("progress", function () {
+    imgLoad.on("progress", function (instance, image) {
         loadProgress()
+    })
+
+    imgLoad.on("done", function (instance, image) {
+        console.log("all images successfully loaded")
     })
 
     function loadProgress() {
         loadedCount++
         loadingProgress = loadedCount / images
+
         tl.progress(loadingProgress)
     }
 
@@ -46,7 +51,11 @@ const LoaderAnimation = () => {
                 var newPercent = (tl.progress() * 100).toFixed()
                 el.count.innerHTML = newPercent + "%"
             },
-            onComplete: loadComplete
+            onComplete: function () {
+                imgLoad.on("done", function (instance, image) {
+                    loadComplete()
+                })
+            }
         })
         .to(el.progressBar, {
             width: "100%"

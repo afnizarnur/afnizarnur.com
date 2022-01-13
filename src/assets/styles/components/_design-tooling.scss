@@ -38,6 +38,7 @@
         }
         .general__header {
             h4 {
+                color: var(--text-on-surface-primary-inverse);
                 padding: 36px 36px 16px 36px;
                 @include mq-down(md) {
                     padding: 28px 28px 16px 28px;
@@ -48,6 +49,23 @@
                 padding: 0px 36px;
                 @include mq-down(md) {
                     padding: 0px 28px;
+                }
+            }
+        }
+
+        .link-wrap {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-flow: column wrap;
+            overflow: hidden;
+            justify-content: space-between;
+            text-decoration: none;
+
+            h4 {
+                text-decoration: underline;
+                &:hover {
+                    text-decoration: none;
                 }
             }
         }
