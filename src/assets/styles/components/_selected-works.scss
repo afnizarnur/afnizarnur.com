@@ -44,8 +44,16 @@
             border-radius: 32px;
             position: relative;
 
+            &:hover {
+                .image {
+                    transform: scale(1.05) translateZ(0);
+                }
+            }
+
             .image {
                 width: 100%;
+                will-change: transform;
+                transition: transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
             }
         }
 
