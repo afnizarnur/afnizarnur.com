@@ -56,15 +56,98 @@
             background: url("/assets/images/design-tooling-bg.svg") repeat
                 center bottom;
             width: 100%;
-            padding-top: 24px;
             height: 395px;
             position: relative;
             display: flex;
             flex-flow: column;
             justify-content: center;
 
+            @include mq-down(lg) {
+                height: 320px;
+            }
+
+            &.page-automator {
+                justify-content: end;
+
+                @include mq-down(lg) {
+                    img {
+                        width: 325px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        height: 288px;
+                    }
+                }
+            }
+
+            &.variant-inspector {
+                @include mq-down(lg) {
+                    img {
+                        width: 332px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        width: 300px;
+                    }
+                }
+            }
+
+            &.qnp {
+                @include mq-down(lg) {
+                    img {
+                        width: 372px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        width: 441px;
+                        margin-left: 32px;
+                    }
+                }
+            }
+
+            &.context {
+                @include mq-down(lg) {
+                    img {
+                        width: 372px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        width: 333px;
+                    }
+                }
+            }
+
+            &.magic-export {
+                @include mq-down(lg) {
+                    img {
+                        width: 328px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        width: 306px;
+                    }
+                }
+            }
+
             &.colorfinder-webapp {
                 justify-content: end;
+
+                @include mq-down(lg) {
+                    img {
+                        width: 435px;
+                        margin-left: 32px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        margin-left: 24px;
+                    }
+                }
             }
 
             img {
