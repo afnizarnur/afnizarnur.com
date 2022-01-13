@@ -30,37 +30,42 @@
 
             p {
                 color: var(--text-secondary);
+
+                @include mq-down(sm) {
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                }
             }
         }
 
-        .image {
-            height: 765px;
+        .image-wrapper {
             width: 100%;
-            max-width: 100%;
+            overflow: hidden;
             border-radius: 32px;
+            position: relative;
 
-            @include mq-down(sm) {
-                height: 450px;
+            .image {
+                width: 100%;
             }
         }
 
-        &.work-ds-govtech .image {
+        &.work-ds-govtech .image-wrapper {
             background: var(--surface-blue);
         }
 
-        &.work-dashboard-km .image {
+        &.work-dashboard-km .image-wrapper {
             background: var(--surface-green);
         }
 
-        &.work-natatoko .image {
+        &.work-natatoko .image-wrapper {
             background: var(--surface-purple);
         }
 
-        &.work-rapor-pendidikan .image {
+        &.work-rapor-pendidikan .image-wrapper {
             background: var(--surface-pink);
         }
 
-        &.work-bukabike .image {
+        &.work-bukabike .image-wrapper {
             background: var(--surface-orange);
         }
     }
