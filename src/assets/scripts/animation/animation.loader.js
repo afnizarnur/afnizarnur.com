@@ -48,9 +48,13 @@ const LoaderAnimation = () => {
                 el.count.innerHTML = newPercent + "%"
             },
             onComplete: function () {
-                imgLoad.on("done", function (instance, image) {
+                if (document.querySelector(".intro__main")) {
+                    imgLoad.on("done", function (instance, image) {
+                        loadComplete()
+                    })
+                } else {
                     loadComplete()
-                })
+                }
             }
         })
         .to(el.progressBar, {
@@ -65,12 +69,14 @@ const LoaderAnimation = () => {
                 el.loaderHeadingChars,
                 {
                     ease: "Power3.easeOut",
-                    y: "0%"
+                    y: "0%",
+                    autoAlpha: 1
                 },
                 {
                     duration: timelineSettings.charsDuration,
                     ease: "Power3.easeOut",
                     y: "100%",
+                    autoAlpha: 0,
                     stagger: timelineSettings.staggerValue
                 }
             )
@@ -95,12 +101,14 @@ const LoaderAnimation = () => {
                 el.count,
                 {
                     ease: "Power3.easeOut",
-                    y: "0%"
+                    y: "0%",
+                    autoAlpha: 1
                 },
                 {
                     duration: 1,
                     ease: "Power3.easeOut",
-                    y: "100%"
+                    y: "100%",
+                    autoAlpha: 0
                 },
                 "loaderProgressBarExit"
             )
