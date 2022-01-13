@@ -32,10 +32,6 @@ const LoaderAnimation = () => {
         loadProgress()
     })
 
-    imgLoad.on("done", function (instance, image) {
-        console.log("all images successfully loaded")
-    })
-
     function loadProgress() {
         loadedCount++
         loadingProgress = loadedCount / images

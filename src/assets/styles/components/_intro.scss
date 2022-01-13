@@ -15,6 +15,10 @@
 
         .intro__heading {
             overflow: hidden;
+
+            [data-word="Afnizar"] {
+                text-decoration: underline;
+            }
         }
 
         .char {
