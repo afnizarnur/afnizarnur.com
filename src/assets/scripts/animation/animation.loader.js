@@ -50,7 +50,7 @@ const LoaderAnimation = () => {
                 el.count.innerHTML = newPercent + "%"
             },
             onComplete: function () {
-                if (document.querySelector(".intro__main")) {
+                if (document.querySelector(".aboutme")) {
                     imgLoad.on("done", function (instance, image) {
                         loadComplete()
                     })
@@ -93,7 +93,7 @@ const LoaderAnimation = () => {
                     width: "100%",
                     onComplete: () => {
                         document.body.style.overflow = "auto"
-                        if (document.querySelector(".intro__main")) {
+                        if (document.querySelector(".aboutme")) {
                             IntroAnimation().play()
                         }
                     }
