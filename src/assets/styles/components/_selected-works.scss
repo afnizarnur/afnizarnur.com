@@ -41,6 +41,19 @@
                 box-shadow: 0px 0px 0px 8px var(--text-primary);
             }
 
+            .project-status {
+                padding: 8px 16px;
+                display: inline-flex;
+                border-radius: 44px;
+                background: var(--surface-primary-inverse);
+                color: var(--text-on-surface-primary-inverse);
+                align-items: center;
+                gap: 8px;
+                position: absolute;
+                bottom: 24px;
+                right: 24px;
+            }
+
             .image {
                 width: 100%;
             }

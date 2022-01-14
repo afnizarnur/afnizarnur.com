@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /pay
+Sitemap: https://afnizarnur.com/sitemap.xml
+Host: https://afnizarnur.com
