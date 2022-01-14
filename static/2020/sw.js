@@ -26,30 +26,45 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-6e4995d57870bf78ae31.js"
+    "url": "webpack-runtime-47bedff5440ab441830a.js"
   },
   {
-    "url": "styles.fa4c5bc734c4994edf94.css"
+    "url": "styles.84bdbee3da6d422f07b2.css"
   },
   {
-    "url": "styles-85581d4dae49207538a9.js"
+    "url": "styles-e9d24b1846c7d6eb9685.js"
   },
   {
-    "url": "framework-a1bdab8ad603e953c589.js"
+    "url": "framework-999a01e9e4c894cffffe.js"
   },
   {
-    "url": "app-a391b8fc4974ba0e93ed.js"
+    "url": "app-573c48a6916b69360c91.js"
   },
   {
-    "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-feadb85cc19c3d7ed023.js"
+    "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-772d0ba090a78fc6a1a2.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "29e0d8001823816bbfcd17f621825a0f"
+    "revision": "892954871c1b273013d2936ef3d7552d"
+  },
+  {
+    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "922eaf811c186d7a5c64e925f8877f86"
+  },
+  {
+    "url": "page-data/sq/d/3764592887.json",
+    "revision": "9320d71af5014b414b46886f6e7d23ca"
+  },
+  {
+    "url": "page-data/app-data.json",
+    "revision": "4b2feed7bda608ebb94819032415440e"
+  },
+  {
+    "url": "polyfill-7ced8295869eb983463c.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "ae4e7516f62944a2b42b87e2d1933d46"
+    "revision": "cc878ac46f783fb1b3409c6a06e6f3f7"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
@@ -68,12 +83,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/2020`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-a391b8fc4974ba0e93ed.js`))) {
+  if (!resources || !(await caches.match(`/2020/app-573c48a6916b69360c91.js`))) {
     return await fetch(event.request)
   }
 
@@ -86,7 +101,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/2020/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 
