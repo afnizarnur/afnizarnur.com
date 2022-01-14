@@ -1,4 +1,4 @@
-// Focus Visible Polyfill
+// import "focus-visible"
 import "focus-visible"
 
 // Internal Modules

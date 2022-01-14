@@ -1,4 +1,4 @@
-import { createFocusTrap } from "focus-trap"
+// import { createFocusTrap } from "focus-trap"
 
 const SELECTORS = {
     nav: ".nav__mobile",
@@ -17,7 +17,7 @@ class Navigation {
         this.nav = document.querySelector(SELECTORS.nav)
         this.toggleBtn = document.querySelector(SELECTORS.toggleBtn)
         this.header = document.querySelector(SELECTORS.header)
-        this.focusTrap = createFocusTrap(this.nav)
+        // this.focusTrap = createFocusTrap(this.nav)
 
         this.toggleBtn.addEventListener("click", () => this.toggleMenu())
     }
