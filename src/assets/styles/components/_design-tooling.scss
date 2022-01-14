@@ -1,5 +1,6 @@
 .designtooling {
     padding: 92px 0px 56px 0px;
+    background: var(--surface-primary-inverse);
     @include mq-down(md) {
         padding: 64px 0px 40px 0px;
         position: relative;
@@ -31,6 +32,10 @@
         flex-flow: column wrap;
         overflow: hidden;
         justify-content: space-between;
+
+        &:hover a.link-wrap h4 {
+            text-decoration: none !important;
+        }
 
         @include mq-down(md) {
             margin-bottom: 24px;
