@@ -32,6 +32,8 @@ const LoaderAnimation = () => {
         loadProgress()
     })
 
+    document.body.style.overflow = "hidden"
+
     function loadProgress() {
         loadedCount++
         loadingProgress = loadedCount / images
@@ -90,6 +92,7 @@ const LoaderAnimation = () => {
                     duration: 1,
                     width: "100%",
                     onComplete: () => {
+                        document.body.style.overflow = "auto"
                         if (document.querySelector(".intro__main")) {
                             IntroAnimation().play()
                         }

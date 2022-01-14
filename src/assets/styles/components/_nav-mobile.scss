@@ -96,10 +96,7 @@
 
         a {
             color: var(--background-default);
-
-            &:hover {
-                text-decoration: none;
-            }
+            text-decoration-thickness: 1px;
         }
     }
 
