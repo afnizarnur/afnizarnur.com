@@ -11,10 +11,6 @@
     .icon {
         margin: auto; // iOS Safari compat
     }
-
-    // @include hover-focus {
-    //     filter: brightness(0.95) saturate(140%);
-    // }
 }
 
 .btnicon {
@@ -24,6 +20,7 @@
     align-items: center;
     gap: 8px;
     padding: 4px;
+    text-decoration: underline;
 
     &:hover {
         text-decoration: underline;

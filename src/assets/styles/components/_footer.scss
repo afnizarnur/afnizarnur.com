@@ -112,6 +112,15 @@ footer {
     &__scrolltotop {
         margin-left: auto;
 
+        .icon--arrow-up {
+            transition: all 0.2s $animation-curve-default;
+        }
+        &:hover {
+            .icon--arrow-up {
+                transform: translateY(-8px);
+            }
+        }
+
         @include mq-down(md) {
             text-align: center;
             margin: 48px auto 0 auto;
