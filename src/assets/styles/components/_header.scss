@@ -13,6 +13,7 @@
     &__inner {
         display: flex;
         justify-content: space-between;
+        -webkit-justify-content: space-between;
         align-items: center;
         border-bottom: 2px solid var(--text-primary);
         padding: 1.6rem 0;

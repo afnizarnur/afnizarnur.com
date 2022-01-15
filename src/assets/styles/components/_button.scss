@@ -1,6 +1,7 @@
 .icon-button {
     @include button-reset;
     justify-content: center;
+    -webkit-justify-content: center;
     align-items: center;
     text-align: center;
     width: 2rem;

@@ -39,6 +39,11 @@
             &:hover {
                 outline: 4px solid var(--background-default);
                 box-shadow: 0px 0px 0px 8px var(--text-primary);
+
+                @include mq-down(sm) {
+                    outline: none;
+                    box-shadow: 0px 0px 0px 2px var(--text-primary);
+                }
             }
 
             .project-status {
