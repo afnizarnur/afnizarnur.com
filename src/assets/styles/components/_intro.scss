@@ -15,6 +15,19 @@
 
         .intro__heading {
             overflow: hidden;
+
+            [data-word="GovTech"],
+            [data-word="Edu"],
+            [data-word="@"],
+            [data-word="Telkom"],
+            [data-word="Indonesia"] {
+                font-family: $font-family-serif;
+                font-style: italic;
+            }
+        }
+
+        p.subtitle {
+            margin-top: 24px;
         }
 
         .char {

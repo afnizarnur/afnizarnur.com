@@ -116,6 +116,7 @@ footer {
             transition: all 0.2s $animation-curve-default;
         }
         &:hover {
+            text-decoration: none;
             .icon--arrow-up {
                 transform: translateY(-8px);
             }

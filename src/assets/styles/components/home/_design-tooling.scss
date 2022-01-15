@@ -1,10 +1,8 @@
 .designtooling {
     padding: 92px 0px 56px 0px;
     background: var(--surface-primary-inverse);
-    border-radius: 60px 60px 0 0px;
 
     @include mq-down(md) {
-        border-radius: 24px 24px 0 0px;
         padding: 64px 0px 40px 0px;
         position: relative;
     }

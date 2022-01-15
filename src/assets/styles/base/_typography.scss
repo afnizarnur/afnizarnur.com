@@ -100,3 +100,9 @@ small {
 strong {
     font-weight: 500;
 }
+
+// Highlight font
+.font-highlight {
+    font-family: $font-family-serif;
+    font-style: italic;
+}

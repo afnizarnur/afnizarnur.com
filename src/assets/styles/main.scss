@@ -30,19 +30,22 @@
 // partials with local scope to a component
 //--------------------
 
-@import "components/header";
+// Specific components
 @import "components/nav";
 @import "components/nav-mobile";
+@import "components/header";
 @import "components/icon";
 @import "components/button";
-@import "components/intro";
-@import "components/design-process";
-@import "components/about-me";
-@import "components/selected-works";
-@import "components/design-tooling";
 @import "components/footer";
 @import "components/cursor";
 @import "components/loader";
+@import "components/intro";
+
+// Pages
+@import "components/home/design-process";
+@import "components/home/about-me";
+@import "components/home/selected-works";
+@import "components/home/design-tooling";
 
 //--------------------
 // VENDOR
