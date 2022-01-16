@@ -128,3 +128,13 @@ footer {
         }
     }
 }
+
+.copyright {
+    background: var(--text-primary);
+    color: var(--text-primary-inverse);
+    padding: 32px 0px;
+
+    @include mq-down(sm) {
+        text-align: center;
+    }
+}
