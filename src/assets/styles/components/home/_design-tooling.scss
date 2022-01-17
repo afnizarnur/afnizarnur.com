@@ -28,7 +28,7 @@
     &__card {
         &:hover {
             outline: 4px solid var(--surface-primary-inverse);
-            box-shadow: 0px 0px 0px 8px var(--text-on-surface-primary-inverse);
+            box-shadow: 0px 0px 0px 6px var(--text-on-surface-primary-inverse);
 
             @include mq-down(sm) {
                 outline: none;
