@@ -38,6 +38,10 @@
         }
     }
 
+    &__card_inactive {
+        cursor: not-allowed;
+    }
+
     &__card,
     &__card_inactive {
         border-radius: 32px;
