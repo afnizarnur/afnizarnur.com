@@ -9,12 +9,12 @@
         top: 0;
         left: 0;
         z-index: 5;
-        background: var(--background-default);
+        background: var(--text-primary);
         padding-top: 68px;
         transition: all 0.2s $animation-curve-default;
 
         @include mq-down(md) {
-            padding-top: 64px;
+            padding-top: 72px;
         }
 
         .nav-sheet {
@@ -23,7 +23,7 @@
             width: 100%;
             height: 100%;
             position: relative;
-            background: var(--text-primary);
+            background: var(--background-default);
             border-radius: 32px 32px 0px 0px;
             transform: translateY(48px);
             transition: all 0.2s $animation-curve-default;
@@ -58,11 +58,11 @@
 
     &__nav-list-item {
         a {
-            color: var(--background-default);
+            color: var(--text-primary);
             text-decoration: none;
             display: block;
             padding: 1.5rem 0px;
-            border-bottom: 2px solid var(--background-default);
+            border-bottom: 2px solid var(--text-primary);
 
             &:hover {
                 border-bottom: 2px solid transparent;
@@ -96,7 +96,6 @@
         }
 
         a {
-            color: var(--background-default);
             text-decoration-thickness: 1px;
         }
     }
@@ -114,11 +113,10 @@
         align-items: center;
 
         .icon-button {
-            color: var(--background-default);
             margin-left: 24px;
 
             &:hover {
-                box-shadow: 0px 0px 0px 2px var(--background-default);
+                box-shadow: 0px 0px 0px 2px var(--text-primary);
             }
         }
     }

@@ -2,20 +2,6 @@ import gsap from "gsap"
 import Splitting from "splitting"
 
 const IntroAnimation = () => {
-    const timelineSettings = {
-        staggerValue: 0.014,
-        charsDuration: 0.5
-    }
-
-    const el = {
-        introMain: document.querySelector(".intro__main"),
-        get introHeadingChars() {
-            return this.introMain.querySelectorAll(
-                ".intro__heading .word > .char, .whitespace"
-            )
-        }
-    }
-
     const target = document.querySelector(".intro__heading")
 
     const results = Splitting({
@@ -26,7 +12,7 @@ const IntroAnimation = () => {
     const tl = gsap.timeline({ paused: "true" })
 
     results[0].lines.forEach((line, index) => {
-        tl.addLabel("cobakeun")
+        tl.addLabel("marker")
         tl.fromTo(
             line,
             {
@@ -40,7 +26,7 @@ const IntroAnimation = () => {
                 autoAlpha: 1,
                 y: "0%"
             },
-            "cobakeun-=0.25"
+            "marker-=0.25"
         )
     })
 

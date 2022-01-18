@@ -7,6 +7,10 @@
         .header__inner {
             border-bottom: 2px solid transparent;
             transition: all 0.2s $animation-curve-default;
+            color: var(--background-default);
+            a {
+                color: var(--background-default);
+            }
         }
     }
 

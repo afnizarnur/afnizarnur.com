@@ -2,7 +2,7 @@
     position: relative;
 
     &--card {
-        border-radius: 32px;
+        border-radius: 24px;
         overflow: hidden;
 
         @include mq-down(lg) {
