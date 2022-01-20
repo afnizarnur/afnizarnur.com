@@ -2,13 +2,13 @@
 // It will run Sass and compile all styles defined in the main entry file.
 
 // main entry point name
-const ENTRY_FILE_NAME = 'main.scss'
+const ENTRY_FILE_NAME = "main.scss"
 
-const path = require('path')
-const sass = require('node-sass')
-const CleanCSS = require('clean-css')
-const cssesc = require('cssesc')
-const isProd = process.env.ELEVENTY_ENV === 'production'
+const path = require("path")
+const sass = require("node-sass")
+const CleanCSS = require("clean-css")
+const cssesc = require("cssesc")
+const isProd = process.env.ELEVENTY_ENV === "production"
 
 module.exports = class {
     async data() {
@@ -27,7 +27,7 @@ module.exports = class {
             if (!isProd) {
                 config.sourceMap = true
                 config.sourceMapEmbed = true
-                config.outputStyle = 'expanded'
+                config.outputStyle = "compressed"
             }
             return sass.render(config, (err, result) => {
                 if (err) {

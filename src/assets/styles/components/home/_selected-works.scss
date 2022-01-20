@@ -36,6 +36,22 @@
             border-radius: 24px;
             position: relative;
 
+            @include mq-down(sm) {
+                height: 100%;
+                width: auto;
+
+                a {
+                    max-width: 100%;
+                    display: inline;
+                    position: absolute;
+                    height: 100%;
+                }
+            }
+
+            @include mq-down(sm) {
+                height: 450px;
+            }
+
             &:hover {
                 outline: 4px solid var(--background-default);
                 box-shadow: 0px 0px 0px 6px var(--text-primary);
@@ -57,12 +73,22 @@
                 position: absolute;
                 bottom: 24px;
                 right: 24px;
+
+                .icon {
+                    width: 20px;
+                    height: 20px;
+                }
             }
 
             .image {
                 width: 100%;
                 will-change: transform;
                 transition: transform 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+                @include mq-down(sm) {
+                    height: 100%;
+                    width: auto;
+                }
 
                 &:hover {
                     transform: scale(1.04) translateZ(0);
