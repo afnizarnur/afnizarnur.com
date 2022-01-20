@@ -1,0 +1,47 @@
+.colophon {
+    padding: 92px 0px 56px 0px;
+    background: var(--surface-primary-inverse);
+
+    @include mq-down(md) {
+        padding: 64px 0px 40px 0px;
+        position: relative;
+    }
+    &__main {
+        color: var(--text-on-surface-primary-inverse);
+
+        section {
+            border-bottom: 2px solid var(--text-on-surface-primary-inverse);
+            padding-bottom: 44px;
+            margin-bottom: 44px;
+        }
+
+        p {
+            &.subtitle {
+                color: var(--text-on-surface-primary-inverse);
+            }
+            color: var(--text-on-surface-secondary-inverse);
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+
+            .icon {
+                margin-right: 12px;
+            }
+        }
+        .body {
+            padding-left: 36px;
+
+            @include mq-down(sm) {
+                margin-bottom: 24px;
+            }
+        }
+    }
+}
