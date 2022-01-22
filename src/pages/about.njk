@@ -5,9 +5,15 @@ eleventyNavigation:
   key: About
 ---
 
-<main class="container">
+<main>
+  <div class="container">
     {% include "about/intro.njk" %}
+  </div>
+  
+  {% include "about/bio.njk" %}
 </main>
+
+
 
 {% include "about/colophon.njk"%}
 {% include "footer/index.njk"%}

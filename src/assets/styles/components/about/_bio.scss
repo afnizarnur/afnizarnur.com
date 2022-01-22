@@ -1,0 +1,27 @@
+.bio {
+    background: url("/assets/images/afnizarnur-pipe.svg") no-repeat 120% 130%
+        var(--surface-green);
+
+    @include mq-down(lg) {
+        background: url("/assets/images/afnizarnur-pipe.svg") no-repeat 180%
+            120% var(--surface-green);
+    }
+
+    @include mq-down(sm) {
+        background: url("/assets/images/afnizarnur-pipe.svg") no-repeat 10% 125%
+            var(--surface-green);
+    }
+
+    padding: 92px 0px;
+
+    &__main {
+        color: var(--text-primary);
+        h3 {
+            margin-bottom: 32px;
+        }
+
+        p {
+            margin-bottom: 24px;
+        }
+    }
+}

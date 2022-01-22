@@ -8,7 +8,8 @@
 		<link rel="stylesheet" href="{{ '/assets/styles/main.css' | url }}">
 		{% include "meta.njk" %}
 		<script>
-			{% include "initialtheme.njk" %}</script>
+			{% include "initialtheme.njk" %}
+		</script>
 	</head>
 	<body>
 		{% iconsprite %}
@@ -28,8 +29,10 @@
 		<script type="text/javascript" src="{{ '/assets/scripts/main.js' | url }}"></script>
 		<script type="text/javascript">
 			if ('serviceWorker' in navigator) {
-navigator.serviceWorker.register('/serviceworker.js')
-}
+				navigator
+					.serviceWorker
+					.register('/serviceworker.js')
+			}
 		</script>
 	</body>
 </html>
