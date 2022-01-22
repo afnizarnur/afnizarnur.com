@@ -1,0 +1,13 @@
+.talks {
+    background: var(--background-default);
+    &__wrapper {
+        border-radius: 60px 60px 0px 0px;
+        padding: 92px 0px;
+        background: var(--surface-pink);
+    }
+
+    h2 {
+        margin-bottom: 92px;
+        color: var(--text-on-surface-primary);
+    }
+}

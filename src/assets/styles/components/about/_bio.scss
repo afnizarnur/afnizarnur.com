@@ -15,13 +15,14 @@
     padding: 92px 0px;
 
     &__main {
-        color: var(--text-primary);
         h3 {
             margin-bottom: 32px;
+            color: var(--text-on-surface-primary);
         }
 
         p {
             margin-bottom: 24px;
+            color: var(--text-on-surface-secondary);
         }
     }
 }
