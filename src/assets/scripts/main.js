@@ -8,4 +8,4 @@ import "./modules/onscroll"
 import "./modules/cursor"
 
 // Handle interactive animation
-import "./index"
+// import "./index"

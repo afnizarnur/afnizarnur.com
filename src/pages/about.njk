@@ -6,9 +6,11 @@ eleventyNavigation:
 ---
 
 <main>
-    <div class="container">{% include "about/intro.njk" %}</div>
+    <div class="container">
+        {% include "about/intro.njk" %} {% include "about/bio.njk" %}
+    </div>
 
-    {% include "about/talks.njk" %}
+    {% include "about/misc.njk" %} {% include "about/talks.njk" %}
 </main>
 
 {% include "about/colophon.njk"%} {% include "footer/index.njk"%}
