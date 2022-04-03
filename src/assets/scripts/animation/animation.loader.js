@@ -94,7 +94,7 @@ const LoaderAnimation = () => {
                     onComplete: () => {
                         document.body.style.overflow = "auto"
                         if (document.querySelector(".aboutme")) {
-                            IntroAnimation().play()
+                            IntroAnimation().play().delay(0.5)
                         }
                     }
                 }
