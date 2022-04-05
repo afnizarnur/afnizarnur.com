@@ -8,7 +8,7 @@ Splitting()
 const LoaderAnimation = () => {
     const timelineSettings = {
         staggerValue: 0.014,
-        charsDuration: 0.5
+        charsDuration: 0.6
     }
 
     const el = {

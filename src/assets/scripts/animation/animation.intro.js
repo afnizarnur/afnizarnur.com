@@ -26,7 +26,7 @@ const IntroAnimation = () => {
                 autoAlpha: 1,
                 y: "0%"
             },
-            "marker-=0.25"
+            "marker-=0.2"
         )
     })
 
