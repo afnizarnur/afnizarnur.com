@@ -68,6 +68,10 @@ p.subtitle {
     font-size: 1.563125rem;
     line-height: 2.344375rem;
 
+    &.bold {
+        font-weight: 500;
+    }
+
     @include mq-down(sm) {
         font-size: 1.25rem;
         line-height: 1.875rem;
