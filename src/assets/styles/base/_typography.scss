@@ -88,6 +88,10 @@ p {
 p.body-large {
     font-size: 1.25rem;
     line-height: 1.875rem;
+
+    &.bold {
+        font-weight: 500;
+    }
 }
 
 // Body small
