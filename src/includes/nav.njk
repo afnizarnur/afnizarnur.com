@@ -1,40 +1,64 @@
 <nav class="nav" role="navigation" tabindex="-1">
-	<button class="nav__toggle js-nav-toggle" aria-expanded="false" aria-controls="nav-menu">
-		<span class="sr-only">Toggle Menu</span>
-		<span class="menuicon">
-			<span class="menuicon__bar"></span>
-			<span class="menuicon__bar"></span>
-			<span class="menuicon__bar"></span>
-		</span>
-	</button>
+    <button
+        class="nav__toggle js-nav-toggle"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+    >
+        <span class="sr-only">Toggle Menu</span>
+        <span class="menuicon">
+            <span class="menuicon__bar"></span>
+            <span class="menuicon__bar"></span>
+            <span class="menuicon__bar"></span>
+        </span>
+    </button>
 
-	<ul class="nav__menu">
-		{%- for item in collections.all | eleventyNavigation -%}
-			{%- if item.url
-        -%}
-				{%- set isCurrent = (item.url == page.url) -%}
-				{%- set isParent =
+    <ul class="nav__menu">
+        {%- for item in collections.all | eleventyNavigation -%} {%- if item.url
+        -%} {%- set isCurrent = (item.url == page.url) -%} {%- set isParent =
         item.url != '/' and item.url in page.url -%}
-				<li class="nav__item{% if isCurrent or isParent %} nav__item--active{% endif %}">
-					<a class="nav__link" href="{% if isCurrent %}#main{% else %}{{ item.url | url }}{% endif %}" {% if isCurrent %} aria-current="page" {% endif %}>
-						{{ item.title }}
-					</a>
-				</li>
-			{%- endif -%}
-		{%- endfor -%}
-		<li>
-			<a class="nav__item nav__link" href="#">Contact</a>
-		</li>
-		<li>
-			<a class="nav__item nav__link" href="{{ '/afnizar-resume.pdf' | url }}">Resume</a>
-		</li>
-		<li>
-			<button class="icon-button nav__themebtn js-themepicker-toggle" aria-expanded="false" aria-controls="theme-menu">
-				<span class="sr-only">
-					Change Theme</span>
+        <li
+            class="nav__item{% if isCurrent or isParent %} nav__item--active{% endif %}"
+        >
+            <a
+                class="nav__link"
+                href="{% if isCurrent %}#main{% else %}{{
+                    item.url | url
+                }}{% endif %}"
+                {%
+                if
+                isCurrent
+                %}
+                aria-current="page"
+                {%
+                endif
+                %}
+            >
+                {{ item.title }}
+            </a>
+        </li>
+        {%- endif -%} {%- endfor -%}
+        <li>
+            <a class="nav__item nav__link" href="mailto:afnizarhilmi@gmail.com"
+                >Contact</a
+            >
+        </li>
+        <li>
+            <a
+                class="nav__item nav__link"
+                href="{{ '/afnizar-resume.pdf' | url }}"
+                >Resume</a
+            >
+        </li>
+        <li>
+            <button
+                class="icon-button nav__themebtn js-themepicker-toggle"
+                aria-expanded="false"
+                aria-controls="theme-menu"
+            >
+                <span class="sr-only"> Change Theme</span>
 
-				{% icon "change-pallete" %}
-			</button>
-		</li>
-	</ul>
+                {% icon "change-pallete" %}
+            </button>
+        </li>
+    </ul>
 </nav>
