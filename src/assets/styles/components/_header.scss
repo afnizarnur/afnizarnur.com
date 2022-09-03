@@ -1,0 +1,49 @@
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+
+    &.is-open {
+        .header__inner {
+            transition: all 0.2s $animation-curve-default;
+        }
+    }
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        -webkit-justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--text-primary);
+        padding: 1.6rem 0;
+        transition: all 0.2s $animation-curve-default;
+
+        &.onscroll {
+            border-bottom: 2px solid transparent;
+            padding: 1.2rem 0;
+            transition: all 0.2s $animation-curve-default;
+        }
+    }
+
+    @include mq-down(lg) {
+        &__inner {
+            padding: 1.4rem 0;
+        }
+    }
+
+    &__logo {
+        fill: var(--text-primary);
+    }
+
+    &__left {
+        a.logo {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+    }
+}

@@ -1,0 +1,47 @@
+.icon-button {
+    @include button-reset;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: var(--text-primary);
+
+    .icon {
+        margin: auto; // iOS Safari compat
+    }
+}
+
+.scrolltotop-button {
+    @include button-reset;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.livesite-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px 8px 24px;
+    border-radius: 24px;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    margin-top: 24px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

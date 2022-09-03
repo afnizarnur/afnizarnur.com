@@ -1,0 +1,62 @@
+.nav {
+    display: flex;
+    align-items: center;
+    &__item {
+        margin: 0px 16px;
+        &--active {
+            text-decoration: underline;
+        }
+    }
+    &__menu {
+        display: none;
+        position: absolute;
+        right: 10%;
+        top: 40px;
+        background-color: var(--background-default);
+    }
+    &__link {
+        display: block;
+        text-decoration: none;
+        color: var(--text-primary);
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__toggle {
+        @include button-reset;
+    }
+
+    &__themebtn {
+        margin-left: 1em;
+        transition: all 0.1s ease-in-out;
+        background: transparent;
+        transition: all 0.2s $animation-curve-default;
+
+        &:hover {
+            box-shadow: 0px 0px 0px 2px var(--text-primary);
+            transition: all 0.2s $animation-curve-default;
+        }
+        &:active {
+            transform: translateY(-5px);
+            transition: all 0.2s $animation-curve-default;
+        }
+    }
+
+    @include mq-down(lg) {
+        &.is-open &__menu {
+            display: block;
+        }
+    }
+
+    @include mq(lg) {
+        &__toggle {
+            display: none;
+        }
+        &__menu {
+            display: flex;
+            align-items: center;
+            position: static;
+            background-color: transparent;
+        }
+    }
+}

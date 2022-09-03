@@ -1,0 +1,44 @@
+---
+permalink: '/assets/styles/themes.css'
+eleventyExcludeFromCollections: true
+---
+
+{%- macro colorscheme(colors) -%}
+    --background-default: {{ colors.backgroundDefault }};
+    --background-inverse: {{ colors.backgroundInverse }};
+    --surface-primary-inverse: {{ colors.surfacePrimaryInverse }};
+    --surface-secondary-inverse: {{ colors.surfaceSecondaryInverse }};
+    --surface-purple: {{ colors.surfacePurple }};
+    --surface-pink: {{ colors.surfacePink }};
+    --surface-gray: {{ colors.surfaceGray }};
+    --surface-blue: {{ colors.surfaceBlue }};
+    --surface-orange: {{ colors.surfaceOrange}};
+    --surface-green: {{ colors.surfaceGreen }};
+    --text-primary: {{ colors.textPrimary }};
+    --text-secondary: {{ colors.textSecondary}};
+    --text-primary-inverse: {{ colors.textPrimaryInverse }};
+    --text-secondary-inverse: {{ colors.textSecondaryInverse }};
+    --text-on-surface-primary: {{ colors.textOnSurfacePrimary }};
+    --text-on-surface-secondary: {{ colors.textOnSurfaceSecondary }};
+    --text-on-surface-primary-inverse: {{ colors.textOnSurfacePrimaryInverse }};
+    --text-on-surface-secondary-inverse: {{ colors.textOnSurfaceSecondaryInverse }};
+{%- endmacro -%}
+
+{%- set default = themes|findById('default') -%}
+{%- set dark = themes|findById('dark') -%}
+
+:root {
+    {{ colorscheme(default.colors) }}
+}
+
+@media(prefers-color-scheme: dark) {
+    :root {
+        {{ colorscheme(dark.colors) }}
+    }
+}
+
+{% for theme in themes %}
+[data-theme='{{ theme.id }}'] {
+    {{ colorscheme(theme.colors) }}
+}
+{% endfor %}

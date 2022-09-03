@@ -1,0 +1,52 @@
+.icon {
+    display: inline-block;
+    font-size: 1.5em;
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    pointer-events: none;
+}
+
+.menuicon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    transition: transform 0.3s $animation-curve-default;
+    cursor: pointer;
+    margin: 0 auto;
+
+    &__bar {
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 2px;
+        width: 100%;
+        background-color: currentColor;
+        transition: transform 0.3s $animation-curve-default;
+
+        &:nth-child(1) {
+            top: 0px;
+        }
+        &:nth-child(2) {
+            top: 50%;
+        }
+        &:nth-child(3) {
+            top: 100%;
+        }
+    }
+
+    // Transform to -
+    .is-open & {
+        .menuicon__bar {
+            &:nth-child(1) {
+                transform: translateY(9px);
+            }
+            &:nth-child(3) {
+                transform: translateY(-9px);
+            }
+        }
+    }
+}

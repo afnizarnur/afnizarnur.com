@@ -1,0 +1,122 @@
+[
+    {
+        "id": "default",
+        "name": "Default",
+        "colors": {
+            "backgroundDefault": "#ffffff",
+            "backgroundInverse": "#191A1B",
+            "surfacePrimaryInverse": "#191A1B",
+            "surfaceSecondaryInverse": "#323437",
+            "surfacePurple": "#F5EFFF",
+            "surfacePink": "#FAE7F7",
+            "surfaceGray": "#F3F4F8",
+            "surfaceBlue": "#E7EFFA",
+            "surfaceOrange": "#FFF0F0",
+            "surfaceGreen": "#E4F3EA",
+            "textPrimary": "#191A1B",
+            "textSecondary": "#474A4C",
+            "textPrimaryInverse": "#FFFFFF",
+            "textSecondaryInverse": "#D4D4D4",
+            "textOnSurfacePrimary": "#191A1B",
+            "textOnSurfaceSecondary": "#474A4C",
+            "textOnSurfacePrimaryInverse": "#FFFFFF",
+            "textOnSurfaceSecondaryInverse": "#D4D4D4"
+        }
+    },
+    {
+        "id": "dark",
+        "name": "Dark",
+        "colors": {
+            "backgroundDefault": "#191A1B",
+            "backgroundInverse": "#FFFFFF",
+            "surfacePrimaryInverse": "#252627",
+            "surfaceSecondaryInverse": "#323437",
+            "surfacePurple": "#F5EFFF",
+            "surfacePink": "#FAE7F7",
+            "surfaceGray": "#F3F4F8",
+            "surfaceBlue": "#E7EFFA",
+            "surfaceOrange": "#FFF0F0",
+            "surfaceGreen": "#E4F3EA",
+            "textPrimary": "#FFFFFF",
+            "textSecondary": "#D4D4D4",
+            "textPrimaryInverse": "#191A1B",
+            "textSecondaryInverse": "#474A4C",
+            "textOnSurfacePrimary": "#191A1B",
+            "textOnSurfaceSecondary": "#474A4C",
+            "textOnSurfacePrimaryInverse": "#FFFFFF",
+            "textOnSurfaceSecondaryInverse": "#D4D4D4"
+        }
+    },
+    {
+        "id": "gray",
+        "name": "Gray",
+        "colors": {
+            "backgroundDefault": "#D1D1D1",
+            "backgroundInverse": "#191A1B",
+            "surfacePrimaryInverse": "#191A1B",
+            "surfaceSecondaryInverse": "#323437",
+            "surfacePurple": "#F5EFFF",
+            "surfacePink": "#FAE7F7",
+            "surfaceGray": "#F3F4F8",
+            "surfaceBlue": "#E7EFFA",
+            "surfaceOrange": "#FFF0F0",
+            "surfaceGreen": "#E4F3EA",
+            "textPrimary": "#191A1B",
+            "textSecondary": "#474A4C",
+            "textPrimaryInverse": "#FFFFFF",
+            "textSecondaryInverse": "#D4D4D4",
+            "textOnSurfacePrimary": "#191A1B",
+            "textOnSurfaceSecondary": "#474A4C",
+            "textOnSurfacePrimaryInverse": "#FFFFFF",
+            "textOnSurfaceSecondaryInverse": "#D4D4D4"
+        }
+    },
+    {
+        "id": "pink",
+        "name": "Pink",
+        "colors": {
+            "backgroundDefault": "#C59BBE",
+            "backgroundInverse": "#FFFFFF",
+            "surfacePrimaryInverse": "#191A1B",
+            "surfaceSecondaryInverse": "#323437",
+            "surfacePurple": "#F5EFFF",
+            "surfacePink": "#FAE7F7",
+            "surfaceGray": "#F3F4F8",
+            "surfaceBlue": "#E7EFFA",
+            "surfaceOrange": "#FFF0F0",
+            "surfaceGreen": "#E4F3EA",
+            "textPrimary": "#FFFFFF",
+            "textSecondary": "#FFFFFF",
+            "textPrimaryInverse": "#191A1B",
+            "textSecondaryInverse": "#474A4C",
+            "textOnSurfacePrimary": "#191A1B",
+            "textOnSurfaceSecondary": "#474A4C",
+            "textOnSurfacePrimaryInverse": "#FFFFFF",
+            "textOnSurfaceSecondaryInverse": "#D4D4D4"
+        }
+    },
+    {
+        "id": "hacker",
+        "name": "Hacker",
+        "colors": {
+            "backgroundDefault": "#191A1B",
+            "backgroundInverse": "#FFFFFF",
+            "surfacePrimaryInverse": "#030304",
+            "surfaceSecondaryInverse": "#323437",
+            "surfacePurple": "#F5EFFF",
+            "surfacePink": "#FAE7F7",
+            "surfaceGray": "#F3F4F8",
+            "surfaceBlue": "#E7EFFA",
+            "surfaceOrange": "#FFF0F0",
+            "surfaceGreen": "#E4F3EA",
+            "textPrimary": "#00CF35",
+            "textSecondary": "#2DBA51",
+            "textPrimaryInverse": "#191A1B",
+            "textSecondaryInverse": "#474A4C",
+            "textOnSurfacePrimary": "#191A1B",
+            "textOnSurfaceSecondary": "#474A4C",
+            "textOnSurfacePrimaryInverse": "#00CF35",
+            "textOnSurfaceSecondaryInverse": "#2DBA51"
+        }
+    }
+]

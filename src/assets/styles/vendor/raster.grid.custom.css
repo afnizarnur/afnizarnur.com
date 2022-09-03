@@ -1,0 +1,114 @@
+/* for window width <= 960px */
+@media only screen and (min-width: 480px) and (max-width: 960px) {
+    r-grid[columns-m="1"] {
+        --grid-tc: repeat(1, 1fr);
+    }
+    r-grid[columns-m="2"] {
+        --grid-tc: repeat(2, 1fr);
+    }
+    r-grid[columns-m="3"] {
+        --grid-tc: repeat(3, 1fr);
+    }
+    r-grid[columns-m="4"] {
+        --grid-tc: repeat(4, 1fr);
+    }
+    r-grid[columns-m="5"] {
+        --grid-tc: repeat(5, 1fr);
+    }
+    r-grid[columns-m="6"] {
+        --grid-tc: repeat(6, 1fr);
+    }
+    r-grid[columns-m="7"] {
+        --grid-tc: repeat(7, 1fr);
+    }
+    r-grid[columns-m="8"] {
+        --grid-tc: repeat(8, 1fr);
+    }
+
+    /* span-m=start... */
+    r-grid > r-cell[span-m^="1"] {
+        --grid-cs: 1;
+    }
+    r-grid > r-cell[span-m^="2"] {
+        --grid-cs: 2;
+    }
+    r-grid > r-cell[span-m^="3"] {
+        --grid-cs: 3;
+    }
+    r-grid > r-cell[span-m^="4"] {
+        --grid-cs: 4;
+    }
+    r-grid > r-cell[span-m^="5"] {
+        --grid-cs: 5;
+    }
+    r-grid > r-cell[span-m^="6"] {
+        --grid-cs: 6;
+    }
+    r-grid > r-cell[span-m^="7"] {
+        --grid-cs: 7;
+    }
+    r-grid > r-cell[span-m^="8"] {
+        --grid-cs: 8;
+    }
+
+    /* span-m=...+width, span-m=...-end */
+    r-grid > r-cell[span-m$="+1"],
+    r-grid > r-cell[span-m="1"] {
+        --grid-ce: 1;
+    }
+    r-grid > r-cell[span-m$="+2"],
+    r-grid > r-cell[span-m$="-1"],
+    r-grid > r-cell[span-m="2"] {
+        --grid-ce: 2;
+    }
+    r-grid > r-cell[span-m$="+3"],
+    r-grid > r-cell[span-m$="-2"],
+    r-grid > r-cell[span-m="3"] {
+        --grid-ce: 3;
+    }
+    r-grid > r-cell[span-m$="+4"],
+    r-grid > r-cell[span-m$="-3"],
+    r-grid > r-cell[span-m="4"] {
+        --grid-ce: 4;
+    }
+    r-grid > r-cell[span-m$="+5"],
+    r-grid > r-cell[span-m$="-4"],
+    r-grid > r-cell[span-m="5"] {
+        --grid-ce: 5;
+    }
+    r-grid > r-cell[span-m$="+6"],
+    r-grid > r-cell[span-m$="-5"],
+    r-grid > r-cell[span-m="6"] {
+        --grid-ce: 6;
+    }
+    r-grid > r-cell[span-m$="+7"],
+    r-grid > r-cell[span-m$="-6"],
+    r-grid > r-cell[span-m="7"] {
+        --grid-ce: 7;
+    }
+    r-grid > r-cell[span-m$="+8"],
+    r-grid > r-cell[span-m$="-7"],
+    r-grid > r-cell[span-m="8"] {
+        --grid-ce: 8;
+    }
+    r-grid > r-cell[span-m$="-8"] {
+        --grid-ce: 9;
+    }
+
+    /* connect vars */
+    r-grid > r-cell[span-m] {
+        grid-column-end: span var(--grid-ce);
+    }
+    r-grid > r-cell[span-m*="+"],
+    r-grid > r-cell[span-m*="-"],
+    r-grid > r-cell[span-m*=".."] {
+        grid-column-start: var(--grid-cs);
+    }
+    r-grid > r-cell[span-m*="-"],
+    r-grid > r-cell[span-m*=".."] {
+        grid-column-end: var(--grid-ce);
+    }
+    r-grid > r-cell[span-m="row"] {
+        grid-column: 1 / -1;
+    }
+}
