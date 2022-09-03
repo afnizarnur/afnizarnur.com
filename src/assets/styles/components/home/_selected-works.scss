@@ -1,8 +1,10 @@
 .selectedwork {
-    margin-bottom: 64px;
-
     h2 {
         margin-bottom: 64px;
+
+        @include mq-down(sm) {
+            margin-bottom: 32px;
+        }
     }
 
     &__card {
@@ -71,8 +73,13 @@
                 align-items: center;
                 gap: 8px;
                 position: absolute;
-                bottom: 24px;
+                top: 24px;
                 right: 24px;
+
+                @include mq-down(sm) {
+                    bottom: 24px;
+                    top: auto;
+                }
 
                 .icon {
                     width: 20px;

@@ -1,7 +1,7 @@
 .intro {
     &__main {
         padding-top: 294px;
-        padding-bottom: 174px;
+        padding-bottom: 200px;
 
         @include mq-down(lg) {
             padding-top: 222px;
@@ -9,8 +9,8 @@
         }
 
         @include mq-down(sm) {
-            padding-top: 198px;
-            padding-bottom: 120px;
+            padding-top: 194px;
+            padding-bottom: 116px;
         }
 
         .intro__heading {
@@ -27,7 +27,8 @@
         }
 
         p.subtitle {
-            margin-top: 24px;
+            margin-top: 32px;
+            color: var(--text-secondary);
         }
 
         .char {
