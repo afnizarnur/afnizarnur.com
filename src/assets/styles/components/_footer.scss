@@ -56,6 +56,15 @@ footer {
 }
 
 .footer {
+    &__wrapper {
+        background: var(--surface-primary-inverse);
+        width: 100%;
+    }
+    &__inner {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
     &__main {
         padding: 36px 0px;
         color: var(--text-secondary);
