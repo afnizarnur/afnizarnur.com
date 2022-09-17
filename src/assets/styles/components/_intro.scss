@@ -29,6 +29,10 @@
         p.subtitle {
             margin-top: 32px;
             color: var(--text-secondary);
+
+            a {
+                color: var(--text-secondary);
+            }
         }
 
         .char {
