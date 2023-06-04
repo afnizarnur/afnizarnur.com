@@ -24,6 +24,7 @@
 @import "base/utilities";
 @import "base/screenreader";
 @import "base/animation";
+@import "base/borders";
 
 //--------------------
 // COMPONENTS
@@ -42,6 +43,7 @@
 @import "components/intro";
 
 // Pages
+@import "components/home/header";
 @import "components/home/design-process";
 @import "components/home/about-me";
 @import "components/home/selected-works";
@@ -56,6 +58,5 @@
 // third-party styles
 //--------------------
 
-@import "vendor/raster.grid";
 @import "vendor/raster.grid.custom";
 @import "vendor/splitting";

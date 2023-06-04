@@ -5,8 +5,14 @@ eleventyNavigation:
 ---
 
 <main class="container">
-    {% include "home/intro.njk" %} {% include "home/design-process.njk"%} {%
-    include "home/about-me.njk"%} {% include "home/selected-works.njk"%}
+    <r-grid columns="12" class="nav-container">
+        <r-cell class="border-left-bottom top-empty" span="1-2"></r-cell>
+        <r-cell class="border-left-right-bottom header-container" span="3-12">
+            {% include "header.njk" %}
+        </r-cell>
+    </r-grid>
+    <r-grid columns="12">
+        <r-cell class="border-left-bottom top-empty" span="1-2">Sidebar</r-cell>
+        <r-cell class="border-left-right-bottom" span="3-12">Header</r-cell>
+    </r-grid>
 </main>
-
-{% include "home/design-tooling.njk"%} {% include "footer/index.njk"%}
