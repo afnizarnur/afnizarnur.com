@@ -4,28 +4,27 @@ eleventyNavigation:
     key: Selected works
 ---
 
-<div class="container">
-    <r-grid columns="12" class="topbar">
+<main class="container home">
+    <r-grid columns="12">
         <r-cell class="border-left-bottom top-empty" span="1-2"></r-cell>
-        <r-cell
-            class="border-left-right-bottom header-nav-container"
-            span="3-12"
-        >
+        <r-cell class="border-left-right header-nav-container" span="3-12">
             {% include "header.njk" %}
-
-            <r-grid columns="12" class="topbar">
-                <r-cell
-                    style="height: 2000px"
-                    class="border-bottom top-empty"
-                    span="12"
-                >
-                    <h1>
-                        Hi, I'm Afnizar. I'm a digital product designer
-                        specialising in design system, visual, and strategy
-                        across multiple industries
-                    </h1>
-                </r-cell>
-            </r-grid>
         </r-cell>
     </r-grid>
-</div>
+    <r-grid columns="12">
+        <r-cell
+            style="height: 2000px"
+            class="border-left-bottom top-empty"
+            span="1-2"
+        >
+            <div class="border-bottom section-title">Introduction</div>
+        </r-cell>
+        <r-cell class="border-left-right-bottom intro" span="3-12">
+            <span class="block border-bottom"></span>
+            <h1>
+                Hi, I'm Afnizar. I'm a digital product designer specialising in
+                design system, visual, and strategy across multiple industries
+            </h1>
+        </r-cell>
+    </r-grid>
+</main>

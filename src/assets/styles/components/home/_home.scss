@@ -1,0 +1,23 @@
+.home {
+    span.block {
+        height: 36px;
+        width: 100%;
+        display: inline-block;
+    }
+
+    .section-title {
+        height: 36px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .header-nav-container {
+        padding-top: 144px;
+    }
+
+    h1 {
+        margin: 144px 44px 24px 44px;
+    }
+}
