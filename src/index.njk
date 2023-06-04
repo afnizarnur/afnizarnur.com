@@ -6,20 +6,36 @@ eleventyNavigation:
 
 <main class="container home">
     <r-grid columns="12">
+        <!-- Void for styling -->
+        <r-cell
+            class="border-left top-empty"
+            style="grid-row: 1"
+            span="1-2"
+        ></r-cell>
+        <r-cell class="border-left-right header-nav-empty" span="3-12">
+        </r-cell>
+
+        <!-- Begin Navigation -->
         <r-cell class="border-left-bottom top-empty" span="1-2"></r-cell>
-        <r-cell class="border-left-right header-nav-container" span="3-12">
+        <r-cell
+            class="border-left-right header-nav-container"
+            span="3-12"
+            style="position: sticky; top: 0; grid-row: 2"
+        >
             {% include "header.njk" %}
         </r-cell>
-    </r-grid>
-    <r-grid columns="12">
         <r-cell
-            style="height: 2000px"
             class="border-left-bottom top-empty"
             span="1-2"
+            style="grid-row: 3"
         >
             <div class="border-bottom section-title">Introduction</div>
         </r-cell>
-        <r-cell class="border-left-right-bottom intro" span="3-12">
+        <r-cell
+            class="border-left-right-bottom intro"
+            style="height: 2000px; grid-row: 3"
+            span="3-12"
+        >
             <span class="block border-bottom"></span>
             <h1>
                 Hi, I'm Afnizar. I'm a digital product designer specialising in

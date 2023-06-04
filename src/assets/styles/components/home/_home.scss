@@ -13,8 +13,9 @@
         padding: 12px;
     }
 
-    .header-nav-container {
-        padding-top: 144px;
+    .header-nav-empty {
+        height: 144px;
+        grid-row: 1;
     }
 
     h1 {
