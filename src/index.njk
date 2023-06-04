@@ -4,15 +4,22 @@ eleventyNavigation:
     key: Selected works
 ---
 
-<main class="container">
-    <r-grid columns="12" class="nav-container">
+<div class="container">
+    <r-grid columns="12" class="topbar">
         <r-cell class="border-left-bottom top-empty" span="1-2"></r-cell>
-        <r-cell class="border-left-right-bottom header-container" span="3-12">
+        <r-cell
+            class="border-left-right-bottom header-nav-container"
+            span="3-12"
+        >
             {% include "header.njk" %}
+
+            <r-grid columns="12" class="topbar">
+                <r-cell
+                    style="height: 2000px"
+                    class="border-bottom top-empty"
+                    span="1-2"
+                ></r-cell>
+            </r-grid>
         </r-cell>
     </r-grid>
-    <r-grid columns="12">
-        <r-cell class="border-left-bottom top-empty" span="1-2">Sidebar</r-cell>
-        <r-cell class="border-left-right-bottom" span="3-12">Header</r-cell>
-    </r-grid>
-</main>
+</div>

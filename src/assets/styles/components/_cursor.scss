@@ -9,6 +9,7 @@
         left: 0;
         display: block;
         pointer-events: none;
+        z-index: 99;
     }
     .cursor__inner {
         fill: none;
