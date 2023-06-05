@@ -43,10 +43,10 @@
         "id": "blue",
         "name": "Blue",
         "colors": {
-            "backgroundDefault": "#F3FBFE",
+            "backgroundDefault": "#E0F5FD",
             "textPrimary": "#042A36",
             "textSecondary": "#042A36",
-            "borderDefault": "#BAEAFA"
+            "borderDefault": "#94DEF7"
         }
     }
 ]
