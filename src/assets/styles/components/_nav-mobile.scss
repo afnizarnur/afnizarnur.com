@@ -39,14 +39,10 @@
         margin: 0;
         padding: 0px 24px;
         position: relative;
-        text-align: right;
+        text-align: left;
 
         h2 {
             margin: 0;
-        }
-
-        @include mq-down(md) {
-            text-align: left;
         }
     }
 
@@ -99,22 +95,8 @@
         }
     }
 
-    &__nav-social {
+    &__nav-link {
         display: flex;
-
-        .nav__nav-list-social {
-            margin: 0px 24px 0px 0px;
-
-            &:first-child {
-                margin-left: 24px;
-            }
-        }
-    }
-
-    &__nav-email {
-        display: flex;
-        align-items: center;
-        margin: 0px 24px 0px 0px;
 
         .icon-button {
             margin-left: 24px;
