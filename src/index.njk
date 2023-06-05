@@ -1,30 +1,32 @@
 ---
 layout: base
 eleventyNavigation:
-    key: Selected works
+    key: About
 ---
 
-<main class="container home">
+<main class="container about">
     <r-grid columns="12">
-        <r-cell class="border-left header-block-empty" span="1-2"></r-cell>
-        <r-cell class="border-left-right header-nav-empty" span="3-12">
-        </r-cell>
-
         <!-- Navigation -->
+        <r-cell
+            class="border-left about--header-block-empty"
+            span="1-2"
+        ></r-cell>
+        <r-cell class="border-left-right about--header-empty" span="3-12">
+        </r-cell>
         <r-cell class="border-left-bottom top-empty" span="1-2"></r-cell>
-        <r-cell class="border-left-right header-nav-container" span="3-12">
+        <r-cell class="about--header-container border-left-right" span="3-12">
             {% include "header.njk" %}
         </r-cell>
 
         <!-- Introduction -->
         <r-cell class="border-left-bottom" span="1-2">
-            <div class="border-bottom section-title">
+            <div class="border-bottom about--section-title">
                 <p class="bold">Introduction</p>
             </div>
         </r-cell>
-        <r-cell class="border-left-right-bottom intro-container" span="3-12">
+        <r-cell class="border-left-right-bottom introduction" span="3-12">
             <span class="block border-bottom"></span>
-            <div class="intro">
+            <div class="introduction--content">
                 <h1>
                     Hi, I'm Afnizar. I'm a product designer specialising in
                     design system, visual, and strategy across multiple
@@ -47,13 +49,13 @@ eleventyNavigation:
 
         <!-- Footer -->
         <r-cell class="border-left-bottom" span="1-2">
-            <div class="border-bottom section-title">
+            <div class="border-bottom about--section-title">
                 <p class="bold">Footer</p>
             </div>
         </r-cell>
-        <r-cell class="border-left-right-bottom footer-container" span="3-12">
+        <r-cell class="border-left-right-bottom footer" span="3-12">
             <span class="block border-bottom"></span>
-            <div class="footer">
+            <div class="footer--content">
                 <h2>
                     It’s end for now, <br />
                     Still work in progress
@@ -64,7 +66,7 @@ eleventyNavigation:
                     feel free to reach out to me via email.
                 </p>
             </div>
-            <div class="social-media border-top">
+            <div class="footer--social border-top">
                 <p>
                     Follow me for more thoughts and updates on
                     <a href="https://twitter.com/afnizarnur">Twitter</a>,
@@ -78,7 +80,7 @@ eleventyNavigation:
                     >.
                 </p>
             </div>
-            <div class="web-version border-top">
+            <div class="footer--version border-top">
                 <ul class="list">
                     <li>
                         <p>See previous versions of this site</p>

@@ -3,13 +3,7 @@
     width: 100%;
     background: var(--background-default);
 
-    &.is-open {
-        .header__inner {
-            transition: all 0.2s $animation-curve-default;
-        }
-    }
-
-    &__inner {
+    &--inner {
         display: flex;
         justify-content: space-between;
         -webkit-justify-content: space-between;
@@ -18,7 +12,7 @@
     }
 
     @include mq-down(lg) {
-        &__inner {
+        &--inner {
             padding: 1.4rem 0;
         }
     }
@@ -29,15 +23,21 @@
         }
     }
 
-    &__left {
+    &--branding {
         a.logo {
             color: var(--text-primary);
             text-decoration: none;
         }
     }
 
-    &__right {
+    &--nav {
         display: flex;
         align-items: center;
+    }
+
+    &.is-open {
+        .header--inner {
+            transition: all 0.2s $animation-curve-default;
+        }
     }
 }
