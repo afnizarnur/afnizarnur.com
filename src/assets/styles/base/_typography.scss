@@ -17,9 +17,9 @@ h1 {
     font-size: 3.625rem;
     line-height: 3.9875rem;
 
-    @include mq-down(lg) {
-        font-size: 3.051875rem;
-        line-height: 3.6625rem;
+    @include mq-down(sm) {
+        font-size: 2.25rem;
+        line-height: 2.475rem;
     }
 }
 
@@ -64,15 +64,15 @@ p.subtitle {
     line-height: 2.0125rem;
 
     @include mq-down(sm) {
-        font-size: 1.25rem;
-        line-height: 1.875rem;
+        font-size: 1.125rem;
+        line-height: 1.575rem;
     }
 }
 
 // Body large
 p.body-large {
     font-size: 1.125rem;
-    line-height: 1.35rem;
+    line-height: 1.575rem;
     font-weight: 520;
 }
 

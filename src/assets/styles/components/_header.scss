@@ -3,18 +3,16 @@
     width: 100%;
     background: var(--background-default);
 
+    @include mq-down(sm) {
+        padding: 12px 24px;
+    }
+
     &--inner {
         display: flex;
         justify-content: space-between;
         -webkit-justify-content: space-between;
         align-items: center;
         transition: all 0.2s $animation-curve-default;
-    }
-
-    @include mq-down(lg) {
-        &--inner {
-            padding: 1.4rem 0;
-        }
     }
 
     .logo {

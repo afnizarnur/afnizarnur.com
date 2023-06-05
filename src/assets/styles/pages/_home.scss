@@ -8,6 +8,11 @@
         position: sticky;
         top: 0;
         grid-row: 2;
+
+        @include mq-down(sm) {
+            grid-row: 1;
+            border: none;
+        }
     }
 
     &--section-title {
@@ -19,6 +24,14 @@
 
         p {
             color: var(--text-primary);
+        }
+
+        @include mq-down(sm) {
+            padding: 12px 24px;
+
+            &.title-intro {
+                border: none;
+            }
         }
     }
 
