@@ -1,4 +1,8 @@
 .footer {
+    @include mq-down(sm) {
+        border: none;
+    }
+
     &--content {
         padding: 144px 44px 144px 44px;
 

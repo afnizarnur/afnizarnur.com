@@ -15,6 +15,13 @@
         }
     }
 
+    &--title-intro,
+    &--title-footer {
+        @include mq-down(sm) {
+            border: none;
+        }
+    }
+
     &--section-title {
         height: 36px;
         width: 100%;
@@ -28,10 +35,6 @@
 
         @include mq-down(sm) {
             padding: 12px 24px;
-
-            &.title-intro {
-                border: none;
-            }
         }
     }
 
