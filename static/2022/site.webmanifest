@@ -17,7 +17,7 @@
     ],
     "theme_color": "#191a1b",
     "background_color": "#ffffff",
-    "start_url": "/index.html",
+    "start_url": "2022/index.html",
     "display": "standalone",
     "orientation": "natural"
 }
