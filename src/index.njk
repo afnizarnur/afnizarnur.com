@@ -26,25 +26,7 @@ eleventyNavigation:
         </r-cell>
         <r-cell class="border-left-right-bottom introduction" span="3-12">
             <span class="block border-bottom"></span>
-            <div class="introduction--content">
-                <h1>
-                    Hi, I'm Afnizar. I'm a product designer specialising in
-                    design system, visual, and strategy across multiple
-                    industries
-                </h1>
-                <p class="subtitle">
-                    Right now, I'm a product designer at GovTech Edu, where I
-                    design platform for nationalwide national assesment result.
-                    Before that, I did product design for the design system
-                    team, Bukalapak, also at agencies.
-                </p>
-                <p class="subtitle">
-                    I’m passionate about all areas of design and I believe in
-                    design as a better approach to solving human problem. I
-                    deeply value human-centered design that's meaningful and
-                    impactful.
-                </p>
-            </div>
+            {% include "home/introduction.njk" %}
         </r-cell>
 
         <!-- Footer -->
@@ -55,50 +37,7 @@ eleventyNavigation:
         </r-cell>
         <r-cell class="border-left-right-bottom footer" span="3-12">
             <span class="block border-bottom"></span>
-            <div class="footer--content">
-                <h2>
-                    It’s end for now, <br />
-                    Still work in progress
-                </h2>
-                <p class="subtitle">
-                    I am always open to new opportunities and collaborations. If
-                    you have any questions or need help with a project, please
-                    feel free to reach out to me via email.
-                </p>
-            </div>
-            <div class="footer--social border-top">
-                <p>
-                    Follow me for more thoughts and updates on
-                    <a href="https://twitter.com/afnizarnur">Twitter</a>,
-                    <a href="https://www.figma.com/@afnizarnur">Figma</a>,
-                    <a href="https://github.com/afnizarnur">GitHub</a>,
-                    <a href="https://dribbble.com/afnizarnur">Dribbble</a>,
-                    <a href="https://www.behance.net/afnizarnur">Behance</a>,
-                    and
-                    <a href="https://www.linkedin.com/in/afnizarnur/"
-                        >LinkedIn</a
-                    >.
-                </p>
-            </div>
-            <div class="footer--version border-top">
-                <ul class="list">
-                    <li>
-                        <p>See previous versions of this site</p>
-                    </li>
-                    <li>
-                        <a href="{{ '/2013/' | url }}">2013</a>
-                    </li>
-                    <li>
-                        <a href="{{ '/2019/' | url }}">2019</a>
-                    </li>
-                    <li>
-                        <a href="{{ '/2020/' | url }}">2020</a>
-                    </li>
-                    <li>
-                        <a href="{{ '/2022/' | url }}">2022</a>
-                    </li>
-                </ul>
-            </div>
+            {% include "footer.njk" %}
         </r-cell>
     </r-grid>
 </main>

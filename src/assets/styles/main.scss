@@ -27,26 +27,22 @@
 @import "base/borders";
 
 //--------------------
-// COMPONENTS
-// partials with local scope to a component
+// COMPONENTS & PAGES
+// partials with local scope to a component or a page
 //--------------------
 
 // Specific components
 @import "components/nav";
 @import "components/nav-mobile";
 @import "components/header";
+@import "components/footer";
 @import "components/icon";
 @import "components/button";
-@import "components/footer";
 @import "components/cursor";
-@import "components/loader";
-@import "components/intro";
+
+@import "components/home/introduction";
 
 // Pages
-@import "components/home/design-process";
-@import "components/home/about-me";
-@import "components/home/selected-works";
-@import "components/home/design-tooling";
 @import "pages/home";
 
 //--------------------

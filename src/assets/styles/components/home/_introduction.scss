@@ -1,0 +1,11 @@
+.introduction {
+    grid-row: 3;
+
+    &--content {
+        margin: 144px 44px 144px 44px;
+
+        p {
+            margin-bottom: 24px;
+        }
+    }
+}

@@ -1,95 +1,27 @@
-.contact {
-    background: var(--surface-primary-inverse);
-
-    &__inner {
-        background: var(--background-default);
-        border-radius: 60px 60px 0 0px;
-
-        @include mq-down(md) {
-            border-radius: 24px 24px 0 0px;
-        }
-    }
-    &__main {
-        padding: 144px 0px 120px 0px;
-
-        @include mq(md) {
-            padding: 128px 0px 116px 0px;
-        }
-
-        @include mq-down(md) {
-            padding: 64px 0px;
-        }
-        h2 {
-            margin-bottom: 24px;
-
-            @extend h1;
-        }
-
-        p {
-            color: var(--text-secondary);
-        }
-
-        a {
-            color: var(--text-secondary);
-        }
-    }
-
-    &__illustration {
-        width: 100%;
-        height: 664px;
-        background: url("/assets/images/afnizarnur-footer-illustration.svg")
-            no-repeat center top;
-        background-size: auto 100%;
-
-        @include mq-down(lg) {
-            height: 442px;
-        }
-
-        @include mq-down(sm) {
-            height: 173px;
-        }
-    }
-}
-
-footer {
-    background: var(--background-default);
-}
-
 .footer {
-    &__wrapper {
-        background: var(--surface-primary-inverse);
+    &--content {
+        padding: 144px 44px 144px 44px;
+    }
+    &--social {
+        display: inline-block;
         width: 100%;
+        padding: 24px 44px;
     }
-    &__inner {
-        max-width: 1440px;
-        margin: 0 auto;
-    }
+    &--version {
+        display: inline-block;
+        width: 100%;
+        padding: 24px 44px;
+        margin-bottom: 144px;
 
-    &__main {
-        padding: 36px 0px;
-        color: var(--text-secondary);
-
-        a {
-            text-decoration-thickness: 1px;
-        }
-    }
-
-    &__socialmedia {
-        padding-bottom: 32px;
-        margin-bottom: 32px;
-        border-bottom: 2px solid var(--text-primary);
-
-        @include mq-down(md) {
-            text-align: center;
-        }
-    }
-
-    &__link {
-        .footer__list {
+        .list {
             display: flex;
 
             @include mq-down(md) {
                 flex-wrap: wrap;
+            }
+
+            li {
+                margin-right: 16px;
             }
 
             li:nth-child(1) {
@@ -111,41 +43,6 @@ footer {
                     margin-right: auto;
                 }
             }
-
-            li {
-                margin-right: 12px;
-            }
         }
-    }
-
-    &__scrolltotop {
-        margin-left: auto;
-
-        .icon--arrow-up {
-            transition: all 0.2s $animation-curve-default;
-        }
-        &:hover {
-            .scrolltotop-button {
-                text-decoration: none;
-            }
-            .icon--arrow-up {
-                transform: translateY(-8px);
-            }
-        }
-
-        @include mq-down(md) {
-            text-align: center;
-            margin: 48px auto 0 auto;
-        }
-    }
-}
-
-.copyright {
-    background: var(--text-primary);
-    color: var(--text-primary-inverse);
-    padding: 32px 0px;
-
-    @include mq-down(sm) {
-        text-align: center;
     }
 }
