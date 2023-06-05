@@ -9,6 +9,13 @@
         <link rel="stylesheet" href="{{ '/assets/styles/themes.css' | url }}" />
         <link rel="stylesheet" href="{{ '/assets/styles/main.css' | url }}" />
         {% include "meta.njk" %}
+        <link
+            rel="preload"
+            href="{{ '/assets/fonts/Mona-Sans.woff2' | url }}"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
         <script>
             {% include "initialtheme.njk" %}
         </script>

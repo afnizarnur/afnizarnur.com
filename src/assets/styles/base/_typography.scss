@@ -6,16 +6,14 @@ h5,
 h6 {
     margin: 0;
     text-rendering: optimizeLegibility;
+    font-family: $font-family-sans-serif-heading;
 }
 
 h1 {
-    font-size: 3.815rem;
-    line-height: 4.578125rem;
-    font-weight: 400;
-
-    &.bold {
-        font-weight: 500;
-    }
+    font-size: 3.625rem;
+    line-height: 3.9875rem;
+    font-weight: 600;
+    font-variation-settings: "ital" 0, "wdth" 90;
 
     @include mq-down(lg) {
         font-size: 3.051875rem;
