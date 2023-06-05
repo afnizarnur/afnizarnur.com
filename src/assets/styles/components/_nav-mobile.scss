@@ -4,13 +4,13 @@
         position: fixed;
         width: 100%;
         height: 100%;
-        top: 0;
+        top: 60px;
         left: 0;
         z-index: 5;
-        padding-top: 68px;
+        padding-top: 60px;
 
         @include mq-down(md) {
-            padding-top: 72px;
+            padding-top: 0px;
         }
 
         .nav-sheet {
@@ -19,7 +19,6 @@
             height: 100%;
             position: relative;
             background: var(--text-primary);
-            border-radius: 32px 32px 0px 0px;
             transform: translateY(100vh);
             transition: all 0.7s $animation-curve-default;
         }
@@ -38,10 +37,13 @@
 
     &__nav-list {
         margin: 0;
-        padding: 0;
+        padding: 0px 24px;
         position: relative;
         text-align: right;
-        top: 16px;
+
+        h2 {
+            margin: 0;
+        }
 
         @include mq-down(md) {
             text-align: left;
@@ -50,11 +52,11 @@
 
     &__nav-list-item {
         a {
-            color: var(--text-primary-inverse);
+            color: var(--background-default);
             text-decoration: none;
             display: block;
             padding: 1.5rem 0px;
-            border-bottom: 2px solid var(--text-primary-inverse);
+            border-bottom: 1px solid var(--background-default);
 
             &:hover {
                 border-bottom: 2px solid transparent;
@@ -64,16 +66,16 @@
 
     &__nav-footer-main {
         position: absolute;
-        bottom: 0;
-        padding-bottom: 32px;
-        padding-top: 32px;
+        bottom: 60px;
+        padding-bottom: 24px;
+        padding-top: 24px;
         width: inherit;
 
         @include mq-down(md) {
             width: 100%;
             overflow: initial;
             overflow-x: scroll;
-            padding-right: 36px;
+            padding-right: 24px;
         }
     }
 
@@ -88,8 +90,12 @@
         }
 
         a {
-            color: var(--text-primary-inverse);
-            text-decoration-thickness: 1px;
+            color: var(--background-default);
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 
@@ -98,23 +104,24 @@
 
         .nav__nav-list-social {
             margin: 0px 24px 0px 0px;
+
+            &:first-child {
+                margin-left: 24px;
+            }
         }
     }
 
     &__nav-email {
         display: flex;
         align-items: center;
-
-        @include mq-down(md) {
-            margin-right: 44px;
-        }
+        margin: 0px 24px 0px 0px;
 
         .icon-button {
             margin-left: 24px;
-            color: var(--text-primary-inverse);
+            color: var(--background-default);
 
             &:hover {
-                box-shadow: 0px 0px 0px 2px var(--text-primary-inverse);
+                box-shadow: 0px 0px 0px 2px var(--background-default);
             }
         }
     }
