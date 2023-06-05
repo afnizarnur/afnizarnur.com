@@ -16,13 +16,27 @@
             type="font/woff2"
             crossorigin
         />
+        <link
+            rel="preload"
+            href="{{ '/assets/fonts/Inter-roman.var.woff2' | url }}"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="{{ '/assets/fonts/Inter-italic.var.woff2?v=3.19' | url }}"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
         <script>
             {% include "initialtheme.njk" %}
         </script>
     </head>
     <body>
         {% iconsprite %}
-        <a href="#main" class="sr-skip-link">skip to main content</a>
+        <a href="#main" class="sr-skip-link">Skip to main content</a>
 
         <div class="layout" role="document">
             <main id="main" class="main" tabindex="-1">
