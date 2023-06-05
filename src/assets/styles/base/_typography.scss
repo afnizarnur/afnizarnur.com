@@ -14,6 +14,7 @@ h1 {
     line-height: 3.9875rem;
     font-weight: 600;
     font-variation-settings: "ital" 0, "wdth" 90;
+    margin-bottom: 24px;
 
     @include mq-down(lg) {
         font-size: 3.051875rem;
@@ -22,9 +23,11 @@ h1 {
 }
 
 h2 {
-    font-size: 3.051875rem;
-    line-height: 3.6625rem;
-    font-weight: 400;
+    font-size: 3.25rem;
+    line-height: 3.575rem;
+    font-weight: 600;
+    font-variation-settings: "ital" 0, "wdth" 90;
+    margin-bottom: 24px;
 
     &.bold {
         font-weight: 500;
@@ -63,8 +66,8 @@ h4 {
 
 // Subtitle
 p.subtitle {
-    font-size: 1.563125rem;
-    line-height: 2.344375rem;
+    font-size: 1.4375rem;
+    line-height: 2.0125rem;
 
     &.bold {
         font-weight: 500;

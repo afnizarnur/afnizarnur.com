@@ -43,15 +43,11 @@
 @import "components/intro";
 
 // Pages
-@import "components/home/home";
 @import "components/home/design-process";
 @import "components/home/about-me";
 @import "components/home/selected-works";
 @import "components/home/design-tooling";
-@import "components/about/bio";
-@import "components/about/misc";
-@import "components/about/talks";
-@import "components/about/colophon";
+@import "pages/home";
 
 //--------------------
 // VENDOR

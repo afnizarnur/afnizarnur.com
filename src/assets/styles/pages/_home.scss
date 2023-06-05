@@ -1,0 +1,48 @@
+.home {
+    .header-block-empty {
+        grid-row: 1;
+    }
+
+    .header-nav-empty {
+        height: 144px;
+        grid-row: 1;
+    }
+
+    .header-nav-container {
+        position: sticky;
+        top: 0;
+        grid-row: 2;
+    }
+
+    span.block {
+        height: 36px;
+        width: 100%;
+        display: inline-block;
+    }
+
+    .section-title {
+        height: 36px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .intro-container {
+        grid-row: 3;
+
+        .intro {
+            margin: 144px 44px 144px 44px;
+
+            p {
+                margin-bottom: 24px;
+            }
+        }
+    }
+
+    .footer-container {
+        .footer {
+            margin: 144px 44px 144px 44px;
+        }
+    }
+}
