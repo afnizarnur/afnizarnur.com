@@ -7,14 +7,14 @@ h6 {
     margin: 0;
     text-rendering: optimizeLegibility;
     font-family: $font-family-sans-serif-heading;
+    font-variation-settings: "ital" 0, "wdth" 90;
+    margin-bottom: 24px;
+    font-weight: 600;
 }
 
 h1 {
     font-size: 3.625rem;
     line-height: 3.9875rem;
-    font-weight: 600;
-    font-variation-settings: "ital" 0, "wdth" 90;
-    margin-bottom: 24px;
 
     @include mq-down(lg) {
         font-size: 3.051875rem;
@@ -25,13 +25,6 @@ h1 {
 h2 {
     font-size: 3.25rem;
     line-height: 3.575rem;
-    font-weight: 600;
-    font-variation-settings: "ital" 0, "wdth" 90;
-    margin-bottom: 24px;
-
-    &.bold {
-        font-weight: 500;
-    }
 
     @include mq-down(md) {
         font-size: 2.44125rem;
@@ -40,13 +33,8 @@ h2 {
 }
 
 h3 {
-    font-size: 2.44125rem;
-    line-height: 2.929375rem;
-    font-weight: 400;
-
-    &.bold {
-        font-weight: 500;
-    }
+    font-size: 2.875rem;
+    line-height: 3.1625rem;
 
     @include mq-down(sm) {
         font-size: 1.953125rem;
@@ -55,13 +43,18 @@ h3 {
 }
 
 h4 {
-    font-size: 1.953125rem;
-    line-height: 2.34375rem;
-    font-weight: 400;
+    font-size: 2.25rem;
+    line-height: 2.475rem;
+}
 
-    &.bold {
-        font-weight: 500;
-    }
+h5 {
+    font-size: 2rem;
+    line-height: 2.2rem;
+}
+
+h6 {
+    font-size: 1.8125rem;
+    line-height: 1.99375rem;
 }
 
 // Subtitle
@@ -69,45 +62,44 @@ p.subtitle {
     font-size: 1.4375rem;
     line-height: 2.0125rem;
 
-    &.bold {
-        font-weight: 500;
-    }
-
     @include mq-down(sm) {
         font-size: 1.25rem;
         line-height: 1.875rem;
     }
 }
 
+// Body large
+p.body-large {
+    font-size: 1.125rem;
+    line-height: 1.35rem;
+    font-weight: 520;
+}
+
 // Body
 p {
     margin: 0;
-    line-height: 1.5rem;
-
-    &.bold {
-        font-weight: 600;
-    }
-}
-
-// Body large
-p.body-large {
-    font-size: 1.25rem;
-    line-height: 1.875rem;
-
-    &.bold {
+    line-height: 1.4rem;
+    letter-spacing: -0.01em;
+    lin &.bold {
         font-weight: 500;
     }
 }
 
-// Body small
+// Small
 small {
-    font-size: 0.8rem;
-    line-height: 0.96rem;
+    font-size: 0.875rem;
+    line-height: 1.05rem;
+}
+
+// Helper
+small.helper {
+    font-size: 0.8125rem;
+    line-height: 0.975rem;
 }
 
 // Strong
 strong {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 // Highlight font
