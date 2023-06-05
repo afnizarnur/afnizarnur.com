@@ -28,13 +28,13 @@
         transition: transform 0.3s $animation-curve-default;
 
         &:nth-child(1) {
-            top: 0px;
+            top: 10%;
         }
         &:nth-child(2) {
             top: 50%;
         }
         &:nth-child(3) {
-            top: 100%;
+            top: 90%;
         }
     }
 
@@ -42,10 +42,10 @@
     .is-open & {
         .menuicon__bar {
             &:nth-child(1) {
-                transform: translateY(9px);
+                transform: translateY(7px);
             }
             &:nth-child(3) {
-                transform: translateY(-9px);
+                transform: translateY(-7px);
             }
         }
     }
