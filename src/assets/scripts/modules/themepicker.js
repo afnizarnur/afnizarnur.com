@@ -50,7 +50,7 @@ class ThemePicker {
         } else if (theme === "gray") {
             nextTheme = "pink"
         } else if (theme === "pink") {
-            nextTheme = "hacker"
+            nextTheme = "blue"
         } else {
             nextTheme = "default"
         }

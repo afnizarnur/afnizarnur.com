@@ -7,13 +7,10 @@ eleventyNavigation:
 <main class="container about">
     <r-grid columns="12">
         <!-- Navigation -->
-        <r-cell
-            class="border-left about--header-block-empty"
-            span="1-2"
-        ></r-cell>
+        <r-cell class="border-left" span="1-2"></r-cell>
         <r-cell class="border-left-right about--header-empty" span="3-12">
         </r-cell>
-        <r-cell class="border-left-bottom top-empty" span="1-2"></r-cell>
+        <r-cell class="border-left-bottom" span="1-2"></r-cell>
         <r-cell class="about--header-container border-left-right" span="3-12">
             {% include "header.njk" %}
         </r-cell>
@@ -30,12 +27,12 @@ eleventyNavigation:
         </r-cell>
 
         <!-- Footer -->
-        <r-cell class="border-left-bottom" span="1-2">
+        <r-cell class="border-left" span="1-2">
             <div class="border-bottom about--section-title">
                 <p class="bold">Footer</p>
             </div>
         </r-cell>
-        <r-cell class="border-left-right-bottom footer" span="3-12">
+        <r-cell class="border-left-right footer" span="3-12">
             <span class="block border-bottom"></span>
             {% include "footer.njk" %}
         </r-cell>
