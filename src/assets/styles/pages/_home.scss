@@ -42,7 +42,18 @@
 
     .footer-container {
         .footer {
-            margin: 144px 44px 144px 44px;
+            padding: 144px 44px 144px 44px;
+        }
+        .social-media {
+            display: inline-block;
+            width: 100%;
+            padding: 24px 44px;
+        }
+        .web-version {
+            display: inline-block;
+            width: 100%;
+            padding: 24px 44px;
+            margin-bottom: 144px;
         }
     }
 }
