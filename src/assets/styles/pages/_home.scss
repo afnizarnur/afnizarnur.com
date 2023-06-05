@@ -54,6 +54,38 @@
             width: 100%;
             padding: 24px 44px;
             margin-bottom: 144px;
+
+            .list {
+                display: flex;
+
+                @include mq-down(md) {
+                    flex-wrap: wrap;
+                }
+
+                li:nth-child(1) {
+                    @include mq-down(md) {
+                        flex: 1 0 100%;
+                        text-align: center;
+                        margin-bottom: 8px;
+                    }
+                }
+
+                li:nth-child(2) {
+                    @include mq-down(md) {
+                        margin-left: auto;
+                    }
+                }
+
+                li:nth-last-child(1) {
+                    @include mq-down(md) {
+                        margin-right: auto;
+                    }
+                }
+
+                li {
+                    margin-right: 16px;
+                }
+            }
         }
     }
 }
