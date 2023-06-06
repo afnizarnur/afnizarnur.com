@@ -5,6 +5,4 @@ import "focus-visible"
 import "./modules/nav"
 import "./modules/themepicker"
 import "./modules/cursor"
-
-// Handle interactive animation
-import "./index"
+import "./modules/clipboard"

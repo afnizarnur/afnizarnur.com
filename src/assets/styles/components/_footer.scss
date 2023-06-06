@@ -9,6 +9,20 @@
         @include mq-down(lg) {
             padding: 64px 24px;
         }
+
+        svg {
+            width: 18px;
+            margin-left: 4px;
+        }
+
+        .copy-email {
+            cursor: pointer;
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
     &--social {
         display: inline-block;
