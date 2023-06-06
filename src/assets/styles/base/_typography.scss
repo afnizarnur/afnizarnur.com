@@ -18,8 +18,8 @@ h1 {
     line-height: 3.9875rem;
 
     @include mq-down(lg) {
-        font-size: 2.875rem;
-        line-height: 3.1625rem;
+        font-size: 3.25rem;
+        line-height: 3.575rem;
     }
 
     @include mq-down(sm) {
@@ -33,8 +33,8 @@ h2 {
     line-height: 3.575rem;
 
     @include mq-down(lg) {
-        font-size: 2.25rem;
-        line-height: 2.475rem;
+        font-size: 2.875rem;
+        line-height: 3.1625rem;
     }
 
     @include mq-down(sm) {
