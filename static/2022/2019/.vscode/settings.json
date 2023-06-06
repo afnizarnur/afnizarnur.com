@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "prettier.trailingComma": "es5",
+  "prettier.htmlWhitespaceSensitivity": "strict",
+  "prettier.disableLanguages": ["html"]
+}
