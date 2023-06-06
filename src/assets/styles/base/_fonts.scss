@@ -2,7 +2,7 @@
     font-family: "Mona Sans";
     src: url("/assets/fonts/Mona-Sans.woff2")
             format("woff2 supports variations"),
-        url("../assets/fonts/Mona-Sans.woff2") format("woff2-variations");
+        url("/assets/fonts/Mona-Sans.woff2") format("woff2-variations");
     font-weight: 200 900;
     font-stretch: 75% 125%;
 }
@@ -13,7 +13,7 @@
     font-display: swap;
     font-style: normal;
     font-named-instance: "Regular";
-    src: url("../assets/fonts/Inter-roman.var.woff2") format("woff2");
+    src: url("/assets/fonts/Inter-roman.var.woff2") format("woff2");
 }
 
 // @font-face {
