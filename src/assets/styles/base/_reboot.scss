@@ -250,8 +250,13 @@ html {
 
 a {
     color: var(--text-primary);
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 0 -3px;
 
     &:hover {
+        color: var(--background-default);
+        background: var(--text-primary);
         text-decoration: none;
     }
 }

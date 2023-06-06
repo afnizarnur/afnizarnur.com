@@ -18,8 +18,13 @@
         .copy-email {
             cursor: pointer;
             text-decoration: underline;
+            padding: 2px 5px;
+            margin: 0 -3px;
+            border-radius: 4px;
 
             &:hover {
+                color: var(--background-default);
+                background: var(--text-primary);
                 text-decoration: none;
             }
         }
