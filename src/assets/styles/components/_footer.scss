@@ -6,7 +6,7 @@
     &--content {
         padding: 144px 44px 144px 44px;
 
-        @include mq-down(sm) {
+        @include mq-down(lg) {
             padding: 64px 24px;
         }
     }
@@ -15,7 +15,7 @@
         width: 100%;
         padding: 24px 44px;
 
-        @include mq-down(sm) {
+        @include mq-down(lg) {
             padding: 24px 24px;
         }
     }
@@ -25,7 +25,7 @@
         padding: 24px 44px;
         margin-bottom: 144px;
 
-        @include mq-down(sm) {
+        @include mq-down(lg) {
             padding: 24px 24px;
             margin-bottom: 64px;
         }

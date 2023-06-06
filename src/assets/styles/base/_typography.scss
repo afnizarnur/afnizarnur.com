@@ -17,6 +17,11 @@ h1 {
     font-size: 3.625rem;
     line-height: 3.9875rem;
 
+    @include mq-down(lg) {
+        font-size: 2.875rem;
+        line-height: 3.1625rem;
+    }
+
     @include mq-down(sm) {
         font-size: 2.25rem;
         line-height: 2.475rem;
@@ -27,20 +32,20 @@ h2 {
     font-size: 3.25rem;
     line-height: 3.575rem;
 
-    @include mq-down(md) {
-        font-size: 2.44125rem;
-        line-height: 2.929375rem;
+    @include mq-down(lg) {
+        font-size: 2.25rem;
+        line-height: 2.475rem;
+    }
+
+    @include mq-down(sm) {
+        font-size: 2rem;
+        line-height: 2.2rem;
     }
 }
 
 h3 {
     font-size: 2.875rem;
     line-height: 3.1625rem;
-
-    @include mq-down(sm) {
-        font-size: 1.953125rem;
-        line-height: 2.34375rem;
-    }
 }
 
 h4 {

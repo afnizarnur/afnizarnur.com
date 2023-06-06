@@ -1,7 +1,7 @@
 .introduction {
     grid-row: 3;
 
-    @include mq-down(sm) {
+    @include mq-down(lg) {
         border-width: 0px 0px 1px 0px;
     }
 
@@ -12,7 +12,7 @@
             margin-bottom: 24px;
         }
 
-        @include mq-down(sm) {
+        @include mq-down(lg) {
             margin: 64px 24px;
         }
     }

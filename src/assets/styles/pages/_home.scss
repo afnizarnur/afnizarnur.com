@@ -10,7 +10,7 @@
         grid-row: 2;
         z-index: 10;
 
-        @include mq-down(sm) {
+        @include mq-down(lg) {
             grid-row: 1;
             border: none;
         }
@@ -18,7 +18,7 @@
 
     &--title-intro,
     &--title-footer {
-        @include mq-down(sm) {
+        @include mq-down(lg) {
             border: none;
         }
     }
@@ -34,7 +34,7 @@
             color: var(--text-primary);
         }
 
-        @include mq-down(sm) {
+        @include mq-down(lg) {
             padding: 12px 24px;
         }
     }

@@ -15,6 +15,7 @@ eleventyNavigation:
             class="border-left-right about--header-empty u-desktop-only"
             span="3-12"
             span-s="row"
+            span-md="row"
         >
         </r-cell>
 
@@ -22,11 +23,13 @@ eleventyNavigation:
             class="border-left-bottom u-desktop-only"
             span="1-2"
             span-s="row"
+            span-md="row"
         ></r-cell>
         <r-cell
             class="about--header-container border-left-right"
             span="3-12"
             span-s="row"
+            span-md="row"
         >
             {% include "header.njk" %}
         </r-cell>
@@ -35,6 +38,7 @@ eleventyNavigation:
             class="border-left-bottom about--title-intro"
             span="1-2"
             span-s="row"
+            span-md="row"
         >
             <div class="border-bottom about--section-title">
                 <p class="bold">Introduction</p>
@@ -44,17 +48,28 @@ eleventyNavigation:
             class="border-left-right-bottom introduction"
             span="3-12"
             span-s="row"
+            span-md="row"
         >
             <span class="block border-bottom u-desktop-only"></span>
             {% include "home/introduction.njk" %}
         </r-cell>
 
-        <r-cell class="border-left about--title-footer" span="1-2" span-s="row">
+        <r-cell
+            class="border-left about--title-footer"
+            span="1-2"
+            span-s="row"
+            span-md="row"
+        >
             <div class="border-bottom about--section-title">
                 <p class="bold">Footer</p>
             </div>
         </r-cell>
-        <r-cell class="border-left-right footer" span="3-12" span-s="row">
+        <r-cell
+            class="border-left-right footer"
+            span="3-12"
+            span-s="row"
+            span-md="row"
+        >
             <span class="block border-bottom u-desktop-only"></span>
             {% include "footer.njk" %}
         </r-cell>
