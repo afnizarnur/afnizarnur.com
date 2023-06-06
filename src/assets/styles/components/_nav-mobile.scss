@@ -102,6 +102,11 @@
             margin-left: 24px;
             color: var(--background-default);
 
+            svg {
+                width: 28px;
+                height: 28px;
+            }
+
             &:hover {
                 box-shadow: 0px 0px 0px 2px var(--background-default);
             }
