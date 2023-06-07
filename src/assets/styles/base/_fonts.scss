@@ -5,6 +5,7 @@
         url("/assets/fonts/Mona-Sans.woff2") format("woff2-variations");
     font-weight: 200 900;
     font-stretch: 75% 125%;
+    font-display: swap;
 }
 
 @font-face {
@@ -14,6 +15,7 @@
     font-style: normal;
     font-named-instance: "Regular";
     src: url("/assets/fonts/Inter-roman.var.woff2") format("woff2");
+    font-display: swap;
 }
 
 // @font-face {
