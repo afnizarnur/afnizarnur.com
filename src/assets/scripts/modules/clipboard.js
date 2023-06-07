@@ -11,7 +11,10 @@ class Clipboard {
             .then(() => {
                 this.updateButtonText("email address copied!")
                 setTimeout(() => {
-                    this.updateButtonText("reach out to me via email")
+                    this.updateButtonText(
+                        `reach out to me via email <svg class="icon icon--copy" role="img" aria-hidden="true" width="24" height="24">
+                        <use xlink:href="#svg-copy"></use></svg>`
+                    )
                 }, 1500)
             })
             .catch((error) => {
@@ -21,7 +24,10 @@ class Clipboard {
 
     updateButtonText(text) {
         if (this.button) {
-            this.button.innerText = text
+            const span = document.createElement("span")
+            span.innerHTML = text
+            this.button.innerHTML = "" // Clear existing content
+            this.button.appendChild(span)
         }
     }
 }
