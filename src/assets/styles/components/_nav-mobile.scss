@@ -46,16 +46,15 @@
     }
 
     &__nav-list-item {
+        padding: 1.5rem 0px;
+        border-bottom: 1px solid var(--background-default);
         a {
             color: var(--background-default);
             text-decoration: none;
             display: block;
-            padding: 1.5rem 0px;
-            border-bottom: 1px solid var(--background-default);
-
-            &:hover {
-                border-bottom: 2px solid transparent;
-            }
+        }
+        &:hover {
+            border-bottom: 1px solid transparent;
         }
     }
 
