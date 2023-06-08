@@ -10,17 +10,18 @@
             padding: 64px 24px;
         }
 
-        svg {
-            width: 18px;
-            margin-left: 4px;
-        }
-
         .copy-email {
             cursor: pointer;
             text-decoration: underline;
             padding: 2px 5px;
             margin: 0 -3px;
             border-radius: 4px;
+
+            svg {
+                width: 18px;
+                height: 18px;
+                margin-left: 4px;
+            }
 
             &:hover {
                 color: var(--background-default);
