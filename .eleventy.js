@@ -54,7 +54,6 @@ module.exports = function (config) {
     config.addPassthroughCopy("src/site.webmanifest")
     config.addPassthroughCopy("src/assets/images")
     config.addPassthroughCopy("src/assets/fonts")
-    config.addPassthroughCopy("src/assets/videos")
     config.addPassthroughCopy({ static: "/" })
 
     // Deep-Merge
