@@ -13,12 +13,10 @@ const isProd = process.env.ELEVENTY_ENV === "production"
 module.exports = class {
     async data() {
         const entryPath = path.join(__dirname, `/${ENTRY_FILE_NAME}`)
-        const fontPath = "/assets/fonts/" // Adjust the font path as per your project structure
         return {
             permalink: `/assets/styles/main.css`,
             eleventyExcludeFromCollections: true,
-            entryPath,
-            fontPath // Include the font path in the data object
+            entryPath
         }
     }
 
@@ -31,17 +29,7 @@ module.exports = class {
                 config.sourceMapEmbed = true
                 config.outputStyle = "compressed"
             }
-
-            const sassConfig = {
-                ...config,
-                functions: {
-                    "font-path($filename)": (filename) =>
-                        sass.types.String(`font-path("${filename.getValue()}")`)
-                },
-                additionalData: this.generateFontPathFunction(this.fontPath) // Include the fontPath in additionalData
-            }
-
-            return sass.render(sassConfig, (err, result) => {
+            return sass.render(config, (err, result) => {
                 if (err) {
                     return reject(err)
                 }
@@ -49,6 +37,7 @@ module.exports = class {
             })
         })
     }
+
     // Minify & Optimize with CleanCSS in Production
     async minify(css) {
         return new Promise((resolve, reject) => {
@@ -126,14 +115,5 @@ module.exports = class {
                 return this.renderError(msg)
             }
         }
-    }
-
-    // Generate the Sass function for font path
-    generateFontPathFunction(fontPath) {
-        return `
-            @function font-path($filename) {
-                @return url("${fontPath}" + $filename);
-            }
-        `
     }
 }
