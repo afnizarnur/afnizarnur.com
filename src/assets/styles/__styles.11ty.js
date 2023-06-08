@@ -13,10 +13,12 @@ const isProd = process.env.ELEVENTY_ENV === "production"
 module.exports = class {
     async data() {
         const entryPath = path.join(__dirname, `/${ENTRY_FILE_NAME}`)
+        const fontPath = "/assets/fonts/" // Adjust the font path as per your project structure
         return {
             permalink: `/assets/styles/main.css`,
             eleventyExcludeFromCollections: true,
-            entryPath
+            entryPath,
+            fontPath // Include the font path in the data object
         }
     }
 
