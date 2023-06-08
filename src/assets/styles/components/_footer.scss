@@ -1,5 +1,5 @@
 .footer {
-    @include mq-down(sm) {
+    @include mq-down(lg) {
         border: none;
     }
 
