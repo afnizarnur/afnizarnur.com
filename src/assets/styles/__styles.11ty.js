@@ -31,7 +31,17 @@ module.exports = class {
                 config.sourceMapEmbed = true
                 config.outputStyle = "compressed"
             }
-            return sass.render(config, (err, result) => {
+
+            const sassConfig = {
+                ...config,
+                functions: {
+                    "font-path($filename)": (filename) =>
+                        sass.types.String(`font-path("${filename.getValue()}")`)
+                },
+                additionalData: this.generateFontPathFunction(this.fontPath) // Include the fontPath in additionalData
+            }
+
+            return sass.render(sassConfig, (err, result) => {
                 if (err) {
                     return reject(err)
                 }
@@ -39,7 +49,6 @@ module.exports = class {
             })
         })
     }
-
     // Minify & Optimize with CleanCSS in Production
     async minify(css) {
         return new Promise((resolve, reject) => {
@@ -117,5 +126,14 @@ module.exports = class {
                 return this.renderError(msg)
             }
         }
+    }
+
+    // Generate the Sass function for font path
+    generateFontPathFunction(fontPath) {
+        return `
+            @function font-path($filename) {
+                @return url("${fontPath}" + $filename);
+            }
+        `
     }
 }
