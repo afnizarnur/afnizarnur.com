@@ -13,7 +13,7 @@
 .sr-skip-link {
     @include sr-only();
     @include sr-only-focusable();
-    font-family: $font-family-sans-serif;
+    font-family: $font-family-sans-serif-body;
 
     &:focus {
         position: absolute;
@@ -22,8 +22,8 @@
         top: 0;
         font-size: 1rem;
         transform: translateX(-50%);
-        background-color: $gray-darkest;
-        color: #fff;
+        background-color: $gray-950;
+        color: $white;
         border-radius: 0 0 0.5rem 0.5rem;
         padding: 1rem 1.5rem;
         outline: 0;

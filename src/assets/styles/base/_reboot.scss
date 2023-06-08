@@ -91,7 +91,7 @@ body {
 }
 
 r-grid {
-    column-gap: 24px;
+    column-gap: 0px;
 }
 
 //
@@ -250,9 +250,13 @@ html {
 
 a {
     color: var(--text-primary);
-    text-decoration-thickness: 2px;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 0 -3px;
 
     &:hover {
+        color: var(--background-default);
+        background: var(--text-primary);
         text-decoration: none;
     }
 }

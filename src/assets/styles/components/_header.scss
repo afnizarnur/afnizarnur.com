@@ -1,49 +1,51 @@
 .header {
-    position: fixed;
+    padding: 12px 44px;
     width: 100%;
-    z-index: 10;
+    background: var(--background-default);
 
-    &.is-open {
-        .header__inner {
-            transition: all 0.2s $animation-curve-default;
-        }
+    @include mq-down(lg) {
+        padding: 12px 24px;
     }
 
-    &__inner {
+    &--inner {
         display: flex;
         justify-content: space-between;
         -webkit-justify-content: space-between;
         align-items: center;
-        border-bottom: 2px solid var(--text-primary);
-        padding: 1.6rem 0;
         transition: all 0.2s $animation-curve-default;
+    }
 
-        &.onscroll {
-            border-bottom: 2px solid transparent;
-            padding: 1.2rem 0;
-            transition: all 0.2s $animation-curve-default;
+    .logo {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+
+        &:hover {
+            img {
+                box-shadow: 0px 0px 0px 2px var(--text-primary);
+                transition: all 0.2s $animation-curve-default;
+            }
+        }
+        img {
+            border-radius: 100%;
         }
     }
 
-    @include mq-down(lg) {
-        &__inner {
-            padding: 1.4rem 0;
-        }
-    }
-
-    &__logo {
-        fill: var(--text-primary);
-    }
-
-    &__left {
+    &--branding {
         a.logo {
             color: var(--text-primary);
             text-decoration: none;
         }
     }
 
-    &__right {
+    &--nav {
         display: flex;
         align-items: center;
+    }
+
+    &.is-open {
+        .header--inner {
+            transition: all 0.2s $animation-curve-default;
+        }
     }
 }

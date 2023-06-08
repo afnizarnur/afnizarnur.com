@@ -1,8 +1,9 @@
 .nav {
     display: flex;
     align-items: center;
+
     &__item {
-        margin: 0px 16px;
+        margin: 0px 12px;
         &--active {
             text-decoration: underline;
         }
@@ -18,16 +19,14 @@
         display: block;
         text-decoration: none;
         color: var(--text-primary);
-        &:hover {
-            text-decoration: underline;
-        }
+        font-weight: 500;
     }
     &__toggle {
         @include button-reset;
     }
 
     &__themebtn {
-        margin-left: 1em;
+        margin-left: 8px;
         transition: all 0.1s ease-in-out;
         background: transparent;
         transition: all 0.2s $animation-curve-default;

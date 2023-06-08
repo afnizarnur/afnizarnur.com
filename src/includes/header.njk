@@ -1,16 +1,21 @@
-<header class="header" role="banner">
-	<div class="header__inner container">
-		<div class="header__left">
-			<p class="body-large">
-				<a class="logo" href="{{ '/' | url }}">
-					Afnizar Nur Ghifari
-				</a>
-			</p>
-		</div>
-		<div class="header__right">
-			{% include "nav.njk" %}
-		</div>
-	</div>
+<header class="header border-bottom" role="banner">
+    <div class="header--inner">
+        <div class="header--branding">
+            <p class="body-large">
+                <a class="logo" href="{{ '/' | url }}">
+                    <img
+                        src="{{
+                            '/assets/images/afnizar-nur-ghifari.png' | url
+                        }}"
+                        alt="Afnizar Nur Ghifari"
+                        width="36"
+                        height="36"
+                        loading="lazy"
+                /></a>
+            </p>
+        </div>
+        <div class="header--nav">{% include "nav.njk" %}</div>
+    </div>
 </header>
 
 {% include "nav-mobile.njk" %}
