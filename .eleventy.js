@@ -53,7 +53,7 @@ module.exports = function (config) {
     config.addPassthroughCopy("src/robots.txt")
     config.addPassthroughCopy("src/site.webmanifest")
     config.addPassthroughCopy("src/assets/images")
-    config.addPassthroughCopy("src/assets/styles/fonts")
+    config.addPassthroughCopy("src/assets/fonts")
     config.addPassthroughCopy("src/assets/videos")
     config.addPassthroughCopy({ static: "/" })
 
