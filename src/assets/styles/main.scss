@@ -32,13 +32,13 @@
 //--------------------
 
 // Specific components
+@import "components/cursor";
 @import "components/nav";
 @import "components/nav-mobile";
 @import "components/header";
 @import "components/footer";
 @import "components/icon";
 @import "components/button";
-@import "components/cursor";
 @import "components/home/introduction";
 
 // Pages
@@ -50,4 +50,3 @@
 //--------------------
 
 @import "vendor/raster.grid.custom";
-@import "vendor/splitting";
