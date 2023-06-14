@@ -1,5 +1,3 @@
-// spotify.js
-
 import axios from "axios"
 
 async function getCurrentPlayingSong() {
