@@ -69,4 +69,30 @@
             }
         }
     }
+    &--local-time-playlist {
+        padding: 0px 44px 24px 44px;
+        color: $gray-500;
+        stroke: $gray-500;
+        justify-content: space-between;
+        display: flex;
+
+        small {
+            margin-left: 8px;
+        }
+
+        .local-time,
+        .commit-code,
+        .playlist {
+            display: flex;
+            align-items: center;
+        }
+
+        .commit-code {
+            margin-left: 24px;
+        }
+
+        .playlist {
+            margin-left: auto;
+        }
+    }
 }
