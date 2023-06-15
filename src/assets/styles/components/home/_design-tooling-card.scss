@@ -32,9 +32,11 @@
 
         p {
             width: 100%;
+            color: var(--text-secondary);
 
             &.body-large {
                 margin-bottom: 0px;
+                color: var(--text-primary);
             }
         }
     }
