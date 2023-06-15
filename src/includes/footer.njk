@@ -51,9 +51,7 @@
             {% icon "git-branch" %}
 
             <small>
-                {% if process.env.COMMIT_REF %}
-                {{ process.env.COMMIT_REF }}
-                {% else %} Local Development {% endif %}
+                {{ build.hash }}
             </small>
         </div>
         <div class="now-playing">
