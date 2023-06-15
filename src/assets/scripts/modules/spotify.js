@@ -1,7 +1,8 @@
 import axios from "axios"
 
-async function getCurrentPlayingSong() {
-    const accessToken = "YOUR_SPOTIFY_ACCESS_TOKEN"
+async function getRecentlyPlayedTrack() {
+    const accessToken = process.env.SPOTIFY_ACCESS_TOKEN
+
     const headers = {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
@@ -9,35 +10,44 @@ async function getCurrentPlayingSong() {
 
     try {
         const response = await axios.get(
-            "https://api.spotify.com/v1/me/player/currently-playing",
+            "https://api.spotify.com/v1/me/player/recently-played?limit=1",
             {
                 headers: headers
             }
         )
 
         if (response.status !== 200) {
-            throw new Error(
-                "Failed to fetch currently playing song from Spotify API"
-            )
+            if (!process.env.ELEVENTY_ENV === "production") {
+                throw new Error(
+                    "Failed to fetch recently played track from Spotify API"
+                )
+            }
         }
 
         const data = response.data
-        return data.item
+        const track = data.items[0].track
+        const songTitle = track.name
+        const artistName = track.artists[0].name
+        return { songTitle, artistName }
     } catch (error) {
-        throw new Error(
-            "Failed to fetch currently playing song from Spotify API"
-        )
+        if (!process.env.ELEVENTY_ENV === "production") {
+            throw new Error(
+                "Failed to fetch recently played track from Spotify API"
+            )
+        }
     }
 }
 
 async function displayCurrentSong() {
     try {
-        const { songTitle, artistName } = await getCurrentPlayingSong()
+        const { songTitle, artistName } = await getRecentlyPlayedTrack()
         const paragraph = document.getElementById("current-song")
         paragraph.textContent = `${songTitle} from ${artistName}`
     } catch (error) {
-        console.error(error)
+        if (!process.env.ELEVENTY_ENV === "production") {
+            console.error(error)
+        }
     }
 }
 
-displayCurrentSong() // Invoke the function immediately when the script loads
+document.addEventListener("DOMContentLoaded", displayCurrentSong)
