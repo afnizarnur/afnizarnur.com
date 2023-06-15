@@ -7,7 +7,8 @@
             "textPrimary": "#191A1B",
             "textSecondary": "#363739",
             "textDisabled": "#62676A",
-            "borderDefault": "#E2E4E5"
+            "borderDefault": "#E2E4E5",
+            "surfaceDefault": "#F6F6F7"
         }
     },
     {
@@ -18,7 +19,8 @@
             "textPrimary": "#FFFFFF",
             "textSecondary": "#F6F6F7",
             "textDisabled": "#A1A5A7",
-            "borderDefault": "#62676A"
+            "borderDefault": "#62676A",
+            "surfaceDefault": "#2F3032"
         }
     },
     {
@@ -29,7 +31,8 @@
             "textPrimary": "#191A1B",
             "textSecondary": "#363739",
             "textDisabled": "#62676A",
-            "borderDefault": "#C5C8CA"
+            "borderDefault": "#C5C8CA",
+            "surfaceDefault": "#F6F6F7"
         }
     },
     {
@@ -40,7 +43,8 @@
             "textPrimary": "#3C0023",
             "textSecondary": "#740043",
             "textDisabled": "#AC0064",
-            "borderDefault": "#FFC6E7"
+            "borderDefault": "#FFC6E7",
+            "surfaceDefault": "#FFEAF6"
         }
     },
     {
@@ -51,7 +55,8 @@
             "textPrimary": "#042A36",
             "textSecondary": "#042A36",
             "textDisabled": "#0C7A9F",
-            "borderDefault": "#94DEF7"
+            "borderDefault": "#94DEF7",
+            "surfaceDefault": "#F3FBFE"
         }
     }
 ]

@@ -47,7 +47,7 @@
                 height: 100%;
                 object-fit: cover;
                 object-position: center;
-                background: $gray-50;
+                background: var(--surface-default);
             }
         }
 
