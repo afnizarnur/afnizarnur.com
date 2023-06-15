@@ -49,9 +49,11 @@ async function displayCurrentSong() {
             const { songTitle, artistName } = trackInfo
             const paragraph = document.getElementById("current-song")
             paragraph.innerHTML = `
-                <svg class="icon icon--play-circle" role="img" aria-hidden="true" width="24" height="24">
-                    <use xlink:href="#svg-play-circle"></use>
-                </svg>
+                <div class="equalizer-container">
+                    <div class="equalizer-bar"></div>
+                    <div class="equalizer-bar"></div>
+                    <div class="equalizer-bar"></div>
+                </div>
                 <a href="https://open.spotify.com/user/afnizarnur" target="_blank">${songTitle} by ${artistName}</a>`
         }
     } catch (error) {
