@@ -1,0 +1,26 @@
+.design-tooling {
+    @include mq-down(lg) {
+        border-width: 0px 0px 1px 0px;
+    }
+
+    &--content {
+        margin: 144px 0px 144px 0px;
+
+        .title {
+            margin: 0px 44px 64px 44px;
+
+            @include mq-down(lg) {
+                margin: 0px 24px 44px 24px;
+            }
+        }
+
+        @include mq-down(lg) {
+            margin: 64px 0px;
+        }
+    }
+
+    &--list-wrapper {
+        margin: 24px 44px 0px 44px;
+        gap: 24px;
+    }
+}
