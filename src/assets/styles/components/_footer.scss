@@ -69,7 +69,7 @@
             }
         }
     }
-    &--local-time-playlist {
+    &--local-time-now-playing {
         padding: 0px 44px 24px 44px;
         color: $gray-500;
         stroke: $gray-500;
@@ -82,7 +82,7 @@
 
         .local-time,
         .commit-code,
-        .playlist {
+        .now-playing {
             display: flex;
             align-items: center;
         }
@@ -96,7 +96,7 @@
             margin-left: 24px;
         }
 
-        .playlist {
+        .now-playing {
             margin-left: auto;
 
             small {

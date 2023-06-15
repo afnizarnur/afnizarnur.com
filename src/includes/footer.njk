@@ -42,7 +42,7 @@
         </ul>
     </div>
 
-    <div class="footer--local-time-playlist">
+    <div class="footer--local-time-now-playing">
         <div class="local-time">
             {% icon "clock" %}
             <small><span id="local-time"></span> Serang, Indonesia</small>
@@ -52,8 +52,13 @@
 
             <small>56473FCA</small>
         </div>
-        <div class="playlist">
+        <div class="now-playing">
             <small id="current-song"></small>
+        </div>
+        <div class="spotify-widget__inner">
+            <a class="spotify-widget__track" :href="spotify.url">
+                {{ spotify.name }}
+            </a>
         </div>
     </div>
 </footer>
