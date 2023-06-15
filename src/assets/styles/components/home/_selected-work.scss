@@ -1,0 +1,29 @@
+.selected-work {
+    @include mq-down(lg) {
+        border-width: 0px 0px 1px 0px;
+    }
+
+    &--content {
+        margin: 144px 0px 144px 0px;
+
+        h2 {
+            margin: 0px 44px 44px 44px;
+        }
+
+        p {
+            margin-bottom: 24px;
+        }
+
+        @include mq-down(lg) {
+            margin: 64px 24px;
+        }
+    }
+
+    &--thumbnail {
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+        object-position: center;
+        background: $gray-50;
+    }
+}
