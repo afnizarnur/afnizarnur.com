@@ -25,27 +25,11 @@
         </div>
 
         <ul>
-            <li>
-                <h3>End-to-end product design</h3>
-            </li>
-            <li>
-                <h3>Interface design</h3>
-            </li>
-            <li>
-                <h3>User experience design</h3>
-            </li>
-            <li>
-                <h3>Product strategy & planning</h3>
-            </li>
-            <li>
-                <h3>Systems thinking</h3>
-            </li>
-            <li>
-                <h3>Design systems</h3>
-            </li>
-            <li>
-                <h3>Icon design</h3>
-            </li>
+            {% for skill in skills %}
+                <li>
+                    <h3>{{ skill }}</h3>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </r-cell>
