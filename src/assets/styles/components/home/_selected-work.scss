@@ -60,6 +60,10 @@
                 margin: 24px 24px 0px 24px;
             }
 
+            @include mq-down(sm) {
+                gap: 0px;
+            }
+
             &--project {
                 margin-bottom: 16px;
             }
