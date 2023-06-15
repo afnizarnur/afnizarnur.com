@@ -6,6 +6,7 @@
             "backgroundDefault": "#FFFFFF",
             "textPrimary": "#191A1B",
             "textSecondary": "#363739",
+            "textDisabled": "#62676A",
             "borderDefault": "#E2E4E5"
         }
     },
@@ -16,6 +17,7 @@
             "backgroundDefault": "#191A1B",
             "textPrimary": "#FFFFFF",
             "textSecondary": "#F6F6F7",
+            "textDisabled": "#A1A5A7",
             "borderDefault": "#62676A"
         }
     },
@@ -26,6 +28,7 @@
             "backgroundDefault": "#E2E4E5",
             "textPrimary": "#191A1B",
             "textSecondary": "#363739",
+            "textDisabled": "#62676A",
             "borderDefault": "#C5C8CA"
         }
     },
@@ -36,6 +39,7 @@
             "backgroundDefault": "#FFEFF8",
             "textPrimary": "#3C0023",
             "textSecondary": "#740043",
+            "textDisabled": "#AC0064",
             "borderDefault": "#FFC6E7"
         }
     },
@@ -46,6 +50,7 @@
             "backgroundDefault": "#E0F5FD",
             "textPrimary": "#042A36",
             "textSecondary": "#042A36",
+            "textDisabled": "#0C7A9F",
             "borderDefault": "#94DEF7"
         }
     }
