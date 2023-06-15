@@ -16,6 +16,10 @@
 
         p {
             margin-bottom: 24px;
+
+            @include mq-down(sm) {
+                margin-bottom: 16px;
+            }
         }
 
         @include mq-down(lg) {
@@ -33,6 +37,10 @@
             object-fit: cover;
             object-position: center;
             background: $gray-50;
+
+            @include mq-down(lg) {
+                height: 220px;
+            }
         }
 
         .description {
