@@ -25,6 +25,10 @@ async function getRecentlyPlayedTrack() {
         }
 
         const data = response.data
+        if (data.items.length === 0) {
+            return null
+        }
+
         const track = data.items[0].track
         const songTitle = track.name
         const artistName = track.artists[0].name
@@ -40,9 +44,12 @@ async function getRecentlyPlayedTrack() {
 
 async function displayCurrentSong() {
     try {
-        const { songTitle, artistName } = await getRecentlyPlayedTrack()
-        const paragraph = document.getElementById("current-song")
-        paragraph.textContent = `${songTitle} from ${artistName}`
+        const trackInfo = await getRecentlyPlayedTrack()
+        if (trackInfo) {
+            const { songTitle, artistName } = trackInfo
+            const paragraph = document.getElementById("current-song")
+            paragraph.innerHTML = `<a href="https://open.spotify.com/user/afnizarnur" target="_blank">${songTitle} from ${artistName}</a>`
+        }
     } catch (error) {
         if (!process.env.ELEVENTY_ENV === "production") {
             console.error(error)

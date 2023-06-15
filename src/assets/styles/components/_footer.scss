@@ -77,7 +77,17 @@
         display: flex;
 
         small {
-            margin-left: 8px;
+            margin-left: 4px;
+
+            a {
+                margin: 0;
+                color: $gray-500;
+                text-decoration: none;
+
+                &:hover {
+                    color: var(--background-default);
+                }
+            }
         }
 
         svg {
