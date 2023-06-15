@@ -34,10 +34,22 @@
         .description {
             margin: 24px 44px 0px 44px;
             color: var(--text-primary);
+
+            &--project {
+                margin-bottom: 16px;
+            }
         }
 
         &:last-child {
             margin-bottom: 0px;
+        }
+
+        ul {
+            display: inline-flex;
+
+            li {
+                margin-right: 4px;
+            }
         }
     }
 }

@@ -1,0 +1,12 @@
+.badge {
+    padding: 4px 8px;
+    align-items: center;
+    background: $gray-50;
+    color: $gray-500;
+    border-radius: 24px;
+
+    &:before {
+        content: "#";
+        margin-right: 4px;
+    }
+}
