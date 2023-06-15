@@ -48,7 +48,11 @@ async function displayCurrentSong() {
         if (trackInfo) {
             const { songTitle, artistName } = trackInfo
             const paragraph = document.getElementById("current-song")
-            paragraph.innerHTML = `<a href="https://open.spotify.com/user/afnizarnur" target="_blank">${songTitle} from ${artistName}</a>`
+            paragraph.innerHTML = `
+                <svg class="icon icon--play-circle" role="img" aria-hidden="true" width="24" height="24">
+                    <use xlink:href="#svg-play-circle"></use>
+                </svg>
+                <a href="https://open.spotify.com/user/afnizarnur" target="_blank">${songTitle} from ${artistName}</a>`
         }
     } catch (error) {
         if (!process.env.ELEVENTY_ENV === "production") {
