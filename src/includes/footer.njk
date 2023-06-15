@@ -50,7 +50,11 @@
         <div class="commit-code">
             {% icon "git-branch" %}
 
-            <small>56473FCA</small>
+            <small>
+                {% if process.env.COMMIT_REF %}
+                {{ process.env.COMMIT_REF }}
+                {% else %} Local Development {% endif %}
+            </small>
         </div>
         <div class="now-playing">
             <small id="current-song"></small>
