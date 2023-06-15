@@ -26,5 +26,13 @@
         @include mq-down(lg) {
             margin: 24px 24px 0px 24px;
         }
+
+        ul {
+            display: inline-flex;
+
+            li {
+                margin-right: 4px;
+            }
+        }
     }
 }
