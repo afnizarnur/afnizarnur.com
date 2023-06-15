@@ -1,0 +1,44 @@
+[
+    {
+        "title": "Page Automator",
+        "description": "Automate the process of creating multiple pages.",
+        "url": "https://www.figma.com/community/plugin/841201477778898873/Page-Automator",
+        "thumbnail": "/assets/images/work/page-automator-thumbnail.png",
+        "tags": ["figma"]
+    },
+    {
+        "title": "Variant Inspector",
+        "description": "Makes it easy to get variant properties and place them above your variants.",
+        "url": "https://www.figma.com/community/plugin/1029334595972104332/Variant-Inspector",
+        "thumbnail": "/assets/images/work/variant-inspector-thumbnail.png",
+        "tags": ["figma"]
+    },
+    {
+        "title": "Quick New Page",
+        "description": "Add new pages in a super quick way. It's a shortcut to do an awesome job in your design files, to \"add new pages.\"",
+        "url": "https://www.figma.com/community/plugin/841200074370852792/Quick-New-Page",
+        "thumbnail": "/assets/images/work/quick-new-page-thumbnail.png",
+        "tags": ["figma"]
+    },
+    {
+        "title": "Context",
+        "description": "Count the number of characters, words, and paragraphs from a text layer.",
+        "url": "https://github.com/afnizarnur/context-sketch-plugin",
+        "thumbnail": "/assets/images/work/context-thumbnail.png",
+        "tags": ["sketch"]
+    },
+    {
+        "title": "Bukalapak Color Finder",
+        "description": "Browse through the colors of the design system and get the variable color name.",
+        "url": "https://bl.afnizarnur.com/colorfinder/",
+        "thumbnail": "/assets/images/work/color-finder-thumbnail.png",
+        "tags": ["web-app"]
+    },
+    {
+        "title": "Magic Export",
+        "description": "Export and compress image assets for faster loading times on your website/apps.",
+        "url": "",
+        "thumbnail": "/assets/images/work/magic-export-thumbnail.png",
+        "tags": ["figma"]
+    }
+]

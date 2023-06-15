@@ -9,7 +9,12 @@
     </div>
 </r-cell>
 
-<r-cell class="border-left-right-bottom design-tooling" span="3-12" span-s="row" span-md="row">
+<r-cell
+    class="border-left-right-bottom design-tooling"
+    span="3-12"
+    span-s="row"
+    span-md="row"
+>
     <span class="block border-bottom u-desktop-only"></span>
     <div class="design-tooling--content">
         <div class="title">
@@ -24,26 +29,40 @@
         </div>
 
         <r-grid columns="10" class="design-tooling--list-wrapper">
+            {% for item in designTooling %}
             <r-cell span="5" span-s="row" class="design-tooling-card">
-                <a href="" class="thumbnail-wrapper">
+                <div class="thumbnail-wrapper">
+                    {% if item.url %}
+                    <a href="{{ item.url }}">
+                        <img
+                            class="thumbnail"
+                            src="{{ item.thumbnail | url }}"
+                            alt="Thumbnail of {{ item.title }}"
+                        />
+                    </a>
+                    {% else %}
                     <img
                         class="thumbnail"
-                        src="{{
-                            '/assets/images/work/page-automator-thumbnail.png'
-                                | url
-                        }}"
-                        alt="Thumbnail"
-/>
-                </a>
+                        src="{{ item.thumbnail | url }}"
+                        alt="Thumbnail of {{ item.title }}"
+                    />
+                    {% endif %}
+                </div>
+
                 <div class="tool-title">
                     <p class="body-large">
-                        <a href="">Project name</a>
+                        {% if item.url %}
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                        {% else %}
+                        {{ item.title }}
+                        {% endif %}
                     </p>
                     <p class="description">
-                        Automate the process of creating multiple pages.
+                        {{ item.description }}
                     </p>
                 </div>
             </r-cell>
+            {% endfor %}
         </r-grid>
     </div>
 </r-cell>
