@@ -10,7 +10,7 @@
         "title": "Situs informasi resmi SIPLah",
         "description": "Designing user interface and strategic content placement to drive engagement, raise awareness, and boost conversions, establishing the site as a trusted hub for reliable information.",
         "url": "https://siplah.kemdikbud.go.id/",
-        "thumbnail": "/assets/images/work/dummy-thumbnail.png",
+        "thumbnail": "/assets/images/work/siplah-thumbnail.png",
         "tags": ["web", "mobile", "landing-page"]
     },
     {
@@ -31,7 +31,7 @@
         "title": "Dashboard Mitra Kampus Merdeka",
         "description": "A platform for companies to efficiently manage internships and independent studies activities in their organizations.",
         "url": "https://kampusmerdeka.kemdikbud.go.id/",
-        "thumbnail": "/assets/images/work/dummy-thumbnail.png",
+        "thumbnail": "/assets/images/work/kampus-merdeka-thumbnail.png",
         "tags": ["web", "dashboard"]
     }
 ]
