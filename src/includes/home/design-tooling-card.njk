@@ -1,0 +1,43 @@
+<r-grid columns="10" class="design-tooling--list-wrapper">
+    {% for item in designTooling %}
+    <r-cell span="5" span-s="row" class="design-tooling-card">
+        <div class="thumbnail-wrapper">
+            {% if item.url %}
+            <a href="{{ item.url }}">
+                <img
+                    class="thumbnail"
+                    src="{{ item.thumbnail | url }}"
+                    alt="Thumbnail of {{ item.title }}"
+                />
+            </a>
+            {% else %}
+            <img
+                class="thumbnail"
+                src="{{ item.thumbnail | url }}"
+                alt="Thumbnail of {{ item.title }}"
+            />
+            {% endif %}
+        </div>
+
+        <div class="tool-title">
+            <p class="body-large">
+                {% if item.url %}
+                <a href="{{ item.url }}">{{ item.title }}</a>
+                {% else %}
+                {{ item.title }}
+                {% endif %}
+            </p>
+            <p class="description">
+                {{ item.description }}
+            </p>
+            <ul>
+                {% for i in item.tags %}
+                <li>
+                    <small class="badge helper">{{ i }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </r-cell>
+    {% endfor %}
+</r-grid>
