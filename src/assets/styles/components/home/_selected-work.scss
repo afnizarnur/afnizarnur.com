@@ -31,16 +31,17 @@
         margin-bottom: 64px;
 
         .thumbnail-wrapper {
-            padding: 0;
-            margin: 0;
-            border-radius: 0;
-            line-height: 0;
+            a {
+                padding: 0;
+                margin: 0;
+                border-radius: 0;
+                line-height: 0;
 
-            &:hover {
-                text-decoration: none;
-                background: none;
+                &:hover {
+                    text-decoration: none;
+                    background: none;
+                }
             }
-
             img.thumbnail {
                 display: block;
                 width: 100%;

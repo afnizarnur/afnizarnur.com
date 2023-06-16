@@ -27,7 +27,11 @@
                 workflow.
             </p>
         </div>
-
-        {% include "home/design-tooling-card.njk" %}
+        <r-grid columns="10" class="design-tooling--list-wrapper">
+            {% for item in designTooling %}
+                {% include
+            "home/design-tooling-card.njk" %}
+            {% endfor %}
+        </r-grid>
     </div>
 </r-cell>

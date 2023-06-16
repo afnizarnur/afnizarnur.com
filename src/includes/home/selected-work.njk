@@ -9,45 +9,58 @@
     </div>
 </r-cell>
 
-<r-cell class="border-left-right-bottom selected-work" span="3-12" span-s="row" span-md="row">
+<r-cell
+    class="border-left-right-bottom selected-work"
+    span="3-12"
+    span-s="row"
+    span-md="row"
+>
     <span class="block border-bottom u-desktop-only"></span>
     <div class="selected-work--content">
         <h2>Selected work</h2>
+        {% for item in selectedWork %}
 
         <div class="selected-work--item">
-            <a href="" class="thumbnail-wrapper">
+            <div class="thumbnail-wrapper">
+                {% if item.url %}
+                <a href="{{ item.url }}">
+                    <img
+                        class="thumbnail"
+                        src="{{ item.thumbnail | url }}"
+                        alt="Thumbnail of {{ item.title }}"
+                    />
+                </a>
+                {% else %}
                 <img
                     class="thumbnail"
-                    src="{{
-                        '/assets/images/work/rapor-pendidikan-thumbnail.png'
-                            | url
-                    }}"
-                    alt="Thumbnail"
-/>
-            </a>
+                    src="{{ item.thumbnail | url }}"
+                    alt="Thumbnail of {{ item.title }}"
+                />
+                {% endif %}
+            </div>
+
             <r-grid columns="10" class="description">
                 <r-cell span="3" span-s="row">
                     <p class="body-large">
-                        <a href="">Project name</a>
+                        {% if item.url %}
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                        {% else %}
+                        {{ item.title }}
+                        {% endif %}
                     </p>
-                </r-cell
-                >
+                </r-cell>
                 <r-cell span="4-10" span-s="row">
-                    <p class="description--project">
-                        Helps schools, districts, and ministries of education
-                        make data-driven decisions in order to improve the
-                        quality of education.
-                    </p>
+                    <p class="description--project">{{ item.description }}</p>
                     <ul>
+                        {% for i in item.tags %}
                         <li>
-                            <small class="badge helper">web</small>
+                            <small class="badge helper">{{ i }}</small>
                         </li>
-                        <li>
-                            <small class="badge helper">mobile</small>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </r-cell>
             </r-grid>
         </div>
+        {% endfor %}
     </div>
 </r-cell>
