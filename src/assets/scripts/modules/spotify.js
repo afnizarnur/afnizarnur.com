@@ -1,7 +1,9 @@
 class SpotifyFetcher {
     constructor() {
         this.paragraph = document.getElementById("current-song")
-        this.fetchSpotify()
+        if (this.paragraph) {
+            this.fetchSpotify()
+        }
     }
 
     fetchSpotify() {
@@ -19,13 +21,15 @@ class SpotifyFetcher {
     }
 
     updateParagraph(songTitle, artistName, url) {
-        this.paragraph.innerHTML = `
-        <div class="equalizer-container">
-          <div class="equalizer-bar"></div>
-          <div class="equalizer-bar"></div>
-          <div class="equalizer-bar"></div>
-        </div>
-        <a href="${url}" target="_blank">${songTitle} by ${artistName}</a>`
+        if (this.paragraph) {
+            this.paragraph.innerHTML = `
+            <div class="equalizer-container">
+              <div class="equalizer-bar"></div>
+              <div class="equalizer-bar"></div>
+              <div class="equalizer-bar"></div>
+            </div>
+            <a href="${url}" target="_blank">${songTitle} by ${artistName}</a>`
+        }
     }
 }
 

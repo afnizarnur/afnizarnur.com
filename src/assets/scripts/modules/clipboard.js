@@ -2,10 +2,18 @@ class Clipboard {
     constructor(email) {
         this.email = email
         this.button = document.querySelector(".copy-email")
-        this.button.addEventListener("click", this.copyToClipboard.bind(this))
+        if (this.button) {
+            this.button.addEventListener(
+                "click",
+                this.copyToClipboard.bind(this)
+            )
+        }
     }
 
     copyToClipboard() {
+        if (!this.button) {
+            return // Button element not found, exit the function
+        }
         navigator.clipboard
             .writeText(this.email)
             .then(() => {
