@@ -7,24 +7,24 @@
         "tags": ["web", "mobile"]
     },
     {
+        "title": "Natatoko",
+        "description": "Manage your online store without all the hassle. It offers features for order taking, product management, and business analysis.",
+        "url": "https://natatoko.com/",
+        "thumbnail": "/assets/images/work/natatoko-thumbnail.png",
+        "tags": ["web", "startup"]
+    },
+    {
         "title": "Design System for GovTech Edu",
         "description": "Laying the foundation of design system to support the future of education in Indonesia.",
         "url": "",
-        "thumbnail": "/assets/images/work/dummy-thumbnail.png",
+        "thumbnail": "/assets/images/work/design-system-thumbnail.png",
         "tags": ["design-systems", "web", "mobile"]
     },
     {
         "title": "Dashboard Mitra Kampus Merdeka",
         "description": "A platform for companies to efficiently manage internships and independent studies activities in their organizations.",
-        "url": "",
+        "url": "https://kampusmerdeka.kemdikbud.go.id/",
         "thumbnail": "/assets/images/work/dummy-thumbnail.png",
         "tags": ["web", "dashboard"]
-    },
-    {
-        "title": "Natatoko",
-        "description": "Manage your online store without all the hassle. It offers features for order taking, product management, and business analysis.",
-        "url": "",
-        "thumbnail": "/assets/images/work/dummy-thumbnail.png",
-        "tags": ["web", "startup"]
     }
 ]
