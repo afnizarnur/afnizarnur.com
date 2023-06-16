@@ -7,6 +7,13 @@
         "tags": ["web", "mobile"]
     },
     {
+        "title": "Situs informasi resmi SIPLah",
+        "description": "Designing user interface and strategic content placement to drive engagement, raise awareness, and boost conversions, establishing the site as a trusted hub for reliable information.",
+        "url": "https://siplah.kemdikbud.go.id/",
+        "thumbnail": "/assets/images/work/dummy-thumbnail.png",
+        "tags": ["web", "mobile", "landing-page"]
+    },
+    {
         "title": "Natatoko",
         "description": "Manage your online store without all the hassle. It offers features for order taking, product management, and business analysis.",
         "url": "https://natatoko.com/",
