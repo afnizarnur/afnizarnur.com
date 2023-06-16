@@ -14,7 +14,7 @@
 
 <p align="center">
   <strong>
-    You can access my portfolio site at <a href="http://afnizarnur.com">afnizarnur.com</a>.
+    You can access my portfolio site at <a href="https://afnizarnur.com">afnizarnur.com</a>.
   </strong>
 </p>
 
@@ -26,13 +26,14 @@ When I was in vocational high school back in 2013, I created a portfolio website
 
 ## Installation
 
-To install the necessary packages, run this command in the root folder of the site:
+Clone the repository and install the dependencies:
 
-```sh
-npm install
-```
+    git clone https://github.com/afnizarnur/afnizarnur.com.git
+    cd afnizarnur.com
+    npm install
 
-### Commands
+    # Start development server
+    npm start
 
-* Run `npm start` for a development server and live reloading
-* Run `npm run build` to generate a production build
+    # Build as production-ready
+    npm run build
