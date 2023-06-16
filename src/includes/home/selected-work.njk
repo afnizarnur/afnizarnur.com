@@ -20,47 +20,49 @@
         <h2>Selected work</h2>
         {% for item in selectedWork %}
 
-        <div class="selected-work--item">
-            <div class="thumbnail-wrapper">
-                {% if item.url %}
-                <a href="{{ item.url }}">
-                    <img
+            <div class="selected-work--item">
+                <div class="thumbnail-wrapper">
+                    {% if item.url %}
+                        <a href="{{ item.url }}">
+                            <img
                         class="thumbnail"
                         src="{{ item.thumbnail | url }}"
                         alt="Thumbnail of {{ item.title }}"
-                    />
-                </a>
-                {% else %}
-                <img
+                        loading="lazy"
+/>
+                        </a>
+                    {% else %}
+                        <img
                     class="thumbnail"
                     src="{{ item.thumbnail | url }}"
                     alt="Thumbnail of {{ item.title }}"
-                />
-                {% endif %}
-            </div>
+                    loading="lazy"
+/>
+                    {% endif %}
+                </div>
 
-            <r-grid columns="10" class="description">
-                <r-cell span="3" span-s="row">
-                    <p class="body-large">
-                        {% if item.url %}
-                        <a href="{{ item.url }}">{{ item.title }}</a>
-                        {% else %}
-                        {{ item.title }}
-                        {% endif %}
-                    </p>
-                </r-cell>
-                <r-cell span="4-10" span-s="row">
-                    <p class="description--project">{{ item.description }}</p>
-                    <ul>
-                        {% for i in item.tags %}
-                        <li>
-                            <small class="badge helper">{{ i }}</small>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </r-cell>
-            </r-grid>
-        </div>
+                <r-grid columns="10" class="description">
+                    <r-cell span="3" span-s="row">
+                        <p class="body-large">
+                            {% if item.url %}
+                                <a href="{{ item.url }}">{{ item.title }}</a>
+                            {% else %}
+                                {{ item.title }}
+                            {% endif %}
+                        </p>
+                    </r-cell>
+                    <r-cell span="4-10" span-s="row">
+                        <p class="description--project">{{ item.description }}</p>
+                        <ul>
+                            {% for i in item.tags %}
+                                <li>
+                                    <small class="badge helper">{{ i }}</small>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </r-cell>
+                </r-grid>
+            </div>
         {% endfor %}
     </div>
 </r-cell>
