@@ -26,12 +26,5 @@
         "url": "",
         "thumbnail": "/assets/images/work/design-system-thumbnail.png",
         "tags": ["design-systems", "web", "mobile"]
-    },
-    {
-        "title": "Dashboard Mitra Kampus Merdeka",
-        "description": "A platform for companies to efficiently manage internships and independent studies activities in their organizations.",
-        "url": "https://kampusmerdeka.kemdikbud.go.id/",
-        "thumbnail": "/assets/images/work/kampus-merdeka-thumbnail.png",
-        "tags": ["web", "dashboard"]
     }
 ]
