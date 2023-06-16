@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/afnizarnur">
-    <img src="https://d33wubrfki0l68.cloudfront.net/f797e66685f2b4116788a43d1a904aa35cb5555e/5ebad/assets/images/afnizar-nur-ghifari.png" width="44">
+    <img src="https://github.com/afnizarnur/afnizarnur.com/assets/4648648/720a4308-fa91-4e98-9427-93147f671e65" width="44">
   </a>
 </p>
 
@@ -9,13 +9,7 @@
 </p>
 
 <p align="center">
-  Hello, welcome! This is the source code of my portfolio site. Proudly built with Eleventy and hosted with Netlify.
-</p>
-
-<p align="center">
-  <strong>
-    You can access my portfolio site at <a href="https://afnizarnur.com">afnizarnur.com</a>.
-  </strong>
+  Hello, welcome! This is the source code of my portfolio site. Proudly built with Eleventy and hosted with Netlify. You can access my portfolio site at <a href="https://afnizarnur.com">afnizarnur.com</a>.
 </p>
 
 ---
