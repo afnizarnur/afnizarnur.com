@@ -45,7 +45,7 @@
             img.thumbnail {
                 display: block;
                 width: 100%;
-                height: auto;
+                max-height: 689px;
                 object-fit: cover;
                 object-position: center;
                 background: var(--surface-default);
