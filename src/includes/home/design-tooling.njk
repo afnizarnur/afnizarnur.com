@@ -28,10 +28,35 @@
             </p>
         </div>
         <r-grid columns="10" class="design-tooling--list-wrapper">
+
             {% for item in designTooling %}
-                {% include
-            "home/design-tooling-card.njk" %}
-            {% endfor %}
-        </r-grid>
-    </div>
+                <r-cell span="5" span-s="row" class="design-tooling-card">
+                    <div class="thumbnail-wrapper">
+                        {% if item.url %}
+                            <a href="{{ item.url }}">
+                                {% image item.thumbnail, "Thumbnail of " + item.title, "(min-width: 1440px) 100vw, 50vw", 422, 373 %}
+                            </a>
+                        {% else %}
+                            {% image item.thumbnail,
+                "Thumbnail of " + item.title, "(min-width: 1440px) 100vw, 50vw", 422, 373 %}
+                        </a>
+                    {% endif %}
+                </div>
+
+                <div class="tool-title">
+                    <p class="body-large">
+                        {% if item.url %}
+                            <a href="{{ item.url }}">{{ item.title }}</a>
+                        {% else %}
+                            {{ item.title }}
+                        {% endif %}
+                    </p>
+                    <p class="description">
+                        {{ item.description }}
+                    </p>
+                </div>
+            </r-cell>
+        {% endfor %}
+    </r-grid>
+</div>
 </r-cell>

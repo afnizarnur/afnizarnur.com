@@ -38,6 +38,7 @@
         "gsap": "^3.9.1",
         "html-minifier": "^4.0.0",
         "imagesloaded": "^4.1.4",
+        "jsdom": "^22.1.0",
         "luxon": "^2.1.1",
         "markdown-it": "^12.2.0",
         "memfs": "^3.4.0",

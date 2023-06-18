@@ -24,18 +24,12 @@
                 <div class="thumbnail-wrapper">
                     {% if item.url %}
                         <a href="{{ item.url }}">
-                            {% image item.thumbnail,
-                            "Thumbnail of " + item.title %}
+                            {% image item.thumbnail, "Thumbnail of " + item.title,
+                    "(min-width: 1440px) 100vw, 50vw", 955, 689 %}
                         </a>
                     {% else %}
-                        <img
-                    class="thumbnail"
-                    src="{{ item.thumbnail | url }}"
-                    alt="Thumbnail of {{ item.title }}"
-                    loading="lazy"
-                    width="955"
-                    height="689"
-/>
+                        {% image item.thumbnail, "Thumbnail of " + item.title,
+                    "(min-width: 1440px) 100vw, 50vw", 955, 689 %}
                     {% endif %}
                 </div>
 

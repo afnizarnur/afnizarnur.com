@@ -1,4 +1,5 @@
 const Image = require("@11ty/eleventy-img")
+const { JSDOM } = require("jsdom")
 
 module.exports = {
     icon: function (name) {
@@ -9,19 +10,19 @@ module.exports = {
     image: async function (
         src,
         alt,
-        sizes = "(min-width: 1152px) 100vw, 50vw"
+        sizes = "(min-width: 1024px) 100vw, 50vw",
+        width,
+        height
     ) {
         let path = "src/assets/images/" + src
-        console.log(`Generating image(s) from:  ${path}`)
+        console.log(`Generating image(s) from: ${path}`)
 
-        let options = {
+        let metadata = await Image(path, {
             widths: [600, 900, 1500],
             formats: ["auto"],
             urlPath: "/assets/images/",
             outputDir: "./dist/assets/images/"
-        }
-
-        Image(path, options)
+        })
 
         let imageAttributes = {
             alt,
@@ -29,7 +30,18 @@ module.exports = {
             loading: "lazy",
             decoding: "async"
         }
-        metadata = Image.statsSync(path, options)
-        return Image.generateHTML(metadata, imageAttributes)
+
+        let imageHTML = Image.generateHTML(metadata, imageAttributes)
+
+        if (width && height) {
+            // Set custom width and height attributes using JSDOM
+            let dom = new JSDOM(imageHTML)
+            let imgElement = dom.window.document.querySelector("img")
+            imgElement.setAttribute("width", width)
+            imgElement.setAttribute("height", height)
+            imageHTML = dom.serialize()
+        }
+
+        return imageHTML
     }
 }
