@@ -34,11 +34,11 @@
                     <div class="thumbnail-wrapper">
                         {% if item.url %}
                             <a href="{{ item.url }}">
-                                {% image item.thumbnail, "Thumbnail of " + item.title, "(min-width: 1440px) 100vw, 50vw", 422, 373 %}
+                                {% image item.thumbnail, "Thumbnail of " + item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px", 422, 373 %}
                             </a>
                         {% else %}
                             {% image item.thumbnail,
-                "Thumbnail of " + item.title, "(min-width: 1440px) 100vw, 50vw", 422, 373 %}
+                "Thumbnail of " + item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px", 422, 373 %}
                         </a>
                     {% endif %}
                 </div>

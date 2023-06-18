@@ -25,11 +25,13 @@
                     {% if item.url %}
                         <a href="{{ item.url }}">
                             {% image item.thumbnail, "Thumbnail of " + item.title,
-                    "(min-width: 1440px) 100vw, 50vw", 955, 689 %}
+                    "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
+                    955, 689 %}
                         </a>
                     {% else %}
-                        {% image item.thumbnail, "Thumbnail of " + item.title,
-                    "(min-width: 1440px) 100vw, 50vw", 955, 689 %}
+                        {% image item.thumbnail, "Thumbnail of " +
+                item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw,
+                1280px", 955, 689 %}
                     {% endif %}
                 </div>
 

@@ -10,7 +10,7 @@ module.exports = {
     image: async function (
         src,
         alt,
-        sizes = "(min-width: 1024px) 100vw, 50vw",
+        sizes = "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
         width,
         height
     ) {
@@ -34,7 +34,6 @@ module.exports = {
         let imageHTML = Image.generateHTML(metadata, imageAttributes)
 
         if (width && height) {
-            // Set custom width and height attributes using Cheerio
             let $ = cheerio.load(imageHTML)
             let imgElement = $("img")
             imgElement.attr("width", width)
