@@ -1,5 +1,5 @@
 const Image = require("@11ty/eleventy-img")
-const { JSDOM } = require("jsdom")
+const cheerio = require("cheerio")
 
 module.exports = {
     icon: function (name) {
@@ -18,7 +18,7 @@ module.exports = {
         console.log(`Generating image(s) from: ${path}`)
 
         let metadata = await Image(path, {
-            widths: [600, 900, 1500],
+            widths: [600, 900, "auto"],
             formats: ["auto"],
             urlPath: "/assets/images/",
             outputDir: "./dist/assets/images/"
@@ -34,12 +34,12 @@ module.exports = {
         let imageHTML = Image.generateHTML(metadata, imageAttributes)
 
         if (width && height) {
-            // Set custom width and height attributes using JSDOM
-            let dom = new JSDOM(imageHTML)
-            let imgElement = dom.window.document.querySelector("img")
-            imgElement.setAttribute("width", width)
-            imgElement.setAttribute("height", height)
-            imageHTML = dom.serialize()
+            // Set custom width and height attributes using Cheerio
+            let $ = cheerio.load(imageHTML)
+            let imgElement = $("img")
+            imgElement.attr("width", width)
+            imgElement.attr("height", height)
+            imageHTML = $.html()
         }
 
         return imageHTML
