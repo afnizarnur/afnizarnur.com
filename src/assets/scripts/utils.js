@@ -9,4 +9,4 @@ const getMousePos = (e) => {
     }
 }
 
-export { lerp, getMousePos }
+module.exports = { lerp, getMousePos }
