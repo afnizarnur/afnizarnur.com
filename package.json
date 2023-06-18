@@ -51,6 +51,8 @@
     },
     "devDependencies": {
         "@11ty/eleventy": "^2.0.1",
+        "@babel/core": "^7.22.5",
+        "@babel/plugin-transform-modules-commonjs": "^7.22.5",
         "@babel/preset-env": "^7.22.5",
         "cross-env": "^7.0.3",
         "dotenv-webpack": "^8.0.1"
