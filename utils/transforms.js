@@ -1,11 +1,10 @@
-const htmlmin = require('html-minifier')
-const critical = require('critical')
-const buildDir = 'dist'
+const htmlmin = require("html-minifier")
+const buildDir = "dist"
 
 const shouldTransformHTML = (outputPath) =>
     outputPath &&
-    outputPath.endsWith('.html') &&
-    process.env.ELEVENTY_ENV === 'production'
+    outputPath.endsWith(".html") &&
+    process.env.ELEVENTY_ENV === "production"
 
 const isHomePage = (outputPath) => outputPath === `${buildDir}/index.html`
 
@@ -32,7 +31,8 @@ module.exports = {
                     width: 1280,
                     height: 800
                 }
-                const { html } = await critical.generate(config)
+                const { generate } = await import("critical")
+                const { html } = await generate(config)
                 return html
             } catch (err) {
                 console.error(err)

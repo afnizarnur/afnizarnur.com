@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/afnizarnur">
-    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/4648648/246299875-720a4308-fa91-4e98-9427-93147f671e65.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230618%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230618T052003Z&X-Amz-Expires=300&X-Amz-Signature=d9e40dba80f21e58014c45884e0a2924bc1ace101215c7236880f0b1842ba1c0&X-Amz-SignedHeaders=host&actor_id=4648648&key_id=0&repo_id=78810026" width="44">
+    <img src="https://d33wubrfki0l68.cloudfront.net/f797e66685f2b4116788a43d1a904aa35cb5555e/5ebad/assets/images/afnizar-nur-ghifari.png" width="44">
   </a>
 </p>
 
