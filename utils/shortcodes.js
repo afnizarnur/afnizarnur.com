@@ -18,7 +18,7 @@ module.exports = {
         console.log(`Generating image(s) from: ${path}`)
 
         let metadata = await Image(path, {
-            widths: [600, 900, "auto"],
+            widths: [480, 768, "auto"],
             formats: ["auto"],
             urlPath: "/assets/images/",
             outputDir: "./dist/assets/images/"

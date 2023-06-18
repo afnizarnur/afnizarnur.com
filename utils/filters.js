@@ -1,14 +1,14 @@
-const { DateTime } = require('luxon')
+const { DateTime } = require("luxon")
 
 module.exports = {
     dateToFormat: function (date, format) {
-        return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat(
+        return DateTime.fromJSDate(date, { zone: "utc" }).toFormat(
             String(format)
         )
     },
 
     dateToISO: function (date) {
-        return DateTime.fromJSDate(date, { zone: 'utc' }).toISO({
+        return DateTime.fromJSDate(date, { zone: "utc" }).toISO({
             includeOffset: false,
             suppressMilliseconds: true
         })
@@ -17,12 +17,12 @@ module.exports = {
     obfuscate: function (str) {
         const chars = []
         for (var i = str.length - 1; i >= 0; i--) {
-            chars.unshift(['&#', str[i].charCodeAt(), ';'].join(''))
+            chars.unshift(["&#", str[i].charCodeAt(), ";"].join(""))
         }
-        return chars.join('')
+        return chars.join("")
     },
 
     findById: function (array, id) {
         return array.find((i) => i.id === id)
-    },
+    }
 }
