@@ -51,5 +51,15 @@ export default class Cursor {
 }
 
 if (document.querySelector(".cursor")) {
-    new Cursor(document.querySelector(".cursor"))
+    // Hide the cursor initially
+    document.querySelector(".cursor").style.display = "none"
+
+    // Add an event listener to wait for the page to load
+    window.addEventListener("load", () => {
+        // Show the cursor after the page has loaded
+        document.querySelector(".cursor").style.display = "block"
+
+        // Initialize the Cursor class
+        new Cursor(document.querySelector(".cursor"))
+    })
 }
