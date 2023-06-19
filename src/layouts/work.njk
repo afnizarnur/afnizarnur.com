@@ -18,16 +18,18 @@ layout: base
         </r-cell>
 
         <r-cell
-            class="border-left-right-bottom design-tooling"
+            class="border-left-right-bottom content"
             span="3-12"
             span-s="row"
             span-lg="row"
         >
             <span class="block border-bottom u-desktop-only"></span>
-            <div class="design-tooling--content">
+            <div class="content--content">
                 {{ content | safe }}
             </div>
         </r-cell>
+
+        {% include "footer.njk" %}
 
     </r-grid>
 </div>

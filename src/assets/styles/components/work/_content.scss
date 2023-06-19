@@ -1,0 +1,9 @@
+.content {
+    @include mq-down(lg) {
+        border-width: 0px 0px 1px 0px;
+    }
+
+    &--content {
+        padding: 64px 0px 64px 0px;
+    }
+}

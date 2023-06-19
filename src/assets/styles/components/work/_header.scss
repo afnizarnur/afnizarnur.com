@@ -75,6 +75,10 @@
         display: flex;
         justify-content: center;
 
+        @include mq-down(lg) {
+            border-width: 0px 0px 1px 0px;
+        }
+
         img {
             width: 100%;
             height: auto;
