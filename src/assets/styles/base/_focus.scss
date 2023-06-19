@@ -4,7 +4,8 @@
 
 a:focus,
 button:focus,
-input:focus {
+input:focus,
+a.button.btn-outline:focus {
     outline: 4px solid $blue-500;
 }
 

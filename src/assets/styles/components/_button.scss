@@ -13,3 +13,23 @@
         margin: auto; // iOS Safari compat
     }
 }
+
+.button {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 4px;
+
+    &.btn-outline {
+        color: var(--text-primary);
+        border: 1px solid var(--border-default);
+        padding: 16px 32px;
+        text-decoration: none;
+        gap: 8px;
+
+        &:hover {
+            background: none;
+            border: 1px solid var(--text-primary);
+        }
+    }
+}

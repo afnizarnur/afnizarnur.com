@@ -1,0 +1,33 @@
+---
+layout: base
+---
+<div class="container work">
+    <r-grid columns="12" columns-s="4">
+        {% include "header.njk" %}
+        {% include "work/header.njk" %}
+
+        <r-cell
+            class="border-left-bottom work--title-intro"
+            span="1-2"
+            span-s="row"
+            span-lg="row"
+        >
+            <div class="border-bottom work--section-title">
+                <small>Content</small>
+            </div>
+        </r-cell>
+
+        <r-cell
+            class="border-left-right-bottom design-tooling"
+            span="3-12"
+            span-s="row"
+            span-lg="row"
+        >
+            <span class="block border-bottom u-desktop-only"></span>
+            <div class="design-tooling--content">
+                {{ content | safe }}
+            </div>
+        </r-cell>
+
+    </r-grid>
+</div>
