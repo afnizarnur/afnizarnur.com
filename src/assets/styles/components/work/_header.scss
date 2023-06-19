@@ -23,6 +23,10 @@
         padding: 0px 44px 0px 44px;
         gap: 24px;
 
+        @include mq-down(lg) {
+            padding: 0px 24px 0px 24px;
+        }
+
         p {
             color: var(--text-primary);
         }
@@ -30,6 +34,15 @@
         .info-list {
             .row {
                 gap: 16px 24px;
+
+                @include mq-down(sm) {
+                    gap: 0px;
+
+                    .info-title {
+                        margin-top: 12px;
+                        margin-bottom: 8px;
+                    }
+                }
             }
 
             ul {
@@ -43,6 +56,15 @@
         .button-list {
             display: flex;
             justify-content: flex-end;
+
+            @include mq-down(lg) {
+                justify-content: flex-start;
+                p,
+                a {
+                    width: 100%;
+                    margin-top: 12px;
+                }
+            }
         }
     }
 }

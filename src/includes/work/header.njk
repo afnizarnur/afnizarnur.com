@@ -5,7 +5,7 @@
     span-lg="row"
 >
     <div class="border-bottom work--section-title">
-        <small>Introduction</small>
+        <small>Details</small>
     </div>
 </r-cell>
 
@@ -18,68 +18,80 @@
     <span class="block border-bottom u-desktop-only"></span>
     <div class="work-detail--content">
         <div class="title">
-            <h2>{{title}}</h2>
+            <h1>{{title}}</h1>
 
             <p class="subtitle">
                 {{ description }}
             </p>
         </div>
         <r-grid columns="10" class="work-detail--info">
-            <r-cell span="1-8" span-s="row" class="info-list">
+            <r-cell span="1-8" span-lg="1-10" span-s="row" class="info-list">
                 <r-grid columns="10" class="row">
-                    <r-cell span="1-2" span-s="row">
-                        <p class="bold info-title">Role</p>
-                    </r-cell>
-                    <r-cell span="3-10" span-s="row">
-                        <p class="info-data">{{ role }}</p>
-                    </r-cell>
-                    <r-cell span="1-2" span-s="row">
-                        <p class="bold info-title">Teammates</p>
-                    </r-cell>
-                    <r-cell span="3-10" span-s="row">
-                        <p class="info-data">
-                            {{ teammates|join(', ') }}
-                        </p>
-                    </r-cell>
-                    <r-cell span="1-2" span-s="row">
-                        <p class="bold info-title">Deliverables</p>
-                    </r-cell>
-                    <r-cell span="3-10" span-s="row">
-                        <p class="info-data">
-                            {{ deliverables|join(', ') }}
-                        </p>
-                    </r-cell>
-                    <r-cell span="1-2" span-s="row">
-                        <p class="bold info-title">Company</p>
-                    </r-cell>
-                    <r-cell span="3-10" span-s="row">
-                        <p class="info-data">{{ company }}</p>
-                    </r-cell>
-                    <r-cell span="1-2" span-s="row">
-                        <p class="bold info-title">Tags</p>
-                    </r-cell>
-                    <r-cell span="3-10" span-s="row">
-                        <ul>
-                            {% for i in tags %}
-                                <li>
-                                    <small class="badge helper">{{ i }}</small>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </r-cell>
+
+                    {% if role %}
+                        <r-cell span="1-2" span-s="row">
+                            <p class="bold info-title">Role</p>
+                        </r-cell>
+                        <r-cell span="3-10" span-s="row">
+                            <p class="info-data">{{ role }}</p>
+                        </r-cell>
+                    {% endif %}
+
+                    {% if teammates %}
+                        <r-cell span="1-2" span-s="row">
+                            <p class="bold info-title">Teammates</p>
+                        </r-cell>
+                        <r-cell span="3-10" span-s="row">
+                            <p class="info-data">
+                                {{ teammates|join(', ') }}
+                            </p>
+                        </r-cell>
+                    {% endif %}
+
+                    {% if deliverables %}
+                        <r-cell span="1-2" span-s="row">
+                            <p class="bold info-title">Deliverables</p>
+                        </r-cell>
+                        <r-cell span="3-10" span-s="row">
+                            <p class="info-data">
+                                {{ deliverables|join(', ') }}
+                            </p>
+                        </r-cell>
+                    {% endif %}
+
+                    {% if company %}
+                        <r-cell span="1-2" span-s="row">
+                            <p class="bold info-title">Company</p>
+                        </r-cell>
+                        <r-cell span="3-10" span-s="row">
+                            <p class="info-data">{{ company }}</p>
+                        </r-cell>
+                    {% endif %}
+
+                    {% if tags %}
+                        <r-cell span="1-2" span-s="row">
+                            <p class="bold info-title">Tags</p>
+                        </r-cell>
+                        <r-cell span="3-10" span-s="row">
+                            <ul>
+                                {% for i in tags %}
+                                    <li>
+                                        <small class="badge helper">{{ i }}</small>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </r-cell>
+                    {% endif %}
                 </r-grid>
             </r-cell>
-            <r-cell span="9-10" span-s="row" class="button-list">
-
-                <p class="body-large">
-                    <a href="{{ url }}" class="button btn-outline">See live <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 17L17 7" stroke="#191A1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7 7H17V17" stroke="#191A1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-
-                </p>
-            </r-cell>
+            {% if url %}
+                <r-cell span="9-10" span-s="row" span-lg ="row" class="button-list">
+                    <p class="body-large">
+                        <a href="{{ url }}" class="button btn-outline">See live {% icon "arrow-up-right" %}
+                        </a>
+                    </p>
+                </r-cell>
+            {% endif %}
         </r-grid>
     </div>
 </r-cell>

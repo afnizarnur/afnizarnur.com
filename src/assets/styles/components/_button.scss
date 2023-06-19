@@ -20,6 +20,11 @@
     justify-content: center;
     border-radius: 4px;
 
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+
     &.btn-outline {
         color: var(--text-primary);
         border: 1px solid var(--border-default);
