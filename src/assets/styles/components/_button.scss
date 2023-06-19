@@ -19,6 +19,7 @@
     flex-direction: row;
     justify-content: center;
     border-radius: 4px;
+    margin: 0px;
 
     .icon {
         width: 24px;
@@ -28,7 +29,7 @@
     &.btn-outline {
         color: var(--text-primary);
         border: 1px solid var(--border-default);
-        padding: 16px 32px;
+        padding: 12px 24px;
         text-decoration: none;
         gap: 8px;
 

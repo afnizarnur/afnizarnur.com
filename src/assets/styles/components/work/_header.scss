@@ -39,8 +39,11 @@
                     gap: 0px;
 
                     .info-title {
-                        margin-top: 12px;
-                        margin-bottom: 8px;
+                        margin-bottom: 4px;
+                    }
+
+                    .info-data {
+                        margin-bottom: 16px;
                     }
                 }
             }
@@ -62,9 +65,19 @@
                 p,
                 a {
                     width: 100%;
-                    margin-top: 12px;
+                    margin-top: 0px;
                 }
             }
+        }
+    }
+
+    &--preview {
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            height: auto;
         }
     }
 }

@@ -68,20 +68,6 @@
                         </r-cell>
                     {% endif %}
 
-                    {% if tags %}
-                        <r-cell span="1-2" span-s="row">
-                            <p class="bold info-title">Tags</p>
-                        </r-cell>
-                        <r-cell span="3-10" span-s="row">
-                            <ul>
-                                {% for i in tags %}
-                                    <li>
-                                        <small class="badge helper">{{ i }}</small>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </r-cell>
-                    {% endif %}
                 </r-grid>
             </r-cell>
             {% if url %}
@@ -95,3 +81,11 @@
         </r-grid>
     </div>
 </r-cell>
+
+{% if preview %}
+    <r-cell class="border-left-right-bottom work-detail--preview" span="12" span-s="row">
+        {% image "work/"+preview, "Thumbnail of " +
+                item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw,
+                1280px", 1107.83, 866 %}
+    </r-cell>
+{% endif %}
