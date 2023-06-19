@@ -7,6 +7,14 @@ const filters = require("./utils/filters.js")
 const transforms = require("./utils/transforms.js")
 const shortcodes = require("./utils/shortcodes.js")
 
+const IS_PRODUCTION = process.env.ELEVENTY_ENV === "production"
+
+const CONTENT_GLOBS = {
+    posts: "src/posts/**/*.md",
+    works: "src/works/**/*.md",
+    media: "*.jpg|*.png|*.gif|*.mp4|*.webp|*.webm"
+}
+
 module.exports = function (config) {
     // Plugins
     config.addPlugin(pluginRss)
@@ -58,6 +66,14 @@ module.exports = function (config) {
 
     // Deep-Merge
     config.setDataDeepMerge(true)
+
+    // Collections: Works
+    config.addCollection("works", function (collection) {
+        return collection
+            .getFilteredByGlob(CONTENT_GLOBS.works)
+            .filter((item) => item.data.permalink !== false)
+            .filter((item) => !(item.data.draft && IS_PRODUCTION))
+    })
 
     // Base Config
     return {

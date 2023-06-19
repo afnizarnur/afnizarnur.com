@@ -1,0 +1,4 @@
+{
+    "layout": "post",
+    "permalink": "work/{{ page.fileSlug }}/index.html"
+}
