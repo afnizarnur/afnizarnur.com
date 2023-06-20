@@ -4,7 +4,7 @@
     }
 
     &--content {
-        margin: 144px 0px 144px 0px;
+        margin: 144px 0px 64px 0px;
 
         .title {
             margin: 0px 44px 64px 44px;
@@ -36,6 +36,10 @@
                 }
                 h3 {
                     margin: 0;
+                }
+
+                &:last-child {
+                    border-bottom: none;
                 }
             }
         }
