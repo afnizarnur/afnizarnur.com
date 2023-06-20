@@ -1,4 +1,11 @@
 .other-work-card {
+    @include mq-down(sm) {
+        margin-bottom: 44px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    }
     .thumbnail-wrapper {
         a {
             padding: 0;
