@@ -2,11 +2,32 @@
     <div class="nav-sheet">
         <div class="container">
             <ul class="nav__nav-list">
-                <li class="nav__nav-list-item">
+                {%- for item in collections.all | eleventyNavigation -%} {%- if
+                item.url -%} {%- set isCurrent = (item.url == page.url) -%} {%-
+                set isParent = item.url != '/' and item.url in page.url -%}
+                <li
+                    class="nav__nav-list-item {% if isCurrent or isParent %} nav__item--active{% endif %}"
+                >
                     <h2>
-                        <a href="/">About</a>
+                        <a
+                            href="{% if isCurrent %}#main{% else %}{{
+                                item.url | url
+                            }}{% endif %}"
+                            {%
+                            if
+                            isCurrent
+                            %}
+                            aria-current="page"
+                            {%
+                            endif
+                            %}
+                        >
+                            {{ item.title }}
+                        </a>
                     </h2>
                 </li>
+                {%- endif -%} {%- endfor -%}
+
                 <li class="nav__nav-list-item">
                     <h2>
                         <a href="{{ '/afnizar-resume.pdf' | url }}">Resume</a>

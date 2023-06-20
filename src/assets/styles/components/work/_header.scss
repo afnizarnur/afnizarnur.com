@@ -27,6 +27,10 @@
             padding: 0px 24px 0px 24px;
         }
 
+        @include mq-down(sm) {
+            gap: 8px;
+        }
+
         p {
             color: var(--text-primary);
         }
