@@ -24,5 +24,15 @@ module.exports = {
 
     findById: function (array, id) {
         return array.find((i) => i.id === id)
+    },
+
+    slice: function (array, start, end) {
+        return end ? array.slice(start, end) : array.slice(start)
+    },
+
+    excludePost: function (allPosts, currentPost) {
+        return allPosts.filter(
+            (post) => post.inputPath !== currentPost.inputPath
+        )
     }
 }
