@@ -6,6 +6,10 @@
     &--content {
         padding: 64px 44px 64px 44px;
 
+        @include mq-down(lg) {
+            padding: 64px 24px 64px 24px;
+        }
+
         img {
             width: 100%;
             height: auto;
