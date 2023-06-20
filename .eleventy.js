@@ -1,6 +1,7 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginNavigation = require("@11ty/eleventy-navigation")
 const pluginSvgSprite = require("eleventy-plugin-svg-sprite")
+const pluginPageAssets = require("eleventy-plugin-page-assets")
 const markdownIt = require("markdown-it")
 
 const filters = require("./utils/filters.js")
@@ -22,6 +23,12 @@ module.exports = function (config) {
     config.addPlugin(pluginSvgSprite, {
         path: "./src/assets/icons",
         svgSpriteShortcode: "iconsprite"
+    })
+    config.addPlugin(pluginPageAssets, {
+        mode: "directory",
+        postsMatching: ["src/works/*/*.md", "src/posts/*/*.md"],
+        assetsMatching: CONTENT_GLOBS.media,
+        silent: true
     })
 
     // Filters
@@ -61,7 +68,6 @@ module.exports = function (config) {
     config.addPassthroughCopy("src/robots.txt")
     config.addPassthroughCopy("src/site.webmanifest")
     config.addPassthroughCopy("src/assets/images")
-    config.addPassthroughCopy("src/assets/fonts")
     config.addPassthroughCopy({ static: "/" })
 
     // Deep-Merge
