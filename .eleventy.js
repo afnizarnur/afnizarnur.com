@@ -82,6 +82,14 @@ module.exports = function (config) {
             .filter((item) => !(item.data.draft && IS_PRODUCTION))
     })
 
+    // Collections: Selected Works
+    config.addCollection("selected", function (collection) {
+        return collection
+            .getFilteredByGlob(CONTENT_GLOBS.works)
+            .filter((item) => item.data.selected)
+            .sort((a, b) => a.date - b.date)
+    })
+
     // Base Config
     return {
         dir: {

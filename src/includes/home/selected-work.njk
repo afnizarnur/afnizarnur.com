@@ -18,18 +18,18 @@
     <span class="block border-bottom u-desktop-only"></span>
     <div class="selected-work--content">
         <h2>Selected work</h2>
-        {% for item in selectedWork %}
 
+        {% for item in collections.selected | slice(0, 4) %}
             <div class="selected-work--item">
                 <div class="thumbnail-wrapper">
-                    {% if item.url %}
+                    {% if item.data.url %}
                         <a href="{{ item.url }}">
-                            {% image item.thumbnail, "Thumbnail of " + item.title,
+                            {% image "work/"+item.data.thumbnail, "Thumbnail of " + item.data.title,
                     "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
                     955, 689 %}
                         </a>
                     {% else %}
-                        {% image item.thumbnail, "Thumbnail of " +
+                        {% image  "work/"+item.data.thumbnail, "Thumbnail of " +
                 item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw,
                 1280px", 955, 689 %}
                     {% endif %}
@@ -38,17 +38,17 @@
                 <r-grid columns="10" class="description">
                     <r-cell span="3" span-s="row">
                         <p class="body-large">
-                            {% if item.url %}
-                                <a href="{{ item.url }}">{{ item.title }}</a>
+                            {% if item.data.url %}
+                                <a href="{{ item.url }}">{{ item.data.title }}</a>
                             {% else %}
-                                {{ item.title }}
+                                {{ item.data.title }}
                             {% endif %}
                         </p>
                     </r-cell>
                     <r-cell span="4-10" span-s="row">
-                        <p class="description--project">{{ item.description }}</p>
+                        <p class="description--project">{{ item.data.description }}</p>
                         <ul>
-                            {% for i in item.tags %}
+                            {% for i in item.data.tags %}
                                 <li>
                                     <small class="badge helper">{{ i }}</small>
                                 </li>
