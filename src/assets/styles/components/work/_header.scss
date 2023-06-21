@@ -31,8 +31,11 @@
             gap: 8px;
         }
 
-        p {
+        .info-title {
             color: var(--text-primary);
+        }
+        .info-data {
+            color: var(--text-secondary);
         }
 
         .info-list {
