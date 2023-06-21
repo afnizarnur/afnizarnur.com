@@ -59,7 +59,7 @@
                     box-shadow: 0 0 0 4px var(--text-primary);
                     border-radius: 16px;
 
-                    @include mq-down(sm) {
+                    @include mq-down(lg) {
                         box-shadow: none;
                     }
                 }
