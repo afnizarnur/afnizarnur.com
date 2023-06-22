@@ -37,32 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
         createScrollTrigger(element, tl)
     })
 
-
-    // Add animation for image hover
-    const imgSelected = document.querySelector(".thumbnail-wrapper img")
-    const viewDetail = document.querySelector(".btn-view-detail")
-
-    if (!isMobileOrTablet()) {
-        imgSelected.addEventListener("mouseenter", showDetail);
-        imgSelected.addEventListener("mouseleave", hideDetail);
-        imgSelected.addEventListener("mousemove", moveDetail);
-      }
-
-    function showDetail() {
-      gsap.to(viewDetail, { opacity: 1 })
-    }
-
-    function hideDetail() {
-      gsap.to(viewDetail, { opacity: 0 })
-    }
-
-    function moveDetail(e) {
-        const x = e.clientX - imgSelected.offsetLeft;
-        const y = e.clientY - imgSelected.offsetTop;
-    
-        gsap.to(viewDetail, { x: x, y: y });
-      }
-
     // Avoid flash of unstyled content
     const textSplitElements = document.querySelectorAll("[text-split]")
     gsap.set(textSplitElements, { opacity: 1 })
