@@ -22,27 +22,18 @@
         {% for item in collections.selected | slice(0, 4) %}
             <div class="selected-work--item">
                 <div class="thumbnail-wrapper">
-                    {% if item.data.url %}
-                        <a href="{{ item.url }}">
-                            {% image "work/"+item.data.thumbnail, "Thumbnail of " + item.data.title,
+                    <a href="{{ item.url }}">
+                        {% image "work/"+item.data.thumbnail, "Thumbnail of " + item.data.title,
                     "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
                     955, 689 %}
-                        </a>
-                    {% else %}
-                        {% image  "work/"+item.data.thumbnail, "Thumbnail of " +
-                item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw,
-                1280px", 955, 689 %}
-                    {% endif %}
+                    </a>
+
                 </div>
 
                 <r-grid columns="10" class="description">
                     <r-cell span="3" span-s="row">
                         <p class="body-large">
-                            {% if item.data.url %}
-                                <a href="{{ item.url }}">{{ item.data.title }}</a>
-                            {% else %}
-                                {{ item.data.title }}
-                            {% endif %}
+                            <a href="{{ item.url }}">{{ item.data.title }}</a>
                         </p>
                     </r-cell>
                     <r-cell span="4-10" span-s="row">
