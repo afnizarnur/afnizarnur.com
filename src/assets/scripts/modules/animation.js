@@ -37,6 +37,45 @@ document.addEventListener("DOMContentLoaded", function () {
         createScrollTrigger(element, tl)
     })
 
+
+    // Add animation for image hover
+    const imgSelectedList = document.querySelectorAll(".thumbnail-wrapper img");
+    const viewDetailList = document.querySelectorAll(".btn-view-detail");
+    
+    if (!isMobileOrTablet()) {
+      imgSelectedList.forEach((imgSelected, index) => {
+        const viewDetail = viewDetailList[index];
+        imgSelected.addEventListener("mouseenter", () => showDetail(imgSelected, viewDetail));
+        imgSelected.addEventListener("mouseleave", () => hideDetail(viewDetail));
+        imgSelected.addEventListener("mousemove", (e) => moveDetail(e, imgSelected, viewDetail));
+      });
+    }
+    
+    function showDetail(imgSelected, viewDetail) {
+      const storedX = viewDetail.style.getPropertyValue('--stored-x');
+      const storedY = viewDetail.style.getPropertyValue('--stored-y');
+    
+      if (storedX && storedY) {
+        gsap.to(viewDetail, { x: storedX, y: storedY, opacity: 1  });
+      } else {
+        gsap.to(viewDetail, { opacity: 1 });
+      }
+    }
+    
+    function hideDetail(viewDetail) {
+      gsap.to(viewDetail, { opacity: 0 });
+    }
+    
+    function moveDetail(e, imgSelected, viewDetail) {
+      const x = e.clientX - imgSelected.offsetLeft;
+      const y = e.clientY - imgSelected.offsetTop;
+    
+      viewDetail.style.setProperty('--stored-x', x + 'px');
+      viewDetail.style.setProperty('--stored-y', y + 'px');
+    
+      gsap.to(viewDetail, { x: x, y: y });
+    }
+    
     // Avoid flash of unstyled content
     const textSplitElements = document.querySelectorAll("[text-split]")
     gsap.set(textSplitElements, { opacity: 1 })
