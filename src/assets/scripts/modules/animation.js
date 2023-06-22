@@ -4,22 +4,10 @@ import SplitType from "split-type"
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Link timelines to scroll position
 function createScrollTrigger(triggerElement, timeline) {
-    // Reset timeline when scrolling out of view past the bottom of the screen
     ScrollTrigger.create({
         trigger: triggerElement,
-        start: "top bottom",
-        onLeaveBack: () => {
-            timeline.progress(0)
-            timeline.pause()
-        }
-    })
-
-    // Play timeline when scrolled into view (60% from top of screen)
-    ScrollTrigger.create({
-        trigger: triggerElement,
-        start: "top 60%",
+        start: "top 75%",
         onEnter: () => timeline.play()
     })
 }
@@ -30,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tagName: "span"
     })
 
+    // Animation text reveal 
     document.querySelectorAll("[letters-slide-up]").forEach(function (element) {
         const tl = gsap.timeline({ paused: true })
         const chars = element.querySelectorAll(".char")
@@ -43,6 +32,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
         createScrollTrigger(element, tl)
     })
+
+
+    // Add animation for image hover
+    const imgSelected = document.querySelector(".thumbnail-wrapper img")
+    const viewDetail = document.querySelector(".btn-view-detail")
+
+    imgSelected.addEventListener("mouseenter", showDetail)
+    imgSelected.addEventListener("mouseleave", hideDetail)
+    imgSelected.addEventListener("mousemove", moveDetail)
+
+    function showDetail() {
+      gsap.to(viewDetail, { opacity: 1 })
+    }
+
+    function hideDetail() {
+      gsap.to(viewDetail, { opacity: 0 })
+    }
+
+    function moveDetail(e) {
+        const x = e.clientX - imgSelected.offsetLeft;
+        const y = e.clientY - imgSelected.offsetTop;
+    
+        gsap.to(viewDetail, { x: x, y: y });
+      }
 
     // Avoid flash of unstyled content
     const textSplitElements = document.querySelectorAll("[text-split]")

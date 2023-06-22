@@ -50,3 +50,13 @@
     margin-bottom: -0.185em;
     transform-origin: bottom;
 }
+
+.btn-view-detail {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--text-primary);
+    color: var(--background-default);
+    padding: 12px 24px;
+    border-radius: 100px;
+  }
