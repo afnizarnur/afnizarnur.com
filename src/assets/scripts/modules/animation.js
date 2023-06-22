@@ -12,6 +12,10 @@ function createScrollTrigger(triggerElement, timeline) {
     })
 }
 
+function isMobileOrTablet() {
+    return window.matchMedia("(max-width: 1024px)").matches;
+  }
+
 document.addEventListener("DOMContentLoaded", function () {
     const typeSplit = new SplitType("[text-split]", {
         types: "words, chars",
@@ -38,9 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const imgSelected = document.querySelector(".thumbnail-wrapper img")
     const viewDetail = document.querySelector(".btn-view-detail")
 
-    imgSelected.addEventListener("mouseenter", showDetail)
-    imgSelected.addEventListener("mouseleave", hideDetail)
-    imgSelected.addEventListener("mousemove", moveDetail)
+    if (!isMobileOrTablet()) {
+        imgSelected.addEventListener("mouseenter", showDetail);
+        imgSelected.addEventListener("mouseleave", hideDetail);
+        imgSelected.addEventListener("mousemove", moveDetail);
+      }
 
     function showDetail() {
       gsap.to(viewDetail, { opacity: 1 })
