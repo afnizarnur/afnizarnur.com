@@ -52,9 +52,12 @@
 }
 
 .btn-view-detail {
-    position: absolute;
+    // position: absolute;
     opacity: 0;
     pointer-events: none;
+    position: fixed;
+    top: 44px;
+    left: 44px;
     background: var(--text-primary);
     color: var(--background-default);
     padding: 12px 24px;
