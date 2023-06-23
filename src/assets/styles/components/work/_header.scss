@@ -1,94 +1,94 @@
 .work-detail {
-    @include mq-down(lg) {
-        border-width: 0px 0px 1px 0px;
-    }
+	@include mq-down(lg) {
+		border-width: 0px 0px 1px 0px;
+	}
 
-    &--content {
-        margin: 144px 0px 144px 0px;
+	&--content {
+		margin: 144px 0px 144px 0px;
 
-        .title {
-            margin: 0px 44px 64px 44px;
+		.title {
+			margin: 0px 44px 64px 44px;
 
-            @include mq-down(lg) {
-                margin: 0px 24px 44px 24px;
-            }
-        }
+			@include mq-down(lg) {
+				margin: 0px 24px 44px 24px;
+			}
+		}
 
-        @include mq-down(lg) {
-            margin: 64px 0px;
-        }
-    }
+		@include mq-down(lg) {
+			margin: 64px 0px;
+		}
+	}
 
-    &--info {
-        padding: 0px 44px 0px 44px;
-        gap: 24px;
+	&--info {
+		padding: 0px 44px 0px 44px;
+		gap: 16px;
 
-        @include mq-down(lg) {
-            padding: 0px 24px 0px 24px;
-        }
+		@include mq-down(lg) {
+			padding: 0px 24px 0px 24px;
+		}
 
-        @include mq-down(sm) {
-            gap: 8px;
-        }
+		@include mq-down(sm) {
+			gap: 8px;
+		}
 
-        .info-title {
-            color: var(--text-primary);
-        }
-        .info-data {
-            color: var(--text-secondary);
-        }
+		.info-title {
+			color: var(--text-primary);
+		}
+		.info-data {
+			color: var(--text-secondary);
+		}
 
-        .info-list {
-            .row {
-                gap: 16px 24px;
+		.info-list {
+			.row {
+				gap: 16px 24px;
 
-                @include mq-down(sm) {
-                    gap: 0px;
+				@include mq-down(sm) {
+					gap: 0px;
 
-                    .info-title {
-                        margin-bottom: 4px;
-                    }
+					.info-title {
+						margin-bottom: 4px;
+					}
 
-                    .info-data {
-                        margin-bottom: 16px;
-                    }
-                }
-            }
+					.info-data {
+						margin-bottom: 16px;
+					}
+				}
+			}
 
-            ul {
-                display: inline-flex;
+			ul {
+				display: inline-flex;
 
-                li {
-                    margin-right: 4px;
-                }
-            }
-        }
-        .button-list {
-            display: flex;
-            justify-content: flex-end;
+				li {
+					margin-right: 4px;
+				}
+			}
+		}
+		.button-list {
+			display: flex;
+			justify-content: flex-end;
 
-            @include mq-down(lg) {
-                justify-content: flex-start;
-                p,
-                a {
-                    width: 100%;
-                    margin-top: 0px;
-                }
-            }
-        }
-    }
+			@include mq-down(lg) {
+				justify-content: flex-start;
+				p,
+				a {
+					width: 100%;
+					margin-top: 0px;
+				}
+			}
+		}
+	}
 
-    &--preview {
-        display: flex;
-        justify-content: center;
+	&--preview {
+		display: flex;
+		justify-content: center;
 
-        @include mq-down(lg) {
-            border-width: 0px 0px 1px 0px;
-        }
+		@include mq-down(lg) {
+			border-width: 0px 0px 1px 0px;
+		}
 
-        img {
-            width: 100%;
-            height: auto;
-        }
-    }
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
 }
