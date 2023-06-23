@@ -41,15 +41,6 @@
                     text-decoration: none;
                     background: none;
                 }
-                img {
-                    &:hover {
-                        box-shadow: 0 0 0 4px var(--text-primary);
-
-                        @include mq-down(lg) {
-                            box-shadow: none;
-                        }
-                    }
-                }
             }
             img {
                 display: block;
