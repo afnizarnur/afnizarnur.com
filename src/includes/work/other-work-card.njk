@@ -1,10 +1,13 @@
-{% set otherworks = collections.works | excludePost(page) | slice(-2) %}
+{% set previousPost = collections.works | getPreviousCollectionItem(page) %}
+{% set nextPost = collections.works | getNextCollectionItem(page) %}
+{% set firstPost = collections.works | first %}
+{% set lastPost = collections.works | last %}
 
-{% for item in otherworks | reverse %}
+{% if previousPost %}
     <r-cell span="5" span-s="row" class="other-work-card">
         <div class="thumbnail-wrapper">
-            <a href="{{ item.url | url }}">
-                {% image "work/" + item.data.thumbnail, "Thumbnail of " + item.data.title,
+            <a href="{{ previousPost.url | url }}">
+                {% image "work/" + previousPost.data.thumbnail, "Thumbnail of " + previousPost.data.title,
                     "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
                     421, 304 %}
             </a>
@@ -12,13 +15,13 @@
         <r-grid columns="10" class="description">
             <r-cell span="row">
                 <p class="body-large">
-                    <a href="{{ item.url | url }}">{{ item.data.title }}</a>
+                    <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
                 </p>
             </r-cell>
             <r-cell span="row">
-                <p class="description--project">{{item.data.description}}</p>
+                <p class="description--project">{{previousPost.data.description}}</p>
                 <ul>
-                    {% for i in item.data.tags %}
+                    {% for i in previousPost.data.tags %}
                         <li>
                             <small class="badge helper">{{ i }}</small>
                         </li>
@@ -27,4 +30,87 @@
             </r-cell>
         </r-grid>
     </r-cell>
-{% endfor %}
+{% else %}
+    <r-cell span="5" span-s="row" class="other-work-card">
+        <div class="thumbnail-wrapper">
+            <a href="{{ lastPost.url | url }}">
+                {% image "work/" + lastPost.data.thumbnail, "Thumbnail of " + lastPost.data.title,
+                    "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
+                    421, 304 %}
+            </a>
+        </div>
+        <r-grid columns="10" class="description">
+            <r-cell span="row">
+                <p class="body-large">
+                    <a href="{{ lastPost.url | url }}">{{ lastPost.data.title }}</a>
+                </p>
+            </r-cell>
+            <r-cell span="row">
+                <p class="description--project">{{lastPost.data.description}}</p>
+                <ul>
+                    {% for i in lastPost.data.tags %}
+                        <li>
+                            <small class="badge helper">{{ i }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </r-cell>
+        </r-grid>
+    </r-cell>
+{% endif %}
+
+{% if nextPost %}
+    <r-cell span="5" span-s="row" class="other-work-card">
+        <div class="thumbnail-wrapper">
+            <a href="{{ nextPost.url | url }}">
+                {% image "work/" + nextPost.data.thumbnail, "Thumbnail of " + nextPost.data.title,
+                    "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
+                    421, 304 %}
+            </a>
+        </div>
+        <r-grid columns="10" class="description">
+            <r-cell span="row">
+                <p class="body-large">
+                    <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a>
+                </p>
+            </r-cell>
+            <r-cell span="row">
+                <p class="description--project">{{nextPost.data.description}}</p>
+                <ul>
+                    {% for i in nextPost.data.tags %}
+                        <li>
+                            <small class="badge helper">{{ i }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </r-cell>
+        </r-grid>
+    </r-cell>
+{% else %}
+    <r-cell span="5" span-s="row" class="other-work-card">
+        <div class="thumbnail-wrapper">
+            <a href="{{ firstPost.url | url }}">
+                {% image "work/" + firstPost.data.thumbnail, "Thumbnail of " + firstPost.data.title,
+                    "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
+                    421, 304 %}
+            </a>
+        </div>
+        <r-grid columns="10" class="description">
+            <r-cell span="row">
+                <p class="body-large">
+                    <a href="{{ firstPost.url | url }}">{{ firstPost.data.title }}</a>
+                </p>
+            </r-cell>
+            <r-cell span="row">
+                <p class="description--project">{{firstPost.data.description}}</p>
+                <ul>
+                    {% for i in firstPost.data.tags %}
+                        <li>
+                            <small class="badge helper">{{ i }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </r-cell>
+        </r-grid>
+    </r-cell>
+{% endif %}
