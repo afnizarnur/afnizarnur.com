@@ -13,13 +13,16 @@
     </button>
 
     <ul class="nav__menu">
-        {%- for item in collections.all | eleventyNavigation -%} {%- if item.url
-        -%} {%- set isCurrent = (item.url == page.url) -%} {%- set isParent =
+        {%- for item in collections.all | eleventyNavigation -%}
+            {%- if item.url
+        -%}
+                {%- set isCurrent = (item.url == page.url) -%}
+                {%- set isParent =
         item.url != '/' and item.url in page.url -%}
-        <li
+                <li
             class="nav__item{% if isCurrent or isParent %} nav__item--active{% endif %}"
         >
-            <a
+                    <a
                 class="nav__link"
                 href="{% if isCurrent %}#main{% else %}{{
                     item.url | url
@@ -33,10 +36,11 @@
                 endif
                 %}
             >
-                {{ item.title }}
-            </a>
-        </li>
-        {%- endif -%} {%- endfor -%}
+                        {{ item.title }}
+                    </a>
+                </li>
+            {%- endif -%}
+        {%- endfor -%}
         <li>
             <a
                 class="nav__item nav__link"
@@ -52,7 +56,7 @@
             >
                 <span class="sr-only"> Change Theme</span>
 
-                {% icon "change-pallete" %}
+                {% icon "color-wheel" %}
             </button>
         </li>
     </ul>
