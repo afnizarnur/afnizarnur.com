@@ -1,33 +1,69 @@
 .content {
-    @include mq-down(lg) {
-        border-width: 0px 0px 1px 0px;
-    }
+	@include mq-down(lg) {
+		border-width: 0px 0px 1px 0px;
+	}
 
-    &--content {
-        padding: 64px 44px 64px 44px;
+	&--content {
+		padding: 64px 44px 64px 44px;
 
-        @include mq-down(lg) {
-            padding: 64px 24px 64px 24px;
-        }
+		@include mq-down(lg) {
+			padding: 44px 24px 44px 24px;
+		}
 
-        img {
-            width: 100%;
-            height: auto;
-        }
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: 0;
+			margin-bottom: 24px;
+		}
 
-        figure {
-            margin-bottom: 24px;
-            img {
-                margin-bottom: 12px;
-            }
+		img {
+			width: 100%;
+			height: auto;
+		}
 
-            figcaption {
-                font-size: 0.875rem;
-                line-height: 1.05rem;
-                font-weight: 520;
-                letter-spacing: -0.01em;
-                color: var(--text-secondary);
-            }
-        }
-    }
+		hr {
+			margin: 64px 0px;
+			border: none;
+			height: 1px;
+			color: var(--border-default);
+			background-color: var(--border-default);
+
+			@include mq-down(lg) {
+				margin: 44px 0px;
+			}
+		}
+
+		p {
+			margin-bottom: 1.5rem;
+
+			&.body-large {
+				margin-bottom: 1.5rem;
+			}
+		}
+
+		figure {
+			margin-top: 64px;
+			margin-bottom: 64px;
+
+			@include mq-down(lg) {
+				margin: 44px 0px 44px 0px;
+			}
+
+			img {
+				margin-bottom: 12px;
+			}
+
+			figcaption {
+				font-size: 0.875rem;
+				line-height: 1.05rem;
+				font-weight: 520;
+				letter-spacing: -0.01em;
+				color: var(--text-secondary);
+			}
+		}
+	}
 }

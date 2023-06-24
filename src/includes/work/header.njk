@@ -37,13 +37,13 @@
                         </r-cell>
                     {% endif %}
 
-                    {% if teammates %}
+                    {% if Team %}
                         <r-cell span="1-2" span-s="row">
-                            <p class="bold info-title">Teammates</p>
+                            <p class="bold info-title">Team</p>
                         </r-cell>
                         <r-cell span="3-10" span-s="row">
                             <p class="info-data">
-                                {{ teammates|join(', ') }}
+                                {{ Team|join(', ') }}
                             </p>
                         </r-cell>
                     {% endif %}
