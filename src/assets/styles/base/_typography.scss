@@ -4,116 +4,116 @@ h3,
 h4,
 h5,
 h6 {
-    text-rendering: optimizeLegibility;
-    font-family: $font-family-sans-serif-heading;
-    font-variation-settings: "ital" 0, "wdth" 90;
-    margin-bottom: 24px;
-    font-weight: 600;
-    color: var(--text-primary);
+	text-rendering: optimizeLegibility;
+	font-family: $font-family-sans-serif-heading;
+	font-variation-settings: "ital" 0, "wdth" 90;
+	margin-bottom: 24px;
+	font-weight: 600;
+	color: var(--text-primary);
 }
 
 h1 {
-    font-size: 3.625rem;
-    line-height: 3.9875rem;
+	font-size: 3.625rem;
+	line-height: 3.9875rem;
 
-    @include mq-down(lg) {
-        font-size: 3.25rem;
-        line-height: 3.575rem;
-    }
+	@include mq-down(lg) {
+		font-size: 3.25rem;
+		line-height: 3.575rem;
+	}
 
-    @include mq-down(sm) {
-        font-size: 2.25rem;
-        line-height: 2.475rem;
-    }
+	@include mq-down(sm) {
+		font-size: 2.25rem;
+		line-height: 2.475rem;
+	}
 }
 
 h2 {
-    font-size: 3.25rem;
-    line-height: 3.575rem;
+	font-size: 3.25rem;
+	line-height: 3.575rem;
 
-    @include mq-down(lg) {
-        font-size: 2.875rem;
-        line-height: 3.1625rem;
-    }
+	@include mq-down(lg) {
+		font-size: 2.875rem;
+		line-height: 3.1625rem;
+	}
 
-    @include mq-down(sm) {
-        font-size: 2rem;
-        line-height: 2.2rem;
-    }
+	@include mq-down(sm) {
+		font-size: 2rem;
+		line-height: 2.2rem;
+	}
 }
 
 h3 {
-    font-size: 2.875rem;
-    line-height: 3.1625rem;
+	font-size: 2.875rem;
+	line-height: 3.1625rem;
 
-    @include mq-down(sm) {
-        font-size: 2rem;
-        line-height: 2.2rem;
-    }
+	@include mq-down(sm) {
+		font-size: 2rem;
+		line-height: 2.2rem;
+	}
 }
 
 h4 {
-    font-size: 2.25rem;
-    line-height: 2.475rem;
+	font-size: 2.25rem;
+	line-height: 2.475rem;
 }
 
 h5 {
-    font-size: 2rem;
-    line-height: 2.2rem;
+	font-size: 2rem;
+	line-height: 2.2rem;
 }
 
 h6 {
-    font-size: 1.8125rem;
-    line-height: 1.99375rem;
+	font-size: 1.8125rem;
+	line-height: 1.99375rem;
 }
 
 // Subtitle
 p.subtitle {
-    font-size: 1.4375rem;
-    line-height: 2.0125rem;
+	font-size: 1.4375rem;
+	line-height: 2.0125rem;
 
-    @include mq-down(sm) {
-        font-size: 1.125rem;
-        line-height: 1.575rem;
-    }
+	@include mq-down(sm) {
+		font-size: 1.125rem;
+		line-height: 1.575rem;
+	}
 }
 
 // Body large
 p.body-large {
-    font-size: 1.125rem;
-    line-height: 1.575rem;
-    font-weight: 520;
+	font-size: 1.125rem;
+	line-height: 1.575rem;
+	font-weight: 520;
 }
 
 // Body
 p {
-    color: var(--text-secondary);
-    margin: 0;
-    line-height: 1.4rem;
-    letter-spacing: -0.01em;
-    &.bold {
-        font-weight: 520;
-    }
-    a {
-        color: var(--text-secondary);
-    }
+	color: var(--text-secondary);
+	margin: 0;
+	line-height: 1.4rem;
+	letter-spacing: -0.01rem;
+	&.bold {
+		font-weight: 520;
+	}
+	a {
+		color: var(--text-secondary);
+	}
 }
 
 // Small
 small {
-    font-size: 0.875rem;
-    line-height: 1.05rem;
-    font-weight: 520;
-    letter-spacing: -0.01em;
+	font-size: 0.875rem;
+	line-height: 1.2rem;
+	font-weight: 520;
+	letter-spacing: -0.01rem;
 }
 
 // Helper
 small.helper {
-    font-size: 0.8125rem;
-    line-height: 0.975rem;
+	font-size: 0.8125rem;
+	line-height: 1.2rem;
 }
 
 // Strong
 strong {
-    font-weight: 600;
+	font-weight: 600;
 }
