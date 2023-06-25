@@ -1,0 +1,12 @@
+.work {
+	.selected-work--content {
+		h2 {
+			margin-bottom: 64px;
+
+			&.year-title {
+				color: var(--border-default);
+				margin-bottom: 24px;
+			}
+		}
+	}
+}
