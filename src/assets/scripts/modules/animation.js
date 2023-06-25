@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 	}
 
-	function animateDesignToolingCards(cards) {
+	function animateCardStagger(cards) {
 		const timelines = []
 
 		cards.forEach((card, index) => {
@@ -85,7 +85,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Animation on design tooling cards
 	const designToolingCards = document.querySelectorAll(".design-tooling-card")
-	animateDesignToolingCards(designToolingCards)
+	animateCardStagger(designToolingCards)
+
+	// Animation on other work cards
+	const nextProjectCard = document.querySelectorAll(".other-work-card")
+	animateCardStagger(nextProjectCard)
 
 	// Avoid flash of unstyled content
 	const textSplitElements = document.querySelectorAll("[text-split]")
