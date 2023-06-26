@@ -13,9 +13,18 @@
     <footer>
         <div class="footer--content">
             <h2 text-split letters-slide-up>
+                {% if page
+                    .url
+                    .includes('/work/') %}
+                Thanks for scrolling,
+                <br/>
+                Do you like what you see?
+                 {% else %}
                 Do you like what you see?
                 <br/>
                 Feel free to reach out
+                {% endif %}
+
             </h2>
             <p class="subtitle">
                 I am always open to new opportunities and collaborations. If you
