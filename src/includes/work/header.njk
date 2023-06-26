@@ -1,21 +1,21 @@
 <r-cell
-    class="border-left-bottom work--title-intro"
+    class="b-left-bottom work--title-intro"
     span="1-2"
     span-s="row"
     span-lg="row"
 >
-    <div class="border-bottom work--section-title">
+    <div class="b-bottom work--section-title">
         <small aria-hidden="true">Details</small>
     </div>
 </r-cell>
 
 <r-cell
-    class="border-left-right-bottom work-detail"
+    class="b-left-right-bottom work-detail"
     span="3-12"
     span-s="row"
     span-lg="row"
 >
-    <span class="block border-bottom u-desktop-only"></span>
+    <span class="block b-bottom u-desktop-only"></span>
     <div class="work-detail--content">
         <div class="title">
             <h1 text-split letters-slide-up>{{title}}</h1>
@@ -83,7 +83,7 @@
 </r-cell>
 
 {% if preview %}
-    <r-cell class="border-left-right-bottom work-detail--preview" span="12" span-s="row">
+    <r-cell class="b-left-right-bottom work-detail--preview" span="12" span-s="row">
         <video autoplay loop muted playsinline tabindex="-1" width="1152" height="900">
             <source src="{{ preview | url }}" type="video/mp4">
         </video>
