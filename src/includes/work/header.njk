@@ -84,12 +84,12 @@
 
 <r-cell class="border-left-right-bottom work-detail--preview" span="12" span-s="row">
     {% if preview %}
-        <video autoplay loop muted tabindex="-1">
+        <video autoplay loop muted playsinline tabindex="-1">
             <source src="{{ preview | url }}" type="video/mp4">
         </video>
     {% else %}
         {% image "work/"+thumbnail, "Thumbnail of " +
-                item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw,
+                title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw,
                 1280px", 1107.83, 866 %}
     {% endif %}
 </r-cell>
