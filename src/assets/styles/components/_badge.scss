@@ -1,13 +1,33 @@
 .badge {
-    padding: 4px 8px;
-    align-items: center;
-    background: var(--surface-default);
-    color: var(--text-disabled);
-    border-radius: 24px;
-    text-transform: lowercase;
+	&.badge-tags {
+		padding: 4px 8px;
+		align-items: center;
+		background: var(--surface-default);
+		color: var(--text-disabled);
+		border-radius: 24px;
+		text-transform: lowercase;
 
-    &:before {
-        content: "#";
-        margin-right: 4px;
-    }
+		&:before {
+			content: "#";
+			margin-right: 4px;
+		}
+	}
+
+	&.badge-draft {
+		padding: 8px 16px;
+		position: absolute;
+		background: var(--text-primary);
+		border-radius: 99px;
+		top: 44px;
+		left: 44px;
+
+		small {
+			color: var(--background-default);
+		}
+
+		@include mq-down(lg) {
+			top: 24px;
+			left: 24px;
+		}
+	}
 }

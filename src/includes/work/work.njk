@@ -25,6 +25,12 @@
                 <div class="selected-work--item">
                     <div class="thumbnail-wrapper">
                         <a href="{{ item.url }}">
+                            {% if item.data.draft %}
+                                <div class="badge badge-draft">
+                                    <small class="helper">Draft</small>
+                                </div>
+                            {% endif %}
+
                             {% image "work/"+item.data.thumbnail, "Thumbnail of " + item.data.title,
                     "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
                     955, 689 %}
@@ -42,7 +48,7 @@
                             <ul>
                                 {% for i in item.data.tags %}
                                     <li>
-                                        <small class="badge helper">{{ i }}</small>
+                                        <small class="badge badge-tags helper">{{ i }}</small>
                                     </li>
                                 {% endfor %}
                             </ul>
