@@ -1,0 +1,51 @@
+<r-cell
+    class="b-left-bottom work--title-intro"
+    span="1-2"
+    span-s="row"
+    span-lg="row"
+>
+    <div class="b-bottom work--section-title">
+        <small aria-hidden="true">Recommendation</small>
+    </div>
+</r-cell>
+
+<r-cell class="b-left-right-bottom recommendation" span="3-12" span-s="row" span-lg="row">
+    <span class="block b-bottom u-desktop-only"></span>
+    <div class="skills--content">
+        <div class="title">
+            <h2 text-split letters-slide-up>Read what they say</h2>
+        </div>
+
+        <div class="carousel">
+            <div class="carousel-inner">
+                {% for items in recommendation %}
+                    <div class="carousel-slide">
+                        <div class="items">
+                            <blockquote>{{ items.content }}</blockquote>
+                            <cite>
+                                <p class="bold">
+                                    {{ items.name }}
+                                </p>
+                                <small>
+                                    {{ items.role }} at {{ items.company }}
+                                </small>
+                            </cite>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if recommendation.length > 2 %}
+                <div class="carousel-footer">
+                    <button class="carousel-prev icon-button" aria-label="Previous">
+                        {% icon "arrow-left-alt" %}
+                    </button>
+                    <button class="carousel-next icon-button" aria-label="Next">
+                        {% icon "arrow-right-alt" %}
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</r-cell>
