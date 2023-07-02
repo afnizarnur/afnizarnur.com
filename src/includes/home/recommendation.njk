@@ -23,13 +23,20 @@
                         <div class="items">
                             <blockquote>{{ items.content }}</blockquote>
                             <cite>
-                                <img src="" alt="" width="40" height="40">
+                                {% if items.image %}
+                                    {% image 'recommendation/'+items.image, items.name, "(min-width: 1440px) 100vw, 50vw", 40, 40  %}
+                                {% endif %}
+
                                 <div>
                                     <p class="bold">
                                         {{ items.name }}
                                     </p>
                                     <small>
-                                        {{ items.role }} at {{ items.company }}
+                                        {{ items.role }}
+
+                                        {% if items.company %}
+                                         at {{ items.company }}
+                                        {% endif %}
                                     </small>
                                 </div>
                             </cite>
