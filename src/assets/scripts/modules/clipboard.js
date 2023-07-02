@@ -21,16 +21,16 @@ class Clipboard {
 
 	copyToClipboard() {
 		if (!this.button) {
-			return // Button element not found, exit the function
+			return
 		}
 
 		navigator.clipboard
 			.writeText(this.email)
 			.then(() => {
-				this.updateButtonText("Email address copied!")
+				this.updateButtonText("email address copied!")
 				setTimeout(() => {
 					this.updateButtonText(
-						`Reach out to me via email <svg class="icon icon--copy" role="img" aria-hidden="true"><use xlink:href="#svg-copy"></use></svg>`
+						`reach out to me via email <svg class="icon icon--copy" role="img" aria-hidden="true"><use xlink:href="#svg-copy"></use></svg>`
 					)
 				}, 1500)
 			})
@@ -43,7 +43,7 @@ class Clipboard {
 		if (this.button) {
 			const span = document.createElement("span")
 			span.innerHTML = text
-			this.button.innerHTML = "" // Clear existing content
+			this.button.innerHTML = ""
 			this.button.appendChild(span)
 		}
 	}

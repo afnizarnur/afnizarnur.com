@@ -112,6 +112,21 @@
 		.commit-code {
 			margin-left: 24px;
 
+			a {
+				margin-left: 4px;
+
+				text-decoration: none;
+				color: var(--text-disabled);
+
+				&:hover {
+					color: var(--background-default);
+				}
+
+				small {
+					margin: 0;
+				}
+			}
+
 			@include mq-down(sm) {
 				margin-left: 0;
 			}
