@@ -8,6 +8,7 @@
 
 		@include mq-down(lg) {
 			padding: 0px 24px;
+			flex-wrap: wrap;
 		}
 
 		.carousel-slide {
@@ -15,11 +16,12 @@
 			background: var(--surface-default);
 			padding: 24px;
 			border-radius: 16px;
-			flex: 0 0 calc(50% - 12px);
 			transition: transform 0.3s ease;
+			flex-basis: calc(50% - 12px);
 
 			@include mq-down(sm) {
 				flex-basis: 100%;
+				flex-shrink: 0;
 			}
 
 			blockquote {

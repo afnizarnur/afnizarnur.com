@@ -12,13 +12,8 @@ class RecommendationCarousel {
 		this.testimonials = Array.from(
 			this.carouselInner.querySelectorAll(".carousel-slide")
 		)
-		this.recoGrouped = []
-
-		// Group testimonials into pairs
-		for (let i = 0; i < this.testimonials.length; i += 2) {
-			this.recoGrouped.push(this.testimonials.slice(i, i + 2))
-		}
-
+		this.itemsPerSlide = this.getItemsPerSlide()
+		this.recoGrouped = this.groupTestimonials()
 		this.currentIndex = 0
 
 		this.prevButton.addEventListener(
@@ -40,12 +35,30 @@ class RecommendationCarousel {
 		})
 
 		this.showRecommendation(this.currentIndex)
+		this.handleResize()
+		window.addEventListener("resize", this.handleResize.bind(this))
+	}
+
+	getItemsPerSlide() {
+		if (window.innerWidth >= 768) {
+			return 2
+		} else {
+			return 1
+		}
+	}
+
+	groupTestimonials() {
+		const grouped = []
+		for (let i = 0; i < this.testimonials.length; i += this.itemsPerSlide) {
+			const group = this.testimonials.slice(i, i + this.itemsPerSlide)
+			grouped.push(group)
+		}
+		return grouped
 	}
 
 	showRecommendation(index) {
 		const recoGroup = this.recoGrouped[index]
 		this.carouselInner.innerHTML = ""
-
 		recoGroup.forEach((testimonial) => {
 			this.carouselInner.appendChild(testimonial.cloneNode(true))
 		})
@@ -61,6 +74,16 @@ class RecommendationCarousel {
 			(this.currentIndex - 1 + this.recoGrouped.length) %
 			this.recoGrouped.length
 		this.showRecommendation(this.currentIndex)
+	}
+
+	handleResize() {
+		const newItemsPerSlide = this.getItemsPerSlide()
+		if (newItemsPerSlide !== this.itemsPerSlide) {
+			this.itemsPerSlide = newItemsPerSlide
+			this.recoGrouped = this.groupTestimonials()
+			this.currentIndex = 0
+			this.showRecommendation(this.currentIndex)
+		}
 	}
 }
 
