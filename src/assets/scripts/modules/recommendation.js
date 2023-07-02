@@ -1,3 +1,11 @@
+/**
+ * @author afnizarnur
+ * @email afnizarhilmi@gmail.com
+ * @create date 02-07-2023 10:01:00
+ * @modify date 02-07-2023 10:01:00
+ * @desc Recommendation carousel
+ */
+
 class RecommendationCarousel {
 	constructor(carouselSelector) {
 		this.carousel = document.querySelector(carouselSelector)
@@ -25,7 +33,6 @@ class RecommendationCarousel {
 			this.navigateToNext.bind(this)
 		)
 
-		// Keyboard navigation
 		this.carousel.addEventListener("keydown", (event) => {
 			if (event.key === "ArrowLeft") {
 				this.navigateToPrevious()
@@ -40,11 +47,7 @@ class RecommendationCarousel {
 	}
 
 	getItemsPerSlide() {
-		if (window.innerWidth >= 768) {
-			return 2
-		} else {
-			return 1
-		}
+		return window.innerWidth >= 768 ? 2 : 1
 	}
 
 	groupTestimonials() {

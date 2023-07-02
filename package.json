@@ -34,7 +34,7 @@
         "del-cli": "^4.0.1",
         "dotenv": "^16.1.4",
         "eleventy-plugin-svg-sprite": "^1.2.2",
-        "focus-trap": "^6.7.1",
+        "focus-trap": "^6.9.4",
         "focus-visible": "^5.2.0",
         "gsap": "^3.9.1",
         "html-minifier": "^4.0.0",
