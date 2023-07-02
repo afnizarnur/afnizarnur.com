@@ -15,6 +15,7 @@ class RecommendationCarousel {
 		}
 
 		this.carouselInner = this.carousel.querySelector(".carousel-inner")
+		this.carouselFooter = this.carousel.querySelector(".carousel-footer")
 		this.prevButton = this.carousel.querySelector(".carousel-prev")
 		this.nextButton = this.carousel.querySelector(".carousel-next")
 		this.recomendations = Array.from(
@@ -24,14 +25,24 @@ class RecommendationCarousel {
 		this.recoGrouped = this.groupRecommendation()
 		this.currentIndex = 0
 
-		this.prevButton.addEventListener(
-			"click",
-			this.navigateToPrevious.bind(this)
-		)
-		this.nextButton.addEventListener(
-			"click",
-			this.navigateToNext.bind(this)
-		)
+		if (this.prevButton && this.nextButton) {
+			this.prevButton.addEventListener(
+				"click",
+				this.navigateToPrevious.bind(this)
+			)
+			this.nextButton.addEventListener(
+				"click",
+				this.navigateToNext.bind(this)
+			)
+
+			if (this.itemsPerSlide >= 2) {
+				if (window.innerWidth >= 768) {
+					this.carouselFooter.style.display = "none"
+				} else {
+					this.carouselFooter.style.display = "flex"
+				}
+			}
+		}
 
 		this.carousel.addEventListener("keydown", (event) => {
 			if (event.key === "ArrowLeft") {
