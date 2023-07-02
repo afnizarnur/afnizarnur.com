@@ -1,22 +1,40 @@
 [
 	{
-		"name": "Full name",
-		"role": "Designer",
-		"company": "Company name",
+		"name": "John Smith",
+		"role": "Marketing Manager",
+		"company": "ABC Corporation",
 		"image": "avatar-dummy.png",
-		"content": "Afnizar is a true professional. Their expertise and attention to detail made a significant impact on my project. They listened to my vision and provided valuable insights, resulting in an end product that exceeded my expectations. I highly recommend Afnizar for outstanding results."
+		"content": "Working with [Designer's Name] was an absolute pleasure! They took my vague ideas and turned them into a stunning visual masterpiece. Their attention to detail and creativity exceeded my expectations. I highly recommend [Designer's Name] for anyone looking for a talented and professional designer."
 	},
 	{
-		"name": "Full name",
-		"role": "Designer",
-		"company": "Company name",
-		"content": "Choosing Afnizar was the best decision for my project. Their professionalism, skill, and attention to detail were unmatched. They understood my goals, offered valuable guidance, and delivered outstanding results on time. I highly recommend [Your Name] to anyone in need of top-notch expertise and a seamless collaboration experience."
+		"name": "Emily Davis",
+		"role": "Entrepreneur",
+		"company": "XYZ Startup",
+		"content": "I had the privilege of collaborating with [Designer's Name] on a recent project, and I couldn't be happier with the results. Their ability to understand my brand and translate it into a visually appealing design was remarkable. [Designer's Name] is a true artist, and I would not hesitate to work with them again."
 	},
 	{
-		"name": "Full name",
-		"role": "Designer",
-		"company": "Company name",
+		"name": "David Roberts",
+		"role": "CEO",
+		"company": "123 Enterprises",
+		"content": "I am extremely impressed with the design skills of [Designer's Name]. They have an incredible eye for aesthetics and a keen understanding of user experience. The design they created for my website not only looks beautiful but also functions flawlessly. I am grateful for [Designer's Name]'s expertise and would recommend them without hesitation."
+	},
+	{
+		"name": "Amy Johnson",
+		"role": "Event Planner",
+		"company": "Events Unlimited",
+		"content": "Working with [Designer's Name] was a game-changer for my business. They listened attentively to my vision and brought it to life through their exceptional design work. The final product exceeded my expectations and resonated perfectly with my target audience. If you're looking for a designer who can elevate your brand, [Designer's Name] is the one."
+	},
+	{
+		"name": "Mark Taylor",
+		"role": "Small Business Owner",
+		"company": "Taylor's Bakes",
+		"content": "I had the pleasure of hiring [Designer's Name] to create a logo for my startup, and I am thrilled with the result. They captured the essence of my business and created a logo that is both visually appealing and memorable. [Designer's Name] is incredibly talented, professional, and a true pleasure to work with."
+	},
+	{
+		"name": "Sophia Anderson",
+		"role": "Fashion Designer",
+		"company": "Fashion Forward",
 		"image": "avatar-dummy.png",
-		"content": "Afnizar is a true professional. Their expertise and attention to detail made a significant impact on my project. They listened to my vision and provided valuable insights, resulting in an end product that exceeded my expectations. I highly recommend Afnizar for outstanding results."
+		"content": "I cannot express enough how impressed I am with [Designer's Name]'s design skills. They possess an exceptional ability to understand and translate complex concepts into visually stunning designs. Their attention to detail, creativity, and professionalism are unparalleled. [Designer's Name] has truly elevated my brand's image, and I highly recommend their services to anyone in need of a top-notch designer."
 	}
 ]
