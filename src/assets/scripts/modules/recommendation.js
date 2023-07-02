@@ -17,11 +17,11 @@ class RecommendationCarousel {
 		this.carouselInner = this.carousel.querySelector(".carousel-inner")
 		this.prevButton = this.carousel.querySelector(".carousel-prev")
 		this.nextButton = this.carousel.querySelector(".carousel-next")
-		this.testimonials = Array.from(
+		this.recomendations = Array.from(
 			this.carouselInner.querySelectorAll(".carousel-slide")
 		)
 		this.itemsPerSlide = this.getItemsPerSlide()
-		this.recoGrouped = this.groupTestimonials()
+		this.recoGrouped = this.groupRecommendation()
 		this.currentIndex = 0
 
 		this.prevButton.addEventListener(
@@ -50,10 +50,14 @@ class RecommendationCarousel {
 		return window.innerWidth >= 768 ? 2 : 1
 	}
 
-	groupTestimonials() {
+	groupRecommendation() {
 		const grouped = []
-		for (let i = 0; i < this.testimonials.length; i += this.itemsPerSlide) {
-			const group = this.testimonials.slice(i, i + this.itemsPerSlide)
+		for (
+			let i = 0;
+			i < this.recomendations.length;
+			i += this.itemsPerSlide
+		) {
+			const group = this.recomendations.slice(i, i + this.itemsPerSlide)
 			grouped.push(group)
 		}
 		return grouped
@@ -83,7 +87,7 @@ class RecommendationCarousel {
 		const newItemsPerSlide = this.getItemsPerSlide()
 		if (newItemsPerSlide !== this.itemsPerSlide) {
 			this.itemsPerSlide = newItemsPerSlide
-			this.recoGrouped = this.groupTestimonials()
+			this.recoGrouped = this.groupRecommendation()
 			this.currentIndex = 0
 			this.showRecommendation(this.currentIndex)
 		}
