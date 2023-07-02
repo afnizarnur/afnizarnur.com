@@ -43,6 +43,16 @@
 
 			cite {
 				font-style: normal;
+				display: flex;
+				align-items: center;
+
+				img {
+					width: 40px;
+					height: 40px;
+					border-radius: 99px;
+					margin-right: 12px;
+					background-color: $gray-100;
+				}
 
 				small {
 					color: var(--text-secondary);
