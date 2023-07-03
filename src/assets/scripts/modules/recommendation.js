@@ -25,24 +25,14 @@ class RecommendationCarousel {
 		this.recoGrouped = this.groupRecommendation()
 		this.currentIndex = 0
 
-		if (this.prevButton && this.nextButton) {
-			this.prevButton.addEventListener(
-				"click",
-				this.navigateToPrevious.bind(this)
-			)
-			this.nextButton.addEventListener(
-				"click",
-				this.navigateToNext.bind(this)
-			)
-
-			if (this.itemsPerSlide >= 2) {
-				if (window.innerWidth >= 768) {
-					this.carouselFooter.style.display = "none"
-				} else {
-					this.carouselFooter.style.display = "flex"
-				}
-			}
-		}
+		this.prevButton.addEventListener(
+			"click",
+			this.navigateToPrevious.bind(this)
+		)
+		this.nextButton.addEventListener(
+			"click",
+			this.navigateToNext.bind(this)
+		)
 
 		this.carousel.addEventListener("keydown", (event) => {
 			if (event.key === "ArrowLeft") {
