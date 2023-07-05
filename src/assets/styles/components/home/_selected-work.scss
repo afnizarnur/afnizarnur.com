@@ -37,6 +37,11 @@
 				position: absolute;
 				top: 44px;
 				left: 44px;
+
+				@include mq-down(lg) {
+					top: 24px;
+					left: 24px;
+				}
 			}
 
 			a {
