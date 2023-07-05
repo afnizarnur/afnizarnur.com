@@ -47,10 +47,10 @@
 
             {% if recommendation.length > 1 %}
                 <div class="carousel-footer">
-                    <button class="carousel-prev icon-button" aria-label="Previous">
+                    <button data-umami-event="recommendation-view-prev" class="carousel-prev icon-button" aria-label="Previous">
                         {% icon "arrow-left-alt" %}
                     </button>
-                    <button class="carousel-next icon-button" aria-label="Next">
+                    <button data-umami-event="recommendation-view-next" class="carousel-next icon-button" aria-label="Next">
                         {% icon "arrow-right-alt" %}
                     </button>
                 </div>
