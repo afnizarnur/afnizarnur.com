@@ -30,7 +30,7 @@ class Clipboard {
 				this.updateButtonText("email address copied!")
 				setTimeout(() => {
 					this.updateButtonText(
-						`reach out to me via email <svg class="icon icon--copy" role="img" aria-hidden="true"><use xlink:href="#svg-copy"></use></svg>`
+						`reach out to me via email<svg class="icon icon--copy" role="img" aria-hidden="true"><use xlink:href="#svg-copy"></use></svg>`
 					)
 				}, 1500)
 			})
