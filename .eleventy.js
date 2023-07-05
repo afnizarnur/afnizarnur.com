@@ -88,7 +88,10 @@ module.exports = function (config) {
 	config.addCollection("worksByYear", (collection) => {
 		return lodash
 			.chain(collection.getFilteredByGlob(CONTENT_GLOBS.works))
-			.filter((item) => !(item.data.draft && IS_PRODUCTION))
+			.filter(
+				(item) =>
+					item.data.selected || !(item.data.draft && IS_PRODUCTION)
+			)
 			.groupBy((works) => works.date.getFullYear())
 			.toPairs()
 			.reverse()

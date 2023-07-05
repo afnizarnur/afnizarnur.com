@@ -24,23 +24,34 @@
             {% for item in yearWorks | reverse %}
                 <div class="selected-work--item">
                     <div class="thumbnail-wrapper">
-                        <a href="{{ item.url }}">
-                            {% if item.data.draft %}
-                                <div class="badge badge-draft">
-                                    <small class="helper">Draft</small>
-                                </div>
-                            {% endif %}
+                        {% if item.data.draft %}
+                            <div class="badge badge-draft">
+                                <small class="helper">Coming Soon</small>
+                            </div>
+                        {% endif %}
 
+                        {% if item.data.draft %}
                             {% image "work/"+item.data.thumbnail, "Thumbnail of " + item.data.title,
                     "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
                     955, 689 %}
-                        </a>
+
+                        {% else %}
+                            <a href="{{ item.url }}">
+                                {% image "work/"+item.data.thumbnail, "Thumbnail of " + item.data.title,
+                    "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
+                    955, 689 %}
+                            </a>
+                        {% endif %}
                     </div>
 
                     <r-grid columns="10" class="description">
                         <r-cell span="3" span-s="row">
                             <p class="body-large">
-                                <a href="{{ item.url }}">{{ item.data.title }}</a>
+                                {% if item.data.draft %}
+                                    {{ item.data.title }}
+                                {% else %}
+                                    <a href="{{ item.url }}">{{ item.data.title }}</a>
+                                {% endif %}
                             </p>
                         </r-cell>
                         <r-cell span="4-10" span-s="row">
