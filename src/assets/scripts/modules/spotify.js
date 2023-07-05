@@ -36,7 +36,7 @@ class SpotifyFetcher {
               <div class="equalizer-bar"></div>
               <div class="equalizer-bar"></div>
             </div>
-            <a href="${url}" target="_blank">${songTitle} by ${artistName}</a>`
+            <a href="${url}" data-umami-event="footer-spotify" target="_blank">${songTitle} by ${artistName}</a>`
 		}
 	}
 }

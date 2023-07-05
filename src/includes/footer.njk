@@ -29,7 +29,7 @@
             <p class="subtitle">
                 I am always open to new opportunities and collaborations. If you
                 have any questions or need help with a project,
-                <span tabindex="0" class="copy-email" onclick="event.preventDefault()"
+                <span data-umami-event="footer-copy-email" tabindex="0" class="copy-email" onclick="event.preventDefault()"
                     >reach out to me via email{% icon "copy" %}
                 </span>
             </p>
@@ -37,10 +37,10 @@
         <div class="footer--social b-top">
             <p>
                 Follow me for more thoughts and updates on
-                <a href="https://twitter.com/afnizarnur">Twitter</a>,
-                <a href="https://www.figma.com/@afnizarnur">Figma</a>,
-                <a href="https://github.com/afnizarnur">GitHub</a>, and
-                <a href="https://www.linkedin.com/in/afnizarnur/">LinkedIn</a>
+                <a data-umami-event="footer-twitter" href="https://twitter.com/afnizarnur">Twitter</a>,
+                <a data-umami-event="footer-figma" href="https://www.figma.com/@afnizarnur">Figma</a>,
+                <a data-umami-event="footer-github" href="https://github.com/afnizarnur">GitHub</a>, and
+                <a data-umami-event="footer-linkedin" href="https://www.linkedin.com/in/afnizarnur/">LinkedIn</a>
             </p>
         </div>
         <div class="footer--version b-top">
@@ -49,16 +49,16 @@
                     <p>See previous versions of this site</p>
                 </li>
                 <li>
-                    <a href="{{ '/2013/' | url }}">2013</a>
+                    <a data-umami-event="footer-2013" href="{{ '/2013/' | url }}">2013</a>
                 </li>
                 <li>
-                    <a href="{{ '/2019/' | url }}">2019</a>
+                    <a data-umami-event="footer-2019" href="{{ '/2019/' | url }}">2019</a>
                 </li>
                 <li>
-                    <a href="{{ '/2020/' | url }}">2020</a>
+                    <a data-umami-event="footer-2020" href="{{ '/2020/' | url }}">2020</a>
                 </li>
                 <li>
-                    <a href="{{ '/2022/' | url }}">2022</a>
+                    <a data-umami-event="footer-2022" href="{{ '/2022/' | url }}">2022</a>
                 </li>
             </ul>
         </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="commit-code">
                 {% icon "commit" %}
-                <a href="https://github.com/afnizarnur">
+                <a href="https://github.com/afnizarnur" data-umami-event="footer-commit-code">
                     <small>
                         {{ build.hash }}
                     </small>
