@@ -9,6 +9,11 @@
 class RecommendationAccordion {
 	constructor(containerSelector) {
 		this.container = document.querySelector(containerSelector)
+
+		if (!this.container) {
+			return
+		}
+
 		this.showMore = this.container.querySelector(".show-more")
 		this.showMoreLink = this.container.querySelector(".show-more-link")
 		this.accordionWrapper =

@@ -32,6 +32,13 @@
 
 		.thumbnail-wrapper {
 			position: relative;
+
+			.badge-draft {
+				position: absolute;
+				top: 44px;
+				left: 44px;
+			}
+
 			a {
 				padding: 0;
 				margin: 0;

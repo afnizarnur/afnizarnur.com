@@ -1,7 +1,9 @@
 .badge {
+	display: flex;
+	align-items: center;
+
 	&.badge-tags {
 		padding: 4px 8px;
-		align-items: center;
 		background: var(--surface-default);
 		color: var(--text-disabled);
 		border-radius: 24px;
@@ -15,11 +17,8 @@
 
 	&.badge-draft {
 		padding: 8px 16px;
-		position: absolute;
 		background: var(--text-primary);
-		border-radius: 99px;
-		top: 44px;
-		left: 44px;
+		border-radius: 24px;
 
 		small {
 			color: var(--background-default);
