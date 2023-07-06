@@ -3,7 +3,9 @@ layout: base
 eleventyExcludeFromCollections: true
 ---
 
-<div class="container">
-    <h1>404</h1>
-    <p>Page not found.</p>
+<div class="container work">
+    <r-grid columns="12" columns-s="4">
+        {% include "header.njk" %}
+        {% include "404.njk" %}
+    </r-grid>
 </div>

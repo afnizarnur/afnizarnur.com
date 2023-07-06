@@ -2,7 +2,6 @@
 
 body {
     overflow-x: hidden;
-    transition: color 0.15s, background-color 0.15s;
 }
 
 .layout {
@@ -35,5 +34,10 @@ body {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    padding: 0px 24px;
     max-width: $container-max-width;
+
+    @include mq-down(lg) {
+        padding: 0px;
+    }
 }

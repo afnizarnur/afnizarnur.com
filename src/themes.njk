@@ -7,7 +7,9 @@ eleventyExcludeFromCollections: true
     --background-default: {{ colors.backgroundDefault }};
     --text-primary: {{ colors.textPrimary }};
     --text-secondary: {{ colors.textSecondary}};
+    --text-disabled: {{ colors.textDisabled}};
     --border-default: {{ colors.borderDefault }};
+    --surface-default: {{ colors.surfaceDefault }};
 {%- endmacro -%}
 
 {%- set default = themes|findById('default') -%}

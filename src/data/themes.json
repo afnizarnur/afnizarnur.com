@@ -6,7 +6,9 @@
             "backgroundDefault": "#FFFFFF",
             "textPrimary": "#191A1B",
             "textSecondary": "#363739",
-            "borderDefault": "#E2E4E5"
+            "textDisabled": "#62676A",
+            "borderDefault": "#E2E4E5",
+            "surfaceDefault": "#F6F6F7"
         }
     },
     {
@@ -16,7 +18,9 @@
             "backgroundDefault": "#191A1B",
             "textPrimary": "#FFFFFF",
             "textSecondary": "#F6F6F7",
-            "borderDefault": "#62676A"
+            "textDisabled": "#A1A5A7",
+            "borderDefault": "#62676A",
+            "surfaceDefault": "#2F3032"
         }
     },
     {
@@ -26,7 +30,9 @@
             "backgroundDefault": "#E2E4E5",
             "textPrimary": "#191A1B",
             "textSecondary": "#363739",
-            "borderDefault": "#C5C8CA"
+            "textDisabled": "#62676A",
+            "borderDefault": "#C5C8CA",
+            "surfaceDefault": "#F6F6F7"
         }
     },
     {
@@ -36,7 +42,9 @@
             "backgroundDefault": "#FFEFF8",
             "textPrimary": "#3C0023",
             "textSecondary": "#740043",
-            "borderDefault": "#FFC6E7"
+            "textDisabled": "#AC0064",
+            "borderDefault": "#FFC6E7",
+            "surfaceDefault": "#FFEAF6"
         }
     },
     {
@@ -46,7 +54,9 @@
             "backgroundDefault": "#E0F5FD",
             "textPrimary": "#042A36",
             "textSecondary": "#042A36",
-            "borderDefault": "#94DEF7"
+            "textDisabled": "#0C7A9F",
+            "borderDefault": "#94DEF7",
+            "surfaceDefault": "#F3FBFE"
         }
     }
 ]

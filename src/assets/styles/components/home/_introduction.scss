@@ -8,10 +8,6 @@
     &--content {
         margin: 144px 44px 144px 44px;
 
-        p {
-            margin-bottom: 24px;
-        }
-
         @include mq-down(lg) {
             margin: 64px 24px;
         }

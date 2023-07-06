@@ -2,20 +2,21 @@
 // It will run webpack with babel over all JS defined in the main entry file.
 
 // main entry point name
-const ENTRY_FILE_NAME = 'main.js'
+const ENTRY_FILE_NAME = "main.js"
 
-const fs = require('fs')
-const path = require('path')
-const webpack = require('webpack')
-const { fs: mfs } = require('memfs')
+const fs = require("fs")
+const path = require("path")
+const webpack = require("webpack")
+const { fs: mfs } = require("memfs")
+const Dotenv = require("dotenv-webpack")
 
-const isProd = process.env.ELEVENTY_ENV === 'production'
+const isProd = process.env.ELEVENTY_ENV === "production"
 
 module.exports = class {
     // Configure Webpack in Here
     async data() {
         const entryPath = path.join(__dirname, `/${ENTRY_FILE_NAME}`)
-        const outputPath = path.resolve(__dirname, '../../memory-fs/js/')
+        const outputPath = path.resolve(__dirname, "../../memory-fs/js/")
 
         // Transform .js files, run through Babel
         const rules = [
@@ -23,10 +24,10 @@ module.exports = class {
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-transform-runtime']
+                        presets: ["@babel/preset-env"],
+                        plugins: ["@babel/plugin-transform-runtime"]
                     }
                 }
             }
@@ -39,11 +40,11 @@ module.exports = class {
 
         // Main Config
         const webpackConfig = {
-            mode: isProd ? 'production' : 'development',
+            mode: isProd ? "production" : "development",
             entry: entryPath,
             output: { path: outputPath },
             module: { rules },
-            plugins: [envPlugin]
+            plugins: [envPlugin, new Dotenv()]
         }
 
         return {
@@ -74,8 +75,8 @@ module.exports = class {
                 }
 
                 mfs.readFile(
-                    webpackConfig.output.path + '/' + ENTRY_FILE_NAME,
-                    'utf8',
+                    webpackConfig.output.path + "/" + ENTRY_FILE_NAME,
+                    "utf8",
                     (err, data) => {
                         if (err) reject(err)
                         else resolve(data)

@@ -1,0 +1,28 @@
+<r-cell
+            class="b-left-bottom work--title-intro"
+            span="1-2"
+            span-s="row"
+            span-lg="row"
+        >
+    <div class="b-bottom work--section-title">
+        <small aria-hidden="true">Discover more</small>
+    </div>
+</r-cell>
+
+<r-cell
+            class="b-left-right-bottom other-work"
+            span="3-12"
+            span-s="row"
+            span-lg="row"
+        >
+    <span class="block b-bottom u-desktop-only"></span>
+    <div class="other-work--content">
+        <div class="title">
+            <h2>On to the next</h2>
+        </div>
+
+        <r-grid columns="10" class="other-work--list-wrapper">
+            {% include "work/other-work-card.njk" %}
+        </r-grid>
+    </div>
+</r-cell>

@@ -1,21 +1,36 @@
-<header class="header border-bottom" role="banner">
-    <div class="header--inner">
-        <div class="header--branding">
-            <p class="body-large">
-                <a class="logo" href="{{ '/' | url }}">
-                    <img
-                        src="{{
-                            '/assets/images/afnizar-nur-ghifari.png' | url
-                        }}"
-                        alt="Afnizar Nur Ghifari"
-                        width="36"
-                        height="36"
-                        loading="lazy"
-                /></a>
-            </p>
+<r-cell class="b-left u-desktop-only" span="1-2" span-s="row"></r-cell>
+<r-cell
+    class="b-left-right work--header-empty u-desktop-only"
+    span="3-12"
+    span-s="row"
+    span-lg="row"
+></r-cell>
+
+<r-cell
+    class="b-left-bottom u-desktop-only"
+    span="1-2"
+    span-s="row"
+    span-lg="row"
+></r-cell>
+<r-cell
+    class="work--header-container b-left-right"
+    span="3-12"
+    span-s="row"
+    span-lg="row"
+>
+    <header class="header b-bottom" role="banner">
+        <div class="header--inner">
+            <div class="header--branding">
+                <p class="body-large">
+                    <a class="logo" href="{{ '/' | url }}">
+                        {% image "afnizar-nur-ghifari.png", "Afnizar Nur
+                        Ghifari", "(min-width: 1440px) 100vw, 50vw", 36, 36  %}
+                    </a>
+                </p>
+            </div>
+            <div class="header--nav">{% include "nav.njk" %}</div>
         </div>
-        <div class="header--nav">{% include "nav.njk" %}</div>
-    </div>
-</header>
+    </header>
+</r-cell>
 
 {% include "nav-mobile.njk" %}

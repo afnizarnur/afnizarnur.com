@@ -1,0 +1,90 @@
+.recommendation--carousel {
+	.carousel-inner {
+		display: flex;
+		padding: 0px 44px;
+		gap: 24px;
+		width: 100%;
+		overflow: hidden;
+
+		@include mq-down(lg) {
+			padding: 0px 24px;
+			flex-wrap: wrap;
+		}
+
+		.carousel-slide {
+			display: flex;
+			background: var(--surface-default);
+			padding: 24px;
+			border-radius: 16px;
+			transition: transform 0.3s ease;
+			flex-basis: calc(50% - 12px);
+			height: 100%;
+
+			@include mq-down(sm) {
+				flex-basis: 100%;
+				flex-shrink: 0;
+			}
+
+			blockquote {
+				font-size: 1.125rem;
+				line-height: 1.575rem;
+				font-weight: 520;
+				margin: 0;
+				padding: 0;
+				margin-bottom: 24px;
+
+				&:before {
+					content: open-quote;
+				}
+
+				&:after {
+					content: close-quote;
+				}
+			}
+
+			cite {
+				font-style: normal;
+				display: flex;
+				align-items: center;
+
+				img {
+					width: 40px;
+					height: 40px;
+					border-radius: 99px;
+					margin-right: 12px;
+					background-color: $gray-100;
+				}
+
+				small {
+					color: var(--text-secondary);
+				}
+			}
+		}
+	}
+
+	.carousel-footer {
+		display: flex;
+		padding: 0px 44px;
+		margin-top: 24px;
+		justify-content: space-between;
+
+		@include mq-down(lg) {
+			padding: 0px 24px;
+		}
+
+		.icon-button {
+			transition: all 0.1s ease-in-out;
+			background: transparent;
+			transition: all 0.2s $animation-curve-default;
+
+			&:hover {
+				box-shadow: 0px 0px 0px 2px var(--text-primary);
+				transition: all 0.2s $animation-curve-default;
+			}
+
+			&:active {
+				transition: all 0.2s $animation-curve-default;
+			}
+		}
+	}
+}

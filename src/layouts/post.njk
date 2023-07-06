@@ -1,7 +1,11 @@
 ---
 layout: base
 ---
-<article class="container">
-    <h1>{{ title }}</h1>
-    {{ content | safe }}
-</article>
+<article class="container"></article>
+
+<div class="container work">
+    <r-grid columns="12" columns-s="4">
+        {% include "header.njk" %}
+        {{ content | safe }}
+    </r-grid>
+</div>

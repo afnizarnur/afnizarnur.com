@@ -2,14 +2,40 @@
     <div class="nav-sheet">
         <div class="container">
             <ul class="nav__nav-list">
+                {%- for item in collections.all | eleventyNavigation -%}
+                    {%- if
+                item.url -%}
+                        {%- set isCurrent = (item.url == page.url) -%}
+                        {%-
+                set isParent = item.url != '/' and item.url in page.url -%}
+                        <li
+                    class="nav__nav-list-item {% if isCurrent or isParent %} {% endif %}"
+                >
+                            <h2>
+                                <a
+                            href="{% if isCurrent %} {{  item.url | url }} {% else %}{{
+                                item.url | url
+                            }}{% endif %}"
+                            {%
+                            if
+                            isCurrent
+                            %}
+                            aria-current="page"
+                            {%
+                            endif
+                            %}
+                        >
+                                    {{ item.title }}
+                                </a>
+                            </h2>
+                        </li>
+                    {%- endif -%}
+                {%- endfor -%}
+
                 <li class="nav__nav-list-item">
                     <h2>
-                        <a href="/">About</a>
-                    </h2>
-                </li>
-                <li class="nav__nav-list-item">
-                    <h2>
-                        <a href="{{ '/afnizar-resume.pdf' | url }}">Resume</a>
+                        <a href="{{ '/afnizar-resume.pdf' | url }}" data-umami-event="nav-resume-mobile"
+                        >Resume</a>
                     </h2>
                 </li>
             </ul>
@@ -21,10 +47,11 @@
                                 class="icon-button nav__themebtn js-themepicker-toggle-menu"
                                 aria-expanded="false"
                                 aria-controls="theme-menu"
+                                data-umami-event="nav-theme-mobile"
                             >
                                 <span class="sr-only"> Change Theme</span>
 
-                                {% icon "change-pallete" %}
+                                {% icon "color-wheel" %}
                             </button>
                         </li>
                     </ul>

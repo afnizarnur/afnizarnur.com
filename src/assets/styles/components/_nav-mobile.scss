@@ -1,113 +1,117 @@
 .nav {
-    &__mobile {
-        visibility: hidden;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 60px;
-        left: 0;
-        z-index: 5;
+	&__mobile {
+		visibility: hidden;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 60px;
+		left: 0;
+		z-index: 5;
 
-        @include mq-down(md) {
-            padding-top: 0px;
-        }
+		@include mq-down(md) {
+			padding-top: 0px;
+		}
 
-        .nav-sheet {
-            transition-delay: 1s;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            background: var(--text-primary);
-            transform: translateY(100vh);
-            transition: all 0.7s $animation-curve-default;
-        }
+		.nav-sheet {
+			transition-delay: 1s;
+			width: 100%;
+			height: 100%;
+			position: relative;
+			background: var(--background-default);
+			transform: translateY(100vh);
+			transition: all 0.7s $animation-curve-default;
+		}
 
-        &.is-open {
-            visibility: visible;
+		&.is-open {
+			visibility: visible;
 
-            .nav-sheet {
-                opacity: 1;
-                transition-delay: 1s;
-                transition: transform 0.7s $animation-curve-default;
-                transform: translateY(0px);
-            }
-        }
-    }
+			.nav-sheet {
+				opacity: 1;
+				transition-delay: 1s;
+				transition: transform 0.7s $animation-curve-default;
+				transform: translateY(0px);
+			}
+		}
+	}
 
-    &__nav-list {
-        margin: 0;
-        padding: 0px 24px;
-        position: relative;
-        text-align: left;
+	&__nav-list {
+		margin: 0;
+		padding: 0px 24px;
+		position: relative;
+		text-align: left;
 
-        h2 {
-            margin: 0;
-        }
-    }
+		h2 {
+			margin: 0;
+		}
+	}
 
-    &__nav-list-item {
-        padding: 1.5rem 0px;
-        border-bottom: 1px solid var(--background-default);
-        a {
-            color: var(--background-default);
-            text-decoration: none;
-            display: block;
-        }
-        &:hover {
-            border-bottom: 1px solid transparent;
-        }
-    }
+	&__nav-list-item {
+		padding: 1.5rem 0px;
+		border-bottom: 1px solid var(--border-default);
+		a {
+			color: var(--text-primary);
+			text-decoration: none;
+			display: block;
 
-    &__nav-footer-main {
-        position: absolute;
-        bottom: 60px;
-        padding-bottom: 24px;
-        padding-top: 24px;
-        width: inherit;
+			&:hover {
+				background: none;
+			}
+		}
+		&:hover {
+			border-bottom: 1px solid transparent;
+		}
+	}
 
-        @include mq-down(md) {
-            width: 100%;
-            overflow: initial;
-            overflow-x: scroll;
-            padding-right: 24px;
-        }
-    }
+	&__nav-footer-main {
+		position: absolute;
+		bottom: 60px;
+		padding-bottom: 24px;
+		padding-top: 24px;
+		width: inherit;
 
-    &__nav-footer {
-        display: flex;
-        justify-content: space-between;
-        -webkit-justify-content: space-between;
-        align-items: center;
+		@include mq-down(md) {
+			width: 100%;
+			overflow: initial;
+			overflow-x: scroll;
+			padding-right: 24px;
+		}
+	}
 
-        @include mq-down(md) {
-            display: inline-flex;
-        }
+	&__nav-footer {
+		display: flex;
+		justify-content: space-between;
+		-webkit-justify-content: space-between;
+		align-items: center;
 
-        a {
-            color: var(--background-default);
-            text-decoration: none;
+		@include mq-down(md) {
+			display: inline-flex;
+		}
 
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
+		a {
+			color: var(--text-primary);
+			text-decoration: none;
 
-    &__nav-link {
-        display: flex;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 
-        .icon-button {
-            margin-left: 24px;
-            color: var(--background-default);
+	&__nav-link {
+		display: flex;
 
-            svg {
-                width: 28px;
-                height: 28px;
-            }
+		.icon-button {
+			margin-left: 24px;
+			color: var(--text-primary);
 
-            &:hover {
-                box-shadow: 0px 0px 0px 2px var(--background-default);
-            }
-        }
-    }
+			svg {
+				width: 28px;
+				height: 28px;
+			}
+
+			&:hover {
+				box-shadow: 0px 0px 0px 2px var(--text-primary);
+			}
+		}
+	}
 }

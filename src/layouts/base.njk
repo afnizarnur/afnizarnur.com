@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="{{ meta.lang }}">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>
-            {% if title %}{{ title }} {% else %} {{ meta.title }} {% endif %}
+            {% if title %}{{ title }} | {{ meta.title }}
+            {% else %}
+                {{ meta.title }}
+            {% endif %}
         </title>
+        {% include "meta.njk" %}
         <link
             rel="preload"
             href="{{ '/assets/fonts/Mona-Sans.woff2' | url }}"
             as="font"
             type="font/woff2"
             crossorigin
-        />
+/>
         <link
             rel="preload"
             href="{{ '/assets/fonts/Inter-roman.var.woff2' | url }}"
             as="font"
             type="font/woff2"
             crossorigin
-        />
-        <link rel="stylesheet" href="{{ '/assets/styles/themes.css' | url }}" />
-        <link rel="stylesheet" href="{{ '/assets/styles/main.css' | url }}" />
-        {% include "meta.njk" %}
-
+/>
+        <link rel="stylesheet" href="{{ '/assets/styles/themes.css' | url }}"/>
+        <link rel="stylesheet" href="{{ '/assets/styles/main.css' | url }}"/>
         <script>
             {% include "initialtheme.njk" %}
         </script>
+        <script async src="https://analytics.umami.is/script.js" data-website-id="cc3e0e53-f632-4b18-9634-a422d703728e"></script>
     </head>
     <body>
         {% iconsprite %}
@@ -38,16 +41,15 @@
             </main>
         </div>
 
-        <svg class="cursor" width="80" height="80" viewbox="0 0 80 80">
-            <circle class="cursor__inner" cx="40" cy="40" r="20" />
-        </svg>
         <script
             type="text/javascript"
             src="{{ '/assets/scripts/main.js' | url }}"
         ></script>
         <script type="text/javascript">
             if ("serviceWorker" in navigator) {
-                navigator.serviceWorker.register("/serviceworker.js")
+                navigator
+                    .serviceWorker
+                    .register("/serviceworker.js")
             }
         </script>
     </body>
