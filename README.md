@@ -16,7 +16,7 @@
 
 ## Background
 
-When I was in vocational high school back in 2013, I created a portfolio website to showcase my design work. I remember using static HTML and CSS, along with the Bootstrap framework, and hosting it on a shared hosting platform. Honestly, it was a lot of fun! Building that website opened up numerous work opportunities for me. Through designing the site, I aim to gain knowledge about design systems in terms of both design and user interface aspects. Similarly, by developing the site, I want to learn about design systems from a developer's perspective. I'm sharing this repository primarily for myself, and I've chosen to host my code on GitHub for convenience and peace of mind. Feel free to explore the contents of the code.
+When I was in vocational high school back in 2013, I created a portfolio website to showcase my design work. I remember using static HTML and CSS, along with the Bootstrap framework, and hosting it on a shared hosting platform. Honestly, it was a lot of fun! Building that website opened up numerous work opportunities for me. By designing the site, I aimed to gain knowledge about design systems in terms of both design and user interface aspects. Similarly, through developing the site, I wanted to learn about design systems from a developer's perspective. I'm sharing this repository primarily for myself, and I have chosen to host my code on GitHub for convenience and peace of mind. Feel free to explore the contents of the code.
 
 ## Installation
 
