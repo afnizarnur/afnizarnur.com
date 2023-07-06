@@ -31,5 +31,12 @@
 		"company": "Icreon",
 		"image": "adwin.png",
 		"content": "Afnizar is an excellent collaborator, actively listening to our needs and translating them into actionable design solutions. As a designer, he understands how to implement designs that make sense through coding. Afnizar has a remarkable ability to grasp complex concepts and transform them into intuitive and visually appealing interfaces that resonate with our target audience."
+	},
+	{
+		"name": "Rezky Pangestu",
+		"role": "Frontend Engineer",
+		"company": "GovTech Edu",
+		"image": "rezky.png",
+		"content": "Afnizar is really a great product designer. We have working together multiple times across various company. He has a great sense on how the product should be designed. He knows about accessibility, and always put the user first on building the product. He understands on how the technical side works, so he can determine whether the product is technically feasible or not. He is also a friendly individual, making it comfortable to collaborate with him as part of a team."
 	}
 ]
