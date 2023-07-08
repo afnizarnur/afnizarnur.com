@@ -1,10 +1,11 @@
 .work {
 	&.selected-work--content {
+		h1 {
+			margin: 0px 44px 64px 44px;
+		}
 		h2 {
-			margin-bottom: 64px;
-
 			&.year-title {
-				color: var(--border-default);
+				color: var(--text-inverse-subdued);
 				margin-bottom: 24px;
 			}
 		}
