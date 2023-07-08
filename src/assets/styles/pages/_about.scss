@@ -1,0 +1,38 @@
+.about {
+	@include mq-down(lg) {
+		border-width: 0px 0px 1px 0px;
+	}
+
+	&--content {
+		margin: 144px 0px 144px 0px;
+
+		.headline {
+			margin: 0px 44px 44px 44px;
+
+			h1 {
+				color: var(--text-inverse-subdued);
+				margin-bottom: 24px;
+			}
+			h3 {
+				margin: 0;
+			}
+
+			@include mq-down(lg) {
+				margin: 0px 24px 24px 24px;
+			}
+		}
+
+		p {
+			margin: 0px 44px 24px 44px;
+
+			@include mq-down(lg) {
+				margin: 0px 24px 24px 24px;
+			}
+		}
+
+		@include mq-down(lg) {
+			margin: 64px 0px;
+			border: none;
+		}
+	}
+}
