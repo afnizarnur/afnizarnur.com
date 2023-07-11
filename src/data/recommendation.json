@@ -7,24 +7,16 @@
 		"content": "Afnizar is a responsible, hardworking, and pays crazy attention to detail. He possesses a strong foundation in UI design. When it comes to UI design, he's got some seriously solid skills. Plus, he's an awesome teacher when it comes to UI stuff. He explains things in a way that totally makes sense and isn't afraid to give his own opinions. Honestly, a lot of my work is inspired by the design fundamentals and perspectives he has taught, such as achieving pixel-perfect designs, maintaining neat organization in design delivery, and naming pages in design files. His work, Page Automator, has always been my go-to tool when preparing a new file in Figma."
 	},
 	{
-		"name": "Vanessa Purnawan",
-		"role": "Head of Product",
-		"company": "GovTech Edu",
-		"image": "vanessa.png",
-		"content": "I have had the pleasure of collaborating with Nizar, an exceptionally talented designer at Govtech Edu, who consistently showcases remarkable agility and creativity. During our brainstorming session for an educational data scorecard's onboarding feature, Nizar fearlessly provided invaluable counterpoints, enhancing both the user experience and content writing. Nizar's skills and contributions make them an outstanding addition to any team!"
+		"name": "Moreno Duvadilon",
+		"role": "Product",
+		"company": "Finture",
+		"content": "Nizar is an outstanding UI/X person and has the comprehensive knowledge to turn product requirements into a comprehensive design solution. He has the capability to present structured information efficiently for the customer, anticipating their future actions (navigation or flow) through the app. Analytical and pragmatic person to ask the right questions and use the knowledge to refine the design or prototype. which makes him stand out and a great team player."
 	},
 	{
 		"name": "Miftahul Awali Rizkina",
 		"role": "Project Manager",
 		"company": "Esri Indonesia",
 		"content": "Afnizar is a highly curious person. When he designs something, he always pays attention to the details. He has proven himself capable of research and analysis before undertaking any task. He is also one of the most dedicated and hardworking people I've ever worked with. I highly recommend Afnizar to anyone who needs expertise in design and seamless collaboration, as he is a person who can learn and adapt quickly and deliver excellent results!"
-	},
-	{
-		"name": "Kukuh Sulistyo",
-		"role": "Frontend Engineer",
-		"company": "GovTech Edu",
-		"image": "kukuh-sulistyo.png",
-		"content": "As a Frontend Engineer, collaborating with Afnizar has been an absolute pleasure, and I cannot emphasize enough the positive impact he has had on our work. One of my greatest strengths is my ability to bring designs to life and create seamless user experiences. However, it is Afnizar who truly elevates my work with his exceptional design skills. His creativity, attention to detail, and deep understanding of user-centered design principles have consistently impressed me. Afnizar has always been receptive to my input and open to collaboration. He possesses a remarkable ability to take my technical constraints into consideration while still delivering visually stunning designs. This synergy has allowed us to create highly functional and aesthetically pleasing products together."
 	},
 	{
 		"name": "Adwin Dwitaufani",
@@ -34,6 +26,13 @@
 		"content": "Afnizar is an excellent collaborator, actively listening to our needs and translating them into actionable design solutions. As a designer, he understands how to implement designs that make sense through coding. Afnizar has a remarkable ability to grasp complex concepts and transform them into intuitive and visually appealing interfaces that resonate with our target audience."
 	},
 	{
+		"name": "Kukuh Sulistyo",
+		"role": "Frontend Engineer",
+		"company": "GovTech Edu",
+		"image": "kukuh-sulistyo.png",
+		"content": "As a Frontend Engineer, collaborating with Afnizar has been an absolute pleasure, and I cannot emphasize enough the positive impact he has had on our work. One of my greatest strengths is my ability to bring designs to life and create seamless user experiences. However, it is Afnizar who truly elevates my work with his exceptional design skills. His creativity, attention to detail, and deep understanding of user-centered design principles have consistently impressed me. Afnizar has always been receptive to my input and open to collaboration. He possesses a remarkable ability to take my technical constraints into consideration while still delivering visually stunning designs. This synergy has allowed us to create highly functional and aesthetically pleasing products together."
+	},
+	{
 		"name": "Rezky Pangestu",
 		"role": "Frontend Engineer",
 		"company": "GovTech Edu",
@@ -41,9 +40,17 @@
 		"content": "Afnizar is really a great product designer. We have working together multiple times across various company. He has a great sense on how the product should be designed. He knows about accessibility, and always put the user first on building the product. He understands on how the technical side works, so he can determine whether the product is technically feasible or not. He is also a friendly individual, making it comfortable to collaborate with him as part of a team."
 	},
 	{
-		"name": "Moreno Duvadilon",
-		"role": "Product",
-		"company": "Finture",
-		"content": "Nizar is an outstanding UI/X person and has the comprehensive knowledge to turn product requirements into a comprehensive design solution. He has the capability to present structured information efficiently for the customer, anticipating their future actions (navigation or flow) through the app. Analytical and pragmatic person to ask the right questions and use the knowledge to refine the design or prototype. which makes him stand out and a great team player."
+		"name": "Vanessa Purnawan",
+		"role": "Head of Product",
+		"company": "GovTech Edu",
+		"image": "vanessa.png",
+		"content": "I have had the pleasure of collaborating with Nizar, an exceptionally talented designer at Govtech Edu, who consistently showcases remarkable agility and creativity. During our brainstorming session for an educational data scorecard's onboarding feature, Nizar fearlessly provided invaluable counterpoints, enhancing both the user experience and content writing. Nizar's skills and contributions make them an outstanding addition to any team!"
+	},
+	{
+		"name": "Diodona Maenggartama",
+		"role": "Product Designer",
+		"company": "GovTech Edu",
+		"image": "diodona.png",
+		"content": "Afnizar is actually my role model. His crafting skills are seriously amazing. He always comes up with creative ideas. It's not just about beauty and tidiness; his ideas also help solve user problems. He's a supportive discussion partner and problem solver. The two-way communication with him is open and makes discussions more positive. Often, through conversations with him, new interesting ideas emerge and address user issues from a different perspective."
 	}
 ]
