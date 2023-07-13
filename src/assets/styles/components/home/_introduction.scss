@@ -1,15 +1,63 @@
 .introduction {
-    grid-row: 3;
+	grid-row: 3;
 
-    @include mq-down(lg) {
-        border-width: 0px 0px 1px 0px;
-    }
+	@include mq-down(lg) {
+		border-width: 0px 0px 1px 0px;
+	}
 
-    &--content {
-        margin: 144px 44px 144px 44px;
+	&--content {
+		margin-top: 144px;
 
-        @include mq-down(lg) {
-            margin: 64px 24px;
-        }
-    }
+		.headline {
+			margin: 0px 44px;
+
+			@include mq-down(lg) {
+				margin: 0px 24px;
+			}
+		}
+
+		@include mq-down(lg) {
+			margin-top: 64px;
+		}
+
+		.header-illustration {
+			margin-top: 144px;
+			overflow: hidden;
+			width: 100%;
+			height: 395px;
+
+			img {
+				left: -12px;
+				position: relative;
+			}
+			svg {
+				left: -15px;
+				position: relative;
+
+				.line-black {
+					stroke: var(--text-primary);
+				}
+
+				.fill-black {
+					fill: var(--text-primary);
+				}
+
+				.fill-white {
+					fill: var(--background-default);
+				}
+
+				.fill-gray-1 {
+					fill: var(--border-default);
+				}
+
+				.fill-gray-2 {
+					fill: var(--border-default);
+				}
+
+				.fill-gray-3 {
+					fill: var(--surface-default);
+				}
+			}
+		}
+	}
 }
