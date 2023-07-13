@@ -39,7 +39,7 @@
 				}
 
 				@include mq-down(sm) {
-					left: -100%;
+					left: -85%;
 				}
 
 				.stroke-default {
@@ -63,11 +63,11 @@
 				}
 
 				.fill-gray-2 {
-					fill: var(--border-default);
+					fill: var(--surface-default);
 				}
 
 				.fill-gray-3 {
-					fill: var(--surface-default);
+					fill: var(--border-default);
 				}
 			}
 		}
