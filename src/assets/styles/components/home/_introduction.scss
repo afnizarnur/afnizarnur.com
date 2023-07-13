@@ -26,13 +26,25 @@
 			width: 100%;
 			height: 395px;
 
-			img {
+			@include mq-down(lg) {
+				margin-top: 64px;
+			}
+
+			svg {
 				left: -12px;
 				position: relative;
-			}
-			svg {
-				left: -15px;
-				position: relative;
+
+				@include mq-down(lg) {
+					left: -15%;
+				}
+
+				@include mq-down(sm) {
+					left: -100%;
+				}
+
+				.stroke-default {
+					stroke-width: 1.5;
+				}
 
 				.line-black {
 					stroke: var(--text-primary);
