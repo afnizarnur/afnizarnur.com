@@ -6,33 +6,41 @@
 	&--content {
 		margin: 144px 0px 144px 0px;
 
-		.headline {
-			margin: 0px 44px 44px 44px;
+		.introduction {
+			.headline {
+				margin: 0px 44px 44px 44px;
 
-			h1 {
-				color: var(--text-inverse-subdued);
-				margin-bottom: 24px;
+				h1 {
+					color: var(--text-inverse-subdued);
+					margin-bottom: 24px;
+				}
+				h2 {
+					margin-top: 16px;
+				}
+
+				@include mq-down(lg) {
+					margin: 0px 24px 24px 24px;
+				}
 			}
-			h3 {
-				margin: 0;
+
+			img {
+				width: 100%;
+				height: auto;
+				margin-bottom: 64px;
+			}
+
+			p {
+				margin: 0px 44px 24px 44px;
+
+				@include mq-down(lg) {
+					margin: 0px 24px 24px 24px;
+				}
 			}
 
 			@include mq-down(lg) {
-				margin: 0px 24px 24px 24px;
+				margin: 64px 0px;
+				border: none;
 			}
-		}
-
-		p {
-			margin: 0px 44px 24px 44px;
-
-			@include mq-down(lg) {
-				margin: 0px 24px 24px 24px;
-			}
-		}
-
-		@include mq-down(lg) {
-			margin: 64px 0px;
-			border: none;
 		}
 	}
 }
