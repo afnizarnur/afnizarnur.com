@@ -82,7 +82,6 @@
 	&--preview {
 		display: flex;
 		justify-content: center;
-		padding: 24px 0px;
 
 		@include mq-down(lg) {
 			border-width: 0px 0px 1px 0px;
