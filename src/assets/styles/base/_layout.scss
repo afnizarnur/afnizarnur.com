@@ -1,43 +1,52 @@
 // Main Site Layout
 
 body {
-    overflow-x: hidden;
+	overflow-x: hidden;
 }
 
 .layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    min-height: 100vh;
-    position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	min-height: 100vh;
+	position: relative;
 
-    .header,
-    .footer {
-        flex: none;
-    }
+	.header,
+	.footer {
+		flex: none;
+	}
 
-    .main {
-        display: flex;
-        flex-direction: column;
-        flex: 1 0 auto;
+	.main {
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 auto;
 
-        &::after {
-            content: "";
-            display: block;
-            height: 0px;
-            visibility: hidden;
-        }
-    }
+		&::after {
+			content: "";
+			display: block;
+			height: 0px;
+			visibility: hidden;
+		}
+	}
+}
+
+body {
+	@include mq-down(sm) {
+		margin: 0px 12px;
+		border-width: 0px 1px 0px 1px;
+		border-style: solid;
+		border-color: var(--border-default);
+	}
 }
 
 .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0px 24px;
-    max-width: $container-max-width;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px 24px;
+	max-width: $container-max-width;
 
-    @include mq-down(lg) {
-        padding: 0px;
-    }
+	@include mq-down(lg) {
+		padding: 0px;
+	}
 }
