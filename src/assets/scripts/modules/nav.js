@@ -32,8 +32,7 @@ class Navigation {
 
 		if (this.isOpen) {
 			//     this.focusTrap.activate()
-			document.getElementsByTagName("body")[0].style =
-				"overflow: hidden; height: 100vh;"
+			document.getElementsByTagName("body")[0].style = "overflow: hidden"
 		} else {
 			//     this.focusTrap.deactivate()
 			document.getElementsByTagName("body")[0].style = "overflow: visible"
