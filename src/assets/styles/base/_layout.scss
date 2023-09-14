@@ -30,15 +30,6 @@ body {
 	}
 }
 
-body {
-	@include mq-down(sm) {
-		margin: 0px 12px;
-		border-width: 0px 1px 0px 1px;
-		border-style: solid;
-		border-color: var(--border-default);
-	}
-}
-
 .container {
 	width: 100%;
 	margin-left: auto;
