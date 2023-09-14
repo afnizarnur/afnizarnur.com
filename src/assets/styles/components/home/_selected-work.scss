@@ -10,7 +10,7 @@
 			margin: 0px 44px 44px 44px;
 
 			@include mq-down(lg) {
-				margin: 0px 24px 44px 24px;
+				margin: 0px 16px 44px 16px;
 			}
 		}
 
@@ -39,8 +39,8 @@
 				left: 44px;
 
 				@include mq-down(lg) {
-					top: 24px;
-					left: 24px;
+					top: 16px;
+					left: 16px;
 				}
 			}
 
@@ -71,7 +71,7 @@
 			color: var(--text-primary);
 
 			@include mq-down(lg) {
-				margin: 24px 24px 0px 24px;
+				margin: 24px 16px 0px 16px;
 			}
 
 			@include mq-down(sm) {
