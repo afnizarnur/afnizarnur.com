@@ -2,6 +2,7 @@ const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginNavigation = require("@11ty/eleventy-navigation")
 const pluginSvgSprite = require("eleventy-plugin-svg-sprite")
 const pluginPageAssets = require("eleventy-plugin-page-assets")
+const pluginFilesMinifier = require("@sherby/eleventy-plugin-files-minifier")
 const markdownIt = require("markdown-it")
 
 const lodash = require("lodash")
@@ -31,6 +32,7 @@ module.exports = function (config) {
 		assetsMatching: CONTENT_GLOBS.media,
 		silent: true
 	})
+	config.addPlugin(pluginFilesMinifier)
 
 	// Filters
 	Object.keys(filters).forEach((filterName) => {
