@@ -7,7 +7,7 @@
 		padding: 144px 44px 144px 44px;
 
 		@include mq-down(lg) {
-			padding: 64px 24px;
+			padding: 64px 16px;
 		}
 
 		.copy-email {
@@ -42,7 +42,7 @@
 		padding: 24px 44px;
 
 		@include mq-down(lg) {
-			padding: 24px 24px;
+			padding: 24px 16px;
 		}
 	}
 	&--version {
@@ -52,7 +52,7 @@
 		margin-bottom: 144px;
 
 		@include mq-down(lg) {
-			padding: 24px 24px;
+			padding: 24px 16px;
 			margin-bottom: 64px;
 		}
 
@@ -82,7 +82,7 @@
 		display: flex;
 
 		@include mq-down(lg) {
-			padding: 24px 24px;
+			padding: 24px 16px;
 		}
 
 		@include mq-down(sm) {

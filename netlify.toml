@@ -3,7 +3,6 @@
     publish = "dist"
     functions = "src/functions"
 
-
 [context.production.environment]
     ELEVENTY_ENV = "production"
 
@@ -16,11 +15,11 @@
         Referrer-Policy= "no-referrer-when-downgrade"
         Permissions-Policy = "interest-cohort=()"
 
-# [[redirects]]
-#     from = "https://eleventastic.netlify.com/*"
-#     to = "https://eleventastic.dev/:splat"
-#     status = 301
-#     force = true
+[[redirects]]
+    from = "https://afnizarnur.netlify.com/*"
+    to = "https://afnizarnur.com/:splat"
+    status = 301
+    force = true
 
 [[redirects]]
     from = "*"

@@ -1,16 +1,16 @@
 .not-found {
-    grid-row: 3;
+	grid-row: 3;
 
-    @include mq-down(lg) {
-        border-width: 0px 0px 1px 0px;
-    }
+	@include mq-down(lg) {
+		border-width: 0px 0px 1px 0px;
+	}
 
-    &--content {
-        margin: 144px 44px 144px 44px;
-        height: 50vh;
+	&--content {
+		margin: 144px 44px 144px 44px;
+		height: 50vh;
 
-        @include mq-down(lg) {
-            margin: 64px 24px;
-        }
-    }
+		@include mq-down(lg) {
+			margin: 64px 16px;
+		}
+	}
 }

@@ -16,7 +16,7 @@
 		overflow: hidden;
 
 		@include mq-down(lg) {
-			padding: 0px 24px;
+			padding: 0px 16px;
 		}
 
 		@include mq-down(sm) {
