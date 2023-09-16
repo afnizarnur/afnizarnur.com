@@ -8,14 +8,20 @@
 
 		&.introduction {
 			margin: 144px 0px 0px 0px;
+
+			@include mq-down(lg) {
+				margin: 64px 0px 0px 0px;
+			}
 		}
 
 		.headline-container {
+			margin-bottom: 64px;
+
 			.headline {
 				margin: 0px 44px 44px 44px;
 
 				@include mq-down(lg) {
-					margin: 0px 16px 24px 16px;
+					margin: 0px 16px 0px 16px;
 				}
 			}
 
@@ -28,14 +34,15 @@
 				.headline {
 					h1 {
 						color: var(--text-inverse-subdued);
-						margin-bottom: 24px;
+						margin-bottom: 16px;
 					}
 					h2 {
 						margin-top: 16px;
+						margin-bottom: 0px;
 					}
 
-					@include mq-down(lg) {
-						margin: 0px 24px 24px 24px;
+					@include mq-down(sm) {
+						margin: 0px 16px 0px 16px;
 					}
 				}
 
@@ -43,14 +50,18 @@
 					margin: 0px 44px 24px 44px;
 
 					@include mq-down(lg) {
-						margin: 0px 24px 24px 24px;
+						margin: 0px 16px 24px 16px;
 					}
 				}
 
 				img {
 					width: 100%;
 					height: auto;
-					margin-bottom: 64px;
+					margin: 0px 0px 64px 0px;
+
+					@include mq-down(lg) {
+						margin: 24px 0px 24px 0px;
+					}
 				}
 			}
 		}
