@@ -1,0 +1,5 @@
+[[redirects]]
+    from = "https://2013--afnizarnur.netlify.app/*"
+    to = "https://2013.afnizarnur.com/:splat"
+    status = 301
+    force = true
