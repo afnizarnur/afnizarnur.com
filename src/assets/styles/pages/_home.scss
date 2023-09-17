@@ -3,6 +3,11 @@
 	&--header-empty {
 		height: 144px;
 		grid-row: 1;
+
+		@include mq-down(xl) {
+			height: 0px;
+			grid-row: 1;
+		}
 	}
 
 	&--header-container {
