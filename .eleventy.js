@@ -3,6 +3,7 @@ const pluginNavigation = require("@11ty/eleventy-navigation")
 const pluginSvgSprite = require("eleventy-plugin-svg-sprite")
 const pluginPageAssets = require("eleventy-plugin-page-assets")
 const markdownIt = require("markdown-it")
+const { compress } = require("eleventy-plugin-compress")
 
 const lodash = require("lodash")
 const filters = require("./utils/filters.js")
@@ -105,6 +106,9 @@ module.exports = function (config) {
 			.filter((item) => item.data.selected)
 			.sort((a, b) => b.date - a.date)
 	})
+
+	// Compress
+	config.addPlugin(compress)
 
 	// Base Config
 	return {
