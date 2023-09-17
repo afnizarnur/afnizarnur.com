@@ -68,8 +68,8 @@
 	&__nav-footer-main {
 		position: absolute;
 		bottom: 60px;
-		padding-bottom: 24px;
-		padding-top: 24px;
+		padding-bottom: 16px;
+		padding-top: 16px;
 		width: inherit;
 
 		@include mq-down(md) {
