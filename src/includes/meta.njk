@@ -1,0 +1,67 @@
+{%- set absolutePageUrl -%}{{ page.url | url | absoluteUrl(meta.url) }}{%-
+endset -%} {# General #}
+<meta name="description" content="{{ description or meta.description }}" />
+<link rel="canonical" href="{{ absolutePageUrl }}" />
+
+{# Open Graph #}
+<meta property="og:title" content="{{ title or meta.title }}" />
+<meta property="og:url" content="{{ absolutePageUrl }}" />
+<meta property="og:type" content="website" />
+<meta
+    property="og:description"
+    content="{{ description or meta.description }}"
+/>
+<meta property="og:site_name" content="{{ meta.title }}" />
+<meta property="og:locale" content="{{ meta.locale }}" />
+<meta property="og:site_name" content="{{ meta.title }}" />
+<meta property="og:locale" content="{{ meta.locale }}" />
+<meta name="author" content="{{ author.name }}" />
+<meta
+    property="og:image"
+    content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
+/>
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@{{ author.social.twitter.name }}" />
+<meta name="twitter:creator" content="@{{ author.social.twitter.name }}" />
+<meta property="twitter:title" content="{{ meta.title }}" />
+<meta property="twitter:description" content="{{ meta.description }}" />
+<meta
+    property="twitter:image"
+    content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
+/>
+<meta property="twitter:url" content="https://afnizarnur.com/" />
+
+{# Favicon #}
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="{{ '/assets/images/favicon/apple-touch-icon.png' | url }}"
+/>
+<link
+    rel="icon"
+    type="image/png"
+    href="{{ '/assets/images/favicon/favicon-32x32.png' | url }}"
+    sizes="32x32"
+/>
+<link
+    rel="icon"
+    type="image/png"
+    href="{{ '/assets/images/favicon/favicon-16x16.png' | url }}"
+    sizes="16x16"
+/>
+<link
+    rel="shortcut icon"
+    href="{{ '/assets/images/favicon/favicon.ico' | url }}"
+/>
+<link rel="manifest" href="{{ '/site.webmanifest' | url }}" />
+<meta name="theme-color" content="#191a1b" />
+
+{# RSS Feed #}
+<link
+    type="application/atom+xml"
+    rel="alternate"
+    href="{{ meta.url }}/feed.xml"
+    title="{{ meta.title }}"
+/>

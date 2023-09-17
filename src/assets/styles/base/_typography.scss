@@ -1,0 +1,116 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    text-rendering: optimizeLegibility;
+}
+
+h1 {
+    font-size: 3.815rem;
+    line-height: 4.578125rem;
+    font-weight: 400;
+
+    &.bold {
+        font-weight: 500;
+    }
+
+    @include mq-down(lg) {
+        font-size: 3.051875rem;
+        line-height: 3.6625rem;
+    }
+}
+
+h2 {
+    font-size: 3.051875rem;
+    line-height: 3.6625rem;
+    font-weight: 400;
+
+    &.bold {
+        font-weight: 500;
+    }
+
+    @include mq-down(md) {
+        font-size: 2.44125rem;
+        line-height: 2.929375rem;
+    }
+}
+
+h3 {
+    font-size: 2.44125rem;
+    line-height: 2.929375rem;
+    font-weight: 400;
+
+    &.bold {
+        font-weight: 500;
+    }
+
+    @include mq-down(sm) {
+        font-size: 1.953125rem;
+        line-height: 2.34375rem;
+    }
+}
+
+h4 {
+    font-size: 1.953125rem;
+    line-height: 2.34375rem;
+    font-weight: 400;
+
+    &.bold {
+        font-weight: 500;
+    }
+}
+
+// Subtitle
+p.subtitle {
+    font-size: 1.563125rem;
+    line-height: 2.344375rem;
+
+    &.bold {
+        font-weight: 500;
+    }
+
+    @include mq-down(sm) {
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+    }
+}
+
+// Body
+p {
+    margin: 0;
+    line-height: 1.5rem;
+
+    &.bold {
+        font-weight: 600;
+    }
+}
+
+// Body large
+p.body-large {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+
+    &.bold {
+        font-weight: 500;
+    }
+}
+
+// Body small
+small {
+    font-size: 0.8rem;
+    line-height: 0.96rem;
+}
+
+// Strong
+strong {
+    font-weight: 700;
+}
+
+// Highlight font
+.font-highlight {
+    font-family: $font-family-serif;
+    font-style: italic;
+}

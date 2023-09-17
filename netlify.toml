@@ -1,12 +1,26 @@
 [build]
-    command = "gatsby build"
-    publish = "public"
+    command = "npm run build"
+    publish = "dist"
 
-[[plugins]]
-  package = "netlify-plugin-gatsby-cache"
+[context.production.environment]
+    ELEVENTY_ENV = "production"
+
+[[headers]]
+    for = "/*"
+    [headers.values]
+        X-Frame-Options = "DENY"
+        X-XSS-Protection = "1; mode=block"
+        X-Content-Type-Options = "nosniff"
+        Referrer-Policy= "no-referrer-when-downgrade"
+        Permissions-Policy = "interest-cohort=()"
 
 [[redirects]]
-    from = "https://2020--afnizarnur.netlify.com/*"
-    to = "https://2020.afnizarnur.com/:splat"
+    from = "https://2022--afnizarnur.netlify.com/*"
+    to = "https://2022.afnizarnur.com/:splat"
     status = 301
     force = true
+
+[[redirects]]
+    from = "*"
+    to = "/404"
+    status = 404

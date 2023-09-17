@@ -1,0 +1,33 @@
+.intro {
+    &__main {
+        padding-top: 214px;
+        padding-bottom: 120px;
+
+        @include mq-down(lg) {
+            padding-top: 198px;
+            padding-bottom: 120px;
+        }
+
+        @include mq-down(sm) {
+            padding-top: 178px;
+            padding-bottom: 100px;
+        }
+
+        .intro__heading {
+            overflow: hidden;
+        }
+
+        p.subtitle {
+            margin-top: 32px;
+            color: var(--text-secondary);
+
+            a {
+                color: var(--text-secondary);
+            }
+        }
+
+        .char {
+            will-change: transform;
+        }
+    }
+}

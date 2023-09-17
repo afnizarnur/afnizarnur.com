@@ -1,0 +1,80 @@
+.misc {
+    padding: 160px 0px 144px 0px;
+
+    h2 {
+        margin-bottom: 64px;
+    }
+
+    &__content {
+        &.last {
+            margin-top: 64px;
+        }
+        h4 {
+            margin-bottom: 16px;
+        }
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 44px;
+        }
+    }
+
+    &__image {
+        img {
+            width: 100%;
+            border-radius: 24px;
+        }
+    }
+
+    .career-history {
+        margin-top: 144px;
+        margin-bottom: 64px;
+        h2 {
+            margin-bottom: 24px;
+        }
+        p.subtitle {
+            color: var(--text-secondary);
+        }
+    }
+
+    .list-experience {
+        h4 {
+            margin-bottom: 24px;
+        }
+
+        ul {
+            li {
+                border-bottom: 1px solid var(--text-primary);
+                padding-bottom: 32px;
+                margin-bottom: 32px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .title {
+            margin-bottom: 16px;
+            .date {
+                color: var(--text-secondary);
+            }
+        }
+
+        .body {
+            color: var(--text-secondary);
+        }
+    }
+
+    .list-skillset {
+        h4 {
+            margin-bottom: 28px;
+        }
+        ul {
+            li {
+                border-bottom: 1px solid var(--text-primary);
+                padding-bottom: 16px;
+                margin-bottom: 16px;
+            }
+        }
+    }
+}

@@ -1,0 +1,129 @@
+.selectedwork {
+    h2 {
+        margin-bottom: 64px;
+
+        @include mq-down(sm) {
+            margin-bottom: 32px;
+        }
+    }
+
+    &__card {
+        margin-bottom: 44px;
+
+        .content__title {
+            padding: 44px;
+
+            @include mq-down(sm) {
+                padding: 32px 0px;
+            }
+
+            h3 {
+                margin-bottom: 16px;
+                color: var(--text-primary);
+            }
+
+            p {
+                color: var(--text-secondary);
+
+                @include mq-down(sm) {
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                }
+            }
+        }
+
+        .image-wrapper {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 24px;
+            -webkit-border-radius: 24px;
+            position: relative;
+
+            @include mq-down(sm) {
+                height: 100%;
+                width: auto;
+
+                a {
+                    max-width: 100%;
+                    display: inline;
+                    position: absolute;
+                    height: 100%;
+                }
+            }
+
+            @include mq-down(sm) {
+                height: 450px;
+            }
+
+            &:hover {
+                outline: 4px solid var(--background-default);
+                box-shadow: 0px 0px 0px 6px var(--text-primary);
+
+                @include mq-down(sm) {
+                    outline: none;
+                    box-shadow: 0px 0px 0px 2px var(--text-primary);
+                }
+            }
+
+            .project-status {
+                padding: 8px 16px;
+                display: inline-flex;
+                border-radius: 44px;
+                background: var(--surface-primary-inverse);
+                color: var(--text-on-surface-primary-inverse);
+                align-items: center;
+                gap: 8px;
+                position: absolute;
+                top: 24px;
+                right: 24px;
+
+                @include mq-down(sm) {
+                    bottom: 24px;
+                    left: 24px;
+                    right: auto;
+                    top: auto;
+                }
+
+                .icon {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            .image {
+                width: 100%;
+                will-change: transform;
+                transition: transform 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+                @include mq-down(sm) {
+                    height: 100%;
+                    width: auto;
+                }
+
+                &:hover {
+                    transform: scale(1.04) translateZ(0);
+                }
+            }
+        }
+
+        &.work-ds-govtech .image-wrapper {
+            background: var(--surface-blue);
+        }
+
+        &.work-dashboard-km .image-wrapper {
+            background: var(--surface-green);
+        }
+
+        &.work-natatoko .image-wrapper {
+            background: var(--surface-purple);
+        }
+
+        &.work-rapor-pendidikan .image-wrapper {
+            background: var(--surface-pink);
+        }
+
+        &.work-bukabike .image-wrapper {
+            background: var(--surface-orange);
+        }
+    }
+}

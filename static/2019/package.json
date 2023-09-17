@@ -1,0 +1,28 @@
+{
+  "name": "afnizarnur.com",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afnizarnur/afnizarnur.com.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "Afnizar Nur Ghifari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/afnizarnur/afnizarnur.com/issues"
+  },
+  "homepage": "https://github.com/afnizarnur/afnizarnur.com#readme",
+  "dependencies": {
+    "bootstrap-scss": "^4.3.1"
+  },
+  "devDependencies": {
+    "prettier": "1.18.2"
+  }
+}

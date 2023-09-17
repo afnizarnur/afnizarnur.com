@@ -1,0 +1,215 @@
+.designtooling {
+    padding: 92px 0px 56px 0px;
+    background: var(--surface-primary-inverse);
+
+    @include mq-down(md) {
+        padding: 64px 0px 40px 0px;
+        position: relative;
+    }
+    &__main {
+        color: var(--text-on-surface-primary-inverse);
+
+        section {
+            h2 {
+                margin-bottom: 24px;
+            }
+
+            p {
+                color: var(--text-on-surface-secondary-inverse);
+                margin-bottom: 64px;
+
+                @include mq-down(md) {
+                    margin-bottom: 32px;
+                }
+            }
+        }
+    }
+
+    &__card {
+        &:hover {
+            outline: 4px solid var(--surface-primary-inverse);
+            box-shadow: 0px 0px 0px 6px var(--text-on-surface-primary-inverse);
+
+            @include mq-down(sm) {
+                outline: none;
+                box-shadow: 0px 0px 0px 2px
+                    var(--text-on-surface-primary-inverse);
+            }
+        }
+    }
+
+    &__card_inactive {
+        cursor: not-allowed;
+    }
+
+    &__card,
+    &__card_inactive {
+        border-radius: 24px;
+        background: var(--surface-secondary-inverse);
+        margin-bottom: 36px;
+        display: flex;
+        flex-flow: column wrap;
+        overflow: hidden;
+        justify-content: space-between;
+        -webkit-justify-content: space-between;
+
+        &:hover a.link-wrap h4 {
+            text-decoration: none;
+        }
+
+        @include mq-down(md) {
+            margin-bottom: 24px;
+        }
+        .general__header {
+            h4 {
+                color: var(--text-on-surface-primary-inverse);
+                padding: 36px 36px 16px 36px;
+                @include mq-down(md) {
+                    padding: 28px 28px 16px 28px;
+                }
+            }
+            p {
+                color: var(--text-on-surface-secondary-inverse);
+                padding: 0px 36px;
+                @include mq-down(md) {
+                    padding: 0px 28px;
+                }
+            }
+        }
+
+        .link-wrap {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-flow: column wrap;
+            overflow: hidden;
+            justify-content: space-between;
+            -webkit-justify-content: space-between;
+            text-decoration: none;
+        }
+
+        .image-preview {
+            background: url("/assets/images/design-tooling-bg.svg") repeat
+                center bottom;
+            width: 100%;
+            height: 395px;
+            position: relative;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            -webkit-justify-content: center;
+
+            @include mq-down(lg) {
+                height: 320px;
+            }
+
+            &.page-automator {
+                justify-content: end;
+                -webkit-justify-content: end;
+
+                @include mq-down(lg) {
+                    img {
+                        width: 325px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        height: 288px;
+                    }
+                }
+            }
+
+            &.variant-inspector {
+                @include mq-down(lg) {
+                    img {
+                        width: 332px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        width: 300px;
+                    }
+                }
+            }
+
+            &.qnp {
+                @include mq-down(lg) {
+                    img {
+                        width: 372px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        width: 441px;
+                        margin-left: 32px;
+                    }
+                }
+            }
+
+            &.context {
+                @include mq-down(lg) {
+                    img {
+                        width: 372px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        width: 333px;
+                    }
+                }
+            }
+
+            &.magic-export {
+                @include mq-down(lg) {
+                    img {
+                        width: 328px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        width: 306px;
+                    }
+                }
+            }
+
+            &.colorfinder-webapp {
+                justify-content: end;
+                -webkit-justify-content: end;
+
+                @include mq-down(lg) {
+                    img {
+                        width: 435px;
+                        margin-left: 32px;
+                    }
+                }
+                @include mq-down(md) {
+                    img {
+                        margin-left: 24px;
+                    }
+                }
+            }
+
+            img {
+                margin: 0 auto;
+            }
+
+            .software-badge {
+                padding: 8px 16px;
+                display: inline-flex;
+                border-radius: 44px;
+                background: var(--surface-primary-inverse);
+                color: var(--text-on-surface-primary-inverse);
+                align-items: center;
+                gap: 8px;
+                position: absolute;
+                bottom: 24px;
+                right: 24px;
+
+                .icon {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}

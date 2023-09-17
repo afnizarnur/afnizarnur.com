@@ -1,0 +1,83 @@
+.design-process {
+    position: relative;
+
+    &--card {
+        border-radius: 24px;
+        overflow: hidden;
+
+        @include mq-down(lg) {
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            color: var(--text-on-surface-primary);
+            padding: 28px 28px 24px 28px;
+
+            @include mq-down(sm) {
+                padding: 28px 28px 16px 28px;
+            }
+        }
+
+        p {
+            padding: 0px 28px 24px 28px;
+
+            @include mq-down(md) {
+                padding: 0px 28px 16px 28px;
+            }
+        }
+
+        .image {
+            width: 100%;
+            height: 272px;
+            max-width: 100%;
+        }
+    }
+    &--observe {
+        background: var(--surface-green);
+        color: var(--text-on-surface-secondary);
+
+        .image {
+            background: url("/assets/images/afnizarnur-observe-illustration.svg")
+                no-repeat center top;
+            background-size: auto 272px;
+        }
+    }
+    &--reflect {
+        background: var(--surface-pink);
+        color: var(--text-on-surface-secondary);
+
+        .image {
+            background: url("/assets/images/afnizarnur-reflect-illustration.svg")
+                no-repeat center top;
+            background-size: auto 272px;
+        }
+    }
+    &--make {
+        background: var(--surface-gray);
+        color: var(--text-on-surface-secondary);
+
+        @include mq-down(lg) {
+            .content-wrap {
+                display: flex;
+                flex-direction: column;
+                align-content: revert;
+                align-items: flex-start;
+                justify-content: center;
+            }
+        }
+
+        .image {
+            background: url("/assets/images/afnizarnur-make-illustration.svg")
+                no-repeat center top;
+            background-size: auto 272px;
+
+            @include mq-down(lg) {
+                background-position: left;
+            }
+
+            @include mq-down(md) {
+                background-position: center;
+            }
+        }
+    }
+}
