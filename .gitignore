@@ -3,3 +3,8 @@ dist
 .env
 .DS_Store
 .netlify
+css/.sass-cache
+css/.sass-cache/*
+.sass-cache
+.sass-cache/*
+*.css.map
