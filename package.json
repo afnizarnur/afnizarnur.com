@@ -59,6 +59,7 @@
 		"@babel/preset-env": "^7.22.5",
 		"cross-env": "^7.0.3",
 		"dotenv-webpack": "^8.0.1",
+		"eleventy-plugin-compress": "^1.0.5",
 		"eleventy-plugin-page-assets": "github:maxboeck/eleventy-plugin-page-assets",
 		"prettier": "^2.8.8"
 	}
