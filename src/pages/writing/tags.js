@@ -65,7 +65,7 @@ const TagsPage = ({
                     }}
                   >
                     <TagButton
-                      to={`/tags/${kebabCase(tag.fieldValue)}/`}
+                      to={`/writing/tags/${kebabCase(tag.fieldValue)}/`}
                       key={tag.fieldValue}
                     >
                       {tag.fieldValue} ({tag.totalCount})

@@ -68,11 +68,16 @@ const IndexPage = props => {
               fontSize={[2, 3]}
               mt={[6, 9]}
             >
-              Afnizar Nur Ghifari, Designer at Bukalapak
+              Afnizar Nur Ghifari, Product Designer
             </Paragraph>
             <Title
-              mt={[5, 6]}
-              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards;"
+              mt={[5]}
+              css="animation: fadeInBottom 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) backwards; @media only screen and (min-width: 48em) {
+                width: 80%;
+              }
+              @media only screen and (max-width: 48em) {
+                width: 100%;
+              }"
             >
               Crafting meaningful digital experiences through design
             </Title>
@@ -81,8 +86,8 @@ const IndexPage = props => {
               @media only screen and (max-width: 48em) {
                 a { display: inline-block; }
               }"
-              mt={[13, 13, 12]}
-              mb={3}
+              mt={[5, 6]}
+              mb={[13, 13, 12]}
             >
               <ButtonPrimary
                 className="btnSelectedWork"
@@ -95,7 +100,7 @@ const IndexPage = props => {
                   className="scrollWork"
                   ml={[4]}
                   css="max-width: 1000%; width:14px; height: 14px; animation: slideDown 1s 0.75s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;"
-                  src={"../assets/arrow-up.svg"}
+                  src={"../assets/arrow-down.svg"}
                   alt="Scroll to Selected Work"
                 />
               </ButtonPrimary>
@@ -122,14 +127,13 @@ const IndexPage = props => {
 
             <ProjectFeatured
               title="Design Tooling: I help designers to improve their workflows"
-              description="As a designer who codes, I try to help my design team by building tools like web app and sketch plugin to improve their workflows."
+              description="As a designer who codes, I try to help my design team by building tools like web app, Sketch plugin, or Figma plugin to improve their workflows."
               featuredimage1={props.data.dt1.childImageSharp.fluid}
               featuredimage2={props.data.dt2.childImageSharp.fluid}
               featuredimage3={props.data.dt3.childImageSharp.fluid}
               featuredimage1alt="Color Finder"
               featuredimage2alt="Illustration Organizer Sketch Plugin"
               featuredimage3alt="Context"
-              mb={14}
             />
 
             <ProjectList />
@@ -153,56 +157,56 @@ export const pageQuery = graphql`
     imageplaceholder: file(relativePath: { eq: "image-placeholder.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid
         }
       }
     }
     talkbg: file(relativePath: { eq: "talkbg.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 2000) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid
         }
       }
     }
     bukabike1: file(relativePath: { eq: "work/bukabike-1.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid
         }
       }
     }
     bukabike2: file(relativePath: { eq: "work/bukabike-2.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid
         }
       }
     }
     bukabike3: file(relativePath: { eq: "work/bukabike-3.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid
         }
       }
     }
     dt1: file(relativePath: { eq: "work/designtools-1.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid
         }
       }
     }
     dt2: file(relativePath: { eq: "work/designtools-2.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid
         }
       }
     }
     dt3: file(relativePath: { eq: "work/designtools-3.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid
         }
       }
     }

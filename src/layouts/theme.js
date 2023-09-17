@@ -46,16 +46,17 @@ const fontSizes = [
   "3.75rem",
   "5.25rem",
   "6rem",
+  "4.5rem",
 ]
 
 const lineHeights = {
-  title1: 1.25,
-  title2: 1.1,
-  copy: 1.75,
+  title1: 1.1,
+  title2: 1.2,
+  copy: 1.5,
 }
 
 const letterSpacings = {
-  title1: "-1.8px",
+  title1: "-1.5px",
   title2: "-1.5px",
   title3: "-1px",
 }
@@ -72,7 +73,8 @@ const fontWeights = {
   black: 900,
 }
 const fonts = {
-  sans: '"Inter", sans-serif, system-ui, -apple-system',
+  sans:
+    'Inter, "Inter UI", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Oxygen, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
   monospace:
     "Menlo, Consolas, Roboto Mono, Ubuntu Monospace, Oxygen Mono, Liberation Mono, monospace",
 }

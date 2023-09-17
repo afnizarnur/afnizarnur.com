@@ -1,0 +1,20 @@
+{
+	"siteId": "39910d3d-7848-4020-914c-209c03d34b82",
+	"geolocation": {
+		"data": {
+			"city": "Jakarta",
+			"country": {
+				"code": "ID",
+				"name": "Indonesia"
+			},
+			"subdivision": {
+				"code": "JK",
+				"name": "Jakarta"
+			},
+			"timezone": "Asia/Jakarta",
+			"latitude": -6.2114,
+			"longitude": 106.8446
+		},
+		"timestamp": 1694925711058
+	}
+}

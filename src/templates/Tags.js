@@ -52,7 +52,7 @@ const Tags = ({ pageContext, data }) => {
     <>
       <Helmet>
         <title>
-          Tags {tag} | {title}
+          Tags "{tag}" | {title}
         </title>
         <meta property="og:site_name" content={title} />
         <meta property="og:title" content={"Tags " + tag + " | " + title} />

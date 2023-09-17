@@ -182,8 +182,13 @@ const MarkdownContent = styled(Text)`
   blockquote {
     margin: 2.75rem -1.7rem;
     border-left: 4px solid ${({ theme }) => theme.colors.black};
+    border-left-style: groove;
     padding: 0 ${({ theme }) => theme.space[5]};
     font-style: italic;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
+      margin: 2.75rem 0rem;
+    }
   }
 
   details {

@@ -1,9 +1,3 @@
-node_modules
-dist
-.env
-.DS_Store
-.netlify
-
 # Logs
 logs
 *.log

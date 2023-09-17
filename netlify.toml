@@ -2,6 +2,9 @@
     command = "gatsby build"
     publish = "public"
 
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"
+
 [[redirects]]
     from = "https://2020--afnizarnur.netlify.com/*"
     to = "https://2020.afnizarnur.com/:splat"

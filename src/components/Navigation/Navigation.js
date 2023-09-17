@@ -15,12 +15,12 @@ const NavItem = styled(ListItem)`
 `
 
 const NavText = styled(Text)`
-  font-weight: bold;
+  font-weight: 700;
   letter-spacing: -0.2px;
   color: ${({ theme }) => theme.colors.black}!important;
 
   .active & {
-    border-color: ${({ theme }) => theme.colors.black};
+    text-decoration: underline;
   }
 
   &:hover {
@@ -29,21 +29,6 @@ const NavText = styled(Text)`
 
   @media (max-width: ${({ theme }) => theme.breakpoints[0]}) {
     display: none;
-  }
-`
-
-const ButtonPrimary = styled(Link)`
-  background: ${({ theme }) => theme.colors.gray[0]};
-  color: ${({ theme }) => theme.colors.black};
-  border-radius: 4px;
-  font-size: ${({ theme }) => theme.fontSizes[2]};
-  padding: 0.75rem 1rem;
-  font-weight: bold;
-  &:hover {
-    background: ${({ theme }) => theme.colors.black};
-    color: ${({ theme }) => theme.colors.white};
-    cursor: "pointer";
-    transition: all ease 0.2s;
   }
 `
 
@@ -114,9 +99,9 @@ const Navigation = ({ ...props }) => {
               Writing
             </NavLink>
 
-            <ButtonPrimary href="mailto:afnizarhilmi@gmail.com">
-              Contact
-            </ButtonPrimary>
+            <NavText as="span" px={1} pb={1}>
+              <a href="mailto:afnizarhilmi@gmail.com">Contact</a>
+            </NavText>
           </Box>
 
           <Box

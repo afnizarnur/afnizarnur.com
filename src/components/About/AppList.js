@@ -34,7 +34,7 @@ const AppList = () => {
 
   const data = useStaticQuery(graphql`
     query {
-      sketchicon: file(relativePath: { eq: "about/apps/sketch.png" }) {
+      figmaicon: file(relativePath: { eq: "about/apps/figma.png" }) {
         childImageSharp {
           fluid(maxWidth: 48, maxHeight: 48) {
             ...GatsbyImageSharpFluid
@@ -157,15 +157,15 @@ const AppList = () => {
             "
         >
           <AppItem
-            imgsrc={data.sketchicon.childImageSharp.fluid}
-            title="Sketch"
+            imgsrc={data.figmaicon.childImageSharp.fluid}
+            title="Figma"
             description={[
-              "My primary design tool right now. I also build sketch plugin called ",
+              "My primary design tool right now. I also build figma plugin called ",
               <ViewLink
                 css="text-decoration: underline; color: #fff"
-                href="https://github.com/afnizarnur/context-sketch-plugin"
+                href="https://www.figma.com/community/plugin/841201477778898873/Page-Automator"
               >
-                Context
+                Page Automator
               </ViewLink>,
               ".",
             ]}

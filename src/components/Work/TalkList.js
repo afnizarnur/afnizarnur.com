@@ -53,12 +53,17 @@ const TalkList = ({ ...props }) => {
     >
       <DefaultLayout>
         <Title2 color="white" mb={[6, 6, 14]}>
-          I love being able to share and help others through work and learning
-          experience
+          In between my works, I love to share and help others by speaking and
+          run workshops
         </Title2>
 
         <Box css={"position: relative"} {...outerCollapseProps()}>
           <Box css={"margin: 0 "}>
+            <TalkItem
+              link="https://www.figma.com/community/file/840269596065453337/Careers-101%3A-Prepare-to-applying-jobs-or-intern"
+              title="Careers 101: Prepare to applying jobs or intern"
+              short="This talk is about what to prepare when applying jobs or intern. Presented in my high school community called Jagongan Stematel."
+            />
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/easily-structure-and-communicate-ideas-using-wireframe"
               title="Easily Structure & Communicate Ideas using Wireframe"
@@ -74,13 +79,13 @@ const TalkList = ({ ...props }) => {
               title="Designing Experience and Interface"
               short="This talk is about introduction of designing experience in building product."
             />
+          </Box>
+          <Box {...innerCollapseProps({ style: { margin: 0 } })}>
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/craft-solution-using-design-thinking"
               title="Craft Solution using Design Thinking"
               short="Facilitate workshop about design thinking, from identifying the problem to crafting the solution."
             />
-          </Box>
-          <Box {...innerCollapseProps({ style: { margin: 0 } })}>
             <TalkItem
               link="https://speakerdeck.com/afnizarnur/building-instagram-like-prototype-using-framer"
               title="Building Instagram-like Prototype using Framer"
@@ -121,8 +126,8 @@ const TalkList = ({ ...props }) => {
           fontSize={[2, 3]}
           marginTop={6}
         >
-          I'm currently open for speaking or workshop about design and
-          technology. Want to invite me to speak at your event?{" "}
+          I'm currently not available for speaking or workshop about design and
+          technology. Still want to invite me to speak at your event?{" "}
           <GoToLink href="mailto:afnizarhilmi@gmail.com">Get in touch</GoToLink>
           .
         </Paragraph>

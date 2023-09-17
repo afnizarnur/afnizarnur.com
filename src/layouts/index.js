@@ -13,15 +13,14 @@ if (typeof window !== "undefined") {
 }
 
 const GlobalStyles = createGlobalStyle`
-  * {
-    font-family: "Inter", system-ui, -apple-system, sans-serif;
-  }
-
   ::selection {
     background-color: ${({ theme }) => theme.colors.gray[0]};
     color: ${({ theme }) => theme.colors.black};
   }
 
+  body {
+    font-family: ${({ theme }) => theme.fonts.sans}
+  }
 
   a {
     color: inherit;
@@ -55,6 +54,14 @@ const GlobalStyles = createGlobalStyle`
     color: white;
   }
 
+  .carousel .slider-wrapper {
+    border-radius: 20px!important;
+  }
+
+  .carousel.carousel-slider .control-arrow:hover {
+    background: none!important;
+  }
+
   .carousel .slide {
     background-color: ${({ theme }) => theme.colors.white}!important;
   }
@@ -84,15 +91,15 @@ const GlobalStyles = createGlobalStyle`
 
   @keyframes slideDown{
     0% {
-      transform: translateY(5px) rotate(180deg);
+      transform: translateY(5px);
     }
 
     50% {
-      transform: translateY(-2px) rotate(180deg);
+      transform: translateY(-2px);
     }
   
     100% {
-      transform: translateY(5px) rotate(180deg);
+      transform: translateY(5px);
     }
   }
 
@@ -159,7 +166,7 @@ const Layout = ({ children, theme }) => {
         />
       </Helmet>
 
-      <a id="top"></a>
+      <div id="top"></div>
       {children}
     </>
   )
