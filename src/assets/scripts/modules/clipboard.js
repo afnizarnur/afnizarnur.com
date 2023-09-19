@@ -1,6 +1,6 @@
 /**
  * @author afnizarnur
- * @email afnizarhilmi@gmail.com
+ * @email hi@afnizarnur.com
  * @create date 02-07-2023 10:05:25
  * @modify date 02-07-2023 10:05:25
  * @desc Copy to clipboard functionality
@@ -49,4 +49,4 @@ class Clipboard {
 	}
 }
 
-const clipboard = new Clipboard("afnizarhilmi@gmail.com")
+const clipboard = new Clipboard("hi@afnizarnur.com")
