@@ -1,6 +1,6 @@
 /**
  * @author afnizarnur
- * @email afnizarhilmi@gmail.com
+ * @email hi@afnizarnur.com
  * @create date 04-07-2023 22:28:21
  * @modify date 04-07-2023 22:28:21
  * @desc Recommendation accordion

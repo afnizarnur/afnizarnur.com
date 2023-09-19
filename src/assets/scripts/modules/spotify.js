@@ -1,6 +1,6 @@
 /**
  * @author afnizarnur
- * @email afnizarhilmi@gmail.com
+ * @email hi@afnizarnur.com
  * @create date 02-07-2023 10:05:55
  * @modify date 02-07-2023 10:05:55
  * @desc Spotify component fetcher

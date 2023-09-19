@@ -1,6 +1,6 @@
 /**
  * @author afnizarnur
- * @email afnizarhilmi@gmail.com
+ * @email hi@afnizarnur.com
  * @create date 02-07-2023 10:06:14
  * @modify date 02-07-2023 10:06:14
  * @desc Add localtime component
