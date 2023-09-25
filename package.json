@@ -59,6 +59,7 @@
     "react-responsive-carousel": "^3.1.50",
     "rebass": "^3.2.2",
     "sanitize.css": "^7.0.3",
+    "sharp": "0.28.0",
     "smooth-scroll": "^16.1.0",
     "styled-components": "^4.3.2",
     "unfetch": "^4.1.0"
