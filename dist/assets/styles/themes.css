@@ -1,0 +1,72 @@
+:root {
+    --background-default: #FFFFFF;
+    --text-primary: #191A1B;
+    --text-secondary: #363739;
+    --text-disabled: #62676A;
+    --text-inverse-subdued: #A1A5A7;
+    --border-default: #E2E4E5;
+    --surface-default: #F6F6F7;
+}
+
+@media(prefers-color-scheme: dark) {
+    :root {
+        --background-default: #191A1B;
+    --text-primary: #FFFFFF;
+    --text-secondary: #F6F6F7;
+    --text-disabled: #A1A5A7;
+    --text-inverse-subdued: #A1A5A7;
+    --border-default: #62676A;
+    --surface-default: #2F3032;
+    }
+}
+
+
+[data-theme='default'] {
+    --background-default: #FFFFFF;
+    --text-primary: #191A1B;
+    --text-secondary: #363739;
+    --text-disabled: #62676A;
+    --text-inverse-subdued: #A1A5A7;
+    --border-default: #E2E4E5;
+    --surface-default: #F6F6F7;
+}
+
+[data-theme='dark'] {
+    --background-default: #191A1B;
+    --text-primary: #FFFFFF;
+    --text-secondary: #F6F6F7;
+    --text-disabled: #A1A5A7;
+    --text-inverse-subdued: #A1A5A7;
+    --border-default: #62676A;
+    --surface-default: #2F3032;
+}
+
+[data-theme='gray'] {
+    --background-default: #E2E4E5;
+    --text-primary: #191A1B;
+    --text-secondary: #363739;
+    --text-disabled: #62676A;
+    --text-inverse-subdued: #A1A5A7;
+    --border-default: #C5C8CA;
+    --surface-default: #F6F6F7;
+}
+
+[data-theme='pink'] {
+    --background-default: #FFEFF8;
+    --text-primary: #3C0023;
+    --text-secondary: #740043;
+    --text-disabled: #AC0064;
+    --text-inverse-subdued: #FF8ECF;
+    --border-default: #FFC6E7;
+    --surface-default: #FFEAF6;
+}
+
+[data-theme='blue'] {
+    --background-default: #E0F5FD;
+    --text-primary: #042A36;
+    --text-secondary: #042A36;
+    --text-disabled: #0C7A9F;
+    --text-inverse-subdued: #94DEF7;
+    --border-default: #94DEF7;
+    --surface-default: #F3FBFE;
+}

@@ -49,7 +49,7 @@ const Menu = () => {
               Writing
             </NavLink>
             <Box css="font-weight: bold;  &:hover { text-decoration: underline; } letter-spacing: -0.2px;">
-              <a href="mailto:afnizarhilmi@gmail.com">Contact</a>
+              <a href="mailto:hi@afnizarnur.com">Contact</a>
             </Box>
             <Box>
               <Button

@@ -128,8 +128,7 @@ const TalkList = ({ ...props }) => {
         >
           I'm currently not available for speaking or workshop about design and
           technology. Still want to invite me to speak at your event?{" "}
-          <GoToLink href="mailto:afnizarhilmi@gmail.com">Get in touch</GoToLink>
-          .
+          <GoToLink href="mailto:hi@afnizarnur.com">Get in touch</GoToLink>.
         </Paragraph>
       </DefaultLayout>
     </Box>

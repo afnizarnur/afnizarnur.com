@@ -100,7 +100,7 @@ const Navigation = ({ ...props }) => {
             </NavLink>
 
             <NavText as="span" px={1} pb={1}>
-              <a href="mailto:afnizarhilmi@gmail.com">Contact</a>
+              <a href="mailto:hi@afnizarnur.com">Contact</a>
             </NavText>
           </Box>
 

@@ -124,7 +124,7 @@ const ProjectList = ({ title, description, ...props }) => {
       <Paragraph color={theme.colors.black} fontSize={[2, 3]}>
         Still curious of my other work? Send me an email about your project and
         I will prepare a detailed portfolio with relevant work samples.{" "}
-        <GoToLink href="mailto:afnizarhilmi@gmail.com">Get in touch</GoToLink>.
+        <GoToLink href="mailto:hi@afnizarnur.com">Get in touch</GoToLink>.
       </Paragraph>
     </Box>
   )
