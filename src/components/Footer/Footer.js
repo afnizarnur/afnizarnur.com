@@ -39,7 +39,7 @@ const Footer = ({ ...props }) => {
             development, prototyping, and technology.
           </Paragraph>
           <Box fontSize={2}>
-            <ButtonPrimary href="mailto:afnizarhilmi@gmail.com">
+            <ButtonPrimary href="mailto:hi@afnizarnur.com">
               Contact
             </ButtonPrimary>
           </Box>
