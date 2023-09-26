@@ -1,8 +1,6 @@
 .process-accordion {
 	&--item {
-		padding: 12px 24px;
 		border-top: 1px solid var(--border-default);
-		cursor: pointer;
 
 		&:hover {
 			p.bold {
@@ -10,24 +8,33 @@
 			}
 		}
 
-		&:focus-visible {
-			outline: 4px solid $blue-500;
+		&[open] {
+			.process-accordion--title {
+				.icon--chevron-down {
+					transform: rotate(180deg);
+				}
+			}
 		}
 	}
 
 	&--title {
 		display: flex;
 		user-select: none;
+		cursor: pointer;
+		padding: 12px 24px;
 
 		p {
 			flex: 1 0 0;
 		}
+
+		&:focus-visible {
+			outline: 4px solid $blue-500;
+		}
 	}
 
 	&--content {
-		padding: 16px 0px;
+		padding: 8px 24px 24px 24px;
 		color: var(--text-secondary);
-		overflow: hidden;
-		display: none;
+		cursor: default;
 	}
 }
