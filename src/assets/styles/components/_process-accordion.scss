@@ -1,0 +1,33 @@
+.process-accordion {
+	&--item {
+		padding: 12px 24px;
+		border-top: 1px solid var(--border-default);
+		cursor: pointer;
+
+		&:hover {
+			p.bold {
+				text-decoration: underline;
+			}
+		}
+
+		&:focus-visible {
+			outline: 4px solid $blue-500;
+		}
+	}
+
+	&--title {
+		display: flex;
+		user-select: none;
+
+		p {
+			flex: 1 0 0;
+		}
+	}
+
+	&--content {
+		padding: 16px 0px;
+		color: var(--text-secondary);
+		overflow: hidden;
+		display: none;
+	}
+}
