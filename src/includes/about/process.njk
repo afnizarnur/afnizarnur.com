@@ -1,31 +1,49 @@
-<r-cell
-	class="b-left-bottom work--title-intro"
-	span="1-2"
-	span-s="row"
-	span-lg="row"
->
-    <div class="b-bottom work--section-title">
-        <small aria-hidden="true">How I work</small>
-    </div>
-</r-cell>
+<div class="process">
+	<h3>How I work</h3>
+	<p class="subtitle">
+		Commencing from the initial challenges and ensuring we address the right
+		ones is crucial to ensure that we deliver effective solutions to both
+		users and businesses.
+	</p>
 
-<r-cell
-	class="b-left-right-bottom about"
-	span="3-12"
-	span-s="row"
-	span-lg="row"
->
-    <span class="block b-bottom u-desktop-only"></span>
-    <div class="about--content">
-        <div class="headline-container process" id="process">
-            <div class="headline">
-                <h2 text-split letters-slide-up>
-				How I work
-			</h2>
-                <p class="subtitle">
-				Started from the bottom the original problem(s) and make sure we try to tackle the correct one(s) is essential to make sure we provide efficient solutions to users and businesses.
-			</p>
-            </div>
-        </div>
-    </div>
-</r-cell>
+	<r-grid columns="10" class="process--list-wrapper">
+		<r-cell span="5" span-s="row" class="process-card">
+			<div class="thumbnail-wrapper">{% icon "observe" %}</div>
+
+			<div class="title">
+				<p class="body-large">Observe</p>
+				<p class="description">
+					By observing, I believe we can develop a greater
+					understanding of user experience and needs by observing them
+					in their natural environment.
+				</p>
+			</div>
+		</r-cell>
+
+		<r-cell span="5" span-s="row" class="process-card">
+			<div class="thumbnail-wrapper">{% icon "reflect" %}</div>
+
+			<div class="title">
+				<p class="body-large">Reflect</p>
+				<p class="description">
+					Reflecting on our work, take into account different
+					perspectives and be prepared to change in order to stay true
+					to the team's values.
+				</p>
+			</div>
+		</r-cell>
+
+		<r-cell span="5" span-s="row" class="process-card">
+			<div class="thumbnail-wrapper">{% icon "make" %}</div>
+
+			<div class="title">
+				<p class="body-large">Make</p>
+				<p class="description">
+					I work fast, like really fast. Quick iteration allows us to
+					zoom through explorations until we arrive at something that
+					feels just right.
+				</p>
+			</div>
+		</r-cell>
+	</r-grid>
+</div>
