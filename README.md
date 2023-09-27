@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  Hello, welcome! This is the source code of my portfolio site. Proudly built with Eleventy and hosted with Netlify.
+ This is the source code of <a href="https://afnizarnur.com/">my personal site</a>. Proudly built with Eleventy and hosted in Netlify.
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@ Back in 2013 when I was in vocational high school, I decided to put together a p
 
 Creating that website actually opened up a bunch of job opportunities for me. It was a two-pronged learning experience. First, I wanted to get the lowdown on design systems, from the design and user interface angles. Second, I wanted to understand the developer's side of things while building the site.
 
-Now, I'm sharing this repository mainly for my own reference, but I thought, "Why not toss it up on GitHub for easy access and some peace of mind?" So, feel free to dig into the code and explore what I cooked up back in the day..
+Now, I'm sharing this repository mainly for my own reference, but I thought, "Why not toss it up on GitHub for easy access and some peace of mind?" So, feel free to dig into the code and explore what I cooked up back in the day.
 
 ## Installation
 
