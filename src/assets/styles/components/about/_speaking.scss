@@ -1,52 +1,7 @@
 .about {
 	.speaking {
-		margin: 0px 44px;
-
 		@include mq-down(lg) {
 			margin: 0px 16px 0px 16px;
-		}
-
-		&--list-wrapper {
-			margin-top: 64px;
-			gap: 24px;
-
-			@include mq-down(lg) {
-				margin-top: 44px;
-			}
-
-			ul {
-				display: inline-flex;
-
-				li {
-					margin-right: 4px;
-				}
-			}
-		}
-
-		.speaking-card {
-			background: var(--surface-default);
-			border-radius: 16px;
-			overflow: hidden;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-
-			.title {
-				display: flex;
-				flex-direction: column;
-				padding: 24px;
-				gap: 12px;
-
-				p {
-					width: 100%;
-					color: var(--text-secondary);
-
-					&.body-large {
-						margin-bottom: 0px;
-						color: var(--text-primary);
-					}
-				}
-			}
 		}
 
 		&--link {

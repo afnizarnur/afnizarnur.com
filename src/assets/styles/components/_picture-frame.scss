@@ -11,6 +11,11 @@
 
 	&.picture-speaking {
 		padding: 0px 24px;
+
+		@include mq-down(sm) {
+			padding: 0;
+			margin: 44px 0px 0px 0px;
+		}
 	}
 
 	@include mq-down(sm) {
@@ -37,12 +42,19 @@
 	}
 
 	.pic-frame-speaking {
+		@include mq-down(sm) {
+			img {
+				width: 100%;
+			}
+		}
+
 		&:nth-child(1) {
 			transform: rotate(-2deg);
 		}
 
 		&:nth-child(2) {
 			transform: rotate(2.144deg);
+
 			margin-top: 80px;
 
 			@include mq-down(sm) {
