@@ -9,8 +9,7 @@
 </p>
 
 <p align="center">
-  Hello, welcome! This is the source code of my portfolio site. <br />
-  Proudly built with Eleventy and hosted with Netlify.
+  Hello, welcome! This is the source code of my portfolio site. Proudly built with Eleventy and hosted with Netlify.
 </p>
 
 <p align="center">
