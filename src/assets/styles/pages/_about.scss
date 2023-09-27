@@ -101,6 +101,12 @@
 					margin-bottom: 24px;
 				}
 			}
+
+			&.outside-work {
+				@include mq-down(lg) {
+					margin-bottom: 44px;
+				}
+			}
 		}
 	}
 }

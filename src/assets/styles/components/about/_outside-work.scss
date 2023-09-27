@@ -1,0 +1,27 @@
+.outside-work {
+	&--list-wrapper {
+		margin: 24px 44px 0px 44px;
+		gap: 24px;
+
+		@include mq-down(lg) {
+			margin: 0px 16px 0px 16px;
+		}
+	}
+
+	&--item {
+		&:nth-child(1) {
+			margin-top: 200px;
+
+			@include mq-down(lg) {
+				margin-top: 0px;
+				margin-bottom: 24px;
+			}
+		}
+		img {
+			margin-bottom: 24px;
+			border-radius: 16px;
+			width: 100%;
+			height: auto;
+		}
+	}
+}
