@@ -3,8 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Draggable } from "gsap/Draggable"
 import SplitType from "split-type"
 
-gsap.registerPlugin(ScrollTrigger)
-gsap.registerPlugin(Draggable)
+gsap.registerPlugin(ScrollTrigger, Draggable)
 
 document.addEventListener("DOMContentLoaded", function () {
 	const typeSplit = new SplitType("[text-split]", {

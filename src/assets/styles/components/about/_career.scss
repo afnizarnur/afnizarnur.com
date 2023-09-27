@@ -1,0 +1,65 @@
+.career {
+	h3 {
+		margin-bottom: 64px;
+	}
+
+	&--item {
+		margin-bottom: 24px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		p.description {
+			margin-bottom: 16px;
+		}
+
+		.list-timeline {
+			position: relative;
+			padding: 0px 0px 0px 24px;
+
+			p.role {
+				font-weight: normal;
+			}
+
+			.item-bullet {
+				width: 8px;
+				height: 8px;
+				background-color: var(--text-primary);
+				display: block;
+				position: absolute;
+				left: 0px;
+				top: 8px;
+			}
+
+			.timeline-top {
+				width: 1px;
+				height: 100%;
+				background: var(--border-default);
+				position: absolute;
+				left: 3px;
+				top: 8px;
+			}
+
+			.timeline-bottom {
+				width: 1px;
+				height: 25%;
+				background: var(--border-default);
+				position: absolute;
+				left: 3px;
+				top: -24px;
+			}
+		}
+
+		.description-container {
+			display: inline-flex;
+			flex-direction: column;
+		}
+
+		small {
+			color: var(--text-disabled);
+			padding-bottom: 24px;
+			border-bottom: 1px solid var(--border-default);
+		}
+	}
+}
