@@ -6,6 +6,10 @@
 	align-items: start;
 	margin: 64px 0px;
 
+	@include mq-down(sm) {
+		flex-direction: column;
+	}
+
 	&.picture-history {
 		.pic-frame &:nth-child(2) {
 			margin-top: 162px;
@@ -24,6 +28,10 @@
 		&:nth-child(2) {
 			transform: rotate(2.978deg);
 			margin-top: 162px;
+
+			@include mq-down(sm) {
+				margin-top: 0px;
+			}
 		}
 
 		&:nth-child(3) {

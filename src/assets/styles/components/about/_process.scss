@@ -2,9 +2,17 @@
 	.process {
 		margin: 0px 44px;
 
+		@include mq-down(lg) {
+			margin: 0px 16px 0px 16px;
+		}
+
 		&--list-wrapper {
 			margin-top: 64px;
 			gap: 24px;
+
+			@include mq-down(lg) {
+				margin-top: 44px;
+			}
 
 			ul {
 				display: inline-flex;
