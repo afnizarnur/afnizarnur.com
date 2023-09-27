@@ -7,12 +7,8 @@
 		}
 
 		&--list-wrapper {
-			margin-top: 64px;
+			margin-top: 44px;
 			gap: 24px;
-
-			@include mq-down(lg) {
-				margin-top: 44px;
-			}
 
 			ul {
 				display: inline-flex;

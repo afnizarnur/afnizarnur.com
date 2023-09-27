@@ -1,4 +1,8 @@
 .process-accordion {
+	details summary::-webkit-details-marker {
+		display: none;
+	}
+
 	&--item {
 		border-top: 1px solid var(--border-default);
 
