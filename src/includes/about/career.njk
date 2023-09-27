@@ -1,67 +1,30 @@
 <div class="career">
 	<h3>Career highlights</h3>
 	<r-grid columns="1">
+		{% for items in career %}
+
 		<r-grid columns="10" class="career--item">
+			{% if not loop.last %}
 			<div class="timeline-top"></div>
-			<div class="item-bullet"></div>
-			<r-cell span="3" span-s="row" class="list-timeline">
-				<p class="body-large">GovTech Edu</p>
-				<p class="body-large role">Product Designer</p>
-			</r-cell>
-			<r-cell span="4-10" span-s="row" class="description-container">
-				<p class="description">
-					Office ipsum you must be muted. Tomorrow don't launch first
-					eye put. Innovation don't standup break kimono want both
-					speed left. Race must marginalised day product anomalies
-					tiger we dog. Don't pivot breakout reference status. Organic
-					alarming also streamline running turn circle. Switch ladder
-					skulls switch cc also.
-				</p>
-				<small>Feb 2021 - Present · Jakarta, Indonesia</small>
-			</r-cell>
-		</r-grid>
-		<r-grid columns="10" class="career--item">
-			<div class="timeline-top"></div>
+			{% endif %}
+
+			{% if not loop.first %}
 			<div class="timeline-bottom"></div>
+			{% endif %}
+
 			<div class="item-bullet"></div>
+
 			<r-cell span="3" span-s="row" class="list-timeline">
-				<p class="body-large">Bukalapak</p>
-				<p class="body-large role">UX Designer</p>
+				<p class="body-large">{{ items.company }}</p>
+				<p class="body-large role">{{ items.role }}</p>
 			</r-cell>
 			<r-cell span="4-10" span-s="row" class="description-container">
 				<p class="description">
-					Office ipsum you must be muted. Tomorrow don't launch first
-					eye put. Innovation don't standup break kimono want both
-					speed left. Race must marginalised day product anomalies
-					tiger we dog. Don't pivot breakout reference status. Organic
-					alarming also streamline running turn circle. Switch ladder
-					skulls switch cc also.
+					{{ items.description }}
 				</p>
-				<small>
-					Jun 2018 - Jan 2021 (2 years 8 months) · Jakarta, Indonesia
-				</small>
+				<small>{{ items.date }}</small>
 			</r-cell>
 		</r-grid>
-		<r-grid columns="10" class="career--item">
-			<div class="timeline-bottom"></div>
-			<div class="item-bullet"></div>
-			<r-cell span="3" span-s="row" class="list-timeline">
-				<p class="body-large">LimaKilo</p>
-				<p class="body-large role">UI/UX Designer</p>
-			</r-cell>
-			<r-cell span="4-10" span-s="row" class="description-container">
-				<p class="description">
-					Office ipsum you must be muted. Tomorrow don't launch first
-					eye put. Innovation don't standup break kimono want both
-					speed left. Race must marginalised day product anomalies
-					tiger we dog. Don't pivot breakout reference status. Organic
-					alarming also streamline running turn circle. Switch ladder
-					skulls switch cc also.
-				</p>
-				<small>
-					Oct 2016 - May 2017 (8 months) · Jakarta, Indonesia
-				</small>
-			</r-cell>
-		</r-grid>
-	</r-grid>
+
+		{% endfor %}
 </div>
