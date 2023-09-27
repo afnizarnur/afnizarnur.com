@@ -1,26 +1,23 @@
 .picture-container {
 	max-width: 100%;
-	padding: 0px 64px;
 	display: flex;
 	justify-content: space-between;
 	align-items: start;
 	margin: 64px 0px;
 
+	&.picture-history {
+		padding: 0px 64px;
+	}
+
+	&.picture-speaking {
+		padding: 0px 24px;
+	}
+
 	@include mq-down(sm) {
 		flex-direction: column;
 	}
 
-	&.picture-history {
-		.pic-frame &:nth-child(2) {
-			margin-top: 162px;
-		}
-	}
-
-	.pic-frame {
-		border: 2px solid var(--text-primary);
-		display: block;
-		position: relative;
-
+	.pic-frame-history {
 		&:nth-child(1) {
 			transform: rotate(-4.611deg);
 		}
@@ -37,6 +34,28 @@
 		&:nth-child(3) {
 			transform: rotate(6.759deg);
 		}
+	}
+
+	.pic-frame-speaking {
+		&:nth-child(1) {
+			transform: rotate(-2deg);
+		}
+
+		&:nth-child(2) {
+			transform: rotate(2.144deg);
+			margin-top: 80px;
+
+			@include mq-down(sm) {
+				margin-top: 0px;
+			}
+		}
+	}
+
+	.pic-frame-history,
+	.pic-frame-speaking {
+		border: 2px solid var(--text-primary);
+		display: block;
+		position: relative;
 
 		img {
 			transform-origin: center;

@@ -76,10 +76,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 	}
 
-	Draggable.create(".pic-frame", {
+	Draggable.create(".pic-frame-history", {
 		type: "x,y",
 		edgeResistance: 0.65,
-		bounds: document.querySelector(".picture-container"),
+		bounds: document.querySelector(".picture-container.picture-history"),
+		zIndexBoost: false
+	})
+
+	Draggable.create(".pic-frame-speaking", {
+		type: "x,y",
+		edgeResistance: 0.65,
+		bounds: document.querySelector(".picture-container.picture-speaking"),
 		zIndexBoost: false
 	})
 
