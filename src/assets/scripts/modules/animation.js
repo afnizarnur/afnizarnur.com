@@ -1,8 +1,9 @@
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Draggable } from "gsap/Draggable"
 import SplitType from "split-type"
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, Draggable)
 
 document.addEventListener("DOMContentLoaded", function () {
 	const typeSplit = new SplitType("[text-split]", {
@@ -74,6 +75,20 @@ document.addEventListener("DOMContentLoaded", function () {
 			})
 		})
 	}
+
+	Draggable.create(".pic-frame-history", {
+		type: "x,y",
+		edgeResistance: 0.65,
+		bounds: document.querySelector(".picture-container.picture-history"),
+		zIndexBoost: false
+	})
+
+	Draggable.create(".pic-frame-speaking", {
+		type: "x,y",
+		edgeResistance: 0.65,
+		bounds: document.querySelector(".picture-container.picture-speaking"),
+		zIndexBoost: false
+	})
 
 	// Animation text reveal
 	const textRevealElements = document.querySelectorAll("[letters-slide-up]")

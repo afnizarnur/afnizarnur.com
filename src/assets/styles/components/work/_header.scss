@@ -67,6 +67,7 @@
 		.button-list {
 			display: flex;
 			justify-content: flex-end;
+			align-items: start;
 
 			@include mq-down(lg) {
 				justify-content: flex-start;

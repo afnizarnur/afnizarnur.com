@@ -4,9 +4,9 @@
 	span-s="row"
 	span-lg="row"
 >
-    <div class="b-bottom work--section-title">
-        <small aria-hidden="true">Headline</small>
-    </div>
+	<div class="b-bottom work--section-title">
+		<small aria-hidden="true">Headline</small>
+	</div>
 </r-cell>
 
 <r-cell
@@ -15,24 +15,43 @@
 	span-s="row"
 	span-lg="row"
 >
-    <span class="block b-bottom u-desktop-only"></span>
-    <div class="introduction--content">
-        <div class="headline">
-            <h1 text-split letters-slide-up>
-				Product designer specializing in user interfaces, design system,
-				and strategy across multiple industries
+	<span class="block b-bottom u-desktop-only"></span>
+	<div class="introduction--content">
+		<div class="headline">
+			<h1 text-split letters-slide-up>
+				Afnizar is a product designer who specializes in user
+				interfaces, design systems, and strategy
 			</h1>
-            <p class="subtitle">
-				Hi there, I'm Afnizar! Currently, I'm working as a designer at
+			<p class="subtitle">
+				Currently, I'm working at
 				<a href="https://www.govtechedu.id/">GovTech Edu</a>, where I
-				design platform for Rapor Pendidikan. Prior to this, I gained
+				design platforms for Rapor Pendidikan. Prior to this, I gained
 				valuable experience working on product design for Bukalapak,
 				startups, and with various agencies.
 			</p>
-        </div>
+		</div>
 
-        <div class="header-illustration">
-            {% include "home/illustration.njk" %}
-        </div>
-    </div>
+		<ul class="button-intro">
+			<li>
+				<a
+					href="#selected-work"
+					class="button btn-secondary"
+					data-umami-event="header-view-selected-work"
+					>Selected Work {% icon "arrow-down" %}
+				</a>
+			</li>
+			<li>
+				<a
+					href="{{ '/afnizar-resume.pdf' | url }}"
+					class="button btn-outline"
+					data-umami-event="header-view-resume"
+					>Resume</a
+				>
+			</li>
+		</ul>
+
+		<div class="header-illustration">
+			{% include "home/illustration.njk" %}
+		</div>
+	</div>
 </r-cell>

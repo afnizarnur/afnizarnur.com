@@ -1,0 +1,23 @@
+.outside-work {
+	&--list-wrapper {
+		margin: 24px 44px 0px 44px;
+		gap: 24px;
+
+		@include mq-down(lg) {
+			margin: 0px 16px 0px 16px;
+		}
+	}
+
+	&--item {
+		img {
+			margin-bottom: 16px;
+			border-radius: 16px;
+			width: 100%;
+			height: auto;
+		}
+
+		p {
+			margin-bottom: 24px;
+		}
+	}
+}

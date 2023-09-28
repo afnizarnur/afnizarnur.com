@@ -8,6 +8,10 @@
 		}
 	}
 
+	&.speaking--list-wrapper .accordion-wrapper.hidden {
+		height: 700px;
+	}
+
 	.accordion-inner {
 		padding: 0px 44px;
 		gap: 24px;
@@ -31,6 +35,26 @@
 			transition: transform 0.3s ease;
 			height: 100%;
 			margin-bottom: 24px;
+
+			&.speaking-card {
+				padding: 0;
+				.title {
+					display: flex;
+					flex-direction: column;
+					padding: 24px;
+					gap: 12px;
+
+					p {
+						width: 100%;
+						color: var(--text-secondary);
+
+						&.body-large {
+							margin-bottom: 0px;
+							color: var(--text-primary);
+						}
+					}
+				}
+			}
 
 			&.hidden {
 				display: none;

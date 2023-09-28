@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/afnizarnur">
-    <img src="https://d33wubrfki0l68.cloudfront.net/f797e66685f2b4116788a43d1a904aa35cb5555e/5ebad/assets/images/afnizar-nur-ghifari.png" width="44">
+    <img src="https://gravatar.com/userimage/18787920/cf0b156da5c2fbd33d1dcde3bcaedba6.jpeg?size=44" width="44">
   </a>
 </p>
 
@@ -9,14 +9,22 @@
 </p>
 
 <p align="center">
-  Hello, welcome! This is the source code of my portfolio site. Proudly built with Eleventy and hosted with Netlify. You can access my portfolio site at <a href="https://afnizarnur.com">afnizarnur.com</a>.
+ This is the source code of <a href="https://afnizarnur.com/">my personal site</a>. Proudly built with Eleventy and hosted in Netlify.
+</p>
+
+<p align="center">
+  <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2013">2013</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2019">2019</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2020">2020</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2022">2022</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/">Live</a>
 </p>
 
 ---
 
 ## Background
 
-When I was in vocational high school back in 2013, I created a portfolio website to showcase my design work. I remember using static HTML and CSS, along with the Bootstrap framework, and hosting it on a shared hosting platform. Honestly, it was a lot of fun! Building that website opened up numerous work opportunities for me. By designing the site, I aimed to gain knowledge about design systems in terms of both design and user interface aspects. Similarly, through developing the site, I wanted to learn about design systems from a developer's perspective. I'm sharing this repository primarily for myself, and I have chosen to host my code on GitHub for convenience and peace of mind. Feel free to explore the contents of the code.
+Back in 2013 when I was in vocational high school, I decided to put together a portfolio website to show off my design skills. I didn't have any fancy tools at the time, just good ol' static HTML and CSS. I threw in some Bootstrap framework magic and slapped it on a shared hosting platform. Let me tell you, it was a blast!
+
+Creating that website actually opened up a bunch of job opportunities for me. It was a two-pronged learning experience. First, I wanted to get the lowdown on design systems, from the design and user interface angles. Second, I wanted to understand the developer's side of things while building the site.
+
+Now, I'm sharing this repository mainly for my own reference, but I thought, "Why not toss it up on GitHub for easy access and some peace of mind?" So, feel free to dig into the code and explore what I cooked up back in the day.
 
 ## Installation
 
@@ -31,3 +39,7 @@ Clone the repository and install the dependencies:
 
     # Build as production-ready
     npm run build
+
+## License
+
+MIT © [Afnizar Nur Ghifari](https://github.com/afnizarnur/afnizarnur.com)

@@ -21,13 +21,13 @@
 		}
 
 		.header-illustration {
-			margin-top: 64px;
+			margin-top: 44px;
 			overflow: hidden;
 			width: 100%;
 			height: 395px;
 
 			@include mq-down(lg) {
-				margin-top: 64px;
+				margin-top: 44px;
 			}
 
 			svg {
@@ -70,6 +70,27 @@
 					fill: var(--border-default);
 				}
 			}
+		}
+	}
+
+	.button-intro {
+		margin: 32px 44px 0px 44px;
+		display: flex;
+		gap: 12px;
+
+		@include mq-down(lg) {
+			margin: 16px 16px;
+			margin: 24px 16px 0px 16px;
+			flex-direction: column;
+
+			a.button {
+				width: 100%;
+			}
+		}
+
+		svg.icon {
+			height: 24px;
+			width: 24px;
 		}
 	}
 }

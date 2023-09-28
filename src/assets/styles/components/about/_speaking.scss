@@ -1,0 +1,27 @@
+.about {
+	.speaking {
+		@include mq-down(lg) {
+			margin: 0px 16px 0px 16px;
+		}
+
+		&--link {
+			border-top: 1px solid var(--border-default);
+			display: flex;
+			padding: 12px 24px;
+			text-decoration: underline;
+			margin: 0;
+			justify-content: space-between;
+			align-items: center;
+
+			a {
+				cursor: pointer;
+				font-weight: 520;
+			}
+
+			svg.icon {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+}

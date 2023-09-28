@@ -39,8 +39,9 @@
 @import "components/icon";
 @import "components/badge";
 @import "components/button";
-@import "components/rec-carousel";
+@import "components/process-accordion";
 @import "components/rec-accordion";
+@import "components/picture-frame";
 @import "components/home/introduction";
 @import "components/home/selected-work";
 @import "components/home/design-tooling";
@@ -51,6 +52,10 @@
 @import "components/work/other-work";
 @import "components/work/other-work-card";
 @import "components/about/quick-nav";
+@import "components/about/process";
+@import "components/about/career";
+@import "components/about/speaking";
+@import "components/about/outside-work";
 
 // Pages
 @import "pages/home";

@@ -3,6 +3,10 @@
 	width: 100%;
 	margin-top: 64px;
 
+	@include mq-down(lg) {
+		margin-top: 44px;
+	}
+
 	ul {
 		display: flex;
 		align-items: flex-start;
@@ -44,6 +48,10 @@
 				color: var(--text-primary);
 				font-weight: 520;
 				margin: 0;
+
+				@include mq-down(lg) {
+					padding: 24px 32px 44px 32px;
+				}
 
 				&:hover {
 					background: none;

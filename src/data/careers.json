@@ -1,0 +1,32 @@
+[
+	{
+		"company": "GovTech Edu",
+		"role": "Product Designer",
+		"description": "I help designed the Rapor Pendidikan platform for data-driven decision-making in education. I also laid the foundation for our internal design system, creating a unified UI kit and led the migration our current design to align with our design system.",
+		"date": "Feb 2021 - Present · Jakarta, Indonesia"
+	},
+	{
+		"company": "Bukalapak",
+		"role": "UX Designer",
+		"description": "I started as an intern and progressed to full-time, from taking charge of design for DANA in Bukalapak. I also created visual and interactive designs, icons, and illustrations, and facilitated design sprints. I also worked on Bukalapak within BBM and established a design system for BBM Shopping.",
+		"date": "Jun 2017 - Jan 2021 · Bandung, Indonesia"
+	},
+	{
+		"company": "Sixty Two",
+		"role": "UI/UX Designer",
+		"description": "I contributed to the redesign of a soccer team platform, enhancing its ability to find sparring opponents. This involved defining the product's workflow and main features, as well as creating wireframes, prototypes, and transitioning from low-fidelity to high-fidelity design.",
+		"date": "May 2017 - Oct 2017 · Jakarta, Indonesia"
+	},
+	{
+		"company": "uxmarker",
+		"role": "UI/UX Designer",
+		"description": "I designed an application encompassing financial services, digital payments, and an eCommerce platform. This involved making conceptual ideas, refining them through low to medium fidelity iterations, and transforming them into high-fidelity prototypes.",
+		"date": "Apr 2017 - Jun 2017 · Bandung, Indonesia"
+	},
+	{
+		"company": "Limakilo",
+		"role": "UI/UX Designer",
+		"description": "I designed an agriculture business platform enabling direct farmer-to-product transactions, overseeing the entire design process of Android and web applications from concept to high-fidelity iterations, and also creating visual, interaction designs, and prototypes.",
+		"date": "Oct 2016 - May 2017 · Bandung, Indonesia"
+	}
+]

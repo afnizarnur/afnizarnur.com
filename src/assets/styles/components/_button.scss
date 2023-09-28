@@ -22,9 +22,25 @@
 	border-radius: 4px;
 	margin: 0px;
 
+	font-size: 1.125rem;
+	line-height: 1.575rem;
+	font-weight: 520;
+
 	.icon {
 		width: 20px;
 		height: 20px;
+	}
+
+	&.btn-secondary {
+		color: var(--text-primary);
+		padding: 12px 24px;
+		text-decoration: none;
+		gap: 8px;
+		background: var(--surface-default);
+
+		&:hover {
+			box-shadow: 0 0 0 2px var(--text-primary);
+		}
 	}
 
 	&.btn-outline {
