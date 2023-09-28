@@ -1,30 +1,30 @@
 <div class="career">
 	<h3>Career highlights</h3>
 	<r-grid columns="1">
-		{% for items in career %}
+		{% for items in careers %}
 
-		<r-grid columns="10" class="career--item">
-			{% if not loop.last %}
-			<div class="timeline-top"></div>
-			{% endif %}
+			<r-grid columns="10" class="career--item">
+				{% if not loop.last %}
+					<div class="timeline-top"></div>
+				{% endif %}
 
-			{% if not loop.first %}
-			<div class="timeline-bottom"></div>
-			{% endif %}
+				{% if not loop.first %}
+					<div class="timeline-bottom"></div>
+				{% endif %}
 
-			<div class="item-bullet"></div>
+				<div class="item-bullet"></div>
 
-			<r-cell span="3" span-s="row" class="list-timeline">
-				<p class="body-large">{{ items.company }}</p>
-				<p class="body-large role">{{ items.role }}</p>
-			</r-cell>
-			<r-cell span="4-10" span-s="row" class="description-container">
-				<p class="description">
-					{{ items.description }}
-				</p>
-				<small>{{ items.date }}</small>
-			</r-cell>
-		</r-grid>
+				<r-cell span="3" span-s="row" class="list-timeline">
+					<p class="body-large">{{ items.company }}</p>
+					<p class="body-large role">{{ items.role }}</p>
+				</r-cell>
+				<r-cell span="4-10" span-s="row" class="description-container">
+					<p class="description">
+						{{ items.description }}
+					</p>
+					<small>{{ items.date }}</small>
+				</r-cell>
+			</r-grid>
 
 		{% endfor %}
-</div>
+	</div>
