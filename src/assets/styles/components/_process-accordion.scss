@@ -37,8 +37,12 @@
 	}
 
 	&--content {
-		padding: 8px 24px 24px 24px;
+		padding: 8px 24px 0px 24px;
 		color: var(--text-secondary);
 		cursor: default;
+
+		p {
+			margin-bottom: 24px;
+		}
 	}
 }
