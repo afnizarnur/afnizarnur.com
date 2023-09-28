@@ -27,8 +27,8 @@
 
 				<div class="picture-container picture-speaking">
 					<div class="pic-frame-speaking">
-						{% image "/about/speaking-01.png", "Speaking",
-						"(min-width: 1440px) 100vw, 50vw", 358 %}
+						{% image "/about/speaking-01.png", "Teaching in front of student of Telkom University",
+						"(min-width: 1440px) 100vw, 50vw", 358, 223 %}
 						<ul>
 							<li></li>
 							<li></li>
@@ -38,8 +38,8 @@
 					</div>
 
 					<div class="pic-frame-speaking">
-						{% image "/about/speaking-02.png", "Speaking",
-						"(min-width: 1440px) 100vw, 50vw", 358 %}
+						{% image "/about/speaking-02.png", "Teaching Design Fundamental in front of student",
+						"(min-width: 1440px) 100vw, 50vw", 358, 227 %}
 						<ul>
 							<li></li>
 							<li></li>
@@ -57,37 +57,37 @@
 			>
 				<div class="accordion-inner">
 					{% for items in speaking %}
-					<div class="accordion-slide speaking-card">
-						<div class="title">
-							<p class="body-large">
-								{{ items.title }}
-							</p>
-							<p class="description">
-								{{ items.description }}
-							</p>
-						</div>
+						<div class="accordion-slide speaking-card">
+							<div class="title">
+								<p class="body-large">
+									{{ items.title }}
+								</p>
+								<p class="description">
+									{{ items.description }}
+								</p>
+							</div>
 
-						<div class="speaking--link">
-							<a href="{{ items.url }}" class="bold">{{
+							<div class="speaking--link">
+								<a href="{{ items.url }}" class="bold">{{
 								items.type
 							}}</a>
-							{% icon "chevron-right" %}
+								{% icon "chevron-right" %}
+							</div>
 						</div>
-					</div>
 					{% endfor %}
 				</div>
 			</div>
 
 			{% if speaking.length > 4 %}
-			<div class="show-more">
-				<span
+				<div class="show-more">
+					<span
 					tabindex="0"
 					data-umami-event="talks-view-all"
 					class="show-more-link"
 				>
 					View all speaking archives{% icon "chevron-down" %}
-				</span>
-			</div>
+					</span>
+				</div>
 			{% endif %}
 		</div>
 	</div>
