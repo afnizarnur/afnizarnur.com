@@ -5,8 +5,16 @@
 	align-items: start;
 	margin: 64px 0px;
 
+	@include mq-down(sm) {
+		align-items: center;
+	}
+
 	&.picture-history {
 		padding: 0px 64px;
+
+		@include mq-down(sm) {
+			padding: 0px;
+		}
 	}
 
 	&.picture-speaking {
@@ -43,8 +51,11 @@
 
 	.pic-frame-speaking {
 		@include mq-down(sm) {
+			width: 100%;
+
 			img {
 				width: 100%;
+				height: auto;
 			}
 		}
 
@@ -54,7 +65,6 @@
 
 		&:nth-child(2) {
 			transform: rotate(2.144deg);
-
 			margin-top: 80px;
 
 			@include mq-down(sm) {
