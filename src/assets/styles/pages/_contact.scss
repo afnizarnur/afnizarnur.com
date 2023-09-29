@@ -24,21 +24,57 @@
 			}
 
 			h1 {
-				margin: 0;
-				margin-bottom: 44px;
+				margin: 0px;
 			}
 
 			.subtitle {
-				max-width: 616px;
+				margin-top: 44px;
+				@include mq-down(sm) {
+					margin-top: 24px;
+				}
 			}
 		}
 	}
 
 	&--social-media-nav {
 		margin-top: 144px;
+
+		@include mq-down(lg) {
+			margin-top: 64px;
+		}
+
 		.quick-nav {
 			margin-top: 32px;
 			border-bottom: 1px solid var(--border-default);
+
+			@include mq-down(sm) {
+				margin-top: 16px;
+				margin-bottom: 24px;
+			}
+
+			ul {
+				@include mq-down(sm) {
+					flex-direction: column;
+					width: 100%;
+					overflow: hidden;
+
+					li {
+						width: 100%;
+						margin: 0;
+						border-radius: 0;
+
+						&:hover {
+							text-decoration: underline;
+							box-shadow: none;
+						}
+
+						a {
+							padding: 16px 16px 16px 16px;
+							width: 100%;
+						}
+					}
+				}
+			}
 		}
 
 		p {
@@ -54,8 +90,8 @@
 	&--faq {
 		padding: 64px 44px 0px 44px;
 
-		h2 {
-			margin-top: 0;
+		h3 {
+			margin: 0;
 		}
 
 		@include mq-down(lg) {
@@ -94,6 +130,7 @@
 
 	&--illustration {
 		position: absolute;
+		cursor: pointer;
 		right: 80px;
 		top: -144px;
 		animation: bounce-down 0.6s $animation-curve-swoosh forwards;
@@ -103,9 +140,13 @@
 		}
 
 		@include mq-down(lg) {
-			right: 24px;
+			right: 16px;
 			top: -64px;
 			animation: bounce-down-lg 0.6s $animation-curve-swoosh forwards;
+		}
+
+		@include mq-down(sm) {
+			display: none;
 		}
 	}
 }

@@ -20,10 +20,10 @@
 		<div class="headline-container">
 			<div class="headline">
 				<r-grid columns="10">
-					<r-cell span="1-8" span-s="row">
+					<r-cell span="1-7" span-s="row">
 						<h1 text-split letters-slide-up>Let's get in touch</h1>
 					</r-cell>
-					<r-cell span="1-8" span-s="row">
+					<r-cell span="1-7" span-s="row">
 						<p class="subtitle">
 							I am always open to new opportunities and
 							collaborations. If you have any questions or need
@@ -43,7 +43,9 @@
 					width="217"
 					height="406"
 					fill="none"
-					class="contact--illustration"
+					class="contact--illustration js-themepicker-toggle-contact"
+					aria-expanded="false"
+					aria-controls="theme-menu"
 					viewBox="0 0 217 406"
 				>
 					<g clip-path="url(#a)">
@@ -69,15 +71,14 @@
 
 		<div class="contact--social-media-nav">
 			<p class="bold">
-				Email too formal? Connect with me in social media
+				Feeling too formal via email? Hit me up on social media
 			</p>
 
 			{% include "contact/social-nav.njk" %}
 		</div>
 
 		<div class="contact--faq">
-			<h2>Frequently asked question</h2>
-			<p class="subtitle">I sometime got repeated question in email.</p>
+			<h3>Frequently asked question</h3>
 
 			<div class="accordion">
 				{% for items in faq %}

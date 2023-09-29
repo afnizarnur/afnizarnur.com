@@ -25,6 +25,9 @@ class ThemePicker {
 		this.toggleBtnMenu = document.querySelector(
 			".js-themepicker-toggle-menu"
 		)
+		this.toggleBtnContact = document.querySelector(
+			".js-themepicker-toggle-contact"
+		)
 		this.init()
 	}
 
@@ -42,10 +45,18 @@ class ThemePicker {
 	}
 
 	bindEvents() {
+		// Main navigation
 		this.toggleBtn.addEventListener("click", () =>
 			this.themeRoller(this.activeTheme)
 		)
+
+		// Mobile menu
 		this.toggleBtnMenu.addEventListener("click", () =>
+			this.themeRoller(this.activeTheme)
+		)
+
+		// Illustration contact
+		this.toggleBtnContact.addEventListener("click", () =>
 			this.themeRoller(this.activeTheme)
 		)
 	}
