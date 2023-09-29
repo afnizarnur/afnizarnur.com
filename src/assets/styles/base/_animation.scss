@@ -44,24 +44,34 @@
 @keyframes bounce-down {
 	0% {
 		top: -144px;
-		transform: translateY(0);
 	}
 
 	100% {
 		top: 0;
-		transform: translateY(0);
+	}
+}
+
+@keyframes bounce-down-click {
+	0% {
+		top: 0px;
+	}
+
+	50% {
+		top: -144px;
+	}
+
+	100% {
+		top: 0px;
 	}
 }
 
 @keyframes bounce-down-lg {
 	0% {
 		top: -144px;
-		transform: translateY(0);
 	}
 
 	100% {
 		top: -64px;
-		transform: translateY(0);
 	}
 }
 

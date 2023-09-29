@@ -34,11 +34,73 @@
 		}
 	}
 
+	&--social-media-nav {
+		margin-top: 144px;
+		.quick-nav {
+			margin-top: 32px;
+			border-bottom: 1px solid var(--border-default);
+		}
+
+		p {
+			color: var(--text-disabled);
+			margin: 0px 44px 44px 44px;
+
+			@include mq-down(lg) {
+				margin: 0px 16px 0px 16px;
+			}
+		}
+	}
+
+	&--faq {
+		padding: 64px 44px 0px 44px;
+
+		h2 {
+			margin-top: 0;
+		}
+
+		@include mq-down(lg) {
+			padding: 44px 16px 0px 16px;
+		}
+
+		.accordion {
+			margin-top: 64px;
+			background: var(--surface-default);
+			border-radius: 16px;
+			overflow: hidden;
+
+			@include mq-down(lg) {
+				margin-top: 44px;
+			}
+
+			&--title {
+				padding: 16px 24px;
+			}
+
+			&--item {
+				&:first-child {
+					border: none;
+				}
+			}
+		}
+	}
+
+	svg {
+		g {
+			path {
+				fill: var(--background-default);
+			}
+		}
+	}
+
 	&--illustration {
 		position: absolute;
 		right: 80px;
 		top: -144px;
 		animation: bounce-down 0.6s $animation-curve-swoosh forwards;
+
+		&:active {
+			animation: bounce-down-click 0.6s $animation-curve-swoosh forwards;
+		}
 
 		@include mq-down(lg) {
 			right: 24px;

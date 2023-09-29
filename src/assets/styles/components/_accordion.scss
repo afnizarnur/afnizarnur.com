@@ -1,4 +1,4 @@
-.process-accordion {
+.accordion {
 	details summary::-webkit-details-marker {
 		display: none;
 	}
@@ -13,7 +13,7 @@
 		}
 
 		&[open] {
-			.process-accordion--title {
+			.accordion--title {
 				.icon--chevron-down {
 					transform: rotate(180deg);
 				}
