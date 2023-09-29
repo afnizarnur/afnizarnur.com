@@ -4,10 +4,12 @@
 	}
 
 	&--content {
-		margin: 144px 0px 144px 0px;
+		padding: 144px 0px 144px 0px;
+		position: relative;
+		overflow: hidden;
 
 		@include mq-down(lg) {
-			margin: 64px 0px 64px 0px;
+			padding: 64px 0px 64px 0px;
 		}
 
 		.headline-container {
@@ -29,6 +31,19 @@
 			.subtitle {
 				max-width: 616px;
 			}
+		}
+	}
+
+	&--illustration {
+		position: absolute;
+		right: 80px;
+		top: -144px;
+		animation: bounce-down 0.6s $animation-curve-swoosh forwards;
+
+		@include mq-down(lg) {
+			right: 24px;
+			top: -64px;
+			animation: bounce-down-lg 0.6s $animation-curve-swoosh forwards;
 		}
 	}
 }
