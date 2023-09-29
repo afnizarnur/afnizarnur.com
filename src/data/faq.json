@@ -1,0 +1,26 @@
+[
+	{
+		"question": "Are you currently available for freelance?",
+		"answer": "Yes, I'm currently open for freelance opportunities.",
+		"open": true
+	},
+	{
+		"question": "Do you enjoy designing presentations?",
+		"answer": "Certainly! I enjoy designing presentations, especially for talks and workshops. Crafting engaging visual narratives is something I take pride in. If you need help with your presentation, I'd be more than happy to help!",
+		"open": false
+	},
+	{
+		"question": "Are you open to relocation if it's full-time job?",
+		"answer": "Yes, I'm open to relocation for the right opportunity. Exploring new places and cultures while pursuing meaningful work is something I look forward to.",
+		"open": false
+	},
+	{
+		"question": "Are you open to collaborate in open source design projects?",
+		"answer": "I'm open to collaborating on open source design projects. In fact, I've contributed to some fantastic open source projects in the past, such as designing docs for Sinon.JS. I believe in the power of open source communities and am always eager to lend my skills and support.",
+		"open": false
+	},
+	{
+		"question": "Do you offer post-design support after the project is completed?",
+		"answer": "Yes, after the project is completed, I offer a reasonable number of revisions to ensure you completely satisfied with the final outcome."
+	}
+]

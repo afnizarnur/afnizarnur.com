@@ -1,5 +1,6 @@
 .work,
-.about {
+.about,
+.contact {
 	&--header-empty {
 		height: 144px;
 		grid-row: 1;
@@ -14,7 +15,7 @@
 		position: sticky;
 		top: 0;
 		grid-row: 2;
-		z-index: 10;
+		z-index: 99;
 
 		@include mq-down(lg) {
 			grid-row: 1;
@@ -48,6 +49,6 @@
 	span.block {
 		height: 36px;
 		width: 100%;
-		display: inline-block;
+		display: flex;
 	}
 }
