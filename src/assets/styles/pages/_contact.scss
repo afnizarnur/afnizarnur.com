@@ -61,7 +61,6 @@
 					li {
 						width: 100%;
 						margin: 0;
-						border-radius: 0;
 
 						&:hover {
 							text-decoration: underline;
@@ -69,7 +68,7 @@
 						}
 
 						a {
-							padding: 16px 16px 16px 16px;
+							padding: 16px 16px 20px 16px;
 							width: 100%;
 						}
 					}
