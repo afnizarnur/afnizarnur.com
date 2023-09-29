@@ -6,10 +6,6 @@
  * @desc Theme picker component
  */
 
-const SELECTORS = {
-	toggleBtn: ".js-themepicker-toggle"
-}
-
 const CLASSES = {
 	open: "is-open",
 	active: "is-active"
@@ -21,7 +17,7 @@ class ThemePicker {
 	constructor() {
 		this.activeTheme = "default"
 		this.hasLocalStorage = typeof Storage !== "undefined"
-		this.toggleBtn = document.querySelector(SELECTORS.toggleBtn)
+		this.toggleBtn = document.querySelector(".js-themepicker-toggle")
 		this.toggleBtnMenu = document.querySelector(
 			".js-themepicker-toggle-menu"
 		)
@@ -46,19 +42,25 @@ class ThemePicker {
 
 	bindEvents() {
 		// Main navigation
-		this.toggleBtn.addEventListener("click", () =>
-			this.themeRoller(this.activeTheme)
-		)
+		if (this.toggleBtn) {
+			this.toggleBtn.addEventListener("click", () =>
+				this.themeRoller(this.activeTheme)
+			)
+		}
 
 		// Mobile menu
-		this.toggleBtnMenu.addEventListener("click", () =>
-			this.themeRoller(this.activeTheme)
-		)
+		if (this.toggleBtnMenu) {
+			this.toggleBtnMenu.addEventListener("click", () =>
+				this.themeRoller(this.activeTheme)
+			)
+		}
 
 		// Illustration contact
-		this.toggleBtnContact.addEventListener("click", () =>
-			this.themeRoller(this.activeTheme)
-		)
+		if (this.toggleBtnContact) {
+			this.toggleBtnContact.addEventListener("click", () =>
+				this.themeRoller(this.activeTheme)
+			)
+		}
 	}
 
 	themeRoller(theme) {
