@@ -1,37 +1,26 @@
 [
 	{
 		"question": "Are you currently available for freelance?",
-		"answer": "Office ipsum you must be muted. Savvy this driving solutionize regroup. Intersection more elephant functional three world. I'm bake rehydrate thought alarming my get churning note invested. Strategy air highlights dogpile due options need.",
+		"answer": "Yes, I'm currently open for freelance opportunities.",
 		"open": true
 	},
 	{
-		"question": "Do you open designing presentation?",
-		"answer": "Office ipsum you must be muted. Savvy this driving solutionize regroup. Intersection more elephant functional three world. I'm bake rehydrate thought alarming my get churning note invested. Strategy air highlights dogpile due options need.",
+		"question": "Do you enjoy designing presentations?",
+		"answer": "Certainly! I enjoy designing presentations, especially for talks and workshops. Crafting engaging visual narratives is something I take pride in. If you need help with your presentation, I'd be more than happy to help!",
 		"open": false
 	},
 	{
-		"question": "Are you open for relocation?",
-		"answer": "Office ipsum you must be muted. Savvy this driving solutionize regroup. Intersection more elephant functional three world. I'm bake rehydrate thought alarming my get churning note invested. Strategy air highlights dogpile due options need.",
+		"question": "Are you open to relocation if it's full-time job?",
+		"answer": "Yes, I'm open to relocation for the right opportunity. Exploring new places and cultures while pursuing meaningful work is something I look forward to.",
 		"open": false
 	},
 	{
 		"question": "Are you open to collaborate in open source design projects?",
-		"answer": "Office ipsum you must be muted. Savvy this driving solutionize regroup. Intersection more elephant functional three world. I'm bake rehydrate thought alarming my get churning note invested. Strategy air highlights dogpile due options need.",
+		"answer": "I'm open to collaborating on open source design projects. In fact, I've contributed to some fantastic open source projects in the past, such as designing docs for Sinon.JS. I believe in the power of open source communities and am always eager to lend my skills and support.",
 		"open": false
 	},
 	{
-		"question": "What industries do you have experience working with?",
-		"answer": "Office ipsum you must be muted. Savvy this driving solutionize regroup. Intersection more elephant functional three world. I'm bake rehydrate thought alarming my get churning note invested. Strategy air highlights dogpile due options need.",
-		"open": false
-	},
-	{
-		"question": "What is the duration of the staff augmentation contract?",
-		"answer": "Office ipsum you must be muted. Savvy this driving solutionize regroup. Intersection more elephant functional three world. I'm bake rehydrate thought alarming my get churning note invested. Strategy air highlights dogpile due options need.",
-		"open": false
-	},
-	{
-		"question": "What is the duration of your onboarding process?",
-		"answer": "Office ipsum you must be muted. Savvy this driving solutionize regroup. Intersection more elephant functional three world. I'm bake rehydrate thought alarming my get churning note invested. Strategy air highlights dogpile due options need.",
-		"open": false
+		"question": "Do you offer post-design support after the project is completed?",
+		"answer": "Yes, after the project is completed, I offer a reasonable number of revisions to ensure you completely satisfied with the final outcome."
 	}
 ]
