@@ -11,19 +11,23 @@
 <r-cell class="b-left-right footer" span="3-12" span-s="row" span-lg="row">
     <span class="block b-bottom u-desktop-only"></span>
     <footer>
-        <div class="footer--content">
-            <h2 text-split letters-slide-up>
+        {% if not page
+            .url
+            .includes('/contact/') %}
 
-                {% if page
-                    .url
-                    .includes('/work/') %}
+            <div class="footer--content">
+                <h2 text-split letters-slide-up>
+
+                    {% if page
+                        .url
+                        .includes('/work/') %}
                 Thanks for scrolling,
                 <br/>
                 Do you like what you see?
 
                  {% elif page
-                        .url
-                        .includes('/about/') %}
+                            .url
+                            .includes('/about/') %}
                 Nice to meet you here!                
                 <br/>
                 Feel free to reach out
@@ -35,26 +39,28 @@
 
                 {% endif %}
 
-            </h2>
-            <p class="subtitle">
+                </h2>
+                <p class="subtitle">
                 I am always open to new opportunities and collaborations. If you
                 have any questions or need help with a project,
                 <span data-umami-event="footer-copy-email" tabindex="0" class="copy-email" onclick="event.preventDefault()"
                     >reach out to me via email{% icon "copy" %}
-                </span>
-            </p>
-        </div>
-        <div class="footer--social b-top">
-            <p>
+                    </span>
+                </p>
+            </div>
+            <div class="footer--social b-top">
+                <p>
                 Follow me for more thoughts and updates on
                 <a data-umami-event="footer-threads" href="https://www.threads.net/@afnizar_nur">Threads</a>,
                 <a data-umami-event="footer-figma" href="https://www.figma.com/@afnizarnur">Figma</a>,
                 <a data-umami-event="footer-ig" href="https://www.instagram.com/afnizar_nur/">Instagram</a>,
                 <a data-umami-event="footer-github" href="https://github.com/afnizarnur">GitHub</a>, and
                 <a data-umami-event="footer-linkedin" href="https://www.linkedin.com/in/afnizarnur/">LinkedIn</a>
-            </p>
-        </div>
-        <div class="footer--version b-top">
+                </p>
+            </div>
+
+        {% endif %}
+        <div class="footer--version {% if not page.url.includes('/contact/') %}b-top{% endif %} {% if page.url.includes('/contact/') %}footer-mini{% endif %}">
             <ul class="list">
                 <li>
                     <p>See previous versions of this site</p>
