@@ -39,17 +39,21 @@
 
 	&__nav-list {
 		margin: 0;
-		padding: 0px 16px;
 		position: relative;
 		text-align: left;
+		padding: 0 16px;
 
 		h2 {
+			margin: 0;
+		}
+
+		a {
+			padding: 1.5rem 0px;
 			margin: 0;
 		}
 	}
 
 	&__nav-list-item {
-		padding: 1.5rem 0px;
 		border-bottom: 1px solid var(--border-default);
 		a {
 			color: var(--text-primary);
