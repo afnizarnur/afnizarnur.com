@@ -45,6 +45,16 @@
 			}
 		}
 
+		ol {
+			margin-bottom: 1.5rem;
+
+			li {
+				list-style-type: decimal;
+				color: var(--text-secondary);
+				margin-left: 24px;
+			}
+		}
+
 		figure {
 			margin-top: 64px;
 			margin-bottom: 64px;
