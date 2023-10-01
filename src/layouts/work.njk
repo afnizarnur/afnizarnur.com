@@ -3,34 +3,34 @@ layout: base
 ---
 
 <div class="container work">
-    <r-grid columns="12" columns-s="4">
-        {% include "header.njk" %}
-        {% include "work/header.njk" %}
+	<r-grid columns="12" columns-s="4">
+		{% include "header.njk" %}
+		{% include "work/header.njk" %}
 
-        <r-cell
-            class="b-left-bottom work--title-intro"
+		<r-cell
+            class="b-lb work--title-intro"
             span="1-2"
             span-s="row"
             span-lg="row"
         >
-            <div class="b-bottom work--section-title">
-                <small aria-hidden="true">Content</small>
-            </div>
-        </r-cell>
+			<div class="b-b work--section-title">
+				<small aria-hidden="true">Content</small>
+			</div>
+		</r-cell>
 
-        <r-cell
-            class="b-left-right-bottom content"
+		<r-cell
+            class="b-lrb content"
             span="3-12"
             span-s="row"
             span-lg="row"
         >
-            <span class="block b-bottom u-desktop-only"></span>
-            <div class="content--content">
-                {{ content | safe }}
-            </div>
-        </r-cell>
+			<span class="block b-b u-desktop-only"></span>
+			<div class="content--content">
+				{{ content | safe }}
+			</div>
+		</r-cell>
 
-        {% include "work/other-work.njk" %}
-        {% include "footer.njk" %}
-    </r-grid>
+		{% include "work/other-work.njk" %}
+		{% include "footer.njk" %}
+	</r-grid>
 </div>
