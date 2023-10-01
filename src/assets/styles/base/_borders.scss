@@ -4,77 +4,72 @@
 		border-style: solid;
 		border-color: var(--border-default);
 	}
-	&-left {
+	&-l {
 		border-width: 0px 0px 0px 1px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-left-bottom {
-		border-width: 0px 0px 1px 1px;
+	&-t {
+		border-width: 1px 0px 0px 0px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
-
-	&-bottom {
+	&-b {
 		border-width: 0px 0px 1px 0px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-right {
+	&-r {
 		border-width: 0px 1px 0px 0px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-left-right {
+	&-lb {
+		border-width: 0px 0px 1px 1px;
+		border-style: solid;
+		border-color: var(--border-default);
+	}
+
+	&-lr {
 		border-width: 0px 1px 0px 1px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-left-right-top {
+	&-lrt {
 		border-width: 1px 1px 0px 1px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-left-top {
+	&-lt {
 		border-width: 1px 0px 0px 1px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-right-top {
+	&-rt {
 		border-width: 1px 1px 0px 0px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-left-right-bottom {
+	&-lrb {
 		border-width: 0px 1px 1px 1px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-top-bottom {
+	&-tb {
 		border-width: 1px 0px 1px 0px;
 		border-style: solid;
 		border-color: var(--border-default);
 	}
 
-	&-top {
-		border-width: 1px 0px 0px 0px;
-		border-style: solid;
-		border-color: var(--border-default);
-	}
-	&-bottom {
-		border-width: 0px 0px 1px 0px;
-		border-style: solid;
-		border-color: var(--border-default);
-	}
-	&-bottom-top {
+	&-bt {
 		border-width: 1px 0px 1px 0px;
 		border-style: solid;
 		border-color: var(--border-default);

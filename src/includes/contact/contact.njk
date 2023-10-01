@@ -1,21 +1,21 @@
 <r-cell
-	class="b-left-bottom work--title-intro"
+	class="b-lb work--title-intro"
 	span="1-2"
 	span-s="row"
 	span-lg="row"
 >
-	<div class="b-bottom work--section-title">
+	<div class="b-b work--section-title">
 		<small aria-hidden="true">Contact</small>
 	</div>
 </r-cell>
 
 <r-cell
-	class="b-left-right-bottom contact"
+	class="b-lrb contact"
 	span="3-12"
 	span-s="row"
 	span-lg="row"
 >
-	<span class="block b-bottom u-desktop-only"></span>
+	<span class="block b-b u-desktop-only"></span>
 	<div class="contact--content">
 		<div class="headline-container">
 			<div class="headline">
@@ -62,7 +62,7 @@
 					</g>
 					<defs>
 						<clipPath id="a">
-							<path fill="#fff" d="M0 0h217v406H0z" />
+							<path fill="#fff" d="M0 0h217v406H0z"/>
 						</clipPath>
 					</defs>
 				</svg>
@@ -82,7 +82,7 @@
 
 			<div class="accordion">
 				{% for items in faq %}
-				<details
+					<details
 					class="accordion--item"
 					{%
 					if
@@ -91,18 +91,18 @@
 					endif
 					%}
 				>
-					<summary class="accordion--title">
-						<p class="body-large">
-							{{ items.question }}
-						</p>
-						{% icon "chevron-down" %}
-					</summary>
-					<div class="accordion--content">
-						<p>
-							{{ items.answer }}
-						</p>
-					</div>
-				</details>
+						<summary class="accordion--title">
+							<p class="body-large">
+								{{ items.question }}
+							</p>
+							{% icon "chevron-down" %}
+						</summary>
+						<div class="accordion--content">
+							<p>
+								{{ items.answer }}
+							</p>
+						</div>
+					</details>
 				{% endfor %}
 			</div>
 		</div>

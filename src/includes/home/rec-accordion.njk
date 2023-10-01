@@ -1,59 +1,59 @@
 <r-cell
-    class="b-left-bottom work--title-intro"
+    class="b-lb work--title-intro"
     span="1-2"
     span-s="row"
     span-lg="row"
 >
-    <div class="b-bottom work--section-title">
-        <small aria-hidden="true">Recommendation</small>
-    </div>
+	<div class="b-b work--section-title">
+		<small aria-hidden="true">Recommendation</small>
+	</div>
 </r-cell>
 
-<r-cell class="b-left-right-bottom recommendation" span="3-12" span-s="row" span-lg="row">
-    <span class="block b-bottom u-desktop-only"></span>
-    <div class="skills--content">
-        <div class="title">
-            <h2 text-split letters-slide-up>Read what they say</h2>
-        </div>
+<r-cell class="b-lrb recommendation" span="3-12" span-s="row" span-lg="row">
+	<span class="block b-b u-desktop-only"></span>
+	<div class="skills--content">
+		<div class="title">
+			<h2 text-split letters-slide-up>Read what they say</h2>
+		</div>
 
-        <div class="recommendation--accordion">
+		<div class="recommendation--accordion">
 
-            <div class="accordion-wrapper {% if recommendation.length > 4 %}hidden{% endif %}">
-                <div class="accordion-inner">
-                    {% for items in recommendation %}
-                        <div class="accordion-slide">
-                            <blockquote>{{ items.content }}</blockquote>
-                            <cite>
-                                {% if items.image %}
-                                    {% image 'recommendation/'+items.image, items.name, "(min-width: 1440px) 100vw, 50vw", 40, 40  %}
-                                {% endif %}
+			<div class="accordion-wrapper {% if recommendation.length > 4 %}hidden{% endif %}">
+				<div class="accordion-inner">
+					{% for items in recommendation %}
+						<div class="accordion-slide">
+							<blockquote>{{ items.content }}</blockquote>
+							<cite>
+								{% if items.image %}
+									{% image 'recommendation/'+items.image, items.name, "(min-width: 1440px) 100vw, 50vw", 40, 40  %}
+								{% endif %}
 
-                                <div>
-                                    <p class="bold">
-                                        {{ items.name }}
-                                    </p>
-                                    <small>
-                                        {{ items.role }}
+								<div>
+									<p class="bold">
+										{{ items.name }}
+									</p>
+									<small>
+										{{ items.role }}
 
-                                        {% if items.company %}
+										{% if items.company %}
                                          at {{ items.company }}
-                                        {% endif %}
-                                    </small>
-                                </div>
-                            </cite>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% if recommendation.length > 4 %}
-                <div class="show-more">
-                    <span tabindex="0" data-umami-event="recommendation-view-all" class="show-more-link">
+										{% endif %}
+									</small>
+								</div>
+							</cite>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			{% if recommendation.length > 4 %}
+				<div class="show-more">
+					<span tabindex="0" data-umami-event="recommendation-view-all" class="show-more-link">
                         View all word by friends, colleagues, and clients{% icon "chevron-down" %}
-                    </span>
-                </div>
-            {% endif %}
+					</span>
+				</div>
+			{% endif %}
 
-        </div>
+		</div>
 
-    </div>
+	</div>
 </r-cell>
