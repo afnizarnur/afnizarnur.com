@@ -76,17 +76,24 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 	}
 
-	Draggable.create(".pic-frame-history", {
+	Draggable.create(".picture-history .pic-frame", {
 		type: "x,y",
 		edgeResistance: 0.65,
 		bounds: document.querySelector(".picture-container.picture-history"),
 		zIndexBoost: false
 	})
 
-	Draggable.create(".pic-frame-speaking", {
+	Draggable.create(".picture-speaking .pic-frame", {
 		type: "x,y",
 		edgeResistance: 0.65,
 		bounds: document.querySelector(".picture-container.picture-speaking"),
+		zIndexBoost: false
+	})
+
+	Draggable.create(".picture-comp .pic-frame", {
+		type: "x,y",
+		edgeResistance: 0.65,
+		bounds: document.querySelector(".picture-container.picture-comp"),
 		zIndexBoost: false
 	})
 
