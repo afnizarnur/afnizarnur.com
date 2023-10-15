@@ -42,26 +42,26 @@
 		"id": "pink",
 		"name": "Pink",
 		"colors": {
-			"backgroundDefault": "#FFEFF8",
-			"textPrimary": "#3C0023",
-			"textSecondary": "#740043",
-			"textDisabled": "#AC0064",
-			"borderDefault": "#FFC6E7",
-			"surfaceDefault": "#FFEAF6",
-			"textInverseSubdued": "#FF8ECF"
+			"backgroundDefault": "#191A1B",
+			"textPrimary": "#FFC6E7",
+			"textSecondary": "#FFC6E7",
+			"textDisabled": "#A1A5A7",
+			"borderDefault": "#404345",
+			"surfaceDefault": "#2F3032",
+			"textInverseSubdued": "#A1A5A7"
 		}
 	},
 	{
 		"id": "blue",
 		"name": "Blue",
 		"colors": {
-			"backgroundDefault": "#E0F5FD",
-			"textPrimary": "#042A36",
-			"textSecondary": "#042A36",
-			"textDisabled": "#0C7A9F",
-			"borderDefault": "#94DEF7",
-			"surfaceDefault": "#F3FBFE",
-			"textInverseSubdued": "#94DEF7"
+			"backgroundDefault": "#191A1B",
+			"textPrimary": "#94DEF7",
+			"textSecondary": "#BAEAFA",
+			"textDisabled": "#A1A5A7",
+			"borderDefault": "#404345",
+			"surfaceDefault": "#2F3032",
+			"textInverseSubdued": "#A1A5A7"
 		}
 	}
 ]
