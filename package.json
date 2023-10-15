@@ -59,6 +59,7 @@
 		"cross-env": "^7.0.3",
 		"dotenv-webpack": "^8.0.1",
 		"eleventy-plugin-page-assets": "github:maxboeck/eleventy-plugin-page-assets",
+		"plur": "^5.1.0",
 		"prettier": "^2.8.8"
 	}
 }

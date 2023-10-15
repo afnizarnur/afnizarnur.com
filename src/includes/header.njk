@@ -18,19 +18,18 @@
     span-s="row"
     span-lg="row"
 >
-	<header class="header b-b" role="banner">
-		<div class="header--inner">
-			<div class="header--branding">
-				<p class="body-large">
-					<a class="logo" href="{{ '/' | url }}">
-						{% image "afnizar-nur-ghifari.png", "Afnizar Nur
-                        Ghifari", "(min-width: 1440px) 100vw, 50vw", 36, 36  %}
-					</a>
-				</p>
-			</div>
-			<div class="header--nav">{% include "nav.njk" %}</div>
-		</div>
-	</header>
+    <header class="header b-b" role="banner">
+        <div class="header--inner">
+            <div class="header--branding">
+                <p class="body-large">
+                    <a class="logo" href="{{ '/' | url }}">
+                        <img src="{{ '/assets/images/afnizar-nur-ghifari.png' | url }}" alt="Afnizar Nur Ghifari" height="36" width="36" decoding="async"/>
+                    </a>
+                </p>
+            </div>
+            <div class="header--nav">{% include "nav.njk" %}</div>
+        </div>
+    </header>
 </r-cell>
 
 {% include "nav-mobile.njk" %}

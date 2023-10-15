@@ -17,7 +17,7 @@
 >
 	<span class="block b-b u-desktop-only"></span>
 	<div class="selected-work--content work">
-		<h2 text-split letters-slide-up>View all work</h2>
+		<h1 text-split letters-slide-up>View all work</h1>
 
 		{% for year, yearWorks in collections.worksByYear %}
 			<h2 class="year-title">{{ year }}</h2>
@@ -59,7 +59,9 @@
 							<ul>
 								{% for i in item.data.tags %}
 									<li>
-										<small class="badge badge-tags helper">{{ i }}</small>
+										<a href="{{ '/work/tags/' + i | url }}">
+											<small class="badge badge-tags helper">{{ i }}</small>
+										</a>
 									</li>
 								{% endfor %}
 							</ul>

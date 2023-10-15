@@ -26,6 +26,11 @@ module.exports = {
 		return array.find((i) => i.id === id)
 	},
 
+	pluralize: async function (num, word) {
+		let plur = (await import("plur")).default
+		return num + " " + plur(word, num)
+	},
+
 	slice: function (array, start, end) {
 		return end ? array.slice(start, end) : array.slice(start)
 	},

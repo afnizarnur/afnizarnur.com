@@ -27,6 +27,16 @@ layout: base
 			<span class="block b-b u-desktop-only"></span>
 			<div class="content--content">
 				{{ content | safe }}
+
+				<ul class="tag-list">
+					{% for i in tags %}
+						<li>
+							<a href="{{ '/work/tags/' + i | url }}">
+								<small class="badge badge-tags helper">{{ i }}</small>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
 			</div>
 		</r-cell>
 

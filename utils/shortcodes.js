@@ -17,30 +17,34 @@ module.exports = {
 		let path = "src/assets/images/" + src
 		console.log(`Generating image(s) from: ${path}`)
 
-		let metadata = await Image(path, {
-			widths: [480, 768, "auto"],
-			formats: ["webp"],
-			urlPath: "/assets/images/",
-			outputDir: "./dist/assets/images/"
-		})
+		try {
+			let metadata = await Image(path, {
+				widths: [480, 768, "auto"],
+				formats: ["webp"],
+				urlPath: "/assets/images/",
+				outputDir: "./dist/assets/images/"
+			})
 
-		let imageAttributes = {
-			alt,
-			sizes,
-			loading: "lazy",
-			decoding: "async"
+			let imageAttributes = {
+				alt,
+				sizes,
+				loading: "lazy",
+				decoding: "async"
+			}
+
+			let imageHTML = Image.generateHTML(metadata, imageAttributes)
+
+			if (width && height) {
+				let $ = cheerio.load(imageHTML)
+				let imgElement = $("img")
+				imgElement.attr("width", width)
+				imgElement.attr("height", height)
+				imageHTML = $.html()
+			}
+
+			return imageHTML
+		} catch (error) {
+			return ""
 		}
-
-		let imageHTML = Image.generateHTML(metadata, imageAttributes)
-
-		if (width && height) {
-			let $ = cheerio.load(imageHTML)
-			let imgElement = $("img")
-			imgElement.attr("width", width)
-			imgElement.attr("height", height)
-			imageHTML = $.html()
-		}
-
-		return imageHTML
 	}
 }
