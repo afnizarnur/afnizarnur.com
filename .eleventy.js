@@ -106,19 +106,6 @@ module.exports = function (config) {
 			.sort((a, b) => b.date - a.date)
 	})
 
-	// Return all the tags used in a collection
-	config.addFilter("getAllTags", (collection) => {
-		let tagSet = new Set()
-		for (let item of collection) {
-			;(item.data.tags || []).forEach((tag) => tagSet.add(tag))
-		}
-		return Array.from(tagSet)
-	})
-
-	config.addFilter("filterTagList", function filterTagList(tags) {
-		return (tags || []).filter((tag) => ["works"].indexOf(tag) === -1)
-	})
-
 	// Base Config
 	return {
 		dir: {

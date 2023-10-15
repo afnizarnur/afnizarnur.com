@@ -39,5 +39,19 @@ module.exports = {
 		return allPosts.filter(
 			(post) => post.inputPath !== currentPost.inputPath
 		)
+	},
+
+	getAllTags: function (collection) {
+		let tagSet = new Set()
+		for (let item of collection) {
+			;(item.data.tags || []).forEach((tag) => tagSet.add(tag))
+		}
+		return Array.from(tagSet)
+	},
+
+	filterTagList: function (tags) {
+		return (tags || []).filter(
+			(tag) => ["all", "selected", "worksbyyear"].indexOf(tag) === -1
+		)
 	}
 }
