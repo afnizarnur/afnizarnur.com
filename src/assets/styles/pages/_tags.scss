@@ -1,0 +1,32 @@
+.big-tags {
+	display: flex;
+	padding: 0px 44px 0px 44px;
+	flex-direction: column;
+	gap: 24px;
+
+	@include mq-down(lg) {
+		padding: 0px 16px 0px 16px;
+	}
+
+	li {
+		display: flex;
+	}
+
+	a {
+		text-decoration: none;
+		padding: 0;
+		margin: 0;
+
+		&:hover {
+			background: none;
+
+			p {
+				text-decoration: underline;
+			}
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+}

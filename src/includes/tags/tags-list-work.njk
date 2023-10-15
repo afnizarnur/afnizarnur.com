@@ -1,0 +1,34 @@
+<r-cell
+    class="b-lb work--title-intro"
+    span="1-2"
+    span-s="row"
+    span-lg="row"
+>
+    <div class="b-b work--section-title">
+        <small aria-hidden="true">Content</small>
+    </div>
+</r-cell>
+
+<r-cell
+    class="b-lrb selected-work"
+    span="3-12"
+    span-s="row"
+    span-lg="row"
+>
+    <span class="block b-b u-desktop-only"></span>
+    <div class="selected-work--content work">
+        <h1 text-split letters-slide-up>View all work tags</h1>
+
+        <ul class="big-tags">
+            {% for tag in collections.works | getAllTags | filterTagList %}
+                {% set tagUrl %}/work/tags/{{ tag | slugify }}/{% endset %}
+                <li>
+                    <a href="{{ tagUrl }}">
+                        <p class="body-large badge badge-tags helper">{{ tag }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</r-cell>
