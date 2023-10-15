@@ -176,17 +176,27 @@
 			height: auto;
 		}
 
-		// figure {
-		// 	margin-top: 64px;
-		// 	margin-bottom: 64px;
+		ul.tag-list {
+			display: inline-flex;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
 
-		// 	@include mq-down(lg) {
-		// 		margin: 44px 0px 44px 0px;
-		// 	}
+			li {
+				margin-right: 4px;
+			}
 
-		// 	img {
-		// 		margin-bottom: 12px;
-		// 	}
-		// }
+			a {
+				text-decoration: none;
+				padding: 0;
+				margin: 0;
+
+				&:hover {
+					small {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
 	}
 }

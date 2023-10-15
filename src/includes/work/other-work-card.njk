@@ -24,7 +24,9 @@
                     <ul>
                         {% for i in previousPost.data.tags %}
                             <li>
-                                <small class="badge badge-tags helper">{{ i }}</small>
+                                <a href="{{ '/work/tags/' + i | url }}">
+                                    <small class="badge badge-tags helper">{{ i }}</small>
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -51,7 +53,9 @@
                     <ul>
                         {% for i in lastPost.data.tags %}
                             <li>
-                                <small class="badge badge-tags helper">{{ i }}</small>
+                                <a href="{{ '/work/tags/' + i | url }}">
+                                    <small class="badge badge-tags helper">{{ i }}</small>
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -80,7 +84,9 @@
                     <ul>
                         {% for i in nextPost.data.tags %}
                             <li>
-                                <small class="badge badge-tags helper">{{ i }}</small>
+                                <a href="{{ '/work/tags/' + i | url }}">
+                                    <small class="badge badge-tags helper">{{ i }}</small>
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -107,7 +113,9 @@
                     <ul>
                         {% for i in firstPost.data.tags %}
                             <li>
-                                <small class="badge badge-tags helper">{{ i }}</small>
+                                <a href="{{ '/work/tags/' + i | url }}">
+                                    <small class="badge badge-tags helper">{{ i }}</small>
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>

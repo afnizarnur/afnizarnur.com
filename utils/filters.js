@@ -26,6 +26,11 @@ module.exports = {
 		return array.find((i) => i.id === id)
 	},
 
+	pluralize: async function (num, word) {
+		let plur = (await import("plur")).default
+		return num + " " + plur(word, num)
+	},
+
 	slice: function (array, start, end) {
 		return end ? array.slice(start, end) : array.slice(start)
 	},
@@ -33,6 +38,20 @@ module.exports = {
 	excludePost: function (allPosts, currentPost) {
 		return allPosts.filter(
 			(post) => post.inputPath !== currentPost.inputPath
+		)
+	},
+
+	getAllTags: function (collection) {
+		let tagSet = new Set()
+		for (let item of collection) {
+			;(item.data.tags || []).forEach((tag) => tagSet.add(tag))
+		}
+		return Array.from(tagSet)
+	},
+
+	filterTagList: function (tags) {
+		return (tags || []).filter(
+			(tag) => ["all", "selected", "worksbyyear"].indexOf(tag) === -1
 		)
 	}
 }

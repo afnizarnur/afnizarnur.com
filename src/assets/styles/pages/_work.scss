@@ -2,6 +2,10 @@
 	&.selected-work--content {
 		h1 {
 			margin: 0px 44px 64px 44px;
+
+			@include mq-down(lg) {
+				margin: 0px 16px 44px 16px;
+			}
 		}
 		h2 {
 			&.year-title {

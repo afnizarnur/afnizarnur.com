@@ -1,0 +1,24 @@
+---
+layout: base
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+  filter:
+    - all
+    - works
+    - worksbyyear
+    - selected
+eleventyComputed:
+  title: "{{ collections[tag].length | pluralize('work') }} tagged with {{ tag }}"
+permalink: /work/tags/{{ tag | slugify }}/
+---
+
+<div class="container work">
+  <r-grid columns="12" columns-s="4">
+    {% include "header.njk" %}
+    {% include "tags/tags-work.njk" %}
+    {% include "footer/footer.njk" %}
+  </r-grid>
+</div>

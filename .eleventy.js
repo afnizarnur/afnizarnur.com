@@ -85,7 +85,7 @@ module.exports = function (config) {
 	})
 
 	// Collections: Works by year
-	config.addCollection("worksByYear", (collection) => {
+	config.addCollection("worksbyyear", (collection) => {
 		return lodash
 			.chain(collection.getFilteredByGlob(CONTENT_GLOBS.works))
 			.filter(
