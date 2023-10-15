@@ -19,7 +19,7 @@
 	<div class="selected-work--content work">
 		<h1 text-split letters-slide-up>View all work</h1>
 
-		{% for year, yearWorks in collections.worksByYear %}
+		{% for year, yearWorks in collections.worksbyyear %}
 			<h2 class="year-title">{{ year }}</h2>
 			{% for item in yearWorks | reverse %}
 				<div class="selected-work--item">

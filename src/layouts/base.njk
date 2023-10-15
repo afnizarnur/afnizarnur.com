@@ -29,7 +29,10 @@
         <script>
             {% include "initialtheme.njk" %}
         </script>
-        <script async src="https://analytics.umami.is/script.js" data-website-id="cc3e0e53-f632-4b18-9634-a422d703728e"></script>
+
+        {% if IS_PRODUCTION %}
+            <script async src="https://analytics.umami.is/script.js" data-website-id="cc3e0e53-f632-4b18-9634-a422d703728e"></script>
+        {% endif %}
     </head>
     <body>
         {% iconsprite %}
