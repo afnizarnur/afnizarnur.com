@@ -57,7 +57,8 @@
 
 			&:hover {
 				small {
-					text-decoration: underline;
+					color: var(--background-default);
+					background: var(--text-primary);
 				}
 			}
 		}

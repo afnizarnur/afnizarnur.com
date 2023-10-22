@@ -19,9 +19,10 @@
 
 		&:hover {
 			background: none;
-
 			p {
-				text-decoration: underline;
+				color: var(--background-default);
+				background: var(--text-primary);
+				border-radius: 99px;
 			}
 		}
 
