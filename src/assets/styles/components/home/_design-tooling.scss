@@ -1,11 +1,7 @@
 .design-tooling {
-	@include mq-down(lg) {
-		border-width: 0px 0px 1px 0px;
-	}
+	margin: 0px 0px 80px 0px;
 
 	&--content {
-		margin: 144px 0px 144px 0px;
-
 		.title {
 			margin: 0px 0px 64px 0px;
 
@@ -43,6 +39,8 @@
 
 	.thumbnail-wrapper {
 		display: flex;
+		justify-content: center;
+		overflow: hidden;
 		a {
 			padding: 0;
 			margin: 0;
@@ -58,10 +56,9 @@
 		img {
 			display: block;
 			width: 100%;
-			height: auto;
+			height: 320px;
 			object-fit: cover;
 			object-position: center;
-			text-align: center;
 		}
 	}
 
