@@ -18,10 +18,6 @@
 		column-gap: 1.5rem;
 		overflow: hidden;
 
-		@include mq-down(lg) {
-			padding: 0px 16px;
-		}
-
 		@include mq-down(sm) {
 			columns: 1 100px;
 		}

@@ -3,7 +3,7 @@
 		padding: 120px 0px;
 
 		@include mq-down(lg) {
-			padding: 64px 16px;
+			padding: 64px 24px;
 		}
 	}
 	&--social {
@@ -12,7 +12,7 @@
 		padding: 24px 0px;
 
 		@include mq-down(lg) {
-			padding: 24px 16px;
+			padding: 24px 24px;
 		}
 	}
 	&--version {
@@ -21,8 +21,7 @@
 		padding: 24px 0px;
 
 		@include mq-down(lg) {
-			padding: 24px 16px;
-			margin-bottom: 64px;
+			padding: 24px 24px;
 		}
 
 		&.footer-mini {
@@ -46,6 +45,7 @@
 
 			@include mq-down(lg) {
 				text-align: left;
+				margin-top: 16px;
 			}
 		}
 

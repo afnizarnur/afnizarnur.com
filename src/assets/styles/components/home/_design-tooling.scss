@@ -1,5 +1,9 @@
 .design-tooling {
-	margin: 0px 24px 120px 24px;
+	margin: 0px 0px 120px 0px;
+
+	@include mq-down(lg) {
+		margin: 0px 24px 120px 24px;
+	}
 
 	@include mq-down(sm) {
 		margin-bottom: 64px;

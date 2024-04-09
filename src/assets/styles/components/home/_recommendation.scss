@@ -1,17 +1,21 @@
 .recommendation {
 	margin: 0px 0px 0px 0px;
 
+	@include mq-down(lg) {
+		margin: 0px 24px 0px 24px;
+	}
+
 	&--content {
 		.title {
-			margin: 0px 0px 64px 0px;
+			margin: 0px 0px 44px 0px;
 
-			@include mq-down(lg) {
-				margin: 0px 16px 44px 16px;
+			@include mq-down(sm) {
+				margin: 0px 0px 24px 0px;
 			}
 		}
 
-		@include mq-down(lg) {
-			margin: 64px 0px;
+		h2 {
+			margin: 0px;
 		}
 	}
 }
