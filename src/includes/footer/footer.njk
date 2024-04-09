@@ -1,34 +1,14 @@
-<r-cell class="footer" span="2-11" span-s="row" span-lg="row">
-	<footer>
-		<div class="footer--content">
-			<h2 text-split letters-slide-up>
-				{% if page
-					.url
-					.includes('/work/') %} Thanks for scrolling,
-				<br/>
-				Do you like what you see? {% elif page
-						.url
-						.includes('/about/')
- %} Nice to meet you here!
-				<br/>
-				Feel free to reach out {% else %} Do you like what you see?
-				<br/>
-				Feel free to reach out {% endif %}
-			</h2>
-			<p class="subtitle">
-				I am always open to new opportunities and collaborations. If you
-				have any questions or need help with a project,
-				<span
-					data-umami-event="footer-copy-email"
-					tabindex="0"
-					class="copy-email"
-					onclick="event.preventDefault()"
-					>reach out to me via email{% icon "copy" %}
-				</span>
-			</p>
-		</div>
-		<div class="footer--social b-t">
-			<p>
+{# <r-grid columns="12" columns-s="4"> #}
+{# <r-cell class="footer" span="2-11" span-s="row" span-lg="row"> #}
+{# </r-cell> #}
+{# </r-grid> #}
+
+<footer>
+	<div class="footer--social b-b">
+		<div class="container">
+			<r-grid columns="12" columns-s="4">
+				<r-cell class="footer" span="2-11" span-s="row" span-lg="row">
+					<p>
 				Follow me for more thoughts and updates on
 				<a
 					data-umami-event="footer-threads"
@@ -55,45 +35,54 @@
 					href="https://www.linkedin.com/in/afnizarnur/"
 					>LinkedIn</a
 				>
-			</p>
+					</p>
+				</r-cell>
+			</r-grid>
 		</div>
+	</div>
 
-		<div
-			class="footer--version b-t"
+	<div
+			class="footer--version"
 		>
-			<ul class="list">
-				<li>
-					<p>See previous versions of this site</p>
-				</li>
-				<li>
-					<a
+		<div class="container">
+			<r-grid columns="12" columns-s="4">
+				<r-cell class="footer" span="2-11" span-s="row" span-lg="row">
+
+					<ul class="list">
+						<li>
+							<p>See previous versions of this site</p>
+						</li>
+						<li>
+							<a
 						data-umami-event="footer-2013"
 						href="{{ 'https://2013.afnizarnur.com/' | url }}"
 						>2013</a
 					>
-				</li>
-				<li>
-					<a
+						</li>
+						<li>
+							<a
 						data-umami-event="footer-2019"
 						href="{{ 'https://2019.afnizarnur.com/' | url }}"
 						>2019</a
 					>
-				</li>
-				<li>
-					<a
+						</li>
+						<li>
+							<a
 						data-umami-event="footer-2020"
 						href="{{ 'https://2020.afnizarnur.com/' | url }}"
 						>2020</a
 					>
-				</li>
-				<li>
-					<a
+						</li>
+						<li>
+							<a
 						data-umami-event="footer-2022"
 						href="{{ 'https://2022.afnizarnur.com/' | url }}"
 						>2022</a
 					>
-				</li>
-			</ul>
+						</li>
+					</ul>
+				</r-cell>
+			</r-grid>
 		</div>
-	</footer>
-</r-cell>
+	</div>
+</footer>
