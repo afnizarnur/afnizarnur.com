@@ -2,14 +2,17 @@
 	<div class="nav-sheet">
 		<div class="container">
 			<ul class="nav__nav-list">
-				{%- for item in collections.all | eleventyNavigation -%} {%- if
-				item.url -%} {%- set isCurrent = (item.url == page.url) -%} {%-
+				{%- for item in collections.all | eleventyNavigation -%}
+					{%- if
+				item.url -%}
+						{%- set isCurrent = (item.url == page.url) -%}
+						{%-
 				set isParent = item.url != '/' and item.url in page.url -%}
-				<li
+						<li
 					class="nav__nav-list-item {% if isCurrent or isParent %} {% endif %}"
 				>
-					<h2>
-						<a
+							<h2>
+								<a
 							href="{% if isCurrent %} {{
 								item.url | url
 							}} {% else %}{{ item.url | url }}{% endif %}"
@@ -22,11 +25,12 @@
 							endif
 							%}
 						>
-							{{ item.title }}
-						</a>
-					</h2>
-				</li>
-				{%- endif -%} {%- endfor -%}
+									{{ item.title }}
+								</a>
+							</h2>
+						</li>
+					{%- endif -%}
+				{%- endfor -%}
 			</ul>
 			<div class="nav__nav-footer-main">
 				<div class="nav__nav-footer">
