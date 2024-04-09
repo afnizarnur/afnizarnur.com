@@ -16,13 +16,12 @@
 
 		li {
 			display: flex;
-			border-radius: 0px 24px 0px 0px;
-			border-top: 1px solid var(--border-default);
-			border-right: 1px solid var(--border-default);
+			border-radius: 16px 16px 0px 0px;
+			border: 1px solid var(--border-default);
 			background: var(--background-default);
 
 			&:not(:first-child) {
-				margin-left: -16px;
+				margin-left: -24px;
 			}
 
 			&:nth-child(1) {
@@ -43,7 +42,7 @@
 
 			a {
 				white-space: nowrap;
-				padding: 24px 32px 64px 44px;
+				padding: 24px 24px 24px 36px;
 				text-decoration: none;
 				color: var(--text-primary);
 				font-weight: 520;

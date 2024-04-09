@@ -1,25 +1,18 @@
 .about {
-	@include mq-down(lg) {
-		border-width: 0px 0px 1px 0px;
-	}
-
 	&--content {
 		margin: 144px 0px 144px 0px;
 
 		@include mq-down(lg) {
-			margin: 64px 0px 64px 0px;
+			margin: 120px 0px 120px 0px;
+			padding: 0px 24px;
+		}
+
+		@include mq-down(sm) {
+			margin: 44px 0px 44px 0px;
 		}
 
 		&.introduction {
 			margin: 144px 0px 0px 0px;
-
-			hr {
-				margin: 0px 44px;
-
-				@include mq-down(lg) {
-					margin: 0px 16px 0px 16px;
-				}
-			}
 
 			@include mq-down(lg) {
 				margin: 64px 0px 0px 0px;
@@ -30,17 +23,18 @@
 			margin-bottom: 64px;
 
 			.headline {
-				margin: 0px 44px 44px 44px;
+				margin: 0px 0px 44px 0px;
 
 				@include mq-down(lg) {
-					margin: 0px 16px 0px 16px;
+					margin: 0px 0px 24px 0px;
 				}
 			}
 
 			&.introduction {
+				margin: 64px 0px;
+
 				@include mq-down(lg) {
-					margin: 64px 0px;
-					border: none;
+					margin: 44px 0px;
 				}
 
 				@include mq-down(sm) {
@@ -48,6 +42,8 @@
 				}
 
 				.headline {
+					margin: 0px;
+
 					h1 {
 						color: var(--text-inverse-subdued);
 						margin-bottom: 16px;
@@ -56,24 +52,17 @@
 						margin-top: 16px;
 						margin-bottom: 0px;
 					}
-
-					@include mq-down(sm) {
-						margin: 0px 16px 0px 16px;
-					}
 				}
 
 				p {
-					margin: 0px 44px 24px 44px;
-
-					@include mq-down(lg) {
-						margin: 0px 16px 24px 16px;
-					}
+					margin: 0px 0px 24px 0px;
 				}
 
 				img {
 					width: 100%;
 					height: auto;
-					margin: 0px 0px 44px 0px;
+					margin: 44px 0px 44px 0px;
+					border-radius: 16px;
 
 					@include mq-down(lg) {
 						margin: 24px 0px 24px 0px;
