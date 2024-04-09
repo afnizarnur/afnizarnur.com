@@ -4,7 +4,6 @@
 		position: fixed;
 		width: 100%;
 		height: 100%;
-		top: 111px;
 		left: 0;
 		z-index: 98;
 
@@ -19,6 +18,9 @@
 			background: var(--background-default);
 			transform: translateY(100vh);
 			transition: all 0.7s $animation-curve-default;
+			padding-top: 64px;
+			display: flex;
+			align-items: center;
 		}
 
 		&.is-open {
@@ -68,7 +70,7 @@
 
 	&__mobile-themebtn {
 		position: absolute;
-		bottom: 128px;
+		bottom: 16px;
 		margin: 0px 16px;
 	}
 }

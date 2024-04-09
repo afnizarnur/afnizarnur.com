@@ -1,5 +1,6 @@
 .userinfo {
 	background: var(--surface-default);
+	z-index: 100;
 
 	&--inner {
 		padding: 12px 0px;
