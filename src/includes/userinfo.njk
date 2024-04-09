@@ -1,4 +1,4 @@
-<div class="toolbar">
+<div class="userinfo">
     <div class="container">
         <r-grid columns="12" columns-s="4">
             <r-cell
@@ -6,8 +6,8 @@
                 span-s="row"
                 span-lg="row"
             >
-                <div class="toolbar--inner">
-                    <div class="toolbar--local-time-now-playing">
+                <div class="userinfo--inner">
+                    <div class="userinfo--local-time-now-playing">
                         <div class="local-time">
                             {% icon "clock" %}
                             <small>
@@ -17,7 +17,7 @@
                             {% icon "commit" %}
                             <a
 					href="https://github.com/afnizarnur"
-					data-umami-event="toolbar-commit-code"
+					data-umami-event="userinfo-commit-code"
 				>
                                 <small>
                                     {{ build.hash }}

@@ -9,10 +9,6 @@
 				margin: 0px 16px 44px 16px;
 			}
 		}
-
-		@include mq-down(lg) {
-			margin: 64px 0px;
-		}
 	}
 
 	&--item {

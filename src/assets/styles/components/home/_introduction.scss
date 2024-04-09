@@ -4,12 +4,16 @@
 
 		.headline {
 			@include mq-down(lg) {
-				margin: 0px 16px;
+				margin: 0px 24px;
 			}
 		}
 
 		@include mq-down(lg) {
-			margin-top: 64px;
+			margin: 120px 0px;
+		}
+
+		@include mq-down(sm) {
+			margin: 64px 0px;
 		}
 	}
 
@@ -19,8 +23,10 @@
 		gap: 12px;
 
 		@include mq-down(lg) {
-			margin: 16px 16px;
-			margin: 24px 16px 0px 16px;
+			margin: 32px 24px 0px 24px;
+		}
+
+		@include mq-down(sm) {
 			flex-direction: column;
 
 			a.button {
