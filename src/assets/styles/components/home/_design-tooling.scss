@@ -1,27 +1,27 @@
 .design-tooling {
-	margin: 0px 0px 80px 0px;
+	margin: 0px 24px 120px 24px;
+
+	@include mq-down(sm) {
+		margin-bottom: 64px;
+	}
 
 	&--content {
 		.title {
 			margin: 0px 0px 64px 0px;
 
 			@include mq-down(lg) {
-				margin: 0px 16px 44px 16px;
+				margin: 0px 0px 44px 0px;
 			}
 		}
 
-		@include mq-down(lg) {
-			margin: 64px 0px;
+		h2 {
+			margin: 0px 0px 24px 0px;
 		}
 	}
 
 	&--list-wrapper {
 		margin: 24px 0px 0px 0px;
 		gap: 24px;
-
-		@include mq-down(lg) {
-			margin: 24px 16px 0px 16px;
-		}
 
 		ul {
 			display: inline-flex;
@@ -59,6 +59,10 @@
 			height: 320px;
 			object-fit: cover;
 			object-position: center;
+
+			@include mq-down(lg) {
+				height: 280px;
+			}
 		}
 	}
 
