@@ -4,7 +4,7 @@
 		position: fixed;
 		width: 100%;
 		height: 100%;
-		top: 60px;
+		top: 111px;
 		left: 0;
 		z-index: 98;
 
@@ -19,10 +19,6 @@
 			background: var(--background-default);
 			transform: translateY(100vh);
 			transition: all 0.7s $animation-curve-default;
-			margin: 0px 12px;
-			border-width: 0px 1px 0px 1px;
-			border-style: solid;
-			border-color: var(--border-default);
 		}
 
 		&.is-open {
@@ -41,7 +37,6 @@
 		margin: 0;
 		position: relative;
 		text-align: left;
-		padding: 0 16px;
 
 		h2 {
 			margin: 0;
@@ -55,6 +50,8 @@
 
 	&__nav-list-item {
 		border-bottom: 1px solid var(--border-default);
+		padding: 0 24px;
+
 		a {
 			color: var(--text-primary);
 			text-decoration: none;
@@ -69,56 +66,9 @@
 		}
 	}
 
-	&__nav-footer-main {
+	&__mobile-themebtn {
 		position: absolute;
-		bottom: 60px;
-		padding-bottom: 16px;
-		padding-top: 16px;
-		width: inherit;
-
-		@include mq-down(md) {
-			width: 100%;
-			overflow: initial;
-			overflow-x: scroll;
-			padding-right: 24px;
-		}
-	}
-
-	&__nav-footer {
-		display: flex;
-		justify-content: space-between;
-		-webkit-justify-content: space-between;
-		align-items: center;
-
-		@include mq-down(md) {
-			display: inline-flex;
-		}
-
-		a {
-			color: var(--text-primary);
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-
-	&__nav-link {
-		display: flex;
-
-		.icon-button {
-			margin-left: 12px;
-			color: var(--text-primary);
-
-			svg {
-				width: 28px;
-				height: 28px;
-			}
-
-			&:hover {
-				box-shadow: 0px 0px 0px 2px var(--text-primary);
-			}
-		}
+		bottom: 128px;
+		margin: 0px 16px;
 	}
 }

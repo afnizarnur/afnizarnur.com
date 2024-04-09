@@ -7,7 +7,7 @@
 	z-index: 99;
 
 	@include mq-down(lg) {
-		padding: 12px 16px;
+		padding: 12px 24px;
 	}
 
 	&--inner {

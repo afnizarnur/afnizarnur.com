@@ -2,13 +2,6 @@
 
 body {
 	overflow-x: hidden;
-
-	@include mq-down(lg) {
-		margin: 0px 12px;
-		border-width: 0px 1px 0px 1px;
-		border-style: solid;
-		border-color: var(--border-default);
-	}
 }
 
 .layout {

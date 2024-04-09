@@ -32,24 +32,18 @@
 					{%- endif -%}
 				{%- endfor -%}
 			</ul>
-			<div class="nav__nav-footer-main">
-				<div class="nav__nav-footer">
-					<ul class="nav__nav-link">
-						<li>
-							<button
-								class="icon-button nav__themebtn js-themepicker-toggle-menu"
-								aria-expanded="false"
-								aria-controls="theme-menu"
-								data-umami-event="nav-theme-mobile"
-							>
-								<span class="sr-only"> Change Theme</span>
 
-								{% icon "color-wheel" %}
-							</button>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<button
+				class="icon-button nav__themebtn js-themepicker-toggle-menu nav__mobile-themebtn"
+				aria-expanded="false"
+				aria-controls="theme-menu"
+				data-umami-event="nav-theme-mobile"
+							>
+				<span class="sr-only"> Change Theme</span>
+
+				{% icon "color-wheel" %}
+			</button>
+
 		</div>
 	</div>
 </div>

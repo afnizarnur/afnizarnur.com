@@ -41,11 +41,7 @@
 		display: flex;
 
 		@include mq-down(lg) {
-			padding: 24px 16px;
-		}
-
-		@include mq-down(sm) {
-			flex-direction: column;
+			padding: 0px 24px;
 		}
 
 		small {
@@ -58,8 +54,9 @@
 			display: flex;
 			align-items: center;
 
-			@include mq-down(sm) {
-				margin-bottom: 16px;
+			small {
+				white-space: nowrap;
+				overflow: hidden;
 			}
 		}
 
@@ -69,7 +66,7 @@
 		}
 
 		.commit-code {
-			margin-left: 24px;
+			margin: 0px 24px;
 
 			a {
 				margin-left: 4px;
@@ -85,10 +82,6 @@
 					margin: 0;
 				}
 			}
-
-			@include mq-down(sm) {
-				margin-left: 0;
-			}
 		}
 
 		.now-playing {
@@ -97,6 +90,7 @@
 			@include mq-down(sm) {
 				margin-bottom: 0px;
 				margin-left: 0px;
+				display: none;
 			}
 
 			small {
@@ -108,6 +102,10 @@
 					margin: 0;
 					color: var(--text-disabled);
 					text-decoration: none;
+					max-width: 50ch;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
 
 					&:hover {
 						color: var(--background-default);
