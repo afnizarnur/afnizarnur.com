@@ -1,0 +1,35 @@
+<div class="toolbar">
+    <div class="container">
+        <r-grid columns="12" columns-s="4">
+            <r-cell
+                span="2-11"
+                span-s="row"
+                span-lg="row"
+            >
+                <div class="toolbar--inner">
+                    <div class="toolbar--local-time-now-playing">
+                        <div class="local-time">
+                            {% icon "clock" %}
+                            <small>
+                                <span id="local-time"></span> Serang, Indonesia</small>
+                        </div>
+                        <div class="commit-code">
+                            {% icon "commit" %}
+                            <a
+					href="https://github.com/afnizarnur"
+					data-umami-event="toolbar-commit-code"
+				>
+                                <small>
+                                    {{ build.hash }}
+                                </small>
+                            </a>
+                        </div>
+                        <div class="now-playing">
+                            <small id="current-song"></small>
+                        </div>
+                    </div>
+                </div>
+            </r-cell>
+        </r-grid>
+    </div>
+</div>

@@ -7,7 +7,7 @@
 		margin: 144px 0px 144px 0px;
 
 		.title {
-			margin: 0px 44px 64px 44px;
+			margin: 0px 0px 64px 0px;
 
 			@include mq-down(lg) {
 				margin: 0px 16px 44px 16px;
@@ -19,7 +19,7 @@
 		}
 
 		ul {
-			margin: 24px 44px 0px 44px;
+			margin: 24px 0px 0px 0px;
 
 			@include mq-down(lg) {
 				margin: 24px 16px 0px 16px;

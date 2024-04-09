@@ -1,7 +1,5 @@
-<r-cell class="b-lr footer" span="3-12" span-s="row" span-lg="row">
-	<span class="block b-b u-desktop-only"></span>
+<r-cell class="footer" span="2-11" span-s="row" span-lg="row">
 	<footer>
-
 		<div class="footer--content">
 			<h2 text-split letters-slide-up>
 				{% if page
@@ -96,28 +94,6 @@
 					>
 				</li>
 			</ul>
-		</div>
-
-		<div class="footer--local-time-now-playing">
-			<div class="local-time">
-				{% icon "clock" %}
-				<small>
-					<span id="local-time"></span> Serang, Indonesia</small>
-			</div>
-			<div class="commit-code">
-				{% icon "commit" %}
-				<a
-					href="https://github.com/afnizarnur"
-					data-umami-event="footer-commit-code"
-				>
-					<small>
-						{{ build.hash }}
-					</small>
-				</a>
-			</div>
-			<div class="now-playing">
-				<small id="current-song"></small>
-			</div>
 		</div>
 	</footer>
 </r-cell>

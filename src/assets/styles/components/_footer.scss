@@ -4,7 +4,7 @@
 	}
 
 	&--content {
-		padding: 144px 44px 144px 44px;
+		padding: 144px 0px 144px 0px;
 
 		@include mq-down(lg) {
 			padding: 64px 16px;
@@ -13,7 +13,7 @@
 	&--social {
 		display: inline-block;
 		width: 100%;
-		padding: 24px 44px;
+		padding: 24px 0px;
 
 		@include mq-down(lg) {
 			padding: 24px 16px;
@@ -22,8 +22,7 @@
 	&--version {
 		display: inline-block;
 		width: 100%;
-		padding: 24px 44px;
-		margin-bottom: 144px;
+		padding: 24px 0px;
 
 		@include mq-down(lg) {
 			padding: 24px 16px;
@@ -53,88 +52,6 @@
 				@include mq-down(md) {
 					flex: 1 0 100%;
 					margin-bottom: 12px;
-				}
-			}
-		}
-	}
-	&--local-time-now-playing {
-		padding: 0px 44px 24px 44px;
-		color: var(--text-disabled);
-		justify-content: space-between;
-		display: flex;
-
-		@include mq-down(lg) {
-			padding: 24px 16px;
-		}
-
-		@include mq-down(sm) {
-			flex-direction: column;
-		}
-
-		small {
-			margin-left: 8px;
-		}
-
-		.local-time,
-		.commit-code,
-		.now-playing {
-			display: flex;
-			align-items: center;
-
-			@include mq-down(sm) {
-				margin-bottom: 16px;
-			}
-		}
-
-		svg {
-			width: 20px;
-			height: 20px;
-		}
-
-		.commit-code {
-			margin-left: 24px;
-
-			a {
-				margin-left: 4px;
-
-				text-decoration: none;
-				color: var(--text-disabled);
-
-				&:hover {
-					color: var(--background-default);
-				}
-
-				small {
-					margin: 0;
-				}
-			}
-
-			@include mq-down(sm) {
-				margin-left: 0;
-			}
-		}
-
-		.now-playing {
-			margin-left: auto;
-
-			@include mq-down(sm) {
-				margin-bottom: 0px;
-				margin-left: 0px;
-			}
-
-			small {
-				display: flex;
-				align-items: center;
-				margin: 0;
-
-				a {
-					margin: 0;
-					color: var(--text-disabled);
-					text-decoration: none;
-
-					&:hover {
-						color: var(--background-default);
-					}
 				}
 			}
 		}
