@@ -33,6 +33,22 @@
 			}
 		}
 
+		.built-with {
+			text-align: right;
+			p,
+			a {
+				color: var(--text-disabled);
+			}
+
+			a:hover {
+				color: var(--background-default);
+			}
+
+			@include mq-down(lg) {
+				text-align: left;
+			}
+		}
+
 		.list {
 			display: flex;
 
@@ -41,7 +57,7 @@
 			}
 
 			li {
-				margin-right: 16px;
+				margin-right: 12px;
 			}
 
 			li:nth-child(1) {
@@ -51,31 +67,5 @@
 				}
 			}
 		}
-	}
-}
-
-.copy-email {
-	cursor: pointer;
-	text-decoration: underline;
-	padding: 2px 5px;
-	margin: 0 -5px;
-	border-radius: 4px;
-
-	svg {
-		margin-left: 8px;
-		width: 20px;
-		height: 20px;
-		top: -2px;
-		position: relative;
-	}
-
-	&:hover {
-		color: var(--background-default);
-		background: var(--text-primary);
-		text-decoration: none;
-	}
-
-	&:focus-visible {
-		outline: 4px solid $blue-500;
 	}
 }
