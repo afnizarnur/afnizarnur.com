@@ -12,7 +12,7 @@
 			margin: 144px 0 0;
 
 			@include mq-down(lg) {
-				margin: 64px 0 0;
+				margin: 64px 24px 0 24px;
 			}
 
 			.headline-container {
@@ -60,6 +60,10 @@
 		&.history {
 			margin: 64px 0 0;
 
+			@include mq-down(lg) {
+				margin: 44px 24px 0 24px;
+			}
+
 			.headline-container {
 				margin-bottom: 0;
 
@@ -85,6 +89,10 @@
 		&.speaking {
 			margin: 120px 0 0;
 
+			@include mq-down(lg) {
+				margin: 44px 24px 0 24px;
+			}
+
 			.headline-container {
 				h2 {
 					margin: 0;
@@ -98,6 +106,10 @@
 
 		&.outside-work {
 			margin: 120px 0 0;
+
+			@include mq-down(lg) {
+				margin: 44px 24px 0 24px;
+			}
 
 			.headline-container {
 				@include mq-down(lg) {

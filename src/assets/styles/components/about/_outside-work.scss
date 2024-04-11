@@ -2,10 +2,6 @@
 	&--list-wrapper {
 		margin: 44px 0px 0px 0px;
 		gap: 24px;
-
-		@include mq-down(lg) {
-			margin: 0px 16px 0px 16px;
-		}
 	}
 
 	&--item {
