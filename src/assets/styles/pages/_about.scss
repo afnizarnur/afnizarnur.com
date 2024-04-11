@@ -1,93 +1,70 @@
 .about {
 	&--content {
 		@include mq-down(lg) {
-			margin: 120px 0px 120px 0px;
+			margin: 120px 0;
 		}
 
 		@include mq-down(sm) {
-			margin: 44px 0px 44px 0px;
+			margin: 44px 0;
 		}
 
 		&.introduction {
-			margin: 144px 0px 0px 0px;
+			margin: 144px 0 0;
 
 			@include mq-down(lg) {
-				margin: 64px 0px 0px 0px;
-			}
-		}
-
-		&.history {
-			margin: 64px 0px 0px 0px;
-		}
-
-		&.speaking {
-			margin: 120px 0px 0px 0px;
-		}
-
-		&.speaking {
-			margin: 120px 0px 0px 0px;
-		}
-
-		&.outside-work {
-			margin: 120px 0px 0px 0px;
-		}
-
-		.headline-container {
-			margin-bottom: 64px;
-
-			.headline {
-				margin: 0px 0px 44px 0px;
-
-				@include mq-down(lg) {
-					margin: 0px 0px 24px 0px;
-				}
+				margin: 64px 0 0;
 			}
 
-			&.introduction {
-				margin: 64px 0px;
+			.headline-container {
+				margin: 64px 0;
 
 				@include mq-down(lg) {
-					margin: 44px 0px;
+					margin: 44px 0;
 				}
 
 				@include mq-down(sm) {
-					margin: 44px 0px;
+					margin: 44px 0;
 				}
 
 				.headline {
-					margin: 0px;
+					margin: 0;
 
 					h1 {
 						color: var(--text-inverse-subdued);
 						margin-bottom: 16px;
 					}
+
 					h2 {
 						margin-top: 16px;
-						margin-bottom: 0px;
+						margin-bottom: 0;
 					}
 				}
 
 				p {
-					margin: 0px 0px 24px 0px;
+					margin: 0 0 24px;
 				}
 
 				img {
 					width: 100%;
 					height: auto;
-					margin: 44px 0px 44px 0px;
+					margin: 44px 0;
 					border-radius: 16px;
 
 					@include mq-down(lg) {
-						margin: 24px 0px 24px 0px;
+						margin: 24px 0;
 					}
 				}
 			}
+		}
 
-			&.history {
-				margin-bottom: 0px;
+		&.history {
+			margin: 64px 0 0;
+
+			.headline-container {
+				margin-bottom: 0;
 
 				.headline {
-					margin-bottom: 0px;
+					margin-bottom: 0;
 				}
 
 				.content {
@@ -103,8 +80,12 @@
 					}
 				}
 			}
+		}
 
-			&.speaking {
+		&.speaking {
+			margin: 120px 0 0;
+
+			.headline-container {
 				h2 {
 					margin: 0;
 				}
@@ -113,8 +94,12 @@
 					margin-bottom: 24px;
 				}
 			}
+		}
 
-			&.outside-work {
+		&.outside-work {
+			margin: 120px 0 0;
+
+			.headline-container {
 				@include mq-down(lg) {
 					margin-bottom: 44px;
 				}
