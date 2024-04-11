@@ -1,10 +1,7 @@
 .about {
 	&--content {
-		margin: 144px 0px 144px 0px;
-
 		@include mq-down(lg) {
 			margin: 120px 0px 120px 0px;
-			padding: 0px 24px;
 		}
 
 		@include mq-down(sm) {
@@ -24,6 +21,14 @@
 		}
 
 		&.speaking {
+			margin: 120px 0px 0px 0px;
+		}
+
+		&.speaking {
+			margin: 120px 0px 0px 0px;
+		}
+
+		&.outside-work {
 			margin: 120px 0px 0px 0px;
 		}
 

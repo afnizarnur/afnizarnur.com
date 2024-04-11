@@ -3,7 +3,7 @@
 	width: 100%;
 	background: var(--background-default);
 	position: sticky;
-	top: 0;
+	top: -1px;
 	z-index: 99;
 
 	@include mq-down(lg) {
