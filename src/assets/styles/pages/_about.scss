@@ -19,6 +19,14 @@
 			}
 		}
 
+		&.history {
+			margin: 64px 0px 0px 0px;
+		}
+
+		&.speaking {
+			margin: 120px 0px 0px 0px;
+		}
+
 		.headline-container {
 			margin-bottom: 64px;
 
@@ -71,9 +79,15 @@
 			}
 
 			&.history {
+				margin-bottom: 0px;
+
+				.headline {
+					margin-bottom: 0px;
+				}
+
 				.content {
-					margin-top: 44px;
-					margin-bottom: 64px;
+					margin-top: 64px;
+					margin-bottom: 44px;
 
 					@include mq-down(lg) {
 						margin-bottom: 44px;
@@ -86,6 +100,10 @@
 			}
 
 			&.speaking {
+				h2 {
+					margin: 0;
+				}
+
 				@include mq-down(lg) {
 					margin-bottom: 24px;
 				}
