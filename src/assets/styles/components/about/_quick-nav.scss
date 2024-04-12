@@ -1,65 +1,56 @@
 .quick-nav {
-	overflow: hidden;
 	width: 100%;
-	margin-top: 64px;
-
-	@include mq-down(lg) {
-		margin-top: 44px;
-	}
+	overflow: hidden;
 
 	ul {
 		display: flex;
-		align-items: flex-start;
+		justify-content: center;
 		overflow-y: scroll;
 		box-sizing: content-box;
 		padding-right: 24px;
+		gap: 8px;
 
 		li {
 			display: flex;
-			border-radius: 16px 16px 0px 0px;
-			border: 1px solid var(--border-default);
-			background: var(--background-default);
+			background: var(--text-primary);
+			border-radius: 100px;
+			border: 1px solid transparent;
 
-			&:not(:first-child) {
-				margin-left: -24px;
+			&:hover {
+				background: var(--background-default);
+				border: 1px solid var(--border-default);
 			}
 
-			&:nth-child(1) {
-				z-index: 5;
-			}
+			&.active {
+				background: var(--background-default);
+				border: 1px solid var(--border-default);
 
-			&:nth-child(2) {
-				z-index: 4;
-			}
+				a {
+					color: var(--text-primary);
+				}
 
-			&:nth-child(3) {
-				z-index: 3;
-			}
+				&:hover {
+					background: var(--text-primary);
+					border: 1px solid transparent;
 
-			&:nth-child(4) {
-				z-index: 2;
+					a {
+						color: var(--background-default);
+					}
+				}
 			}
 
 			a {
-				white-space: nowrap;
-				padding: 24px 24px 24px 36px;
-				text-decoration: none;
-				color: var(--text-primary);
+				padding: 12px 24px;
+				color: var(--background-default);
 				font-weight: 520;
+				text-decoration: none;
+				white-space: nowrap;
 				margin: 0;
-
-				@include mq-down(lg) {
-					padding: 24px 32px 44px 32px;
-				}
 
 				&:hover {
 					background: none;
 					color: var(--text-primary);
 				}
-			}
-
-			&:hover {
-				box-shadow: -2px 2px 0px 2px var(--text-primary) inset;
 			}
 		}
 	}
