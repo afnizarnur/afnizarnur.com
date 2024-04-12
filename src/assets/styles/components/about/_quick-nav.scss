@@ -1,6 +1,20 @@
+/* Class to show the navigation */
+
 .quick-nav {
 	width: 100%;
 	overflow: hidden;
+	position: fixed;
+	top: -200px;
+	transition: top 0.5s ease-in-out;
+	z-index: 88;
+
+	&.show-nav {
+		top: 76px;
+
+		@include mq-down(sm) {
+			top: 72px;
+		}
+	}
 
 	ul {
 		display: flex;
@@ -9,6 +23,11 @@
 		box-sizing: content-box;
 		padding-right: 24px;
 		gap: 8px;
+
+		@include mq-down(sm) {
+			justify-content: flex-start;
+			padding-left: 24px;
+		}
 
 		li {
 			display: flex;
