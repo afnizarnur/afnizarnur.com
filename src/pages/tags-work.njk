@@ -15,10 +15,13 @@ eleventyComputed:
 permalink: /work/tags/{{ tag | slugify }}/
 ---
 
+{% include "userinfo.njk" %}
+{% include "header.njk" %}
+
 <div class="container work">
   <r-grid columns="12" columns-s="4">
-    {% include "header.njk" %}
     {% include "tags/tags-work.njk" %}
-    {% include "footer/mini.njk" %}
   </r-grid>
 </div>
+
+{% include "footer/mini.njk" %}
