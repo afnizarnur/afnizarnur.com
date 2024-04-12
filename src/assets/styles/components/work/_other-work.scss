@@ -10,12 +10,12 @@
 			}
 
 			@include mq-down(lg) {
-				margin: 0px 16px 44px 16px;
+				margin: 0px 24px 44px 24px;
 			}
 		}
 
 		@include mq-down(lg) {
-			margin: 64px 0px;
+			margin: 44px 0px 0px 0px;
 		}
 	}
 
