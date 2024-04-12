@@ -1,5 +1,5 @@
 <footer>
-	<div class="footer--social b-b">
+	<div class="footer--social">
 		<div class="container">
 			<r-grid columns="12" columns-s="4">
 				<r-cell class="footer" span="2-11" span-s="row" span-lg="row">
@@ -41,64 +41,6 @@
 		</div>
 	</div>
 
-	<div
-			class="footer--version"
-		>
-		<div class="container">
-			<r-grid columns="12" columns-s="4">
-				<r-cell span="2-7" span-s="row" span-lg="row">
-					<ul class="list">
-						<li>
-							<p>See previous versions of this site</p>
-						</li>
-						<li>
-							<a
-						data-umami-event="footer-2013"
-						href="{{ 'https://2013.afnizarnur.com/' | url }}"
-						>2013</a
-					>
-						</li>
-						<li>
-							<a
-						data-umami-event="footer-2019"
-						href="{{ 'https://2019.afnizarnur.com/' | url }}"
-						>2019</a
-					>
-						</li>
-						<li>
-							<a
-						data-umami-event="footer-2020"
-						href="{{ 'https://2020.afnizarnur.com/' | url }}"
-						>2020</a
-					>
-						</li>
-						<li>
-							<a
-						data-umami-event="footer-2022"
-						href="{{ 'https://2022.afnizarnur.com/' | url }}"
-						>2022</a
-					>
-						</li>
-						<li>
-							<a
-						data-umami-event="footer-2023"
-						href="{{ 'https://2023.afnizarnur.com/' | url }}"
-						>2023</a
-					>
-						</li>
-					</ul>
-				</r-cell>
-				<r-cell class="built-with" span="8-11" span-s="row" span-lg="row">
-					<p>
-						Built with love using 
-						<a
-						href="{{ 'https://www.11ty.dev/' | url }}"
-						>11ty</a> hosted on <a
-						href="{{ 'https://www.netlify.com/' | url }}"
-						>Netlify</a>
-					</p>
-				</r-cell>
-			</r-grid>
-		</div>
-	</div>
+	{% include "footer/mini.njk" %}
+
 </footer>

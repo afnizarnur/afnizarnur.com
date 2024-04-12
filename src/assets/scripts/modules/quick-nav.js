@@ -6,8 +6,11 @@ class QuickNav {
 
 		if (this.quickNav) {
 			this.collectSections()
-			this.sectionStart = document.getElementById("long-intro").offsetTop
-			this.addEventListeners()
+			const longIntroSection = document.getElementById("long-intro")
+			if (longIntroSection) {
+				this.sectionStart = longIntroSection.offsetTop
+				this.addEventListeners()
+			}
 		}
 	}
 
