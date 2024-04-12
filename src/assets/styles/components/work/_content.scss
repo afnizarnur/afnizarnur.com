@@ -4,6 +4,10 @@
 		color: var(--text-secondary);
 
 		@include mq-down(lg) {
+			padding: 64px 24px 0px 24px;
+		}
+
+		@include mq-down(sm) {
 			padding: 44px 24px 0px 24px;
 		}
 

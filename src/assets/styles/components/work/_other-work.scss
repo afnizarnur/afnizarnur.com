@@ -12,6 +12,10 @@
 			@include mq-down(lg) {
 				margin: 0px 24px 44px 24px;
 			}
+
+			@include mq-down(lg) {
+				margin: 0px 24px 24px 24px;
+			}
 		}
 
 		@include mq-down(lg) {
@@ -24,7 +28,7 @@
 		gap: 24px;
 
 		@include mq-down(lg) {
-			margin: 24px 16px 0px 16px;
+			margin: 24px 24px 0px 24px;
 		}
 
 		@include mq-down(sm) {

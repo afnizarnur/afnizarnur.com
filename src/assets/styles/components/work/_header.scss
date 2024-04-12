@@ -8,6 +8,10 @@
 			@include mq-down(lg) {
 				margin: 0px 24px 44px 24px;
 			}
+
+			@include mq-down(sm) {
+				margin: 0px 24px 24px 24px;
+			}
 		}
 
 		@include mq-down(lg) {
@@ -80,12 +84,19 @@
 		justify-content: center;
 		margin-top: 44px;
 
+		@include mq-down(sm) {
+			margin-top: 24px;
+		}
+
 		video {
 			width: 100%;
 			height: auto;
 			outline: 2px solid #fff;
 			outline-offset: -2px;
 			// clip-path: inset(1px 1px);
+			@include mq-down(sm) {
+				padding: 0px 12px;
+			}
 		}
 
 		img {
