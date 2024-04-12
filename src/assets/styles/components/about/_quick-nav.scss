@@ -1,74 +1,76 @@
-/* Class to show the navigation */
-
-.quick-nav {
+.quick-nav-wrapper {
+	position: relative;
 	width: 100%;
-	overflow: hidden;
-	position: fixed;
-	top: -200px;
-	transition: top 0.5s ease-in-out;
-	z-index: 88;
 
-	&.show-nav {
-		top: 76px;
+	.quick-nav {
+		width: 100%;
+		overflow: hidden;
+		position: fixed;
+		top: -200px;
+		transition: top 0.5s ease-in-out;
+		z-index: 88;
+		left: 0;
 
-		@include mq-down(sm) {
-			top: 72px;
-		}
-	}
+		&.show-nav {
+			top: 76px;
 
-	ul {
-		display: flex;
-		justify-content: center;
-		overflow-y: scroll;
-		box-sizing: content-box;
-		padding-right: 24px;
-		gap: 8px;
-
-		@include mq-down(sm) {
-			justify-content: flex-start;
-			padding-left: 24px;
+			@include mq-down(sm) {
+				top: 72px;
+			}
 		}
 
-		li {
+		ul {
 			display: flex;
-			background: var(--text-primary);
-			border-radius: 100px;
-			border: 1px solid transparent;
+			justify-content: center;
+			overflow-y: scroll;
+			gap: 8px;
 
-			&:hover {
-				background: var(--background-default);
-				border: 1px solid var(--border-default);
+			@include mq-down(sm) {
+				justify-content: flex-start;
+				padding-left: 24px;
 			}
 
-			&.active {
-				background: var(--background-default);
-				border: 1px solid var(--border-default);
-
-				a {
-					color: var(--text-primary);
-				}
+			li {
+				display: flex;
+				background: var(--text-primary);
+				border-radius: 100px;
+				border: 1px solid transparent;
 
 				&:hover {
-					background: var(--text-primary);
-					border: 1px solid transparent;
+					background: var(--background-default);
+					border: 1px solid var(--border-default);
+				}
+
+				&.active {
+					background: var(--background-default);
+					border: 1px solid var(--border-default);
 
 					a {
-						color: var(--background-default);
+						color: var(--text-primary);
+					}
+
+					&:hover {
+						background: var(--text-primary);
+						border: 1px solid transparent;
+
+						a {
+							color: var(--background-default);
+						}
 					}
 				}
-			}
 
-			a {
-				padding: 12px 24px;
-				color: var(--background-default);
-				font-weight: 520;
-				text-decoration: none;
-				white-space: nowrap;
-				margin: 0;
+				a {
+					padding: 12px 24px;
+					color: var(--background-default);
+					font-weight: 520;
+					text-decoration: none;
+					white-space: nowrap;
+					margin: 0;
 
-				&:hover {
-					background: none;
-					color: var(--text-primary);
+					&:hover {
+						background: none;
+						color: var(--text-primary);
+					}
 				}
 			}
 		}
