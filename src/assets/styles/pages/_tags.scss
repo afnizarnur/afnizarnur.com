@@ -1,12 +1,7 @@
 .big-tags {
 	display: flex;
-	padding: 0px 44px 0px 44px;
 	flex-direction: column;
 	gap: 24px;
-
-	@include mq-down(lg) {
-		padding: 0px 16px 0px 16px;
-	}
 
 	li {
 		display: flex;
