@@ -69,6 +69,10 @@
 		.commit-code {
 			margin: 0px 24px;
 
+			@include mq-down(sm) {
+				margin: 0;
+			}
+
 			a {
 				margin-left: 4px;
 
