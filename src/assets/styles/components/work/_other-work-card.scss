@@ -8,6 +8,8 @@
 	}
 	.thumbnail-wrapper {
 		position: relative;
+		border-radius: 16px;
+		overflow: hidden;
 		a {
 			padding: 0;
 			margin: 0;
@@ -31,7 +33,7 @@
 
 	.description {
 		gap: 12px;
-		margin: 24px 24px;
+		margin: 24px 0px;
 		color: var(--text-primary);
 
 		@include mq-down(lg) {
