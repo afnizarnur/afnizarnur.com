@@ -38,10 +38,6 @@
 		p {
 			color: var(--text-disabled);
 			margin: 0px 0px 16px 0px;
-
-			@include mq-down(lg) {
-				margin: 0px 16px 0px 16px;
-			}
 		}
 	}
 
@@ -50,10 +46,6 @@
 
 		h3 {
 			margin: 0;
-		}
-
-		@include mq-down(lg) {
-			padding: 44px 0px 0px 0px;
 		}
 
 		.accordion {
@@ -94,7 +86,7 @@
 		}
 
 		@include mq-down(lg) {
-			right: 16px;
+			right: 44px;
 			top: -64px;
 			animation: bounce-down-lg 0.6s $animation-curve-swoosh forwards;
 		}
