@@ -44,6 +44,9 @@
 		}
 
 		.select-version {
+			display: flex;
+			align-items: center;
+
 			select {
 				margin-left: 12px;
 			}
@@ -51,6 +54,11 @@
 			@include mq-down(sm) {
 				text-align: center;
 				margin-bottom: 16px;
+			}
+
+			small {
+				gap: 8px;
+				display: inline-flex;
 			}
 		}
 
