@@ -1,29 +1,31 @@
-<footer class="b-t footer--version">
+<footer class="b-t footer--rug-footer">
     <div class="container">
         <r-grid columns="12" columns-s="4">
-            <r-cell span="2-7" span-s="row" span-lg="row">
-                <small>
+            <r-cell span="2-11" span-lg="row" class="rug-footer--main">
+                <div class="select-version">
+                    <small>
 					You're viewing site version
-                </small>
+                    </small>
 
-                <select id="select-version" class="small" tabindex="0" role="button" aria-label="Open dropdown to view version of the site">
-                    <option value="2013">2013</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024" selected>2024</option>
-                </select>
-            </r-cell>
-            <r-cell class="built-with" span="8-11" span-s="row" span-lg="row">
-                <small>
+                    <select id="select-version" class="small" tabindex="0" role="button" aria-label="Open dropdown to view version of the site">
+                        <option value="2013">2013</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024" selected>2024</option>
+                    </select>
+                </div>
+                <div class="built-with">
+                    <small>
 						Handcrafted using
 						<a
 						href="{{ 'https://www.11ty.dev/' | url }}"
 						>11ty</a> hosted on <a
 						href="{{ 'https://www.netlify.com/' | url }}"
 						>Netlify</a>
-                </small>
+                    </small>
+                </div>
             </r-cell>
         </r-grid>
     </div>

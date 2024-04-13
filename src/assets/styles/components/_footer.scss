@@ -3,16 +3,13 @@
 	z-index: 2;
 	margin-bottom: 87px;
 	background-color: var(--background-default);
+
+	@include mq-down(sm) {
+		margin-bottom: 121px;
+	}
 }
 
 .footer {
-	&--content {
-		padding: 120px 0;
-		@include mq-down(lg) {
-			padding: 64px 24px;
-		}
-	}
-
 	&--social {
 		width: 100%;
 		padding: 24px 0;
@@ -21,7 +18,7 @@
 		}
 	}
 
-	&--version {
+	&--rug-footer {
 		display: flex;
 		width: 100%;
 		padding: 24px 0;
@@ -33,17 +30,28 @@
 		background-image: url("../images/pattern-line.png");
 		background-size: 142px 90px;
 		background-repeat: repeat-x;
-		select {
-			margin-left: 16px;
-		}
+
 		@include mq-down(lg) {
 			padding: 24px 24px;
 		}
 
-		&.footer-mini {
-			padding: 44px 44px 24px 44px;
-			@include mq-down(lg) {
-				padding: 24px 16px;
+		.rug-footer--main {
+			display: flex;
+			justify-content: space-between;
+
+			@include mq-down(sm) {
+				flex-direction: column;
+			}
+		}
+
+		.select-version {
+			select {
+				margin-left: 16px;
+			}
+
+			@include mq-down(sm) {
+				text-align: center;
+				margin-bottom: 16px;
 			}
 		}
 
@@ -52,16 +60,17 @@
 			justify-content: flex-end;
 			align-items: center;
 			white-space: nowrap;
+
+			@include mq-down(sm) {
+				flex-direction: column;
+			}
+
 			small,
 			a {
 				color: var(--text-disabled);
 			}
 			a:hover {
 				color: var(--background-default);
-			}
-			@include mq-down(lg) {
-				text-align: left;
-				margin-top: 16px;
 			}
 		}
 	}
