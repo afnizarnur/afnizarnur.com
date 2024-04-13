@@ -16,7 +16,7 @@
         Permissions-Policy = "interest-cohort=()"
 
 [[redirects]]
-    from = "https://afnizarnur.netlify.com/*"
+    from = "https://2023--afnizarnur.netlify.com/*"
     to = "https://2023.afnizarnur.com/:splat"
     status = 301
     force = true
