@@ -5,7 +5,7 @@
 	background-color: var(--background-default);
 
 	@include mq-down(sm) {
-		margin-bottom: 121px;
+		margin-bottom: 120px;
 	}
 }
 
@@ -52,8 +52,9 @@
 			}
 
 			@include mq-down(sm) {
-				text-align: center;
 				margin-bottom: 16px;
+				display: flex;
+				justify-content: center;
 			}
 
 			small {
