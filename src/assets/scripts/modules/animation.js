@@ -99,21 +99,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Animation text reveal
 	const textRevealElements = document.querySelectorAll("[letters-slide-up]")
-	textRevealElements.forEach(animateTextReveal)
+	if (textRevealElements && textRevealElements.length > 0) {
+		textRevealElements.forEach(animateTextReveal)
+	}
 
 	// Animation on selected work
 	const selectedWorkItems = document.querySelectorAll(".selected-work--item")
-	selectedWorkItems.forEach(animateSelectedWork)
+	if (selectedWorkItems && selectedWorkItems.length > 0) {
+		selectedWorkItems.forEach(animateSelectedWork)
+	}
 
 	// Animation on design tooling cards
 	const designToolingCards = document.querySelectorAll(".design-tooling-card")
-	animateCardStagger(designToolingCards)
+	if (designToolingCards && designToolingCards.length > 0) {
+		animateCardStagger(Array.from(designToolingCards))
+	}
 
 	// Animation on other work cards
 	const nextProjectCard = document.querySelectorAll(".other-work-card")
-	animateCardStagger(nextProjectCard)
+	if (nextProjectCard && nextProjectCard.length > 0) {
+		animateCardStagger(Array.from(nextProjectCard))
+	}
 
 	// Avoid flash of unstyled content
 	const textSplitElements = document.querySelectorAll("[text-split]")
-	gsap.set(textSplitElements, { opacity: 1 })
+	if (textSplitElements && textSplitElements.length > 0) {
+		gsap.set(textSplitElements, { opacity: 1 })
+	}
 })

@@ -1,0 +1,26 @@
+select {
+	padding: 8px 16px;
+	border-radius: 100px;
+	border: 1px solid var(--border-default);
+	background: transparent;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+	&.small {
+		font-size: 0.875rem;
+		line-height: 1.2rem;
+		font-weight: 520;
+		letter-spacing: -0.01rem;
+	}
+
+	&:focus-visible {
+		outline: 4px solid $blue-500;
+	}
+
+	&:hover,
+	&:active {
+		border: 1px solid var(--text-primary);
+	}
+}

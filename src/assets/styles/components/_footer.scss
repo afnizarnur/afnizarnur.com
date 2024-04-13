@@ -1,70 +1,67 @@
+.main {
+	position: relative;
+	z-index: 2;
+	margin-bottom: 87px;
+	background-color: var(--background-default);
+}
+
 .footer {
 	&--content {
-		padding: 120px 0px;
-
+		padding: 120px 0;
 		@include mq-down(lg) {
 			padding: 64px 24px;
 		}
 	}
-	&--social {
-		display: inline-block;
-		width: 100%;
-		padding: 24px 0px;
 
+	&--social {
+		width: 100%;
+		padding: 24px 0;
 		@include mq-down(lg) {
 			padding: 24px 24px;
 		}
 	}
-	&--version {
-		display: inline-block;
-		width: 100%;
-		padding: 24px 0px;
 
+	&--version {
+		display: flex;
+		width: 100%;
+		padding: 24px 0;
+		position: fixed;
+		bottom: 0;
+		background: var(--surface-default);
+		align-items: center;
+		color: var(--text-secondary);
+		background-image: url("../images/pattern-line.png");
+		background-size: 142px 90px;
+		background-repeat: repeat-x;
+		select {
+			margin-left: 16px;
+		}
 		@include mq-down(lg) {
 			padding: 24px 24px;
 		}
 
 		&.footer-mini {
 			padding: 44px 44px 24px 44px;
-
 			@include mq-down(lg) {
 				padding: 24px 16px;
 			}
 		}
 
 		.built-with {
-			text-align: right;
-			p,
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			white-space: nowrap;
+			small,
 			a {
 				color: var(--text-disabled);
 			}
-
 			a:hover {
 				color: var(--background-default);
 			}
-
 			@include mq-down(lg) {
 				text-align: left;
 				margin-top: 16px;
-			}
-		}
-
-		.list {
-			display: flex;
-
-			@include mq-down(md) {
-				flex-wrap: wrap;
-			}
-
-			li {
-				margin-right: 12px;
-			}
-
-			li:nth-child(1) {
-				@include mq-down(md) {
-					flex: 1 0 100%;
-					margin-bottom: 12px;
-				}
 			}
 		}
 	}

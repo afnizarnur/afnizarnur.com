@@ -1,46 +1,30 @@
-<footer>
-	<div class="footer--social">
-		<div class="container">
-			<r-grid columns="12" columns-s="4">
-				<r-cell class="footer" span="2-11" span-s="row" span-lg="row">
-					<p>
-				Follow me for more thoughts and updates on
-				<a
-					data-umami-event="footer-x"
-					href="https://www.twitter.com/afnizarnur"
-					>X</a
-				>,
-				<a
-					data-umami-event="footer-threads"
-					href="https://www.threads.net/@afnizar_nur"
-					>Threads</a
-				>,
-				<a
-					data-umami-event="footer-figma"
-					href="https://www.figma.com/@afnizarnur"
-					>Figma</a
-				>,
-				<a
-					data-umami-event="footer-ig"
-					href="https://www.instagram.com/afnizar_nur/"
-					>Instagram</a
-				>,
-				<a
-					data-umami-event="footer-github"
-					href="https://github.com/afnizarnur"
-					>GitHub</a
-				>, and
-				<a
-					data-umami-event="footer-linkedin"
-					href="https://www.linkedin.com/in/afnizarnur/"
-					>LinkedIn</a
-				>
-					</p>
-				</r-cell>
-			</r-grid>
-		</div>
-	</div>
+<footer class="b-t footer--version">
+    <div class="container">
+        <r-grid columns="12" columns-s="4">
+            <r-cell span="2-7" span-s="row" span-lg="row">
+                <small>
+					You're viewing site version
+                </small>
 
-	{% include "footer/mini.njk" %}
-
+                <select id="select-version" class="small" tabindex="0" role="button" aria-label="Open dropdown to view version of the site">
+                    <option value="2013">2013</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024" selected>2024</option>
+                </select>
+            </r-cell>
+            <r-cell class="built-with" span="8-11" span-s="row" span-lg="row">
+                <small>
+						Handcrafted using
+						<a
+						href="{{ 'https://www.11ty.dev/' | url }}"
+						>11ty</a> hosted on <a
+						href="{{ 'https://www.netlify.com/' | url }}"
+						>Netlify</a>
+                </small>
+            </r-cell>
+        </r-grid>
+    </div>
 </footer>
