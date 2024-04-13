@@ -45,10 +45,10 @@
 			"backgroundDefault": "#191A1B",
 			"textPrimary": "#FFC6E7",
 			"textSecondary": "#FFC6E7",
-			"textDisabled": "#A1A5A7",
+			"textDisabled": "#FFC6E7",
 			"borderDefault": "#404345",
-			"surfaceDefault": "#2F3032",
-			"textInverseSubdued": "#A1A5A7"
+			"surfaceDefault": "#3C0023",
+			"textInverseSubdued": "#FFC6E7"
 		}
 	},
 	{
@@ -58,9 +58,9 @@
 			"backgroundDefault": "#191A1B",
 			"textPrimary": "#94DEF7",
 			"textSecondary": "#BAEAFA",
-			"textDisabled": "#A1A5A7",
+			"textDisabled": "#BAEAFA",
 			"borderDefault": "#404345",
-			"surfaceDefault": "#2F3032",
+			"surfaceDefault": "#042A36",
 			"textInverseSubdued": "#A1A5A7"
 		}
 	}
