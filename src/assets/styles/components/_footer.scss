@@ -25,11 +25,10 @@
 		padding: 24px 0;
 		position: fixed;
 		bottom: 0;
-		background: var(--surface-default) url("../images/pattern-line.png")
-			repeat-x;
+		background: var(--text-primary);
 		background-size: 142px 90px;
 		align-items: center;
-		color: var(--text-disabled);
+		color: var(--background-default);
 
 		@include mq-down(lg) {
 			padding: 24px;
@@ -68,11 +67,12 @@
 
 			small,
 			a {
-				color: var(--text-disabled);
+				color: var(--background-default);
 			}
 
 			a:hover {
-				color: var(--background-default);
+				color: var(--text-primary);
+				background: var(--background-default);
 			}
 		}
 	}

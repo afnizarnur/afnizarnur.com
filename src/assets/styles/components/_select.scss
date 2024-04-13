@@ -2,7 +2,7 @@
 	display: inline-block;
 	position: relative;
 	cursor: pointer;
-	color: var(--text-disabled);
+	color: var(--background-default);
 
 	svg {
 		position: absolute;
@@ -12,7 +12,7 @@
 	}
 
 	&:hover {
-		color: var(--background-default);
+		color: var(--text-primary);
 	}
 
 	select {
@@ -40,8 +40,8 @@
 		&:hover,
 		&:active {
 			border: 1px solid transparent;
-			color: var(--background-default);
-			background: var(--text-primary);
+			color: var(--text-primary);
+			background: var(--background-default);
 		}
 	}
 }
