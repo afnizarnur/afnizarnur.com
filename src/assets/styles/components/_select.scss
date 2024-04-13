@@ -21,6 +21,8 @@ select {
 
 	&:hover,
 	&:active {
-		border: 1px solid var(--text-primary);
+		background: var(--text-primary);
+		border: 1px solid transparent;
+		color: var(--background-default);
 	}
 }
