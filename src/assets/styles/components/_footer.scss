@@ -26,7 +26,7 @@
 		bottom: 0;
 		background: var(--surface-default);
 		align-items: center;
-		color: var(--text-secondary);
+		color: var(--text-disabled);
 		background-image: url("../images/pattern-line.png");
 		background-size: 142px 90px;
 		background-repeat: repeat-x;
@@ -46,7 +46,7 @@
 
 		.select-version {
 			select {
-				margin-left: 16px;
+				margin-left: 12px;
 			}
 
 			@include mq-down(sm) {
