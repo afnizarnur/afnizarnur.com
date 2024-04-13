@@ -13,8 +13,9 @@
 	&--social {
 		width: 100%;
 		padding: 24px 0;
+
 		@include mq-down(lg) {
-			padding: 24px 24px;
+			padding: 24px;
 		}
 	}
 
@@ -24,15 +25,14 @@
 		padding: 24px 0;
 		position: fixed;
 		bottom: 0;
-		background: var(--surface-default);
+		background: var(--surface-default) url("../images/pattern-line.png")
+			repeat-x;
+		background-size: 142px 90px;
 		align-items: center;
 		color: var(--text-disabled);
-		background-image: url("../images/pattern-line.png");
-		background-size: 142px 90px;
-		background-repeat: repeat-x;
 
 		@include mq-down(lg) {
-			padding: 24px 24px;
+			padding: 24px;
 		}
 
 		.rug-footer--main {
@@ -63,12 +63,14 @@
 
 			@include mq-down(sm) {
 				flex-direction: column;
+				text-align: center;
 			}
 
 			small,
 			a {
 				color: var(--text-disabled);
 			}
+
 			a:hover {
 				color: var(--background-default);
 			}
