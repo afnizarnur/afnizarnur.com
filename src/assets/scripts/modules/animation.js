@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			timelines[rowIndex].fromTo(
 				card,
-				{ opacity: 0 },
-				{ opacity: 1, duration: 0.4 },
+				{ opacity: 0, y: 50 }, // Initial opacity and y position
+				{ opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, // Target opacity and y position
 				index % 2 === 0 ? 0 : 0.2 // Staggered delay within the row
 			)
 		})
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			const rowStart = index === 0 ? "top 90%" : `top+=${index * 10}%`
 			ScrollTrigger.create({
 				trigger: cards[index * 2],
-				start: rowStart,
+				start: "top bottom", // Ensure animation starts when the top of the trigger reaches the bottom of the viewport
 				onEnter: () => timeline.play()
 			})
 		})
