@@ -17,7 +17,7 @@
 
 [[redirects]]
     from = "https://afnizarnur.netlify.com/*"
-    to = "https://afnizarnur.com/:splat"
+    to = "https://2023.afnizarnur.com/:splat"
     status = 301
     force = true
 
