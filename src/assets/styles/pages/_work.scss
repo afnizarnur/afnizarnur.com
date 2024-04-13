@@ -4,14 +4,14 @@
 	}
 
 	&.selected-work--content {
-		margin-top: 144px;
+		margin: 144px 0px;
 
 		@include mq-down(lg) {
-			margin: 120px 24px 0px 24px;
+			margin: 120px 24px;
 		}
 
 		@include mq-down(sm) {
-			margin: 64px 24px 0px 24px;
+			margin: 64px 24px;
 		}
 
 		h1 {
@@ -40,11 +40,11 @@
 		margin: 144px 0px;
 
 		@include mq-down(lg) {
-			margin: 120px 24px 120px 24px;
+			margin: 120px 120px 24px;
 		}
 
 		@include mq-down(sm) {
-			margin: 64px 24px 64px 24px;
+			margin: 64px 24px;
 		}
 
 		h1 {

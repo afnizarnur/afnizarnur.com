@@ -1,6 +1,6 @@
 .other-work {
 	&--content {
-		margin: 64px 0px 0px 0px;
+		margin: 64px 0px;
 
 		.title {
 			margin: 0px 0px 44px 0px;
@@ -19,7 +19,7 @@
 		}
 
 		@include mq-down(lg) {
-			margin: 44px 0px 0px 0px;
+			margin: 44px 0px;
 		}
 	}
 

@@ -105,10 +105,10 @@
 		}
 
 		&.outside-work {
-			margin: 120px 0 0;
+			margin: 120px 0;
 
 			@include mq-down(lg) {
-				margin: 44px 24px 0 24px;
+				margin: 44px 24px 44px 24px;
 			}
 
 			.headline-container {
