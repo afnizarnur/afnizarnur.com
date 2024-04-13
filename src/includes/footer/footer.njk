@@ -7,14 +7,18 @@
 					You're viewing site version
                     </small>
 
-                    <select id="select-version" class="small" tabindex="0" role="button" aria-label="Open dropdown to view version of the site">
-                        <option value="2013">2013</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024" selected>2024</option>
-                    </select>
+                    <div class="custom-select">
+                        <select id="select-version" class="small" tabindex="0" role="button" aria-label="Open dropdown to view version of the site">
+                            <option value="2013">2013</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024" selected>2024</option>
+                        </select>
+
+                        {% icon "chevron-down" %}
+                    </div>
                 </div>
                 <div class="built-with">
                     <small>
