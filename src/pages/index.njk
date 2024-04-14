@@ -19,11 +19,11 @@ permalink: /
 	<div class="modal" role="dialog" aria-labelledby="Theme Switcher" aria-describedby="Change site theme with switcher">
 		<div class="modal--content">
 			<div class="modal--title">
-				<button class="close-button-modal" aria-label="Close Modal">
-					{% icon "close" %}
-				</button>
 
 				<p class="bold">Theme Switcher</p>
+				<button class="modal--close-button" aria-label="Close Modal">
+					{% icon "close" %}
+				</button>
 			</div>
 			<div class="modal--body">
 				<div class="theme-switcher">
@@ -46,10 +46,8 @@ permalink: /
 				</div>
 			</div>
 		</div>
-		<div class="modal-overlay"></div>
-
+		<div class="modal--overlay"></div>
 	</div>
-
 </div>
 
 {% include "footer/social.njk" %}

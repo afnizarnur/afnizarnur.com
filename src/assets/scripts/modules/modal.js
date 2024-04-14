@@ -1,21 +1,28 @@
-const modalButton = document.querySelector(".modal-button")
 const modal = document.querySelector(".modal")
-const closeButton = document.querySelector(".close-button-modal")
-const modalOverlay = document.querySelector(".modal-overlay")
-const body = document.body
+const modalButton = document.querySelector(".modal-button")
+const modalContent = document.querySelector(".modal--content")
+const closeButton = document.querySelector(".modal--close-button")
+const modalOverlay = document.querySelector(".modal--overlay")
 
 const openModal = () => {
 	modal.style.display = "block"
 	modal.setAttribute("aria-hidden", "false")
 	closeButton.focus()
-	body.style.overflow = "hidden"
+	document.body.style.overflow = "hidden"
 }
 
 const closeModal = () => {
-	modal.style.display = "none"
-	modal.setAttribute("aria-hidden", "true")
-	modalButton.focus()
-	body.style.overflow = ""
+	modalContent.style.animation = "slideOutToTop 0.3s ease-out forwards"
+	modalOverlay.style.animation = "hideModal 0.3s ease-out"
+
+	setTimeout(() => {
+		modal.style.display = "none"
+		modal.setAttribute("aria-hidden", "true")
+		modalButton.focus()
+		document.body.style.overflow = ""
+		modalContent.style.animation = ""
+		modalOverlay.style.animation = ""
+	}, 300)
 }
 
 modalButton.addEventListener("click", openModal)

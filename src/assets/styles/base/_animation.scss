@@ -75,6 +75,42 @@
 	}
 }
 
+@keyframes slideInFromTop {
+	from {
+		top: -100%;
+	}
+	to {
+		top: 50%;
+	}
+}
+
+@keyframes slideOutToTop {
+	from {
+		top: 50%;
+	}
+	to {
+		top: -100%;
+	}
+}
+
+@keyframes showModal {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes hideModal {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
 [text-split] {
 	opacity: 0;
 }
