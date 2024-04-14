@@ -18,8 +18,8 @@ function initializeModal(modalIdentifier) {
 	}
 
 	const closeModal = () => {
-		content.style.animation = "slideOutToTop 0.3s ease-out forwards"
-		overlay.style.animation = "hideModal 0.3s ease-out"
+		content.style.animation = "slideOutToTop 0.4s ease-in forwards"
+		overlay.style.animation = "hideModal 0.4s ease-in"
 
 		setTimeout(() => {
 			modal.style.display = "none"
@@ -27,7 +27,7 @@ function initializeModal(modalIdentifier) {
 			document.body.style.overflow = ""
 			content.style.animation = ""
 			overlay.style.animation = ""
-		}, 300)
+		}, 400)
 	}
 
 	button.addEventListener("click", openModal)
