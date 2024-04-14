@@ -4,6 +4,13 @@ class ThemePicker {
 	constructor() {
 		this.activeTheme = "default"
 		this.hasLocalStorage = typeof Storage !== "undefined"
+		this.toggleMobileMenu = document.querySelector(
+			".js-themepicker-toggle-menu"
+		)
+		this.toggleContact = document.querySelector(
+			".js-themepicker-toggle-contact"
+		)
+		this.switchCheckbox = document.getElementById("switch-system")
 		this.init()
 	}
 
@@ -35,6 +42,12 @@ class ThemePicker {
 	bindEvents() {
 		const themeButtons = document.querySelectorAll(".theme-button")
 		const switchCheckbox = document.getElementById("switch-system")
+		const toggleMobileMenu = document.querySelector(
+			".js-themepicker-toggle-menu"
+		)
+		const toggleContact = document.querySelector(
+			".js-themepicker-toggle-contact"
+		)
 
 		themeButtons.forEach((button) => {
 			button.addEventListener("click", () => {
@@ -52,9 +65,22 @@ class ThemePicker {
 				const storedPreference = this.getStoredPreference()
 				this.activeTheme = storedPreference || "default"
 			}
-
 			this.setTheme(this.activeTheme)
 		})
+
+		if (toggleMobileMenu) {
+			toggleMobileMenu.addEventListener("click", () => {
+				this.themeRoller(this.activeTheme)
+				switchCheckbox.checked = false // Uncheck the system settings checkbox
+			})
+		}
+
+		if (toggleContact) {
+			toggleContact.addEventListener("click", () => {
+				this.themeRoller(this.activeTheme)
+				switchCheckbox.checked = false // Uncheck the system settings checkbox
+			})
+		}
 	}
 
 	themeRoller(theme) {
@@ -72,13 +98,14 @@ class ThemePicker {
 			nextTheme = "default"
 		}
 
-		return this.setTheme(nextTheme)
+		this.setTheme(nextTheme)
 	}
 
 	getSystemPreference() {
 		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 			return "dark"
 		}
+
 		return false
 	}
 
@@ -86,6 +113,7 @@ class ThemePicker {
 		if (this.hasLocalStorage) {
 			return localStorage.getItem(THEME_STORAGE_KEY)
 		}
+
 		return false
 	}
 
@@ -93,7 +121,9 @@ class ThemePicker {
 		this.activeTheme = id
 		document.documentElement.setAttribute("data-theme", id)
 
-		localStorage.setItem(THEME_STORAGE_KEY, id)
+		if (this.hasLocalStorage) {
+			localStorage.setItem(THEME_STORAGE_KEY, id)
+		}
 
 		const currentSelected = document.querySelector(
 			`.theme-button[data-theme="${id}"]`
