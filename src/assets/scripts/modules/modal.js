@@ -1,44 +1,47 @@
-const modal = document.querySelector(".modal")
-const modalButton = document.querySelector(".modal-button")
-const modalContent = document.querySelector(".modal--content")
-const closeButton = document.querySelector(".modal--close-button")
-const modalOverlay = document.querySelector(".modal--overlay")
+function initializeModal(modalElement, modalButton, closeButton, modalOverlay) {
+	const modal = document.querySelector(modalElement)
+	const button = document.querySelector(modalButton)
+	const content = document.querySelector(closeButton)
+	const overlay = document.querySelector(modalOverlay)
 
-const openModal = () => {
-	modal.style.display = "block"
-	modal.setAttribute("aria-hidden", "false")
-	closeButton.focus()
-	document.body.style.overflow = "hidden"
+	if (!modal || !button || !content || !overlay) {
+		return
+	}
+
+	const openModal = () => {
+		modal.style.display = "block"
+		modal.setAttribute("aria-hidden", "false")
+		document.body.style.overflow = "hidden"
+	}
+
+	const closeModal = () => {
+		content.style.animation = "slideOutToTop 0.3s ease-out forwards"
+		overlay.style.animation = "hideModal 0.3s ease-out"
+
+		setTimeout(() => {
+			modal.style.display = "none"
+			modal.setAttribute("aria-hidden", "true")
+			document.body.style.overflow = ""
+			content.style.animation = ""
+			overlay.style.animation = ""
+		}, 300)
+	}
+
+	button.addEventListener("click", openModal)
+
+	content.addEventListener("click", closeModal)
+
+	overlay.addEventListener("click", (e) => {
+		if (e.target === overlay) {
+			closeModal()
+		}
+	})
+
+	modal.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" || e.keyCode === 27) {
+			closeModal()
+		}
+	})
 }
 
-const closeModal = () => {
-	modalContent.style.animation = "slideOutToTop 0.3s ease-out forwards"
-	modalOverlay.style.animation = "hideModal 0.3s ease-out"
-
-	setTimeout(() => {
-		modal.style.display = "none"
-		modal.setAttribute("aria-hidden", "true")
-		modalButton.focus()
-		document.body.style.overflow = ""
-		modalContent.style.animation = ""
-		modalOverlay.style.animation = ""
-	}, 300)
-}
-
-modalButton.addEventListener("click", openModal)
-
-closeButton.addEventListener("click", closeModal)
-
-modalOverlay.addEventListener("click", (e) => {
-	if (e.target === modalOverlay) {
-		closeModal()
-	}
-})
-
-modal.addEventListener("keydown", (e) => {
-	if (e.key === "Escape" || e.keyCode === 27) {
-		closeModal()
-	}
-})
-
-export { openModal, closeModal }
+initializeModal(".modal", ".modal-button", ".modal--content", ".modal--overlay")

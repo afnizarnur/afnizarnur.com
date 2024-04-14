@@ -15,39 +15,6 @@ permalink: /
 		{% include "home/rec-accordion.njk" %}
 		{% include "footer/cta.njk" %}
 	</r-grid>
-
-	<div class="modal" role="dialog" aria-labelledby="Theme Switcher" aria-describedby="Change site theme with switcher">
-		<div class="modal--content">
-			<div class="modal--title">
-
-				<p class="bold">Theme Switcher</p>
-				<button class="modal--close-button" aria-label="Close Modal">
-					{% icon "close" %}
-				</button>
-			</div>
-			<div class="modal--body">
-				<div class="theme-switcher">
-					<button id="light-mode" aria-label="Switch to Light Mode">
-						<p class="bold">Suci</p>
-					</button>
-					<button id="dark-mode" aria-label="Switch to Dark Mode">
-						<p class="bold">Dark</p>
-
-					</button>
-					<button id="minimal-mode" aria-label="Switch to Minimal Mode">
-						<p class="bold">Minimal</p>
-					</button>
-					<button id="pink-mode" aria-label="Switch to Pink Mode">
-						<p class="bold">Pink</p>
-					</button>
-					<button id="blue-mode" aria-label="Switch to Blue Mode">
-						<p class="bold">Blue</p>
-					</button>
-				</div>
-			</div>
-		</div>
-		<div class="modal--overlay"></div>
-	</div>
 </div>
 
 {% include "footer/social.njk" %}
