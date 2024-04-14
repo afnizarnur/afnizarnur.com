@@ -4,6 +4,7 @@ function navigateToUrl() {
 	if (selectedYear !== "2024") {
 		var url = "https://" + selectedYear + ".afnizarnur.com/"
 		window.open(url, "_blank")
+		window.umami.track("footer-" + selectedYear)
 		selectElement.value = "2024"
 	}
 }
