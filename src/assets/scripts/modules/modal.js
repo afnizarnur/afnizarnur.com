@@ -1,11 +1,14 @@
-function initializeModal(modalElement, modalButton, closeButton, modalOverlay) {
-	const modal = document.querySelector(modalElement)
-	const button = document.querySelector(modalButton)
-	const content = document.querySelector(closeButton)
-	const overlay = document.querySelector(modalOverlay)
+function initializeModal(modalIdentifier) {
+	const modal = document.querySelector(`.${modalIdentifier}`)
+	const button = document.querySelector(`.${modalIdentifier}-button`)
+	const content = modal.querySelector(`.${modalIdentifier}--content`)
+	const closeButton = content.querySelector(
+		`.${modalIdentifier}--close-button`
+	)
+	const overlay = modal.querySelector(`.${modalIdentifier}--overlay`)
 
-	if (!modal || !button || !content || !overlay) {
-		return
+	if (!modal || !button || !content || !closeButton || !overlay) {
+		return /
 	}
 
 	const openModal = () => {
@@ -29,7 +32,7 @@ function initializeModal(modalElement, modalButton, closeButton, modalOverlay) {
 
 	button.addEventListener("click", openModal)
 
-	content.addEventListener("click", closeModal)
+	closeButton.addEventListener("click", closeModal)
 
 	overlay.addEventListener("click", (e) => {
 		if (e.target === overlay) {
@@ -44,4 +47,4 @@ function initializeModal(modalElement, modalButton, closeButton, modalOverlay) {
 	})
 }
 
-initializeModal(".modal", ".modal-button", ".modal--content", ".modal--overlay")
+initializeModal("modal-theme-switcher")
