@@ -8,7 +8,7 @@ function initializeModal(modalIdentifier) {
 	const overlay = modal.querySelector(`.${modalIdentifier}--overlay`)
 
 	if (!modal || !button || !content || !closeButton || !overlay) {
-		return /
+		return
 	}
 
 	const openModal = () => {
