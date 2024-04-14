@@ -34,11 +34,26 @@ class ThemePicker {
 
 	bindEvents() {
 		const themeButtons = document.querySelectorAll(".theme-button")
+		const switchCheckbox = document.getElementById("switch")
+
 		themeButtons.forEach((button) => {
 			button.addEventListener("click", () => {
 				const theme = button.dataset.theme
 				this.setTheme(theme)
+				switchCheckbox.checked = false
 			})
+		})
+
+		switchCheckbox.addEventListener("change", () => {
+			if (switchCheckbox.checked) {
+				const systemPreference = this.getSystemPreference()
+				this.activeTheme = systemPreference || "default"
+			} else {
+				const storedPreference = this.getStoredPreference()
+				this.activeTheme = storedPreference || "default"
+			}
+
+			this.setTheme(this.activeTheme)
 		})
 	}
 
@@ -78,11 +93,7 @@ class ThemePicker {
 		this.activeTheme = id
 		document.documentElement.setAttribute("data-theme", id)
 
-		const systemPreference = this.getSystemPreference()
-
-		if (!systemPreference) {
-			localStorage.setItem(THEME_STORAGE_KEY, id)
-		}
+		localStorage.setItem(THEME_STORAGE_KEY, id)
 
 		const currentSelected = document.querySelector(
 			`.theme-button[data-theme="${id}"]`
