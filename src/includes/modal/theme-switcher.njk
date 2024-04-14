@@ -1,8 +1,7 @@
-<div class="modal-theme-switcher modal" role="dialog" aria-labelledby="Theme Switcher" aria-describedby="Change site theme with switcher">
+<div class="modal-theme-switcher modal" role="dialog" aria-modal="true" aria-labelledby="themeSwitcherTitle" aria-describedby="themeSwitcherDescription">
     <div class="modal-theme-switcher--content modal--content">
         <div class="modal--title">
-
-            <p class="bold">Theme Switcher</p>
+            <h2 id="themeSwitcherTitle" class="bold">Theme Switcher</h2>
             <button class="modal-theme-switcher--close-button modal--close-button" aria-label="Close Modal">
                 {% icon "close" %}
             </button>
@@ -27,9 +26,9 @@
             </div>
 
             <div class="system-settings-option">
-                <input type="checkbox" id="switch" checked/>
+                <input type="checkbox" id="switch-system" checked/>
 
-                <label for="switch" class="slider">
+                <label for="switch-system" class="slider">
                     <small>
                         Can't decide? Check to use system settings
                     </small>

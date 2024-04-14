@@ -34,7 +34,7 @@ class ThemePicker {
 
 	bindEvents() {
 		const themeButtons = document.querySelectorAll(".theme-button")
-		const switchCheckbox = document.getElementById("switch")
+		const switchCheckbox = document.getElementById("switch-system")
 
 		themeButtons.forEach((button) => {
 			button.addEventListener("click", () => {
