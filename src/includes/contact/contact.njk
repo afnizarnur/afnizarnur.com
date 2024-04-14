@@ -4,15 +4,15 @@
 	span-s="row"
 	span-lg="row"
 >
-	<div class="contact--content">
-		<div class="headline-container">
-			<div class="headline">
-				<r-grid columns="10">
-					<r-cell span="1-7" span-s="row">
-						<h1 text-split letters-slide-up>Let's get in touch</h1>
-					</r-cell>
-					<r-cell span="1-6" span-s="row">
-						<p class="subtitle">
+    <div class="contact--content">
+        <div class="headline-container">
+            <div class="headline">
+                <r-grid columns="10">
+                    <r-cell span="1-7" span-s="row">
+                        <h1 text-split letters-slide-up>Let's get in touch</h1>
+                    </r-cell>
+                    <r-cell span="1-6" span-s="row">
+                        <p class="subtitle">
 							I am always open to new opportunities and
 							collaborations. If you have any questions or need
 							help with a project,
@@ -22,55 +22,55 @@
 								class="copy-email"
 								onclick="event.preventDefault()"
 								>reach out to me via email{% icon "copy" %}
-							</span>
-						</p>
-					</r-cell>
-				</r-grid>
-				<svg
+                            </span>
+                        </p>
+                    </r-cell>
+                </r-grid>
+                <svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="217"
 					height="406"
 					fill="none"
-					class="contact--illustration js-themepicker-toggle-contact"
+					class="contact--illustration js-themeswitcher-toggle-contact"
 					aria-expanded="false"
 					aria-controls="theme-menu"
 					viewBox="0 0 217 406"
 				>
-					<g clip-path="url(#a)">
-						<path
+                    <g clip-path="url(#a)">
+                        <path
 							stroke="currentColor"
 							stroke-width="4"
 							d="M202.222 403.062c-24.609 0-48.924-5.364-72.942-16.094-24.019-10.73-45.872-25.938-65.56-45.626-19.687-19.687-34.896-41.54-45.626-65.559C7.364 251.764 2 227.45 2 202.841c0-3.544 1.181-6.497 3.544-8.86 2.362-2.362 5.315-3.543 8.86-3.543h47.84c2.756 0 5.217.935 7.383 2.805 2.165 1.87 3.445 4.085 3.839 6.645l7.678 41.343c.393 3.15.295 5.808-.296 7.974a12.425 12.425 0 0 1-3.248 5.611l-28.645 28.94c3.937 7.285 8.613 14.323 14.027 21.115 5.414 6.792 11.37 13.338 17.866 19.638a207.563 207.563 0 0 0 19.196 16.981 186.731 186.731 0 0 0 21.262 14.322l27.76-27.759c1.771-1.772 4.085-3.101 6.939-3.987 2.855-.886 5.661-1.132 8.417-.738l40.753 8.269c2.756.787 5.02 2.215 6.792 4.282 1.772 2.067 2.658 4.38 2.658 6.94v47.84c0 3.544-1.181 6.497-3.544 8.86-2.362 2.362-5.315 3.543-8.859 3.543Z"
 						/>
-						<path
+                        <path
 							stroke="currentColor"
 							stroke-width="4"
 							d="M33.563 191.5V0M185 329V0"
 						/>
-					</g>
-					<defs>
-						<clipPath id="a">
-							<path fill="#fff" d="M0 0h217v406H0z"/>
-						</clipPath>
-					</defs>
-				</svg>
-			</div>
-		</div>
+                    </g>
+                    <defs>
+                        <clipPath id="a">
+                            <path fill="#fff" d="M0 0h217v406H0z"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+        </div>
 
-		<div class="contact--social-media-nav">
-			<p class="bold">
+        <div class="contact--social-media-nav">
+            <p class="bold">
 				Feeling too formal via email? Hit me up on social media
 			</p>
 
-			{% include "contact/social-nav.njk" %}
-		</div>
+            {% include "contact/social-nav.njk" %}
+        </div>
 
-		<div class="contact--faq">
-			<h3>Frequently asked question</h3>
+        <div class="contact--faq">
+            <h3>Frequently asked question</h3>
 
-			<div class="accordion">
-				{% for items in faq %}
-					<details
+            <div class="accordion">
+                {% for items in faq %}
+                    <details
 					class="accordion--item"
 					{%
 					if
@@ -79,20 +79,20 @@
 					endif
 					%}
 				>
-						<summary class="accordion--title">
-							<p class="body-large">
-								{{ items.question }}
-							</p>
-							{% icon "chevron-down" %}
-						</summary>
-						<div class="accordion--content">
-							<p>
-								{{ items.answer }}
-							</p>
-						</div>
-					</details>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
+                        <summary class="accordion--title">
+                            <p class="body-large">
+                                {{ items.question }}
+                            </p>
+                            {% icon "chevron-down" %}
+                        </summary>
+                        <div class="accordion--content">
+                            <p>
+                                {{ items.answer }}
+                            </p>
+                        </div>
+                    </details>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </r-cell>

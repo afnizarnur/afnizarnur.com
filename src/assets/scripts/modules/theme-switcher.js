@@ -1,14 +1,14 @@
 const THEME_STORAGE_KEY = "theme"
 
-class ThemePicker {
+class ThemeSwitcher {
 	constructor() {
 		this.activeTheme = "default"
 		this.hasLocalStorage = typeof Storage !== "undefined"
 		this.toggleMobileMenu = document.querySelector(
-			".js-themepicker-toggle-menu"
+			".js-themeswitcher-toggle-menu"
 		)
 		this.toggleContact = document.querySelector(
-			".js-themepicker-toggle-contact"
+			".js-themeswitcher-toggle-contact"
 		)
 		this.switchCheckbox = document.getElementById("switch-system")
 		this.init()
@@ -43,10 +43,10 @@ class ThemePicker {
 		const themeButtons = document.querySelectorAll(".theme-button")
 		const switchCheckbox = document.getElementById("switch-system")
 		const toggleMobileMenu = document.querySelector(
-			".js-themepicker-toggle-menu"
+			".js-themeswitcher-toggle-menu"
 		)
 		const toggleContact = document.querySelector(
-			".js-themepicker-toggle-contact"
+			".js-themeswitcher-toggle-contact"
 		)
 
 		themeButtons.forEach((button) => {
@@ -148,5 +148,5 @@ class ThemePicker {
 }
 
 if (window.CSS && CSS.supports("color", "var(--fake-var)")) {
-	new ThemePicker()
+	new ThemeSwitcher()
 }
