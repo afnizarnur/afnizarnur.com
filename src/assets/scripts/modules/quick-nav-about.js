@@ -1,4 +1,4 @@
-class QuickNav {
+class QuickNavAbout {
 	constructor() {
 		this.quickNav = document.querySelector(".quick-nav")
 		this.navLinks = document.querySelectorAll(".quick-nav a")
@@ -63,5 +63,5 @@ class QuickNav {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-	new QuickNav()
+	new QuickNavAbout()
 })
