@@ -17,9 +17,11 @@
 			height: 100%;
 			padding: 56px 0px;
 			border: none;
+			position: relative;
 
 			&:hover {
 				opacity: 0.7;
+				transition: all 0.2s $animation-curve-default;
 			}
 
 			&:focus-visible {
@@ -57,12 +59,21 @@
 				background: $blue-200;
 				box-shadow: 0px 12px 0px #99e3fc;
 			}
+
+			.theme-selected {
+				position: absolute;
+				bottom: 0;
+				padding: 2px 12px;
+				background: $green-200;
+				color: $green-950;
+				border-radius: 12px 12px 0px 0px;
+			}
 		}
 	}
 	.system-settings-option {
 		padding: 36px 24px 0px 24px;
 		display: flex;
-		gap: 16px;
+		gap: 8px;
 
 		label {
 			display: flex;
