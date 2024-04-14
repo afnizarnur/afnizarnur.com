@@ -1,16 +1,10 @@
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Draggable } from "gsap/Draggable"
-import SplitType from "split-type"
 
 gsap.registerPlugin(ScrollTrigger, Draggable)
 
 document.addEventListener("DOMContentLoaded", function () {
-	const typeSplit = new SplitType("[text-split]", {
-		types: "words, chars",
-		tagName: "span"
-	})
-
 	function createScrollTrigger(triggerElement, timeline) {
 		ScrollTrigger.create({
 			trigger: triggerElement,
@@ -96,12 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		bounds: document.querySelector(".picture-container.picture-comp"),
 		zIndexBoost: false
 	})
-
-	// Animation text reveal
-	const textRevealElements = document.querySelectorAll("[letters-slide-up]")
-	if (textRevealElements && textRevealElements.length > 0) {
-		textRevealElements.forEach(animateTextReveal)
-	}
 
 	// Animation on selected work
 	const selectedWorkItems = document.querySelectorAll(".selected-work--item")
