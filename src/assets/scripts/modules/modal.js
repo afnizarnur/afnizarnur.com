@@ -18,7 +18,14 @@ function initializeModal(modalIdentifier) {
 	}
 
 	const closeModal = () => {
-		content.style.animation = "slideOutToTop 0.4s ease-in forwards"
+		const mediaQuery = window.matchMedia("(max-width: 480px)")
+
+		if (mediaQuery.matches) {
+			content.style.animation = "slideOutToBottom 0.4s ease-in forwards"
+		} else {
+			content.style.animation = "slideOutToTop 0.4s ease-in forwards"
+		}
+
 		overlay.style.animation = "hideModal 0.4s ease-in"
 
 		setTimeout(() => {

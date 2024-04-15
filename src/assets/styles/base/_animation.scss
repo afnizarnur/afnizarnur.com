@@ -93,6 +93,24 @@
 	}
 }
 
+@keyframes slideInFromBottom {
+	from {
+		top: 100%;
+	}
+	to {
+		top: 50%;
+	}
+}
+
+@keyframes slideOutToBottom {
+	from {
+		top: 50%;
+	}
+	to {
+		top: 100%;
+	}
+}
+
 @keyframes showModal {
 	from {
 		opacity: 0;
