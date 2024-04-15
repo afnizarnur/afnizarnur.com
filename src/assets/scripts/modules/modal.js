@@ -24,9 +24,8 @@ function initializeModal(buttonIdentifier, modalIdentifier) {
 			content.style.animation = "slideOutToBottom 0.4s ease-in forwards"
 		} else {
 			content.style.animation = "slideOutToTop 0.4s ease-in forwards"
+			overlay.style.animation = "dissolve 0.4s ease-in"
 		}
-
-		overlay.style.animation = "dissolve 0.4s ease-in"
 
 		setTimeout(() => {
 			modal.style.display = "none"

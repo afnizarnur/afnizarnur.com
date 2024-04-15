@@ -17,6 +17,11 @@
 		background-color: var(--overlay);
 		z-index: 1000;
 		animation: appear 0.1s ease-out;
+
+		@include mq-down(sm) {
+			animation: none;
+			background-color: transparent;
+		}
 	}
 
 	&--content {
