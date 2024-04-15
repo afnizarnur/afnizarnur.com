@@ -53,8 +53,28 @@ class ThemeSwitcher {
 	updateCheckbox() {
 		this.switchCheckbox.checked = this.followSystemTheme
 	}
-
 	bindEvents() {
+		const toggleMobileMenu = document.querySelector(
+			".js-themeswitcher-toggle-menu"
+		)
+		const toggleContact = document.querySelector(
+			".js-themeswitcher-toggle-contact"
+		)
+
+		if (toggleMobileMenu) {
+			toggleMobileMenu.addEventListener("click", () => {
+				this.themeRoller(this.activeTheme)
+				this.switchCheckbox.checked = false
+			})
+		}
+
+		if (toggleContact) {
+			toggleContact.addEventListener("click", () => {
+				this.themeRoller(this.activeTheme)
+				this.switchCheckbox.checked = false
+			})
+		}
+
 		this.themeButtons.forEach((button) => {
 			button.addEventListener("click", (event) => {
 				const theme = button.dataset.theme
@@ -95,6 +115,30 @@ class ThemeSwitcher {
 				button.appendChild(selectedBadge)
 			}
 		})
+	}
+
+	themeRoller(theme) {
+		let nextTheme
+		switch (theme) {
+			case "default":
+				nextTheme = "dark"
+				break
+			case "dark":
+				nextTheme = "gray"
+				break
+			case "gray":
+				nextTheme = "pink"
+				break
+			case "pink":
+				nextTheme = "blue"
+				break
+			default:
+				nextTheme = "default"
+		}
+		this.activeTheme = nextTheme
+		this.applyTheme()
+		this.savePreferences()
+		this.updateCheckbox()
 	}
 
 	getSystemPreference() {
