@@ -33,6 +33,10 @@ class ThemeSwitcher {
 				const { theme, followSystem } = JSON.parse(preference)
 				this.activeTheme = theme || this.activeTheme
 				this.followSystemTheme = followSystem
+				if (followSystem) {
+					const systemTheme = this.getSystemPreference()
+					this.activeTheme = systemTheme
+				}
 			} else {
 				this.savePreferences()
 			}
@@ -53,6 +57,7 @@ class ThemeSwitcher {
 	updateCheckbox() {
 		this.switchCheckbox.checked = this.followSystemTheme
 	}
+
 	bindEvents() {
 		const toggleMobileMenu = document.querySelector(
 			".js-themeswitcher-toggle-menu"
