@@ -1,13 +1,13 @@
-function initializeModal(modalIdentifier) {
+function initializeModal(buttonIdentifier, modalIdentifier) {
+	const button = document.querySelector(`.${buttonIdentifier}`)
 	const modal = document.querySelector(`.${modalIdentifier}`)
-	const button = document.querySelector(`.${modalIdentifier}-button`)
 	const content = modal.querySelector(`.${modalIdentifier}--content`)
 	const closeButton = content.querySelector(
 		`.${modalIdentifier}--close-button`
 	)
 	const overlay = modal.querySelector(`.${modalIdentifier}--overlay`)
 
-	if (!modal || !button || !content || !closeButton || !overlay) {
+	if (!button || !modal || !content || !closeButton || !overlay) {
 		return
 	}
 
@@ -54,4 +54,5 @@ function initializeModal(modalIdentifier) {
 	})
 }
 
-initializeModal("modal-theme-switcher")
+initializeModal("theme-switcher-desktop", "modal-theme-switcher")
+initializeModal("theme-switcher-mobile", "modal-theme-switcher")
