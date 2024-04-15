@@ -17,6 +17,7 @@ class ThemeSwitcher {
 	init() {
 		const storedPreference = this.getStoredPreference()
 		const systemPreference = this.getSystemPreference()
+		const switchCheckbox = document.getElementById("switch-system")
 
 		if (storedPreference) {
 			this.activeTheme = storedPreference
@@ -71,14 +72,14 @@ class ThemeSwitcher {
 		if (toggleMobileMenu) {
 			toggleMobileMenu.addEventListener("click", () => {
 				this.themeRoller(this.activeTheme)
-				switchCheckbox.checked = false // Uncheck the system settings checkbox
+				switchCheckbox.checked = false
 			})
 		}
 
 		if (toggleContact) {
 			toggleContact.addEventListener("click", () => {
 				this.themeRoller(this.activeTheme)
-				switchCheckbox.checked = false // Uncheck the system settings checkbox
+				switchCheckbox.checked = false
 			})
 		}
 	}
