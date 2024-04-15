@@ -6,6 +6,11 @@
 		align-items: flex-start;
 		padding: 0px;
 
+		@include mq-down(sm) {
+			flex-direction: column;
+			gap: 12px;
+		}
+
 		button {
 			display: flex;
 			flex-direction: column;
@@ -18,6 +23,12 @@
 			padding: 56px 0px;
 			border: none;
 			position: relative;
+
+			@include mq-down(sm) {
+				flex-direction: column;
+				padding: 24px 24px;
+				align-items: flex-start;
+			}
 
 			&:hover {
 				opacity: 0.7;
@@ -67,6 +78,15 @@
 				background: $green-200;
 				color: $green-950;
 				border-radius: 12px 12px 0px 0px;
+				display: flex;
+				align-items: center;
+
+				@include mq-down(sm) {
+					right: 24px;
+					bottom: 24px;
+					border-radius: 12px;
+					padding: 2px 12px;
+				}
 			}
 		}
 	}

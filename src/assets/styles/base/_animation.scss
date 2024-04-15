@@ -93,7 +93,25 @@
 	}
 }
 
-@keyframes showModal {
+@keyframes slideInFromBottom {
+	from {
+		top: 100%;
+	}
+	to {
+		top: 50%;
+	}
+}
+
+@keyframes slideOutToBottom {
+	from {
+		top: 50%;
+	}
+	to {
+		top: 150%;
+	}
+}
+
+@keyframes appear {
 	from {
 		opacity: 0;
 	}
@@ -102,7 +120,7 @@
 	}
 }
 
-@keyframes hideModal {
+@keyframes dissolve {
 	from {
 		opacity: 1;
 	}

@@ -1,13 +1,13 @@
-function initializeModal(modalIdentifier) {
+function initializeModal(buttonIdentifier, modalIdentifier) {
+	const button = document.querySelector(`.${buttonIdentifier}`)
 	const modal = document.querySelector(`.${modalIdentifier}`)
-	const button = document.querySelector(`.${modalIdentifier}-button`)
 	const content = modal.querySelector(`.${modalIdentifier}--content`)
 	const closeButton = content.querySelector(
 		`.${modalIdentifier}--close-button`
 	)
 	const overlay = modal.querySelector(`.${modalIdentifier}--overlay`)
 
-	if (!modal || !button || !content || !closeButton || !overlay) {
+	if (!button || !modal || !content || !closeButton || !overlay) {
 		return
 	}
 
@@ -18,8 +18,15 @@ function initializeModal(modalIdentifier) {
 	}
 
 	const closeModal = () => {
-		content.style.animation = "slideOutToTop 0.4s ease-in forwards"
-		overlay.style.animation = "hideModal 0.4s ease-in"
+		const mediaQuery = window.matchMedia("(max-width: 480px)")
+
+		if (mediaQuery.matches) {
+			content.style.animation = "slideOutToBottom 0.4s ease-in forwards"
+		} else {
+			content.style.animation = "slideOutToTop 0.4s ease-in forwards"
+		}
+
+		overlay.style.animation = "dissolve 0.4s ease-in"
 
 		setTimeout(() => {
 			modal.style.display = "none"
@@ -47,4 +54,5 @@ function initializeModal(modalIdentifier) {
 	})
 }
 
-initializeModal("modal-theme-switcher")
+initializeModal("theme-switcher-desktop", "modal-theme-switcher")
+initializeModal("theme-switcher-mobile", "modal-theme-switcher")
