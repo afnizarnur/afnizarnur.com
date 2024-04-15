@@ -265,3 +265,18 @@ hr {
 	border: 1px solid var(--border-default);
 	border-top: 1px;
 }
+
+::selection {
+	background: var(--text-primary);
+	color: var(--background-default);
+}
+
+::-moz-selection {
+	background: var(--text-primary);
+	color: var(--background-default);
+}
+
+::-webkit-selection {
+	background: var(--text-primary);
+	color: var(--background-default);
+}
