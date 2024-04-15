@@ -30,15 +30,16 @@
 		max-width: 564px;
 		width: 100%;
 		z-index: 1001;
-		animation: slideInFromTop 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+		animation: slideInFromTop 0.8s $animation-curve-fast-out-slow-in-alt
+			forwards;
 		box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.05),
 			0px 4px 8px rgba(0, 0, 0, 0.05), 0px 1px 2px rgba(0, 0, 0, 0.25);
 
 		@include mq-down(sm) {
 			height: 100vh;
 			border-radius: 0px;
-			animation: slideInFromBottom 0.8s cubic-bezier(0.19, 1, 0.22, 1)
-				forwards;
+			animation: slideInFromBottom 0.8s
+				$animation-curve-fast-out-slow-in-alt forwards;
 		}
 	}
 
