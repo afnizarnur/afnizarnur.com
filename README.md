@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
- This is the source code of <a href="https://afnizarnur.com/">my personal site</a>. Proudly built with Eleventy and hosted in Netlify.
+ This is the source code of <a href="https://afnizarnur.com/">my personal site</a>. Handcrafted with 11ty and hosted in Netlify.
 </p>
 
 <p align="center">
@@ -42,4 +42,4 @@ Clone the repository and install the dependencies:
 
 ## License
 
-MIT © [Afnizar Nur Ghifari](https://github.com/afnizarnur/afnizarnur.com)
+This website is my personal project, and I've chosen to share its source code openly for educational purposes. However, please note that **it's not a template**. Feel free to incorporate portions of the code into your own website, giving proper attribution to the author is appreciated.
