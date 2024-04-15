@@ -1,149 +1,106 @@
-const THEME_STORAGE_KEY = "theme"
+const THEME_PREFERENCE_KEY = "themePreference"
 
 class ThemeSwitcher {
 	constructor() {
 		this.activeTheme = "default"
+		this.followSystemTheme = true
 		this.hasLocalStorage = typeof Storage !== "undefined"
-		this.toggleMobileMenu = document.querySelector(
-			".js-themeswitcher-toggle-menu"
-		)
-		this.toggleContact = document.querySelector(
-			".js-themeswitcher-toggle-contact"
-		)
 		this.switchCheckbox = document.getElementById("switch-system")
+		this.themeButtons = document.querySelectorAll(".theme-button")
 		this.init()
 	}
 
 	init() {
-		const storedPreference = this.getStoredPreference()
-		const systemPreference = this.getSystemPreference()
-
-		if (storedPreference) {
-			this.activeTheme = storedPreference
-		} else if (systemPreference) {
-			this.activeTheme = systemPreference
-		} else {
-			this.activeTheme = "default"
-		}
-
+		this.loadPreferences()
+		this.applyTheme()
 		this.bindEvents()
-		this.setTheme(this.activeTheme)
 
-		const prefersDarkMode = window.matchMedia(
-			"(prefers-color-scheme: dark)"
-		)
+		window
+			.matchMedia("(prefers-color-scheme: dark)")
+			.addEventListener("change", (e) => {
+				if (this.followSystemTheme) {
+					this.activeTheme = e.matches ? "dark" : "default"
+					this.applyTheme()
+					this.savePreferences()
+				}
+			})
+	}
 
-		prefersDarkMode.addEventListener("change", () => {
-			const newTheme = prefersDarkMode.matches ? "dark" : "default"
-			this.setTheme(newTheme)
-		})
+	loadPreferences() {
+		if (this.hasLocalStorage) {
+			const preference = localStorage.getItem(THEME_PREFERENCE_KEY)
+			if (preference) {
+				const { theme, followSystem } = JSON.parse(preference)
+				this.activeTheme = theme || this.activeTheme
+				this.followSystemTheme = followSystem
+			} else {
+				this.savePreferences()
+			}
+		}
+		this.updateCheckbox()
+	}
+
+	savePreferences() {
+		if (this.hasLocalStorage) {
+			const preference = JSON.stringify({
+				theme: this.activeTheme,
+				followSystem: this.followSystemTheme
+			})
+			localStorage.setItem(THEME_PREFERENCE_KEY, preference)
+		}
+	}
+
+	updateCheckbox() {
+		this.switchCheckbox.checked = this.followSystemTheme
 	}
 
 	bindEvents() {
-		const themeButtons = document.querySelectorAll(".theme-button")
-		const switchCheckbox = document.getElementById("switch-system")
-		const toggleMobileMenu = document.querySelector(
-			".js-themeswitcher-toggle-menu"
-		)
-		const toggleContact = document.querySelector(
-			".js-themeswitcher-toggle-contact"
-		)
-
-		themeButtons.forEach((button) => {
-			button.addEventListener("click", () => {
+		this.themeButtons.forEach((button) => {
+			button.addEventListener("click", (event) => {
 				const theme = button.dataset.theme
-				this.setTheme(theme)
-				switchCheckbox.checked = false
+				this.activeTheme = theme
+				this.followSystemTheme = false
+				this.applyTheme()
+				this.savePreferences()
+				this.updateCheckbox()
 			})
 		})
 
-		switchCheckbox.addEventListener("change", () => {
-			if (switchCheckbox.checked) {
-				const systemPreference = this.getSystemPreference()
-				this.activeTheme = systemPreference || "default"
-			} else {
-				const storedPreference = this.getStoredPreference()
-				this.activeTheme = storedPreference || "default"
+		this.switchCheckbox.addEventListener("change", () => {
+			this.followSystemTheme = this.switchCheckbox.checked
+			if (this.followSystemTheme) {
+				this.activeTheme = this.getSystemPreference() || "default"
 			}
-			this.setTheme(this.activeTheme)
+			this.applyTheme()
+			this.savePreferences()
 		})
-
-		if (toggleMobileMenu) {
-			toggleMobileMenu.addEventListener("click", () => {
-				this.themeRoller(this.activeTheme)
-				switchCheckbox.checked = false
-			})
-		}
-
-		if (toggleContact) {
-			toggleContact.addEventListener("click", () => {
-				this.themeRoller(this.activeTheme)
-				switchCheckbox.checked = false
-			})
-		}
 	}
 
-	themeRoller(theme) {
-		let nextTheme
-
-		if (theme === "default") {
-			nextTheme = "dark"
-		} else if (theme === "dark") {
-			nextTheme = "gray"
-		} else if (theme === "gray") {
-			nextTheme = "pink"
-		} else if (theme === "pink") {
-			nextTheme = "blue"
-		} else {
-			nextTheme = "default"
-		}
-
-		this.setTheme(nextTheme)
+	applyTheme() {
+		document.documentElement.setAttribute("data-theme", this.activeTheme)
+		this.updateThemeButtons()
 	}
 
-	getSystemPreference() {
-		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-			return "dark"
-		}
-
-		return false
-	}
-
-	getStoredPreference() {
-		if (this.hasLocalStorage) {
-			return localStorage.getItem(THEME_STORAGE_KEY)
-		}
-
-		return false
-	}
-
-	setTheme(id) {
-		this.activeTheme = id
-		document.documentElement.setAttribute("data-theme", id)
-
-		if (this.hasLocalStorage) {
-			localStorage.setItem(THEME_STORAGE_KEY, id)
-		}
-
-		const currentSelected = document.querySelector(
-			`.theme-button[data-theme="${id}"]`
-		)
-		const themeButtons = document.querySelectorAll(".theme-button")
-
-		themeButtons.forEach((button) => {
+	updateThemeButtons() {
+		this.themeButtons.forEach((button) => {
 			const existingBadge = button.querySelector(".theme-selected")
 			if (existingBadge) {
 				existingBadge.remove()
 			}
+			if (button.dataset.theme === this.activeTheme) {
+				const selectedBadge = document.createElement("span")
+				selectedBadge.classList.add("theme-selected")
+				selectedBadge.innerHTML =
+					'<small class="helper">Selected</small>'
+				button.appendChild(selectedBadge)
+			}
 		})
+	}
 
-		if (currentSelected) {
-			const selectedBadge = document.createElement("span")
-			selectedBadge.classList.add("theme-selected")
-			selectedBadge.innerHTML = '<small class="helper">Selected</small>'
-
-			currentSelected.appendChild(selectedBadge)
-		}
+	getSystemPreference() {
+		return window.matchMedia("(prefers-color-scheme: dark)").matches
+			? "dark"
+			: "default"
 	}
 }
 
