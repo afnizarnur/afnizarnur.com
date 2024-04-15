@@ -17,7 +17,6 @@ class ThemeSwitcher {
 	init() {
 		const storedPreference = this.getStoredPreference()
 		const systemPreference = this.getSystemPreference()
-		const switchCheckbox = document.getElementById("switch-system")
 
 		if (storedPreference) {
 			this.activeTheme = storedPreference
