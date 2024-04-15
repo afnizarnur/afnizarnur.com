@@ -1,90 +1,79 @@
 .about {
-	@include mq-down(lg) {
-		border-width: 0px 0px 1px 0px;
-	}
-
 	&--content {
-		margin: 144px 0px 144px 0px;
-
 		@include mq-down(lg) {
-			margin: 64px 0px 64px 0px;
+			margin: 120px 0;
+		}
+
+		@include mq-down(sm) {
+			margin: 44px 0;
 		}
 
 		&.introduction {
-			margin: 144px 0px 0px 0px;
-
-			hr {
-				margin: 0px 44px;
-
-				@include mq-down(lg) {
-					margin: 0px 16px 0px 16px;
-				}
-			}
+			margin: 144px 0 0;
 
 			@include mq-down(lg) {
-				margin: 64px 0px 0px 0px;
-			}
-		}
-
-		.headline-container {
-			margin-bottom: 64px;
-
-			.headline {
-				margin: 0px 44px 44px 44px;
-
-				@include mq-down(lg) {
-					margin: 0px 16px 0px 16px;
-				}
+				margin: 64px 24px 0 24px;
 			}
 
-			&.introduction {
+			.headline-container {
+				margin: 64px 0;
+
 				@include mq-down(lg) {
-					margin: 64px 0px;
-					border: none;
+					margin: 44px 0;
 				}
 
 				@include mq-down(sm) {
-					margin: 44px 0px;
+					margin: 44px 0;
 				}
 
 				.headline {
+					margin: 0;
+
 					h1 {
 						color: var(--text-inverse-subdued);
 						margin-bottom: 16px;
 					}
+
 					h2 {
 						margin-top: 16px;
-						margin-bottom: 0px;
-					}
-
-					@include mq-down(sm) {
-						margin: 0px 16px 0px 16px;
+						margin-bottom: 0;
 					}
 				}
 
 				p {
-					margin: 0px 44px 24px 44px;
-
-					@include mq-down(lg) {
-						margin: 0px 16px 24px 16px;
-					}
+					margin: 0 0 24px;
 				}
 
 				img {
 					width: 100%;
 					height: auto;
-					margin: 0px 0px 44px 0px;
+					margin: 44px 0;
+					border-radius: 16px;
 
 					@include mq-down(lg) {
-						margin: 24px 0px 24px 0px;
+						margin: 24px 0;
 					}
 				}
 			}
+		}
 
-			&.history {
+		&.history {
+			margin: 120px 0 0;
+
+			@include mq-down(lg) {
+				margin: 64px 24px 0 24px;
+			}
+
+			.headline-container {
+				margin-bottom: 0;
+
+				.headline {
+					margin-bottom: 0;
+				}
+
 				.content {
-					margin-top: 44px;
-					margin-bottom: 64px;
+					margin-top: 64px;
+					margin-bottom: 44px;
 
 					@include mq-down(lg) {
 						margin-bottom: 44px;
@@ -95,14 +84,34 @@
 					}
 				}
 			}
+		}
 
-			&.speaking {
+		&.speaking {
+			margin: 120px 0 0;
+
+			@include mq-down(lg) {
+				margin: 44px 24px 0 24px;
+			}
+
+			.headline-container {
+				h2 {
+					margin: 0;
+				}
+
 				@include mq-down(lg) {
 					margin-bottom: 24px;
 				}
 			}
+		}
 
-			&.outside-work {
+		&.outside-work {
+			margin: 120px 0;
+
+			@include mq-down(lg) {
+				margin: 44px 24px 44px 24px;
+			}
+
+			.headline-container {
 				@include mq-down(lg) {
 					margin-bottom: 44px;
 				}

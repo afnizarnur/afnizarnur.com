@@ -1,0 +1,47 @@
+.custom-select {
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	color: var(--background-default);
+
+	svg {
+		position: absolute;
+		top: 50%;
+		right: 16px;
+		transform: translateY(-50%);
+	}
+
+	&:hover {
+		color: var(--text-primary);
+	}
+
+	select {
+		padding: 8px 16px;
+		border-radius: 100px;
+		border: 1px solid var(--border-default);
+		background: transparent;
+		cursor: pointer;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		width: 94px;
+
+		&.small {
+			font-size: 0.875rem;
+			line-height: 1.2rem;
+			font-weight: 520;
+			letter-spacing: -0.01rem;
+		}
+
+		&:focus-visible {
+			outline: 4px solid $blue-500;
+		}
+
+		&:hover,
+		&:active {
+			border: 1px solid transparent;
+			color: var(--text-primary);
+			background: var(--background-default);
+		}
+	}
+}

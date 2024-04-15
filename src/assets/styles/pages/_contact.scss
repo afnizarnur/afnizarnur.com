@@ -1,26 +1,18 @@
 .contact {
-	@include mq-down(lg) {
-		border-width: 0px 0px 1px 0px;
-	}
-
 	&--content {
 		padding: 144px 0px 144px 0px;
 		position: relative;
 		overflow: hidden;
 
 		@include mq-down(lg) {
-			padding: 64px 0px 64px 0px;
+			padding: 64px 24px 64px 24px;
 		}
 
 		.headline-container {
 			margin-bottom: 64px;
 
 			.headline {
-				margin: 0px 44px 44px 44px;
-
-				@include mq-down(lg) {
-					margin: 0px 16px 0px 16px;
-				}
+				margin: 0px 0px 44px 0px;
 			}
 
 			h1 {
@@ -43,69 +35,24 @@
 			margin-top: 64px;
 		}
 
-		.quick-nav {
-			margin-top: 32px;
-			border-bottom: 1px solid var(--border-default);
-
-			@include mq-down(sm) {
-				margin-top: 16px;
-				margin-bottom: 24px;
-			}
-
-			ul {
-				@include mq-down(sm) {
-					flex-direction: column;
-					width: 100%;
-					overflow: hidden;
-
-					li {
-						width: 100%;
-						margin: 0;
-
-						&:hover {
-							text-decoration: underline;
-							box-shadow: none;
-						}
-
-						a {
-							padding: 16px 16px 20px 16px;
-							width: 100%;
-						}
-					}
-				}
-			}
-		}
-
 		p {
 			color: var(--text-disabled);
-			margin: 0px 44px 44px 44px;
-
-			@include mq-down(lg) {
-				margin: 0px 16px 0px 16px;
-			}
+			margin: 0px 0px 16px 0px;
 		}
 	}
 
 	&--faq {
-		padding: 64px 44px 0px 44px;
+		padding: 64px 0px 0px 0px;
 
 		h3 {
 			margin: 0;
 		}
 
-		@include mq-down(lg) {
-			padding: 44px 16px 0px 16px;
-		}
-
 		.accordion {
-			margin-top: 64px;
+			margin-top: 44px;
 			background: var(--surface-default);
 			border-radius: 16px;
 			overflow: hidden;
-
-			@include mq-down(lg) {
-				margin-top: 44px;
-			}
 
 			&--title {
 				padding: 16px 24px;
@@ -130,7 +77,7 @@
 	&--illustration {
 		position: absolute;
 		cursor: pointer;
-		right: 80px;
+		right: 64px;
 		top: -144px;
 		animation: bounce-down 0.6s $animation-curve-swoosh forwards;
 
@@ -139,7 +86,7 @@
 		}
 
 		@include mq-down(lg) {
-			right: 16px;
+			right: 44px;
 			top: -64px;
 			animation: bounce-down-lg 0.6s $animation-curve-swoosh forwards;
 		}

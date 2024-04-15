@@ -1,30 +1,29 @@
 .work-detail {
-	@include mq-down(lg) {
-		border-width: 0px 0px 1px 0px;
-	}
-
 	&--content {
-		margin: 144px 0px 144px 0px;
+		margin: 144px 0px 0px 0px;
 
 		.title {
-			margin: 0px 44px 64px 44px;
+			margin: 0px 0px 44px 0px;
 
 			@include mq-down(lg) {
-				margin: 0px 16px 44px 16px;
+				margin: 0px 24px 44px 24px;
+			}
+
+			@include mq-down(sm) {
+				margin: 0px 24px 24px 24px;
 			}
 		}
 
 		@include mq-down(lg) {
-			margin: 64px 0px;
+			margin: 64px 0px 0px 0px;
 		}
 	}
 
 	&--info {
-		padding: 0px 44px 0px 44px;
 		gap: 16px;
 
 		@include mq-down(lg) {
-			padding: 0px 16px 0px 16px;
+			padding: 0px 24px 0px 24px;
 			gap: 24px;
 		}
 
@@ -83,21 +82,21 @@
 	&--preview {
 		display: flex;
 		justify-content: center;
+		margin-top: 44px;
 
-		@include mq-down(lg) {
-			border-width: 0px 0px 1px 0px;
+		@include mq-down(sm) {
+			margin-top: 24px;
 		}
 
 		video {
 			width: 100%;
 			height: auto;
-
-			// Remove black line on video
-			// Firefox
 			outline: 2px solid #fff;
 			outline-offset: -2px;
-			// Chrome
-			clip-path: inset(1px 1px);
+			// clip-path: inset(1px 1px);
+			@include mq-down(sm) {
+				padding: 0px 12px;
+			}
 		}
 
 		img {

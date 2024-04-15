@@ -1,16 +1,9 @@
-/**
- * @author afnizarnur
- * @email hi@afnizarnur.com
- * @create date 02-07-2023 10:05:55
- * @modify date 02-07-2023 10:05:55
- * @desc Spotify component fetcher
- */
-
 class SpotifyFetcher {
 	constructor() {
 		this.paragraph = document.getElementById("current-song")
 		if (this.paragraph) {
-			this.fetchSpotify()
+			this.updateFromLocalStorage() // Update from local storage if available
+			this.fetchSpotify() // Fetch new data
 		}
 	}
 
@@ -22,21 +15,37 @@ class SpotifyFetcher {
 				const artistName = data.artists[0].name
 				const url = data.url
 				this.updateParagraph(songTitle, artistName, url)
+				// Store the fetched data in local storage
+				localStorage.setItem(
+					"spotifyData",
+					JSON.stringify({ songTitle, artistName, url })
+				)
 			})
 			.catch((error) => {
 				console.error(error)
 			})
 	}
 
+	updateFromLocalStorage() {
+		const storedData = JSON.parse(localStorage.getItem("spotifyData"))
+		if (storedData) {
+			this.updateParagraph(
+				storedData.songTitle,
+				storedData.artistName,
+				storedData.url
+			)
+		}
+	}
+
 	updateParagraph(songTitle, artistName, url) {
 		if (this.paragraph) {
 			this.paragraph.innerHTML = `
-            <div class="equalizer-container">
-              <div class="equalizer-bar"></div>
-              <div class="equalizer-bar"></div>
-              <div class="equalizer-bar"></div>
-            </div>
-            <a href="${url}" data-umami-event="footer-spotify" target="_blank">${songTitle} by ${artistName}</a>`
+		  <div class="equalizer-container">
+			<div class="equalizer-bar"></div>
+			<div class="equalizer-bar"></div>
+			<div class="equalizer-bar"></div>
+		  </div>
+		  <a href="${url}" data-umami-event="userinfo-spotify" target="_blank">${songTitle} by ${artistName}</a>`
 		}
 	}
 }

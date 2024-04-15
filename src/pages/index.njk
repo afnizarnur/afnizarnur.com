@@ -3,14 +3,18 @@ layout: base
 permalink: /
 ---
 
+{% include "userinfo.njk" %}
+{% include "header.njk" %}
+
 <div class="container work">
 	<r-grid columns="12" columns-s="4">
-		{% include "header.njk" %}
 		{% include "home/introduction.njk" %}
 		{% include "home/selected-work.njk" %}
 		{% include "home/design-tooling.njk" %}
 		{% include "home/skills.njk" %}
 		{% include "home/rec-accordion.njk" %}
-		{% include "footer/footer.njk" %}
+		{% include "footer/cta.njk" %}
 	</r-grid>
 </div>
+
+{% include "footer/social.njk" %}

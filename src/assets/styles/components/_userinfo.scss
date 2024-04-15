@@ -1,0 +1,122 @@
+.userinfo {
+	background: var(--surface-default);
+	z-index: 100;
+
+	&--inner {
+		padding: 12px 0px;
+	}
+
+	&--version {
+		display: inline-block;
+		width: 100%;
+		padding: 24px 44px;
+		margin-bottom: 144px;
+
+		@include mq-down(lg) {
+			padding: 24px 16px;
+			margin-bottom: 64px;
+		}
+
+		.list {
+			display: flex;
+
+			@include mq-down(md) {
+				flex-wrap: wrap;
+			}
+
+			li {
+				margin-right: 16px;
+			}
+
+			li:nth-child(1) {
+				@include mq-down(md) {
+					flex: 1 0 100%;
+					margin-bottom: 12px;
+				}
+			}
+		}
+	}
+	&--local-time-now-playing {
+		color: var(--text-disabled);
+		justify-content: space-between;
+		display: flex;
+
+		@include mq-down(lg) {
+			padding: 0px 24px;
+		}
+
+		small {
+			margin-left: 8px;
+		}
+
+		.local-time,
+		.commit-code,
+		.now-playing {
+			display: flex;
+			align-items: center;
+
+			small {
+				white-space: nowrap;
+				overflow: hidden;
+			}
+		}
+
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+
+		.commit-code {
+			margin: 0px 24px;
+
+			@include mq-down(sm) {
+				margin: 0;
+			}
+
+			a {
+				margin-left: 4px;
+
+				text-decoration: none;
+				color: var(--text-disabled);
+
+				&:hover {
+					color: var(--background-default);
+				}
+
+				small {
+					margin: 0;
+				}
+			}
+		}
+
+		.now-playing {
+			margin-left: auto;
+
+			@include mq-down(sm) {
+				margin-bottom: 0px;
+				margin-left: 0px;
+				display: none;
+			}
+
+			small {
+				display: flex;
+				align-items: center;
+				margin: 0;
+
+				a {
+					margin: 0;
+					color: var(--text-disabled);
+					text-decoration: none;
+					max-width: 50ch;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+
+					&:hover {
+						color: var(--background-default);
+					}
+				}
+			}
+		}
+	}
+}

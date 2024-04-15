@@ -1,168 +1,88 @@
-.footer {
-	@include mq-down(lg) {
-		border: none;
-	}
+.main {
+	position: relative;
+	z-index: 2;
+	margin-bottom: 87px;
+	background-color: var(--background-default);
 
-	&--content {
-		padding: 144px 44px 144px 44px;
-
-		@include mq-down(lg) {
-			padding: 64px 16px;
-		}
-	}
-	&--social {
-		display: inline-block;
-		width: 100%;
-		padding: 24px 44px;
-
-		@include mq-down(lg) {
-			padding: 24px 16px;
-		}
-	}
-	&--version {
-		display: inline-block;
-		width: 100%;
-		padding: 24px 44px;
-		margin-bottom: 144px;
-
-		@include mq-down(lg) {
-			padding: 24px 16px;
-			margin-bottom: 64px;
-		}
-
-		&.footer-mini {
-			padding: 44px 44px 24px 44px;
-
-			@include mq-down(lg) {
-				padding: 24px 16px;
-			}
-		}
-
-		.list {
-			display: flex;
-
-			@include mq-down(md) {
-				flex-wrap: wrap;
-			}
-
-			li {
-				margin-right: 16px;
-			}
-
-			li:nth-child(1) {
-				@include mq-down(md) {
-					flex: 1 0 100%;
-					margin-bottom: 12px;
-				}
-			}
-		}
-	}
-	&--local-time-now-playing {
-		padding: 0px 44px 24px 44px;
-		color: var(--text-disabled);
-		justify-content: space-between;
-		display: flex;
-
-		@include mq-down(lg) {
-			padding: 24px 16px;
-		}
-
-		@include mq-down(sm) {
-			flex-direction: column;
-		}
-
-		small {
-			margin-left: 8px;
-		}
-
-		.local-time,
-		.commit-code,
-		.now-playing {
-			display: flex;
-			align-items: center;
-
-			@include mq-down(sm) {
-				margin-bottom: 16px;
-			}
-		}
-
-		svg {
-			width: 20px;
-			height: 20px;
-		}
-
-		.commit-code {
-			margin-left: 24px;
-
-			a {
-				margin-left: 4px;
-
-				text-decoration: none;
-				color: var(--text-disabled);
-
-				&:hover {
-					color: var(--background-default);
-				}
-
-				small {
-					margin: 0;
-				}
-			}
-
-			@include mq-down(sm) {
-				margin-left: 0;
-			}
-		}
-
-		.now-playing {
-			margin-left: auto;
-
-			@include mq-down(sm) {
-				margin-bottom: 0px;
-				margin-left: 0px;
-			}
-
-			small {
-				display: flex;
-				align-items: center;
-				margin: 0;
-
-				a {
-					margin: 0;
-					color: var(--text-disabled);
-					text-decoration: none;
-
-					&:hover {
-						color: var(--background-default);
-					}
-				}
-			}
-		}
+	@include mq-down(sm) {
+		margin-bottom: 120px;
 	}
 }
 
-.copy-email {
-	cursor: pointer;
-	text-decoration: underline;
-	padding: 2px 5px;
-	margin: 0 -5px;
-	border-radius: 4px;
+.footer {
+	&--social {
+		width: 100%;
+		padding: 24px 0;
 
-	svg {
-		margin-left: 8px;
-		width: 20px;
-		height: 20px;
-		top: -2px;
-		position: relative;
+		@include mq-down(lg) {
+			padding: 24px;
+		}
 	}
 
-	&:hover {
-		color: var(--background-default);
+	&--rug-footer {
+		display: flex;
+		width: 100%;
+		padding: 24px 0;
+		position: fixed;
+		bottom: 0;
 		background: var(--text-primary);
-		text-decoration: none;
-	}
+		background-size: 142px 90px;
+		align-items: center;
+		color: var(--background-default);
 
-	&:focus-visible {
-		outline: 4px solid $blue-500;
+		@include mq-down(lg) {
+			padding: 24px;
+		}
+
+		.rug-footer--main {
+			display: flex;
+			justify-content: space-between;
+
+			@include mq-down(sm) {
+				flex-direction: column;
+			}
+		}
+
+		.select-version {
+			display: flex;
+			align-items: center;
+
+			select {
+				margin-left: 12px;
+			}
+
+			@include mq-down(sm) {
+				margin-bottom: 16px;
+				display: flex;
+				justify-content: center;
+			}
+
+			small {
+				gap: 8px;
+				display: inline-flex;
+			}
+		}
+
+		.built-with {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			white-space: nowrap;
+
+			@include mq-down(sm) {
+				flex-direction: column;
+				text-align: center;
+			}
+
+			small,
+			a {
+				color: var(--background-default);
+			}
+
+			a:hover {
+				color: var(--text-primary);
+				background: var(--background-default);
+			}
+		}
 	}
 }

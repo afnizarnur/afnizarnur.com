@@ -1,66 +1,83 @@
-.quick-nav {
-	overflow: hidden;
+.quick-nav-wrapper {
+	position: relative;
 	width: 100%;
-	margin-top: 64px;
+}
 
-	@include mq-down(lg) {
-		margin-top: 44px;
+.quick-nav {
+	width: 100%;
+
+	&--about {
+		position: fixed;
+		top: -200px;
+		transition: top 0.5s ease-in-out;
+		z-index: 88;
+		left: 0;
+		overflow: hidden;
+
+		ul {
+			justify-content: center;
+
+			@include mq-down(sm) {
+				justify-content: flex-start;
+				padding-left: 24px;
+			}
+		}
+
+		&.show-nav {
+			top: 76px;
+
+			@include mq-down(sm) {
+				top: 72px;
+			}
+		}
 	}
 
 	ul {
 		display: flex;
-		align-items: flex-start;
 		overflow-y: scroll;
-		box-sizing: content-box;
-		padding-right: 24px;
+		gap: 8px;
 
 		li {
 			display: flex;
-			border-radius: 0px 24px 0px 0px;
-			border-top: 1px solid var(--border-default);
-			border-right: 1px solid var(--border-default);
 			background: var(--background-default);
+			border-radius: 100px;
+			border: 1px solid var(--border-default);
 
-			&:not(:first-child) {
-				margin-left: -16px;
+			&:hover {
+				background: var(--text-primary);
+				border: 1px solid transparent;
 			}
 
-			&:nth-child(1) {
-				z-index: 5;
-			}
+			&.active {
+				background: var(--text-primary);
+				border: 1px solid transparent;
 
-			&:nth-child(2) {
-				z-index: 4;
-			}
-
-			&:nth-child(3) {
-				z-index: 3;
-			}
-
-			&:nth-child(4) {
-				z-index: 2;
-			}
-
-			a {
-				white-space: nowrap;
-				padding: 24px 32px 64px 44px;
-				text-decoration: none;
-				color: var(--text-primary);
-				font-weight: 520;
-				margin: 0;
-
-				@include mq-down(lg) {
-					padding: 24px 32px 44px 32px;
+				a {
+					color: var(--background-default);
 				}
 
 				&:hover {
-					background: none;
-					color: var(--text-primary);
+					background: var(--background-default);
+					border: 1px solid var(--border-default);
+
+					a {
+						color: var(--text-primary);
+					}
 				}
 			}
 
-			&:hover {
-				box-shadow: -2px 2px 0px 2px var(--text-primary) inset;
+			a {
+				padding: 12px 24px;
+				color: var(--text-primary);
+				font-weight: 520;
+				text-decoration: none;
+				white-space: nowrap;
+				margin: 0;
+
+				&:hover {
+					background: none;
+					color: var(--background-default);
+				}
 			}
 		}
 	}

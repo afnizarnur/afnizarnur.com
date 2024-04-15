@@ -2,33 +2,26 @@
 layout: base
 ---
 
+{% include "userinfo.njk" %}
+{% include "header.njk" %}
+
 <div class="container work">
 	<r-grid columns="12" columns-s="4">
-		{% include "header.njk" %}
 		{% include "work/header.njk" %}
 
 		<r-cell
-            class="b-lb work--title-intro"
-            span="1-2"
+            class="content"
+            span="2-11"
             span-s="row"
             span-lg="row"
         >
-			<div class="b-b work--section-title">
-				<small aria-hidden="true">Content</small>
-			</div>
-		</r-cell>
-
-		<r-cell
-            class="b-lrb content"
-            span="3-12"
-            span-s="row"
-            span-lg="row"
-        >
-			<span class="block b-b u-desktop-only"></span>
 			<div class="content--content">
 				{{ content | safe }}
 
 				<ul class="tag-list">
+					<li>
+						<small class="helper">Tags</small>
+					</li>
 					{% for i in tags %}
 						<li>
 							<a href="{{ '/work/tags/' + i | url }}">
@@ -36,11 +29,14 @@ layout: base
 							</a>
 						</li>
 					{% endfor %}
+					<li></li>
 				</ul>
 			</div>
 		</r-cell>
 
 		{% include "work/other-work.njk" %}
-		{% include "footer/footer.njk" %}
+
 	</r-grid>
 </div>
+
+{% include "footer/social.njk" %}

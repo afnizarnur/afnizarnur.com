@@ -1,9 +1,5 @@
 .about {
 	.speaking {
-		@include mq-down(lg) {
-			margin: 0px 16px 0px 16px;
-		}
-
 		&--link {
 			border-top: 1px solid var(--border-default);
 			display: flex;

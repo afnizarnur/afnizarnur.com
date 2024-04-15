@@ -1,12 +1,15 @@
-// import "focus-visible"
 import "focus-visible"
 
 // Internal Modules
 import "./modules/animation"
 import "./modules/nav"
-import "./modules/themepicker"
 import "./modules/spotify"
 import "./modules/clipboard"
 import "./modules/local-time"
+import "./modules/quick-nav-about"
+import "./modules/site-version"
 import "./modules/rec-accordion"
+import "./modules/smooth-scroll"
+import "./modules/modal"
+import "./modules/theme-switcher"
 import "./modules/preload"

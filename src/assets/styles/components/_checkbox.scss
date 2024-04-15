@@ -1,0 +1,49 @@
+input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+
+	& + label {
+		position: relative;
+		cursor: pointer;
+		padding-left: 28px;
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 18px;
+			height: 18px;
+			border: 2px solid var(--text-primary);
+			background-color: var(--background-default);
+			border-radius: 5px;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 18px;
+			height: 18px;
+			border-radius: 4px;
+			background: $gray-950;
+			background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23ffffff' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");
+			background-size: cover;
+			opacity: 0;
+		}
+	}
+
+	&:focus-visible + label::before {
+		outline: 4px solid $blue-500;
+	}
+
+	&:checked + label::before {
+		background-color: var(--background-default);
+		border-color: var(--text-primary);
+	}
+
+	&:checked + label::after {
+		opacity: 1;
+	}
+}

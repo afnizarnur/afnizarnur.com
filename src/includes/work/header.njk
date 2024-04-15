@@ -1,21 +1,9 @@
 <r-cell
-    class="b-lb work--title-intro"
-    span="1-2"
+    class="work-detail"
+    span="2-11"
     span-s="row"
     span-lg="row"
 >
-	<div class="b-b work--section-title">
-		<small aria-hidden="true">Details</small>
-	</div>
-</r-cell>
-
-<r-cell
-    class="b-lrb work-detail"
-    span="3-12"
-    span-s="row"
-    span-lg="row"
->
-	<span class="block b-b u-desktop-only"></span>
 	<div class="work-detail--content">
 		<div class="title">
 			<h1>{{title}}</h1>
@@ -81,7 +69,7 @@
 </r-cell>
 
 {% if preview %}
-	<r-cell class="b-lrb work-detail--preview" span="12" span-s="row">
+	<r-cell class="work-detail--preview" span="12" span-s="row">
 		<video autoplay loop muted playsinline tabindex="-1" width="1152" height="900">
 			<source src="{{ preview | url }}" type="video/mp4">
 		</video>

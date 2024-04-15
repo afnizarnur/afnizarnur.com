@@ -1,16 +1,10 @@
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Draggable } from "gsap/Draggable"
-import SplitType from "split-type"
 
 gsap.registerPlugin(ScrollTrigger, Draggable)
 
 document.addEventListener("DOMContentLoaded", function () {
-	const typeSplit = new SplitType("[text-split]", {
-		types: "words, chars",
-		tagName: "span"
-	})
-
 	function createScrollTrigger(triggerElement, timeline) {
 		ScrollTrigger.create({
 			trigger: triggerElement,
@@ -60,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			timelines[rowIndex].fromTo(
 				card,
-				{ opacity: 0 },
-				{ opacity: 1, duration: 0.4 },
+				{ opacity: 0, y: 50 }, // Initial opacity and y position
+				{ opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, // Target opacity and y position
 				index % 2 === 0 ? 0 : 0.2 // Staggered delay within the row
 			)
 		})
@@ -70,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			const rowStart = index === 0 ? "top 90%" : `top+=${index * 10}%`
 			ScrollTrigger.create({
 				trigger: cards[index * 2],
-				start: rowStart,
+				start: "top bottom", // Ensure animation starts when the top of the trigger reaches the bottom of the viewport
 				onEnter: () => timeline.play()
 			})
 		})
@@ -97,23 +91,27 @@ document.addEventListener("DOMContentLoaded", function () {
 		zIndexBoost: false
 	})
 
-	// Animation text reveal
-	const textRevealElements = document.querySelectorAll("[letters-slide-up]")
-	textRevealElements.forEach(animateTextReveal)
-
 	// Animation on selected work
 	const selectedWorkItems = document.querySelectorAll(".selected-work--item")
-	selectedWorkItems.forEach(animateSelectedWork)
+	if (selectedWorkItems && selectedWorkItems.length > 0) {
+		selectedWorkItems.forEach(animateSelectedWork)
+	}
 
 	// Animation on design tooling cards
 	const designToolingCards = document.querySelectorAll(".design-tooling-card")
-	animateCardStagger(designToolingCards)
+	if (designToolingCards && designToolingCards.length > 0) {
+		animateCardStagger(Array.from(designToolingCards))
+	}
 
 	// Animation on other work cards
 	const nextProjectCard = document.querySelectorAll(".other-work-card")
-	animateCardStagger(nextProjectCard)
+	if (nextProjectCard && nextProjectCard.length > 0) {
+		animateCardStagger(Array.from(nextProjectCard))
+	}
 
 	// Avoid flash of unstyled content
 	const textSplitElements = document.querySelectorAll("[text-split]")
-	gsap.set(textSplitElements, { opacity: 1 })
+	if (textSplitElements && textSplitElements.length > 0) {
+		gsap.set(textSplitElements, { opacity: 1 })
+	}
 })

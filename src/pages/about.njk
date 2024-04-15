@@ -7,13 +7,21 @@ eleventyNavigation:
 permalink: /about/
 ---
 
+{% include "userinfo.njk" %}
+{% include "header.njk" %}
+
 <div class="container about">
 	<r-grid columns="12" columns-s="4">
-		{% include "header.njk" %}
 		{% include "about/about.njk" %}
+	</r-grid>
+
+	{% include "about/quick-nav.njk" %}
+
+	<r-grid columns="12" columns-s="4" id="long-intro">
 		{% include "about/history.njk" %}
 		{% include "about/speaking.njk" %}
 		{% include "about/outside-work.njk" %}
-		{% include "footer/footer.njk" %}
 	</r-grid>
 </div>
+
+{% include "footer/social.njk" %}

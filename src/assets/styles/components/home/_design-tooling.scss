@@ -1,31 +1,31 @@
 .design-tooling {
+	margin: 0px 0px 120px 0px;
+
 	@include mq-down(lg) {
-		border-width: 0px 0px 1px 0px;
+		margin: 0px 24px 120px 24px;
+	}
+
+	@include mq-down(sm) {
+		margin-bottom: 64px;
 	}
 
 	&--content {
-		margin: 144px 0px 144px 0px;
-
 		.title {
-			margin: 0px 44px 64px 44px;
+			margin: 0px 0px 64px 0px;
 
 			@include mq-down(lg) {
-				margin: 0px 16px 44px 16px;
+				margin: 0px 0px 44px 0px;
 			}
 		}
 
-		@include mq-down(lg) {
-			margin: 64px 0px;
+		h2 {
+			margin: 0px 0px 24px 0px;
 		}
 	}
 
 	&--list-wrapper {
-		margin: 24px 44px 0px 44px;
+		margin: 24px 0px 0px 0px;
 		gap: 24px;
-
-		@include mq-down(lg) {
-			margin: 24px 16px 0px 16px;
-		}
 
 		ul {
 			display: inline-flex;
@@ -43,6 +43,8 @@
 
 	.thumbnail-wrapper {
 		display: flex;
+		justify-content: center;
+		overflow: hidden;
 		a {
 			padding: 0;
 			margin: 0;
@@ -58,10 +60,13 @@
 		img {
 			display: block;
 			width: 100%;
-			height: auto;
+			height: 320px;
 			object-fit: cover;
 			object-position: center;
-			text-align: center;
+
+			@include mq-down(lg) {
+				height: 280px;
+			}
 		}
 	}
 

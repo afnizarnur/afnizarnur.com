@@ -1,24 +1,12 @@
 <r-cell
-    class="b-lb work--title-intro"
-    span="1-2"
-    span-s="row"
-    span-lg="row"
->
-	<div class="b-b work--section-title">
-		<small aria-hidden="true">Selected work</small>
-	</div>
-</r-cell>
-
-<r-cell
-    class="b-lrb selected-work"
-    span="3-12"
+    class="selected-work"
+    span="2-11"
     span-s="row"
     span-lg="row"
     id="selected-work"
 >
-	<span class="block b-b u-desktop-only"></span>
 	<div class="selected-work--content" >
-		<h2 text-split letters-slide-up>Selected work</h2>
+		<h2>Selected work</h2>
 
 		{% for item in collections.selected | slice(0, 4) %}
 			<div class="selected-work--item">
