@@ -21,6 +21,11 @@
 			padding-top: 64px;
 			display: flex;
 			align-items: center;
+
+			.container {
+				max-width: 960px;
+				padding: 0px;
+			}
 		}
 
 		&.is-open {
