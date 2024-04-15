@@ -16,7 +16,7 @@
 		height: 100%;
 		background-color: var(--overlay);
 		z-index: 1000;
-		animation: showModal 0.1s ease-out;
+		animation: appear 0.1s ease-out;
 	}
 
 	&--content {

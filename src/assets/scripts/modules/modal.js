@@ -26,7 +26,7 @@ function initializeModal(buttonIdentifier, modalIdentifier) {
 			content.style.animation = "slideOutToTop 0.4s ease-in forwards"
 		}
 
-		overlay.style.animation = "hideModal 0.4s ease-in"
+		overlay.style.animation = "dissolve 0.4s ease-in"
 
 		setTimeout(() => {
 			modal.style.display = "none"

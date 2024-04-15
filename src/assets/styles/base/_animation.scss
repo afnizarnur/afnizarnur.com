@@ -107,11 +107,11 @@
 		top: 50%;
 	}
 	to {
-		top: 100%;
+		top: 150%;
 	}
 }
 
-@keyframes showModal {
+@keyframes appear {
 	from {
 		opacity: 0;
 	}
@@ -120,7 +120,7 @@
 	}
 }
 
-@keyframes hideModal {
+@keyframes dissolve {
 	from {
 		opacity: 1;
 	}
