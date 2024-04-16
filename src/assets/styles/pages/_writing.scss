@@ -1,4 +1,6 @@
 .writing {
+	height: 100vh;
+
 	&--content {
 		padding: 144px 0px;
 
@@ -13,5 +15,9 @@
 		h1 {
 			margin: 0px 0px 44px 0px;
 		}
+	}
+
+	&--article-list {
+		gap: 24px;
 	}
 }

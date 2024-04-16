@@ -7,33 +7,72 @@
     <div class="writing--content">
         <h1>Writing</h1>
 
-        <r-grid columns="10" class="design-tooling--list-wrapper">
-            <r-cell span="5" span-s="row" class="design-tooling-card">
-                <div class="thumbnail-wrapper">
-                    {% if item.url %}
-                        <a href="{{ item.url }}">
-                            {% image item.thumbnail, "Thumbnail of " + item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px", 422, 373 %}
+        <r-grid columns="10" class="writing--article-list">
+            <r-cell span="5" span-s="row" class="article-card">
+                <h6>
+                    <a href="">How to build a loyal community online and offline</a>
+                </h6>
+                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
+                <ul>
+                    <li>
+                        <a href="">
+                            <small class="badge badge-tags helper">First Tag</small>
                         </a>
-                    {% else %}
-                        {% image item.thumbnail,
-                    "Thumbnail of " + item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px", 422, 373 %}
-                    </a>
-                {% endif %}
-            </div>
-
-            <div class="tool-title">
-                <p class="body-large">
-                    {% if item.url %}
-                        <a href="{{ item.url }}">{{ item.title }}</a>
-                    {% else %}
-                        {{ item.title }}
-                    {% endif %}
-                </p>
-                <p class="description">
-                    {{ item.description }}
-                </p>
-            </div>
-        </r-cell>
-    </r-grid>
-</div
+                    </li>
+                </ul>
+            </r-cell>
+            <r-cell span="5" span-s="row" class="article-card">
+                <h6>
+                    <a href="">How a visual artist redefines success in graphic design</a>
+                </h6>
+                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
+                <ul>
+                    <li>
+                        <a href="">
+                            <small class="badge badge-tags helper">First Tag</small>
+                        </a>
+                    </li>
+                </ul>
+            </r-cell>
+            <r-cell span="5" span-s="row" class="article-card">
+                <h6>
+                    <a href="">Lessons and insights from 8 years of Pixelgrade</a>
+                </h6>
+                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
+                <ul>
+                    <li>
+                        <a href="">
+                            <small class="badge badge-tags helper">First Tag</small>
+                        </a>
+                    </li>
+                </ul>
+            </r-cell>
+            <r-cell span="5" span-s="row" class="article-card">
+                <h6>
+                    <a href="">Start a blog to reach your creative peak</a>
+                </h6>
+                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
+                <ul>
+                    <li>
+                        <a href="">
+                            <small class="badge badge-tags helper">First Tag</small>
+                        </a>
+                    </li>
+                </ul>
+            </r-cell>
+            <r-cell span="5" span-s="row" class="article-card">
+                <h6>
+                    <a href="">Travelling as a way of self-discovery and progress</a>
+                </h6>
+                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
+                <ul>
+                    <li>
+                        <a href="">
+                            <small class="badge badge-tags helper">First Tag</small>
+                        </a>
+                    </li>
+                </ul>
+            </r-cell>
+        </r-grid>
+    </div
 </r-cell>
