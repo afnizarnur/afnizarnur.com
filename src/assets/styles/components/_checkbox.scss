@@ -5,30 +5,35 @@ input[type="checkbox"] {
 	& + label {
 		position: relative;
 		cursor: pointer;
-		padding-left: 28px;
+		padding-left: 24px;
+
+		small {
+			top: -2px;
+			position: relative;
+		}
 
 		&::before {
 			content: "";
 			position: absolute;
 			left: 0;
 			top: 0;
-			width: 18px;
-			height: 18px;
-			border: 2px solid var(--text-primary);
+			width: 15px;
+			height: 15px;
+			outline: 2px solid var(--text-primary);
 			background-color: var(--background-default);
-			border-radius: 5px;
+			border-radius: 4px;
 		}
 
 		&::after {
 			content: "";
 			position: absolute;
-			left: 1.5px;
-			top: 1.5px;
-			width: 14px;
-			height: 14px;
+			left: 0px;
+			top: 0px;
+			width: 15px;
+			height: 15px;
+			background: #fff;
 			border-radius: 4px;
-			background: $gray-950;
-			background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23ffffff' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");
+			background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' viewBox='0 0 20 20'><path fill-rule='evenodd' d='m17.593 5.507-8.49 10.26a1 1 0 0 1-1.541 0L2.536 9.673 4.079 8.4l4.255 5.16 7.718-9.328 1.541 1.275Z' clip-rule='evenodd'/></svg>");
 			background-size: cover;
 			opacity: 0;
 		}
