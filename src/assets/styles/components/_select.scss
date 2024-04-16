@@ -4,15 +4,19 @@
 	cursor: pointer;
 	color: var(--background-default);
 
+	&--label {
+		display: flex;
+	}
+
+	&--label:hover + .custom-select {
+		color: var(--text-primary);
+	}
+
 	svg {
 		position: absolute;
 		top: 50%;
 		right: 16px;
 		transform: translateY(-50%);
-	}
-
-	&:hover {
-		color: var(--text-primary);
 	}
 
 	select {

@@ -3,14 +3,16 @@
         <r-grid columns="12" columns-s="4">
             <r-cell span="2-11" span-lg="row" class="rug-footer--main">
                 <div class="select-version">
-                    <small>
-                        {% icon "eye" %}
+                    <label for="select-version" class="custom-select--label">
+                        <small>
+                            {% icon "eye" %}
 
-					You're viewing site version
-                    </small>
+                        You're viewing site version
+                        </small>
+                    </label>
 
                     <div class="custom-select">
-                        <select id="select-version" class="small" tabindex="0" role="button" aria-label="Open dropdown to view version of the site">
+                        <select id="select-version" class="small" tabindex="0" aria-label="Select a version of the site">
                             <option value="2013">2013</option>
                             <option value="2019">2019</option>
                             <option value="2020">2020</option>
