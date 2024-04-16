@@ -1,0 +1,39 @@
+<r-cell
+    class="writing--container"
+    span="2-11"
+    span-s="row"
+    span-lg="row"
+>
+    <div class="writing--content">
+        <h1>Writing</h1>
+
+        <r-grid columns="10" class="design-tooling--list-wrapper">
+            <r-cell span="5" span-s="row" class="design-tooling-card">
+                <div class="thumbnail-wrapper">
+                    {% if item.url %}
+                        <a href="{{ item.url }}">
+                            {% image item.thumbnail, "Thumbnail of " + item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px", 422, 373 %}
+                        </a>
+                    {% else %}
+                        {% image item.thumbnail,
+                    "Thumbnail of " + item.title, "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px", 422, 373 %}
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="tool-title">
+                <p class="body-large">
+                    {% if item.url %}
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                    {% else %}
+                        {{ item.title }}
+                    {% endif %}
+                </p>
+                <p class="description">
+                    {{ item.description }}
+                </p>
+            </div>
+        </r-cell>
+    </r-grid>
+</div
+</r-cell>

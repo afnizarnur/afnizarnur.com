@@ -1,0 +1,17 @@
+.writing {
+	&--content {
+		padding: 144px 0px;
+
+		@include mq-down(lg) {
+			margin: 120px 0;
+		}
+
+		@include mq-down(sm) {
+			margin: 44px 0;
+		}
+
+		h1 {
+			margin: 0px 0px 44px 0px;
+		}
+	}
+}
