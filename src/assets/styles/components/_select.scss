@@ -47,5 +47,9 @@
 			color: var(--text-primary);
 			background: var(--background-default);
 		}
+
+		&:hover + svg {
+			color: var(--text-primary);
+		}
 	}
 }
