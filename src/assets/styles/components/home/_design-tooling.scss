@@ -63,10 +63,6 @@
 			height: auto;
 			object-fit: cover;
 			object-position: center;
-
-			@include mq-down(lg) {
-				height: 280px;
-			}
 		}
 	}
 
