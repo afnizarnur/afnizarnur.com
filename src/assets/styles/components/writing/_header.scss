@@ -6,18 +6,6 @@
 			margin: 24px 0px;
 		}
 
-		.title {
-			margin: 0px 0px 64px 0px;
-
-			@include mq-down(lg) {
-				margin: 0px 24px 44px 24px;
-			}
-
-			@include mq-down(sm) {
-				margin: 0px 24px 24px 24px;
-			}
-		}
-
 		@include mq-down(lg) {
 			margin: 64px 0px 0px 0px;
 		}
