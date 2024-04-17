@@ -1,0 +1,26 @@
+---
+layout: base
+---
+
+{% include "userinfo.njk" %}
+{% include "header.njk" %}
+
+<div class="container work">
+    <r-grid columns="12" columns-s="4">
+
+        <r-cell
+            class="content"
+            span="2-11"
+            span-s="row"
+            span-lg="row"
+        >
+            <div class="content--content">
+                {{ content | safe }}
+
+            </div>
+        </r-cell>
+
+    </r-grid>
+</div>
+
+{% include "footer/social.njk" %}
