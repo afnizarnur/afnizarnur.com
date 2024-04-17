@@ -9,9 +9,9 @@
 
         {% set taglist = collections[tag] %}
 
-        {% for item in taglist | reverse %}
+        <r-grid columns="10" class="writing--article-list">
+            {% for item in taglist | reverse %}
 
-            <r-grid columns="10" class="writing--article-list">
                 <r-cell span="5" span-s="row" class="article-card">
                     <h6>
                         <a href="{{ item.url }}">{{ item.data.title }}
@@ -28,9 +28,7 @@
                         {% endfor %}
                     </ul>
                 </r-cell>
-            </r-grid>
-
-        {% endfor %}
-
+            {% endfor %}
+        </r-grid>
     </div>
 </r-cell>
