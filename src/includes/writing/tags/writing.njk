@@ -13,10 +13,10 @@
             {% for item in taglist | reverse %}
 
                 <r-cell span="5" span-s="row" class="article-card">
-                    <h6>
+                    <h4>
                         <a href="{{ item.url }}">{{ item.data.title }}
                         </a>
-                    </h6>
+                    </h4>
                     <p class="description">{{ item.data.description }}</p>
                     <ul>
                         {% for i in item.data.tags %}
