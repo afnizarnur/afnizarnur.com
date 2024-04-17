@@ -1,0 +1,36 @@
+<r-cell
+    class="writing--container"
+    span="2-11"
+    span-s="row"
+    span-lg="row"
+>
+    <div class="writing--content">
+        <h1>{{ collections[tag].length | pluralize('post')}} tagged with {{ tag }}</h1>
+
+        {% set taglist = collections[tag] %}
+
+        {% for item in taglist | reverse %}
+
+            <r-grid columns="10" class="writing--article-list">
+                <r-cell span="5" span-s="row" class="article-card">
+                    <h6>
+                        <a href="{{ item.url }}">{{ item.data.title }}
+                        </a>
+                    </h6>
+                    <p class="description">{{ item.data.description }}</p>
+                    <ul>
+                        {% for i in item.data.tags %}
+                            <li>
+                                <a href="{{ '/writing/tags/' + i | url }}">
+                                    <small class="badge badge-tags helper">{{ i }}</small>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </r-cell>
+            </r-grid>
+
+        {% endfor %}
+
+    </div>
+</r-cell>

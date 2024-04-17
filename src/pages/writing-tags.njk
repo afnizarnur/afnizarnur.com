@@ -1,0 +1,22 @@
+---
+layout: base
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+  filter:
+    - writing
+eleventyComputed:
+  title: "{{ collections[tag].length | pluralize('post') }} tagged with {{ tag }}"
+permalink: /writing/tags/{{ tag | slugify }}/
+---
+
+{% include "userinfo.njk" %}
+{% include "header.njk" %}
+
+<div class="container writing">
+    <r-grid columns="12" columns-s="4">
+        {% include "writing/tags/tags-writing.njk" %}
+    </r-grid>
+</div>
