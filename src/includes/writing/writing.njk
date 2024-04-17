@@ -10,10 +10,10 @@
         <r-grid columns="10" class="writing--article-list">
             {% for article in collections.writing %}
                 <r-cell span="5" span-s="row" class="article-card">
-                    <h6>
+                    <h4>
                         <a href="{{ article.url }}">{{ article.data.title }}
                         </a>
-                    </h6>
+                    </h4>
                     <p class="description">{{ article.data.description }}</p>
                     <ul>
                         {% for i in article.data.tags %}
