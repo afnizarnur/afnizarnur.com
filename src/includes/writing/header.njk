@@ -1,69 +1,20 @@
 <r-cell
-    class="work-detail"
+    class="writing-detail"
     span="3-10"
     span-s="row"
     span-lg="row"
 >
-    <div class="work-detail--content">
+    <div class="writing-detail--content">
         <div class="title">
+            <p>
+                {{ page.date | dateToFormat('dd LLLL yyyy') }}
+            </p>
+
             <h1>{{title}}</h1>
 
             <p class="subtitle">
                 {{ description }}
             </p>
         </div>
-        <r-grid columns="10" class="work-detail--info">
-            <r-cell span="1-7" span-lg="1-10" span-s="row" class="info-list">
-                <r-grid columns="10" class="row">
-
-                    {% if role %}
-                        <r-cell span="1-2" span-s="row">
-                            <p class="bold info-title">Role</p>
-                        </r-cell>
-                        <r-cell span="3-10" span-s="row">
-                            <p class="info-data">{{ role }}</p>
-                        </r-cell>
-                    {% endif %}
-
-                    {% if Team %}
-                        <r-cell span="1-2" span-s="row">
-                            <p class="bold info-title">Team</p>
-                        </r-cell>
-                        <r-cell span="3-10" span-s="row">
-                            <p class="info-data">
-                                {{ Team|join(', ') }}
-                            </p>
-                        </r-cell>
-                    {% endif %}
-
-                    {% if deliverables %}
-                        <r-cell span="1-2" span-s="row">
-                            <p class="bold info-title">Deliverables</p>
-                        </r-cell>
-                        <r-cell span="3-10" span-s="row">
-                            <p class="info-data">
-                                {{ deliverables|join(', ') }}
-                            </p>
-                        </r-cell>
-                    {% endif %}
-
-                    {% if company %}
-                        <r-cell span="1-2" span-s="row">
-                            <p class="bold info-title">Company</p>
-                        </r-cell>
-                        <r-cell span="3-10" span-s="row">
-                            <p class="info-data">{{ company }}</p>
-                        </r-cell>
-                    {% endif %}
-
-                </r-grid>
-            </r-cell>
-            {% if url %}
-                <r-cell span="8-10" span-s="row" span-lg="row" class="button-list">
-                    <a href="{{ url }}" class="button btn-outline">See live {% icon "arrow-right" %}
-                    </a>
-                </r-cell>
-            {% endif %}
-        </r-grid>
     </div>
 </r-cell>
