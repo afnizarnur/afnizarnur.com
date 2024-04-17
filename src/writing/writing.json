@@ -1,0 +1,4 @@
+{
+	"layout": "work",
+	"permalink": "writing/{{ page.fileSlug }}/index.html"
+}
