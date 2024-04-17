@@ -1,5 +1,10 @@
 .writing {
-	height: 100vh;
+	&.article-index {
+		height: 100vh;
+	}
+	&.article-content {
+		padding-bottom: 44px;
+	}
 
 	&--content {
 		padding: 144px 0px;
