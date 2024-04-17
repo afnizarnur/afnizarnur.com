@@ -2,8 +2,8 @@ class SpotifyFetcher {
 	constructor() {
 		this.paragraph = document.getElementById("current-song")
 		if (this.paragraph) {
-			this.updateFromLocalStorage() // Update from local storage if available
-			this.fetchSpotify() // Fetch new data
+			this.updateFromLocalStorage()
+			this.fetchSpotify()
 		}
 	}
 
@@ -15,7 +15,7 @@ class SpotifyFetcher {
 				const artistName = data.artists[0].name
 				const url = data.url
 				this.updateParagraph(songTitle, artistName, url)
-				// Store the fetched data in local storage
+
 				localStorage.setItem(
 					"spotifyData",
 					JSON.stringify({ songTitle, artistName, url })
