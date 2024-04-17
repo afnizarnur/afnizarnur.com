@@ -2,12 +2,12 @@
 	&--content {
 		margin: 144px 0px 0px 0px;
 
-		h1 {
-			margin: 24px 0px;
+		@include mq-down(lg) {
+			margin: 64px 24px 0px 24px;
 		}
 
-		@include mq-down(lg) {
-			margin: 64px 0px 0px 0px;
+		h1 {
+			margin: 24px 0px;
 		}
 	}
 }

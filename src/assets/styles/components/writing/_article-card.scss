@@ -3,6 +3,7 @@
 	padding: 24px;
 	border-radius: $border-radius-16;
 	position: relative;
+	overflow: hidden;
 
 	&::before {
 		content: "";
@@ -28,6 +29,7 @@
 
 	ul {
 		display: inline-flex;
+		overflow-y: auto;
 
 		li {
 			margin-right: 4px;

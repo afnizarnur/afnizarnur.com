@@ -1,20 +1,17 @@
 .writing {
-	&.article-index {
-		height: 100vh;
-	}
 	&.article-content {
 		padding-bottom: 64px;
 	}
 
 	&--content {
-		padding: 144px 0px;
+		margin: 144px 0px;
 
 		@include mq-down(lg) {
-			margin: 120px 0;
+			margin: 64px 24px;
 		}
 
 		@include mq-down(sm) {
-			margin: 44px 0;
+			margin: 64px 24px;
 		}
 
 		h1 {
