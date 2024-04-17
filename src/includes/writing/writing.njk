@@ -8,71 +8,25 @@
         <h1>Writing</h1>
 
         <r-grid columns="10" class="writing--article-list">
-            <r-cell span="5" span-s="row" class="article-card">
-                <h6>
-                    <a href="">How to build a loyal community online and offline</a>
-                </h6>
-                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
-                <ul>
-                    <li>
-                        <a href="">
-                            <small class="badge badge-tags helper">First Tag</small>
+            {% for article in collections.writing %}
+                <r-cell span="5" span-s="row" class="article-card">
+                    <h6>
+                        <a href="{{ article.url }}">{{ article.data.title }}
                         </a>
-                    </li>
-                </ul>
-            </r-cell>
-            <r-cell span="5" span-s="row" class="article-card">
-                <h6>
-                    <a href="">How a visual artist redefines success in graphic design</a>
-                </h6>
-                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
-                <ul>
-                    <li>
-                        <a href="">
-                            <small class="badge badge-tags helper">First Tag</small>
-                        </a>
-                    </li>
-                </ul>
-            </r-cell>
-            <r-cell span="5" span-s="row" class="article-card">
-                <h6>
-                    <a href="">Lessons and insights from 8 years of Pixelgrade</a>
-                </h6>
-                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
-                <ul>
-                    <li>
-                        <a href="">
-                            <small class="badge badge-tags helper">First Tag</small>
-                        </a>
-                    </li>
-                </ul>
-            </r-cell>
-            <r-cell span="5" span-s="row" class="article-card">
-                <h6>
-                    <a href="">Start a blog to reach your creative peak</a>
-                </h6>
-                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
-                <ul>
-                    <li>
-                        <a href="">
-                            <small class="badge badge-tags helper">First Tag</small>
-                        </a>
-                    </li>
-                </ul>
-            </r-cell>
-            <r-cell span="5" span-s="row" class="article-card">
-                <h6>
-                    <a href="">Travelling as a way of self-discovery and progress</a>
-                </h6>
-                <p class="description">I'm a big fan of good looking music posters. I used to do them myself  back when I was in school, and my living room still features some of my  favourite designs..</p>
-                <ul>
-                    <li>
-                        <a href="">
-                            <small class="badge badge-tags helper">First Tag</small>
-                        </a>
-                    </li>
-                </ul>
-            </r-cell>
+                    </h6>
+                    <p class="description">{{ article.data.description }}</p>
+                    <ul>
+                        {% for i in article.data.tags %}
+                            <li>
+                                <a href="{{ '/writing/tags/' + i | url }}">
+                                    <small class="badge badge-tags helper">{{ i }}</small>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </r-cell>
+
+            {% endfor %}
         </r-grid>
     </div
 </r-cell>
