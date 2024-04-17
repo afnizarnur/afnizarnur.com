@@ -1,0 +1,38 @@
+---
+layout: base
+---
+
+{% include "userinfo.njk" %}
+{% include "header.njk" %}
+
+<div class="container writing article-content">
+    <r-grid columns="12" columns-s="4">
+        {% include "writing/header.njk" %}
+
+        <r-cell
+            class="content"
+            span="3-10"
+            span-s="row"
+            span-lg="row"
+        >
+            <div class="content--content">
+                {{ content | safe }}
+
+                <ul class="tag-list">
+                    <li>
+                        <small class="helper">Tags</small>
+                    </li>
+                    {% for i in tags %}
+                        <li>
+                            <a href="{{ '/work/tags/' + i | url }}">
+                                <small class="badge badge-tags helper">{{ i }}</small>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    <li></li>
+                </ul>
+            </div>
+        </r-cell>
+
+    </r-grid>
+</div>

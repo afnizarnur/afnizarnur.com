@@ -18,7 +18,7 @@
 		h1,
 		h2 {
 			margin: 0;
-			margin-top: 2.75rem;
+			margin-top: 4rem;
 			margin-bottom: 2rem;
 			color: var(--text-primary);
 		}
@@ -35,7 +35,7 @@
 		h4,
 		h5,
 		h6 {
-			margin-top: 2.75rem;
+			margin-top: 4rem;
 			margin-bottom: 1.25rem;
 		}
 
@@ -55,16 +55,15 @@
 
 		blockquote {
 			margin: 0;
-			margin-top: 1.5rem;
-			margin-bottom: 1.5rem;
 			font-weight: 500;
 			font-style: italic;
-			border-left: 4px solid var(--border-default);
+			border-left: 4px solid var(--text-primary);
 			padding-left: 1em;
+			margin: 2.75rem -1.5rem;
 
 			p {
 				font-size: 1.125rem;
-				line-height: 1.7777778;
+				line-height: 1.7777778rem;
 
 				&:first-of-type::before {
 					content: open-quote;
@@ -179,6 +178,7 @@
 		img {
 			width: 100%;
 			height: auto;
+			border-radius: 8px;
 		}
 
 		ul.tag-list {

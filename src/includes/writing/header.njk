@@ -1,0 +1,20 @@
+<r-cell
+    class="writing-detail"
+    span="3-10"
+    span-s="row"
+    span-lg="row"
+>
+    <div class="writing-detail--content">
+        <div class="title">
+            <p>
+                {{ page.date | dateToFormat('DDD') }}
+            </p>
+
+            <h1>{{title}}</h1>
+
+            <p class="subtitle">
+                {{ description }}
+            </p>
+        </div>
+    </div>
+</r-cell>

@@ -1,0 +1,4 @@
+{
+	"layout": "writing",
+	"permalink": "writing/{{ page.fileSlug }}/index.html"
+}

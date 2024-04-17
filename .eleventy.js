@@ -12,8 +12,8 @@ const shortcodes = require("./utils/shortcodes.js")
 const IS_PRODUCTION = process.env.ELEVENTY_ENV === "production"
 
 const CONTENT_GLOBS = {
-	posts: "src/posts/**/*.md",
 	works: "src/works/**/*.md",
+	writing: "src/writing/**/*.md",
 	media: "*.jpg|*.png|*.gif|*.mp4|*.webp|*.webm"
 }
 
@@ -27,7 +27,7 @@ module.exports = function (config) {
 	})
 	config.addPlugin(pluginPageAssets, {
 		mode: "directory",
-		postsMatching: ["src/works/*/*.md", "src/posts/*/*.md"],
+		postsMatching: ["src/works/*/*.md", "src/writing/*/*.md"],
 		assetsMatching: CONTENT_GLOBS.media,
 		silent: true
 	})
@@ -103,6 +103,15 @@ module.exports = function (config) {
 		return collection
 			.getFilteredByGlob(CONTENT_GLOBS.works)
 			.filter((item) => item.data.selected)
+			.sort((a, b) => b.date - a.date)
+	})
+
+	// Collections: Writing
+	config.addCollection("writing", function (collection) {
+		return collection
+			.getFilteredByGlob(CONTENT_GLOBS.writing)
+			.filter((item) => item.data.permalink !== false)
+			.filter((item) => !(item.data.draft && IS_PRODUCTION))
 			.sort((a, b) => b.date - a.date)
 	})
 

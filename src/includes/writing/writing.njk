@@ -1,0 +1,31 @@
+<r-cell
+    class="writing--container"
+    span="2-11"
+    span-s="row"
+    span-lg="row"
+>
+    <div class="writing--content">
+        <h1>Writing</h1>
+
+        <r-grid columns="10" class="writing--article-list">
+            {% for article in collections.writing %}
+                <r-cell span="5" span-s="row" span-lg="row" class="article-card">
+                    <h4>
+                        <a href="{{ article.url }}">{{ article.data.title }}
+                        </a>
+                    </h4>
+                    <p class="description">{{ article.data.description }}</p>
+                    <ul>
+                        {% for i in article.data.tags %}
+                            <li>
+                                <a href="{{ '/writing/tags/' + i | url }}">
+                                    <small class="badge badge-tags helper">{{ i }}</small>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </r-cell>
+            {% endfor %}
+        </r-grid>
+    </div
+</r-cell>
