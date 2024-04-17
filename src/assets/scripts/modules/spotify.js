@@ -21,8 +21,11 @@ class SpotifyFetcher {
 					JSON.stringify({ songTitle, artistName, url })
 				)
 			})
+
 			.catch((error) => {
-				console.error(error)
+				if (process.env.ELEVENTY_ENV === "production") {
+					console.error(error)
+				}
 			})
 	}
 
