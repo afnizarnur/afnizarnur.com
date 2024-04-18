@@ -25,5 +25,19 @@
 				margin: 0px 0px 24px 0px;
 			}
 		}
+
+		&.writing-tags {
+			h1 {
+				margin: 0px 0px 64px 0px;
+
+				@include mq-down(lg) {
+					margin: 0px 0px 44px 0px;
+				}
+
+				@include mq-down(sm) {
+					margin: 0px 0px 24px 0px;
+				}
+			}
+		}
 	}
 }
