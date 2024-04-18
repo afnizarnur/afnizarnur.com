@@ -10,36 +10,6 @@
 	flex-direction: column;
 	justify-content: space-between;
 
-	&:nth-child(1) {
-		border-top-left-radius: 12px;
-	}
-
-	&:nth-child(2) {
-		border-top-right-radius: 12px;
-		border-top-left-radius: 0;
-	}
-
-	&:last-child {
-		border-bottom-right-radius: 12px;
-	}
-
-	&:nth-last-child(2) {
-		border-bottom-left-radius: 12px;
-		border-bottom-right-radius: 0;
-	}
-
-	@include mq-down(sm) {
-		margin-top: -1px;
-
-		&:first-child {
-			border-top-right-radius: 12px;
-		}
-
-		&:last-child {
-			border-bottom-left-radius: 12px;
-		}
-	}
-
 	.article-date {
 		display: inline-flex;
 		flex-direction: column;
