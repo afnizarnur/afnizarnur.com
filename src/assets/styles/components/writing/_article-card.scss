@@ -5,6 +5,14 @@
 	border: 1px solid var(--border-default);
 	background: var(--background-default);
 	margin-left: -1px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	@include mq-down(sm) {
+		margin-left: 0px;
+		margin-top: -1px;
+	}
 
 	.article-date {
 		display: inline-flex;
@@ -30,20 +38,28 @@
 	.article-title {
 		h5 {
 			margin: 0px 0px 16px 0px;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
 
 			a {
 				text-decoration: none;
 			}
 		}
+
+		p.description {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			-webkit-line-clamp: 3;
+		}
 	}
 
 	ul {
-		display: inline-flex;
+		display: flex;
 		margin-top: 44px;
-
-		li {
-			margin-right: 4px;
-		}
+		flex-wrap: wrap;
+		gap: 4px;
 
 		a {
 			text-decoration: none;
