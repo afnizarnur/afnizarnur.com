@@ -47,7 +47,7 @@
 							<ul>
 								{% for i in item.data.tags %}
 									<li>
-										<a href="{{ '/work/tags/' + i | url }}">
+										<a href="{{ '/work/tags/' + i | slugify | url }}">
 											<small class="badge badge-tags helper">{{ i }}</small>
 										</a>
 									</li>
