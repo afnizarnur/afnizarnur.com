@@ -164,9 +164,13 @@
 				padding-left: 0.4444444em;
 			}
 
+			& > li p:first-of-type {
+				margin-bottom: 0.5rem;
+			}
+
 			& > li > p {
-				margin-top: 1.5rem;
-				margin-bottom: 1.5rem;
+				margin-top: 0px;
+				margin-bottom: 0.75rem;
 			}
 
 			li {
