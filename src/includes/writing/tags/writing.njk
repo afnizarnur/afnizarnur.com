@@ -5,13 +5,10 @@
     span-lg="row"
 >
     <div class="writing--content">
-        <h1>{{ collections[tag].length | pluralize('post')}} tagged with {{ tag }}</h1>
-
-        {% set taglist = collections[tag] %}
+        <h1>{{ (collections.writing | filterByTag(tag)).length | pluralize('post', 'posts') }} tagged with {{ tag }}</h1>
 
         <r-grid columns="10" class="writing--article-list">
-            {% for item in taglist | reverse %}
-
+            {% for item in collections.writing | filterByTag(tag) %}
                 <r-cell span="5" span-s="row" class="article-card">
                     <h4>
                         <a href="{{ item.url }}">{{ item.data.title }}

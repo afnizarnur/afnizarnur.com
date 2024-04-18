@@ -8,7 +8,7 @@ pagination:
   filter:
     - writing
 eleventyComputed:
-  title: "{{ collections[tag].length | pluralize('post') }} tagged with {{ tag }}"
+  title: "{% set filteredWritings = collections.writing | filterByTag(tag) %}{{ filteredWritings | length | pluralize('post') }} tagged with {{ tag }}"
 permalink: /writing/tags/{{ tag | slugify }}/
 ---
 

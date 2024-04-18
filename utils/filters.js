@@ -53,5 +53,11 @@ module.exports = {
 		return (tags || []).filter(
 			(tag) => ["all", "selected", "worksbyyear"].indexOf(tag) === -1
 		)
+	},
+
+	filterByTag: function (collection, tag) {
+		return collection.filter(
+			(item) => item.data.tags && item.data.tags.includes(tag)
+		)
 	}
 }
