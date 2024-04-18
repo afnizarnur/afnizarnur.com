@@ -7,7 +7,7 @@
 		margin: 144px 0px;
 
 		@include mq-down(lg) {
-			margin: 64px 24px;
+			margin: 120px 24px;
 		}
 
 		@include mq-down(sm) {
@@ -16,6 +16,10 @@
 
 		.title {
 			margin: 0px 0px 44px 0px;
+
+			@include mq-down(sm) {
+				margin: 0px 0px 32px 0px;
+			}
 
 			h1 {
 				margin: 0px 0px 24px 0px;
