@@ -45,39 +45,6 @@
                     </ul>
                 </r-cell>
             {% endfor %}
-
-            <r-cell span="5" span-s="row"class="article-card">
-                <div class="article-header">
-                    <div class="article-date">
-                        <p>
-                            17
-                        </p>
-                        <small class="helper">
-                            Dec
-                        </small>
-                    </div>
-
-                    <div class="article-title">
-                        <a href="{{ item.article.url }}">
-                            <h5>
-                                Codegen plugins (and other tips) for automating design to code
-                        </h5>
-                        </a>
-                        <p class="description">It's time to launch my personal website, again and it's always a work in progress.</p>
-                    </div>
-                </div>
-
-                <ul>
-                    {% for i in item.data.tags %}
-                        <li>
-                            <a href="{{ '/writing/tags/' + i | url }}">
-                                <small class="badge badge-tags helper">{{ i }}</small>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </r-cell>
-
         </r-grid>
     </div
 </r-cell>
