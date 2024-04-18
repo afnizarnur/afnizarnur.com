@@ -10,7 +10,7 @@ pagination:
     - worksbyyear
     - selected
 eleventyComputed:
-  title: "{{ collections[tag].length | pluralize('work') }} tagged with {{ tag }}"
+  title: "{% set filteredWorks = collections.works | filterByTag(tag) %}{{ filteredWorks | length | pluralize('work') }} tagged with {{ tag }}"
 permalink: /work/tags/{{ tag | slugify }}/
 ---
 

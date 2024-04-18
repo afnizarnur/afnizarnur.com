@@ -5,11 +5,9 @@
     span-lg="row"
 >
     <div class="selected-work--content tag-work">
-        <h1>{{ collections[tag].length | pluralize('work')}} tagged with {{ tag }}</h1>
+        <h1>{{ (collections.works | filterByTag(tag)).length | pluralize('work') }} tagged with {{ tag }}</h1>
 
-        {% set taglist = collections[tag] %}
-
-        {% for item in taglist | reverse %}
+        {% for item in collections.works | filterByTag(tag) %}
             <div class="selected-work--item">
                 <div class="thumbnail-wrapper">
                     {% if item.data.draft %}
