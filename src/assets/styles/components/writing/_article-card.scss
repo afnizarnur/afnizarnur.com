@@ -36,15 +36,23 @@
 	}
 
 	.article-title {
-		h5 {
-			margin: 0px 0px 16px 0px;
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 3;
-			// overflow: hidden;
+		a {
+			background: none;
+			text-decoration: none;
 
-			a {
-				text-decoration: none;
+			h5 {
+				margin: 0px;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				overflow: hidden;
+				display: inline;
+			}
+
+			&:hover {
+				h5 {
+					text-decoration: underline;
+				}
 			}
 		}
 
@@ -53,6 +61,7 @@
 			-webkit-box-orient: vertical;
 			overflow: hidden;
 			-webkit-line-clamp: 3;
+			margin-top: 16px;
 		}
 	}
 
