@@ -5,6 +5,7 @@
 	border: 1px solid var(--border-default);
 	background: var(--background-default);
 	margin-left: -1px;
+	margin-bottom: -1px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -40,6 +41,7 @@
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 3;
+			// overflow: hidden;
 
 			a {
 				text-decoration: none;
