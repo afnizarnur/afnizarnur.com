@@ -5,16 +5,31 @@
     span-lg="row"
 >
     <div class="writing--content">
-        <h1>Writing</h1>
+        <div class="title">
+            <h1>Writing</h1>
+            <p class="subtitle">Sharing things related to design, development, career, and personal</p>
+        </div>
 
         <r-grid columns="10" class="writing--article-list">
             {% for article in collections.writing %}
                 <r-cell span="5" span-s="row" span-lg="row" class="article-card">
-                    <h4>
-                        <a href="{{ article.url }}">{{ article.data.title }}
-                        </a>
-                    </h4>
-                    <p class="description">{{ article.data.description }}</p>
+                    <div class="article-date">
+                        <p>
+                            {{ article.date | dateToFormat('d') }}
+                        </p>
+                        <small class="helper">
+                            {{ article.date | dateToFormat('MMM') }}
+                        </small>
+                    </div>
+
+                    <div class="article-title">
+                        <h5>
+                            <a href="{{ article.url }}">{{ article.data.title }}
+                            </a>
+                        </h5>
+                        <p class="description">{{ article.data.description }}</p>
+                    </div>
+
                     <ul>
                         {% for i in article.data.tags %}
                             <li>
