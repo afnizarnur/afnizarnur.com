@@ -109,6 +109,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		animateCardStagger(Array.from(nextProjectCard))
 	}
 
+	// Animation on other work cards
+	const writingCard = document.querySelectorAll(".article-card")
+	if (writingCard && writingCard.length > 0) {
+		animateCardStagger(Array.from(writingCard))
+	}
+
 	// Avoid flash of unstyled content
 	const textSplitElements = document.querySelectorAll("[text-split]")
 	if (textSplitElements && textSplitElements.length > 0) {
