@@ -4,11 +4,10 @@
 	overflow: hidden;
 	border: 1px solid var(--border-default);
 	background: var(--background-default);
-	margin-left: -1px;
-	margin-bottom: -1px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	border-radius: $border-radius-16;
 
 	.article-date {
 		display: inline-flex;
@@ -35,6 +34,8 @@
 		a {
 			background: none;
 			text-decoration: none;
+			margin: 0;
+			padding: 0;
 
 			h5 {
 				margin: 0px;
