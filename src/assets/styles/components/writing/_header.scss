@@ -1,10 +1,17 @@
 .writing-detail {
 	&--content {
-		padding: 144px 0px 64px 0px;
+		margin: 144px 0px 0px 0px;
+		padding-bottom: 64px;
+
 		border-bottom: 1px solid var(--border-default);
 
 		@include mq-down(lg) {
 			margin: 64px 24px 0px 24px;
+			padding-bottom: 64px;
+		}
+
+		@include mq-down(sm) {
+			padding-bottom: 44px;
 		}
 
 		h1 {
