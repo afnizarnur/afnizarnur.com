@@ -48,10 +48,14 @@
 					width: 100%;
 					height: auto;
 					margin: 44px 0;
-					border-radius: 16px;
+					border-radius: $border-radius-16;
 
 					@include mq-down(lg) {
 						margin: 24px 0;
+					}
+
+					@include mq-down(sm) {
+						border-radius: $border-radius-12;
 					}
 				}
 			}

@@ -8,8 +8,12 @@
 	}
 	.thumbnail-wrapper {
 		position: relative;
-		border-radius: 16px;
+		border-radius: $border-radius-16;
 		overflow: hidden;
+
+		@include mq-down(sm) {
+			border-radius: $border-radius-12;
+		}
 		a {
 			padding: 0;
 			margin: 0;
