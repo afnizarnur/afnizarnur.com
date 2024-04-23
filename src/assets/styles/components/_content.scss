@@ -83,7 +83,7 @@
 			line-height: 1.75;
 			margin-top: 2rem;
 			margin-bottom: 1.5rem;
-			border-radius: $border-radius-12;
+			border-radius: $border-radius-8;
 			padding-top: 0.75rem;
 			padding-right: 0.75rem;
 			padding-bottom: 0.75rem;
@@ -187,7 +187,7 @@
 		img {
 			width: 100%;
 			height: auto;
-			border-radius: 8px;
+			border-radius: $border-radius-8;
 		}
 
 		ul.tag-list {
