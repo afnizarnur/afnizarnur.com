@@ -15,7 +15,11 @@
 
 		.process-card {
 			background: var(--surface-default);
-			border-radius: 16px;
+			border-radius: $border-radius-16;
+
+			@include mq-down(sm) {
+				border-radius: $border-radius-12;
+			}
 
 			.thumbnail-wrapper {
 				display: flex;

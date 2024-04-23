@@ -7,9 +7,13 @@
 	&--item {
 		img {
 			margin-bottom: 16px;
-			border-radius: 16px;
+			border-radius: $border-radius-16;
 			width: 100%;
 			height: auto;
+
+			@include mq-down(sm) {
+				border-radius: $border-radius-12;
+			}
 		}
 
 		p {

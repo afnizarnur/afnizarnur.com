@@ -9,6 +9,10 @@
 	justify-content: space-between;
 	border-radius: $border-radius-16;
 
+	@include mq-down(sm) {
+		border-radius: $border-radius-12;
+	}
+
 	.article-date {
 		display: inline-flex;
 		flex-direction: column;
@@ -44,12 +48,6 @@
 				-webkit-line-clamp: 3;
 				overflow: hidden;
 				display: inline;
-			}
-
-			&:hover {
-				h5 {
-					text-decoration: underline;
-				}
 			}
 		}
 

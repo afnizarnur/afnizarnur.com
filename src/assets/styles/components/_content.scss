@@ -21,6 +21,10 @@
 			margin-top: 4rem;
 			margin-bottom: 2rem;
 			color: var(--text-primary);
+
+			@include mq-down(sm) {
+				margin-bottom: 1rem;
+			}
 		}
 
 		h3,
@@ -79,7 +83,7 @@
 			line-height: 1.75;
 			margin-top: 2rem;
 			margin-bottom: 1.5rem;
-			border-radius: 16px;
+			border-radius: $border-radius-8;
 			padding-top: 0.75rem;
 			padding-right: 0.75rem;
 			padding-bottom: 0.75rem;
@@ -88,6 +92,7 @@
 			background-color: var(--text-primary);
 			overflow-x: auto;
 			font-weight: 400;
+			font-size: 0.875rem;
 
 			code {
 				font-weight: inherit;
@@ -182,7 +187,7 @@
 		img {
 			width: 100%;
 			height: auto;
-			border-radius: 8px;
+			border-radius: $border-radius-8;
 		}
 
 		ul.tag-list {

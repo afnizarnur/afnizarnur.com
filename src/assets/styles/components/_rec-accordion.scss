@@ -26,10 +26,14 @@
 			display: inline-block;
 			background: var(--surface-default);
 			padding: 24px;
-			border-radius: 16px;
+			border-radius: $border-radius-16;
 			transition: transform 0.3s ease;
 			height: 100%;
 			margin-bottom: 24px;
+
+			@include mq-down(sm) {
+				border-radius: $border-radius-12;
+			}
 
 			&.speaking-card {
 				padding: 0;
