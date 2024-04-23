@@ -112,20 +112,6 @@
 			font-weight: 600;
 		}
 
-		figure {
-			margin-top: 2rem;
-			margin-bottom: 2rem;
-
-			figcaption {
-				font-size: 0.875rem;
-				line-height: 1.2rem;
-				font-weight: 520;
-				letter-spacing: -0.01rem;
-				color: var(--text-secondary);
-				margin-top: 0.75rem;
-			}
-		}
-
 		hr {
 			margin-top: 4rem;
 			margin-bottom: 4rem;
@@ -188,8 +174,25 @@
 			width: 100%;
 			height: auto;
 			border-radius: $border-radius-8;
+		}
+
+		p > img {
 			margin-top: 1rem;
 			margin-bottom: 1rem;
+		}
+
+		figure {
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+
+			figcaption {
+				font-size: 0.875rem;
+				line-height: 1.2rem;
+				font-weight: 520;
+				letter-spacing: -0.01rem;
+				color: var(--text-secondary);
+				margin-top: 0.75rem;
+			}
 		}
 
 		ul.tag-list {
