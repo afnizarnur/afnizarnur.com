@@ -89,7 +89,7 @@ p.body-large {
 p {
 	color: var(--text-secondary);
 	margin: 0;
-	line-height: 1.4rem;
+	line-height: $line-height;
 	letter-spacing: -0.01rem;
 	&.bold {
 		font-weight: 520;

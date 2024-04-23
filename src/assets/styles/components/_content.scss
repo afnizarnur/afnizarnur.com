@@ -23,7 +23,7 @@
 			color: var(--text-primary);
 
 			@include mq-down(sm) {
-				margin-bottom: 1rem;
+				margin-bottom: 1.5rem;
 			}
 		}
 
@@ -188,6 +188,8 @@
 			width: 100%;
 			height: auto;
 			border-radius: $border-radius-8;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
 		}
 
 		ul.tag-list {
