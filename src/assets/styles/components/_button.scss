@@ -31,6 +31,20 @@
 		height: 20px;
 	}
 
+	&.toggle-tags {
+		padding: 4px;
+		background: var(--surface-default);
+		color: var(--text-disabled);
+		border-radius: 24px;
+		cursor: pointer;
+		border: none;
+
+		&:hover {
+			background: var(--text-primary);
+			color: var(--surface-default);
+		}
+	}
+
 	&.btn-secondary {
 		color: var(--text-primary);
 		padding: 12px 24px;
