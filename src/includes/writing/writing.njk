@@ -35,13 +35,46 @@
                     </div>
 
                     <ul>
-                        {% for i in article.data.tags %}
+                        {% if article.data.tags.length > 3 %}
+                            {% for i in article
+                                .data
+                                .tags
+                                .slice(0, 3) %}
+                                <li>
+                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                            {% if article.data.tags.length > 3 %}
+                                <li class="hidden-tags" style="display: none;">
+                                    {% for i in article
+                                        .data
+                                        .tags
+                                        .slice(3) %}
+                                        <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    {% endfor %}
+                                </li>
+                            {% endif %}
+
                             <li>
-                                <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                    <small class="badge badge-tags helper">{{ i }}</small>
-                                </a>
+                                <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
+                                    {% icon "three-dot" %}
+                                </button>
                             </li>
-                        {% endfor %}
+
+                        {% else %}
+                            {% for i in article.data.tags %}
+                                <li>
+                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
                     </ul>
                 </r-cell>
             {% endfor %}
