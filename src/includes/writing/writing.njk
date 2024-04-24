@@ -58,7 +58,9 @@
 
                             {% endfor %}
 
-                            <button class="toggle-tags" aria-label="Show more tags">...</button>
+                            <button class="toggle-tags" aria-label="Show more tags">
+                                {% icon "three-dot" %}
+                            </button>
 
                         {% else %}
                             {% for i in article.data.tags %}
