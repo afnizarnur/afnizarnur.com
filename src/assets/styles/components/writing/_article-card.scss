@@ -79,4 +79,20 @@
 			}
 		}
 	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	.hidden-tags {
+		display: none;
+	}
+
+	.toggle-tags {
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		margin-left: 5px;
+	}
 }

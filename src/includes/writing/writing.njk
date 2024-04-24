@@ -35,13 +35,40 @@
                     </div>
 
                     <ul>
-                        {% for i in article.data.tags %}
-                            <li>
-                                <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                    <small class="badge badge-tags helper">{{ i }}</small>
-                                </a>
-                            </li>
-                        {% endfor %}
+                        {% if article.data.tags.length > 3 %}
+                            {% for i in article
+                                .data
+                                .tags
+                                .slice(1) %}
+
+                                <li>
+                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+
+                                {% if loop.last %}
+                                    <li class="hidden-tags" style="display: none;">
+                                        <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                            <button class="toggle-tags" aria-label="Show more tags">...</button>
+
+                        {% else %}
+                            {% for i in article.data.tags %}
+                                <li>
+                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
                     </ul>
                 </r-cell>
             {% endfor %}
