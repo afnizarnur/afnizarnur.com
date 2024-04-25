@@ -58,16 +58,17 @@
 									{% endfor %}
 
 									{% if item.data.tags.length > 3 %}
-										<li class="hidden-tags" style="display: none;">
-											{% for i in item
-												.data
-												.tags
-												.slice(3) %}
+										{% for i in item
+											.data
+											.tags
+											.slice(3) %}
+											<li class="hidden-tags" style="display: none;">
 												<a href="{{ '/work/tags/' + i | slugify | url }}">
 													<small class="badge badge-tags helper">{{ i }}</small>
 												</a>
-											{% endfor %}
-										</li>
+											</li>
+										{% endfor %}
+
 									{% endif %}
 
 									<li>
