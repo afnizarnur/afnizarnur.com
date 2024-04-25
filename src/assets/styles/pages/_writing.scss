@@ -26,6 +26,18 @@
 			}
 		}
 
+		h2 {
+			&.year-title {
+				color: var(--text-inverse-subdued);
+				margin-top: 64px;
+				margin-bottom: 24px;
+
+				@include mq-down(lg) {
+					margin-top: 44px;
+				}
+			}
+		}
+
 		&.writing-tags {
 			h1 {
 				margin: 0px 0px 64px 0px;
