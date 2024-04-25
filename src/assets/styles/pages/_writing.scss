@@ -24,9 +24,17 @@
 			@include mq-down(sm) {
 				margin: 0px 0px 32px 0px;
 			}
+		}
 
-			h1 {
-				margin: 0px 0px 24px 0px;
+		h2 {
+			&.year-title {
+				color: var(--text-inverse-subdued);
+				margin-top: 64px;
+				margin-bottom: 24px;
+
+				@include mq-down(lg) {
+					margin-top: 44px;
+				}
 			}
 		}
 
