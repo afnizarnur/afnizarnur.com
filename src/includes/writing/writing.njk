@@ -9,75 +9,79 @@
             <h1>Writing</h1>
         </div>
 
-        <r-grid columns="10" class="writing--article-list">
-            {% for article in collections.writing %}
-                <r-cell span="5" span-s="row"class="article-card">
-                    <div class="article-header">
-                        <div class="article-date">
-                            <p>
-                                {{ article.date | dateToFormat('d') }}
-                            </p>
-                            <small class="helper">
-                                {{ article.date | dateToFormat('MMM') }}
-                            </small>
+        {% for year, yearWorks in collections.writingbyyear %}
+            <h2 class="year-title">{{ year }}</h2>
+            <r-grid columns="10" class="writing--article-list">
+                {% for item in yearWorks | reverse %}
+                    <r-cell span="5" span-s="row"class="article-card">
+                        <div class="article-header">
+                            <div class="article-date">
+                                <p>
+                                    {{ item.date | dateToFormat('d') }}
+                                </p>
+                                <small class="helper">
+                                    {{ item.date | dateToFormat('MMM') }}
+                                </small>
+                            </div>
+
+                            <div class="article-title">
+                                <a href="{{ item.url }}">
+                                    <h5>
+                                        {{ item.data.title }}
+                                    </h5>
+                                </a>
+
+                                <p class="description">{{ item.data.description }}</p>
+                            </div>
                         </div>
 
-                        <div class="article-title">
-                            <a href="{{ article.url }}">
-                                <h5>
-                                    {{ article.data.title }}
-                                </h5>
-                            </a>
-
-                            <p class="description">{{ article.data.description }}</p>
-                        </div>
-                    </div>
-
-                    <ul>
-                        {% if article.data.tags.length > 3 %}
-                            {% for i in article
-                                .data
-                                .tags
-                                .slice(0, 3) %}
-                                <li>
-                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                        <small class="badge badge-tags helper">{{ i }}</small>
-                                    </a>
-                                </li>
-                            {% endfor %}
-
-                            {% if article.data.tags.length > 3 %}
-                                {% for i in article
+                        <ul>
+                            {% if item.data.tags.length > 3 %}
+                                {% for i in item
                                     .data
                                     .tags
-                                    .slice(3) %}
-                                    <li class="hidden-tags" style="display: none;">
+                                    .slice(0, 3) %}
+                                    <li>
                                         <a href="{{ '/writing/tags/' + i | slugify | url }}">
                                             <small class="badge badge-tags helper">{{ i }}</small>
                                         </a>
                                     </li>
                                 {% endfor %}
 
-                            {% endif %}
+                                {% if item.data.tags.length > 3 %}
+                                    {% for i in item
+                                        .data
+                                        .tags
+                                        .slice(3) %}
+                                        <li class="hidden-tags" style="display: none;">
+                                            <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                                <small class="badge badge-tags helper">{{ i }}</small>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
 
-                            <li>
-                                <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
-                                    {% icon "three-dot" %}
-                                </button>
-                            </li>
+                                {% endif %}
 
-                        {% else %}
-                            {% for i in article.data.tags %}
                                 <li>
-                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                        <small class="badge badge-tags helper">{{ i }}</small>
-                                    </a>
+                                    <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
+                                        {% icon "three-dot" %}
+                                    </button>
                                 </li>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
-                </r-cell>
-            {% endfor %}
-        </r-grid>
-    </div
+
+                            {% else %}
+                                {% for i in item.data.tags %}
+                                    <li>
+                                        <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </r-cell>
+
+                {% endfor %}
+            </r-grid>
+        {% endfor %}
+    </div>
 </r-cell>

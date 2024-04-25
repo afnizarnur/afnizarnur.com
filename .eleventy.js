@@ -115,6 +115,17 @@ module.exports = function (config) {
 			.sort((a, b) => b.date - a.date)
 	})
 
+	// Collections: Writing by year
+	config.addCollection("writingbyyear", (collection) => {
+		return lodash
+			.chain(collection.getFilteredByGlob(CONTENT_GLOBS.writing))
+			.filter((item) => !(item.data.draft && IS_PRODUCTION))
+			.groupBy((works) => works.date.getFullYear())
+			.toPairs()
+			.reverse()
+			.value()
+	})
+
 	// Base Config
 	return {
 		dir: {
