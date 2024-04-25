@@ -22,13 +22,47 @@
                 <r-cell span="row">
                     <p class="description--project">{{previousPost.data.description}}</p>
                     <ul>
-                        {% for i in previousPost.data.tags %}
+                        {% if previousPost.data.tags.length > 3 %}
+                            {% for i in previousPost
+                                .data
+                                .tags
+                                .slice(0, 3) %}
+                                <li>
+                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                            {% if previousPost.data.tags.length > 3 %}
+                                {% for i in previousPost
+                                    .data
+                                    .tags
+                                    .slice(3) %}
+                                    <li class="hidden-tags" style="display: none;">
+                                        <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
+                            {% endif %}
+
                             <li>
-                                <a href="{{ '/work/tags/' + i | slugify | url }}">
-                                    <small class="badge badge-tags helper">{{ i }}</small>
-                                </a>
+                                <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
+                                    {% icon "three-dot" %}
+                                </button>
                             </li>
-                        {% endfor %}
+
+                        {% else %}
+                            {% for i in previousPost.data.tags %}
+                                <li>
+                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
                     </ul>
                 </r-cell>
             </r-grid>
@@ -51,13 +85,47 @@
                 <r-cell span="row">
                     <p class="description--project">{{lastPost.data.description}}</p>
                     <ul>
-                        {% for i in lastPost.data.tags %}
+                        {% if lastPost.data.tags.length > 3 %}
+                            {% for i in lastPost
+                                .data
+                                .tags
+                                .slice(0, 3) %}
+                                <li>
+                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                            {% if lastPost.data.tags.length > 3 %}
+                                {% for i in lastPost
+                                    .data
+                                    .tags
+                                    .slice(3) %}
+                                    <li class="hidden-tags" style="display: none;">
+                                        <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
+                            {% endif %}
+
                             <li>
-                                <a href="{{ '/work/tags/' + i | slugify | url }}">
-                                    <small class="badge badge-tags helper">{{ i }}</small>
-                                </a>
+                                <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
+                                    {% icon "three-dot" %}
+                                </button>
                             </li>
-                        {% endfor %}
+
+                        {% else %}
+                            {% for i in lastPost.data.tags %}
+                                <li>
+                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
                     </ul>
                 </r-cell>
             </r-grid>
@@ -82,13 +150,47 @@
                 <r-cell span="row">
                     <p class="description--project">{{nextPost.data.description}}</p>
                     <ul>
-                        {% for i in nextPost.data.tags %}
+                        {% if nextPost.data.tags.length > 3 %}
+                            {% for i in nextPost
+                                .data
+                                .tags
+                                .slice(0, 3) %}
+                                <li>
+                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                            {% if nextPost.data.tags.length > 3 %}
+                                {% for i in nextPost
+                                    .data
+                                    .tags
+                                    .slice(3) %}
+                                    <li class="hidden-tags" style="display: none;">
+                                        <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
+                            {% endif %}
+
                             <li>
-                                <a href="{{ '/work/tags/' + i | slugify | url }}">
-                                    <small class="badge badge-tags helper">{{ i }}</small>
-                                </a>
+                                <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
+                                    {% icon "three-dot" %}
+                                </button>
                             </li>
-                        {% endfor %}
+
+                        {% else %}
+                            {% for i in nextPost.data.tags %}
+                                <li>
+                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
                     </ul>
                 </r-cell>
             </r-grid>
@@ -111,13 +213,47 @@
                 <r-cell span="row">
                     <p class="description--project">{{firstPost.data.description}}</p>
                     <ul>
-                        {% for i in firstPost.data.tags %}
+                        {% if firstPost.data.tags.length > 3 %}
+                            {% for i in firstPost
+                                .data
+                                .tags
+                                .slice(0, 3) %}
+                                <li>
+                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                            {% if firstPost.data.tags.length > 3 %}
+                                {% for i in firstPost
+                                    .data
+                                    .tags
+                                    .slice(3) %}
+                                    <li class="hidden-tags" style="display: none;">
+                                        <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
+                            {% endif %}
+
                             <li>
-                                <a href="{{ '/work/tags/' + i | slugify | url }}">
-                                    <small class="badge badge-tags helper">{{ i }}</small>
-                                </a>
+                                <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
+                                    {% icon "three-dot" %}
+                                </button>
                             </li>
-                        {% endfor %}
+
+                        {% else %}
+                            {% for i in firstPost.data.tags %}
+                                <li>
+                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
                     </ul>
                 </r-cell>
             </r-grid>

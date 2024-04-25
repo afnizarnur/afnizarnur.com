@@ -50,11 +50,9 @@
 	}
 
 	ul {
-		display: inline-flex;
-
-		li {
-			margin-right: 4px;
-		}
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
 
 		a {
 			text-decoration: none;

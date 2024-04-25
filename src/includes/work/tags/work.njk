@@ -43,13 +43,46 @@
                     <r-cell span="4-10" span-s="row">
                         <p class="description--project">{{ item.data.description }}</p>
                         <ul>
-                            {% for i in item.data.tags %}
+                            {% if item.data.tags.length > 3 %}
+                                {% for i in item
+                                    .data
+                                    .tags
+                                    .slice(0, 3) %}
+                                    <li>
+                                        <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
+                                {% if item.data.tags.length > 3 %}
+                                    {% for i in item
+                                        .data
+                                        .tags
+                                        .slice(3) %}
+                                        <li class="hidden-tags" style="display: none;">
+                                            <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                                <small class="badge badge-tags helper">{{ i }}</small>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+
                                 <li>
-                                    <a href="{{ '/work/tags/' + i | slugify | url }}">
-                                        <small class="badge badge-tags helper">{{ i }}</small>
-                                    </a>
+                                    <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
+                                        {% icon "three-dot" %}
+                                    </button>
                                 </li>
-                            {% endfor %}
+
+                            {% else %}
+                                {% for i in item.data.tags %}
+                                    <li>
+                                        <a href="{{ '/work/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
                         </ul>
                     </r-cell>
                 </r-grid>

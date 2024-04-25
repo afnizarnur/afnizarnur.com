@@ -216,13 +216,6 @@
 				display: flex;
 			}
 
-			li:last-child {
-				width: 100%;
-				height: 1px;
-				margin-left: 12px;
-				background: var(--border-default);
-			}
-
 			a {
 				text-decoration: none;
 				padding: 0;
