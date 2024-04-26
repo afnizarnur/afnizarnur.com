@@ -1,0 +1,51 @@
+body.social-card {
+	background-color: $white;
+	color: $gray-950;
+	display: block;
+	margin: 0;
+
+	.box {
+		width: 1200px;
+		height: 630px;
+		position: relative;
+		background-color: $gray-50;
+		padding: 32px;
+		box-sizing: border-box;
+		display: flex;
+
+		.container {
+			background: $white;
+			color: $gray-950;
+			border-radius: 32px;
+			height: 100%;
+			width: 100%;
+			padding: 48px;
+			position: relative;
+			display: flex;
+
+			img {
+				border-radius: 100px;
+				position: absolute;
+			}
+
+			h1 {
+				width: 696px;
+				font-size: 70px;
+				display: flex;
+				align-items: center;
+				line-height: 5rem;
+				margin: 0;
+			}
+
+			p {
+				font-family: "Inter";
+				font-weight: 500;
+				font-size: 32px;
+				line-height: 3rem;
+				letter-spacing: -0.001em;
+				position: absolute;
+				bottom: 48px;
+			}
+		}
+	}
+}

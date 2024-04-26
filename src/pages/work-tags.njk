@@ -4,7 +4,6 @@ pagination:
   data: collections
   size: 1
   alias: tag
-  addAllPagesToCollections: true
   filter:
     - works
     - worksbyyear
@@ -12,6 +11,7 @@ pagination:
 eleventyComputed:
   title: "{% set filteredWorks = collections.works | filterByTag(tag) %}{{ filteredWorks | length | pluralize('work') }} tagged with {{ tag }}"
 permalink: /work/tags/{{ tag | slugify }}/
+eleventyExcludeFromCollections: true
 ---
 
 {% include "userinfo.njk" %}
