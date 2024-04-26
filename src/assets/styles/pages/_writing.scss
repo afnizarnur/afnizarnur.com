@@ -1,6 +1,14 @@
 .writing {
 	&.article-content {
-		padding-bottom: 64px;
+		padding-bottom: 144px;
+
+		@include mq-down(lg) {
+			padding-bottom: 44px;
+		}
+
+		@include mq-down(sm) {
+			padding-bottom: 24px;
+		}
 	}
 
 	&--article-list {
