@@ -4,12 +4,12 @@ pagination:
   data: collections
   size: 1
   alias: tag
-  addAllPagesToCollections: true
   filter:
     - writing
 eleventyComputed:
   title: "{% set filteredWritings = collections.writing | filterByTag(tag) %}{{ filteredWritings | length | pluralize('post') }} tagged with {{ tag }}"
 permalink: /writing/tags/{{ tag | slugify }}/
+eleventyExcludeFromCollections: true
 ---
 
 {% include "userinfo.njk" %}
