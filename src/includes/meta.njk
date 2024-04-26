@@ -17,21 +17,32 @@ endset -%}
 <meta name="author" content="{{ author.name }}"/>
 
 {% if page
-    .url
-    .startsWith('/writing/') %}
-    {% if page.url == '/writing/' or page
-        .url
-        .startsWith('/writing/tags/') %}
-        <meta
+	.url
+	.startsWith('/writing/') %}
+	{% if page.url == '/writing/' or
+	page
+		.url
+		.startsWith('/writing/tags/') %}
+		<meta
 	property="og:image"
 	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
 />
-    {% else %}
-        <meta property="og:image" content="{% openGraphScreenshotURL %}"/>
-    {% endif %}
+
+		<meta
+	property="twitter:image"
+	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
+/>
+	{% else %}
+		<meta property="og:image" content="{% openGraphScreenshotURL %}"/>
+		<meta property="twitter:image" content="{% openGraphScreenshotURL %}"/>
+	{% endif %}
 {% else %}
-    <meta
+	<meta
 	property="og:image"
+	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
+/>
+	<meta
+	property="twitter:image"
 	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
 />
 {% endif %}
@@ -44,10 +55,6 @@ endset -%}
 <meta
 	property="twitter:description"
 	content="{{ description or meta.description }}"
-/>
-<meta
-	property="twitter:image"
-	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
 />
 <meta property="twitter:url" content="https://afnizarnur.com/"/>
 
