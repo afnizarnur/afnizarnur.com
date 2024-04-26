@@ -1,6 +1,6 @@
 ---
 pagination:
-  data: collections.all
+  data: collections.writing
   size: 1
   alias: post
 permalink: "social/{{ post.url }}/"
@@ -9,31 +9,8 @@ eleventyExcludeFromCollections: true
 
 <html>
     <head>
-        <style>
-            body {
-                background-color: #FFFFFF;
-                color: #191A1B;
-                display: block;
-                margin: 0;
-            }
-
-            .box {
-                width: 1200px;
-                height: 630px;
-                position: relative;
-                background-color: #F6F6F7;
-                padding: 32px;
-                box-sizing: border-box;
-                display: flex;
-            }
-
-            .container {
-                background: #FFFFFF;
-                border-radius: 32px;
-                height: 100%;
-                width: 100%;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ '/assets/styles/main.css' | url }}"/>
+        <link rel="stylesheet" href="{{ '/assets/styles/social.css' | url }}"/>
     </head>
     <body>
         <div class="box">
