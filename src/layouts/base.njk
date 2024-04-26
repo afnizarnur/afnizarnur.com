@@ -4,9 +4,24 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>
-            {% if title %}{{ title }} | {{ meta.title }}
+            {% if page
+                .url
+                .startsWith('/writing/') %}
+                {% if page.url == '/writing/' or page
+                    .url
+                    .startsWith('/writing/tags/') %}
+                    {{ title }} · {{ meta.title }}
+                {% else %}
+                    {% if title %}
+                        {{ title }}
+                    {% endif %}
+                {% endif %}
             {% else %}
-                {{ meta.title }}
+                {% if title %}
+                    {{ title }} · {{ meta.title }}
+                {% else %}
+                    {{ meta.title }}
+                {% endif %}
             {% endif %}
         </title>
         {% include "meta.njk" %}
