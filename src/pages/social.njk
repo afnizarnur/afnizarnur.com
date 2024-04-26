@@ -1,0 +1,46 @@
+---
+pagination:
+  data: collections.all
+  size: 1
+  alias: post
+permalink: "social/{{ post.url }}/"
+eleventyExcludeFromCollections: true
+---
+
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #FFFFFF;
+                color: #191A1B;
+                display: block;
+                margin: 0;
+            }
+
+            .box {
+                width: 1200px;
+                height: 630px;
+                position: relative;
+                background-color: #F6F6F7;
+                padding: 32px;
+                box-sizing: border-box;
+                display: flex;
+            }
+
+            .container {
+                background: #FFFFFF;
+                border-radius: 32px;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="container">
+                <h2 class="title">{{ post.data.title }}</h2>
+                <p>Afnizar Nur Ghifari</p>
+            </div>
+        </div>
+    </body>
+</html>
