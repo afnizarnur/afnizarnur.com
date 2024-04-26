@@ -46,5 +46,12 @@ module.exports = {
 		} catch (error) {
 			return ""
 		}
+	},
+	openGraphScreenshotURL: function () {
+		const encodedURL = encodeURIComponent(
+			`https://afnizarnur.com/social-card${this.page.url}`
+		)
+		const cacheKey = `_${new Date().valueOf()}`
+		return `https://v1.screenshot.11ty.dev/${encodedURL}/opengraph/${cacheKey}`
 	}
 }
