@@ -19,5 +19,14 @@ body {
 		border-radius: 32px;
 		height: 100%;
 		width: 100%;
+
+		h1 {
+			width: 696px;
+			font-size: 70px;
+			display: flex;
+			align-items: center;
+
+			color: #191a1b;
+		}
 	}
 }
