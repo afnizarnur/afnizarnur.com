@@ -1,32 +1,32 @@
-body {
+body.social-card {
 	background-color: $white;
 	color: $gray-950;
 	display: block;
 	margin: 0;
-}
 
-.box {
-	width: 1200px;
-	height: 630px;
-	position: relative;
-	background-color: $gray-50;
-	padding: 32px;
-	box-sizing: border-box;
-	display: flex;
+	.box {
+		width: 1200px;
+		height: 630px;
+		position: relative;
+		background-color: $gray-50;
+		padding: 32px;
+		box-sizing: border-box;
+		display: flex;
 
-	.container {
-		background: $white;
-		border-radius: 32px;
-		height: 100%;
-		width: 100%;
+		.container {
+			background: $white;
+			border-radius: 32px;
+			height: 100%;
+			width: 100%;
 
-		h1 {
-			width: 696px;
-			font-size: 70px;
-			display: flex;
-			align-items: center;
+			h1 {
+				width: 696px;
+				font-size: 70px;
+				display: flex;
+				align-items: center;
 
-			color: #191a1b;
+				color: #191a1b;
+			}
 		}
 	}
 }
