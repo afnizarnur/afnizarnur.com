@@ -52,6 +52,6 @@ module.exports = {
 			`https://afnizarnur.com/social-card${this.page.url}`
 		)
 		const cacheKey = `_${new Date().valueOf()}`
-		return `https://v1.screenshot.11ty.dev/${encodedURL}/opengraph/${cacheKey}/_wait:0/`
+		return `https://v1.screenshot.11ty.dev/${encodedURL}/opengraph/${cacheKey}/_wait:2/`
 	}
 }
