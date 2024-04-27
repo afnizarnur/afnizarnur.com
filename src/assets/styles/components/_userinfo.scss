@@ -3,46 +3,14 @@
 	z-index: 100;
 
 	&--inner {
-		padding: 12px 0px;
-	}
+		padding: 12px 0;
 
-	&--version {
-		display: inline-block;
-		width: 100%;
-		padding: 24px 44px;
-		margin-bottom: 144px;
-
-		@include mq-down(lg) {
-			padding: 24px 16px;
-			margin-bottom: 64px;
-		}
-
-		.list {
-			display: flex;
-
-			@include mq-down(md) {
-				flex-wrap: wrap;
-			}
-
-			li {
-				margin-right: 16px;
-			}
-
-			li:nth-child(1) {
-				@include mq-down(md) {
-					flex: 1 0 100%;
-					margin-bottom: 12px;
-				}
-			}
-		}
-	}
-	&--local-time-now-playing {
 		color: var(--text-disabled);
 		justify-content: space-between;
 		display: flex;
 
 		@include mq-down(lg) {
-			padding: 0px 24px;
+			padding: 12px 24px;
 		}
 
 		small {
@@ -67,7 +35,7 @@
 		}
 
 		.commit-code {
-			margin: 0px 24px;
+			margin: 0 24px;
 
 			@include mq-down(sm) {
 				margin: 0;
@@ -75,7 +43,6 @@
 
 			a {
 				margin-left: 4px;
-
 				text-decoration: none;
 				color: var(--text-disabled);
 
@@ -93,8 +60,8 @@
 			margin-left: auto;
 
 			@include mq-down(sm) {
-				margin-bottom: 0px;
-				margin-left: 0px;
+				margin-bottom: 0;
+				margin-left: 0;
 				display: none;
 			}
 

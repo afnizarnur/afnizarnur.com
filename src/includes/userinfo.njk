@@ -5,29 +5,26 @@
                 span="2-11"
                 span-s="row"
                 span-lg="row"
+                class="userinfo--inner"
             >
-                <div class="userinfo--inner">
-                    <div class="userinfo--local-time-now-playing">
-                        <div class="local-time">
-                            {% icon "clock" %}
-                            <small>
-                                <span id="local-time"></span> Serang, Indonesia</small>
-                        </div>
-                        <div class="commit-code">
-                            {% icon "commit" %}
-                            <a
+                <div class="local-time">
+                    {% icon "clock" %}
+                    <small>
+                        <span id="local-time"></span> Serang, Indonesia</small>
+                </div>
+                <div class="commit-code">
+                    {% icon "commit" %}
+                    <a
 					href="https://github.com/afnizarnur/afnizarnur.com"
 					data-umami-event="userinfo-commit-code"
 				>
-                                <small>
-                                    {{ build.hash }}
-                                </small>
-                            </a>
-                        </div>
-                        <div class="now-playing">
-                            <small id="current-song"></small>
-                        </div>
-                    </div>
+                        <small>
+                            {{ build.hash }}
+                        </small>
+                    </a>
+                </div>
+                <div class="now-playing">
+                    <small id="current-song"></small>
                 </div>
             </r-cell>
         </r-grid>
