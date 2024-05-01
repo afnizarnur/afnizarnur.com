@@ -91,9 +91,10 @@
 		video {
 			width: 100%;
 			height: auto;
-			outline: 2px solid #fff;
+			outline: 2px solid var(--background-default);
 			outline-offset: -2px;
-			// clip-path: inset(1px 1px);
+			clip-path: inset(2px 2px round 8px);
+
 			@include mq-down(sm) {
 				padding: 0px 12px;
 			}
