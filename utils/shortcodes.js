@@ -10,7 +10,7 @@ module.exports = {
 	image: async function (
 		src,
 		alt,
-		sizes = "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
+		sizes = "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1440px",
 		width,
 		height
 	) {
@@ -34,12 +34,15 @@ module.exports = {
 
 			let imageHTML = Image.generateHTML(metadata, imageAttributes)
 
-			if (width && height) {
-				let $ = cheerio.load(imageHTML)
-				let imgElement = $("img")
-				imgElement.attr("width", width)
-				imgElement.attr("height", height)
-				imageHTML = $.html()
+			let $ = cheerio.load(imageHTML)
+			let imgElement = $("img").first()
+			let imgWidth = imgElement.attr("width")
+			let imgHeight = imgElement.attr("height")
+
+			if (imgWidth && imgHeight) {
+				imageAttributes.width = imgWidth
+				imageAttributes.height = imgHeight
+				imageHTML = Image.generateHTML(metadata, imageAttributes)
 			}
 
 			return imageHTML
