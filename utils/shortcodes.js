@@ -35,11 +35,10 @@ module.exports = {
 			let imageHTML = Image.generateHTML(metadata, imageAttributes)
 
 			if (width && height) {
-				let $ = cheerio.load(imageHTML)
-				let imgElement = $("img")
-				imgElement.attr("width", width)
-				imgElement.attr("height", height)
-				imageHTML = $.html()
+				imageHTML = imageHTML.replace(
+					"<img",
+					`<img width="${width}" height="${height}"`
+				)
 			}
 
 			return imageHTML
@@ -47,6 +46,7 @@ module.exports = {
 			return ""
 		}
 	},
+
 	openGraphScreenshotURL: function () {
 		const encodedURL = encodeURIComponent(
 			`https://afnizarnur.com/social-card${this.page.url}`
