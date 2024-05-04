@@ -10,7 +10,7 @@ module.exports = {
 	image: async function (
 		src,
 		alt,
-		sizes = "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1440px",
+		sizes = "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
 		width,
 		height
 	) {
@@ -34,15 +34,11 @@ module.exports = {
 
 			let imageHTML = Image.generateHTML(metadata, imageAttributes)
 
-			let $ = cheerio.load(imageHTML)
-			let imgElement = $("img").first()
-			let imgWidth = imgElement.attr("width")
-			let imgHeight = imgElement.attr("height")
-
-			if (imgWidth && imgHeight) {
-				imageAttributes.width = imgWidth
-				imageAttributes.height = imgHeight
-				imageHTML = Image.generateHTML(metadata, imageAttributes)
+			if (width && height) {
+				imageHTML = imageHTML.replace(
+					"<img",
+					`<img width="${width}" height="${height}"`
+				)
 			}
 
 			return imageHTML
@@ -50,6 +46,7 @@ module.exports = {
 			return ""
 		}
 	},
+
 	openGraphScreenshotURL: function () {
 		const encodedURL = encodeURIComponent(
 			`https://afnizarnur.com/social-card${this.page.url}`
