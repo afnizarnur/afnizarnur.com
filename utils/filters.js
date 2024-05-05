@@ -59,5 +59,13 @@ module.exports = {
 		return collection.filter(
 			(item) => item.data.tags && item.data.tags.includes(tag)
 		)
+	},
+
+	readingTime: function (content) {
+		const WPM = 200
+
+		const wordCount = content.split(/\s+/).length
+		const readingTime = Math.ceil(wordCount / WPM)
+		return `${readingTime} min${readingTime !== 1 ? "s" : ""} read`
 	}
 }
