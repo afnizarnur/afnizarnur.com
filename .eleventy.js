@@ -5,6 +5,7 @@ const pluginSvgSprite = require("eleventy-plugin-svg-sprite")
 const pluginPageAssets = require("eleventy-plugin-page-assets")
 const markdownIt = require("markdown-it")
 const markdownItFootnote = require("markdown-it-footnote")
+const embedEverything = require("eleventy-plugin-embed-everything")
 
 const lodash = require("lodash")
 const filters = require("./utils/filters.js")
@@ -34,6 +35,7 @@ module.exports = function (config) {
 		assetsMatching: CONTENT_GLOBS.media,
 		silent: true
 	})
+	config.addPlugin(embedEverything)
 
 	// Filters
 	Object.keys(filters).forEach((filterName) => {

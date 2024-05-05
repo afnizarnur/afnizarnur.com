@@ -45,7 +45,7 @@
 
 		h2 + *,
 		h3 + * {
-			margin-top: 0 !important;
+			margin-top: 0;
 		}
 
 		p {
@@ -83,7 +83,7 @@
 			margin-top: 2rem;
 			margin-bottom: 1.5rem;
 			border-radius: $border-radius-8;
-    }
+		}
 
 		.footnotes-sep {
 			margin-top: 2.75rem;
@@ -235,6 +235,26 @@
 			outline-offset: -2px;
 			clip-path: inset(2px 2px round 8px);
 			background: $white;
+		}
+
+		.eleventy-plugin-embed-twitter {
+			display: flex;
+			justify-content: center;
+
+			blockquote {
+				border: none;
+			}
+		}
+
+		.eleventy-plugin-youtube-embed {
+			border-radius: $border-radius-8;
+			overflow: hidden;
+		}
+
+		.eleventy-plugin-embed-instagram {
+			width: 100%;
+			border-radius: $border-radius-12 !important;
+			border: none !important;
 		}
 	}
 }
