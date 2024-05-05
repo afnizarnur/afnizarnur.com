@@ -6,15 +6,24 @@
 >
     <div class="writing-detail--content">
         <div class="title">
-            <p>
-                {{ page.date | dateToFormat('DDD') }}
-            </p>
 
             <h1>{{title}}</h1>
 
             <p class="subtitle">
                 {{ description }}
             </p>
+
+            <div class="info">
+                <p>
+                    {{ page.date | dateToFormat('DDD') }}
+                </p>
+                <div>
+                    <span aria-hidden="true">·</span>
+                </div>
+                <div>
+                    <span aria-hidden="true">{{ content | readingTime }}</span>
+                </div>
+            </div>
         </div>
     </div>
 </r-cell>
