@@ -4,6 +4,7 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 const pluginSvgSprite = require("eleventy-plugin-svg-sprite")
 const pluginPageAssets = require("eleventy-plugin-page-assets")
 const markdownIt = require("markdown-it")
+const markdownItFootnote = require("markdown-it-footnote")
 
 const lodash = require("lodash")
 const filters = require("./utils/filters.js")
@@ -60,7 +61,7 @@ module.exports = function (config) {
 			breaks: true,
 			linkify: true,
 			typographer: true
-		})
+		}).use(markdownItFootnote)
 	)
 
 	// Layouts

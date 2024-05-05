@@ -83,6 +83,31 @@
 			margin-top: 2rem;
 			margin-bottom: 1.5rem;
 			border-radius: $border-radius-8;
+    }
+
+		.footnotes-sep {
+			margin-top: 2.75rem;
+			margin-bottom: 2.75rem;
+		}
+
+		.footnotes {
+			ol {
+				font-size: 0.875rem;
+				line-height: 1.2rem;
+				font-weight: 520;
+				letter-spacing: -0.01rem;
+			}
+
+			.footnote-backref {
+				text-decoration: none;
+			}
+		}
+
+		.footnote-ref {
+			a {
+				text-decoration: none;
+				font-weight: 520;
+			}
 		}
 
 		hr {
