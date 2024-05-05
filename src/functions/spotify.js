@@ -2,28 +2,29 @@ const axios = require("axios")
 const dotenv = require("dotenv")
 dotenv.config()
 
+let nonExplicitSongData = null
+
 exports.handler = async (event, context) => {
-	const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN
-	const auth = Buffer.from(
-		`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
-	).toString("base64")
-	const tokenEndpoint = "https://accounts.spotify.com/api/token"
-	const playerEndpoint =
-		"https://api.spotify.com/v1/me/player/recently-played"
-
-	const options = {
-		method: "POST",
-		headers: {
-			Authorization: `Basic ${auth}`,
-			"Content-Type": "application/x-www-form-urlencoded"
-		},
-		data: `grant_type=refresh_token&refresh_token=${refreshToken}&redirect_uri=${encodeURI(
-			process.env.URL,
-			+"/.netlify/functions/callback"
-		)}`
-	}
-
 	try {
+		const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN
+		const auth = Buffer.from(
+			`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
+		).toString("base64")
+		const tokenEndpoint = "https://accounts.spotify.com/api/token"
+		const playerEndpoint =
+			"https://api.spotify.com/v1/me/player/recently-played"
+
+		const options = {
+			method: "POST",
+			headers: {
+				Authorization: `Basic ${auth}`,
+				"Content-Type": "application/x-www-form-urlencoded"
+			},
+			data: `grant_type=refresh_token&refresh_token=${refreshToken}&redirect_uri=${encodeURI(
+				process.env.URL + "/.netlify/functions/callback"
+			)}`
+		}
+
 		const {
 			data: { access_token: accessToken }
 		} = await axios(tokenEndpoint, options)
@@ -33,6 +34,14 @@ exports.handler = async (event, context) => {
 				Authorization: `Bearer ${accessToken}`
 			}
 		})
+
+		const isExplicit = response.data.items[0].track.explicit
+
+		if (isExplicit && !nonExplicitSongData) {
+			return {
+				statusCode: 204
+			}
+		}
 
 		const {
 			artists: artistsArray,
@@ -45,19 +54,11 @@ exports.handler = async (event, context) => {
 		}))
 		const url = urls.spotify
 
+		nonExplicitSongData = { artists, name, url }
+
 		return {
 			statusCode: 200,
-			body: JSON.stringify({ artists, name, url })
-		}
-
-		const isExplicit = response.data.items[0].track.explicit
-
-		if (isExplicit) {
-			const storedData = JSON.parse(localStorage.getItem("spotifyData"))
-			return {
-				statusCode: 200,
-				body: JSON.stringify(storedData)
-			}
+			body: JSON.stringify(nonExplicitSongData)
 		}
 	} catch (err) {
 		if (process.env.ELEVENTY_ENV === "development") {
