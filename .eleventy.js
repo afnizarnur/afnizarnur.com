@@ -1,5 +1,6 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginNavigation = require("@11ty/eleventy-navigation")
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 const pluginSvgSprite = require("eleventy-plugin-svg-sprite")
 const pluginPageAssets = require("eleventy-plugin-page-assets")
 const markdownIt = require("markdown-it")
@@ -20,6 +21,7 @@ const CONTENT_GLOBS = {
 
 module.exports = function (config) {
 	// Plugins
+	config.addPlugin(syntaxHighlight)
 	config.addPlugin(pluginRss)
 	config.addPlugin(pluginNavigation)
 	config.addPlugin(pluginSvgSprite, {
