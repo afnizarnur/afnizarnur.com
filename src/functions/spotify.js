@@ -49,6 +49,16 @@ exports.handler = async (event, context) => {
 			statusCode: 200,
 			body: JSON.stringify({ artists, name, url })
 		}
+
+		const isExplicit = response.data.items[0].track.explicit
+
+		if (isExplicit) {
+			const storedData = JSON.parse(localStorage.getItem("spotifyData"))
+			return {
+				statusCode: 200,
+				body: JSON.stringify(storedData)
+			}
+		}
 	} catch (err) {
 		if (process.env.ELEVENTY_ENV === "development") {
 			console.error(err)

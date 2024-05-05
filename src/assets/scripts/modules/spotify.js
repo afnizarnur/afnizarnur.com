@@ -16,10 +16,12 @@ class SpotifyFetcher {
 				const url = data.url
 				this.updateParagraph(songTitle, artistName, url)
 
-				localStorage.setItem(
-					"spotifyData",
-					JSON.stringify({ songTitle, artistName, url })
-				)
+				if (songTitle !== "Explicit Content") {
+					localStorage.setItem(
+						"spotifyData",
+						JSON.stringify({ songTitle, artistName, url })
+					)
+				}
 			})
 
 			.catch((error) => {
