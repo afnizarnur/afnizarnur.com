@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/afnizarnur">
-    <img src="https://gravatar.com/userimage/18787920/cf0b156da5c2fbd33d1dcde3bcaedba6.jpeg?size=44" width="44">
+    <img src="https://raw.githubusercontent.com/afnizarnur/afnizarnur.com/main/src/assets/images/afnizar-nur-ghifari.png" width="44">
   </a>
 </p>
 
