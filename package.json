@@ -33,6 +33,7 @@
 		"cssesc": "^3.0.0",
 		"del-cli": "^4.0.1",
 		"dotenv": "^16.1.4",
+		"eleventy-plugin-embed-everything": "^1.18.2",
 		"eleventy-plugin-svg-sprite": "^1.2.2",
 		"focus-trap": "^6.9.4",
 		"focus-visible": "^5.2.0",
