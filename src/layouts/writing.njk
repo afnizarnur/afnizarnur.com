@@ -19,9 +19,7 @@ layout: base
                 {{ content | safe }}
 
                 <ul class="tag-list">
-                    <li>
-                        <small class="helper">Tags</small>
-                    </li>
+
                     {% for i in tags %}
                         <li>
                             <a href="{{ '/writing/tags/' + i | slugify | url }}">
