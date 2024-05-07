@@ -22,10 +22,31 @@ body.social-card {
 			padding: 48px;
 			position: relative;
 			display: flex;
+			overflow: hidden;
 
-			img {
+			.avatar {
 				border-radius: 100px;
 				position: absolute;
+			}
+
+			.image-thumbnail {
+				overflow: hidden;
+				width: 350px;
+				height: 350px;
+				position: absolute;
+				filter: drop-shadow(32px 32px 45px rgba(0, 0, 0, 0.1));
+				border-radius: 24px;
+				top: 20%;
+				right: -44px;
+				transform: rotate(6.35deg);
+				border: 12px solid $white;
+				display: flex;
+				justify-content: center;
+
+				img {
+					width: 800px;
+					height: 100%;
+				}
 			}
 
 			h1 {
