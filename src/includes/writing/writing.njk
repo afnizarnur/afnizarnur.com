@@ -80,12 +80,12 @@
                                             <small class="badge badge-category helper">{{ i }}</small>
                                         </a>
                                     </li>
-
-                                    <li>·</li>
-                                    <li>
-                                        <small class="helper">{{ item.content | readingTime }}</small>
-                                    </li>
                                 {% endfor %}
+
+                                <li>·</li>
+                                <li>
+                                    <small class="helper">{{ item.content | readingTime }}</small>
+                                </li>
                             {% endif %}
                         </ul>
                     </r-cell>
