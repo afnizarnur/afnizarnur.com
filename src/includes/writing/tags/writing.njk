@@ -6,7 +6,6 @@
 >
     <div class="writing--content writing-tags">
         <h1>{{ (collections.writing | filterByTag(tag)).length | pluralize('post') }} tagged with {{ tag }}</h1>
-
         <r-grid columns="10" class="writing--article-list">
             {% for item in collections.writing | filterByTag(tag) %}
                 <r-cell span="5" span-s="row"class="article-card">

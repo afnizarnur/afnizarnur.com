@@ -5,8 +5,7 @@
     span-lg="row"
 >
     <div class="writing--content writing-tags">
-        <h1>{{ (collections.writing | filterByCategory(category)).length | pluralize('post') }} tagged with {{ category }}</h1>
-
+        <h1>{{ (collections.writing | filterByCategory(category)).length | pluralize('post') }} categories with {{ category }}</h1>
         <r-grid columns="10" class="writing--article-list">
             {% for item in collections.writing | filterByCategory(category) %}
                 <r-cell span="5" span-s="row"class="article-card">
@@ -38,8 +37,8 @@
                                 .tags
                                 .slice(0, 3) %}
                                 <li>
-                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    <a href="{{ '/writing/category/' + i | slugify | url }}">
+                                        <small class="badge badge-category helper">{{ i }}</small>
                                     </a>
                                 </li>
                             {% endfor %}
@@ -50,8 +49,8 @@
                                     .category
                                     .slice(3) %}
                                     <li class="hidden-badge" style="display: none;">
-                                        <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        <a href="{{ '/writing/category/' + i | slugify | url }}">
+                                            <small class="badge badge-category helper">{{ i }}</small>
                                         </a>
                                     </li>
                                 {% endfor %}
@@ -64,14 +63,24 @@
                                 </button>
                             </li>
 
+                            <li>·</li>
+                            <li>
+                                <small class="helper">{{ item.content | readingTime }}</small>
+                            </li>
+
                         {% else %}
                             {% for i in item.data.category %}
                                 <li>
-                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    <a href="{{ '/writing/category/' + i | slugify | url }}">
+                                        <small class="badge badge-category helper">{{ i }}</small>
                                     </a>
                                 </li>
                             {% endfor %}
+
+                            <li>·</li>
+                            <li>
+                                <small class="helper">{{ item.content | readingTime }}</small>
+                            </li>
                         {% endif %}
                     </ul>
                 </r-cell>

@@ -35,7 +35,7 @@
                             </div>
                         </div>
 
-                        <ul class="category">
+                        <ul>
                             {% if item.data.category.length > 3 %}
                                 {% for i in item
                                     .data
@@ -62,13 +62,15 @@
 
                                 {% endif %}
 
-                                <li>·</li>
-                                <li>{{ item.data.content | readingTime }}</li>
-
                                 <li>
                                     <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
                                         {% icon "three-dot" %}
                                     </button>
+                                </li>
+
+                                <li>·</li>
+                                <li>
+                                    <small class="helper">{{ item.content | readingTime }}</small>
                                 </li>
 
                             {% else %}
