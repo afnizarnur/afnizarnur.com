@@ -1,5 +1,5 @@
 .article-card {
-	padding: 24px 24px 32px 24px;
+	padding: 24px;
 	position: relative;
 	overflow: hidden;
 	border: 1px solid var(--border-default);
@@ -64,7 +64,9 @@
 		display: flex;
 		margin-top: 44px;
 		flex-wrap: wrap;
-		gap: 4px;
+		gap: 8px;
+		align-items: center;
+		color: var(--text-disabled);
 
 		a {
 			text-decoration: none;
@@ -77,6 +79,10 @@
 					background: var(--text-primary);
 				}
 			}
+		}
+
+		small.helper {
+			color: var(--text-disabled);
 		}
 
 		.hidden-tags {
