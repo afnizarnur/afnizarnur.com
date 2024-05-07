@@ -14,7 +14,7 @@ eleventyExcludeFromCollections: true
     <body class="social-card">
         <div class="box">
             <div class="container">
-                <img src="{{ '/assets/images/afnizar-nur-ghifari.png' | url }}" alt="Afnizar Nur Ghifari" height="70" width="70" decoding="async"/>
+                <img class="avatar" src="{{ '/assets/images/afnizar-nur-ghifari.png' | url }}" alt="Afnizar Nur Ghifari" height="70" width="70" decoding="async"/>
                 <h1 class="headline">{{ post.data.title }}</h1>
                 <p>
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,6 +26,12 @@ eleventyExcludeFromCollections: true
                         </g>
                     </svg>
                     {{ post.content | readingTime }}</p>
+
+                {% if post.data.thumbnail %}
+                    <div class="image-thumbnail">
+                        {% image post.url + post.data.thumbnail, "Thumbnail of" + post.data.title , "(min-width: 1440px) 100vw, 50vw", 800, 600 %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </body>

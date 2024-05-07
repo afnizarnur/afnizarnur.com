@@ -14,7 +14,14 @@ module.exports = {
 		width,
 		height
 	) {
-		let path = "src/assets/images/" + src
+		let path
+		if (src.startsWith("/writing/")) {
+			path = `src${src}`
+		} else if (src.startsWith("/writings/")) {
+			path = `src${src.replace("/writings/", "/writing/")}`
+		} else {
+			path = `src/assets/images/${src}`
+		}
 		console.log(`Generating image(s) from: ${path}`)
 
 		try {
