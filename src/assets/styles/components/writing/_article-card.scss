@@ -89,7 +89,7 @@
 			width: 155px;
 			height: 155px;
 			position: relative;
-			filter: drop-shadow(15px 15px 45px var(--shadow));
+			box-shadow: 15px 15px 45px var(--shadow);
 			border-radius: $border-radius-12;
 			top: 20%;
 			transform: rotate(8deg);
