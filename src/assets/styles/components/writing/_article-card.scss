@@ -68,6 +68,10 @@
 		align-items: center;
 		color: var(--text-disabled);
 
+		@include mq-down(sm) {
+			margin-top: 24px;
+		}
+
 		a {
 			text-decoration: none;
 			padding: 0;
