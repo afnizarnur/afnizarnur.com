@@ -14,7 +14,7 @@
             <r-grid columns="10" class="writing--article-list">
                 {% for item in yearWorks | reverse %}
                     <r-cell span="5" span-s="row" class="article-card">
-                        <div class={% if item.data.thumbnail %} "article-content article-header-content" {% else %} "article-content" {% endif %}>
+                        <div class={% if item.data.thumbnail %} "article-content article-content-thumbnail" {% else %} "article-content" {% endif %}>
                             <div class="article-header">
                                 <div class="article-date">
                                     <p>
