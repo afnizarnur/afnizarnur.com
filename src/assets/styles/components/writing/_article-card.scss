@@ -5,16 +5,21 @@
 	border: 1px solid var(--border-default);
 	background: var(--background-default);
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: space-between;
-	border-radius: $border-radius-16;
+	border-radius: $border-radius-12;
+	gap: 12px;
 
-	@include mq-down(sm) {
+	@include mq-down(lg) {
+		flex-direction: column;
 		border-radius: $border-radius-12;
 	}
 
-	.article-header {
-		width: 70%;
+	.article-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
 	}
 
 	.article-date {
@@ -46,7 +51,7 @@
 			padding: 0;
 
 			h5 {
-				margin: 0px;
+				margin: 0;
 				display: -webkit-box;
 				-webkit-box-orient: vertical;
 				-webkit-line-clamp: 3;
@@ -65,17 +70,36 @@
 	}
 
 	.article-thumbnail {
-		position: absolute;
-		width: 155px;
-		height: 155px;
-		overflow: hidden;
-		display: flex;
-		justify-content: center;
-		transform: rotate(8deg);
-		right: -40px;
-		top: 25%;
-		filter: drop-shadow(15px 14px 47.9px rgba(0, 0, 0, 0.1));
-		border-radius: 8px;
+		width: 20%;
+
+		@include mq-down(lg) {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			position: relative;
+			bottom: -24px;
+			height: 100px;
+		}
+
+		.article-thumbnail-wrapper {
+			overflow: hidden;
+			width: 155px;
+			height: 155px;
+			position: relative;
+			filter: drop-shadow(15px 15px 45px var(--shadow));
+			border-radius: 8px;
+			top: 20%;
+			transform: rotate(8deg);
+			right: -12px;
+			border: 2px solid var(--background-default);
+
+			@include mq-down(lg) {
+				top: 0;
+				right: 0;
+				width: 200px;
+				height: 200px;
+			}
+		}
 
 		a:hover {
 			background: none;
@@ -83,6 +107,7 @@
 
 		img {
 			width: 300px;
+			height: auto;
 		}
 	}
 
