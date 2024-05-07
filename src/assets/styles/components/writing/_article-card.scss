@@ -13,6 +13,10 @@
 		border-radius: $border-radius-12;
 	}
 
+	.article-header {
+		width: 70%;
+	}
+
 	.article-date {
 		display: inline-flex;
 		flex-direction: column;
@@ -57,6 +61,28 @@
 			overflow: hidden;
 			-webkit-line-clamp: 3;
 			margin-top: 16px;
+		}
+	}
+
+	.article-thumbnail {
+		position: absolute;
+		width: 155px;
+		height: 155px;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		transform: rotate(8deg);
+		right: -40px;
+		top: 25%;
+		filter: drop-shadow(15px 14px 47.9px rgba(0, 0, 0, 0.1));
+		border-radius: 8px;
+
+		a:hover {
+			background: none;
+		}
+
+		img {
+			width: 300px;
 		}
 	}
 

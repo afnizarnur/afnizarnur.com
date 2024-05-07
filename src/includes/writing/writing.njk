@@ -14,7 +14,16 @@
             <r-grid columns="10" class="writing--article-list">
                 {% for item in yearWorks | reverse %}
                     <r-cell span="5" span-s="row"class="article-card">
-                        <div class="article-header">
+
+                        {% if item.data.thumbnail %}
+                            <div class="article-thumbnail" >
+                                <a href="{{ item.url }}">
+                                    {% image item.url + item.data.thumbnail, "Thumbnail of" + item.data.title , "(min-width: 1440px) 100vw, 50vw", 155, 155  %}
+                                </a>
+                            </div>
+                        {% endif %}
+
+                        <div class={% if item.data.thumbnail %} "article-header" {% endif %}>
                             <div class="article-date">
                                 <p>
                                     {{ item.date | dateToFormat('d') }}
