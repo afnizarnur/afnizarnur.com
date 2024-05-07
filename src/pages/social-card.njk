@@ -27,7 +27,7 @@ eleventyExcludeFromCollections: true
                     </svg>
                     {{ post.content | readingTime }}</p>
 
-                {% if item.data.thumbnail %}
+                {% if post.data.thumbnail %}
                     <div class="image-thumbnail">
                         {% image post.url + post.data.thumbnail, "Thumbnail of" + post.data.title , "(min-width: 1440px) 100vw, 50vw", 800, 600 %}
                     </div>
