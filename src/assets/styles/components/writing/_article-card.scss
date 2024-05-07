@@ -82,16 +82,19 @@
 		}
 
 		.article-thumbnail-wrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			overflow: hidden;
 			width: 155px;
 			height: 155px;
 			position: relative;
 			filter: drop-shadow(15px 15px 45px var(--shadow));
-			border-radius: 8px;
+			border-radius: $border-radius-12;
 			top: 20%;
 			transform: rotate(8deg);
 			right: -12px;
-			border: 2px solid var(--background-default);
+			border: 4px solid var(--background-default);
 
 			@include mq-down(lg) {
 				top: 0;
