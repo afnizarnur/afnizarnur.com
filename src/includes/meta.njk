@@ -22,7 +22,9 @@ endset -%}
 	{% if page.url == '/writing/' or
 	page
 		.url
-		.startsWith('/writing/tags/') %}
+		.startsWith('/writing/tags/')or page
+		.url
+		.startsWith('/writing/category/') %}
 		<meta
 	property="og:image"
 	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
