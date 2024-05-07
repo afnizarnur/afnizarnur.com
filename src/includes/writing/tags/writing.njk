@@ -31,26 +31,26 @@
                     </div>
 
                     <ul>
-                        {% if item.data.tags.length > 3 %}
+                        {% if item.data.category.length > 3 %}
                             {% for i in item
                                 .data
                                 .tags
                                 .slice(0, 3) %}
                                 <li>
-                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    <a href="{{ '/writing/category/' + i | slugify | url }}">
+                                        <small class="badge badge-category helper">{{ i }}</small>
                                     </a>
                                 </li>
                             {% endfor %}
 
-                            {% if item.data.tags.length > 3 %}
+                            {% if item.data.category.length > 3 %}
                                 {% for i in item
                                     .data
-                                    .tags
+                                    .category
                                     .slice(3) %}
                                     <li class="hidden-badge" style="display: none;">
-                                        <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        <a href="{{ '/writing/category/' + i | slugify | url }}">
+                                            <small class="badge badge-category helper">{{ i }}</small>
                                         </a>
                                     </li>
                                 {% endfor %}
@@ -63,14 +63,24 @@
                                 </button>
                             </li>
 
+                            <li>·</li>
+                            <li>
+                                <small class="helper">{{ item.content | readingTime }}</small>
+                            </li>
+
                         {% else %}
-                            {% for i in item.data.tags %}
+                            {% for i in item.data.category %}
                                 <li>
-                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
-                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    <a href="{{ '/writing/category/' + i | slugify | url }}">
+                                        <small class="badge badge-category helper">{{ i }}</small>
                                     </a>
                                 </li>
                             {% endfor %}
+
+                            <li>·</li>
+                            <li>
+                                <small class="helper">{{ item.content | readingTime }}</small>
+                            </li>
                         {% endif %}
                     </ul>
                 </r-cell>

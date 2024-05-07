@@ -5,7 +5,7 @@
     span-lg="row"
 >
     <div class="writing--content writing-tags">
-        <h1>{{ (collections.writing | filterByCategory(category)).length | pluralize('post') }} categories with {{ category }}</h1>
+        <h1>{{ (collections.writing | filterByCategory(category)).length | pluralize('post') }} categorized with {{ category }}</h1>
         <r-grid columns="10" class="writing--article-list">
             {% for item in collections.writing | filterByCategory(category) %}
                 <r-cell span="5" span-s="row"class="article-card">
