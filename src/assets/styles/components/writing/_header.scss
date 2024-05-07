@@ -16,8 +16,24 @@
 		.info {
 			display: flex;
 			gap: 8px;
-			color: var(--text-secondary);
-			margin-top: 24px;
+			color: var(--text-disabled);
+			margin-top: 32px;
+			align-items: center;
+			font-weight: 520;
+
+			p {
+				color: var(--text-disabled);
+			}
+
+			.badge-category {
+				text-decoration: none;
+				margin: 0;
+
+				&:hover {
+					color: var(--background-default);
+					background: var(--text-primary);
+				}
+			}
 		}
 
 		h1 {

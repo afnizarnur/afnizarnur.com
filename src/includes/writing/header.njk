@@ -14,6 +14,12 @@
             </p>
 
             <div class="info">
+                <a class="badge badge-category helper" href="{{ '/writing/category/' + category | slugify | url }}">
+                    {{ category }}
+                </a>
+                <div>
+                    <span aria-hidden="true">·</span>
+                </div>
                 <p>
                     {{ page.date | dateToFormat('DDD') }}
                 </p>

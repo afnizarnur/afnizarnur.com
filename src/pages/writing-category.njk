@@ -1,0 +1,22 @@
+---
+layout: base
+pagination:
+  data: collections.writingCategories
+  size: 1
+  alias: category
+  filter:
+    - writing
+eleventyComputed:
+  title: "{% set filteredWritings = collections.writing | filterByCategory(category) %}{{ filteredWritings | length | pluralize('post') }} tagged with {{ category }}"
+permalink: /writing/category/{{ category | slugify }}/
+eleventyExcludeFromCollections: true
+---
+
+{% include "userinfo.njk" %}
+{% include "header.njk" %}
+
+<div class="container writing">
+  <r-grid columns="12" columns-s="4">
+    {% include "writing/category/writing.njk" %}
+  </r-grid>
+</div>

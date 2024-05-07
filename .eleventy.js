@@ -120,6 +120,30 @@ module.exports = function (config) {
 			.sort((a, b) => b.date - a.date)
 	})
 
+	// Collections: Writing Tags
+	config.addCollection("writingTags", function (collection) {
+		let tagsSet = new Set()
+		collection.getAll().forEach((item) => {
+			if (item.data.tags) {
+				item.data.tags.forEach((tags) => tagsSet.add(tags))
+			}
+		})
+		return Array.from(tagsSet)
+	})
+
+	// Collections: Writing Categories
+	config.addCollection("writingCategories", function (collection) {
+		let categorySet = new Set()
+		collection.getAll().forEach((item) => {
+			if (item.data.category) {
+				item.data.category.forEach((category) =>
+					categorySet.add(category)
+				)
+			}
+		})
+		return Array.from(categorySet)
+	})
+
 	// Collections: Writing by year
 	config.addCollection("writingbyyear", (collection) => {
 		return lodash

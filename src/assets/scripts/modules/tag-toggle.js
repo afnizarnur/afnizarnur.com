@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	toggleButtons.forEach(function (toggleButton) {
 		toggleButton.addEventListener("click", function () {
 			const parentItem = toggleButton.closest("ul")
-			const hiddenTagsList = parentItem.querySelectorAll(".hidden-tags")
+			const hiddenTagsList = parentItem.querySelectorAll(".hidden-badge")
 
 			hiddenTagsList.forEach(function (hiddenTags) {
 				const isHidden = hiddenTags.style.display === "none"
