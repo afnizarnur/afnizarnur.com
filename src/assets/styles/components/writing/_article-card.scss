@@ -62,15 +62,11 @@
 
 	ul {
 		display: flex;
-		margin-top: 44px;
+		margin-top: 24px;
 		flex-wrap: wrap;
 		gap: 8px;
 		align-items: center;
 		color: var(--text-disabled);
-
-		@include mq-down(sm) {
-			margin-top: 24px;
-		}
 
 		a {
 			text-decoration: none;
