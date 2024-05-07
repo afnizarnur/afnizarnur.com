@@ -44,6 +44,10 @@ body.social-card {
 				letter-spacing: -0.001em;
 				position: absolute;
 				bottom: 48px;
+
+				display: flex;
+				gap: 16px;
+				align-items: center;
 			}
 		}
 	}
