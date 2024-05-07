@@ -61,6 +61,13 @@ module.exports = {
 		)
 	},
 
+	filterByCategory: function (collection, category) {
+		return collection.filter(
+			(item) =>
+				item.data.category && item.data.category.includes(category)
+		)
+	},
+
 	readingTime: function (content) {
 		const WPM = 200
 

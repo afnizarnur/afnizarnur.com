@@ -1,0 +1,81 @@
+<r-cell
+    class="writing--container"
+    span="2-11"
+    span-s="row"
+    span-lg="row"
+>
+    <div class="writing--content writing-tags">
+        <h1>{{ (collections.writing | filterByCategory(category)).length | pluralize('post') }} tagged with {{ category }}</h1>
+
+        <r-grid columns="10" class="writing--article-list">
+            {% for item in collections.writing | filterByCategory(category) %}
+                <r-cell span="5" span-s="row"class="article-card">
+                    <div class="article-header">
+                        <div class="article-date">
+                            <p>
+                                {{ item.date | dateToFormat('d') }}
+                            </p>
+                            <small class="helper">
+                                {{ item.date | dateToFormat('MMM') }}
+                            </small>
+                        </div>
+
+                        <div class="article-title">
+                            <a href="{{ item.url }}">
+                                <h5>
+
+                                    {{ item.data.title }}
+                                </h5>
+                            </a>
+                            <p class="description">{{ item.data.description }}</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        {% if item.data.category.length > 3 %}
+                            {% for i in item
+                                .data
+                                .tags
+                                .slice(0, 3) %}
+                                <li>
+                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                            {% if item.data.category.length > 3 %}
+                                {% for i in item
+                                    .data
+                                    .category
+                                    .slice(3) %}
+                                    <li class="hidden-badge" style="display: none;">
+                                        <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                            <small class="badge badge-tags helper">{{ i }}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
+                            {% endif %}
+
+                            <li>
+                                <button class="button toggle-tags" aria-label="Show more tags" aria-expanded="false">
+                                    {% icon "three-dot" %}
+                                </button>
+                            </li>
+
+                        {% else %}
+                            {% for i in item.data.category %}
+                                <li>
+                                    <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                        <small class="badge badge-tags helper">{{ i }}</small>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </r-cell>
+            {% endfor %}
+        </r-grid>
+    </div>
+</r-cell>

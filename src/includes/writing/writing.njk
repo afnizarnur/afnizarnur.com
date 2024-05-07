@@ -42,7 +42,7 @@
                                     .category
                                     .slice(0, 3) %}
                                     <li>
-                                        <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                        <a href="{{ '/writing/category/' + i | slugify | url }}">
                                             <small class="badge badge-category helper ">{{ i }}</small>
                                         </a>
                                     </li>
@@ -54,7 +54,7 @@
                                         .category
                                         .slice(3) %}
                                         <li class="hidden-badge" style="display: none;">
-                                            <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                            <a href="{{ '/writing/category/' + i | slugify | url }}">
                                                 <small class="badge badge-category helper">{{ i }}</small>
                                             </a>
                                         </li>
@@ -74,7 +74,7 @@
                             {% else %}
                                 {% for i in item.data.category %}
                                     <li>
-                                        <a href="{{ '/writing/tags/' + i | slugify | url }}">
+                                        <a href="{{ '/writing/category/' + i | slugify | url }}">
                                             <small class="badge badge-category helper">{{ i }}</small>
                                         </a>
                                     </li>
