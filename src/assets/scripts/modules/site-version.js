@@ -10,6 +10,10 @@ function navigateToUrl() {
 	}
 }
 
-document
-	.getElementById("select-version")
-	.addEventListener("change", navigateToUrl)
+const initNavigateToUrl = () => {
+	document
+		.getElementById("select-version")
+		.addEventListener("change", navigateToUrl)
+}
+
+export default initNavigateToUrl

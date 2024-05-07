@@ -10,7 +10,6 @@ class Clipboard {
 	constructor(email) {
 		this.email = email
 		this.button = document.querySelector(".copy-email")
-
 		if (this.button) {
 			this.button.addEventListener(
 				"click",
@@ -49,4 +48,8 @@ class Clipboard {
 	}
 }
 
-const clipboard = new Clipboard("hi@afnizarnur.com")
+const initClipboard = (email) => {
+	const clipboard = new Clipboard(email)
+}
+
+export default initClipboard

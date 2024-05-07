@@ -15,7 +15,6 @@ class SpotifyFetcher {
 				const artistName = data.artists[0].name
 				const url = data.url
 				this.updateParagraph(songTitle, artistName, url)
-
 				if (songTitle !== "Explicit Content") {
 					localStorage.setItem(
 						"spotifyData",
@@ -23,7 +22,6 @@ class SpotifyFetcher {
 					)
 				}
 			})
-
 			.catch((error) => {
 				if (process.env.ELEVENTY_ENV === "production") {
 					console.error(error)
@@ -55,6 +53,10 @@ class SpotifyFetcher {
 	}
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-	new SpotifyFetcher()
-})
+const initSpotifyFetcher = () => {
+	document.addEventListener("DOMContentLoaded", () => {
+		new SpotifyFetcher()
+	})
+}
+
+export default initSpotifyFetcher

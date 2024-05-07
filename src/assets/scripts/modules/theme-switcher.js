@@ -153,6 +153,10 @@ class ThemeSwitcher {
 	}
 }
 
-if (window.CSS && CSS.supports("color", "var(--fake-var)")) {
-	new ThemeSwitcher()
+const initThemeSwitcher = () => {
+	if (window.CSS && CSS.supports("color", "var(--fake-var)")) {
+		new ThemeSwitcher()
+	}
 }
+
+export default initThemeSwitcher

@@ -1,11 +1,3 @@
-/**
- * @author afnizarnur
- * @email hi@afnizarnur.com
- * @create date 02-07-2023 10:06:14
- * @modify date 02-07-2023 10:06:14
- * @desc Add localtime component
- */
-
 class LocalTime {
 	constructor(offset, elementId) {
 		this.offset = offset
@@ -19,7 +11,6 @@ class LocalTime {
 		const utcHours = now.getUTCHours()
 		const hours = ("0" + ((utcHours + this.offset / 60) % 24)).slice(-2)
 		const minutes = ("0" + now.getMinutes()).slice(-2)
-
 		const formattedTime = hours + ":" + minutes
 		if (this.element) {
 			this.element.textContent = formattedTime
@@ -27,4 +18,8 @@ class LocalTime {
 	}
 }
 
-const localtime = new LocalTime(420, "local-time")
+const initLocalTime = () => {
+	const localtime = new LocalTime(420, "local-time")
+}
+
+export default initLocalTime
