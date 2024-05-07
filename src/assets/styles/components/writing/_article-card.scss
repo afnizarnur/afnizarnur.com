@@ -111,6 +111,10 @@
 		img {
 			width: 300px;
 			height: auto;
+
+			@include mq-down(sm) {
+				width: 400px;
+			}
 		}
 	}
 
