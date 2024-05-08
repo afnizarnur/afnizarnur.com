@@ -1,12 +1,4 @@
 .writing {
-	&.article-content {
-		padding-bottom: 44px;
-
-		@include mq-down(sm) {
-			padding-bottom: 24px;
-		}
-	}
-
 	&--article-list {
 		gap: 24px;
 	}
