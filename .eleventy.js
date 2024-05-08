@@ -89,6 +89,20 @@ module.exports = function (config) {
 			.sort((a, b) => b.date - a.date)
 	})
 
+	// Collect all tags from works
+	let workTagsSet = new Set()
+	config.addCollection("workTags", function (collection) {
+		collection
+			.getFilteredByGlob(CONTENT_GLOBS.works)
+			.filter((item) => !(item.data.draft && IS_PRODUCTION))
+			.forEach((item) => {
+				if (item.data.tags) {
+					item.data.tags.forEach((tag) => workTagsSet.add(tag))
+				}
+			})
+		return Array.from(workTagsSet)
+	})
+
 	// Collections: Works by year
 	config.addCollection("worksbyyear", (collection) => {
 		return lodash
@@ -120,15 +134,18 @@ module.exports = function (config) {
 			.sort((a, b) => b.date - a.date)
 	})
 
-	// Collections: Writing Tags
+	// Collect all tags from writing
+	let writingTagsSet = new Set()
 	config.addCollection("writingTags", function (collection) {
-		let tagsSet = new Set()
-		collection.getAll().forEach((item) => {
-			if (item.data.tags) {
-				item.data.tags.forEach((tags) => tagsSet.add(tags))
-			}
-		})
-		return Array.from(tagsSet)
+		collection
+			.getFilteredByGlob(CONTENT_GLOBS.writing)
+			.filter((item) => !(item.data.draft && IS_PRODUCTION))
+			.forEach((item) => {
+				if (item.data.tags) {
+					item.data.tags.forEach((tag) => writingTagsSet.add(tag))
+				}
+			})
+		return Array.from(writingTagsSet)
 	})
 
 	// Collections: Writing Categories

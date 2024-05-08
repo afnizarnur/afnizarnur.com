@@ -1,13 +1,11 @@
 ---
 layout: base
 pagination:
-  data: collections
+  data: collections.workTags
   size: 1
   alias: tag
   filter:
     - works
-    - worksbyyear
-    - selected
 eleventyComputed:
   title: "{% set filteredWorks = collections.works | filterByTag(tag) %}{{ filteredWorks | length | pluralize('work') }} tagged with {{ tag }}"
 permalink: /work/tags/{{ tag | slugify }}/
