@@ -4,32 +4,32 @@
     span-s="row"
     span-lg="row"
 >
-    <div class="writing-detail--content">
-        <div class="title">
+  <div class="writing-detail--content">
+    <div class="title">
 
-            <h1>{{title}}</h1>
+      <h1>{{title}}</h1>
 
-            <p class="subtitle">
-                {{ description }}
-            </p>
+      <p class="subtitle">
+        {{ description }}
+      </p>
 
-            <div class="info">
-                <a class="badge badge-category helper" href="{{ '/writing/category/' + category | slugify | url }}">
-                    {{ category }}
-                </a>
-                <div>
-                    <span aria-hidden="true">·</span>
-                </div>
-                <p>
-                    {{ page.date | dateToFormat('DDD') }}
-                </p>
-                <div>
-                    <span aria-hidden="true">·</span>
-                </div>
-                <div>
-                    <span>{{ content | readingTime }}</span>
-                </div>
-            </div>
+      <div class="info">
+        <a class="badge badge-category helper" href="{{ '/writing/categories/' + category | slugify | url }}">
+          {{ category }}
+        </a>
+        <div>
+          <span aria-hidden="true">·</span>
         </div>
+        <p>
+          {{ page.date | dateToFormat('DDD') }}
+        </p>
+        <div>
+          <span aria-hidden="true">·</span>
+        </div>
+        <div>
+          <span>{{ content | readingTime }}</span>
+        </div>
+      </div>
     </div>
+  </div>
 </r-cell>

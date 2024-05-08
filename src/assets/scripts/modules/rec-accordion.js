@@ -1,11 +1,3 @@
-/**
- * @author afnizarnur
- * @email hi@afnizarnur.com
- * @create date 04-07-2023 22:28:21
- * @modify date 04-07-2023 22:28:21
- * @desc Recommendation accordion
- */
-
 class RecommendationAccordion {
 	constructor(containerSelector) {
 		this.container = document.querySelector(containerSelector)
@@ -40,8 +32,12 @@ class RecommendationAccordion {
 	}
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-	const recommendationAccordion = new RecommendationAccordion(
-		".recommendation--accordion"
-	)
-})
+const initRecommendationAccordion = () => {
+	document.addEventListener("DOMContentLoaded", function () {
+		const recommendationAccordion = new RecommendationAccordion(
+			".recommendation--accordion"
+		)
+	})
+}
+
+export default initRecommendationAccordion

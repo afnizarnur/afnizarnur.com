@@ -4,105 +4,105 @@
     span-s="row"
     span-lg="row"
 >
-    <div class="writing--content">
-        <div class="title">
-            <h1>Writing</h1>
-        </div>
-
-        {% for year, yearWorks in collections.writingbyyear %}
-            <h2 class="year-title">{{ year }}</h2>
-            <r-grid columns="10" class="writing--article-list">
-                {% for item in yearWorks | reverse %}
-                    <r-cell span="5" span-s="row" class="article-card">
-                        <div class={% if item.data.thumbnail %} "article-content article-content-thumbnail" {% else %} "article-content" {% endif %}>
-                            <div class="article-header">
-                                <div class="article-date">
-                                    <p>
-                                        {{ item.date | dateToFormat('d') }}
-                                    </p>
-                                    <small class="helper">
-                                        {{ item.date | dateToFormat('MMM') }}
-                                    </small>
-                                </div>
-
-                                <div class="article-title">
-                                    <a href="{{ item.url }}">
-                                        <h5>
-                                            {{ item.data.title }}
-                                        </h5>
-                                    </a>
-
-                                    <p class="description">{{ item.data.description }}</p>
-                                </div>
-                            </div>
-
-                            <ul>
-                                {% if item.data.category.length > 3 %}
-                                    {% for i in item
-                                        .data
-                                        .category
-                                        .slice(0, 3) %}
-                                        <li>
-                                            <a href="{{ '/writing/category/' + i | slugify | url }}">
-                                                <small class="badge badge-category helper ">{{ i }}</small>
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-
-                                    {% if item.data.category.length > 3 %}
-                                        {% for i in item
-                                            .data
-                                            .category
-                                            .slice(3) %}
-                                            <li class="hidden-badge" style="display: none;">
-                                                <a href="{{ '/writing/category/' + i | slugify | url }}">
-                                                    <small class="badge badge-category helper">{{ i }}</small>
-                                                </a>
-                                            </li>
-                                        {% endfor %}
-
-                                    {% endif %}
-
-                                    <li>
-                                        <button class="button toggle-tags" aria-label="Show more category" aria-expanded="false">
-                                            {% icon "three-dot" %}
-                                        </button>
-                                    </li>
-
-                                    <li>·</li>
-                                    <li>
-                                        <small class="helper">{{ item.content | readingTime }}</small>
-                                    </li>
-
-                                {% else %}
-                                    {% for i in item.data.category %}
-                                        <li>
-                                            <a href="{{ '/writing/category/' + i | slugify | url }}">
-                                                <small class="badge badge-category helper">{{ i }}</small>
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-
-                                    <li>·</li>
-                                    <li>
-                                        <small class="helper">{{ item.content | readingTime }}</small>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-
-                        {% if item.data.thumbnail %}
-                            <div class="article-thumbnail">
-                                <div class="article-thumbnail-wrapper">
-                                    <a href="{{ item.url }}">
-                                        {% image item.url + item.data.thumbnail, "Thumbnail of" + item.data.title , "(min-width: 1440px) 100vw, 50vw", 300, 300  %}
-                                    </a>
-                                </div>
-                            </div>
-                        {% endif %}
-                    </r-cell>
-                {% endfor %}
-            </r-grid>
-        {% endfor %}
+  <div class="writing--content">
+    <div class="title">
+      <h1>Writing</h1>
     </div>
+
+    {% for year, yearWorks in collections.writingbyyear %}
+      <h2 class="year-title">{{ year }}</h2>
+      <r-grid columns="10" class="writing--article-list">
+        {% for item in yearWorks | reverse %}
+          <r-cell span="5" span-s="row" class="article-card">
+            <div class={% if item.data.thumbnail %} "article-content article-content-thumbnail" {% else %} "article-content" {% endif %}>
+              <div class="article-header">
+                <div class="article-date">
+                  <p>
+                    {{ item.date | dateToFormat('d') }}
+                  </p>
+                  <small class="helper">
+                    {{ item.date | dateToFormat('MMM') }}
+                  </small>
+                </div>
+
+                <div class="article-title">
+                  <a href="{{ item.url }}">
+                    <h5>
+                      {{ item.data.title }}
+                    </h5>
+                  </a>
+
+                  <p class="description">{{ item.data.description }}</p>
+                </div>
+              </div>
+
+              <ul>
+                {% if item.data.category.length > 3 %}
+                  {% for i in item
+                    .data
+                    .category
+                    .slice(0, 3) %}
+                    <li>
+                      <a href="{{ '/writing/categories/' + i | slugify | url }}">
+                        <small class="badge badge-category helper ">{{ i }}</small>
+                      </a>
+                    </li>
+                  {% endfor %}
+
+                  {% if item.data.category.length > 3 %}
+                    {% for i in item
+                      .data
+                      .category
+                      .slice(3) %}
+                      <li class="hidden-badge" style="display: none;">
+                        <a href="{{ '/writing/categories/' + i | slugify | url }}">
+                          <small class="badge badge-category helper">{{ i }}</small>
+                        </a>
+                      </li>
+                    {% endfor %}
+
+                  {% endif %}
+
+                  <li>
+                    <button class="button toggle-tags" aria-label="Show more category" aria-expanded="false">
+                      {% icon "three-dot" %}
+                    </button>
+                  </li>
+
+                  <li>·</li>
+                  <li>
+                    <small class="helper">{{ item.content | readingTime }}</small>
+                  </li>
+
+                {% else %}
+                  {% for i in item.data.category %}
+                    <li>
+                      <a href="{{ '/writing/categories/' + i | slugify | url }}">
+                        <small class="badge badge-category helper">{{ i }}</small>
+                      </a>
+                    </li>
+                  {% endfor %}
+
+                  <li>·</li>
+                  <li>
+                    <small class="helper">{{ item.content | readingTime }}</small>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+
+            {% if item.data.thumbnail %}
+              <div class="article-thumbnail">
+                <div class="article-thumbnail-wrapper">
+                  <a href="{{ item.url }}">
+                    {% image item.url + item.data.thumbnail, "Thumbnail of" + item.data.title , "(min-width: 1440px) 100vw, 50vw", 300, 300  %}
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+          </r-cell>
+        {% endfor %}
+      </r-grid>
+    {% endfor %}
+  </div>
 </r-cell>

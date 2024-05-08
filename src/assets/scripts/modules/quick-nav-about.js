@@ -62,6 +62,10 @@ class QuickNavAbout {
 	}
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-	new QuickNavAbout()
-})
+const initQuickNavAbout = () => {
+	document.addEventListener("DOMContentLoaded", function () {
+		new QuickNavAbout()
+	})
+}
+
+export default initQuickNavAbout

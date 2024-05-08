@@ -19,7 +19,6 @@ function initializeModal(buttonIdentifier, modalIdentifier) {
 
 	const closeModal = () => {
 		const mediaQuery = window.matchMedia("(max-width: 480px)")
-
 		if (mediaQuery.matches) {
 			content.style.animation = "slideOutToBottom 0.4s ease-in forwards"
 		} else {
@@ -37,15 +36,12 @@ function initializeModal(buttonIdentifier, modalIdentifier) {
 	}
 
 	button.addEventListener("click", openModal)
-
 	closeButton.addEventListener("click", closeModal)
-
 	overlay.addEventListener("click", (e) => {
 		if (e.target === overlay) {
 			closeModal()
 		}
 	})
-
 	modal.addEventListener("keydown", (e) => {
 		if (e.key === "Escape" || e.keyCode === 27) {
 			closeModal()
@@ -53,5 +49,9 @@ function initializeModal(buttonIdentifier, modalIdentifier) {
 	})
 }
 
-initializeModal("theme-switcher-desktop", "modal-theme-switcher")
-initializeModal("theme-switcher-mobile", "modal-theme-switcher")
+const initModal = () => {
+	initializeModal("theme-switcher-desktop", "modal-theme-switcher")
+	initializeModal("theme-switcher-mobile", "modal-theme-switcher")
+}
+
+export default initModal

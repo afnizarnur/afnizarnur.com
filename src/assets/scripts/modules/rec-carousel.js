@@ -1,11 +1,3 @@
-/**
- * @author afnizarnur
- * @email hi@afnizarnur.com
- * @create date 02-07-2023 10:01:00
- * @modify date 02-07-2023 10:01:00
- * @desc Recommendation carousel
- */
-
 class RecommendationCarousel {
 	constructor(carouselSelector) {
 		this.carousel = document.querySelector(carouselSelector)
@@ -95,6 +87,10 @@ class RecommendationCarousel {
 	}
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-	new RecommendationCarousel(".carousel")
-})
+const initRecommendationCarousel = () => {
+	document.addEventListener("DOMContentLoaded", () => {
+		new RecommendationCarousel(".carousel")
+	})
+}
+
+export default initRecommendationCarousel
