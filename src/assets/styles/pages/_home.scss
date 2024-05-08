@@ -2,7 +2,7 @@
 .about,
 .contact {
 	&--header-empty {
-		height: 144px;
+		height: 120px;
 		grid-row: 1;
 
 		@include mq-down(xl) {
