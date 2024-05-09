@@ -72,7 +72,7 @@ module.exports = function (config) {
 					widths: [1280, 768, 480],
 					urlPath: "/assets/images/",
 					outputDir: "./dist/assets/images/",
-					formats: ["avif", "webp", "jpeg"]
+					formats: ["webp"]
 				},
 				globalAttributes: {
 					class: "markdown-image",
