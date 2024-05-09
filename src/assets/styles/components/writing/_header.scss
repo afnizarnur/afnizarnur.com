@@ -10,7 +10,7 @@
 		}
 
 		@include mq-down(sm) {
-			padding-bottom: 44px;
+			padding-bottom: 24px;
 		}
 
 		.info {
@@ -20,9 +20,19 @@
 			margin-top: 32px;
 			align-items: center;
 			font-weight: 520;
+			overflow: auto;
+
+			@include mq-down(sm) {
+				padding-bottom: 20px;
+			}
 
 			p {
 				color: var(--text-disabled);
+				white-space: nowrap;
+			}
+
+			span {
+				white-space: nowrap;
 			}
 
 			.badge-category {

@@ -70,6 +70,10 @@
 			padding-left: 1em;
 			margin: 2.75rem -1.5rem;
 
+			@include mq-down(lg) {
+				padding-right: 24px;
+			}
+
 			p {
 				font-size: 1.125rem;
 				line-height: 1.7777778rem;
