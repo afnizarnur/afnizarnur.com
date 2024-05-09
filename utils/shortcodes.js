@@ -18,8 +18,6 @@ module.exports = {
 		let path
 		if (src.startsWith("/writing/")) {
 			path = `src${src}`
-		} else if (src.startsWith("/writings/")) {
-			path = `src${src.replace("/writings/", "/writing/")}`
 		} else {
 			path = `src/assets/images/${src}`
 		}
