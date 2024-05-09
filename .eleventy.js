@@ -69,7 +69,7 @@ module.exports = function (config) {
 			.use(markdownItFootnote)
 			.use(markdownItEleventyImg, {
 				imgOptions: {
-					widths: [1280, 768, 480],
+					widths: [480, 768, "auto"],
 					urlPath: "/assets/images/",
 					outputDir: "./dist/assets/images/",
 					formats: ["webp"]
