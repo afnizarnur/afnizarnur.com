@@ -17,7 +17,7 @@ const shortcodes = require("./utils/shortcodes.js")
 const IS_PRODUCTION = process.env.ELEVENTY_ENV === "production"
 
 const CONTENT_GLOBS = {
-	works: "src/works/**/*.md",
+	works: "src/work/**/*.md",
 	writing: "src/writing/**/*.md",
 	media: "*.jpg|*.png|*.gif|*.mp4|*.webp|*.webm"
 }
@@ -33,7 +33,7 @@ module.exports = function (config) {
 	})
 	config.addPlugin(pluginPageAssets, {
 		mode: "directory",
-		postsMatching: ["src/works/*/*.md", "src/writing/*/*.md"],
+		postsMatching: ["src/work/*/*.md", "src/writing/*/*.md"],
 		assetsMatching: CONTENT_GLOBS.media,
 		silent: true
 	})
