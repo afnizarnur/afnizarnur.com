@@ -50,7 +50,6 @@
 
 		figure {
 			text-align: center;
-			transform: rotate(-1deg);
 
 			figcaption {
 				margin-top: 8px;
@@ -62,6 +61,8 @@
 		}
 
 		.pic-frame {
+			transform: rotate(-1deg);
+
 			@include mq-down(sm) {
 				img {
 					width: 100%;
