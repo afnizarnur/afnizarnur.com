@@ -48,6 +48,11 @@
 			margin-top: 0;
 		}
 
+		h2 + p > img,
+		h3 + p > img {
+			margin-top: 0;
+		}
+
 		p {
 			margin-top: 1.5rem;
 			margin-bottom: 1.5rem;
@@ -242,8 +247,13 @@
 		}
 
 		.eleventy-plugin-youtube-embed {
-			border-radius: $border-radius-8;
+			border-radius: $border-radius-12;
 			overflow: hidden;
+			margin: 44px 0px;
+
+			@include mq-down(sm) {
+				margin: 24px 0px;
+			}
 		}
 
 		.eleventy-plugin-embed-instagram {
