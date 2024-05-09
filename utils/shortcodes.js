@@ -12,13 +12,12 @@ module.exports = {
 		alt,
 		sizes = "(max-width: 480px) 100vw, (max-width: 768px) 90vw, 1280px",
 		width,
-		height
+		height,
+		caption = null
 	) {
 		let path
 		if (src.startsWith("/writing/")) {
 			path = `src${src}`
-		} else if (src.startsWith("/writings/")) {
-			path = `src${src.replace("/writings/", "/writing/")}`
 		} else {
 			path = `src/assets/images/${src}`
 		}
@@ -48,7 +47,12 @@ module.exports = {
 				)
 			}
 
-			return imageHTML
+			// Wrap image with figure tag and add caption if provided
+			if (caption) {
+				return `<figure>${imageHTML}<figcaption>${caption}</figcaption></figure>`
+			} else {
+				return imageHTML
+			}
 		} catch (error) {
 			return ""
 		}
