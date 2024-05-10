@@ -21,7 +21,7 @@
 	"author": "Afnizar Nur Ghifari",
 	"license": "MIT",
 	"dependencies": {
-		"@11ty/eleventy-img": "^1.0.1",
+		"@11ty/eleventy-img": "^1.0.0",
 		"@11ty/eleventy-navigation": "^0.3.2",
 		"@11ty/eleventy-plugin-rss": "^1.1.2",
 		"@babel/plugin-transform-runtime": "^7.16.4",
@@ -63,7 +63,6 @@
 		"cross-env": "^7.0.3",
 		"dotenv-webpack": "^8.0.1",
 		"eleventy-plugin-page-assets": "github:maxboeck/eleventy-plugin-page-assets",
-		"markdown-it-eleventy-img": "^0.10.2",
 		"plur": "^5.1.0",
 		"prettier": "^2.8.8"
 	}
