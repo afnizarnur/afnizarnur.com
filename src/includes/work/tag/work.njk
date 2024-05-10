@@ -1,14 +1,13 @@
 <r-cell
-    class="selected-work"
+    class="selected-work tag-work"
     span="2-11"
     span-s="row"
     span-lg="row"
-    id="selected-work"
 >
-  <div class="selected-work--content" >
-    <h2>Selected work</h2>
+  <div class="selected-work--content tag-work">
+    <h1>{{ (collections.works | filterByTag(tag)).length | pluralize('work') }} tagged with {{ tag }}</h1>
 
-    {% for item in collections.selected | slice(0, 4) %}
+    {% for item in collections.works | filterByTag(tag) %}
       <div class="selected-work--item">
         <div class="thumbnail-wrapper">
           {% if item.data.draft %}
@@ -62,13 +61,11 @@
                     .tags
                     .slice(3) %}
                     <li class="hidden-badge" style="display: none;">
-
                       <a href="{{ '/work/tag/' + i | slugify | url }}">
                         <small class="badge badge-tags helper">{{ i }}</small>
                       </a>
                     </li>
                   {% endfor %}
-
                 {% endif %}
 
                 <li>
@@ -90,6 +87,8 @@
           </r-cell>
         </r-grid>
       </div>
+
     {% endfor %}
+
   </div>
 </r-cell>

@@ -17,33 +17,33 @@ endset -%}
 <meta name="author" content="{{ author.name }}"/>
 
 {% if page
-	.url
-	.startsWith('/writing/') %}
-	{% if page.url == '/writing/' or
-	page
-		.url
-		.startsWith('/writing/tags/')or page
-		.url
-		.startsWith('/writing/categories/') %}
-		<meta
+  .url
+  .startsWith('/writing/') %}
+  {% if page.url == '/writing/' or
+  page
+    .url
+    .startsWith('/writing/tag/')or page
+    .url
+    .startsWith('/writing/category/') %}
+    <meta
 	property="og:image"
 	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
 />
 
-		<meta
+    <meta
 	property="twitter:image"
 	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
 />
-	{% else %}
-		<meta property="og:image" content="{% openGraphScreenshotURL %}"/>
-		<meta property="twitter:image" content="{% openGraphScreenshotURL %}"/>
-	{% endif %}
+  {% else %}
+    <meta property="og:image" content="{% openGraphScreenshotURL %}"/>
+    <meta property="twitter:image" content="{% openGraphScreenshotURL %}"/>
+  {% endif %}
 {% else %}
-	<meta
+  <meta
 	property="og:image"
 	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
 />
-	<meta
+  <meta
 	property="twitter:image"
 	content="{{ 'https://afnizarnur.com/assets/images/meta-image.png' | url }}"
 />

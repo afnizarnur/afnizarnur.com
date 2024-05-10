@@ -5,9 +5,9 @@
     span-lg="row"
 >
   <div class="writing--content writing-tags">
-    <h1>{{ (collections.writing | filterByTag(tag)).length | pluralize('post') }} tagged with {{ tag }}</h1>
+    <h1>{{ (collections.writing | filterByCategory(category)).length | pluralize('post') }} categorized with {{ category }}</h1>
     <r-grid columns="10" class="writing--article-list">
-      {% for item in collections.writing | filterByTag(tag) %}
+      {% for item in collections.writing | filterByCategory(category) %}
         <r-cell span="5" span-s="row" class="article-card">
           <div class={% if item.data.thumbnail %} "article-content article-content-thumbnail" {% else %} "article-content" {% endif %}>
             <div class="article-header">
@@ -38,7 +38,7 @@
                   .category
                   .slice(0, 3) %}
                   <li>
-                    <a href="{{ '/writing/categories/' + i | slugify | url }}">
+                    <a href="{{ '/writing/category/' + i | slugify | url }}">
                       <small class="badge badge-category helper ">{{ i }}</small>
                     </a>
                   </li>
@@ -50,7 +50,7 @@
                     .category
                     .slice(3) %}
                     <li class="hidden-badge" style="display: none;">
-                      <a href="{{ '/writing/categories/' + i | slugify | url }}">
+                      <a href="{{ '/writing/category/' + i | slugify | url }}">
                         <small class="badge badge-category helper">{{ i }}</small>
                       </a>
                     </li>
@@ -72,7 +72,7 @@
               {% else %}
                 {% for i in item.data.category %}
                   <li>
-                    <a href="{{ '/writing/categories/' + i | slugify | url }}">
+                    <a href="{{ '/writing/category/' + i | slugify | url }}">
                       <small class="badge badge-category helper">{{ i }}</small>
                     </a>
                   </li>

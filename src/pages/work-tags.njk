@@ -8,7 +8,7 @@ pagination:
     - works
 eleventyComputed:
   title: "{% set filteredWorks = collections.works | filterByTag(tag) %}{{ filteredWorks | length | pluralize('work') }} tagged with {{ tag }}"
-permalink: /work/tags/{{ tag | slugify }}/
+permalink: /work/tag/{{ tag | slugify }}/
 eleventyExcludeFromCollections: true
 ---
 
@@ -17,6 +17,6 @@ eleventyExcludeFromCollections: true
 
 <div class="container work">
   <r-grid columns="12" columns-s="4">
-    {% include "work/tags/work.njk" %}
+    {% include "work/tag/work.njk" %}
   </r-grid>
 </div>
