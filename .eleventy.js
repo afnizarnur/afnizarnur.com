@@ -65,44 +65,7 @@ module.exports = function (config) {
 			breaks: true,
 			linkify: true,
 			typographer: true
-		})
-			.use(markdownItFootnote)
-			.use(markdownItEleventyImg, {
-				imgOptions: {
-					widths: [480, 768, "auto"],
-					urlPath: "/assets/images/",
-					outputDir: "./dist/assets/images/",
-					formats: ["webp"]
-				},
-				globalAttributes: {
-					class: "markdown-image",
-					decoding: "async",
-					sizes: "100vw"
-				},
-				resolvePath: (filepath, env) => {
-					const markdownDir = env.page.inputPath.replace(env.cwd, "")
-					const relativePath = path.dirname(markdownDir)
-					const urlPath = `${relativePath}/`
-					return `${urlPath}${filepath}`
-				},
-				renderImage(image, attributes) {
-					const [Image, options] = image
-					const [src, attrs] = attributes
-
-					Image(src, options)
-
-					const metadata = Image.statsSync(src, options)
-					const imageMarkup = Image.generateHTML(metadata, attrs, {
-						whitespaceMode: "inline"
-					})
-
-					return `<figure>${imageMarkup}${
-						attrs.title
-							? `<figcaption>${attrs.title}</figcaption>`
-							: ""
-					}</figure>`
-				}
-			})
+		}).use(markdownItFootnote)
 	)
 
 	// Layouts
