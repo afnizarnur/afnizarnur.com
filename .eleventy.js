@@ -17,7 +17,7 @@ const shortcodes = require("./utils/shortcodes.js")
 const IS_PRODUCTION = process.env.ELEVENTY_ENV === "production"
 
 const CONTENT_GLOBS = {
-	works: "src/work/**/*.md",
+	work: "src/work/**/*.md",
 	writing: "src/writing/**/*.md",
 	media: "*.jpg|*.png|*.gif|*.mp4|*.webp|*.webm"
 }
@@ -65,7 +65,44 @@ module.exports = function (config) {
 			breaks: true,
 			linkify: true,
 			typographer: true
-		}).use(markdownItFootnote)
+		})
+			.use(markdownItFootnote)
+			.use(markdownItEleventyImg, {
+				imgOptions: {
+					widths: [480, 768, "auto"],
+					urlPath: "/assets/images/",
+					outputDir: "./dist/assets/images/",
+					formats: ["webp"]
+				},
+				globalAttributes: {
+					class: "markdown-image",
+					decoding: "async",
+					sizes: "100vw"
+				},
+				resolvePath: (filepath, env) => {
+					const markdownDir = env.page.inputPath.replace(env.cwd, "")
+					const relativePath = path.dirname(markdownDir)
+					const urlPath = `${relativePath}/`
+					return `${urlPath}${filepath}`
+				},
+				renderImage(image, attributes) {
+					const [Image, options] = image
+					const [src, attrs] = attributes
+
+					Image(src, options)
+
+					const metadata = Image.statsSync(src, options)
+					const imageMarkup = Image.generateHTML(metadata, attrs, {
+						whitespaceMode: "inline"
+					})
+
+					return `<figure>${imageMarkup}${
+						attrs.title
+							? `<figcaption>${attrs.title}</figcaption>`
+							: ""
+					}</figure>`
+				}
+			})
 	)
 
 	// Layouts
@@ -85,7 +122,7 @@ module.exports = function (config) {
 	// Collections: Works
 	config.addCollection("works", function (collection) {
 		return collection
-			.getFilteredByGlob(CONTENT_GLOBS.works)
+			.getFilteredByGlob(CONTENT_GLOBS.work)
 			.filter((item) => item.data.permalink !== false)
 			.filter((item) => !(item.data.draft && IS_PRODUCTION))
 			.sort((a, b) => b.date - a.date)
@@ -95,7 +132,7 @@ module.exports = function (config) {
 	let workTagsSet = new Set()
 	config.addCollection("workTags", function (collection) {
 		collection
-			.getFilteredByGlob(CONTENT_GLOBS.works)
+			.getFilteredByGlob(CONTENT_GLOBS.work)
 			.filter((item) => !(item.data.draft && IS_PRODUCTION))
 			.forEach((item) => {
 				if (item.data.tags) {
@@ -108,7 +145,7 @@ module.exports = function (config) {
 	// Collections: Works by year
 	config.addCollection("worksbyyear", (collection) => {
 		return lodash
-			.chain(collection.getFilteredByGlob(CONTENT_GLOBS.works))
+			.chain(collection.getFilteredByGlob(CONTENT_GLOBS.work))
 			.filter(
 				(item) =>
 					item.data.selected || !(item.data.draft && IS_PRODUCTION)
@@ -122,7 +159,7 @@ module.exports = function (config) {
 	// Collections: Selected Works
 	config.addCollection("selected", function (collection) {
 		return collection
-			.getFilteredByGlob(CONTENT_GLOBS.works)
+			.getFilteredByGlob(CONTENT_GLOBS.work)
 			.filter((item) => item.data.selected)
 			.sort((a, b) => b.date - a.date)
 	})

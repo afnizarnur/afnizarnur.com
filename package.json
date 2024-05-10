@@ -44,6 +44,7 @@
 		"luxon": "^2.1.1",
 		"markdown-it": "^12.2.0",
 		"markdown-it-footnote": "^4.0.0",
+		"markdown-it-eleventy-img": "^0.10.2",
 		"memfs": "^3.4.0",
 		"netlify-cli": "^17.23.1",
 		"node-fetch": "^3.3.1",
@@ -63,7 +64,6 @@
 		"cross-env": "^7.0.3",
 		"dotenv-webpack": "^8.0.1",
 		"eleventy-plugin-page-assets": "github:maxboeck/eleventy-plugin-page-assets",
-		"markdown-it-eleventy-img": "^0.10.2",
 		"plur": "^5.1.0",
 		"prettier": "^2.8.8"
 	}
