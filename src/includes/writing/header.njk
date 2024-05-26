@@ -6,6 +6,9 @@
 >
   <div class="writing-detail--content">
     <div class="title">
+      <p class="date">
+        {{ page.date | dateToFormat('DDD') }}
+      </p>
 
       <h1>{{title}}</h1>
 
@@ -17,12 +20,6 @@
         <a class="badge badge-category helper" href="{{ '/writing/category/' + category | slugify | url }}">
           {{ category }}
         </a>
-        <div>
-          <span aria-hidden="true">·</span>
-        </div>
-        <p>
-          {{ page.date | dateToFormat('DDD') }}
-        </p>
         <div>
           <span aria-hidden="true">·</span>
         </div>
