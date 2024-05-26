@@ -13,6 +13,12 @@
 			padding-bottom: 24px;
 		}
 
+		.date {
+			margin-bottom: 32px;
+			font-weight: 520;
+			color: var(--text-disabled);
+		}
+
 		.info {
 			display: flex;
 			gap: 8px;
