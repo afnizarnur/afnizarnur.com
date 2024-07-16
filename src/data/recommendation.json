@@ -1,10 +1,17 @@
 [
 	{
-		"name": "Abid Hanifusaffly",
-		"role": "UI/UX Designer",
-		"company": "Fashionvalet",
-		"image": "abid-hanifusaffly.png",
-		"content": "Afnizar is a responsible, hardworking, and pays crazy attention to detail. He possesses a strong foundation in UI design. When it comes to UI design, he's got some seriously solid skills. Plus, he's an awesome teacher when it comes to UI stuff. He explains things in a way that totally makes sense and isn't afraid to give his own opinions. Honestly, a lot of my work is inspired by the design fundamentals and perspectives he has taught, such as achieving pixel-perfect designs, maintaining neat organization in design delivery, and naming pages in design files. His work, Page Automator, has always been my go-to tool when preparing a new file in Figma."
+		"name": "Thalia Shelyndra",
+		"role": "Qualitative Researcher",
+		"company": "GovTech Edu",
+		"image": "thalia.png",
+		"content": "I have known Afnizar for few years + working closely with him for a year now and all I can say Nizar is a passionate designer. He likes to use his time to exercise his design and open for feedback during the process. Nizar is willing to learn about the users needs and behavior and make the knowledge as his anchor on his design. I can see that Nizar tries to put users first while finding the balance between visual appeal and versatility of his product design. Moreover, Nizar is also explorative on finding some inspiration to iterate his works while igniting some discussion with the team about what he has found out or tried on. Overall, I really enjoy working with him and really hope he will stay emphatic and explorative in his journey wherever he is."
+	},
+	{
+		"name": "Dara Tasha",
+		"role": "Design Manager",
+		"company": "GovTech Edu",
+		"image": "tasha.png",
+		"content": "Afnizar is a talented designer who excels at crafting designs and pays great attention to detail. Beyond his technical skills, he shines as a collaborative team player, providing critical input and bridging context gaps within our projects. His knack for creative problem-solving often results in solutions that surpass team expectations, which I truly appreciate. During my time managing him, I've seen him evolve from a reserved thinker to an outspoken individual who actively speaks up and challenges ideas. This has become a significant asset, as Afnizar is growing more confident in leading projects independently. With this quality, I believe he will continue to grow further, taking on more responsibilities and contributing even more significantly to collective goals. It’s been a pleasure to have Afnizar on my team, and I believe he’ll be a great addition to any team he joins next!"
 	},
 	{
 		"name": "Moreno Duvadilon",
@@ -24,6 +31,13 @@
 		"company": "Icreon",
 		"image": "adwin.png",
 		"content": "Afnizar is an excellent collaborator, actively listening to our needs and translating them into actionable design solutions. As a designer, he understands how to implement designs that make sense through coding. Afnizar has a remarkable ability to grasp complex concepts and transform them into intuitive and visually appealing interfaces that resonate with our target audience."
+	},
+	{
+		"name": "Abid Hanifusaffly",
+		"role": "UI/UX Designer",
+		"company": "Fashionvalet",
+		"image": "abid-hanifusaffly.png",
+		"content": "Afnizar is a responsible, hardworking, and pays crazy attention to detail. He possesses a strong foundation in UI design. When it comes to UI design, he's got some seriously solid skills. Plus, he's an awesome teacher when it comes to UI stuff. He explains things in a way that totally makes sense and isn't afraid to give his own opinions. Honestly, a lot of my work is inspired by the design fundamentals and perspectives he has taught, such as achieving pixel-perfect designs, maintaining neat organization in design delivery, and naming pages in design files. His work, Page Automator, has always been my go-to tool when preparing a new file in Figma."
 	},
 	{
 		"name": "Kukuh Sulistyo",
@@ -66,12 +80,5 @@
 		"company": "GovTech Procurement",
 		"image": "thofhan.png",
 		"content": "Afnizar is an exceptional UI Designer. He is empathetic, understands his customers well, and is willing to fight to make sure people understand customers too. Despite that, he is a team player too. He acknowledges that there are constraints to his team’s capabilities and is willing to make concessions to accomplish the customers’ objectives with minimal and efficient solutions."
-	},
-	{
-		"name": "Thalia Shelyndra",
-		"role": "Qualitative Researcher",
-		"company": "GovTech Edu",
-		"image": "thalia.png",
-		"content": "I have known Afnizar for few years + working closely with him for a year now and all I can say Nizar is a passionate designer. He likes to use his time to exercise his design and open for feedback during the process. Nizar is willing to learn about the users needs and behavior and make the knowledge as his anchor on his design. I can see that Nizar tries to put users first while finding the balance between visual appeal and versatility of his product design. Moreover, Nizar is also explorative on finding some inspiration to iterate his works while igniting some discussion with the team about what he has found out or tried on. Overall, I really enjoy working with him and really hope he will stay emphatic and explorative in his journey wherever he is."
 	}
 ]
