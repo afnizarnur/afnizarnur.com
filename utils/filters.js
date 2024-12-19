@@ -80,6 +80,6 @@ module.exports = {
 		if (typeof str !== "string") {
 			return str
 		}
-		return str.replace(/\n/g, "<br>")
+		return str.replace(/(?:\r\n|\r|\n)/g, "<br>")
 	}
 }
