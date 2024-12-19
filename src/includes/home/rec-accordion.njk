@@ -10,7 +10,7 @@
 				<div class="accordion-inner">
 					{% for items in recommendation %}
 						<div class="accordion-slide">
-							<blockquote>{{ items.content }}</blockquote>
+							<blockquote>{{ items.content | nl2br | safe }}</blockquote>
 							<cite>
 								{% if items.image %}
 									{% image 'recommendation/'+items.image, items.name, "(min-width: 1440px) 100vw, 50vw", 40, 40  %}

@@ -74,5 +74,12 @@ module.exports = {
 		const wordCount = content.split(/\s+/).length
 		const readingTime = Math.ceil(wordCount / WPM)
 		return `${readingTime} min${readingTime !== 1 ? "s" : ""} read`
+	},
+
+	nl2br: function (str) {
+		if (typeof str !== "string") {
+			return str
+		}
+		return str.replace(/\n/g, "<br>")
 	}
 }
