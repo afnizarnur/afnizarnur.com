@@ -1,0 +1,40 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Development Workflow
+
+## Available Commands
+
+- `npm start` or `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run clean`: Clean the dist directory
+
+## Development Process
+
+1. Development server runs on `http://localhost:8080` by default
+2. Changes to templates and content will trigger automatic rebuilds
+3. Static assets in `src/assets` are processed and optimized during build
+4. The site uses Eleventy for static site generation with the following features:
+   - Nunjucks templating
+   - Markdown support with footnotes
+   - RSS feed generation
+   - SVG sprite optimization
+   - Critical CSS extraction
+   - Image optimization
+
+## Build Process
+
+1. Clean dist directory
+2. Process and optimize assets
+3. Generate static pages
+4. Create production-ready output in `dist/`
+
+## Deployment
+
+The site is configured for Netlify deployment with the following features:
+- Automatic builds on git push
+- Asset optimization
+- Cache control headers
+- Redirects and rewrites
