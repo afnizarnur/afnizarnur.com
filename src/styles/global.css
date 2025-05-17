@@ -3,6 +3,23 @@
 @tailwind utilities;
 
 @layer base {
+	@font-face {
+		font-family: "Inter var";
+		src: url("/src/assets/fonts/Inter-roman.var.woff2") format("woff2");
+		font-weight: 100 900;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Aksen";
+		src: url("/src/assets/fonts/Aksen-Condensed-SemiBold.woff2")
+			format("woff2");
+		font-weight: 600;
+		font-display: swap;
+		font-style: normal;
+	}
+
 	:root {
 		/* Light theme (default) */
 		--color-primary: 23 37 84;
@@ -47,7 +64,22 @@
 		--color-muted: 107 114 128;
 	}
 
+	html {
+		font-family: "Inter var", system-ui, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
 	body {
 		@apply bg-background text-text transition-colors duration-200;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-display;
 	}
 }

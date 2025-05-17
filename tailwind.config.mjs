@@ -9,6 +9,10 @@ export default {
 				text: "rgb(var(--color-text) / <alpha-value>)",
 				background: "rgb(var(--color-background) / <alpha-value>)",
 				muted: "rgb(var(--color-muted) / <alpha-value>)"
+			},
+			fontFamily: {
+				sans: ["Inter var", "system-ui", "sans-serif"],
+				display: ["Aksen", "system-ui", "sans-serif"]
 			}
 		}
 	},
