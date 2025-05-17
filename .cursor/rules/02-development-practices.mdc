@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Astro Development Practices
+
+## Component Development
+- Use `.astro` files for components by default
+- Implement proper component composition and reusability
+- Use Astro's component props for data passing
+- Leverage built-in components like `<Markdown />` when appropriate
+
+## Performance Guidelines
+- Minimize client-side JavaScript usage
+- Use client:* directives strategically:
+  - `client:load`: For immediately needed interactivity
+  - `client:idle`: For non-critical interactivity
+  - `client:visible`: For components that should hydrate when visible
+- Implement proper lazy loading for images and assets
+- Utilize Astro's built-in asset optimization
+
+## TypeScript Usage
+- Use TypeScript for enhanced type safety
+- Define proper interfaces for component props
+- Implement proper error handling and logging
+- Follow Astro's Style Guide for consistent formatting
+
+## Testing Requirements
+- Implement unit tests for utility functions
+- Use end-to-end testing with Cypress
+- Implement visual regression testing when applicable

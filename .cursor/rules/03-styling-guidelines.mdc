@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Styling and CSS Guidelines
+
+## Astro Styling
+- Use scoped `<style>` tags in `.astro` files for component-specific styles
+- Import global styles in layouts when necessary
+- Implement responsive design using CSS custom properties and media queries
+
+## Tailwind CSS Usage
+- Use Tailwind utility classes extensively in components
+- Follow responsive design patterns with Tailwind's breakpoint utilities:
+  - `sm:` (640px)
+  - `md:` (768px)
+  - `lg:` (1024px)
+  - `xl:` (1280px)
+- Use Tailwind's color palette and spacing scale for consistency
+- Extend theme in `tailwind.config.cjs` when needed
+- Never use the `@apply` directive
+
+## Best Practices
+- Keep styles modular and component-specific
+- Use CSS custom properties for theming
+- Implement proper responsive design patterns
+- Ensure proper accessibility in styling choices
+- Use Astro's Image component for optimized images
