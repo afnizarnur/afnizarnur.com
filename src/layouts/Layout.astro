@@ -35,14 +35,16 @@ const { title, description = 'My personal portfolio website' } = Astro.props;
 	</head>
 	<body>
 		<div class="min-h-screen bg-background text-text">
-			<header class="container mx-auto px-4 py-6">
+			<header class="container mx-auto px-4 py-6 relative z-50">
 				<div class="flex justify-between items-center">
 					<a href="/" class="text-xl font-bold text-primary">Portfolio</a>
 					<ThemeToggle />
 				</div>
 			</header>
-			<main class="container mx-auto px-4 py-8">
-				<slot />
+			<main class="container mx-auto px-4 py-8 relative">
+				<div class="js-page-content">
+					<slot />
+				</div>
 			</main>
 		</div>
 	</body>
