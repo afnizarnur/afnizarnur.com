@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		/* Light theme (default) */
+		--color-primary: 23 37 84;
+		--color-secondary: 30 58 138;
+		--color-text: 15 23 42;
+		--color-background: 255 255 255;
+		--color-muted: 100 116 139;
+	}
+
+	:root[data-theme="dark"] {
+		--color-primary: 96 165 250;
+		--color-secondary: 59 130 246;
+		--color-text: 241 245 249;
+		--color-background: 15 23 42;
+		--color-muted: 148 163 184;
+	}
+
+	/* Blue theme */
+	:root[data-theme="blue"] {
+		--color-primary: 37 99 235;
+		--color-secondary: 29 78 216;
+		--color-text: 30 58 138;
+		--color-background: 239 246 255;
+		--color-muted: 96 165 250;
+	}
+
+	/* Pink theme */
+	:root[data-theme="pink"] {
+		--color-primary: 219 39 119;
+		--color-secondary: 190 24 93;
+		--color-text: 157 23 77;
+		--color-background: 253 242 248;
+		--color-muted: 236 72 153;
+	}
+
+	/* Gray theme */
+	:root[data-theme="gray"] {
+		--color-primary: 75 85 99;
+		--color-secondary: 55 65 81;
+		--color-text: 31 41 55;
+		--color-background: 249 250 251;
+		--color-muted: 107 114 128;
+	}
+
+	body {
+		@apply bg-background text-text transition-colors duration-200;
+	}
+}
