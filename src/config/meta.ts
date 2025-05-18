@@ -41,7 +41,7 @@ export interface Twitter {
 export const defaultMetadata: Metadata = {
 	title: "Afnizar Nur Ghifari",
 	description:
-		"Product Designer who codes. Currently building great products and experiences at Bababos."
+		"Afnizar Nur Ghifari is an Indonesia-based product designer that specializing in user interfaces, design system, and strategy across multiple industries."
 }
 
 export const defaultOpenGraph: OpenGraph = {
@@ -54,7 +54,7 @@ export const defaultOpenGraph: OpenGraph = {
 	optional: {
 		siteName: "Afnizar Nur Ghifari",
 		description:
-			"Product Designer who codes. Currently building great products and experiences at Bababos."
+			"Afnizar Nur Ghifari is an Indonesia-based product designer that specializing in user interfaces, design system, and strategy across multiple industries."
 	}
 }
 
@@ -64,14 +64,14 @@ export const defaultTwitter: Twitter = {
 	creator: "@afnizarnur",
 	title: "Afnizar Nur Ghifari",
 	description:
-		"Product Designer who codes. Currently building great products and experiences at Bababos.",
+		"Afnizar Nur Ghifari is an Indonesia-based product designer that specializing in user interfaces, design system, and strategy across multiple industries.",
 	image: "/og-image.jpg"
 }
 
 export const siteConfig = {
 	name: "Afnizar Nur Ghifari",
 	description:
-		"Product Designer who codes. Currently building great products and experiences at Bababos.",
+		"Afnizar Nur Ghifari is an Indonesia-based product designer that specializing in user interfaces, design system, and strategy across multiple industries.",
 	url: "https://afnizarnur.com",
 	ogImage: "/og-image.jpg",
 	links: {
