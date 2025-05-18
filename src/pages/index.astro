@@ -1,40 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import AnimatedSection from '../components/AnimatedSection.astro';
+import Welcome from "../components/Welcome.astro"
+import Layout from "../layouts/Layout.astro"
+import { defaultMetadata } from "../config/meta"
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout title="Welcome to My Portfolio">
-	<section class="py-24">
-		<div class="container mx-auto px-4">
-			<h1 class="text-6xl font-display mb-6 js-hero-title">
-				Creative Developer & Designer
-			</h1>
-			<p class="text-2xl text-muted max-w-2xl js-hero-text">
-				Crafting beautiful, performant, and accessible digital experiences with attention to detail.
-			</p>
-		</div>
-	</section>
-
-	<AnimatedSection
-		title="Featured Work"
-		subtitle="A selection of my recent projects and collaborations"
-	/>
+<Layout title={defaultMetadata.title} description={defaultMetadata.description}>
+	<Welcome />
 </Layout>
-
-<script>
-	import { textReveal, fadeInUp, pageTransition } from '../utils/animations';
-
-	// Hero animations
-	const heroTitle = document.querySelector('.js-hero-title');
-	const heroText = document.querySelector('.js-hero-text');
-
-	if (heroTitle) textReveal(heroTitle);
-	if (heroText) fadeInUp(heroText, 0.2);
-
-	// Page transition
-	const pageContent = document.querySelector('.js-page-content');
-	if (pageContent) pageTransition.enter(pageContent);
-</script>

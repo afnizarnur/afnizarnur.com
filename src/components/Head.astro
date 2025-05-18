@@ -1,0 +1,110 @@
+---
+import type { Metadata, OpenGraph, Twitter } from "../config/meta"
+import {
+	defaultMetadata,
+	defaultOpenGraph,
+	defaultTwitter,
+	siteConfig
+} from "../config/meta"
+
+interface Props {
+	title?: string
+	description?: string
+	image?: {
+		url: string
+		alt: string
+		width: number
+		height: number
+	}
+	canonicalURL?: string
+	openGraph?: OpenGraph
+	twitter?: Twitter
+}
+
+const {
+	title = defaultMetadata.title,
+	description = defaultMetadata.description,
+	image = undefined,
+	canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+	openGraph = defaultOpenGraph,
+	twitter = defaultTwitter
+} = Astro.props
+
+// Merge with default OpenGraph
+const og: OpenGraph = {
+	basic: {
+		title: title,
+		type: openGraph.basic.type,
+		image: image?.url || openGraph.basic.image,
+		url: canonicalURL
+	},
+	optional: {
+		...openGraph.optional,
+		description: description,
+		siteName: siteConfig.name
+	}
+}
+
+// Merge with default Twitter
+const twitterCard: Twitter = {
+	...twitter,
+	title: title,
+	description: description,
+	image: image?.url || twitter.image,
+	imageAlt: image?.alt
+}
+---
+
+<!-- Essential META Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={og.basic.title} />
+<meta property="og:type" content={og.basic.type} />
+<meta property="og:image" content={og.basic.image} />
+<meta property="og:url" content={og.basic.url} />
+{
+	og.optional?.description && (
+		<meta property="og:description" content={og.optional.description} />
+	)
+}
+{
+	og.optional?.siteName && (
+		<meta property="og:site_name" content={og.optional.siteName} />
+	)
+}
+{
+	og.optional?.locale && (
+		<meta property="og:locale" content={og.optional.locale} />
+	)
+}
+{
+	og.optional?.localeAlternate?.map((locale) => (
+		<meta property="og:locale:alternate" content={locale} />
+	))
+}
+
+<!-- Twitter -->
+<meta name="twitter:card" content={twitterCard.card} />
+{twitterCard.site && <meta name="twitter:site" content={twitterCard.site} />}
+{
+	twitterCard.creator && (
+		<meta name="twitter:creator" content={twitterCard.creator} />
+	)
+}
+<meta name="twitter:title" content={twitterCard.title} />
+<meta name="twitter:description" content={twitterCard.description} />
+{twitterCard.image && <meta name="twitter:image" content={twitterCard.image} />}
+{
+	twitterCard.imageAlt && (
+		<meta name="twitter:image:alt" content={twitterCard.imageAlt} />
+	)
+}
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Title -->
+<title>{title}</title>

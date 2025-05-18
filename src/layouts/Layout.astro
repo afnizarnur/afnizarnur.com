@@ -1,50 +1,48 @@
 ---
-import '../styles/global.css';
-import ThemeToggle from '../components/ThemeToggle.astro';
+import "../styles/global.css"
+import ThemeToggle from "../components/ThemeToggle.astro"
+import Head from "../components/Head.astro"
+import type { Metadata } from "../config/meta"
 
-interface Props {
-	title: string;
-	description?: string;
+interface Props extends Partial<Metadata> {
+	title: string
 }
 
-const { title, description = 'My personal portfolio website' } = Astro.props;
+const props = Astro.props
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<!-- Prevent FART (Flash of inAccurate coloR Theme) -->
 		<script is:inline>
 			const getTheme = () => {
-				if (typeof localStorage !== 'undefined') {
-					const storedTheme = localStorage.getItem('theme');
-					if (storedTheme && storedTheme !== 'system') {
-						return storedTheme;
+				if (typeof localStorage !== "undefined") {
+					const storedTheme = localStorage.getItem("theme")
+					if (storedTheme && storedTheme !== "system") {
+						return storedTheme
 					}
 				}
-				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-			};
-			document.documentElement.setAttribute('data-theme', getTheme());
+				return window.matchMedia("(prefers-color-scheme: dark)").matches
+					? "dark"
+					: "light"
+			}
+			document.documentElement.setAttribute("data-theme", getTheme())
 		</script>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<title>{title}</title>
+		<Head {...props} />
 	</head>
 	<body>
 		<div class="min-h-screen bg-background text-text">
-			<header class="container mx-auto px-4 py-6 relative z-50">
+			<header class="container mx-auto px-4 py-6">
 				<div class="flex justify-between items-center">
-					<a href="/" class="text-xl font-bold text-primary">Portfolio</a>
+					<a href="/" class="text-xl font-bold text-primary"
+						>Portfolio</a
+					>
 					<ThemeToggle />
 				</div>
 			</header>
-			<main class="container mx-auto px-4 py-8 relative">
-				<div class="js-page-content">
-					<slot />
-				</div>
+			<main class="container mx-auto px-4 py-8">
+				<slot />
 			</main>
 		</div>
 	</body>

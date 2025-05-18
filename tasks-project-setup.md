@@ -8,7 +8,6 @@ Task to setup the portfolio from scratch
 - [x] Make it able to use multi theme for the portfolio (light, dark, and other colors)
 - [x] Make the multi theme scalable and easy to maintain
 - [x] Use custom font headline "Aksen" and body use Inter Variable
-- [x] Install and use gsap
    
 ## In Progress Tasks
 
@@ -39,22 +38,12 @@ The portfolio has been set up with the following features:
    - Implemented Inter Variable font for body text
    - Added proper font loading optimization with font-display: swap
    - Set up smooth font rendering with antialiasing
-
-5. Animation System
-   - Installed and configured GSAP
-   - Created reusable animation utilities
-   - Implemented scroll-triggered animations
-   - Added page transitions
-   - Created text reveal animations
-   - Set up staggered animations for lists
    
 ### Relevant Files
 
 - src/styles/global.css - Global styles and theme variables
 - src/components/ThemeToggle.astro - Theme toggle component
-- src/components/AnimatedSection.astro - Example animated section
 - src/layouts/Layout.astro - Base layout component
-- src/utils/animations.ts - GSAP animation utilities
 - tailwind.config.mjs - Tailwind configuration with theme colors and fonts
 - astro.config.mjs - Astro configuration with Tailwind integration
    
