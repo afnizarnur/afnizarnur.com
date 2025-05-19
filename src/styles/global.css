@@ -23,6 +23,15 @@
 		font-style: normal;
 	}
 
+	@font-face {
+		font-family: "Fonetika";
+		src: url("/src/assets/fonts/FonetikaMonoUnlicensedTrial-Regular.woff2")
+			format("woff2");
+		font-weight: 400;
+		font-display: swap;
+		font-style: normal;
+	}
+
 	html {
 		font-family: "Inter var", system-ui, sans-serif;
 		-webkit-font-smoothing: antialiased;
@@ -87,5 +96,9 @@
 
 	.helper {
 		@apply text-helper text-disabled;
+	}
+
+	.mono {
+		@apply font-mono;
 	}
 }

@@ -17,7 +17,8 @@ export default {
 			},
 			fontFamily: {
 				sans: ["Inter var", "system-ui", "sans-serif"],
-				display: ["Aksen", "system-ui", "sans-serif"]
+				display: ["Aksen", "system-ui", "sans-serif"],
+				mono: ["Fonetika", "monospace"]
 			},
 			fontSize: {
 				// Heading sizes

@@ -1,7 +1,7 @@
 ---
-import Welcome from "../components/Welcome.astro"
 import SidebarContent from "../components/SidebarContent.astro"
 import HomeLayout from "../layouts/HomeLayout.astro"
+import SelectedWork from "../components/SelectedWork.astro"
 import { defaultMetadata } from "../config/meta"
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -13,5 +13,5 @@ import { defaultMetadata } from "../config/meta"
 	description={defaultMetadata.description}
 >
 	<SidebarContent slot="sidebar" />
-	<Welcome />
+	<SelectedWork />
 </HomeLayout>
