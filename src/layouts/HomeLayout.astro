@@ -3,8 +3,7 @@ import "../styles/global.css"
 import ThemeToggle from "../components/ThemeToggle.astro"
 import Head from "../components/Head.astro"
 import type { Metadata } from "../config/meta"
-import { Image } from "astro:assets"
-import MenuIcon from "../assets/icons/menu.svg"
+import SettingsPanel from "../components/SettingsPanel.astro"
 
 interface Props extends Partial<Metadata> {
 	title: string
@@ -53,20 +52,38 @@ const props = Astro.props
 							/>
 						</a>
 						<button
+							id="menu-toggle"
 							class="bg-transparent border-none cursor-pointer p-1 flex items-center justify-center hover:opacity-70"
 							aria-label="Toggle menu"
+							aria-expanded="false"
 						>
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
 								width="24"
 								height="24"
 								viewBox="0 0 24 24"
-								class="fill-[var(--text-primary)]"
+								class="menu-icon"
+								xmlns="http://www.w3.org/2000/svg"
 							>
-								<path d="M2 6h20v2H2zm0 10h20v2H2z"></path>
+								<rect
+									class="line line1"
+									x="2"
+									y="6"
+									width="20"
+									height="2"></rect>
+								<rect
+									class="line line2"
+									x="2"
+									y="16"
+									width="20"
+									height="2"></rect>
 							</svg>
 						</button>
 					</div>
+
+					<div class="px-12 md:px-[48px] relative">
+						<SettingsPanel />
+					</div>
+
 					<div class="p-[44px_24px_24px_48px] overflow-y-auto">
 						<h1 class="mb-8">Afnizar<br />Nur Ghifari</h1>
 						<slot name="sidebar" />
@@ -77,5 +94,53 @@ const props = Astro.props
 				</main>
 			</div>
 		</div>
+
+		<style>
+			.menu-icon {
+				fill: var(--text-primary);
+			}
+
+			.line {
+				transform-origin: center;
+				transition: transform 0.3s ease;
+			}
+
+			.opened .line1 {
+				transform: translate(-4px, 4px) rotate(45deg);
+			}
+
+			.opened .line2 {
+				transform: translate(-4px, -3px) rotate(-45deg);
+			}
+		</style>
+
+		<script>
+			// Menu toggle functionality
+			const menuToggle = document.getElementById("menu-toggle")
+			const settingsPanel = document.getElementById("settings-panel")
+
+			menuToggle?.addEventListener("click", () => {
+				menuToggle.classList.toggle("opened")
+				menuToggle.setAttribute(
+					"aria-expanded",
+					menuToggle.classList.contains("opened").toString()
+				)
+				settingsPanel?.classList.toggle("hidden")
+			})
+
+			// Close settings panel when clicking outside
+			document.addEventListener("click", (e) => {
+				if (
+					!settingsPanel?.contains(e.target as Node) &&
+					!menuToggle?.contains(e.target as Node) &&
+					settingsPanel &&
+					!settingsPanel.classList.contains("hidden")
+				) {
+					settingsPanel.classList.add("hidden")
+					menuToggle?.classList.remove("opened")
+					menuToggle?.setAttribute("aria-expanded", "false")
+				}
+			})
+		</script>
 	</body>
 </html>

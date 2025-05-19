@@ -1,0 +1,227 @@
+---
+import DarkLightIcon from "../assets/icons/dark-light.svg"
+import DarkIcon from "../assets/icons/dark.svg"
+import LightIcon from "../assets/icons/light.svg"
+import FontIncreaseIcon from "../assets/icons/font-increase.svg"
+import FontDecreaseIcon from "../assets/icons/font-decrease.svg"
+import FontDefaultIcon from "../assets/icons/font-default.svg"
+---
+
+<div
+	id="settings-panel"
+	class="bg-[var(--border-default)] rounded-lg shadow-lg w-full p-0 hidden absolute z-50"
+>
+	<div class="space-y-0">
+		<div>
+			<h3
+				class="text-sm font-bold text-[var(--text-primary)]uppercase p-4 pb-3 border-b border-[var(--surface-default)]"
+			>
+				THEME
+			</h3>
+			<div class="flex pt-0">
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					data-theme="system"
+					aria-label="System theme"
+				>
+					<img
+						src={DarkLightIcon.src}
+						alt="System theme"
+						class="w-5 h-5 svg-icon"
+					/>
+				</button>
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					data-theme="light"
+					aria-label="Light theme"
+				>
+					<img
+						src={LightIcon.src}
+						alt="Light theme"
+						class="w-5 h-5 svg-icon"
+					/>
+				</button>
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					data-theme="dark"
+					aria-label="Dark theme"
+				>
+					<img
+						src={DarkIcon.src}
+						alt="Dark theme"
+						class="w-5 h-5 svg-icon"
+					/>
+				</button>
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					data-theme="gray"
+					aria-label="Gray theme"
+				>
+					<div class="w-5 h-5 rounded-full bg-white border"></div>
+				</button>
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					data-theme="pink"
+					aria-label="Pink theme"
+				>
+					<div class="w-5 h-5 rounded-full bg-pink-300"></div>
+				</button>
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					data-theme="blue"
+					aria-label="Blue theme"
+				>
+					<div class="w-5 h-5 rounded-full bg-blue-300"></div>
+				</button>
+			</div>
+		</div>
+
+		<div>
+			<h3
+				class="text-sm font-bold text-[var(--text-primary)] uppercase p-4 pb-3 border-b border-[var(--surface-default)]"
+			>
+				FONT SIZE
+			</h3>
+			<div class="flex pt-0">
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					id="font-decrease"
+					aria-label="Decrease font size"
+				>
+					<img
+						src={FontDecreaseIcon.src}
+						alt="Decrease font size"
+						class="w-5 h-5 svg-icon"
+					/>
+				</button>
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					id="font-default"
+					aria-label="Default font size"
+				>
+					<img
+						src={FontDefaultIcon.src}
+						alt="Default font size"
+						class="w-5 h-5 svg-icon"
+					/>
+				</button>
+				<button
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					id="font-increase"
+					aria-label="Increase font size"
+				>
+					<img
+						src={FontIncreaseIcon.src}
+						alt="Increase font size"
+						class="w-5 h-5 svg-icon"
+					/>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		#settings-panel {
+			position: absolute;
+			top: 24px;
+			left: 24px;
+			right: 0;
+			max-width: 347px;
+			margin: 0 auto;
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		}
+	</style>
+
+	<script>
+		// Theme switcher functionality
+		const themeButtons = document.querySelectorAll("[data-theme]")
+		const rootElement = document.documentElement
+		let currentFontSize = 100 // Default 100%
+
+		// Set active theme based on current setting
+		const setActiveTheme = () => {
+			const currentTheme = localStorage.getItem("theme") || "system"
+			themeButtons.forEach((button) => {
+				const buttonTheme = button.getAttribute("data-theme")
+				if (buttonTheme === currentTheme) {
+					button.classList.add("bg-[#d8d8d8]")
+					if (
+						document.documentElement
+							.getAttribute("data-theme")
+							?.includes("dark")
+					) {
+						button.classList.add("bg-[#444]")
+					}
+				} else {
+					button.classList.remove("bg-[#d8d8d8]", "bg-[#444]")
+				}
+			})
+		}
+
+		// Update theme when buttons are clicked
+		themeButtons.forEach((button) => {
+			button.addEventListener("click", () => {
+				const theme = button.getAttribute("data-theme")
+
+				if (theme === "system") {
+					localStorage.removeItem("theme")
+					const systemTheme = window.matchMedia(
+						"(prefers-color-scheme: dark)"
+					).matches
+						? "dark"
+						: "light"
+					rootElement.setAttribute("data-theme", systemTheme)
+				} else if (theme) {
+					localStorage.setItem("theme", theme)
+					rootElement.setAttribute("data-theme", theme)
+				}
+
+				setActiveTheme()
+			})
+		})
+
+		// Font size functionality
+		const fontDecreaseButton = document.getElementById("font-decrease")
+		const fontDefaultButton = document.getElementById("font-default")
+		const fontIncreaseButton = document.getElementById("font-increase")
+
+		// Load saved font size or use default
+		const loadFontSize = () => {
+			const savedFontSize = localStorage.getItem("fontSize")
+			if (savedFontSize) {
+				currentFontSize = parseInt(savedFontSize)
+				applyFontSize()
+			}
+		}
+
+		// Apply font size to html element
+		const applyFontSize = () => {
+			rootElement.style.fontSize = `${currentFontSize}%`
+			localStorage.setItem("fontSize", currentFontSize.toString())
+		}
+
+		// Add event listeners for font size buttons
+		fontDecreaseButton?.addEventListener("click", () => {
+			if (currentFontSize > 80) {
+				currentFontSize -= 10
+				applyFontSize()
+			}
+		})
+
+		fontDefaultButton?.addEventListener("click", () => {
+			currentFontSize = 100
+			applyFontSize()
+		})
+
+		fontIncreaseButton?.addEventListener("click", () => {
+			if (currentFontSize < 120) {
+				currentFontSize += 10
+				applyFontSize()
+			}
+		})
+
+		// Initialize
+		setActiveTheme()
+		loadFontSize()
+	</script>
+</div>
