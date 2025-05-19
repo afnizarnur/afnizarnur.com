@@ -9,7 +9,7 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 
 <div
 	id="settings-panel"
-	class="bg-[var(--border-default)] rounded-lg shadow-lg w-full p-0 hidden absolute z-50"
+	class="bg-[var(--border-default)] rounded-lg w-full p-0 hidden absolute z-50 top-6 left-6 right-0 max-w-[347px] mx-auto"
 >
 	<div class="space-y-0">
 		<div>
@@ -20,7 +20,7 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 			</h3>
 			<div class="flex pt-0">
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					data-theme="system"
 					aria-label="System theme"
 				>
@@ -31,7 +31,7 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					data-theme="light"
 					aria-label="Light theme"
 				>
@@ -42,7 +42,7 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					data-theme="dark"
 					aria-label="Dark theme"
 				>
@@ -53,21 +53,21 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					data-theme="gray"
 					aria-label="Gray theme"
 				>
 					<div class="w-5 h-5 rounded-full bg-white border"></div>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					data-theme="pink"
 					aria-label="Pink theme"
 				>
 					<div class="w-5 h-5 rounded-full bg-pink-300"></div>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					data-theme="blue"
 					aria-label="Blue theme"
 				>
@@ -84,7 +84,7 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 			</h3>
 			<div class="flex pt-0">
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					id="font-decrease"
 					aria-label="Decrease font size"
 				>
@@ -95,7 +95,7 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					id="font-default"
 					aria-label="Default font size"
 				>
@@ -106,7 +106,7 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[#d8d8d8] transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center hover:bg-[var(--surface-default)] transition-colors"
 					id="font-increase"
 					aria-label="Increase font size"
 				>
@@ -120,18 +120,6 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 		</div>
 	</div>
 
-	<style>
-		#settings-panel {
-			position: absolute;
-			top: 24px;
-			left: 24px;
-			right: 0;
-			max-width: 347px;
-			margin: 0 auto;
-			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-		}
-	</style>
-
 	<script>
 		// Theme switcher functionality
 		const themeButtons = document.querySelectorAll("[data-theme]")
@@ -144,16 +132,9 @@ import FontDefaultIcon from "../assets/icons/font-default.svg"
 			themeButtons.forEach((button) => {
 				const buttonTheme = button.getAttribute("data-theme")
 				if (buttonTheme === currentTheme) {
-					button.classList.add("bg-[#d8d8d8]")
-					if (
-						document.documentElement
-							.getAttribute("data-theme")
-							?.includes("dark")
-					) {
-						button.classList.add("bg-[#444]")
-					}
+					button.classList.add("bg-[var(--surface-default)]")
 				} else {
-					button.classList.remove("bg-[#d8d8d8]", "bg-[#444]")
+					button.classList.remove("bg-[var(--surface-default)]")
 				}
 			})
 		}
