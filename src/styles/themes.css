@@ -1,0 +1,69 @@
+/* Default Theme */
+:root {
+	/* New theme system */
+	--background-default: #ffffff;
+	--text-primary: #191a1b;
+	--text-secondary: #363739;
+	--text-disabled: #62676a;
+	--border-default: #e2e4e5;
+	--surface-default: #f6f6f7;
+	--text-inverse-subdued: #a1a5a7;
+	--shadow: rgba(25, 26, 27, 0.2);
+	--overlay: rgba(25, 26, 27, 0.4);
+}
+
+/* Dark Theme */
+:root[data-theme="dark"] {
+	/* New theme system */
+	--background-default: #191a1b;
+	--text-primary: #ffffff;
+	--text-secondary: #f6f6f7;
+	--text-disabled: #a1a5a7;
+	--border-default: #4d5154;
+	--surface-default: #2f3032;
+	--text-inverse-subdued: #a1a5a7;
+	--shadow: rgba(255, 255, 255, 0.2);
+	--overlay: rgba(255, 255, 255, 0.4);
+}
+
+/* Gray Theme */
+:root[data-theme="gray"] {
+	/* New theme system */
+	--background-default: #e2e4e5;
+	--text-primary: #191a1b;
+	--text-secondary: #363739;
+	--text-disabled: #62676a;
+	--border-default: #c5c8ca;
+	--surface-default: #f6f6f7;
+	--text-inverse-subdued: #a1a5a7;
+	--shadow: rgba(25, 26, 27, 0.2);
+	--overlay: rgba(25, 26, 27, 0.4);
+}
+
+/* Pink Theme */
+:root[data-theme="pink"] {
+	/* New theme system */
+	--background-default: #191a1b;
+	--text-primary: #ffc6e7;
+	--text-secondary: #ffc6e7;
+	--text-disabled: #ffc6e7;
+	--border-default: #404345;
+	--surface-default: #3c0023;
+	--text-inverse-subdued: #ffc6e7;
+	--shadow: rgba(255, 198, 231, 0.2);
+	--overlay: rgba(255, 198, 231, 0.4);
+}
+
+/* Blue Theme */
+:root[data-theme="blue"] {
+	/* New theme system */
+	--background-default: #191a1b;
+	--text-primary: #94def7;
+	--text-secondary: #baeafa;
+	--text-disabled: #baeafa;
+	--border-default: #404345;
+	--surface-default: #042a36;
+	--text-inverse-subdued: #a1a5a7;
+	--shadow: rgba(148, 222, 247, 0.2);
+	--overlay: rgba(148, 222, 247, 0.4);
+}

@@ -1,100 +1,166 @@
 ---
 const themes = [
-  { id: 'system', name: 'System' },
-  { id: 'light', name: 'Light' },
-  { id: 'dark', name: 'Dark' },
-  { id: 'blue', name: 'Blue' },
-  { id: 'pink', name: 'Pink' },
-  { id: 'gray', name: 'Gray' },
-];
+	{ id: "system", name: "System" },
+	{ id: "light", name: "Light" },
+	{ id: "dark", name: "Dark" },
+	{ id: "blue", name: "Blue" },
+	{ id: "pink", name: "Pink" },
+	{ id: "gray", name: "Gray" }
+]
 ---
 
 <div class="relative">
-  <button
-    id="theme-select"
-    class="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex items-center gap-1"
-    aria-label="Select theme"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
-  </button>
-  <div id="theme-dropdown" class="hidden absolute right-0 mt-2 py-2 w-32 bg-background border border-primary/20 rounded-lg shadow-lg">
-    {themes.map(theme => (
-      <button
-        class="w-full px-4 py-2 text-left hover:bg-primary/10 text-text transition-colors theme-option flex items-center gap-2"
-        data-theme={theme.id}
-      >
-        {theme.id === 'system' && (
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-            <line x1="8" y1="21" x2="16" y2="21"></line>
-            <line x1="12" y1="17" x2="12" y2="21"></line>
-          </svg>
-        )}
-        {theme.id === 'light' && (
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2"/>
-            <path d="M12 20v2"/>
-            <path d="m4.93 4.93 1.41 1.41"/>
-            <path d="m17.66 17.66 1.41 1.41"/>
-            <path d="M2 12h2"/>
-            <path d="M20 12h2"/>
-            <path d="m6.34 17.66-1.41 1.41"/>
-            <path d="m19.07 4.93-1.41 1.41"/>
-          </svg>
-        )}
-        {theme.id === 'dark' && (
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-          </svg>
-        )}
-        {theme.name}
-      </button>
-    ))}
-  </div>
+	<button
+		id="theme-select"
+		class="p-2 rounded-lg hover:bg-[var(--surface-default)] transition-colors flex items-center gap-1"
+		aria-label="Select theme"
+	>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			class="w-5 h-5"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+		</svg>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			class="w-4 h-4"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<polyline points="6 9 12 15 18 9"></polyline>
+		</svg>
+	</button>
+	<div
+		id="theme-dropdown"
+		class="hidden absolute right-0 mt-2 py-2 w-32 bg-[var(--background-default)] border border-[var(--border-default)] rounded-lg shadow-lg"
+	>
+		{
+			themes.map((theme) => (
+				<button
+					class="w-full px-4 py-2 text-left hover:bg-[var(--surface-default)] text-[var(--text-primary)] transition-colors theme-option flex items-center gap-2"
+					data-theme={theme.id}
+				>
+					{theme.id === "system" && (
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="w-4 h-4"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<rect
+								x="2"
+								y="3"
+								width="20"
+								height="14"
+								rx="2"
+								ry="2"
+							/>
+							<line x1="8" y1="21" x2="16" y2="21" />
+							<line x1="12" y1="17" x2="12" y2="21" />
+						</svg>
+					)}
+					{theme.id === "light" && (
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="w-4 h-4"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="12" cy="12" r="4" />
+							<path d="M12 2v2" />
+							<path d="M12 20v2" />
+							<path d="m4.93 4.93 1.41 1.41" />
+							<path d="m17.66 17.66 1.41 1.41" />
+							<path d="M2 12h2" />
+							<path d="M20 12h2" />
+							<path d="m6.34 17.66-1.41 1.41" />
+							<path d="m19.07 4.93-1.41 1.41" />
+						</svg>
+					)}
+					{theme.id === "dark" && (
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="w-4 h-4"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+						</svg>
+					)}
+					{theme.name}
+				</button>
+			))
+		}
+	</div>
 </div>
 
 <script>
-  const themeSelect = document.getElementById('theme-select');
-  const themeDropdown = document.getElementById('theme-dropdown');
+	const themeSelect = document.getElementById("theme-select")
+	const themeDropdown = document.getElementById("theme-dropdown")
 
-  // Toggle dropdown
-  themeSelect?.addEventListener('click', () => {
-    themeDropdown?.classList.toggle('hidden');
-  });
+	// Toggle dropdown
+	themeSelect?.addEventListener("click", () => {
+		themeDropdown?.classList.toggle("hidden")
+	})
 
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!themeSelect?.contains(e.target as Node)) {
-      themeDropdown?.classList.add('hidden');
-    }
-  });
+	// Close dropdown when clicking outside
+	document.addEventListener("click", (e) => {
+		if (!themeSelect?.contains(e.target as Node)) {
+			themeDropdown?.classList.add("hidden")
+		}
+	})
 
-  // Handle theme selection
-  document.querySelectorAll('.theme-option').forEach((option) => {
-    option.addEventListener('click', () => {
-      const theme = (option as HTMLElement).dataset.theme;
-      if (theme === 'system') {
-        localStorage.removeItem('theme');
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', systemTheme);
-      } else if (theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-      }
-      themeDropdown?.classList.add('hidden');
-    });
-  });
+	// Handle theme selection
+	document.querySelectorAll(".theme-option").forEach((option) => {
+		option.addEventListener("click", () => {
+			const theme = (option as HTMLElement).dataset.theme
+			if (theme === "system") {
+				localStorage.removeItem("theme")
+				const systemTheme = window.matchMedia(
+					"(prefers-color-scheme: dark)"
+				).matches
+					? "dark"
+					: "light"
+				document.documentElement.setAttribute("data-theme", systemTheme)
+			} else if (theme) {
+				document.documentElement.setAttribute("data-theme", theme)
+				localStorage.setItem("theme", theme)
+			}
+			themeDropdown?.classList.add("hidden")
+		})
+	})
 
-  // Listen for system theme changes when using system preference
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-    }
-  });
-</script> 
+	// Listen for system theme changes when using system preference
+	window
+		.matchMedia("(prefers-color-scheme: dark)")
+		.addEventListener("change", (e) => {
+			if (!localStorage.getItem("theme")) {
+				document.documentElement.setAttribute(
+					"data-theme",
+					e.matches ? "dark" : "light"
+				)
+			}
+		})
+</script>
