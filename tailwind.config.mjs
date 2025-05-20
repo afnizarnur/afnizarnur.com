@@ -12,6 +12,7 @@ export default {
 				border: "var(--border-default)",
 				"border-disabled": "var(--border-disabled)",
 				surface: "var(--surface-default)",
+				"surface-hover": "var(--surface-hover)",
 				"inverse-subdued": "var(--text-inverse-subdued)",
 				shadow: "var(--shadow)",
 				overlay: "var(--overlay)",
