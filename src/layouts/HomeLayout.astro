@@ -11,15 +11,13 @@ const props = Astro.props
 ---
 
 <BaseLayout {...props}>
-	<div class="flex flex-col md:flex-row max-w-[1440px] mx-auto p-0">
+	<div class="flex flex-col md:flex-row max-w-[1440px] mx-auto p-0 pl-6">
 		<div
 			class="w-full md:w-1/3 max-w-full md:max-w-[420px] flex-shrink-0 md:sticky md:top-0 md:self-start flex flex-col h-auto md:h-screen border-b md:border-b-0 md:border-r border-border"
 			role="complementary"
 			aria-label="Site sidebar"
 		>
-			<div
-				class="flex justify-between items-center p-[24px_24px_0px_48px]"
-			>
+			<div class="flex justify-between items-center pt-6 pr-6 pb-0 pl-6">
 				<a href="/" class="block" aria-label="Go to homepage">
 					<img
 						src="/avatar.png"
@@ -60,12 +58,12 @@ const props = Astro.props
 				</button>
 			</div>
 
-			<div class="px-12 md:px-[48px] relative">
+			<div class="px-6 md:px-6 relative">
 				<SettingsPanel />
 			</div>
 
 			<div
-				class="p-[44px_24px_24px_48px] overflow-y-auto flex-grow flex flex-col"
+				class="pt-11 pb-6 pl-6 pr-6 overflow-y-auto flex-grow flex flex-col"
 			>
 				<h1 class="mb-8">Afnizar<br />Nur Ghifari</h1>
 				<slot name="sidebar" />
