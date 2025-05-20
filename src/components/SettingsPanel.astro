@@ -1,5 +1,5 @@
 ---
-import Icon from "./Icon.astro"
+import { DarkLightIcon, LightIcon, DarkIcon, FontDecreaseIcon, FontDefaultIcon, FontIncreaseIcon } from "./icons"
 ---
 
 <div
@@ -29,8 +29,7 @@ import Icon from "./Icon.astro"
 					aria-checked="false"
 					role="radio"
 				>
-					<Icon
-						name="dark-light"
+					<DarkLightIcon
 						class="w-5 h-5 text-primary theme-icon"
 					/>
 				</button>
@@ -41,8 +40,7 @@ import Icon from "./Icon.astro"
 					aria-checked="false"
 					role="radio"
 				>
-					<Icon
-						name="light"
+					<LightIcon
 						class="w-5 h-5 text-primary theme-icon"
 					/>
 				</button>
@@ -53,7 +51,7 @@ import Icon from "./Icon.astro"
 					aria-checked="false"
 					role="radio"
 				>
-					<Icon name="dark" class="w-5 h-5 text-primary theme-icon" />
+					<DarkIcon class="w-5 h-5 text-primary theme-icon" />
 				</button>
 				<button
 					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
@@ -102,8 +100,7 @@ import Icon from "./Icon.astro"
 					id="font-decrease"
 					aria-label="Decrease font size"
 				>
-					<Icon
-						name="font-decrease"
+					<FontDecreaseIcon
 						class="w-5 h-5 text-primary font-icon"
 					/>
 				</button>
@@ -112,8 +109,7 @@ import Icon from "./Icon.astro"
 					id="font-default"
 					aria-label="Default font size"
 				>
-					<Icon
-						name="font-default"
+					<FontDefaultIcon
 						class="w-5 h-5 text-primary font-icon"
 					/>
 				</button>
@@ -122,8 +118,7 @@ import Icon from "./Icon.astro"
 					id="font-increase"
 					aria-label="Increase font size"
 				>
-					<Icon
-						name="font-increase"
+					<FontIncreaseIcon
 						class="w-5 h-5 text-primary font-icon"
 					/>
 				</button>
