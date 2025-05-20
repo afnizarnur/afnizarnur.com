@@ -4,7 +4,7 @@ import Icon from "./Icon.astro"
 
 <div
 	id="settings-panel"
-	class="hidden absolute z-50 top-[2.4rem] right-0 left-0 mx-auto p-[0_24px_24px_48px]"
+	class="hidden absolute z-50 top-[2.7rem] right-0 left-0 mx-auto p-[0_24px_24px_48px]"
 >
 	<div class="bg-border rounded-lg w-full">
 		<div>
@@ -114,16 +114,23 @@ import Icon from "./Icon.astro"
 
 		// Set active theme based on current setting
 		const setActiveTheme = () => {
-			const currentTheme = localStorage.getItem("theme") || "system"
+			const savedTheme = localStorage.getItem("theme")
+			const currentTheme = savedTheme || "system" // If no saved theme, we're using system
+
 			themeButtons.forEach((button) => {
 				const buttonTheme = button.getAttribute("data-theme")
-				const buttonIcon = button.querySelector(".theme-icon")
+				const buttonIcon =
+					button.querySelector(".theme-icon") ||
+					button.querySelector("div")
 
+				// Mark the button as active if it matches the current theme
 				if (buttonTheme === currentTheme) {
+					button.classList.add("active-theme")
 					if (buttonIcon) {
 						buttonIcon.classList.add("opacity-50")
 					}
 				} else {
+					button.classList.remove("active-theme")
 					if (buttonIcon) {
 						buttonIcon.classList.remove("opacity-50")
 					}
@@ -138,20 +145,31 @@ import Icon from "./Icon.astro"
 
 				if (theme === "system") {
 					localStorage.removeItem("theme")
-					const systemTheme = window.matchMedia(
-						"(prefers-color-scheme: dark)"
-					).matches
-						? "dark"
-						: "light"
-					rootElement.setAttribute("data-theme", systemTheme)
+					// Set to system theme for proper tracking
+					rootElement.setAttribute("data-theme", "system")
+					// Then apply the actual light/dark based on system preference
+					applySystemTheme()
 				} else if (theme) {
 					localStorage.setItem("theme", theme)
 					rootElement.setAttribute("data-theme", theme)
 				}
 
+				// Use the setActiveTheme function to update the UI
 				setActiveTheme()
 			})
 		})
+
+		// Function to apply the system theme based on user's preference
+		const applySystemTheme = () => {
+			const isDark = window.matchMedia(
+				"(prefers-color-scheme: dark)"
+			).matches
+			const systemThemeValue = isDark ? "dark" : "light"
+
+			// Keep the data-theme="system" attribute, but add a secondary class for styling
+			rootElement.classList.remove("system-dark", "system-light")
+			rootElement.classList.add(`system-${systemThemeValue}`)
+		}
 
 		// Font size functionality
 		const fontDecreaseButton = document.getElementById("font-decrease")
@@ -194,7 +212,35 @@ import Icon from "./Icon.astro"
 		})
 
 		// Initialize
-		setActiveTheme()
 		loadFontSize()
+
+		// Apply the correct theme on page load and set active button
+		const initializeTheme = () => {
+			const savedTheme = localStorage.getItem("theme")
+
+			// Apply the theme to the document
+			if (savedTheme) {
+				rootElement.setAttribute("data-theme", savedTheme)
+			} else {
+				// System theme
+				rootElement.setAttribute("data-theme", "system")
+				applySystemTheme()
+			}
+
+			// Set the active button
+			setActiveTheme()
+		}
+
+		initializeTheme()
+
+		// Listen for system theme changes
+		window
+			.matchMedia("(prefers-color-scheme: dark)")
+			.addEventListener("change", (event) => {
+				if (!localStorage.getItem("theme")) {
+					// Only respond if using system theme
+					applySystemTheme()
+				}
+			})
 	</script>
 </div>
