@@ -149,8 +149,6 @@ import Icon from "./Icon.astro"
 				const buttonIcon = button.querySelector(".theme-icon")
 				const isActive = buttonTheme === currentTheme
 
-				button.setAttribute("aria-checked", isActive.toString())
-
 				if (isActive) {
 					if (buttonIcon) {
 						buttonIcon.classList.add("opacity-50")
@@ -182,9 +180,6 @@ import Icon from "./Icon.astro"
 			// Only apply if user is using system theme
 			if (!localStorage.getItem("theme")) {
 				applyTheme()
-				announceChange(
-					`Theme changed to ${e.matches ? "dark" : "light"} based on system preference`
-				)
 			}
 		})
 
@@ -202,13 +197,6 @@ import Icon from "./Icon.astro"
 				}
 
 				setActiveTheme()
-				// Announce theme change to screen readers
-				const announcer = document.createElement("div")
-				announcer.setAttribute("aria-live", "polite")
-				announcer.classList.add("sr-only")
-				announcer.textContent = `Theme changed to ${theme}`
-				document.body.appendChild(announcer)
-				setTimeout(() => document.body.removeChild(announcer), 1000)
 			})
 		})
 
@@ -237,33 +225,20 @@ import Icon from "./Icon.astro"
 			if (currentFontSize > 80) {
 				currentFontSize -= 10
 				applyFontSize()
-				announceChange(`Font size decreased to ${currentFontSize}%`)
 			}
 		})
 
 		fontDefaultButton?.addEventListener("click", () => {
 			currentFontSize = 100
 			applyFontSize()
-			announceChange("Font size reset to default")
 		})
 
 		fontIncreaseButton?.addEventListener("click", () => {
 			if (currentFontSize < 120) {
 				currentFontSize += 10
 				applyFontSize()
-				announceChange(`Font size increased to ${currentFontSize}%`)
 			}
 		})
-
-		// Function to announce changes to screen readers
-		function announceChange(message) {
-			const announcer = document.createElement("div")
-			announcer.setAttribute("aria-live", "polite")
-			announcer.classList.add("sr-only")
-			announcer.textContent = message
-			document.body.appendChild(announcer)
-			setTimeout(() => document.body.removeChild(announcer), 1000)
-		}
 
 		// Initialize
 		setActiveTheme()
