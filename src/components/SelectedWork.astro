@@ -41,8 +41,11 @@ const projects: Project[] = [
 		<Grid>
 			{
 				projects.slice(0, 2).map((project) => (
-					<Card href={project.link} color={project.color}>
-						<h3>{project.title}</h3>
+					<Card 
+						href={project.link} 
+						color={project.color}
+						title={project.title}
+					>
 						<p>{project.description}</p>
 					</Card>
 				))
@@ -53,8 +56,8 @@ const projects: Project[] = [
 			href={projects[2].link}
 			color={projects[2].color}
 			aspectRatio="aspect-[16/6] md:aspect-[16/5]"
+			title={projects[2].title}
 		>
-			<h3>{projects[2].title}</h3>
 			<p>{projects[2].description}</p>
 		</Card>
 	</Stack>

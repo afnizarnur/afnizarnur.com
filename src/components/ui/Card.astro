@@ -19,37 +19,41 @@ const {
 
 const wrapperClasses = `flex flex-col h-full ${className}`
 const imageClasses = `${color} ${aspectRatio} rounded-lg mb-5 ${isHoverable ? "transition-all duration-300 group-hover:shadow-md" : ""}`
-const linkClasses =
-	"group block no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
+const titleLinkClasses = "inline-flex items-center underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
 ---
 
 {
 	href ? (
-		<a
-			href={href}
-			class={linkClasses}
-			aria-labelledby={
-				title
-					? `card-title-${title.replace(/\s+/g, "-").toLowerCase()}`
-					: undefined
-			}
-		>
-			<div class={wrapperClasses}>
+		<div class={wrapperClasses}>
+			<a
+				href={href}
+				class="block"
+				aria-labelledby={
+					title
+						? `card-title-${title.replace(/\s+/g, "-").toLowerCase()}`
+						: undefined
+				}
+			>
 				<div class={imageClasses}>
 					<slot name="image" />
 				</div>
-				<div class="card-content">
-					{title && (
-						<h3
-							id={`card-title-${title.replace(/\s+/g, "-").toLowerCase()}`}
-						>
+			</a>
+			<div class="card-content">
+				{title && (
+					<h3
+						id={`card-title-${title.replace(/\s+/g, "-").toLowerCase()}`}
+					>
+						<a href={href} class={titleLinkClasses}>
 							{title}
-						</h3>
-					)}
-					<slot />
-				</div>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 20 20" class="ml-1">
+								<path fill="currentColor" d="M15.625 5v8.125a.624.624 0 1 1-1.25 0V6.509l-8.933 8.933a.625.625 0 0 1-.884-.884l8.933-8.933H6.875a.625.625 0 0 1 0-1.25H15a.625.625 0 0 1 .625.625Z"/>
+							</svg>
+						</a>
+					</h3>
+				)}
+				<slot />
 			</div>
-		</a>
+		</div>
 	) : (
 		<div class={wrapperClasses}>
 			<div class={imageClasses}>
@@ -76,5 +80,21 @@ const linkClasses =
 
 	.card-content :global(p) {
 		@apply text-secondary;
+	}
+
+	.card-content :global(h3 a) {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: underline;
+	}
+
+	.card-content :global(h3 a:hover) {
+		text-decoration: none;
+	}
+
+	.card-content :global(h3 a svg) {
+		margin-left: 4px;
+		width: 16px;
+		height: 16px;
 	}
 </style>
