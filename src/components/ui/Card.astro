@@ -20,9 +20,9 @@ const {
 } = Astro.props
 
 const wrapperClasses = `flex flex-col h-full ${className}`
-const imageClasses = `${color} ${aspectRatio} rounded-lg mb-5 ${isHoverable ? "transition-all duration-300 group-hover:shadow-md" : ""}`
+const imageClasses = `${color} ${aspectRatio} rounded-2xl mb-5 ${isHoverable ? "transition-all duration-300 group-hover:shadow-md" : ""}`
 const titleLinkClasses =
-	"relative underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
+	"relative underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-2xl"
 ---
 
 {
