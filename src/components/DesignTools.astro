@@ -1,0 +1,81 @@
+---
+import Section from "./ui/Section.astro"
+import Card from "./ui/Card.astro"
+import Grid from "./ui/Grid.astro"
+import Stack from "./ui/Stack.astro"
+import { Image } from "astro:assets"
+
+// Import placeholder images - replace these with actual images later
+// You can add your design tool images to the src/assets/design-tools directory
+
+interface Tool {
+	title: string
+	description: string
+	color: string
+	link: string
+	image?: ImageMetadata
+}
+
+const tools: Tool[] = [
+	{
+		title: "Timeline",
+		description:
+			"A Figma plugin that helps designers create and visualize project timelines directly in their design files with adjustable durations, milestones, and customizable styling.",
+		color: "bg-blue-200",
+		link: "https://www.figma.com/community/plugin/1101962045948388021"
+	},
+	{
+		title: "Typetools",
+		description:
+			"A collection of useful typography tools for Figma that helps designers manage and manipulate text elements more efficiently with powerful formatting options.",
+		color: "bg-green-200",
+		link: "https://www.figma.com/community/plugin/1202677436735698504"
+	},
+	{
+		title: "Statistic",
+		description:
+			"A plugin that analyzes your Figma files to provide insightful statistics about your design system elements, component usage, and file structure to help optimize your workflow.",
+		color: "bg-pink-300",
+		link: "https://www.figma.com/community/plugin/1104471716601644685"
+	}
+]
+---
+
+<Section title="Design Tools" class="pt-6">
+	<Stack gap="xl" class="p-6 pr-6 lg:pr-12 xl:pr-6">
+		<Grid cols="grid-cols-1 lg:grid-cols-2" gap="gap-6">
+			{
+				tools.slice(0, 3).map((tool) => (
+					<Card
+						href={tool.link}
+						color={tool.color}
+						title={tool.title}
+						className="tool-card"
+						aspectRatio="none"
+					>
+						{tool.image && (
+							<div class="overflow-hidden" slot="image">
+								<Image
+									src={tool.image}
+									alt={`${tool.title} thumbnail`}
+									width={800}
+									height={450}
+									quality={90}
+									format="webp"
+									class="object-cover w-full h-full rounded-2xl"
+								/>
+							</div>
+						)}
+						<p>{tool.description}</p>
+					</Card>
+				))
+			}
+		</Grid>
+	</Stack>
+</Section>
+
+<style>
+	.tool-card :global(div.card-content) {
+		padding-top: 1.5rem;
+	}
+</style>
