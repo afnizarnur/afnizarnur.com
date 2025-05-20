@@ -22,7 +22,7 @@ const titleClasses = `text-sm font-mono font-medium uppercase tracking-wider tex
 <section class={sectionClasses} {...rest}>
 	{
 		title && (
-			<div class="mx-[-1.5rem]">
+			<div>
 				<div class="pl-[1.5rem] pt-[6rem] pb-3">
 					<h2 class={titleClasses}>{title}</h2>
 				</div>
@@ -31,7 +31,5 @@ const titleClasses = `text-sm font-mono font-medium uppercase tracking-wider tex
 		)
 	}
 
-	<div class={title ? "mt-6" : ""}>
-		<slot />
-	</div>
+	<slot />
 </section>
