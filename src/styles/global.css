@@ -48,16 +48,16 @@
 	h4,
 	h5,
 	h6 {
-		@apply font-display;
+		@apply font-display text-primary mb-6 font-semibold;
 		text-rendering: optimizeLegibility;
 	}
 
 	h1 {
-		@apply text-heading-1;
+		@apply text-heading-1 md:text-[2.875rem] md:leading-[3.1625rem] lg:text-[3.25rem] lg:leading-[3.575rem];
 	}
 
 	h2 {
-		@apply text-heading-2;
+		@apply text-heading-2 sm:text-[2.875rem] sm:leading-[3.1625rem];
 	}
 
 	h3 {
@@ -80,6 +80,8 @@
 	p {
 		@apply text-body text-secondary;
 		margin-bottom: 1em;
+		letter-spacing: -0.01rem;
+		line-height: 1.5;
 	}
 
 	/* Default strong style */
@@ -106,16 +108,24 @@
 	p a {
 		color: var(--text-secondary);
 	}
+
+	p.subtitle {
+		@apply text-subtitle sm:text-[1.4375rem] sm:leading-[2.0125rem];
+	}
+
+	p.body-large {
+		@apply text-body-large font-medium;
+	}
 }
 
 /* Typography utility classes */
 @layer utilities {
 	.h1 {
-		@apply text-heading-1 font-display text-primary;
+		@apply text-heading-1 font-display text-primary md:text-[2.875rem] md:leading-[3.1625rem] lg:text-[3.25rem] lg:leading-[3.575rem];
 	}
 
 	.h2 {
-		@apply text-heading-2 font-display text-primary;
+		@apply text-heading-2 font-display text-primary sm:text-[2.875rem] sm:leading-[3.1625rem];
 	}
 
 	.h3 {
@@ -135,7 +145,7 @@
 	}
 
 	.subtitle {
-		@apply text-subtitle text-primary;
+		@apply text-subtitle text-primary sm:text-[1.4375rem] sm:leading-[2.0125rem];
 	}
 
 	.body-large {

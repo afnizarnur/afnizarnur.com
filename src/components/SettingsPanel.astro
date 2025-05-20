@@ -1,51 +1,54 @@
 ---
-import { DarkLightIcon, LightIcon, DarkIcon, FontDecreaseIcon, FontDefaultIcon, FontIncreaseIcon } from "./icons"
+import {
+	DarkLightIcon,
+	LightIcon,
+	DarkIcon,
+	FontDecreaseIcon,
+	FontDefaultIcon,
+	FontIncreaseIcon
+} from "./icons"
 ---
 
 <div
 	id="settings-panel"
-	class="hidden absolute z-50 top-6 right-0 left-0 mx-auto pt-0 pr-6 pb-6 pl-6"
+	class="hidden absolute z-50 top-6 right-0 left-0 mx-auto pt-0 pr-6 pb-6 pl-6 overflow-hidden"
 	role="dialog"
 	aria-labelledby="settings-panel-title"
 	aria-modal="true"
 >
 	<div class="bg-border rounded-lg w-full">
-		<div>
+		<div class="mb-4">
 			<h3
 				id="settings-panel-title"
-				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled"
+				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled mb-0"
 			>
 				THEME
 			</h3>
 			<div
-				class="flex pt-0"
+				class="flex md:grid md:grid-cols-3 md:gap-0 pt-0"
 				role="radiogroup"
 				aria-label="Theme selection"
 			>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-disabled"
 					data-theme="system"
 					aria-label="System theme"
 					aria-checked="false"
 					role="radio"
 				>
-					<DarkLightIcon
-						class="w-5 h-5 text-primary theme-icon"
-					/>
+					<DarkLightIcon class="w-5 h-5 text-primary theme-icon" />
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-disabled"
 					data-theme="light"
 					aria-label="Light theme"
 					aria-checked="false"
 					role="radio"
 				>
-					<LightIcon
-						class="w-5 h-5 text-primary theme-icon"
-					/>
+					<LightIcon class="w-5 h-5 text-primary theme-icon" />
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-disabled"
 					data-theme="dark"
 					aria-label="Dark theme"
 					aria-checked="false"
@@ -54,7 +57,7 @@ import { DarkLightIcon, LightIcon, DarkIcon, FontDecreaseIcon, FontDefaultIcon, 
 					<DarkIcon class="w-5 h-5 text-primary theme-icon" />
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-disabled"
 					data-theme="gray"
 					aria-label="Gray theme"
 					aria-checked="false"
@@ -63,7 +66,7 @@ import { DarkLightIcon, LightIcon, DarkIcon, FontDecreaseIcon, FontDefaultIcon, 
 					<div class="w-5 h-5 rounded-full bg-white border"></div>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-disabled"
 					data-theme="pink"
 					aria-label="Pink theme"
 					aria-checked="false"
@@ -72,7 +75,7 @@ import { DarkLightIcon, LightIcon, DarkIcon, FontDecreaseIcon, FontDefaultIcon, 
 					<div class="w-5 h-5 rounded-full bg-pink-300"></div>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-disabled"
 					data-theme="blue"
 					aria-label="Blue theme"
 					aria-checked="false"
@@ -85,42 +88,36 @@ import { DarkLightIcon, LightIcon, DarkIcon, FontDecreaseIcon, FontDefaultIcon, 
 
 		<div>
 			<h3
-				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled"
+				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled mb-0"
 				id="font-size-controls"
 			>
 				FONT SIZE
 			</h3>
 			<div
-				class="flex pt-0"
+				class="flex md:grid md:grid-cols-3 md:gap-0 pt-0"
 				role="toolbar"
 				aria-labelledby="font-size-controls"
 			>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-r md:border-disabled"
 					id="font-decrease"
 					aria-label="Decrease font size"
 				>
-					<FontDecreaseIcon
-						class="w-5 h-5 text-primary font-icon"
-					/>
+					<FontDecreaseIcon class="w-5 h-5 text-primary font-icon" />
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-r md:border-disabled"
 					id="font-default"
 					aria-label="Default font size"
 				>
-					<FontDefaultIcon
-						class="w-5 h-5 text-primary font-icon"
-					/>
+					<FontDefaultIcon class="w-5 h-5 text-primary font-icon" />
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					id="font-increase"
 					aria-label="Increase font size"
 				>
-					<FontIncreaseIcon
-						class="w-5 h-5 text-primary font-icon"
-					/>
+					<FontIncreaseIcon class="w-5 h-5 text-primary font-icon" />
 				</button>
 			</div>
 		</div>

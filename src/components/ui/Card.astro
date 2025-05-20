@@ -1,5 +1,5 @@
 ---
-import { ArrowIcon } from '../icons';
+import { ArrowIcon } from "../icons"
 
 interface Props {
 	href?: string
@@ -21,7 +21,8 @@ const {
 
 const wrapperClasses = `flex flex-col h-full ${className}`
 const imageClasses = `${color} ${aspectRatio} rounded-lg mb-5 ${isHoverable ? "transition-all duration-300 group-hover:shadow-md" : ""}`
-const titleLinkClasses = "inline-flex items-center underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
+const titleLinkClasses =
+	"relative underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
 ---
 
 {
@@ -47,7 +48,7 @@ const titleLinkClasses = "inline-flex items-center underline hover:no-underline 
 					>
 						<a href={href} class={titleLinkClasses}>
 							{title}
-							<ArrowIcon class="ml-1 w-4 h-4" />
+							<ArrowIcon class="inline-block ml-1 w-4 h-4 align-middle" />
 						</a>
 					</h3>
 				)}
@@ -83,8 +84,7 @@ const titleLinkClasses = "inline-flex items-center underline hover:no-underline 
 	}
 
 	.card-content :global(h3 a) {
-		display: inline-flex;
-		align-items: center;
+		display: inline;
 		text-decoration: underline;
 	}
 
@@ -96,5 +96,6 @@ const titleLinkClasses = "inline-flex items-center underline hover:no-underline 
 		margin-left: 4px;
 		width: 16px;
 		height: 16px;
+		vertical-align: text-bottom;
 	}
 </style>

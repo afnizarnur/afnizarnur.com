@@ -104,14 +104,13 @@ export default {
 				mono: ["Fonetika", "monospace"]
 			},
 			fontSize: {
-				// Heading sizes
 				"heading-1": [
-					"3.25rem",
-					{ lineHeight: "3.575rem", fontWeight: "600" }
+					"2rem",
+					{ lineHeight: "2.2rem", fontWeight: "600" }
 				],
 				"heading-2": [
-					"2.875rem",
-					{ lineHeight: "3.1625rem", fontWeight: "600" }
+					"2rem",
+					{ lineHeight: "2.2rem", fontWeight: "600" }
 				],
 				"heading-3": [
 					"2.25rem",
@@ -131,7 +130,7 @@ export default {
 				],
 
 				// Other text sizes
-				subtitle: ["1.4375rem", { lineHeight: "2.0125rem" }],
+				subtitle: ["1.125rem", { lineHeight: "1.575rem" }],
 				"body-large": [
 					"1.125rem",
 					{ lineHeight: "1.575rem", fontWeight: "520" }
@@ -156,6 +155,13 @@ export default {
 			borderColor: {
 				DEFAULT: "var(--border-default)",
 				disabled: "var(--border-disabled)"
+			},
+			screens: {
+				sm: "640px",
+				md: "768px",
+				lg: "1024px",
+				xl: "1280px",
+				"2xl": "1536px"
 			}
 		}
 	},
