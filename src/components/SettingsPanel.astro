@@ -7,12 +7,13 @@ import Icon from "./Icon.astro"
 	class="hidden absolute z-50 top-6 right-0 left-0 mx-auto p-[0_24px_24px_48px]"
 	role="dialog"
 	aria-labelledby="settings-panel-title"
+	aria-modal="true"
 >
 	<div class="bg-border rounded-lg w-full">
 		<div>
 			<h3
 				id="settings-panel-title"
-				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-surface"
+				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled"
 			>
 				THEME
 			</h3>
@@ -86,7 +87,7 @@ import Icon from "./Icon.astro"
 
 		<div>
 			<h3
-				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-surface"
+				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled"
 				id="font-size-controls"
 			>
 				FONT SIZE
@@ -132,14 +133,43 @@ import Icon from "./Icon.astro"
 
 	<script>
 		// Theme switcher functionality
-		const themeButtons = document.querySelectorAll("[data-theme]")
+		const themeButtons =
+			document.querySelectorAll<HTMLButtonElement>("[data-theme]")
 		const rootElement = document.documentElement
 		let currentFontSize = 100 // Default 100%
+		const settingsPanel = document.getElementById("settings-panel")
+		const menuToggle = document.getElementById("menu-toggle")
 
 		// Media query for detecting system color scheme
 		const systemThemeMedia = window.matchMedia(
 			"(prefers-color-scheme: dark)"
 		)
+
+		// Focus trap variables
+		let focusableElements: HTMLElement[] = []
+		let firstFocusableElement: HTMLElement | null = null
+		let lastFocusableElement: HTMLElement | null = null
+
+		// Set up focus trap when panel is opened
+		const setupFocusTrap = () => {
+			if (!settingsPanel) return
+
+			// Get all focusable elements within the panel
+			const elements = settingsPanel.querySelectorAll<HTMLElement>(
+				'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+			)
+
+			focusableElements = Array.from(elements)
+
+			if (focusableElements.length) {
+				firstFocusableElement = focusableElements[0]
+				lastFocusableElement =
+					focusableElements[focusableElements.length - 1]
+
+				// Focus the first element when panel opens
+				firstFocusableElement.focus()
+			}
+		}
 
 		// Set active theme based on current setting
 		const setActiveTheme = () => {
@@ -148,6 +178,9 @@ import Icon from "./Icon.astro"
 				const buttonTheme = button.getAttribute("data-theme")
 				const buttonIcon = button.querySelector(".theme-icon")
 				const isActive = buttonTheme === currentTheme
+
+				// Update ARIA state and visual indication
+				button.setAttribute("aria-checked", isActive ? "true" : "false")
 
 				if (isActive) {
 					if (buttonIcon) {
@@ -170,18 +203,53 @@ import Icon from "./Icon.astro"
 				rootElement.setAttribute("data-theme", savedTheme)
 			} else {
 				// Use system preference
-				const systemTheme = systemThemeMedia.matches ? "dark" : "light"
 				rootElement.setAttribute("data-theme", "system")
 			}
 		}
 
 		// Listen for system preference changes
-		systemThemeMedia.addEventListener("change", (e) => {
+		systemThemeMedia.addEventListener("change", () => {
 			// Only apply if user is using system theme
 			if (!localStorage.getItem("theme")) {
 				applyTheme()
 			}
 		})
+
+		// Manage keyboard events for radiogroup
+		const handleRadioKeydown = (
+			event: KeyboardEvent,
+			currentButton: HTMLButtonElement
+		) => {
+			const buttons = Array.from(themeButtons)
+			const currentIndex = buttons.indexOf(currentButton)
+			let nextIndex = currentIndex
+
+			switch (event.key) {
+				case "ArrowRight":
+				case "ArrowDown":
+					event.preventDefault()
+					nextIndex = (currentIndex + 1) % buttons.length
+					break
+				case "ArrowLeft":
+				case "ArrowUp":
+					event.preventDefault()
+					nextIndex =
+						(currentIndex - 1 + buttons.length) % buttons.length
+					break
+				case " ":
+				case "Enter":
+					event.preventDefault()
+					currentButton.click()
+					return
+				default:
+					return
+			}
+
+			const nextButton = buttons[nextIndex]
+			if (nextButton) {
+				nextButton.focus()
+			}
+		}
 
 		// Update theme when buttons are clicked
 		themeButtons.forEach((button) => {
@@ -198,12 +266,23 @@ import Icon from "./Icon.astro"
 
 				setActiveTheme()
 			})
+
+			// Add keyboard navigation for radio group
+			button.addEventListener("keydown", (event) => {
+				handleRadioKeydown(event as KeyboardEvent, button)
+			})
 		})
 
 		// Font size functionality
-		const fontDecreaseButton = document.getElementById("font-decrease")
-		const fontDefaultButton = document.getElementById("font-default")
-		const fontIncreaseButton = document.getElementById("font-increase")
+		const fontDecreaseButton = document.getElementById(
+			"font-decrease"
+		) as HTMLButtonElement | null
+		const fontDefaultButton = document.getElementById(
+			"font-default"
+		) as HTMLButtonElement | null
+		const fontIncreaseButton = document.getElementById(
+			"font-increase"
+		) as HTMLButtonElement | null
 
 		// Load saved font size or use default
 		const loadFontSize = () => {
@@ -240,28 +319,60 @@ import Icon from "./Icon.astro"
 			}
 		})
 
+		// Handle tab key for focus trap
+		document.addEventListener("keydown", (e) => {
+			if (settingsPanel && !settingsPanel.classList.contains("hidden")) {
+				if (e.key === "Escape") {
+					// Close panel and return focus to toggle button
+					settingsPanel.classList.add("hidden")
+					menuToggle?.classList.remove("opened")
+					menuToggle?.setAttribute("aria-expanded", "false")
+					menuToggle?.focus()
+					return
+				}
+
+				// Focus trap logic
+				if (
+					e.key === "Tab" &&
+					firstFocusableElement &&
+					lastFocusableElement
+				) {
+					// If shift key pressed for reverse tabbing
+					if (e.shiftKey) {
+						if (document.activeElement === firstFocusableElement) {
+							e.preventDefault()
+							lastFocusableElement.focus()
+						}
+					} else {
+						if (document.activeElement === lastFocusableElement) {
+							e.preventDefault()
+							firstFocusableElement.focus()
+						}
+					}
+				}
+			}
+		})
+
+		// Listen for panel opening
+		const observer = new MutationObserver((mutations) => {
+			mutations.forEach((mutation) => {
+				if (mutation.attributeName === "class" && settingsPanel) {
+					if (!settingsPanel.classList.contains("hidden")) {
+						// Panel was just opened
+						setupFocusTrap()
+						setActiveTheme()
+					}
+				}
+			})
+		})
+
+		if (settingsPanel) {
+			observer.observe(settingsPanel, { attributes: true })
+		}
+
 		// Initialize
 		setActiveTheme()
 		applyTheme()
 		loadFontSize()
-
-		// Add keyboard event handling
-		document.addEventListener("keydown", (e) => {
-			if (e.key === "Escape") {
-				const menuToggle = document.getElementById("menu-toggle")
-				const settingsPanel = document.getElementById("settings-panel")
-
-				if (
-					settingsPanel &&
-					!settingsPanel.classList.contains("hidden")
-				) {
-					settingsPanel.classList.add("hidden")
-					menuToggle?.classList.remove("opened")
-					menuToggle?.setAttribute("aria-expanded", "false")
-					// Return focus to toggle button
-					menuToggle?.focus()
-				}
-			}
-		})
 	</script>
 </div>
