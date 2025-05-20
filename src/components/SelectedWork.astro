@@ -1,4 +1,9 @@
 ---
+import Section from "./ui/Section.astro"
+import Card from "./ui/Card.astro"
+import Grid from "./ui/Grid.astro"
+import Stack from "./ui/Stack.astro"
+
 interface Project {
 	title: string
 	description: string
@@ -18,66 +23,39 @@ const projects: Project[] = [
 		title: "Situs Informasi resmi SIPLah",
 		description:
 			"Redesigning landing page to increase awareness and drive conversions, establishing it as a trusted hub for reliable information.",
-		color: "bg-amber-300",
+		color: "bg-yellow-300",
 		link: "#"
 	},
 	{
 		title: "Natatoko",
 		description:
 			"All-in-one Software as a Service (SaaS) solution to manage online store. Take orders, handle products, and analyze business with ease.",
-		color: "bg-purple-300",
+		color: "bg-pink-200",
 		link: "#"
 	}
 ]
 ---
 
-<section class="w-full pt-4">
-	<div class="mx-[-1.5rem]">
-		<div class="pl-[1.5rem] pt-[4.8rem] pb-3">
-			<h2
-				class="text-sm font-mono font-medium uppercase tracking-wider text-[var(--text-primary)]"
-			>
-				Selected Work
-			</h2>
-		</div>
-		<div class="border-b border-[var(--border-default)]"></div>
-	</div>
+<Section title="Selected Work">
+	<Stack gap="xl">
+		<Grid>
+			{
+				projects.slice(0, 2).map((project) => (
+					<Card href={project.link} color={project.color}>
+						<h3>{project.title}</h3>
+						<p>{project.description}</p>
+					</Card>
+				))
+			}
+		</Grid>
 
-	<div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-		{
-			projects.slice(0, 2).map((project) => (
-				<a href={project.link} class="group block no-underline">
-					<div class="flex flex-col h-full">
-						<div
-							class={`${project.color} aspect-[4/3] rounded-lg mb-5 transition-all duration-300 group-hover:shadow-md`}
-						/>
-						<h3 class="text-[var(--text-primary)] text-base mb-2">
-							{project.title}
-						</h3>
-						<p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-							{project.description}
-						</p>
-					</div>
-				</a>
-			))
-		}
-	</div>
-
-	{/* Natatoko card that spans full width */}
-	<div class="mt-8">
-		<a href={projects[2].link} class="group block no-underline">
-			<div class="flex flex-col h-full">
-				<div
-					class={`${projects[2].color} aspect-[16/6] md:aspect-[16/5] rounded-lg mb-5 transition-all duration-300 group-hover:shadow-md`}
-				>
-				</div>
-				<h3 class="text-[var(--text-primary)] text-base mb-2">
-					{projects[2].title}
-				</h3>
-				<p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-					{projects[2].description}
-				</p>
-			</div>
-		</a>
-	</div>
-</section>
+		<Card
+			href={projects[2].link}
+			color={projects[2].color}
+			aspectRatio="aspect-[16/6] md:aspect-[16/5]"
+		>
+			<h3>{projects[2].title}</h3>
+			<p>{projects[2].description}</p>
+		</Card>
+	</Stack>
+</Section>

@@ -1,0 +1,54 @@
+---
+interface Props {
+	href?: string
+	className?: string
+	color?: string
+	aspectRatio?: string
+	isHoverable?: boolean
+}
+
+const {
+	href,
+	className = "",
+	color = "bg-surface",
+	aspectRatio = "aspect-[4/3]",
+	isHoverable = true
+} = Astro.props
+
+const wrapperClasses = `flex flex-col h-full ${className}`
+const imageClasses = `${color} ${aspectRatio} rounded-lg mb-5 ${isHoverable ? "transition-all duration-300 group-hover:shadow-md" : ""}`
+---
+
+{
+	href ? (
+		<a href={href} class="group block no-underline">
+			<div class={wrapperClasses}>
+				<div class={imageClasses}>
+					<slot name="image" />
+				</div>
+				<div class="card-content">
+					<slot />
+				</div>
+			</div>
+		</a>
+	) : (
+		<div class={wrapperClasses}>
+			<div class={imageClasses}>
+				<slot name="image" />
+			</div>
+			<div class="card-content">
+				<slot />
+			</div>
+		</div>
+	)
+}
+
+<style>
+	.card-content :global(h3) {
+		@apply text-primary text-base mb-2;
+	}
+
+	.card-content :global(p) {
+		@apply text-sm text-secondary leading-relaxed;
+	}
+</style>

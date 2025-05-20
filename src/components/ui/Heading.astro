@@ -1,0 +1,51 @@
+---
+interface Props {
+	level: 1 | 2 | 3 | 4 | 5 | 6
+	class?: string
+	[x: string]: any
+}
+
+const { level, class: className = "", ...rest } = Astro.props
+
+const Tag = `h${level}`
+
+const classes = [
+	level === 1 && "h1",
+	level === 2 && "h2",
+	level === 3 && "h3",
+	level === 4 && "h4",
+	level === 5 && "h5",
+	level === 6 && "h6",
+	className
+]
+	.filter(Boolean)
+	.join(" ")
+---
+
+{
+	level === 1 ? (
+		<h1 class={classes} {...rest}>
+			<slot />
+		</h1>
+	) : level === 2 ? (
+		<h2 class={classes} {...rest}>
+			<slot />
+		</h2>
+	) : level === 3 ? (
+		<h3 class={classes} {...rest}>
+			<slot />
+		</h3>
+	) : level === 4 ? (
+		<h4 class={classes} {...rest}>
+			<slot />
+		</h4>
+	) : level === 5 ? (
+		<h5 class={classes} {...rest}>
+			<slot />
+		</h5>
+	) : (
+		<h6 class={classes} {...rest}>
+			<slot />
+		</h6>
+	)
+}

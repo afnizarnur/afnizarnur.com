@@ -1,4 +1,3 @@
-@import "./typography.css";
 @import "./themes.css";
 
 @tailwind base;
@@ -42,6 +41,7 @@
 		@apply bg-bg text-primary transition-colors duration-200;
 	}
 
+	/* Heading styles */
 	h1,
 	h2,
 	h3,
@@ -49,6 +49,62 @@
 	h5,
 	h6 {
 		@apply font-display;
+		text-rendering: optimizeLegibility;
+	}
+
+	h1 {
+		@apply text-heading-1;
+	}
+
+	h2 {
+		@apply text-heading-2;
+	}
+
+	h3 {
+		@apply text-heading-3;
+	}
+
+	h4 {
+		@apply text-heading-4;
+	}
+
+	h5 {
+		@apply text-heading-5;
+	}
+
+	h6 {
+		@apply text-heading-6;
+	}
+
+	/* Default paragraph style */
+	p {
+		@apply text-body text-secondary;
+		margin-bottom: 1em;
+	}
+
+	/* Default strong style */
+	strong,
+	b {
+		font-weight: 600;
+	}
+
+	/* Default small text style */
+	small {
+		@apply text-small;
+	}
+
+	/* Default links styling */
+	a {
+		@apply text-primary hover:opacity-80 transition-opacity;
+	}
+
+	p.bold,
+	p strong {
+		font-weight: 520;
+	}
+
+	p a {
+		color: var(--text-secondary);
 	}
 }
 

@@ -1,69 +1,166 @@
 /* Default Theme */
 :root {
-	/* New theme system */
-	--background-default: #ffffff;
-	--text-primary: #191a1b;
-	--text-secondary: #363739;
-	--text-disabled: #62676a;
-	--border-default: #e2e4e5;
-	--surface-default: #f6f6f7;
-	--text-inverse-subdued: #a1a5a7;
+	/* Base colors - Light theme by default */
+	--color-white: #ffffff;
+	--color-black: #191a1b;
+	--color-gray-50: #f6f6f7;
+	--color-gray-100: #e2e4e5;
+	--color-gray-200: #c5c8ca;
+	--color-gray-300: #a1a5a7;
+	--color-gray-400: #7d8184;
+	--color-gray-500: #62676a;
+	--color-gray-600: #4d5154;
+	--color-gray-700: #404345;
+	--color-gray-800: #363739;
+	--color-gray-900: #2f3032;
+	--color-gray-950: #191a1b;
+
+	/* Blue colors */
+	--color-blue-50: #f3fbfe;
+	--color-blue-100: #e0f5fd;
+	--color-blue-200: #baeafa;
+	--color-blue-300: #94def7;
+	--color-blue-400: #60cef3;
+	--color-blue-500: #2cbeef;
+	--color-blue-600: #10a2d3;
+	--color-blue-700: #0c7a9f;
+	--color-blue-800: #08526b;
+	--color-blue-900: #042a36;
+	--color-blue-950: #02161c;
+
+	/* Pink colors */
+	--color-pink-50: #ffeff8;
+	--color-pink-100: #ffeaf6;
+	--color-pink-200: #ffc6e7;
+	--color-pink-300: #ff8ecf;
+	--color-pink-400: #ff56b8;
+	--color-pink-500: #ff1ea0;
+	--color-pink-600: #e50084;
+	--color-pink-700: #ac0064;
+	--color-pink-800: #740043;
+	--color-pink-900: #3c0023;
+	--color-pink-950: #200013;
+
+	/* Green colors */
+	--color-green-50: #f7fdf9;
+	--color-green-100: #edfff4;
+	--color-green-200: #d6f5e2;
+	--color-green-300: #b5eecb;
+	--color-green-400: #94e6b3;
+	--color-green-500: #73de9c;
+	--color-green-600: #46d37c;
+	--color-green-700: #2bb660;
+	--color-green-800: #208948;
+	--color-green-900: #155b30;
+	--color-green-950: #104424;
+
+	/* Yellow colors */
+	--color-yellow-50: #fffee5;
+	--color-yellow-100: #fffdd9;
+	--color-yellow-200: #fffbbc;
+	--color-yellow-300: #fef994;
+	--color-yellow-400: #fef76b;
+	--color-yellow-500: #fef433;
+	--color-yellow-600: #f7eb02;
+	--color-yellow-700: #bfb601;
+	--color-yellow-800: #888101;
+	--color-yellow-900: #504c01;
+	--color-yellow-950: #343200;
+
+	/* Orange colors */
+	--color-orange-50: #fff2e5;
+	--color-orange-100: #ffecd9;
+	--color-orange-200: #ffdebd;
+	--color-orange-300: #ffc994;
+	--color-orange-400: #ffb56b;
+	--color-orange-500: #ff9933;
+	--color-orange-600: #fa7d00;
+	--color-orange-700: #c26100;
+	--color-orange-800: #8a4500;
+	--color-orange-900: #522900;
+	--color-orange-950: #351b00;
+
+	/* Functional colors - Light theme by default */
+	--background-default: var(--color-white);
+	--text-primary: var(--color-gray-950);
+	--text-secondary: var(--color-gray-800);
+	--text-disabled: var(--color-gray-500);
+	--border-default: var(--color-gray-100);
+	--surface-default: var(--color-gray-50);
+	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(25, 26, 27, 0.2);
 	--overlay: rgba(25, 26, 27, 0.4);
+
+	/* Spacing system */
+	--space-1: 0.25rem; /* 4px */
+	--space-2: 0.5rem; /* 8px */
+	--space-3: 0.75rem; /* 12px */
+	--space-4: 1rem; /* 16px */
+	--space-5: 1.25rem; /* 20px */
+	--space-6: 1.5rem; /* 24px */
+	--space-8: 2rem; /* 32px */
+	--space-10: 2.5rem; /* 40px */
+	--space-12: 3rem; /* 48px */
+	--space-16: 4rem; /* 64px */
+	--space-20: 5rem; /* 80px */
+	--space-24: 6rem; /* 96px */
+
+	/* Border radius */
+	--radius-sm: 0.125rem; /* 2px */
+	--radius-md: 0.25rem; /* 4px */
+	--radius-lg: 0.5rem; /* 8px */
+	--radius-xl: 1rem; /* 16px */
+	--radius-full: 9999px;
 }
 
 /* Dark Theme */
 :root[data-theme="dark"] {
-	/* New theme system */
-	--background-default: #191a1b;
-	--text-primary: #ffffff;
-	--text-secondary: #f6f6f7;
-	--text-disabled: #a1a5a7;
-	--border-default: #4d5154;
-	--surface-default: #2f3032;
-	--text-inverse-subdued: #a1a5a7;
+	--background-default: var(--color-gray-950);
+	--text-primary: var(--color-white);
+	--text-secondary: var(--color-gray-50);
+	--text-disabled: var(--color-gray-300);
+	--border-default: var(--color-gray-700);
+	--surface-default: var(--color-gray-900);
+	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(255, 255, 255, 0.2);
 	--overlay: rgba(255, 255, 255, 0.4);
 }
 
 /* Gray Theme */
 :root[data-theme="gray"] {
-	/* New theme system */
-	--background-default: #e2e4e5;
-	--text-primary: #191a1b;
-	--text-secondary: #363739;
-	--text-disabled: #62676a;
-	--border-default: #c5c8ca;
-	--surface-default: #f6f6f7;
-	--text-inverse-subdued: #a1a5a7;
+	--background-default: var(--color-gray-100);
+	--text-primary: var(--color-gray-950);
+	--text-secondary: var(--color-gray-800);
+	--text-disabled: var(--color-gray-500);
+	--border-default: var(--color-gray-200);
+	--surface-default: var(--color-gray-50);
+	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(25, 26, 27, 0.2);
 	--overlay: rgba(25, 26, 27, 0.4);
 }
 
 /* Pink Theme */
 :root[data-theme="pink"] {
-	/* New theme system */
-	--background-default: #191a1b;
-	--text-primary: #ffc6e7;
-	--text-secondary: #ffc6e7;
-	--text-disabled: #ffc6e7;
-	--border-default: #404345;
-	--surface-default: #3c0023;
-	--text-inverse-subdued: #ffc6e7;
+	--background-default: var(--color-gray-950);
+	--text-primary: var(--color-pink-200);
+	--text-secondary: var(--color-pink-100);
+	--text-disabled: var(--color-pink-100);
+	--border-default: var(--color-gray-700);
+	--surface-default: var(--color-pink-900);
+	--text-inverse-subdued: var(--color-pink-200);
 	--shadow: rgba(255, 198, 231, 0.2);
 	--overlay: rgba(255, 198, 231, 0.4);
 }
 
 /* Blue Theme */
 :root[data-theme="blue"] {
-	/* New theme system */
-	--background-default: #191a1b;
-	--text-primary: #94def7;
-	--text-secondary: #baeafa;
-	--text-disabled: #baeafa;
-	--border-default: #404345;
-	--surface-default: #042a36;
-	--text-inverse-subdued: #a1a5a7;
+	--background-default: var(--color-gray-950);
+	--text-primary: var(--color-blue-300);
+	--text-secondary: var(--color-blue-200);
+	--text-disabled: var(--color-blue-100);
+	--border-default: var(--color-gray-700);
+	--surface-default: var(--color-blue-900);
+	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(148, 222, 247, 0.2);
 	--overlay: rgba(148, 222, 247, 0.4);
 }

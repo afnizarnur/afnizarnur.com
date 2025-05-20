@@ -1,9 +1,7 @@
 ---
-import "../styles/global.css"
-import ThemeToggle from "../components/ThemeToggle.astro"
-import Head from "../components/Head.astro"
-import type { Metadata } from "../config/meta"
+import BaseLayout from "./BaseLayout.astro"
 import SettingsPanel from "../components/SettingsPanel.astro"
+import type { Metadata } from "../config/meta"
 
 interface Props extends Partial<Metadata> {
 	title: string
@@ -12,135 +10,113 @@ interface Props extends Partial<Metadata> {
 const props = Astro.props
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<script is:inline>
-			const getTheme = () => {
-				if (typeof localStorage !== "undefined") {
-					const storedTheme = localStorage.getItem("theme")
-					if (storedTheme && storedTheme !== "system") {
-						return storedTheme
-					}
-				}
-				return window.matchMedia("(prefers-color-scheme: dark)").matches
-					? "dark"
-					: "light"
-			}
-			document.documentElement.setAttribute("data-theme", getTheme())
-		</script>
-		<Head {...props} />
-	</head>
-	<body>
+<BaseLayout {...props}>
+	<div class="flex flex-col md:flex-row max-w-[1440px] mx-auto p-0">
 		<div
-			class="min-h-screen bg-[var(--background-default)] text-[var(--text-primary)]"
+			class="w-full md:w-1/3 max-w-full md:max-w-[420px] flex-shrink-0 md:sticky md:top-0 md:self-start flex flex-col h-auto md:h-screen border-b md:border-b-0 md:border-r border-border"
 		>
-			<div class="flex flex-col md:flex-row max-w-[1440px] mx-auto p-0">
-				<div
-					class="w-full md:w-1/3 max-w-full md:max-w-[420px] flex-shrink-0 flex flex-col h-auto md:h-screen border-b md:border-b-0 md:border-r border-[var(--border-default)]"
+			<div
+				class="flex justify-between items-center p-[24px_24px_0px_48px]"
+			>
+				<a href="/" class="block" aria-label="Go to homepage">
+					<img
+						src="/avatar.png"
+						alt="Afnizar Nur Ghifari"
+						class="rounded-full object-cover"
+						width="36"
+						height="36"
+					/>
+				</a>
+				<button
+					id="menu-toggle"
+					class="bg-transparent border-none cursor-pointer p-1 flex items-center justify-center hover:opacity-70"
+					aria-label="Toggle menu"
+					aria-expanded="false"
 				>
-					<div
-						class="flex justify-between items-center p-[24px_24px_0px_48px]"
+					<svg
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						class="menu-icon"
+						xmlns="http://www.w3.org/2000/svg"
 					>
-						<a href="/" class="block" aria-label="Go to homepage">
-							<img
-								src="/avatar.png"
-								alt="Afnizar Nur Ghifari"
-								class="rounded-full object-cover"
-								width="36"
-								height="36"
-							/>
-						</a>
-						<button
-							id="menu-toggle"
-							class="bg-transparent border-none cursor-pointer p-1 flex items-center justify-center hover:opacity-70"
-							aria-label="Toggle menu"
-							aria-expanded="false"
-						>
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								class="menu-icon"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<rect
-									class="line line1"
-									x="2"
-									y="6"
-									width="20"
-									height="2"></rect>
-								<rect
-									class="line line2"
-									x="2"
-									y="16"
-									width="20"
-									height="2"></rect>
-							</svg>
-						</button>
-					</div>
+						<rect
+							class="line line1"
+							x="2"
+							y="6"
+							width="20"
+							height="2"></rect>
+						<rect
+							class="line line2"
+							x="2"
+							y="16"
+							width="20"
+							height="2"></rect>
+					</svg>
+				</button>
+			</div>
 
-					<div class="px-12 md:px-[48px] relative">
-						<SettingsPanel />
-					</div>
+			<div class="px-12 md:px-[48px] relative">
+				<SettingsPanel />
+			</div>
 
-					<div class="p-[44px_24px_24px_48px] overflow-y-auto">
-						<h1 class="mb-8">Afnizar<br />Nur Ghifari</h1>
-						<slot name="sidebar" />
-					</div>
-				</div>
-				<main class="flex-grow p-6 md:p-6">
-					<slot />
-				</main>
+			<div
+				class="p-[44px_24px_24px_48px] overflow-y-auto flex-grow flex flex-col"
+			>
+				<h1 class="mb-8">Afnizar<br />Nur Ghifari</h1>
+				<slot name="sidebar" />
 			</div>
 		</div>
+		<main class="flex-grow p-6 md:p-6 md:max-w-[calc(100%-420px)]">
+			<slot />
+		</main>
+	</div>
 
-		<style>
-			.menu-icon {
-				fill: var(--text-primary);
+	<style>
+		.menu-icon {
+			fill: var(--text-primary);
+		}
+
+		.line {
+			transform-origin: center;
+			transition: transform 0.3s ease;
+		}
+
+		.opened .line1 {
+			transform: translate(-4px, 4px) rotate(45deg);
+		}
+
+		.opened .line2 {
+			transform: translate(-4px, -3px) rotate(-45deg);
+		}
+	</style>
+
+	<script>
+		// Menu toggle functionality
+		const menuToggle = document.getElementById("menu-toggle")
+		const settingsPanel = document.getElementById("settings-panel")
+
+		menuToggle?.addEventListener("click", () => {
+			menuToggle.classList.toggle("opened")
+			menuToggle.setAttribute(
+				"aria-expanded",
+				menuToggle.classList.contains("opened").toString()
+			)
+			settingsPanel?.classList.toggle("hidden")
+		})
+
+		// Close settings panel when clicking outside
+		document.addEventListener("click", (e) => {
+			if (
+				!settingsPanel?.contains(e.target as Node) &&
+				!menuToggle?.contains(e.target as Node) &&
+				settingsPanel &&
+				!settingsPanel.classList.contains("hidden")
+			) {
+				settingsPanel.classList.add("hidden")
+				menuToggle?.classList.remove("opened")
+				menuToggle?.setAttribute("aria-expanded", "false")
 			}
-
-			.line {
-				transform-origin: center;
-				transition: transform 0.3s ease;
-			}
-
-			.opened .line1 {
-				transform: translate(-4px, 4px) rotate(45deg);
-			}
-
-			.opened .line2 {
-				transform: translate(-4px, -3px) rotate(-45deg);
-			}
-		</style>
-
-		<script>
-			// Menu toggle functionality
-			const menuToggle = document.getElementById("menu-toggle")
-			const settingsPanel = document.getElementById("settings-panel")
-
-			menuToggle?.addEventListener("click", () => {
-				menuToggle.classList.toggle("opened")
-				menuToggle.setAttribute(
-					"aria-expanded",
-					menuToggle.classList.contains("opened").toString()
-				)
-				settingsPanel?.classList.toggle("hidden")
-			})
-
-			// Close settings panel when clicking outside
-			document.addEventListener("click", (e) => {
-				if (
-					!settingsPanel?.contains(e.target as Node) &&
-					!menuToggle?.contains(e.target as Node) &&
-					settingsPanel &&
-					!settingsPanel.classList.contains("hidden")
-				) {
-					settingsPanel.classList.add("hidden")
-					menuToggle?.classList.remove("opened")
-					menuToggle?.setAttribute("aria-expanded", "false")
-				}
-			})
-		</script>
-	</body>
-</html>
+		})
+	</script>
+</BaseLayout>

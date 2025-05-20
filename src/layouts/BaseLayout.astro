@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css"
-import ThemeToggle from "../components/ThemeToggle.astro"
 import Head from "../components/Head.astro"
 import type { Metadata } from "../config/meta"
 
@@ -14,7 +13,6 @@ const props = Astro.props
 <!doctype html>
 <html lang="en">
 	<head>
-		<!-- Prevent FART (Flash of inAccurate coloR Theme) -->
 		<script is:inline>
 			const getTheme = () => {
 				if (typeof localStorage !== "undefined") {
@@ -32,18 +30,8 @@ const props = Astro.props
 		<Head {...props} />
 	</head>
 	<body>
-		<div class="min-h-screen bg-background text-text">
-			<header class="container mx-auto px-4 py-6">
-				<div class="flex justify-between items-center">
-					<a href="/" class="text-xl font-bold text-primary"
-						>Portfolio</a
-					>
-					<ThemeToggle />
-				</div>
-			</header>
-			<main class="container mx-auto px-4 py-8">
-				<slot />
-			</main>
+		<div class="min-h-screen bg-bg text-primary">
+			<slot />
 		</div>
 	</body>
 </html>

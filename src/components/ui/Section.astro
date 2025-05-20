@@ -1,0 +1,38 @@
+---
+interface Props {
+	title?: string
+	class?: string
+	titleClass?: string
+	hasDivider?: boolean
+	[x: string]: any
+}
+
+const {
+	title,
+	class: className = "",
+	titleClass = "",
+	hasDivider = true,
+	...rest
+} = Astro.props
+
+const sectionClasses = `w-full ${className}`
+const titleClasses = `text-sm font-mono font-medium uppercase tracking-wider text-primary ${titleClass}`
+---
+
+<section class={sectionClasses} {...rest}>
+	{
+		title && (
+			<div class="mx-[-1.5rem]">
+				<div class="pl-[1.5rem] pt-[4.8rem] pb-3">
+					<h2 class={titleClasses}>{title}</h2>
+				</div>
+				{hasDivider && <div class="border-b border-border" />}
+			</div>
+		)
+	}
+
+	<div class={title ? "mt-6" : ""}>
+		<slot />
+	</div>
+</section>
+

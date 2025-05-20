@@ -13,7 +13,89 @@ export default {
 				surface: "var(--surface-default)",
 				"inverse-subdued": "var(--text-inverse-subdued)",
 				shadow: "var(--shadow)",
-				overlay: "var(--overlay)"
+				overlay: "var(--overlay)",
+
+				// Base colors
+				white: "var(--color-white)",
+				black: "var(--color-black)",
+				gray: {
+					50: "var(--color-gray-50)",
+					100: "var(--color-gray-100)",
+					200: "var(--color-gray-200)",
+					300: "var(--color-gray-300)",
+					400: "var(--color-gray-400)",
+					500: "var(--color-gray-500)",
+					600: "var(--color-gray-600)",
+					700: "var(--color-gray-700)",
+					800: "var(--color-gray-800)",
+					900: "var(--color-gray-900)",
+					950: "var(--color-gray-950)"
+				},
+				pink: {
+					50: "var(--color-pink-50)",
+					100: "var(--color-pink-100)",
+					200: "var(--color-pink-200)",
+					300: "var(--color-pink-300)",
+					400: "var(--color-pink-400)",
+					500: "var(--color-pink-500)",
+					600: "var(--color-pink-600)",
+					700: "var(--color-pink-700)",
+					800: "var(--color-pink-800)",
+					900: "var(--color-pink-900)",
+					950: "var(--color-pink-950)"
+				},
+				blue: {
+					50: "var(--color-blue-50)",
+					100: "var(--color-blue-100)",
+					200: "var(--color-blue-200)",
+					300: "var(--color-blue-300)",
+					400: "var(--color-blue-400)",
+					500: "var(--color-blue-500)",
+					600: "var(--color-blue-600)",
+					700: "var(--color-blue-700)",
+					800: "var(--color-blue-800)",
+					900: "var(--color-blue-900)",
+					950: "var(--color-blue-950)"
+				},
+				green: {
+					50: "var(--color-green-50)",
+					100: "var(--color-green-100)",
+					200: "var(--color-green-200)",
+					300: "var(--color-green-300)",
+					400: "var(--color-green-400)",
+					500: "var(--color-green-500)",
+					600: "var(--color-green-600)",
+					700: "var(--color-green-700)",
+					800: "var(--color-green-800)",
+					900: "var(--color-green-900)",
+					950: "var(--color-green-950)"
+				},
+				yellow: {
+					50: "var(--color-yellow-50)",
+					100: "var(--color-yellow-100)",
+					200: "var(--color-yellow-200)",
+					300: "var(--color-yellow-300)",
+					400: "var(--color-yellow-400)",
+					500: "var(--color-yellow-500)",
+					600: "var(--color-yellow-600)",
+					700: "var(--color-yellow-700)",
+					800: "var(--color-yellow-800)",
+					900: "var(--color-yellow-900)",
+					950: "var(--color-yellow-950)"
+				},
+				orange: {
+					50: "var(--color-orange-50)",
+					100: "var(--color-orange-100)",
+					200: "var(--color-orange-200)",
+					300: "var(--color-orange-300)",
+					400: "var(--color-orange-400)",
+					500: "var(--color-orange-500)",
+					600: "var(--color-orange-600)",
+					700: "var(--color-orange-700)",
+					800: "var(--color-orange-800)",
+					900: "var(--color-orange-900)",
+					950: "var(--color-orange-950)"
+				}
 			},
 			fontFamily: {
 				sans: ["Inter var", "system-ui", "sans-serif"],
@@ -69,6 +151,28 @@ export default {
 			},
 			boxShadow: {
 				DEFAULT: "var(--shadow)"
+			},
+			spacing: {
+				1: "var(--space-1)",
+				2: "var(--space-2)",
+				3: "var(--space-3)",
+				4: "var(--space-4)",
+				5: "var(--space-5)",
+				6: "var(--space-6)",
+				8: "var(--space-8)",
+				10: "var(--space-10)",
+				12: "var(--space-12)",
+				16: "var(--space-16)",
+				20: "var(--space-20)",
+				24: "var(--space-24)"
+			},
+			borderRadius: {
+				sm: "var(--radius-sm)",
+				DEFAULT: "var(--radius-md)",
+				md: "var(--radius-md)",
+				lg: "var(--radius-lg)",
+				xl: "var(--radius-xl)",
+				full: "var(--radius-full)"
 			}
 		}
 	},
