@@ -3,12 +3,18 @@ import Section from "./ui/Section.astro"
 import Card from "./ui/Card.astro"
 import Grid from "./ui/Grid.astro"
 import Stack from "./ui/Stack.astro"
+import { Image } from "astro:assets"
+
+import raporPendidikanImg from "../assets/works/rapor-pendidikan.png"
+import siplahImg from "../assets/works/siplah.png"
+import natatokoImg from "../assets/works/natatoko.png"
 
 interface Project {
 	title: string
 	description: string
 	color: string
 	link: string
+	image: ImageMetadata
 }
 
 const projects: Project[] = [
@@ -17,21 +23,24 @@ const projects: Project[] = [
 		description:
 			"A platform that provides comprehensive data and evaluation reports from National Assessment for educational institutions.",
 		color: "bg-blue-300",
-		link: "https://raporpendidikan.dikdasmen.go.id/login"
+		link: "https://raporpendidikan.dikdasmen.go.id/login",
+		image: raporPendidikanImg
 	},
 	{
 		title: "Situs Informasi resmi SIPLah",
 		description:
 			"Redesigning landing page to increase awareness and drive conversions, establishing it as a trusted hub for reliable information.",
 		color: "bg-yellow-300",
-		link: "https://siplah.kemdikbud.go.id/"
+		link: "https://siplah.kemdikbud.go.id/",
+		image: siplahImg
 	},
 	{
 		title: "Natatoko",
 		description:
 			"All-in-one Software as a Service (SaaS) solution to manage online store. Take orders, handle products, and analyze business with ease.",
 		color: "bg-pink-200",
-		link: "https://natatoko.com/"
+		link: "https://natatoko.com/",
+		image: natatokoImg
 	}
 ]
 ---
@@ -45,7 +54,17 @@ const projects: Project[] = [
 						href={project.link}
 						color={project.color}
 						title={project.title}
+						className="work-card"
+						aspectRatio="none"
 					>
+						<div class="overflow-hidden" slot="image">
+							<Image
+								src={project.image}
+								alt={`${project.title} project thumbnail`}
+								height={520}
+								class="object-cover w-full h-full rounded-2xl"
+							/>
+						</div>
 						<p>{project.description}</p>
 					</Card>
 				))
@@ -55,10 +74,25 @@ const projects: Project[] = [
 		<Card
 			href={projects[2].link}
 			color={projects[2].color}
-			aspectRatio="aspect-[16/6] md:aspect-[16/5]"
 			title={projects[2].title}
+			className="work-card"
+			aspectRatio="none"
 		>
+			<div class="overflow-hidden" slot="image">
+				<Image
+					src={projects[2].image}
+					alt={`${projects[2].title} project thumbnail`}
+					height={520}
+					class="object-cover w-full h-full rounded-2xl"
+				/>
+			</div>
 			<p>{projects[2].description}</p>
 		</Card>
 	</Stack>
 </Section>
+
+<style>
+	.work-card :global(div.card-content) {
+		padding-top: 1.5rem;
+	}
+</style>
