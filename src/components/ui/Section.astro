@@ -22,7 +22,7 @@ const titleClasses = `text-sm font-mono font-normal uppercase text-primary ${tit
 <section class={sectionClasses} {...rest}>
 	{
 		title && (
-			<div>
+			<div class="section-header">
 				<div class="pl-[1.5rem] pt-4 md:pt-[6rem] pb-3">
 					<h2 class={titleClasses}>{title}</h2>
 				</div>
@@ -33,3 +33,25 @@ const titleClasses = `text-sm font-mono font-normal uppercase text-primary ${tit
 
 	<slot />
 </section>
+
+<style>
+	section {
+		position: relative;
+	}
+
+	section .border-b {
+		position: relative;
+	}
+
+	@media (min-width: 1440px) {
+		section .border-b::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 100%;
+			width: 9999px;
+			height: 100%;
+			border-bottom: 1px solid var(--border-default);
+		}
+	}
+</style>
