@@ -167,8 +167,8 @@ import Icon from "./Icon.astro"
 			const systemThemeValue = isDark ? "dark" : "light"
 
 			// Keep the data-theme="system" attribute, but add a secondary class for styling
-			rootElement.classList.remove("system-dark", "system-light")
-			rootElement.classList.add(`system-${systemThemeValue}`)
+			rootElement.classList.remove("dark", "light")
+			rootElement.classList.add(`${systemThemeValue}`)
 		}
 
 		// Font size functionality
