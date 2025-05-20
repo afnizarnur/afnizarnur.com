@@ -46,7 +46,7 @@ const projects: Project[] = [
 ---
 
 <Section title="Selected Work">
-	<Stack gap="xl" class="p-6 pr-6 lg:pr-12">
+	<Stack gap="xl" class="p-6 pr-6 lg:pr-12 xl:pr-6">
 		<Grid cols="grid-cols-1 lg:grid-cols-2" gap="gap-6">
 			{
 				projects.slice(0, 2).map((project) => (
@@ -61,7 +61,10 @@ const projects: Project[] = [
 							<Image
 								src={project.image}
 								alt={`${project.title} project thumbnail`}
-								height={520}
+								width={800}
+								height={450}
+								quality={90}
+								format="webp"
 								class="object-cover w-full h-full rounded-2xl"
 							/>
 						</div>
@@ -82,7 +85,10 @@ const projects: Project[] = [
 				<Image
 					src={projects[2].image}
 					alt={`${projects[2].title} project thumbnail`}
-					height={520}
+					width={1600}
+					height={900}
+					quality={90}
+					format="webp"
 					class="object-cover w-full h-full rounded-2xl"
 				/>
 			</div>

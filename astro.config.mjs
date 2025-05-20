@@ -14,6 +14,15 @@ export default defineConfig({
 			lastmod: new Date()
 		})
 	],
+	image: {
+		service: {
+			entrypoint: "astro/assets/services/sharp",
+			config: {
+				quality: 85,
+				format: ["webp", "avif", "png", "jpg"]
+			}
+		}
+	},
 	vite: {
 		plugins: [],
 		build: {
