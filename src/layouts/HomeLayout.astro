@@ -14,6 +14,8 @@ const props = Astro.props
 	<div class="flex flex-col md:flex-row max-w-[1440px] mx-auto p-0">
 		<div
 			class="w-full md:w-1/3 max-w-full md:max-w-[420px] flex-shrink-0 md:sticky md:top-0 md:self-start flex flex-col h-auto md:h-screen border-b md:border-b-0 md:border-r border-border"
+			role="complementary"
+			aria-label="Site sidebar"
 		>
 			<div
 				class="flex justify-between items-center p-[24px_24px_0px_48px]"
@@ -29,9 +31,10 @@ const props = Astro.props
 				</a>
 				<button
 					id="menu-toggle"
-					class="bg-transparent border-none cursor-pointer p-1 flex items-center justify-center hover:opacity-70"
+					class="bg-transparent border-none cursor-pointer p-1 flex items-center justify-center hover:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					aria-label="Toggle menu"
 					aria-expanded="false"
+					aria-controls="settings-panel"
 				>
 					<svg
 						width="24"
@@ -39,6 +42,7 @@ const props = Astro.props
 						viewBox="0 0 24 24"
 						class="menu-icon"
 						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
 					>
 						<rect
 							class="line line1"
@@ -67,7 +71,10 @@ const props = Astro.props
 				<slot name="sidebar" />
 			</div>
 		</div>
-		<main class="flex-grow p-6 md:p-6 md:max-w-[calc(100%-420px)]">
+		<main
+			id="main-content"
+			class="flex-grow p-6 md:p-6 md:max-w-[calc(100%-420px)]"
+		>
 			<slot />
 		</main>
 	</div>

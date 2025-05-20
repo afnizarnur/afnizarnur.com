@@ -93,6 +93,36 @@
 	--overlay: rgba(25, 26, 27, 0.4);
 }
 
+@media (prefers-color-scheme: dark) {
+	:root[data-theme="system"] {
+		--background-default: var(--color-gray-950);
+		--text-primary: var(--color-white);
+		--text-secondary: var(--color-gray-50);
+		--text-disabled: var(--color-gray-300);
+		--border-default: var(--color-gray-700);
+		--border-disabled: var(--color-gray-500);
+		--surface-default: var(--color-gray-900);
+		--text-inverse-subdued: var(--color-gray-300);
+		--shadow: rgba(255, 255, 255, 0.2);
+		--overlay: rgba(255, 255, 255, 0.4);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root[data-theme="system"] {
+		--background-default: var(--color-white);
+		--text-primary: var(--color-gray-950);
+		--text-secondary: var(--color-gray-800);
+		--text-disabled: var(--color-gray-500);
+		--border-default: var(--color-gray-100);
+		--border-disabled: var(--color-gray-200);
+		--surface-default: var(--color-gray-50);
+		--text-inverse-subdued: var(--color-gray-300);
+		--shadow: rgba(25, 26, 27, 0.2);
+		--overlay: rgba(25, 26, 27, 0.4);
+	}
+}
+
 /* Dark Theme */
 :root[data-theme="dark"] {
 	--background-default: var(--color-gray-950);
@@ -105,6 +135,20 @@
 	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(255, 255, 255, 0.2);
 	--overlay: rgba(255, 255, 255, 0.4);
+}
+
+/* Light Theme - explicitly setting light theme */
+:root[data-theme="light"] {
+	--background-default: var(--color-white);
+	--text-primary: var(--color-gray-950);
+	--text-secondary: var(--color-gray-800);
+	--text-disabled: var(--color-gray-500);
+	--border-default: var(--color-gray-100);
+	--border-disabled: var(--color-gray-200);
+	--surface-default: var(--color-gray-50);
+	--text-inverse-subdued: var(--color-gray-300);
+	--shadow: rgba(25, 26, 27, 0.2);
+	--overlay: rgba(25, 26, 27, 0.4);
 }
 
 /* Gray Theme */

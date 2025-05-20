@@ -4,20 +4,29 @@ import Icon from "./Icon.astro"
 
 <div
 	id="settings-panel"
-	class="hidden absolute z-50 top-4 right-0 left-0 mx-auto p-[0_24px_24px_48px]"
+	class="hidden absolute z-50 top-6 right-0 left-0 mx-auto p-[0_24px_24px_48px]"
+	role="dialog"
+	aria-labelledby="settings-panel-title"
 >
 	<div class="bg-border rounded-lg w-full">
 		<div>
 			<h3
-				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled"
+				id="settings-panel-title"
+				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-surface"
 			>
 				THEME
 			</h3>
-			<div class="flex pt-0">
+			<div
+				class="flex pt-0"
+				role="radiogroup"
+				aria-label="Theme selection"
+			>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					data-theme="system"
 					aria-label="System theme"
+					aria-checked="false"
+					role="radio"
 				>
 					<Icon
 						name="dark-light"
@@ -25,9 +34,11 @@ import Icon from "./Icon.astro"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					data-theme="light"
 					aria-label="Light theme"
+					aria-checked="false"
+					role="radio"
 				>
 					<Icon
 						name="light"
@@ -35,30 +46,38 @@ import Icon from "./Icon.astro"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					data-theme="dark"
 					aria-label="Dark theme"
+					aria-checked="false"
+					role="radio"
 				>
 					<Icon name="dark" class="w-5 h-5 text-primary theme-icon" />
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					data-theme="gray"
 					aria-label="Gray theme"
+					aria-checked="false"
+					role="radio"
 				>
 					<div class="w-5 h-5 rounded-full bg-white border"></div>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					data-theme="pink"
 					aria-label="Pink theme"
+					aria-checked="false"
+					role="radio"
 				>
 					<div class="w-5 h-5 rounded-full bg-pink-300"></div>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					data-theme="blue"
 					aria-label="Blue theme"
+					aria-checked="false"
+					role="radio"
 				>
 					<div class="w-5 h-5 rounded-full bg-blue-300"></div>
 				</button>
@@ -67,13 +86,18 @@ import Icon from "./Icon.astro"
 
 		<div>
 			<h3
-				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled"
+				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-surface"
+				id="font-size-controls"
 			>
 				FONT SIZE
 			</h3>
-			<div class="flex pt-0">
+			<div
+				class="flex pt-0"
+				role="toolbar"
+				aria-labelledby="font-size-controls"
+			>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					id="font-decrease"
 					aria-label="Decrease font size"
 				>
@@ -83,7 +107,7 @@ import Icon from "./Icon.astro"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					id="font-default"
 					aria-label="Default font size"
 				>
@@ -93,7 +117,7 @@ import Icon from "./Icon.astro"
 					/>
 				</button>
 				<button
-					class="w-[50px] h-[50px] flex items-center justify-center transition-colors"
+					class="w-[50px] h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
 					id="font-increase"
 					aria-label="Increase font size"
 				>
@@ -112,31 +136,57 @@ import Icon from "./Icon.astro"
 		const rootElement = document.documentElement
 		let currentFontSize = 100 // Default 100%
 
+		// Media query for detecting system color scheme
+		const systemThemeMedia = window.matchMedia(
+			"(prefers-color-scheme: dark)"
+		)
+
 		// Set active theme based on current setting
 		const setActiveTheme = () => {
-			const savedTheme = localStorage.getItem("theme")
-			const currentTheme = savedTheme || "system" // If no saved theme, we're using system
-
+			const currentTheme = localStorage.getItem("theme") || "system"
 			themeButtons.forEach((button) => {
 				const buttonTheme = button.getAttribute("data-theme")
-				const buttonIcon =
-					button.querySelector(".theme-icon") ||
-					button.querySelector("div")
+				const buttonIcon = button.querySelector(".theme-icon")
+				const isActive = buttonTheme === currentTheme
 
-				// Mark the button as active if it matches the current theme
-				if (buttonTheme === currentTheme) {
-					button.classList.add("active-theme")
+				button.setAttribute("aria-checked", isActive.toString())
+
+				if (isActive) {
 					if (buttonIcon) {
 						buttonIcon.classList.add("opacity-50")
 					}
 				} else {
-					button.classList.remove("active-theme")
 					if (buttonIcon) {
 						buttonIcon.classList.remove("opacity-50")
 					}
 				}
 			})
 		}
+
+		// Apply the appropriate theme
+		const applyTheme = () => {
+			const savedTheme = localStorage.getItem("theme")
+
+			if (savedTheme) {
+				// User has explicitly selected a theme
+				rootElement.setAttribute("data-theme", savedTheme)
+			} else {
+				// Use system preference
+				const systemTheme = systemThemeMedia.matches ? "dark" : "light"
+				rootElement.setAttribute("data-theme", "system")
+			}
+		}
+
+		// Listen for system preference changes
+		systemThemeMedia.addEventListener("change", (e) => {
+			// Only apply if user is using system theme
+			if (!localStorage.getItem("theme")) {
+				applyTheme()
+				announceChange(
+					`Theme changed to ${e.matches ? "dark" : "light"} based on system preference`
+				)
+			}
+		})
 
 		// Update theme when buttons are clicked
 		themeButtons.forEach((button) => {
@@ -145,31 +195,22 @@ import Icon from "./Icon.astro"
 
 				if (theme === "system") {
 					localStorage.removeItem("theme")
-					// Set to system theme for proper tracking
-					rootElement.setAttribute("data-theme", "system")
-					// Then apply the actual light/dark based on system preference
-					applySystemTheme()
+					applyTheme()
 				} else if (theme) {
 					localStorage.setItem("theme", theme)
 					rootElement.setAttribute("data-theme", theme)
 				}
 
-				// Use the setActiveTheme function to update the UI
 				setActiveTheme()
+				// Announce theme change to screen readers
+				const announcer = document.createElement("div")
+				announcer.setAttribute("aria-live", "polite")
+				announcer.classList.add("sr-only")
+				announcer.textContent = `Theme changed to ${theme}`
+				document.body.appendChild(announcer)
+				setTimeout(() => document.body.removeChild(announcer), 1000)
 			})
 		})
-
-		// Function to apply the system theme based on user's preference
-		const applySystemTheme = () => {
-			const isDark = window.matchMedia(
-				"(prefers-color-scheme: dark)"
-			).matches
-			const systemThemeValue = isDark ? "dark" : "light"
-
-			// Keep the data-theme="system" attribute, but add a secondary class for styling
-			rootElement.classList.remove("dark", "light")
-			rootElement.classList.add(`${systemThemeValue}`)
-		}
 
 		// Font size functionality
 		const fontDecreaseButton = document.getElementById("font-decrease")
@@ -196,51 +237,56 @@ import Icon from "./Icon.astro"
 			if (currentFontSize > 80) {
 				currentFontSize -= 10
 				applyFontSize()
+				announceChange(`Font size decreased to ${currentFontSize}%`)
 			}
 		})
 
 		fontDefaultButton?.addEventListener("click", () => {
 			currentFontSize = 100
 			applyFontSize()
+			announceChange("Font size reset to default")
 		})
 
 		fontIncreaseButton?.addEventListener("click", () => {
 			if (currentFontSize < 120) {
 				currentFontSize += 10
 				applyFontSize()
+				announceChange(`Font size increased to ${currentFontSize}%`)
 			}
 		})
 
-		// Initialize
-		loadFontSize()
-
-		// Apply the correct theme on page load and set active button
-		const initializeTheme = () => {
-			const savedTheme = localStorage.getItem("theme")
-
-			// Apply the theme to the document
-			if (savedTheme) {
-				rootElement.setAttribute("data-theme", savedTheme)
-			} else {
-				// System theme
-				rootElement.setAttribute("data-theme", "system")
-				applySystemTheme()
-			}
-
-			// Set the active button
-			setActiveTheme()
+		// Function to announce changes to screen readers
+		function announceChange(message) {
+			const announcer = document.createElement("div")
+			announcer.setAttribute("aria-live", "polite")
+			announcer.classList.add("sr-only")
+			announcer.textContent = message
+			document.body.appendChild(announcer)
+			setTimeout(() => document.body.removeChild(announcer), 1000)
 		}
 
-		initializeTheme()
+		// Initialize
+		setActiveTheme()
+		applyTheme()
+		loadFontSize()
 
-		// Listen for system theme changes
-		window
-			.matchMedia("(prefers-color-scheme: dark)")
-			.addEventListener("change", (event) => {
-				if (!localStorage.getItem("theme")) {
-					// Only respond if using system theme
-					applySystemTheme()
+		// Add keyboard event handling
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") {
+				const menuToggle = document.getElementById("menu-toggle")
+				const settingsPanel = document.getElementById("settings-panel")
+
+				if (
+					settingsPanel &&
+					!settingsPanel.classList.contains("hidden")
+				) {
+					settingsPanel.classList.add("hidden")
+					menuToggle?.classList.remove("opened")
+					menuToggle?.setAttribute("aria-expanded", "false")
+					// Return focus to toggle button
+					menuToggle?.focus()
 				}
-			})
+			}
+		})
 	</script>
 </div>

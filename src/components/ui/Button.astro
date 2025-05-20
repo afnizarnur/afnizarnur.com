@@ -29,7 +29,7 @@ const sizes = {
 	lg: "text-lg py-3 px-6"
 }
 
-const classes = `inline-flex items-center justify-center rounded transition-colors duration-200 font-medium ${variants[variant]} ${sizes[size]} ${className}`
+const classes = `inline-flex items-center justify-center rounded transition-colors duration-200 font-medium ${variants[variant]} ${sizes[size]} ${className} focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2`
 
 const Component = href ? "a" : "button"
 ---
