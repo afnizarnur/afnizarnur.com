@@ -95,7 +95,7 @@
 
 	/* Default links styling */
 	a {
-		@apply text-primary hover:opacity-80 transition-opacity;
+		@apply text-primary hover:no-underline transition-opacity;
 	}
 
 	p.bold,

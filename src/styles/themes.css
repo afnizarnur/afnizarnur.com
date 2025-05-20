@@ -1,6 +1,6 @@
-/* Default Theme */
+/* Base color palettes */
 :root {
-	/* Base colors - Light theme by default */
+	/* Base colors */
 	--color-white: #ffffff;
 	--color-black: #191a1b;
 	--color-gray-50: #f6f6f7;
@@ -79,116 +79,178 @@
 	--color-orange-800: #8a4500;
 	--color-orange-900: #522900;
 	--color-orange-950: #351b00;
-
-	/* Functional colors - Light theme by default */
-	--background-default: var(--color-white);
-	--text-primary: var(--color-gray-950);
-	--text-secondary: var(--color-gray-800);
-	--text-disabled: var(--color-gray-500);
-	--border-default: var(--color-gray-100);
-	--border-disabled: var(--color-gray-200);
-	--surface-default: var(--color-gray-50);
-	--text-inverse-subdued: var(--color-gray-300);
-	--shadow: rgba(25, 26, 27, 0.2);
-	--overlay: rgba(25, 26, 27, 0.4);
 }
 
+/* Theme Definitions */
+:root {
+	/* Light theme */
+	--theme-light-background: var(--color-white);
+	--theme-light-text-primary: var(--color-gray-950);
+	--theme-light-text-secondary: var(--color-gray-500);
+	--theme-light-text-disabled: var(--color-gray-400);
+	--theme-light-border-default: var(--color-gray-100);
+	--theme-light-border-disabled: var(--color-gray-200);
+	--theme-light-surface-default: var(--color-gray-50);
+	--theme-light-text-inverse-subdued: var(--color-gray-300);
+	--theme-light-shadow: rgba(25, 26, 27, 0.2);
+	--theme-light-overlay: rgba(25, 26, 27, 0.4);
+
+	/* Dark theme */
+	--theme-dark-background: var(--color-gray-950);
+	--theme-dark-text-primary: var(--color-white);
+	--theme-dark-text-secondary: var(--color-gray-200);
+	--theme-dark-text-disabled: var(--color-gray-300);
+	--theme-dark-border-default: var(--color-gray-700);
+	--theme-dark-border-disabled: var(--color-gray-500);
+	--theme-dark-surface-default: var(--color-gray-900);
+	--theme-dark-text-inverse-subdued: var(--color-gray-300);
+	--theme-dark-shadow: rgba(255, 255, 255, 0.2);
+	--theme-dark-overlay: rgba(255, 255, 255, 0.4);
+
+	/* Gray theme */
+	--theme-gray-background: var(--color-gray-100);
+	--theme-gray-text-primary: var(--color-gray-950);
+	--theme-gray-text-secondary: var(--color-gray-800);
+	--theme-gray-text-disabled: var(--color-gray-500);
+	--theme-gray-border-default: var(--color-gray-200);
+	--theme-gray-border-disabled: var(--color-gray-300);
+	--theme-gray-surface-default: var(--color-gray-50);
+	--theme-gray-text-inverse-subdued: var(--color-gray-300);
+	--theme-gray-shadow: rgba(25, 26, 27, 0.2);
+	--theme-gray-overlay: rgba(25, 26, 27, 0.4);
+
+	/* Pink theme */
+	--theme-pink-background: var(--color-gray-950);
+	--theme-pink-text-primary: var(--color-pink-200);
+	--theme-pink-text-secondary: var(--color-pink-100);
+	--theme-pink-text-disabled: var(--color-pink-100);
+	--theme-pink-border-default: var(--color-gray-700);
+	--theme-pink-border-disabled: var(--color-gray-500);
+	--theme-pink-surface-default: var(--color-pink-900);
+	--theme-pink-text-inverse-subdued: var(--color-pink-200);
+	--theme-pink-shadow: rgba(255, 198, 231, 0.2);
+	--theme-pink-overlay: rgba(255, 198, 231, 0.4);
+
+	/* Blue theme */
+	--theme-blue-background: var(--color-gray-950);
+	--theme-blue-text-primary: var(--color-blue-300);
+	--theme-blue-text-secondary: var(--color-blue-200);
+	--theme-blue-text-disabled: var(--color-blue-100);
+	--theme-blue-border-default: var(--color-gray-700);
+	--theme-blue-border-disabled: var(--color-gray-500);
+	--theme-blue-surface-default: var(--color-gray-900);
+	--theme-blue-text-inverse-subdued: var(--color-gray-300);
+	--theme-blue-shadow: rgba(148, 222, 247, 0.2);
+	--theme-blue-overlay: rgba(148, 222, 247, 0.4);
+
+	/* Default to light theme initially */
+	--background-default: var(--theme-light-background);
+	--text-primary: var(--theme-light-text-primary);
+	--text-secondary: var(--theme-light-text-secondary);
+	--text-disabled: var(--theme-light-text-disabled);
+	--border-default: var(--theme-light-border-default);
+	--border-disabled: var(--theme-light-border-disabled);
+	--surface-default: var(--theme-light-surface-default);
+	--text-inverse-subdued: var(--theme-light-text-inverse-subdued);
+	--shadow: var(--theme-light-shadow);
+	--overlay: var(--theme-light-overlay);
+}
+
+/* Theme Application */
+
+/* System theme - follows OS preference */
 @media (prefers-color-scheme: dark) {
 	:root[data-theme="system"] {
-		--background-default: var(--color-gray-950);
-		--text-primary: var(--color-white);
-		--text-secondary: var(--color-gray-50);
-		--text-disabled: var(--color-gray-300);
-		--border-default: var(--color-gray-700);
-		--border-disabled: var(--color-gray-500);
-		--surface-default: var(--color-gray-900);
-		--text-inverse-subdued: var(--color-gray-300);
-		--shadow: rgba(255, 255, 255, 0.2);
-		--overlay: rgba(255, 255, 255, 0.4);
+		--background-default: var(--theme-dark-background);
+		--text-primary: var(--theme-dark-text-primary);
+		--text-secondary: var(--theme-dark-text-secondary);
+		--text-disabled: var(--theme-dark-text-disabled);
+		--border-default: var(--theme-dark-border-default);
+		--border-disabled: var(--theme-dark-border-disabled);
+		--surface-default: var(--theme-dark-surface-default);
+		--text-inverse-subdued: var(--theme-dark-text-inverse-subdued);
+		--shadow: var(--theme-dark-shadow);
+		--overlay: var(--theme-dark-overlay);
 	}
 }
 
 @media (prefers-color-scheme: light) {
 	:root[data-theme="system"] {
-		--background-default: var(--color-white);
-		--text-primary: var(--color-gray-950);
-		--text-secondary: var(--color-gray-800);
-		--text-disabled: var(--color-gray-500);
-		--border-default: var(--color-gray-100);
-		--border-disabled: var(--color-gray-200);
-		--surface-default: var(--color-gray-50);
-		--text-inverse-subdued: var(--color-gray-300);
-		--shadow: rgba(25, 26, 27, 0.2);
-		--overlay: rgba(25, 26, 27, 0.4);
+		--background-default: var(--theme-light-background);
+		--text-primary: var(--theme-light-text-primary);
+		--text-secondary: var(--theme-light-text-secondary);
+		--text-disabled: var(--theme-light-text-disabled);
+		--border-default: var(--theme-light-border-default);
+		--border-disabled: var(--theme-light-border-disabled);
+		--surface-default: var(--theme-light-surface-default);
+		--text-inverse-subdued: var(--theme-light-text-inverse-subdued);
+		--shadow: var(--theme-light-shadow);
+		--overlay: var(--theme-light-overlay);
 	}
 }
 
-/* Dark Theme */
+/* Explicit theme selections */
 :root[data-theme="dark"] {
-	--background-default: var(--color-gray-950);
-	--text-primary: var(--color-white);
-	--text-secondary: var(--color-gray-50);
-	--text-disabled: var(--color-gray-300);
-	--border-default: var(--color-gray-700);
-	--border-disabled: var(--color-gray-500);
-	--surface-default: var(--color-gray-900);
-	--text-inverse-subdued: var(--color-gray-300);
-	--shadow: rgba(255, 255, 255, 0.2);
-	--overlay: rgba(255, 255, 255, 0.4);
+	--background-default: var(--theme-dark-background);
+	--text-primary: var(--theme-dark-text-primary);
+	--text-secondary: var(--theme-dark-text-secondary);
+	--text-disabled: var(--theme-dark-text-disabled);
+	--border-default: var(--theme-dark-border-default);
+	--border-disabled: var(--theme-dark-border-disabled);
+	--surface-default: var(--theme-dark-surface-default);
+	--text-inverse-subdued: var(--theme-dark-text-inverse-subdued);
+	--shadow: var(--theme-dark-shadow);
+	--overlay: var(--theme-dark-overlay);
 }
 
-/* Light Theme - explicitly setting light theme */
 :root[data-theme="light"] {
-	--background-default: var(--color-white);
-	--text-primary: var(--color-gray-950);
-	--text-secondary: var(--color-gray-800);
-	--text-disabled: var(--color-gray-500);
-	--border-default: var(--color-gray-100);
-	--border-disabled: var(--color-gray-200);
-	--surface-default: var(--color-gray-50);
-	--text-inverse-subdued: var(--color-gray-300);
-	--shadow: rgba(25, 26, 27, 0.2);
-	--overlay: rgba(25, 26, 27, 0.4);
+	--background-default: var(--theme-light-background);
+	--text-primary: var(--theme-light-text-primary);
+	--text-secondary: var(--theme-light-text-secondary);
+	--text-disabled: var(--theme-light-text-disabled);
+	--border-default: var(--theme-light-border-default);
+	--border-disabled: var(--theme-light-border-disabled);
+	--surface-default: var(--theme-light-surface-default);
+	--text-inverse-subdued: var(--theme-light-text-inverse-subdued);
+	--shadow: var(--theme-light-shadow);
+	--overlay: var(--theme-light-overlay);
 }
 
-/* Gray Theme */
 :root[data-theme="gray"] {
-	--background-default: var(--color-gray-100);
-	--text-primary: var(--color-gray-950);
-	--text-secondary: var(--color-gray-800);
-	--text-disabled: var(--color-gray-500);
-	--border-default: var(--color-gray-200);
-	--border-disabled: var(--color-gray-300);
-	--surface-default: var(--color-gray-50);
-	--text-inverse-subdued: var(--color-gray-300);
-	--shadow: rgba(25, 26, 27, 0.2);
-	--overlay: rgba(25, 26, 27, 0.4);
+	--background-default: var(--theme-gray-background);
+	--text-primary: var(--theme-gray-text-primary);
+	--text-secondary: var(--theme-gray-text-secondary);
+	--text-disabled: var(--theme-gray-text-disabled);
+	--border-default: var(--theme-gray-border-default);
+	--border-disabled: var(--theme-gray-border-disabled);
+	--surface-default: var(--theme-gray-surface-default);
+	--text-inverse-subdued: var(--theme-gray-text-inverse-subdued);
+	--shadow: var(--theme-gray-shadow);
+	--overlay: var(--theme-gray-overlay);
 }
 
-/* Pink Theme */
 :root[data-theme="pink"] {
-	--background-default: var(--color-gray-950);
-	--text-primary: var(--color-pink-200);
-	--text-secondary: var(--color-pink-100);
-	--text-disabled: var(--color-pink-100);
-	--border-default: var(--color-gray-700);
-	--border-disabled: var(--color-gray-500);
-	--surface-default: var(--color-pink-900);
-	--text-inverse-subdued: var(--color-pink-200);
-	--shadow: rgba(255, 198, 231, 0.2);
-	--overlay: rgba(255, 198, 231, 0.4);
+	--background-default: var(--theme-pink-background);
+	--text-primary: var(--theme-pink-text-primary);
+	--text-secondary: var(--theme-pink-text-secondary);
+	--text-disabled: var(--theme-pink-text-disabled);
+	--border-default: var(--theme-pink-border-default);
+	--border-disabled: var(--theme-pink-border-disabled);
+	--surface-default: var(--theme-pink-surface-default);
+	--text-inverse-subdued: var(--theme-pink-text-inverse-subdued);
+	--shadow: var(--theme-pink-shadow);
+	--overlay: var(--theme-pink-overlay);
 }
 
-/* Blue Theme */
 :root[data-theme="blue"] {
-	--background-default: var(--color-gray-950);
-	--text-primary: var(--color-blue-300);
-	--text-secondary: var(--color-blue-200);
-	--text-disabled: var(--color-blue-100);
-	--border-default: var(--color-gray-700);
-	--border-disabled: var(--color-gray-500);
-	--surface-default: var(--color-gray-900);
-	--text-inverse-subdued: var(--color-gray-300);
-	--shadow: rgba(148, 222, 247, 0.2);
-	--overlay: rgba(148, 222, 247, 0.4);
+	--background-default: var(--theme-blue-background);
+	--text-primary: var(--theme-blue-text-primary);
+	--text-secondary: var(--theme-blue-text-secondary);
+	--text-disabled: var(--theme-blue-text-disabled);
+	--border-default: var(--theme-blue-border-default);
+	--border-disabled: var(--theme-blue-border-disabled);
+	--surface-default: var(--theme-blue-surface-default);
+	--text-inverse-subdued: var(--theme-blue-text-inverse-subdued);
+	--shadow: var(--theme-blue-shadow);
+	--overlay: var(--theme-blue-overlay);
 }
