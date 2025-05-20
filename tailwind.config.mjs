@@ -10,6 +10,7 @@ export default {
 				secondary: "var(--text-secondary)",
 				disabled: "var(--text-disabled)",
 				border: "var(--border-default)",
+				"border-disabled": "var(--border-disabled)",
 				surface: "var(--surface-default)",
 				"inverse-subdued": "var(--text-inverse-subdued)",
 				shadow: "var(--shadow)",
@@ -152,27 +153,9 @@ export default {
 			boxShadow: {
 				DEFAULT: "var(--shadow)"
 			},
-			spacing: {
-				1: "var(--space-1)",
-				2: "var(--space-2)",
-				3: "var(--space-3)",
-				4: "var(--space-4)",
-				5: "var(--space-5)",
-				6: "var(--space-6)",
-				8: "var(--space-8)",
-				10: "var(--space-10)",
-				12: "var(--space-12)",
-				16: "var(--space-16)",
-				20: "var(--space-20)",
-				24: "var(--space-24)"
-			},
-			borderRadius: {
-				sm: "var(--radius-sm)",
-				DEFAULT: "var(--radius-md)",
-				md: "var(--radius-md)",
-				lg: "var(--radius-lg)",
-				xl: "var(--radius-xl)",
-				full: "var(--radius-full)"
+			borderColor: {
+				DEFAULT: "var(--border-default)",
+				disabled: "var(--border-disabled)"
 			}
 		}
 	},

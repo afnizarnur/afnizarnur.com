@@ -86,31 +86,11 @@
 	--text-secondary: var(--color-gray-800);
 	--text-disabled: var(--color-gray-500);
 	--border-default: var(--color-gray-100);
+	--border-disabled: var(--color-gray-200);
 	--surface-default: var(--color-gray-50);
 	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(25, 26, 27, 0.2);
 	--overlay: rgba(25, 26, 27, 0.4);
-
-	/* Spacing system */
-	--space-1: 0.25rem; /* 4px */
-	--space-2: 0.5rem; /* 8px */
-	--space-3: 0.75rem; /* 12px */
-	--space-4: 1rem; /* 16px */
-	--space-5: 1.25rem; /* 20px */
-	--space-6: 1.5rem; /* 24px */
-	--space-8: 2rem; /* 32px */
-	--space-10: 2.5rem; /* 40px */
-	--space-12: 3rem; /* 48px */
-	--space-16: 4rem; /* 64px */
-	--space-20: 5rem; /* 80px */
-	--space-24: 6rem; /* 96px */
-
-	/* Border radius */
-	--radius-sm: 0.125rem; /* 2px */
-	--radius-md: 0.25rem; /* 4px */
-	--radius-lg: 0.5rem; /* 8px */
-	--radius-xl: 1rem; /* 16px */
-	--radius-full: 9999px;
 }
 
 /* Dark Theme */
@@ -120,6 +100,7 @@
 	--text-secondary: var(--color-gray-50);
 	--text-disabled: var(--color-gray-300);
 	--border-default: var(--color-gray-700);
+	--border-disabled: var(--color-gray-500);
 	--surface-default: var(--color-gray-900);
 	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(255, 255, 255, 0.2);
@@ -133,6 +114,7 @@
 	--text-secondary: var(--color-gray-800);
 	--text-disabled: var(--color-gray-500);
 	--border-default: var(--color-gray-200);
+	--border-disabled: var(--color-gray-300);
 	--surface-default: var(--color-gray-50);
 	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(25, 26, 27, 0.2);
@@ -146,6 +128,7 @@
 	--text-secondary: var(--color-pink-100);
 	--text-disabled: var(--color-pink-100);
 	--border-default: var(--color-gray-700);
+	--border-disabled: var(--color-gray-500);
 	--surface-default: var(--color-pink-900);
 	--text-inverse-subdued: var(--color-pink-200);
 	--shadow: rgba(255, 198, 231, 0.2);
@@ -159,7 +142,8 @@
 	--text-secondary: var(--color-blue-200);
 	--text-disabled: var(--color-blue-100);
 	--border-default: var(--color-gray-700);
-	--surface-default: var(--color-blue-900);
+	--border-disabled: var(--color-gray-500);
+	--surface-default: var(--color-gray-900);
 	--text-inverse-subdued: var(--color-gray-300);
 	--shadow: rgba(148, 222, 247, 0.2);
 	--overlay: rgba(148, 222, 247, 0.4);
