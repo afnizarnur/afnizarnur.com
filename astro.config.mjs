@@ -13,5 +13,14 @@ export default defineConfig({
 			priority: 0.7,
 			lastmod: new Date()
 		})
-	]
+	],
+	vite: {
+		plugins: [],
+		build: {
+			rollupOptions: {}
+		},
+		ssr: {
+			noExternal: []
+		}
+	}
 })
