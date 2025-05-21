@@ -17,6 +17,12 @@ export default {
 				shadow: "var(--shadow)",
 				overlay: "var(--overlay)",
 
+				// Button interactivity colors
+				"btn-default": "var(--button-default)",
+				"btn-hover": "var(--button-hover)",
+				"btn-active": "var(--button-active)",
+				"btn-focus": "var(--button-focus-ring)",
+
 				// Base colors
 				white: "var(--color-white)",
 				black: "var(--color-black)",
@@ -156,6 +162,15 @@ export default {
 			borderColor: {
 				DEFAULT: "var(--border-default)",
 				disabled: "var(--border-disabled)"
+			},
+			ringColor: {
+				DEFAULT: "var(--button-focus-ring)"
+			},
+			ringWidth: {
+				DEFAULT: "2px"
+			},
+			ringOffsetWidth: {
+				DEFAULT: "2px"
 			},
 			screens: {
 				sm: "640px",

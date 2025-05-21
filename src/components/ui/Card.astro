@@ -20,9 +20,9 @@ const {
 } = Astro.props
 
 const wrapperClasses = `flex flex-col h-full ${className}`
-const imageClasses = `${color} ${aspectRatio} rounded-2xl mb-5 ${isHoverable ? "transition-all duration-300 group-hover:shadow-md" : ""}`
+const imageClasses = `${color} ${aspectRatio} rounded-2xl`
 const titleLinkClasses =
-	"relative underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-2xl"
+	"relative underline hover:no-underline focus-ring rounded-2xl"
 ---
 
 {
@@ -30,7 +30,7 @@ const titleLinkClasses =
 		<div class={wrapperClasses}>
 			<a
 				href={href}
-				class="block"
+				class="block focus-ring rounded-2xl mb-5"
 				aria-labelledby={
 					title
 						? `card-title-${title.replace(/\s+/g, "-").toLowerCase()}`

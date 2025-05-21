@@ -16,11 +16,12 @@ const {
 } = Astro.props
 
 const variants = {
-	primary: "bg-primary text-bg hover:opacity-90",
-	secondary: "bg-surface text-primary hover:bg-opacity-80",
+	primary: "bg-primary text-bg hover:opacity-90 active:opacity-80",
+	secondary:
+		"bg-surface text-primary hover:bg-opacity-80 active:bg-opacity-70",
 	outline:
-		"border border-border bg-transparent text-primary hover:bg-surface",
-	ghost: "bg-transparent text-primary hover:bg-surface"
+		"border border-border bg-transparent text-primary hover:bg-surface active:bg-surface-hover",
+	ghost: "bg-transparent text-primary hover:bg-surface active:bg-surface-hover"
 }
 
 const sizes = {
@@ -29,7 +30,7 @@ const sizes = {
 	lg: "text-lg py-3 px-6"
 }
 
-const classes = `inline-flex items-center justify-center rounded transition-colors duration-200 font-medium ${variants[variant]} ${sizes[size]} ${className} focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2`
+const classes = `inline-flex items-center justify-center rounded transition-colors duration-200 font-medium ${variants[variant]} ${sizes[size]} ${className} focus-ring-primary`
 
 const Component = href ? "a" : "button"
 ---

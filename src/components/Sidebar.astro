@@ -1,0 +1,35 @@
+---
+import SettingsPanel from "./SettingsPanel.astro"
+import MenuButton from "./ui/MenuButton.astro"
+---
+
+<div
+	class="w-full lg:w-1/3 max-w-full lg:max-w-[420px] flex-shrink-0 lg:sticky lg:top-0 lg:self-start flex flex-col h-auto lg:h-screen lg:border-r border-border"
+	role="complementary"
+	aria-label="Site sidebar"
+>
+	<div class="flex justify-between items-center pt-6 pr-6 pb-0 pl-6">
+		<a href="/" class="block" aria-label="Go to homepage">
+			<img
+				src="/avatar.png"
+				alt="Afnizar Nur Ghifari"
+				class="rounded-full object-cover"
+				width="36"
+				height="36"
+			/>
+		</a>
+		<MenuButton ariaControls="settings-panel" />
+	</div>
+
+	<div class="px-6 relative">
+		<SettingsPanel />
+	</div>
+
+	<div class="pt-11 pb-6 pl-6 pr-6 overflow-y-auto flex-grow flex flex-col">
+		<slot />
+	</div>
+</div>
+
+<style>
+	/* Styles moved to the MenuButton component */
+</style>

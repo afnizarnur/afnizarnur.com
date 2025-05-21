@@ -182,3 +182,22 @@
 .fade-in {
 	animation: fadeIn 0.5s ease-in-out forwards;
 }
+
+/* Focus ring utility */
+.focus-ring {
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring focus-visible:ring-btn-focus focus-visible:ring-offset-2;
+}
+
+/* You can customize further with specific variants */
+.focus-ring-primary {
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring focus-visible:ring-btn-focus focus-visible:ring-offset-2;
+}
+
+.focus-ring-inset {
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring focus-visible:ring-inset focus-visible:ring-btn-focus;
+}
+
+/* A helper to make any interactive element show a focus ring when using keyboard */
+[data-focus-visible-added] {
+	@apply focus-ring;
+}

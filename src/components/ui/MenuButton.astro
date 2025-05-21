@@ -1,0 +1,96 @@
+---
+interface Props {
+	ariaControls: string
+	ariaLabel?: string
+	id?: string
+}
+
+const {
+	ariaControls,
+	ariaLabel = "Toggle menu",
+	id = "menu-toggle"
+} = Astro.props
+---
+
+<button
+	id={id}
+	class="menu-button bg-transparent border-none cursor-pointer p-1 rounded-md flex items-center justify-center transition-colors hover:bg-btn-hover active:bg-btn-active focus-ring"
+	aria-label={ariaLabel}
+	aria-expanded="false"
+	aria-controls={ariaControls}
+>
+	<svg
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		class="fill-primary"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden="true"
+	>
+		<rect class="line line1" x="2" y="6" width="20" height="2"></rect>
+		<rect class="line line2" x="2" y="16" width="20" height="2"></rect>
+	</svg>
+</button>
+
+<style>
+	.menu-button {
+		position: relative;
+	}
+
+	.line {
+		transform-origin: center;
+		transition: transform 0.3s ease;
+	}
+
+	.menu-button[aria-expanded="true"] .line1 {
+		transform: translate(-4px, 4px) rotate(45deg);
+	}
+
+	.menu-button[aria-expanded="true"] .line2 {
+		transform: translate(-4px, -3px) rotate(-45deg);
+	}
+</style>
+
+<script>
+	// Get all menu buttons on the page
+	const menuButtons = document.querySelectorAll(".menu-button")
+
+	menuButtons.forEach((button) => {
+		const ariaControls = button.getAttribute("aria-controls")
+		if (!ariaControls) return
+
+		const controlledElement = document.getElementById(ariaControls)
+		if (!controlledElement) return
+
+		button.addEventListener("click", () => {
+			const isExpanded = button.getAttribute("aria-expanded") === "true"
+			button.setAttribute("aria-expanded", (!isExpanded).toString())
+			controlledElement.classList.toggle("hidden")
+
+			// Announce state change to screen readers
+			const expandState = !isExpanded ? "expanded" : "collapsed"
+			button.setAttribute("aria-live", "polite")
+			setTimeout(() => button.removeAttribute("aria-live"), 1000)
+		})
+	})
+
+	// Close controlled elements when clicking outside
+	document.addEventListener("click", (e) => {
+		menuButtons.forEach((button) => {
+			const ariaControls = button.getAttribute("aria-controls")
+			if (!ariaControls) return
+
+			const controlledElement = document.getElementById(ariaControls)
+			if (!controlledElement) return
+
+			if (
+				!controlledElement.contains(e.target as Node) &&
+				!button.contains(e.target as Node) &&
+				!controlledElement.classList.contains("hidden")
+			) {
+				controlledElement.classList.add("hidden")
+				button.setAttribute("aria-expanded", "false")
+			}
+		})
+	})
+</script>
