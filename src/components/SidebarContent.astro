@@ -1,10 +1,5 @@
 ---
-import GithubIcon from "./icons/GithubIcon.astro"
-import LinkedinIcon from "./icons/LinkedinIcon.astro"
-import InstagramIcon from "./icons/InstagramIcon.astro"
-import XIcon from "./icons/XIcon.astro"
-import ThreadsIcon from "./icons/ThreadsIcon.astro"
-import FigmaIcon from "./icons/FigmaIcon.astro"
+import { socialLinks } from "../config/social"
 ---
 
 <div class="flex flex-col h-full justify-between">
@@ -44,60 +39,19 @@ import FigmaIcon from "./icons/FigmaIcon.astro"
 
 	<div class="mt-auto mb-0">
 		<div class="flex gap-4 items-center mb-9">
-			<a
-				href="https://figma.com/@afnizarnur"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="Figma Profile"
-				class="text-primary hover:text-secondary transition-colors"
-			>
-				<FigmaIcon class="w-5 h-5" />
-			</a>
-			<a
-				href="https://linkedin.com/in/afnizarnur"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="LinkedIn Profile"
-				class="text-primary hover:text-secondary transition-colors"
-			>
-				<LinkedinIcon class="w-5 h-5" />
-			</a>
-			<a
-				href="https://github.com/afnizarnur"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="GitHub Profile"
-				class="text-primary hover:text-secondary transition-colors"
-			>
-				<GithubIcon class="w-5 h-5" />
-			</a>
-			<a
-				href="https://instagram.com/afnizar_nur"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="Instagram Profile"
-				class="text-primary hover:text-secondary transition-colors"
-			>
-				<InstagramIcon class="w-5 h-5" />
-			</a>
-			<a
-				href="https://threads.net/@afnizar_nur"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="Threads Profile"
-				class="text-primary hover:text-secondary transition-colors"
-			>
-				<ThreadsIcon class="w-5 h-5" />
-			</a>
-			<a
-				href="https://x.com/afnizarnur"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="X (Twitter) Profile"
-				class="text-primary hover:text-secondary transition-colors"
-			>
-				<XIcon class="w-5 h-5" />
-			</a>
+			{
+				socialLinks.map(({ url, icon: Icon, ariaLabel }) => (
+					<a
+						href={url}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={ariaLabel}
+						class="text-primary hover:text-secondary transition-colors"
+					>
+						<Icon class="w-5 h-5" />
+					</a>
+				))
+			}
 		</div>
 		<p class="text-sm text-disabled">
 			Typeset in <a
