@@ -9,14 +9,37 @@ import FigmaIcon from "./icons/FigmaIcon.astro"
 
 <div class="flex flex-col h-full justify-between">
 	<div>
-		<h1 class="mb-6 md:mb-8">Afnizar<br />Nur Ghifari</h1>
+		<div class="text-stack mb-6" id="sidebarTitle">
+			<div class="stack-container">
+				<div class="stack-item">
+					<h1 class="original-text mb-0">Afnizar<br />Nur Ghifari</h1>
+				</div>
+				<div class="stack-item">
+					<h1 class="alternate-text mb-0">Design<br />Tools</h1>
+				</div>
+			</div>
+		</div>
 
-		<p class="mb-8 body text-secondary">
-			Currently, I'm working at GovTech Edu, where I design platforms for
-			Rapor Pendidikan. Prior to this, I gained valuable experience
-			working on product design for Bukalapak, startups, and with various
-			agencies.
-		</p>
+		<div class="text-stack" id="sidebarDescription">
+			<div class="stack-container">
+				<div class="stack-item">
+					<p class="body text-secondary original-text mb-0">
+						Currently, I'm working at GovTech Edu, where I design
+						platforms for Rapor Pendidikan. Prior to this, I gained
+						valuable experience working on product design for
+						Bukalapak, startups, and with various agencies.
+					</p>
+				</div>
+				<div class="stack-item">
+					<p class="body text-secondary alternate-text mb-0">
+						I use various design tools to create meaningful and
+						impactful digital experiences. From wireframing to
+						high-fidelity prototypes, these are the tools I rely on
+						daily.
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="mt-auto mb-0">
@@ -92,3 +115,149 @@ import FigmaIcon from "./icons/FigmaIcon.astro"
 		</p>
 	</div>
 </div>
+
+<script>
+	import { gsap } from "gsap"
+	import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+	// Only run on desktop/tablet
+	if (window.innerWidth >= 768) {
+		gsap.registerPlugin(ScrollTrigger)
+
+		const stacks = document.querySelectorAll(".text-stack")
+
+		// Function to set stack heights and positions
+		function setupStacks() {
+			stacks.forEach((stack) => {
+				const container = stack.querySelector(".stack-container")
+				const items = stack.querySelectorAll(".stack-item")
+
+				if (container instanceof HTMLElement && items.length > 0) {
+					// Reset container height first
+					container.style.height = "auto"
+
+					// Calculate the maximum height among items
+					let maxHeight = 0
+					items.forEach((item) => {
+						if (item instanceof HTMLElement) {
+							const height = item.offsetHeight
+							maxHeight = Math.max(maxHeight, height)
+						}
+					})
+
+					// Set heights and positions
+					container.style.height = `${maxHeight}px`
+					items.forEach((item, index) => {
+						if (item instanceof HTMLElement) {
+							item.style.height = `${maxHeight}px`
+							gsap.set(item, {
+								position: "absolute",
+								top: 0,
+								y: `${index * 100}%`
+							})
+						}
+					})
+				}
+			})
+		}
+
+		// Initial setup
+		setupStacks()
+
+		// Update on window resize
+		window.addEventListener("resize", () => {
+			if (window.innerWidth >= 768) {
+				setupStacks()
+			}
+		})
+
+		ScrollTrigger.create({
+			trigger: "#tools-section",
+			start: "top center",
+			end: "bottom center",
+			onEnter: () => {
+				stacks.forEach((stack) => {
+					const items = stack.querySelectorAll(".stack-item")
+					if (items.length >= 2) {
+						gsap.to(items[0], {
+							y: "-100%",
+							duration: 0.5,
+							ease: "circ.out"
+						})
+						gsap.to(items[1], {
+							y: "0%",
+							duration: 0.5,
+							ease: "circ.out"
+						})
+					}
+				})
+			},
+			onLeaveBack: () => {
+				stacks.forEach((stack) => {
+					const items = stack.querySelectorAll(".stack-item")
+					if (items.length >= 2) {
+						gsap.to(items[0], {
+							y: "0%",
+							duration: 0.5,
+							ease: "circ.out"
+						})
+						gsap.to(items[1], {
+							y: "100%",
+							duration: 0.5,
+							ease: "circ.out"
+						})
+					}
+				})
+			}
+		})
+	}
+</script>
+
+<style>
+	.text-stack {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.stack-container {
+		position: relative;
+		width: 100%;
+	}
+
+	.stack-item {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		display: flex;
+		align-items: flex-start;
+	}
+
+	.stack-item h1,
+	.stack-item p {
+		width: 100%;
+	}
+
+	/* Add specific styles for the heading */
+	.stack-item h1 {
+		line-height: 1.1;
+		margin-top: 8px;
+	}
+
+	/* Adjust line breaks in headings for better spacing */
+	.stack-item h1 br {
+		line-height: 0.9;
+	}
+
+	/* Add specific styles for the description */
+	.stack-item p {
+		line-height: 1.5;
+		margin-top: 8px;
+	}
+
+	/* Ensure consistent spacing for both text types */
+	#sidebarTitle .stack-item,
+	#sidebarDescription .stack-item {
+		padding-top: 0;
+	}
+</style>

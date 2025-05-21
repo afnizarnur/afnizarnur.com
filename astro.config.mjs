@@ -29,7 +29,10 @@ export default defineConfig({
 			rollupOptions: {}
 		},
 		ssr: {
-			noExternal: []
+			noExternal: ["gsap"]
+		},
+		optimizeDeps: {
+			include: ["gsap"]
 		}
 	}
 })
