@@ -23,7 +23,7 @@ import FigmaIcon from "./icons/FigmaIcon.astro"
 		<div class="text-stack" id="sidebarDescription">
 			<div class="stack-container">
 				<div class="stack-item">
-					<p class="body text-secondary original-text mb-0">
+					<p class="body text-secondary original-text mb-2">
 						Currently, I'm working at GovTech Edu, where I design
 						platforms for Rapor Pendidikan. Prior to this, I gained
 						valuable experience working on product design for
@@ -31,7 +31,7 @@ import FigmaIcon from "./icons/FigmaIcon.astro"
 					</p>
 				</div>
 				<div class="stack-item">
-					<p class="body text-secondary alternate-text mb-0">
+					<p class="body text-secondary alternate-text mb-2">
 						I use various design tools to create meaningful and
 						impactful digital experiences. From wireframing to
 						high-fidelity prototypes, these are the tools I rely on
@@ -120,7 +120,6 @@ import FigmaIcon from "./icons/FigmaIcon.astro"
 	import { gsap } from "gsap"
 	import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-	// Only run on desktop/tablet
 	if (window.innerWidth >= 768) {
 		gsap.registerPlugin(ScrollTrigger)
 
@@ -219,6 +218,36 @@ import FigmaIcon from "./icons/FigmaIcon.astro"
 		overflow: hidden;
 	}
 
+	/* Gradient effect */
+	.text-stack::before,
+	.text-stack::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 12px;
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.text-stack::before {
+		top: 0;
+		background: linear-gradient(
+			to bottom,
+			var(--background-default) 0%,
+			transparent 100%
+		);
+	}
+
+	.text-stack::after {
+		bottom: 0;
+		background: linear-gradient(
+			to top,
+			var(--background-default) 0%,
+			transparent 100%
+		);
+	}
+
 	.stack-container {
 		position: relative;
 		width: 100%;
@@ -238,24 +267,20 @@ import FigmaIcon from "./icons/FigmaIcon.astro"
 		width: 100%;
 	}
 
-	/* Add specific styles for the heading */
 	.stack-item h1 {
 		line-height: 1.1;
 		margin-top: 8px;
 	}
 
-	/* Adjust line breaks in headings for better spacing */
 	.stack-item h1 br {
 		line-height: 0.9;
 	}
 
-	/* Add specific styles for the description */
 	.stack-item p {
 		line-height: 1.5;
 		margin-top: 8px;
 	}
 
-	/* Ensure consistent spacing for both text types */
 	#sidebarTitle .stack-item,
 	#sidebarDescription .stack-item {
 		padding-top: 0;
