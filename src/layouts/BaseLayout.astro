@@ -36,7 +36,9 @@ const props = Astro.props
 			>Skip to main content</a
 		>
 		<div class="min-h-screen bg-bg text-primary">
-			<slot />
+			<main class="fade-in">
+				<slot />
+			</main>
 		</div>
 	</body>
 </html>
