@@ -38,7 +38,7 @@ import { socialLinks } from "../config/social"
 	</div>
 
 	<div class="mt-auto mb-0">
-		<div class="flex gap-4 items-center mb-9">
+		<div class="flex gap-2 items-center mb-9">
 			{
 				socialLinks.map(({ url, icon: Icon, ariaLabel }) => (
 					<a
@@ -46,7 +46,7 @@ import { socialLinks } from "../config/social"
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label={ariaLabel}
-						class="text-primary hover:text-secondary transition-colors p-1.5 rounded-md focus-ring"
+						class="text-primary hover:text-secondary transition-colors p-1 rounded-md focus-ring"
 					>
 						<Icon class="w-5 h-5" />
 					</a>

@@ -24,7 +24,7 @@
 
 	@font-face {
 		font-family: "Fonetika";
-		src: url("/src/assets/fonts/FonetikaMonoUnlicensedTrial-Regular.woff2")
+		src: url("/src/assets/fonts/Fonetika-Mono-Regular.woff2")
 			format("woff2");
 		font-weight: 400;
 		font-display: swap;
@@ -185,7 +185,7 @@
 
 /* Focus ring utility */
 .focus-ring {
-	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring focus-visible:ring-btn-focus focus-visible:ring-offset-2;
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring focus-visible:ring-btn-focus focus-visible:ring-offset-1;
 }
 
 /* You can customize further with specific variants */
