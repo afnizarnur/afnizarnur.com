@@ -6,10 +6,10 @@ import { socialLinks } from "../config/social"
 	<div>
 		<div class="text-stack mb-6" id="sidebarTitle">
 			<div class="stack-container">
-				<div class="stack-item">
+				<div class="stack-item primary-content">
 					<h1 class="original-text mb-0">Afnizar<br />Nur Ghifari</h1>
 				</div>
-				<div class="stack-item">
+				<div class="stack-item tools-content">
 					<h1 class="alternate-text mb-0">Design<br />Tools</h1>
 				</div>
 			</div>
@@ -17,16 +17,16 @@ import { socialLinks } from "../config/social"
 
 		<div class="text-stack" id="sidebarDescription">
 			<div class="stack-container">
-				<div class="stack-item">
-					<p class="body text-secondary original-text mb-2">
+				<div class="stack-item primary-content">
+					<p class="body text-secondary original-text md:mb-2 mb-9">
 						Currently, I'm working at GovTech Edu, where I design
 						platforms for Rapor Pendidikan. Prior to this, I gained
 						valuable experience working on product design for
 						Bukalapak, startups, and with various agencies.
 					</p>
 				</div>
-				<div class="stack-item">
-					<p class="body text-secondary alternate-text mb-2">
+				<div class="stack-item tools-content">
+					<p class="body text-secondary alternate-text mb-2 md:mb-9">
 						I use various design tools to create meaningful and
 						impactful digital experiences. From wireframing to
 						high-fidelity prototypes, these are the tools I rely on
@@ -74,7 +74,41 @@ import { socialLinks } from "../config/social"
 	import { gsap } from "gsap"
 	import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-	if (window.innerWidth >= 768) {
+	// Consider both mobile and tablet as small screens (anything below 1024px)
+	const isSmallScreen = window.innerWidth < 1024
+
+	// Small screen setup - show primary content without animation
+	if (isSmallScreen) {
+		const stacks = document.querySelectorAll(".text-stack")
+
+		stacks.forEach((stack) => {
+			const container = stack.querySelector(".stack-container")
+			const primaryContent = stack.querySelector(
+				".stack-item.primary-content"
+			)
+			const toolsContent = stack.querySelector(
+				".stack-item.tools-content"
+			)
+
+			if (
+				container instanceof HTMLElement &&
+				primaryContent instanceof HTMLElement &&
+				toolsContent instanceof HTMLElement
+			) {
+				// Reset container height
+				container.style.height = "auto"
+
+				// Show only primary content
+				primaryContent.style.position = "relative"
+				primaryContent.style.height = "auto"
+
+				// Hide tools content
+				toolsContent.style.display = "none"
+			}
+		})
+	}
+	// Desktop setup with animations
+	else {
 		gsap.registerPlugin(ScrollTrigger)
 
 		const stacks = document.querySelectorAll(".text-stack")
@@ -119,7 +153,7 @@ import { socialLinks } from "../config/social"
 
 		// Update on window resize
 		window.addEventListener("resize", () => {
-			if (window.innerWidth >= 768) {
+			if (window.innerWidth >= 1024) {
 				setupStacks()
 			}
 		})
@@ -164,6 +198,17 @@ import { socialLinks } from "../config/social"
 			}
 		})
 	}
+
+	// Handle resize to switch between small screen and desktop layouts
+	window.addEventListener("resize", () => {
+		const wasSmallScreen = isSmallScreen
+		const isNowSmallScreen = window.innerWidth < 1024
+
+		// Only reload if there's a change between small screen and desktop
+		if (wasSmallScreen !== isNowSmallScreen && window.location.reload) {
+			window.location.reload()
+		}
+	})
 </script>
 
 <style>
@@ -208,12 +253,38 @@ import { socialLinks } from "../config/social"
 	}
 
 	.stack-item {
-		position: absolute;
-		top: 0;
-		left: 0;
 		width: 100%;
 		display: flex;
 		align-items: flex-start;
+	}
+
+	/* Initial state - Hide tools content by default to prevent flash */
+	.stack-item.tools-content {
+		display: none;
+	}
+
+	/* Default styles for small screens - only primary content visible */
+	.stack-item.primary-content {
+		position: relative;
+	}
+
+	/* Desktop styles */
+	@media (min-width: 1024px) {
+		.stack-item {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		/* On desktop, show both items for animation */
+		.stack-item.tools-content {
+			display: flex;
+			transform: translateY(100%);
+		}
+
+		.stack-item.primary-content {
+			transform: translateY(0);
+		}
 	}
 
 	.stack-item h1,

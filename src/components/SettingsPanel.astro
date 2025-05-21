@@ -17,9 +17,10 @@ import {
 	aria-modal="true"
 >
 	<div
+		id="settings-panel-content"
 		class="bg-surface rounded-lg w-full overflow-hidden border border-default"
 	>
-		<div class="mb-4">
+		<div class="mb-2">
 			<h3
 				id="settings-panel-title"
 				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-default mb-0"
@@ -32,7 +33,7 @@ import {
 				aria-label="Theme selection"
 			>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-default hover:bg-surface-hover"
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-default hover:bg-surface-hover"
 					data-theme="system"
 					aria-label="System theme"
 					aria-checked="false"
@@ -41,7 +42,7 @@ import {
 					<DarkLightIcon class="w-5 h-5 text-primary theme-icon" />
 				</button>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-default hover:bg-surface-hover"
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-default hover:bg-surface-hover"
 					data-theme="light"
 					aria-label="Light theme"
 					aria-checked="false"
@@ -50,7 +51,7 @@ import {
 					<LightIcon class="w-5 h-5 text-primary theme-icon" />
 				</button>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-default hover:bg-surface-hover"
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-default hover:bg-surface-hover"
 					data-theme="dark"
 					aria-label="Dark theme"
 					aria-checked="false"
@@ -59,31 +60,40 @@ import {
 					<DarkIcon class="w-5 h-5 text-primary theme-icon" />
 				</button>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-default hover:bg-surface-hover"
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-default hover:bg-surface-hover"
 					data-theme="gray"
 					aria-label="Gray theme"
 					aria-checked="false"
 					role="radio"
 				>
-					<div class="w-5 h-5 rounded-full bg-white border"></div>
+					<div
+						class="w-5 h-5 rounded-full bg-white border border-primary"
+					>
+					</div>
 				</button>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-default hover:bg-surface-hover"
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-r md:border-default hover:bg-surface-hover"
 					data-theme="pink"
 					aria-label="Pink theme"
 					aria-checked="false"
 					role="radio"
 				>
-					<div class="w-5 h-5 rounded-full bg-pink-300"></div>
+					<div
+						class="w-5 h-5 rounded-full bg-pink-300 border border-primary"
+					>
+					</div>
 				</button>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-default hover:bg-surface-hover"
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-b md:border-default hover:bg-surface-hover"
 					data-theme="blue"
 					aria-label="Blue theme"
 					aria-checked="false"
 					role="radio"
 				>
-					<div class="w-5 h-5 rounded-full bg-blue-300"></div>
+					<div
+						class="w-5 h-5 rounded-full bg-blue-300 border border-primary"
+					>
+					</div>
 				</button>
 			</div>
 		</div>
@@ -101,21 +111,21 @@ import {
 				aria-labelledby="font-size-controls"
 			>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-r md:border-default hover:bg-surface-hover"
+					class="settings-font-btn w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-r md:border-default hover:bg-surface-hover"
 					id="font-decrease"
 					aria-label="Decrease font size"
 				>
 					<FontDecreaseIcon class="w-5 h-5 text-primary font-icon" />
 				</button>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-r md:border-default hover:bg-surface-hover"
+					class="settings-font-btn w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:border-r md:border-default hover:bg-surface-hover"
 					id="font-default"
 					aria-label="Default font size"
 				>
 					<FontDefaultIcon class="w-5 h-5 text-primary font-icon" />
 				</button>
 				<button
-					class="w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:bg-surface-hover"
+					class="settings-font-btn w-[50px] md:w-full h-[50px] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 hover:bg-surface-hover"
 					id="font-increase"
 					aria-label="Increase font size"
 				>
@@ -126,12 +136,22 @@ import {
 	</div>
 
 	<script>
+		import { gsap } from "gsap"
+
 		// Theme switcher functionality
 		const themeButtons =
 			document.querySelectorAll<HTMLButtonElement>("[data-theme]")
 		const rootElement = document.documentElement
 		let currentFontSize = 100 // Default 100%
 		const settingsPanel = document.getElementById("settings-panel")
+		const settingsPanelContent = document.getElementById(
+			"settings-panel-content"
+		)
+		const themeButtonElements = document.querySelectorAll<HTMLElement>(
+			".settings-theme-btn"
+		)
+		const fontButtonElements =
+			document.querySelectorAll<HTMLElement>(".settings-font-btn")
 		const menuToggle = document.getElementById("menu-toggle")
 
 		// Media query for detecting system color scheme
@@ -163,6 +183,63 @@ import {
 				// Focus the first element when panel opens
 				firstFocusableElement.focus()
 			}
+		}
+
+		// Animation for panel open
+		const animateSettingsPanel = () => {
+			if (!settingsPanelContent) return
+
+			// Create a timeline for better sequencing
+			const tl = gsap.timeline({
+				defaults: {
+					duration: 0.25,
+					ease: "power3.out"
+				}
+			})
+
+			// Reset initial state
+			gsap.set(settingsPanelContent, {
+				opacity: 0,
+				y: -15,
+				scale: 0.97,
+				transformOrigin: "top"
+			})
+
+			// Main panel animation
+			tl.to(settingsPanelContent, {
+				opacity: 1,
+				y: 0,
+				scale: 1,
+				clearProps: "transform"
+			})
+
+			// Stagger the theme buttons
+			tl.fromTo(
+				themeButtonElements,
+				{ opacity: 0, y: -8 },
+				{
+					opacity: 1,
+					y: 0,
+					stagger: 0.02,
+					duration: 0.15,
+					clearProps: "transform"
+				},
+				"-=0.15" // Start slightly before the main animation finishes
+			)
+
+			// Stagger the font buttons
+			tl.fromTo(
+				fontButtonElements,
+				{ opacity: 0, y: -8 },
+				{
+					opacity: 1,
+					y: 0,
+					stagger: 0.02,
+					duration: 0.15,
+					clearProps: "transform"
+				},
+				"-=0.05" // Slight overlap with theme buttons
+			)
 		}
 
 		// Set active theme based on current setting
@@ -355,6 +432,7 @@ import {
 						// Panel was just opened
 						setupFocusTrap()
 						setActiveTheme()
+						animateSettingsPanel() // Run animation when panel opens
 					}
 				}
 			})
