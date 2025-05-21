@@ -1,5 +1,5 @@
 ---
-import { ArrowIcon } from "../icons"
+import LinkWithArrow from "./LinkWithArrow.astro"
 
 interface Props {
 	href?: string
@@ -21,8 +21,6 @@ const {
 
 const wrapperClasses = `flex flex-col h-full ${className}`
 const imageClasses = `${color} ${aspectRatio} rounded-2xl`
-const titleLinkClasses =
-	"relative underline hover:no-underline focus-ring rounded-2xl"
 ---
 
 {
@@ -46,10 +44,7 @@ const titleLinkClasses =
 					<h3
 						id={`card-title-${title.replace(/\s+/g, "-").toLowerCase()}`}
 					>
-						<a href={href} class={titleLinkClasses}>
-							{title}
-							<ArrowIcon class="inline-block ml-1 w-4 h-4 align-middle" />
-						</a>
+						<LinkWithArrow href={href} text={title} />
 					</h3>
 				)}
 				<slot />
@@ -81,21 +76,5 @@ const titleLinkClasses =
 
 	.card-content :global(p) {
 		@apply text-secondary;
-	}
-
-	.card-content :global(h3 a) {
-		display: inline;
-		text-decoration: underline;
-	}
-
-	.card-content :global(h3 a:hover) {
-		text-decoration: none;
-	}
-
-	.card-content :global(h3 a svg) {
-		margin-left: 4px;
-		width: 16px;
-		height: 16px;
-		vertical-align: text-bottom;
 	}
 </style>
