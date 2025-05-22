@@ -22,7 +22,9 @@ const {
 } = Astro.props
 
 const wrapperClasses = `flex flex-col h-full ${className}`
-const imageClasses = `${color} ${aspectRatio} rounded-2xl`
+const hasCssVar = color.startsWith("var(") || color.startsWith("#")
+const imageClasses = `${hasCssVar ? "" : color} ${aspectRatio} rounded-2xl`
+const inlineStyle = hasCssVar ? `background-color: ${color};` : ""
 ---
 
 {
@@ -40,7 +42,7 @@ const imageClasses = `${color} ${aspectRatio} rounded-2xl`
 						: undefined
 				}
 			>
-				<div class={imageClasses}>
+				<div class={imageClasses} style={inlineStyle}>
 					<slot name="image" />
 				</div>
 			</a>
@@ -61,7 +63,7 @@ const imageClasses = `${color} ${aspectRatio} rounded-2xl`
 		</div>
 	) : (
 		<div class={wrapperClasses}>
-			<div class={imageClasses}>
+			<div class={imageClasses} style={inlineStyle}>
 				<slot name="image" />
 			</div>
 			<div class="card-content">

@@ -19,28 +19,44 @@ interface Project {
 
 const projects: Project[] = [
 	{
-		title: "Rapor Pendidikan",
+		title: "Datapaw",
 		description:
-			"A platform that provides comprehensive data and evaluation reports from National Assessment for educational institutions.",
-		color: "bg-blue-300",
+			"A data analytics platform that helps educational institutions analyze and visualize their performance metrics and assessment data.",
+		color: "var(--color-pink-100)",
 		link: "https://raporpendidikan.dikdasmen.go.id/login",
 		image: raporPendidikanImg
 	},
 	{
-		title: "Situs Informasi resmi SIPLah",
+		title: "Ruang Murid",
 		description:
-			"Redesigning landing page to increase awareness and drive conversions, establishing it as a trusted hub for reliable information.",
-		color: "bg-yellow-300",
+			"An educational platform that provides students with a dedicated space to learn, collaborate, and access educational resources.",
+		color: "var(--color-orange-400)",
 		link: "https://siplah.kemdikbud.go.id/",
 		image: siplahImg
 	},
 	{
-		title: "Natatoko",
+		title: "Rapor Pendidikan",
 		description:
-			"All-in-one Software as a Service (SaaS) solution to manage online store. Take orders, handle products, and analyze business with ease.",
-		color: "bg-pink-200",
+			"A comprehensive education reporting system that helps schools and institutions track and analyze student performance and educational outcomes.",
+		color: "var(--color-blue-400)",
 		link: "https://natatoko.com/",
 		image: natatokoImg
+	},
+	{
+		title: "Natatoko",
+		description:
+			"An e-commerce platform that enables businesses to create and manage their online stores with powerful inventory and sales management tools.",
+		color: "#B08DCC",
+		link: "https://natatoko.com/",
+		image: raporPendidikanImg
+	},
+	{
+		title: "Rapor Pendidikan Publik",
+		description:
+			"A public-facing education reporting platform that provides transparent access to educational performance data and institutional metrics.",
+		color: "var(--color-green-300)",
+		link: "https://natatoko.com/",
+		image: raporPendidikanImg
 	}
 ]
 ---
@@ -98,6 +114,35 @@ const projects: Project[] = [
 			</div>
 			<p>{projects[2].description}</p>
 		</Card>
+
+		<Grid cols="grid-cols-1 md:grid-cols-2" gap="gap-6">
+			{
+				projects.slice(3, 5).map((project) => (
+					<Card
+						href={project.link}
+						color={project.color}
+						title={project.title}
+						className="work-card group"
+						aspectRatio="none"
+						openInNewTab={true}
+					>
+						<div class="overflow-hidden" slot="image">
+							<Image
+								src={project.image}
+								alt={`${project.title} project thumbnail`}
+								width={800}
+								height={450}
+								quality={90}
+								format="webp"
+								loading="eager"
+								class="object-cover w-full h-full rounded-2xl"
+							/>
+						</div>
+						<p>{project.description}</p>
+					</Card>
+				))
+			}
+		</Grid>
 	</Stack>
 </Section>
 
