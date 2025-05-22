@@ -1,0 +1,164 @@
+---
+// Static location data
+const location = "Serang, Indonesia"
+const lat = -6.1149 // Latitude for Serang
+const lon = 106.1502 // Longitude for Serang
+
+// Get current time in Serang (UTC+7)
+const now = new Date()
+const serangTime = new Date(now.getTime() + 7 * 60 * 60 * 1000)
+const hours = serangTime.getUTCHours()
+const minutes = serangTime.getUTCMinutes()
+const ampm = hours >= 12 ? "PM" : "AM"
+const formattedHours = hours % 12 || 12
+const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes
+const currentTime = `${formattedHours}:${formattedMinutes} ${ampm}`
+
+// Fetch real weather data
+let weatherDescription = "Partly Cloudy"
+let weatherTemperature = 28
+let weatherHumor = "clouds are having a party but only invited a few friends"
+
+try {
+	// This is a free weather API that doesn't require authentication
+	const response = await fetch(
+		`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=Asia/Jakarta`
+	)
+
+	if (response.ok) {
+		const data = await response.json()
+		// Get temperature from the API response
+		weatherTemperature = Math.round(data.current.temperature_2m)
+
+		// Convert weather code to description
+		// Weather codes from Open-Meteo API: https://open-meteo.com/en/docs
+		const weatherCode = data.current.weather_code
+		const weatherDescriptions = {
+			0: "Clear sky",
+			1: "Mainly clear",
+			2: "Partly cloudy",
+			3: "Overcast",
+			45: "Fog",
+			48: "Depositing rime fog",
+			51: "Light drizzle",
+			53: "Moderate drizzle",
+			55: "Dense drizzle",
+			56: "Light freezing drizzle",
+			57: "Dense freezing drizzle",
+			61: "Slight rain",
+			63: "Moderate rain",
+			65: "Heavy rain",
+			66: "Light freezing rain",
+			67: "Heavy freezing rain",
+			71: "Slight snow fall",
+			73: "Moderate snow fall",
+			75: "Heavy snow fall",
+			77: "Snow grains",
+			80: "Slight rain showers",
+			81: "Moderate rain showers",
+			82: "Violent rain showers",
+			85: "Slight snow showers",
+			86: "Heavy snow showers",
+			95: "Thunderstorm",
+			96: "Thunderstorm with slight hail",
+			99: "Thunderstorm with heavy hail"
+		}
+
+		weatherDescription = weatherDescriptions[weatherCode] || "Partly cloudy"
+
+		// Humorous descriptions based on weather
+		const humorDescriptions = {
+			"Clear sky": "sky so clear you can almost see your future",
+			"Mainly clear": "clouds took a day off, smart move",
+			"Partly cloudy":
+				"clouds are having a party but only invited a few friends",
+			Overcast: "sun called in sick today",
+			Fog: "playing hide and seek with the horizon (and winning)",
+			"Depositing rime fog":
+				"nature's way of frosting everything without asking",
+			"Light drizzle": "barely enough rain to justify canceling your jog",
+			"Moderate drizzle":
+				"umbrellas are recommended, but so is a sense of adventure",
+			"Dense drizzle":
+				"like standing next to someone aggressively spritzing perfume",
+			"Light freezing drizzle":
+				"rain with commitment issues turning to ice mid-fall",
+			"Dense freezing drizzle":
+				"nature's version of that friend who makes everything more complicated",
+			"Slight rain":
+				"just enough rain to make you question bringing an umbrella",
+			"Moderate rain":
+				"perfect weather for ducks and people who enjoy saying 'I told you so'",
+			"Heavy rain":
+				"it's like the clouds just ended a toxic relationship",
+			"Light freezing rain":
+				"slippery enough to make your dignity questionable",
+			"Heavy freezing rain":
+				"Mother Nature's way of saying 'stay home and binge-watch something'",
+			"Slight snow fall":
+				"not enough snow to build a snowman, but enough to complain about",
+			"Moderate snow fall":
+				"just the right amount of snow to make driving interesting",
+			"Heavy snow fall":
+				"time to panic-buy bread and milk for no logical reason",
+			"Snow grains": "snow's minimalist phase",
+			"Slight rain showers": "sky's version of a drive-by splashing",
+			"Moderate rain showers":
+				"the sky is practicing its water balloon aiming",
+			"Violent rain showers": "the sky is having anger management issues",
+			"Slight snow showers": "confetti from the winter gods",
+			"Heavy snow showers": "winter's surprise party nobody asked for",
+			Thunderstorm: "Thor is having a temper tantrum",
+			"Thunderstorm with slight hail":
+				"sky is throwing ice cubes at us now, great",
+			"Thunderstorm with heavy hail":
+				"car insurance companies are sweating nervously"
+		}
+
+		weatherHumor =
+			humorDescriptions[weatherDescription] ||
+			"weather doing weather things"
+	}
+} catch (error) {
+	console.error("Error fetching weather data:", error)
+	// Fallback to default values if fetch fails
+}
+
+// Temperature humor with more variations
+let tempHumor = ""
+if (weatherTemperature <= 0) {
+	tempHumor = "so cold even polar bears are filing complaints"
+} else if (weatherTemperature <= 5) {
+	tempHumor = "cold enough to make your nose question its career choice"
+} else if (weatherTemperature <= 10) {
+	tempHumor = "so cold your phone battery will die just looking at it"
+} else if (weatherTemperature <= 15) {
+	tempHumor =
+		"jacket weather, but the kind where you're still questioning your choice"
+} else if (weatherTemperature <= 20) {
+	tempHumor =
+		"cool enough for one hoodie but not two, it's a fashion challenge"
+} else if (weatherTemperature <= 23) {
+	tempHumor = "perfect 'I don't need the AC yet' temperature"
+} else if (weatherTemperature <= 27) {
+	tempHumor = "the rare temperature where nobody is complaining"
+} else if (weatherTemperature <= 30) {
+	tempHumor = "warm enough to make you reconsider that extra coffee"
+} else if (weatherTemperature <= 32) {
+	tempHumor = "warm enough to regret your wardrobe choices by noon"
+} else if (weatherTemperature <= 35) {
+	tempHumor = "hot enough to fry an egg on your laptop"
+} else if (weatherTemperature <= 38) {
+	tempHumor = "so hot your makeup is considering a divorce from your face"
+} else {
+	tempHumor = "so hot that asphalt is considering a career change to lava"
+}
+---
+
+<div class="location-weather p-6">
+	<p class="text-sm text-disabled leading-relaxed">
+		{currentTime} in Serang where {weatherHumor} and it's {tempHumor} ({
+			weatherTemperature
+		}&#176;C)
+	</p>
+</div>
