@@ -5,13 +5,15 @@ interface Props {
 	href: string
 	text: string
 	className?: string
+	openInNewTab?: boolean
 }
 
-const { href, text, className = "" } = Astro.props
+const { href, text, className = "", openInNewTab = false } = Astro.props
 ---
 
 <a
 	href={href}
+	{...openInNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {}}
 	class={`relative underline hover:no-underline focus-ring rounded-md ${className}`}
 >
 	{text}

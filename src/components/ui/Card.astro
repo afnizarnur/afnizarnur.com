@@ -8,6 +8,7 @@ interface Props {
 	aspectRatio?: string
 	isHoverable?: boolean
 	title?: string
+	openInNewTab?: boolean
 }
 
 const {
@@ -16,7 +17,8 @@ const {
 	color = "bg-surface",
 	aspectRatio = "aspect-[4/3]",
 	isHoverable = true,
-	title
+	title,
+	openInNewTab = false
 } = Astro.props
 
 const wrapperClasses = `flex flex-col h-full ${className}`
@@ -28,6 +30,9 @@ const imageClasses = `${color} ${aspectRatio} rounded-2xl`
 		<div class={wrapperClasses}>
 			<a
 				href={href}
+				{...(openInNewTab
+					? { target: "_blank", rel: "noopener noreferrer" }
+					: {})}
 				class="block focus-ring rounded-2xl mb-5"
 				aria-labelledby={
 					title
@@ -44,7 +49,11 @@ const imageClasses = `${color} ${aspectRatio} rounded-2xl`
 					<h3
 						id={`card-title-${title.replace(/\s+/g, "-").toLowerCase()}`}
 					>
-						<LinkWithArrow href={href} text={title} />
+						<LinkWithArrow
+							href={href}
+							text={title}
+							openInNewTab={openInNewTab}
+						/>
 					</h3>
 				)}
 				<slot />
