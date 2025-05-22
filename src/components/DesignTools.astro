@@ -1,8 +1,8 @@
 ---
 import Section from "./ui/Section.astro"
-import Card from "./ui/Card.astro"
 import Grid from "./ui/Grid.astro"
 import Stack from "./ui/Stack.astro"
+import LinkWithArrow from "./ui/LinkWithArrow.astro"
 import { Image } from "astro:assets"
 
 // Import placeholder images - replace these with actual images later
@@ -18,29 +18,64 @@ interface Tool {
 
 const tools: Tool[] = [
 	{
-		title: "Timeline",
-		description:
-			"A Figma plugin that helps designers create and visualize project timelines directly in their design files with adjustable durations, milestones, and customizable styling.",
-		color: "bg-blue-200",
-		link: "https://www.figma.com/community/plugin/1101962045948388021"
+		title: "Page Automator",
+		description: "Automate the process of creating multiple pages.",
+		color: "var(--color-gray-100)",
+		link: "https://example.com/page-automator"
 	},
 	{
-		title: "Typetools",
-		description:
-			"A collection of useful typography tools for Figma that helps designers manage and manipulate text elements more efficiently with powerful formatting options.",
-		color: "bg-green-200",
-		link: "https://www.figma.com/community/plugin/1202677436735698504"
+		title: "Variant Inspector",
+		description: "Automate the process of creating multiple pages.",
+		color: "var(--color-gray-100)",
+		link: "https://example.com/variant-inspector"
 	},
 	{
-		title: "Statistic",
-		description:
-			"A plugin that analyzes your Figma files to provide insightful statistics about your design system elements, component usage, and file structure to help optimize your workflow.",
-		color: "bg-pink-300",
-		link: "https://www.figma.com/community/plugin/1104471716601644685"
+		title: "Split Anything",
+		description: "Automate the process of creating multiple pages.",
+		color: "var(--color-gray-100)",
+		link: "https://example.com/split-anything"
+	},
+	{
+		title: "Design Tokens to Variables",
+		description: "Automate the process of creating multiple pages.",
+		color: "var(--color-gray-100)",
+		link: "https://example.com/design-tokens-to-variables"
 	}
 ]
 ---
 
 <Section title="Design Tooling" class="pt-6" id="tools-section">
-	<!-- Content will be here -->
+	<Stack gap="xl">
+		<Grid cols="grid-cols-1 md:grid-cols-2" gap="gap-0">
+			{
+				tools.map((tool) => (
+					<div class="tool-card bg-bg p-6 border border-dashed border-border overflow-hidden">
+						<div class="tool-icon bg-gray-100 w-8 h-8 rounded-lg mb-5 flex items-center justify-center">
+							{tool.image ? (
+								<Image
+									src={tool.image}
+									alt=""
+									width={36}
+									height={36}
+									class="w-8 h-8"
+								/>
+							) : (
+								<div class="w-8 h-8" />
+							)}
+						</div>
+
+						<h3 class="text-primary font-sans text-body mb-2">
+							<LinkWithArrow
+								href={tool.link}
+								text={tool.title}
+								openInNewTab={true}
+							/>
+						</h3>
+
+						<p class="text-secondary mb-0">{tool.description}</p>
+					</div>
+				))
+			}
+		</Grid>
+	</Stack>
 </Section>
