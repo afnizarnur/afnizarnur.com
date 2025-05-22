@@ -42,40 +42,5 @@ const tools: Tool[] = [
 ---
 
 <Section title="Design Tooling" class="pt-6" id="tools-section">
-	<Stack gap="xl" class="p-6 pr-6 lg:pr-12 xl:pr-6">
-		<Grid cols="grid-cols-1 lg:grid-cols-2" gap="gap-6">
-			{
-				tools.slice(0, 3).map((tool) => (
-					<Card
-						href={tool.link}
-						color={tool.color}
-						title={tool.title}
-						className="tool-card"
-						aspectRatio="none"
-					>
-						{tool.image && (
-							<div class="overflow-hidden" slot="image">
-								<Image
-									src={tool.image}
-									alt={`${tool.title} thumbnail`}
-									width={800}
-									height={450}
-									quality={90}
-									format="webp"
-									class="object-cover w-full h-full rounded-2xl"
-								/>
-							</div>
-						)}
-						<p>{tool.description}</p>
-					</Card>
-				))
-			}
-		</Grid>
-	</Stack>
+	<!-- Content will be here -->
 </Section>
-
-<style>
-	.tool-card :global(div.card-content) {
-		padding-top: 1.5rem;
-	}
-</style>

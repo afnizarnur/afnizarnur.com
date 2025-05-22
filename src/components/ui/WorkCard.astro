@@ -1,0 +1,77 @@
+---
+import LinkWithArrow from "./LinkWithArrow.astro"
+import { Image } from "astro:assets"
+
+interface Props {
+	title: string
+	description: string
+	color: string
+	link: string
+	image: ImageMetadata
+	imageAlt?: string
+	className?: string
+	aspectRatio?: string
+	openInNewTab?: boolean
+}
+
+const {
+	title,
+	description,
+	color,
+	link,
+	image,
+	imageAlt = `${title} project thumbnail`,
+	className = "",
+	aspectRatio = "none",
+	openInNewTab = true
+} = Astro.props
+
+const wrapperClasses = `flex flex-col h-full ${className}`
+const hasCssVar = color.startsWith("var(") || color.startsWith("#")
+const imageClasses = `${hasCssVar ? "" : color} ${aspectRatio} rounded-2xl overflow-hidden`
+const inlineStyle = hasCssVar ? `background-color: ${color};` : ""
+---
+
+<div class={wrapperClasses}>
+	<a
+		href={link}
+		{...openInNewTab
+			? { target: "_blank", rel: "noopener noreferrer" }
+			: {}}
+		class="block focus-ring rounded-2xl mb-5"
+		aria-labelledby={`card-title-${title.replace(/\s+/g, "-").toLowerCase()}`}
+	>
+		<div class={imageClasses} style={inlineStyle}>
+			<Image
+				src={image}
+				alt={imageAlt}
+				width={800}
+				height={450}
+				quality={90}
+				format="webp"
+				loading="eager"
+				class="object-cover w-full h-full rounded-2xl"
+			/>
+		</div>
+	</a>
+	<div class="card-content">
+		<h3 id={`card-title-${title.replace(/\s+/g, "-").toLowerCase()}`}>
+			<LinkWithArrow
+				href={link}
+				text={title}
+				openInNewTab={openInNewTab}
+			/>
+		</h3>
+		<p>{description}</p>
+	</div>
+</div>
+
+<style>
+	.card-content h3 {
+		@apply text-primary mb-2 font-sans text-body;
+	}
+
+	.card-content p {
+		@apply text-secondary;
+	}
+</style>

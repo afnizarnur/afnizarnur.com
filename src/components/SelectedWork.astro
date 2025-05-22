@@ -1,6 +1,6 @@
 ---
 import Section from "./ui/Section.astro"
-import Card from "./ui/Card.astro"
+import WorkCard from "./ui/WorkCard.astro"
 import Grid from "./ui/Grid.astro"
 import Stack from "./ui/Stack.astro"
 import { Image } from "astro:assets"
@@ -65,82 +65,44 @@ const projects: Project[] = [
 	<Stack gap="xl" class="p-6 pr-6 lg:pr-12">
 		<Grid cols="grid-cols-1 md:grid-cols-2" gap="gap-6">
 			{
-				projects.slice(0, 2).map((project) => (
-					<Card
-						href={project.link}
-						color={project.color}
-						title={project.title}
-						className="work-card group"
-						aspectRatio="none"
-						openInNewTab={true}
-					>
-						<div class="overflow-hidden" slot="image">
-							<Image
-								src={project.image}
-								alt={`${project.title} project thumbnail`}
-								width={800}
-								height={450}
-								quality={90}
-								format="webp"
-								loading="eager"
-								class="object-cover w-full h-full rounded-2xl"
-							/>
-						</div>
-						<p>{project.description}</p>
-					</Card>
-				))
+				projects
+					.slice(0, 2)
+					.map((project) => (
+						<WorkCard
+							title={project.title}
+							description={project.description}
+							color={project.color}
+							link={project.link}
+							image={project.image}
+							className="work-card group"
+						/>
+					))
 			}
 		</Grid>
 
-		<Card
-			href={projects[2].link}
-			color={projects[2].color}
+		<WorkCard
 			title={projects[2].title}
+			description={projects[2].description}
+			color={projects[2].color}
+			link={projects[2].link}
+			image={projects[2].image}
 			className="work-card group"
-			aspectRatio="none"
-			openInNewTab={true}
-		>
-			<div class="overflow-hidden" slot="image">
-				<Image
-					src={projects[2].image}
-					alt={`${projects[2].title} project thumbnail`}
-					width={1600}
-					height={900}
-					quality={90}
-					format="webp"
-					loading="eager"
-					class="object-cover w-full h-full rounded-2xl"
-				/>
-			</div>
-			<p>{projects[2].description}</p>
-		</Card>
+		/>
 
 		<Grid cols="grid-cols-1 md:grid-cols-2" gap="gap-6">
 			{
-				projects.slice(3, 5).map((project) => (
-					<Card
-						href={project.link}
-						color={project.color}
-						title={project.title}
-						className="work-card group"
-						aspectRatio="none"
-						openInNewTab={true}
-					>
-						<div class="overflow-hidden" slot="image">
-							<Image
-								src={project.image}
-								alt={`${project.title} project thumbnail`}
-								width={800}
-								height={450}
-								quality={90}
-								format="webp"
-								loading="eager"
-								class="object-cover w-full h-full rounded-2xl"
-							/>
-						</div>
-						<p>{project.description}</p>
-					</Card>
-				))
+				projects
+					.slice(3, 5)
+					.map((project) => (
+						<WorkCard
+							title={project.title}
+							description={project.description}
+							color={project.color}
+							link={project.link}
+							image={project.image}
+							className="work-card group"
+						/>
+					))
 			}
 		</Grid>
 	</Stack>
