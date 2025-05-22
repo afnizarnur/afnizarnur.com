@@ -83,13 +83,16 @@ export function initSidebarAnimation() {
 		window.addEventListener("resize", () => {
 			if (window.innerWidth >= 1024) {
 				setupStacks()
+
+				// Refresh ScrollTrigger on resize for large screens
+				ScrollTrigger.refresh()
 			}
 		})
 
 		ScrollTrigger.create({
 			trigger: "#tools-section",
-			start: "top center",
-			end: "bottom center",
+			start: "top 80%", // Trigger earlier when scrolling down
+			end: "bottom 20%", // End trigger point later
 			onEnter: () => {
 				stacks.forEach((stack) => {
 					const items = stack.querySelectorAll(".stack-item")
