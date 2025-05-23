@@ -3,6 +3,7 @@ import Section from "./ui/Section.astro"
 import Grid from "./ui/Grid.astro"
 import Stack from "./ui/Stack.astro"
 import LinkWithArrow from "./ui/LinkWithArrow.astro"
+import DitherImage from "./ui/DitherImage.astro"
 import { Image } from "astro:assets"
 
 // Import placeholder images - replace these with actual images later
@@ -14,6 +15,15 @@ interface Tool {
 	color: string
 	link: string
 	image?: ImageMetadata
+}
+
+// Add an interface for the dither image props
+interface DitherImageProps {
+	src: string
+	brightness?: number
+	contrast?: number
+	resolution?: number
+	ditherStep?: number
 }
 
 const tools: Tool[] = [
@@ -42,10 +52,129 @@ const tools: Tool[] = [
 		link: "https://example.com/design-tokens-to-variables"
 	}
 ]
+
+// Define default dither image properties
+const ditherImageProps: DitherImageProps = {
+	src: "/designtools.png", // Using an existing image in the public directory
+	brightness: 1.8,
+	contrast: 1,
+	resolution: 120,
+	ditherStep: 1
+}
+
+// Generate a unique ID for the controls
+const controlsId = `dither-controls-${Math.random().toString(36).substr(2, 9)}`
 ---
 
 <Section title="Design Tooling" class="pt-6" id="tools-section">
 	<Stack gap="xl">
+		<div class="dither-section w-full mb-6">
+			<div class="dither-header w-full mb-3">
+				<DitherImage
+					src={ditherImageProps.src}
+					brightness={ditherImageProps.brightness}
+					contrast={ditherImageProps.contrast}
+					resolution={ditherImageProps.resolution}
+					ditherStep={ditherImageProps.ditherStep}
+					class="w-full rounded-lg"
+					id="dither-image"
+				/>
+			</div>
+
+			<div
+				class="dither-controls bg-surface-default p-3 rounded-lg border border-border-high"
+			>
+				<div
+					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
+					id={controlsId}
+				>
+					<div class="control-group">
+						<label
+							for="brightness"
+							class="text-sm text-secondary mb-1 block"
+							>Brightness</label
+						>
+						<input
+							type="range"
+							id="brightness"
+							min="0.5"
+							max="2"
+							step="0.1"
+							value={ditherImageProps.brightness}
+							class="w-full"
+						/>
+					</div>
+					<div class="control-group">
+						<label
+							for="contrast"
+							class="text-sm text-secondary mb-1 block"
+							>Contrast</label
+						>
+						<input
+							type="range"
+							id="contrast"
+							min="0.5"
+							max="2.5"
+							step="0.1"
+							value={ditherImageProps.contrast}
+							class="w-full"
+						/>
+					</div>
+					<div class="control-group">
+						<label
+							for="resolution"
+							class="text-sm text-secondary mb-1 block"
+							>Resolution</label
+						>
+						<input
+							type="range"
+							id="resolution"
+							min="20"
+							max="150"
+							step="5"
+							value={ditherImageProps.resolution}
+							class="w-full"
+						/>
+					</div>
+					<div class="control-group">
+						<label
+							for="ditherStep"
+							class="text-sm text-secondary mb-1 block"
+							>Dither Step</label
+						>
+						<input
+							type="range"
+							id="ditherStep"
+							min="0.5"
+							max="2"
+							step="0.1"
+							value={ditherImageProps.ditherStep}
+							class="w-full"
+						/>
+					</div>
+					<div class="control-group">
+						<label
+							for="useThemeColors"
+							class="text-sm text-secondary mb-1 block"
+							>Color Mode</label
+						>
+						<div class="flex items-center">
+							<span class="text-xs mr-2">B/W</span>
+							<label class="switch">
+								<input
+									type="checkbox"
+									id="useThemeColors"
+									checked
+								/>
+								<span class="slider round"></span>
+							</label>
+							<span class="text-xs ml-2">Theme</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div
 			class="grid grid-cols-1 md:grid-cols-2 relative border-b border-dashed border-border-high"
 		>
@@ -91,3 +220,158 @@ const tools: Tool[] = [
 		</div>
 	</Stack>
 </Section>
+
+<script define:vars={{ controlsId }}>
+	document.addEventListener("DOMContentLoaded", () => {
+		// Get the controls container
+		const controlsContainer = document.getElementById(controlsId)
+		if (!controlsContainer) return
+
+		// Get the dither image component
+		const ditherImage = document.getElementById("dither-image")
+		if (!ditherImage) return
+
+		// Get all controls
+		const brightnessInput = controlsContainer.querySelector("#brightness")
+		const contrastInput = controlsContainer.querySelector("#contrast")
+		const resolutionInput = controlsContainer.querySelector("#resolution")
+		const ditherStepInput = controlsContainer.querySelector("#ditherStep")
+		const useThemeColorsInput =
+			controlsContainer.querySelector("#useThemeColors")
+
+		// Function to regenerate the dither image with new parameters
+		const regenerateDitherImage = () => {
+			// Create a new image element with updated parameters
+			const newImage = document.createElement("img")
+			newImage.src = "/designtools.png" // Use the same source image
+
+			// Get current parameter values
+			const brightness = brightnessInput.value
+			const contrast = contrastInput.value
+			const resolution = resolutionInput.value
+			const ditherStep = ditherStepInput.value
+			const useThemeColors = useThemeColorsInput.checked
+
+			// Create a custom event to update the dither parameters
+			const updateEvent = new CustomEvent("update-dither-params", {
+				detail: {
+					brightness: parseFloat(brightness),
+					contrast: parseFloat(contrast),
+					resolution: parseFloat(resolution),
+					ditherStep: parseFloat(ditherStep),
+					useThemeColors: useThemeColors
+				}
+			})
+
+			// Dispatch the event on the dither image element
+			ditherImage.dispatchEvent(updateEvent)
+		}
+
+		// Add event listeners to all controls
+		;[
+			brightnessInput,
+			contrastInput,
+			resolutionInput,
+			ditherStepInput,
+			useThemeColorsInput
+		].forEach((input) => {
+			if (input) {
+				input.addEventListener("input", regenerateDitherImage)
+			}
+		})
+	})
+</script>
+
+<style>
+	.dither-header {
+		height: 250px;
+	}
+
+	.dither-controls {
+		font-size: 0.875rem;
+	}
+
+	input[type="range"] {
+		-webkit-appearance: none;
+		appearance: none;
+		height: 6px;
+		background: var(--border-high, #ccc);
+		border-radius: 3px;
+		outline: none;
+	}
+
+	input[type="range"]::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 16px;
+		height: 16px;
+		background: var(--text-primary, #333);
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
+	input[type="range"]::-moz-range-thumb {
+		width: 16px;
+		height: 16px;
+		background: var(--text-primary, #333);
+		border-radius: 50%;
+		cursor: pointer;
+		border: none;
+	}
+
+	/* Toggle switch styles */
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 36px;
+		height: 20px;
+	}
+
+	.switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: var(--border-default, #ccc);
+		transition: 0.4s;
+	}
+
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 16px;
+		width: 16px;
+		left: 2px;
+		bottom: 2px;
+		background-color: var(--background-default, white);
+		transition: 0.4s;
+	}
+
+	input:checked + .slider {
+		background-color: var(--text-primary, #333);
+	}
+
+	input:focus + .slider {
+		box-shadow: 0 0 1px var(--text-primary, #333);
+	}
+
+	input:checked + .slider:before {
+		transform: translateX(16px);
+	}
+
+	.slider.round {
+		border-radius: 34px;
+	}
+
+	.slider.round:before {
+		border-radius: 50%;
+	}
+</style>

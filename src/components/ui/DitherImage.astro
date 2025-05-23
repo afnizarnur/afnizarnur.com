@@ -1,0 +1,555 @@
+---
+interface Props {
+	src: string
+	alt?: string
+	brightness?: number
+	contrast?: number
+	resolution?: number
+	ditherStep?: number
+	interactive?: boolean
+	class?: string
+	id?: string
+}
+
+const {
+	src,
+	alt = "",
+	brightness = 1.0,
+	contrast = 1.0,
+	resolution = 100,
+	ditherStep = 3,
+	interactive = true,
+	class: className = "",
+	id
+} = Astro.props
+
+const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
+---
+
+<div class={`dither-image-container w-full ${className}`} id={id}>
+	<canvas id={uniqueId} class="w-full cursor-pointer"></canvas>
+	<div class="loading-placeholder">
+		<div class="loading-text">Processing dithered image...</div>
+	</div>
+</div>
+
+<script
+	define:vars={{
+		uniqueId,
+		src,
+		brightness,
+		contrast,
+		resolution,
+		ditherStep,
+		interactive,
+		id
+	}}
+>
+	document.addEventListener("DOMContentLoaded", () => {
+		const container =
+			document.getElementById(id) ||
+			document.querySelector(".dither-image-container")
+		const canvas = document.getElementById(uniqueId)
+		const loadingPlaceholder = container.querySelector(
+			".loading-placeholder"
+		)
+		const ctx = canvas.getContext("2d")
+
+		// Current parameters
+		let currentParams = {
+			brightness: brightness,
+			contrast: contrast,
+			resolution: resolution,
+			ditherStep: ditherStep,
+			useThemeColors: true // Default to using theme colors
+		}
+
+		// Get theme colors
+		function getThemeColors() {
+			const computedStyle = getComputedStyle(document.documentElement)
+			const bgColor =
+				computedStyle.getPropertyValue("--background-default").trim() ||
+				"#ffffff"
+			const textColor =
+				computedStyle.getPropertyValue("--text-primary").trim() ||
+				"#000000"
+
+			// Convert CSS color to RGB array
+			function colorToRgb(color) {
+				// If color is in hex format
+				if (color.charAt(0) === "#") {
+					const r = parseInt(color.substr(1, 2), 16)
+					const g = parseInt(color.substr(3, 2), 16)
+					const b = parseInt(color.substr(5, 2), 16)
+					return [r, g, b]
+				}
+				// If color is in rgb/rgba format
+				const match = color.match(
+					/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/
+				)
+				if (match) {
+					return [
+						parseInt(match[1]),
+						parseInt(match[2]),
+						parseInt(match[3])
+					]
+				}
+				// Default to black and white if parsing fails
+				return color === "#ffffff" ? [255, 255, 255] : [0, 0, 0]
+			}
+
+			return {
+				bgRgb: colorToRgb(bgColor),
+				textRgb: colorToRgb(textColor)
+			}
+		}
+
+		// Standard black and white colors
+		const standardColors = {
+			bgRgb: [255, 255, 255], // White
+			textRgb: [0, 0, 0] // Black
+		}
+
+		// Watch for theme changes
+		let themeColors = getThemeColors()
+
+		// MutationObserver to detect theme changes
+		const observer = new MutationObserver(() => {
+			const newColors = getThemeColors()
+			// Only update if colors have changed and we're using theme colors
+			if (
+				currentParams.useThemeColors &&
+				JSON.stringify(newColors) !== JSON.stringify(themeColors)
+			) {
+				themeColors = newColors
+				loadAndProcessImage(src)
+			}
+		})
+
+		// Start observing document root for class changes (theme toggles often change classes)
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["class", "data-theme"]
+		})
+
+		// Function to get the current color scheme based on the useThemeColors parameter
+		function getCurrentColors() {
+			return currentParams.useThemeColors ? themeColors : standardColors
+		}
+
+		// Function to load and process the image
+		function loadAndProcessImage(imageSrc) {
+			const img = new Image()
+			img.crossOrigin = "Anonymous"
+
+			// Handle image loading errors
+			img.onerror = function () {
+				console.error("Error loading image:", imageSrc)
+
+				// Hide the loading placeholder
+				if (loadingPlaceholder) {
+					loadingPlaceholder.style.display = "none"
+				}
+
+				// Create a placeholder pattern with the canvas
+				createDitherPatternFallback()
+			}
+
+			img.onload = function () {
+				// Hide the loading placeholder
+				if (loadingPlaceholder) {
+					loadingPlaceholder.style.display = "none"
+				}
+
+				// Set canvas dimensions to match container width
+				const containerWidth = container.offsetWidth
+				const aspectRatio = img.height / img.width
+
+				canvas.width = containerWidth
+				canvas.height = containerWidth * aspectRatio
+
+				// Apply dithering effect
+				applyDither(img)
+			}
+
+			// Attempt to load the image
+			img.src = imageSrc
+		}
+
+		// Create a fallback pattern if the image doesn't load
+		function createDitherPatternFallback() {
+			// Get current colors based on useThemeColors parameter
+			const { bgRgb, textRgb } = getCurrentColors()
+			const bgColorStyle = `rgb(${bgRgb[0]}, ${bgRgb[1]}, ${bgRgb[2]})`
+			const textColorStyle = `rgb(${textRgb[0]}, ${textRgb[1]}, ${textRgb[2]})`
+
+			// Set canvas dimensions based on container
+			const containerWidth = container.offsetWidth
+			const containerHeight = container.offsetHeight || 250 // Fallback height
+
+			canvas.width = containerWidth
+			canvas.height = containerHeight
+
+			// Clear canvas with background color
+			ctx.fillStyle = bgColorStyle
+			ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+			// Create a simple pattern of dots
+			const patternSize = Math.round(currentParams.resolution / 10)
+			const dots = []
+
+			// Draw a grid of dots
+			for (let y = 0; y < canvas.height; y += patternSize) {
+				for (let x = 0; x < canvas.width; x += patternSize) {
+					// Random threshold to create an uneven pattern
+					if (Math.random() > 0.6) {
+						ctx.fillStyle = textColorStyle
+						ctx.fillRect(x, y, 1, 1)
+
+						// Store dot for interactivity
+						if (interactive) {
+							dots.push({
+								originalX: x,
+								originalY: y,
+								x: x,
+								y: y,
+								vx: 0,
+								vy: 0
+							})
+						}
+					}
+				}
+			}
+
+			// Add interactivity to the fallback pattern
+			if (interactive && dots.length > 0) {
+				addInteractivityToFallback(dots)
+			}
+		}
+
+		// Add interactivity to the fallback pattern
+		function addInteractivityToFallback(dots) {
+			// Get current colors based on useThemeColors parameter
+			const { bgRgb, textRgb } = getCurrentColors()
+			const bgColorStyle = `rgb(${bgRgb[0]}, ${bgRgb[1]}, ${bgRgb[2]})`
+			const textColorStyle = `rgb(${textRgb[0]}, ${textRgb[1]}, ${textRgb[2]})`
+
+			canvas.addEventListener("mousemove", (e) => {
+				const rect = canvas.getBoundingClientRect()
+				const mouseX = e.clientX - rect.left
+				const mouseY = e.clientY - rect.top
+
+				// Clear canvas
+				ctx.clearRect(0, 0, canvas.width, canvas.height)
+				ctx.fillStyle = bgColorStyle
+				ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+				// Draw and update dots
+				dots.forEach((dot) => {
+					// Calculate distance from mouse
+					const dx = mouseX - dot.x
+					const dy = mouseY - dot.y
+					const distance = Math.sqrt(dx * dx + dy * dy)
+
+					// Apply force inversely proportional to distance
+					if (distance < 100) {
+						const force = (-0.5 * (100 - distance)) / 100
+						dot.vx += dx * force * 0.02
+						dot.vy += dy * force * 0.02
+					}
+
+					// Spring force to return to original position
+					dot.vx += (dot.originalX - dot.x) * 0.05
+					dot.vy += (dot.originalY - dot.y) * 0.05
+
+					// Damping
+					dot.vx *= 0.9
+					dot.vy *= 0.9
+
+					// Update position
+					dot.x += dot.vx
+					dot.y += dot.vy
+
+					// Draw dot
+					ctx.fillStyle = textColorStyle
+					ctx.fillRect(Math.round(dot.x), Math.round(dot.y), 1, 1)
+				})
+			})
+
+			// Reset when mouse leaves
+			canvas.addEventListener("mouseleave", () => {
+				setTimeout(() => {
+					// Re-load and process the image when mouse leaves
+					loadAndProcessImage(src)
+				}, 500)
+			})
+		}
+
+		// Atkinson dithering algorithm
+		function applyDither(img) {
+			// Get current colors based on useThemeColors parameter
+			const { bgRgb, textRgb } = getCurrentColors()
+
+			// Scale down for resolution
+			const scaleFactor = currentParams.resolution / 100
+			const tempCanvas = document.createElement("canvas")
+			const tempCtx = tempCanvas.getContext("2d")
+
+			const scaledWidth = Math.max(
+				1,
+				Math.floor(canvas.width * scaleFactor)
+			)
+			const scaledHeight = Math.max(
+				1,
+				Math.floor(canvas.height * scaleFactor)
+			)
+
+			tempCanvas.width = scaledWidth
+			tempCanvas.height = scaledHeight
+
+			// Draw and resize image
+			tempCtx.drawImage(img, 0, 0, scaledWidth, scaledHeight)
+
+			// Get image data
+			const imageData = tempCtx.getImageData(
+				0,
+				0,
+				scaledWidth,
+				scaledHeight
+			)
+			const pixels = imageData.data
+
+			// Apply brightness and contrast
+			for (let i = 0; i < pixels.length; i += 4) {
+				// Convert to grayscale
+				const r = pixels[i]
+				const g = pixels[i + 1]
+				const b = pixels[i + 2]
+
+				// Grayscale conversion
+				let gray = 0.299 * r + 0.587 * g + 0.114 * b
+
+				// Apply brightness
+				gray = gray * currentParams.brightness
+
+				// Apply contrast: formula: (x - 128) * contrast + 128
+				gray = (gray - 128) * currentParams.contrast + 128
+
+				// Clamp values
+				gray = Math.min(255, Math.max(0, gray))
+
+				pixels[i] = pixels[i + 1] = pixels[i + 2] = gray
+			}
+
+			// Atkinson dithering using theme colors
+			for (let y = 0; y < scaledHeight; y++) {
+				for (let x = 0; x < scaledWidth; x++) {
+					const index = (y * scaledWidth + x) * 4
+					const oldPixel = pixels[index]
+					// Threshold determines if pixel should use background or text color
+					const threshold = 128
+
+					// Calculate the new pixel value - using actual theme colors
+					let newPixel
+					if (oldPixel > threshold) {
+						// Use background color
+						pixels[index] = bgRgb[0]
+						pixels[index + 1] = bgRgb[1]
+						pixels[index + 2] = bgRgb[2]
+						newPixel = 255 // For error calculation
+					} else {
+						// Use text color
+						pixels[index] = textRgb[0]
+						pixels[index + 1] = textRgb[1]
+						pixels[index + 2] = textRgb[2]
+						newPixel = 0 // For error calculation
+					}
+
+					const error = oldPixel - newPixel
+
+					// Distribute error according to Atkinson dithering pattern
+					// 1/8 to each of the 6 neighboring pixels
+					const distribute = (target_x, target_y, amount) => {
+						if (
+							target_x >= 0 &&
+							target_x < scaledWidth &&
+							target_y >= 0 &&
+							target_y < scaledHeight
+						) {
+							const targetIndex =
+								(target_y * scaledWidth + target_x) * 4
+							pixels[targetIndex] += amount
+							pixels[targetIndex + 1] += amount
+							pixels[targetIndex + 2] += amount
+						}
+					}
+
+					const errorPart = (error / 8) * currentParams.ditherStep
+
+					distribute(x + 1, y, errorPart)
+					distribute(x + 2, y, errorPart)
+					distribute(x - 1, y + 1, errorPart)
+					distribute(x, y + 1, errorPart)
+					distribute(x + 1, y + 1, errorPart)
+					distribute(x, y + 2, errorPart)
+				}
+			}
+
+			// Put dithered image back
+			tempCtx.putImageData(imageData, 0, 0)
+
+			// Draw the result on the main canvas, scaling it back up
+			ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height)
+
+			// Add interactivity if enabled
+			if (interactive) {
+				addInteractivity()
+			}
+		}
+
+		// Interactive gravity effect
+		function addInteractivity() {
+			// Get current colors based on useThemeColors parameter
+			const { bgRgb, textRgb } = getCurrentColors()
+			const textColorStyle = `rgb(${textRgb[0]}, ${textRgb[1]}, ${textRgb[2]})`
+
+			const dots = []
+			const imageData = ctx.getImageData(
+				0,
+				0,
+				canvas.width,
+				canvas.height
+			)
+			const pixels = imageData.data
+
+			// Sample points from the dithered image
+			const sampleStep = Math.max(2, Math.floor(canvas.width / 200))
+
+			// We need to determine which pixels are foreground (text color)
+			// by comparing them to the background color
+
+			for (let y = 0; y < canvas.height; y += sampleStep) {
+				for (let x = 0; x < canvas.width; x += sampleStep) {
+					const index = (y * canvas.width + x) * 4
+					// Check if pixel is closer to text color than background color
+					const r = pixels[index]
+					const g = pixels[index + 1]
+					const b = pixels[index + 2]
+
+					// Calculate distance to background color
+					const distToBg = Math.sqrt(
+						Math.pow(r - bgRgb[0], 2) +
+							Math.pow(g - bgRgb[1], 2) +
+							Math.pow(b - bgRgb[2], 2)
+					)
+
+					// If pixel is farther from background, it's a foreground pixel
+					if (distToBg > 30) {
+						dots.push({
+							originalX: x,
+							originalY: y,
+							x: x,
+							y: y,
+							vx: 0,
+							vy: 0
+						})
+					}
+				}
+			}
+
+			canvas.addEventListener("mousemove", (e) => {
+				const rect = canvas.getBoundingClientRect()
+				const mouseX = e.clientX - rect.left
+				const mouseY = e.clientY - rect.top
+
+				// Clear canvas
+				ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+				// Draw and update dots
+				dots.forEach((dot) => {
+					// Calculate distance from mouse
+					const dx = mouseX - dot.x
+					const dy = mouseY - dot.y
+					const distance = Math.sqrt(dx * dx + dy * dy)
+
+					// Apply force inversely proportional to distance
+					if (distance < 100) {
+						const force = (-0.5 * (100 - distance)) / 100
+						dot.vx += dx * force * 0.02
+						dot.vy += dy * force * 0.02
+					}
+
+					// Spring force to return to original position
+					dot.vx += (dot.originalX - dot.x) * 0.05
+					dot.vy += (dot.originalY - dot.y) * 0.05
+
+					// Damping
+					dot.vx *= 0.9
+					dot.vy *= 0.9
+
+					// Update position
+					dot.x += dot.vx
+					dot.y += dot.vy
+
+					// Draw dot using theme text color
+					ctx.fillStyle = textColorStyle
+					ctx.fillRect(Math.round(dot.x), Math.round(dot.y), 1, 1)
+				})
+			})
+
+			// Reset when mouse leaves
+			canvas.addEventListener("mouseleave", () => {
+				setTimeout(() => {
+					// Re-load and process the image when mouse leaves
+					loadAndProcessImage(src)
+				}, 500)
+			})
+		}
+
+		// Listen for parameter updates
+		if (id) {
+			const containerElement = document.getElementById(id)
+			if (containerElement) {
+				containerElement.addEventListener(
+					"update-dither-params",
+					(event) => {
+						// Update parameters
+						currentParams = { ...currentParams, ...event.detail }
+
+						// Reload and reprocess the image
+						loadAndProcessImage(src)
+					}
+				)
+			}
+		}
+
+		// Initially load the image
+		loadAndProcessImage(src)
+	})
+</script>
+
+<style>
+	.dither-image-container {
+		overflow: hidden;
+		border-radius: 2px;
+		background-color: var(--background-default, white);
+		position: relative;
+	}
+
+	.loading-placeholder {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--background-default, white);
+	}
+
+	.loading-text {
+		font-size: 0.875rem;
+		color: var(--text-secondary, #666);
+	}
+</style>
