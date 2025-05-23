@@ -11,6 +11,7 @@ export default {
 				disabled: "var(--text-disabled)",
 				border: "var(--border-default)",
 				"border-disabled": "var(--border-disabled)",
+				"border-high": "var(--border-high)",
 				surface: "var(--surface-default)",
 				"surface-hover": "var(--surface-hover)",
 				"inverse-subdued": "var(--text-inverse-subdued)",

@@ -90,6 +90,7 @@
 	--theme-light-text-disabled: var(--color-gray-400);
 	--theme-light-border-default: var(--color-gray-100);
 	--theme-light-border-disabled: var(--color-gray-200);
+	--theme-light-border-high: var(--color-gray-200);
 	--theme-light-surface-default: var(--color-gray-50);
 	--theme-light-surface-hover: var(--color-gray-100);
 	--theme-light-text-inverse-subdued: var(--color-gray-300);
@@ -109,6 +110,7 @@
 	--theme-dark-text-disabled: var(--color-gray-300);
 	--theme-dark-border-default: var(--color-gray-700);
 	--theme-dark-border-disabled: var(--color-gray-600);
+	--theme-dark-border-high: var(--color-gray-600);
 	--theme-dark-surface-default: var(--color-gray-900);
 	--theme-dark-surface-hover: var(--color-gray-800);
 	--theme-dark-text-inverse-subdued: var(--color-gray-300);
@@ -128,6 +130,7 @@
 	--theme-gray-text-disabled: var(--color-gray-500);
 	--theme-gray-border-default: var(--color-gray-200);
 	--theme-gray-border-disabled: var(--color-gray-300);
+	--theme-gray-border-high: var(--color-gray-400);
 	--theme-gray-surface-default: var(--color-gray-50);
 	--theme-gray-surface-hover: var(--color-gray-100);
 	--theme-gray-text-inverse-subdued: var(--color-gray-300);
@@ -147,6 +150,7 @@
 	--theme-pink-text-disabled: var(--color-pink-100);
 	--theme-pink-border-default: var(--color-gray-700);
 	--theme-pink-border-disabled: var(--color-gray-500);
+	--theme-pink-border-high: var(--color-gray-500);
 	--theme-pink-surface-default: var(--color-pink-900);
 	--theme-pink-surface-hover: var(--color-pink-800);
 	--theme-pink-text-inverse-subdued: var(--color-pink-200);
@@ -166,6 +170,7 @@
 	--theme-blue-text-disabled: var(--color-blue-100);
 	--theme-blue-border-default: var(--color-gray-700);
 	--theme-blue-border-disabled: var(--color-gray-500);
+	--theme-blue-border-high: var(--color-gray-600);
 	--theme-blue-surface-default: var(--color-gray-900);
 	--theme-blue-surface-hover: var(--color-gray-800);
 	--theme-blue-text-inverse-subdued: var(--color-gray-300);
@@ -185,6 +190,7 @@
 	--text-disabled: var(--theme-light-text-disabled);
 	--border-default: var(--theme-light-border-default);
 	--border-disabled: var(--theme-light-border-disabled);
+	--border-high: var(--theme-light-border-high);
 	--surface-default: var(--theme-light-surface-default);
 	--surface-hover: var(--theme-light-surface-hover);
 	--text-inverse-subdued: var(--theme-light-text-inverse-subdued);
@@ -209,6 +215,7 @@
 		--text-disabled: var(--theme-dark-text-disabled);
 		--border-default: var(--theme-dark-border-default);
 		--border-disabled: var(--theme-dark-border-disabled);
+		--border-high: var(--theme-dark-border-high);
 		--surface-default: var(--theme-dark-surface-default);
 		--surface-hover: var(--theme-dark-surface-hover);
 		--text-inverse-subdued: var(--theme-dark-text-inverse-subdued);
@@ -231,6 +238,7 @@
 		--text-disabled: var(--theme-light-text-disabled);
 		--border-default: var(--theme-light-border-default);
 		--border-disabled: var(--theme-light-border-disabled);
+		--border-high: var(--theme-light-border-high);
 		--surface-default: var(--theme-light-surface-default);
 		--surface-hover: var(--theme-light-surface-hover);
 		--text-inverse-subdued: var(--theme-light-text-inverse-subdued);
@@ -253,6 +261,7 @@
 	--text-disabled: var(--theme-dark-text-disabled);
 	--border-default: var(--theme-dark-border-default);
 	--border-disabled: var(--theme-dark-border-disabled);
+	--border-high: var(--theme-dark-border-high);
 	--surface-default: var(--theme-dark-surface-default);
 	--surface-hover: var(--theme-dark-surface-hover);
 	--text-inverse-subdued: var(--theme-dark-text-inverse-subdued);
@@ -273,6 +282,7 @@
 	--text-disabled: var(--theme-light-text-disabled);
 	--border-default: var(--theme-light-border-default);
 	--border-disabled: var(--theme-light-border-disabled);
+	--border-high: var(--theme-light-border-high);
 	--surface-default: var(--theme-light-surface-default);
 	--surface-hover: var(--theme-light-surface-hover);
 	--text-inverse-subdued: var(--theme-light-text-inverse-subdued);
@@ -293,6 +303,7 @@
 	--text-disabled: var(--theme-gray-text-disabled);
 	--border-default: var(--theme-gray-border-default);
 	--border-disabled: var(--theme-gray-border-disabled);
+	--border-high: var(--theme-gray-border-high);
 	--surface-default: var(--theme-gray-surface-default);
 	--surface-hover: var(--theme-gray-surface-hover);
 	--text-inverse-subdued: var(--theme-gray-text-inverse-subdued);
@@ -313,6 +324,7 @@
 	--text-disabled: var(--theme-pink-text-disabled);
 	--border-default: var(--theme-pink-border-default);
 	--border-disabled: var(--theme-pink-border-disabled);
+	--border-high: var(--theme-pink-border-high);
 	--surface-default: var(--theme-pink-surface-default);
 	--surface-hover: var(--theme-pink-surface-hover);
 	--text-inverse-subdued: var(--theme-pink-text-inverse-subdued);
@@ -333,6 +345,7 @@
 	--text-disabled: var(--theme-blue-text-disabled);
 	--border-default: var(--theme-blue-border-default);
 	--border-disabled: var(--theme-blue-border-disabled);
+	--border-high: var(--theme-blue-border-high);
 	--surface-default: var(--theme-blue-surface-default);
 	--surface-hover: var(--theme-blue-surface-hover);
 	--text-inverse-subdued: var(--theme-blue-text-inverse-subdued);

@@ -46,10 +46,12 @@ const tools: Tool[] = [
 
 <Section title="Design Tooling" class="pt-6" id="tools-section">
 	<Stack gap="xl">
-		<Grid cols="grid-cols-1 md:grid-cols-2" gap="gap-0">
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 relative border-b border-dashed border-border-high"
+		>
 			{
-				tools.map((tool) => (
-					<div class="tool-card bg-bg p-6 border border-dashed border-border overflow-hidden">
+				tools.map((tool, index) => (
+					<div class="tool-card bg-bg p-6 overflow-hidden relative">
 						<div class="tool-icon bg-gray-100 w-8 h-8 rounded-lg mb-5 flex items-center justify-center">
 							{tool.image ? (
 								<Image
@@ -73,9 +75,19 @@ const tools: Tool[] = [
 						</h3>
 
 						<p class="text-secondary mb-0">{tool.description}</p>
+
+						{/* Horizontal divider for the middle (between top and bottom rows) */}
+						{index === 0 || index === 1 ? (
+							<div class="absolute bottom-0 left-0 w-full border-b border-dashed border-border-high" />
+						) : null}
+
+						{/* Vertical divider for the middle (between left and right columns) */}
+						{index === 0 || index === 2 ? (
+							<div class="absolute top-0 right-0 h-full border-r border-dashed border-border-high hidden md:block" />
+						) : null}
 					</div>
 				))
 			}
-		</Grid>
+		</div>
 	</Stack>
 </Section>
