@@ -99,12 +99,12 @@ export function initSidebarAnimation() {
 					if (items.length >= 2) {
 						gsap.to(items[0], {
 							y: "-100%",
-							duration: 0.5,
+							duration: 0.4,
 							ease: "circ.out"
 						})
 						gsap.to(items[1], {
 							y: "0%",
-							duration: 0.5,
+							duration: 0.4,
 							ease: "circ.out"
 						})
 					}
@@ -116,12 +116,12 @@ export function initSidebarAnimation() {
 					if (items.length >= 2) {
 						gsap.to(items[0], {
 							y: "0%",
-							duration: 0.5,
+							duration: 0.4,
 							ease: "circ.out"
 						})
 						gsap.to(items[1], {
 							y: "100%",
-							duration: 0.5,
+							duration: 0.4,
 							ease: "circ.out"
 						})
 					}
