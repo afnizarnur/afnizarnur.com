@@ -128,4 +128,15 @@ const ditherImageProps: DitherImageProps = {
 	.dither-header {
 		height: 200px;
 	}
+
+	@media (max-width: 640px) {
+		.dither-header {
+			height: 50px;
+		}
+	}
+	@media (min-width: 641px) and (max-width: 768px) {
+		.dither-header {
+			height: 100px;
+		}
+	}
 </style>
