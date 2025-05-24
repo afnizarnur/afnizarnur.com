@@ -12,6 +12,9 @@ import { socialLinks } from "../config/social"
 				<div class="stack-item tools-content">
 					<h1 class="alternate-text mb-0">Design<br />Tooling</h1>
 				</div>
+				<div class="stack-item versions-content">
+					<h1 class="alternate-text mb-0">Site<br />Versions</h1>
+				</div>
 			</div>
 		</div>
 
@@ -19,19 +22,32 @@ import { socialLinks } from "../config/social"
 			<div class="stack-container">
 				<div class="stack-item primary-content">
 					<p class="body text-secondary original-text lg:mb-2 mb-9">
-						Currently, I'm working at INA Digital Edu, where I
-						design platforms for education technology. Prior to
-						this, I gained valuable experience working on product
-						design for Bukalapak, startups, and with various
+						Currently, I'm working at <a
+							href="https://inadigital.co.id/"
+							class="underline text-secondary hover:text-primary transition-colors focus-ring rounded-sm"
+							target="_blank"
+							rel="noopener noreferrer">INA Digital Edu</a
+						>, where I design platforms for education technology.
+						Prior to this, I gained valuable experience working on
+						product design for Bukalapak, startups, and with various
 						agencies.
 					</p>
 				</div>
+
 				<div class="stack-item tools-content">
 					<p class="body text-secondary alternate-text mb-2 lg:mb-9">
 						I develop Figma plugins and design tools to enhance
 						workflow efficiency. My tools help streamline design
 						processes, automate repetitive tasks, and improve
 						collaboration between designers and developers.
+					</p>
+				</div>
+				<div class="stack-item versions-content">
+					<p class="body text-secondary alternate-text mb-2 lg:mb-9">
+						Explore my website's design evolution through the years.
+						Each version represents a different stage in my design
+						journey, showcasing my evolving style and technical
+						skills.
 					</p>
 				</div>
 			</div>
@@ -132,8 +148,9 @@ import { socialLinks } from "../config/social"
 		align-items: flex-start;
 	}
 
-	/* Initial state - Hide tools content by default to prevent flash */
-	.stack-item.tools-content {
+	/* Initial state - Hide non-primary content by default to prevent flash */
+	.stack-item.tools-content,
+	.stack-item.versions-content {
 		display: none;
 	}
 
@@ -150,8 +167,9 @@ import { socialLinks } from "../config/social"
 			left: 0;
 		}
 
-		/* On desktop, show both items for animation */
-		.stack-item.tools-content {
+		/* On desktop, show all items for animation */
+		.stack-item.tools-content,
+		.stack-item.versions-content {
 			display: flex;
 			transform: translateY(100%);
 		}

@@ -3,6 +3,7 @@ import SidebarContent from "../components/SidebarContent.astro"
 import HomeLayout from "../layouts/HomeLayout.astro"
 import SelectedWork from "../components/SelectedWork.astro"
 import DesignTools from "../components/DesignTools.astro"
+import VersionSelector from "../components/VersionSelector.astro"
 import LocationWeather from "../components/LocationWeather.astro"
 import { defaultMetadata } from "../config/meta"
 ---
@@ -14,5 +15,6 @@ import { defaultMetadata } from "../config/meta"
 	<SidebarContent slot="sidebar" />
 	<SelectedWork />
 	<DesignTools />
+	<VersionSelector />
 	<LocationWeather />
 </HomeLayout>

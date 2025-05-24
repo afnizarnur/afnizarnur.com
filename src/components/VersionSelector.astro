@@ -1,0 +1,121 @@
+---
+import Section from "./ui/Section.astro"
+import Stack from "./ui/Stack.astro"
+import CaretUpDown from "./icons/CaretUpDown.astro"
+---
+
+<Section title="Site Versions" class="pt-6 pb-3" id="versions-section">
+	<Stack gap="md">
+		<div
+			class="versions-container w-full relative h-[360px] overflow-hidden"
+		>
+			<div
+				class="absolute inset-0 flex justify-center items-center overflow-hidden z-[1] pointer-events-none font-display"
+			>
+				<span class="decorative-text text-border-disabled opacity-40"
+					>2025</span
+				>
+			</div>
+
+			<div
+				class="relative z-[2] h-full flex flex-col justify-center items-center p-8 max-w-[400px] mx-auto"
+			>
+				<div class="relative flex items-center">
+					<div class="relative">
+						<select
+							id="version-selector"
+							class="w-full appearance-none flex flex-row justify-center items-center py-3 pl-8 pr-12 bg-bg text-primary border-2 border-primary rounded-full font-mono text-xl focus:outline-none focus:border-primary"
+							aria-label="Select site version"
+						>
+							<option value="current" selected>2025</option>
+							<option value="2024">2024</option>
+							<option value="2023">2023</option>
+							<option value="2022">2022</option>
+							<option value="2020">2020</option>
+							<option value="2019">2019</option>
+							<option value="2013">2013</option>
+						</select>
+						<div
+							class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+						>
+							<CaretUpDown class="text-primary w-5 h-5" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Stack>
+</Section>
+
+<style>
+	/* Only keeping custom styles that can't be handled by Tailwind */
+	.decorative-text {
+		font-weight: 600;
+		font-size: 529.522px;
+		user-select: none;
+		white-space: nowrap;
+	}
+
+	.version-dropdown {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
+
+	.version-dropdown:focus {
+		outline: none;
+		border-color: var(--primary);
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 768px) {
+		.decorative-text {
+			font-size: 300px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.decorative-text {
+			font-size: 200px;
+		}
+
+		.versions-container {
+			height: 300px;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const versionSelector = document.getElementById(
+			"version-selector"
+		) as HTMLSelectElement | null
+		if (!versionSelector) return
+
+		// Ensure the default option is set to "current" (2025)
+		versionSelector.value = "current"
+
+		// Version URLs mapping
+		const versionUrls: Record<string, string> = {
+			"2024": "https://2024.afnizarnur.com",
+			"2023": "https://2023.afnizarnur.com",
+			"2022": "https://2022.afnizarnur.com",
+			"2020": "https://2020.afnizarnur.com",
+			"2019": "https://2019.afnizarnur.com",
+			"2013": "https://2013.afnizarnur.com"
+		}
+
+		// Handle change event
+		versionSelector.addEventListener("change", (e) => {
+			const target = e.target as HTMLSelectElement
+			const selectedVersion = target.value
+
+			// If not current version, open in new tab
+			if (selectedVersion !== "current" && versionUrls[selectedVersion]) {
+				window.open(versionUrls[selectedVersion], "_blank")
+			}
+
+			// Reset to default option
+			versionSelector.value = "current"
+		})
+	})
+</script>

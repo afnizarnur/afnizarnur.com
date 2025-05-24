@@ -17,11 +17,13 @@ export function initSidebarAnimation() {
 			const toolsContent = stack.querySelector(
 				".stack-item.tools-content"
 			)
+			const versionsContent = stack.querySelector(
+				".stack-item.versions-content"
+			)
 
 			if (
 				container instanceof HTMLElement &&
-				primaryContent instanceof HTMLElement &&
-				toolsContent instanceof HTMLElement
+				primaryContent instanceof HTMLElement
 			) {
 				// Reset container height
 				container.style.height = "auto"
@@ -30,8 +32,13 @@ export function initSidebarAnimation() {
 				primaryContent.style.position = "relative"
 				primaryContent.style.height = "auto"
 
-				// Hide tools content
-				toolsContent.style.display = "none"
+				// Hide other content
+				if (toolsContent instanceof HTMLElement) {
+					toolsContent.style.display = "none"
+				}
+				if (versionsContent instanceof HTMLElement) {
+					versionsContent.style.display = "none"
+				}
 			}
 		})
 	}
@@ -89,20 +96,110 @@ export function initSidebarAnimation() {
 			}
 		})
 
+		// Animation for Design Tools section
 		ScrollTrigger.create({
 			trigger: "#tools-section",
 			start: "top 80%", // Trigger earlier when scrolling down
 			end: "bottom 20%", // End trigger point later
 			onEnter: () => {
 				stacks.forEach((stack) => {
-					const items = stack.querySelectorAll(".stack-item")
-					if (items.length >= 2) {
-						gsap.to(items[0], {
+					const primaryContent = stack.querySelector(
+						".stack-item.primary-content"
+					)
+					const toolsContent = stack.querySelector(
+						".stack-item.tools-content"
+					)
+					const versionsContent = stack.querySelector(
+						".stack-item.versions-content"
+					)
+
+					if (primaryContent && toolsContent) {
+						gsap.to(primaryContent, {
 							y: "-100%",
 							duration: 0.4,
 							ease: "circ.out"
 						})
-						gsap.to(items[1], {
+						gsap.to(toolsContent, {
+							y: "0%",
+							duration: 0.4,
+							ease: "circ.out"
+						})
+						if (versionsContent) {
+							gsap.to(versionsContent, {
+								y: "100%",
+								duration: 0.4,
+								ease: "circ.out"
+							})
+						}
+					}
+				})
+			},
+			onLeaveBack: () => {
+				stacks.forEach((stack) => {
+					const primaryContent = stack.querySelector(
+						".stack-item.primary-content"
+					)
+					const toolsContent = stack.querySelector(
+						".stack-item.tools-content"
+					)
+					const versionsContent = stack.querySelector(
+						".stack-item.versions-content"
+					)
+
+					if (primaryContent && toolsContent) {
+						gsap.to(primaryContent, {
+							y: "0%",
+							duration: 0.4,
+							ease: "circ.out"
+						})
+						gsap.to(toolsContent, {
+							y: "100%",
+							duration: 0.4,
+							ease: "circ.out"
+						})
+						if (versionsContent) {
+							gsap.to(versionsContent, {
+								y: "200%",
+								duration: 0.4,
+								ease: "circ.out"
+							})
+						}
+					}
+				})
+			}
+		})
+
+		// Animation for Site Versions section
+		ScrollTrigger.create({
+			trigger: "#versions-section",
+			start: "top 80%",
+			end: "bottom 20%",
+			onEnter: () => {
+				stacks.forEach((stack) => {
+					const primaryContent = stack.querySelector(
+						".stack-item.primary-content"
+					)
+					const toolsContent = stack.querySelector(
+						".stack-item.tools-content"
+					)
+					const versionsContent = stack.querySelector(
+						".stack-item.versions-content"
+					)
+
+					if (primaryContent && versionsContent) {
+						gsap.to(primaryContent, {
+							y: "-200%",
+							duration: 0.4,
+							ease: "circ.out"
+						})
+						if (toolsContent) {
+							gsap.to(toolsContent, {
+								y: "-100%",
+								duration: 0.4,
+								ease: "circ.out"
+							})
+						}
+						gsap.to(versionsContent, {
 							y: "0%",
 							duration: 0.4,
 							ease: "circ.out"
@@ -112,14 +209,28 @@ export function initSidebarAnimation() {
 			},
 			onLeaveBack: () => {
 				stacks.forEach((stack) => {
-					const items = stack.querySelectorAll(".stack-item")
-					if (items.length >= 2) {
-						gsap.to(items[0], {
+					const primaryContent = stack.querySelector(
+						".stack-item.primary-content"
+					)
+					const toolsContent = stack.querySelector(
+						".stack-item.tools-content"
+					)
+					const versionsContent = stack.querySelector(
+						".stack-item.versions-content"
+					)
+
+					if (primaryContent && toolsContent && versionsContent) {
+						gsap.to(primaryContent, {
+							y: "-100%",
+							duration: 0.4,
+							ease: "circ.out"
+						})
+						gsap.to(toolsContent, {
 							y: "0%",
 							duration: 0.4,
 							ease: "circ.out"
 						})
-						gsap.to(items[1], {
+						gsap.to(versionsContent, {
 							y: "100%",
 							duration: 0.4,
 							ease: "circ.out"
