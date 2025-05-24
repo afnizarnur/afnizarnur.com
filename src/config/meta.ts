@@ -48,7 +48,7 @@ export const defaultOpenGraph: OpenGraph = {
 	basic: {
 		title: "Afnizar Nur Ghifari",
 		type: "website",
-		image: "/og-image.jpg",
+		image: "/og-image.png",
 		url: "https://afnizarnur.com"
 	},
 	optional: {
@@ -65,7 +65,7 @@ export const defaultTwitter: Twitter = {
 	title: "Afnizar Nur Ghifari",
 	description:
 		"Afnizar Nur Ghifari is an Indonesia-based product designer that specializing in user interfaces, design system, and strategy across multiple industries.",
-	image: "/og-image.jpg"
+	image: "/og-image.png"
 }
 
 export const siteConfig = {
@@ -73,7 +73,7 @@ export const siteConfig = {
 	description:
 		"Afnizar Nur Ghifari is an Indonesia-based product designer that specializing in user interfaces, design system, and strategy across multiple industries.",
 	url: "https://afnizarnur.com",
-	ogImage: "/og-image.jpg",
+	ogImage: "/og-image.png",
 	links: {
 		twitter: "https://twitter.com/afnizarnur",
 		github: "https://github.com/afnizarnur"
