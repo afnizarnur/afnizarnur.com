@@ -24,8 +24,8 @@ const {
 const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
 ---
 
-<div class={`dither-image-container w-full ${className}`} id={id}>
-	<canvas id={uniqueId} class="w-full"></canvas>
+<div class={`dither-image-container w-full h-full ${className}`} id={id}>
+	<canvas id={uniqueId} class="w-full h-full"></canvas>
 	<div class="loading-placeholder">
 		<div class="loading-text">Processing dithered image...</div>
 	</div>
@@ -186,9 +186,16 @@ const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
 
 				// Set canvas dimensions
 				const containerWidth = container.offsetWidth
+				const containerHeight = container.offsetHeight
 				const aspectRatio = img.height / img.width
 				canvas.width = containerWidth
-				canvas.height = containerWidth * aspectRatio
+
+				// If the container has a set height, use it; otherwise calculate based on aspect ratio
+				if (containerHeight > 0) {
+					canvas.height = containerHeight
+				} else {
+					canvas.height = containerWidth * aspectRatio
+				}
 
 				// Apply dithering
 				applyDither(img)
@@ -379,9 +386,17 @@ const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
 			if (originalImage) {
 				// Reset canvas dimensions
 				const containerWidth = container.offsetWidth
-				const aspectRatio = originalImage.height / originalImage.width
+				const containerHeight = container.offsetHeight
+
+				// If the container has a set height, use it; otherwise calculate based on aspect ratio
 				canvas.width = containerWidth
-				canvas.height = containerWidth * aspectRatio
+				if (containerHeight > 0) {
+					canvas.height = containerHeight
+				} else {
+					const aspectRatio =
+						originalImage.height / originalImage.width
+					canvas.height = containerWidth * aspectRatio
+				}
 
 				// Reapply dithering
 				applyDither(originalImage)
@@ -393,19 +408,20 @@ const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
 <style>
 	.dither-image-container {
 		overflow: hidden;
-		border-radius: 2px;
+		border-radius: 0;
 		background-color: var(--background-default, white);
 		position: relative;
 	}
 
 	.loading-placeholder {
 		position: absolute;
-		top: 45px;
+		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		background-color: var(--background-default, white);
 	}
 
