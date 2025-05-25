@@ -11,7 +11,8 @@
 		"@astrojs/sitemap": "^3.4.0",
 		"@fontsource-variable/inter": "^5.2.5",
 		"astro": "^5.7.13",
-		"gsap": "^3.13.0"
+		"gsap": "^3.13.0",
+		"sharp": "^0.34.2"
 	},
 	"devDependencies": {
 		"@astrojs/tailwind": "^6.0.2",
