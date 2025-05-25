@@ -8,9 +8,11 @@ import CaretUpDown from "./icons/CaretUpDown.astro"
 	<Stack gap="md">
 		<div
 			class="versions-container w-full relative h-[360px] overflow-hidden"
+			aria-labelledby="versions-section-title"
 		>
 			<div
 				class="absolute inset-0 flex justify-center items-center overflow-hidden z-[1] pointer-events-none font-display"
+				aria-hidden="true"
 			>
 				<span class="decorative-text text-border-disabled opacity-40"
 					>2025</span
@@ -22,10 +24,14 @@ import CaretUpDown from "./icons/CaretUpDown.astro"
 			>
 				<div class="relative flex items-center">
 					<div class="relative">
+						<label for="version-selector" class="sr-only"
+							>Select website version</label
+						>
 						<select
 							id="version-selector"
 							class="w-full appearance-none flex flex-row justify-center items-center py-3 pl-8 pr-12 bg-bg text-primary border-2 border-primary rounded-full font-mono text-xl focus:outline-none focus:border-primary"
 							aria-label="Select site version"
+							aria-describedby="version-description"
 						>
 							<option value="current" selected>2025</option>
 							<option value="2024">2024</option>
@@ -37,11 +43,16 @@ import CaretUpDown from "./icons/CaretUpDown.astro"
 						</select>
 						<div
 							class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+							aria-hidden="true"
 						>
 							<CaretUpDown class="text-primary w-5 h-5" />
 						</div>
 					</div>
 				</div>
+				<p id="version-description" class="sr-only">
+					Selecting a different version will open it in a new tab
+					while keeping you on the current site.
+				</p>
 			</div>
 		</div>
 	</Stack>
@@ -71,15 +82,18 @@ import CaretUpDown from "./icons/CaretUpDown.astro"
 		.decorative-text {
 			font-size: 300px;
 		}
+		.versions-container {
+			height: 220px;
+		}
 	}
 
 	@media (max-width: 480px) {
 		.decorative-text {
-			font-size: 200px;
+			font-size: 210px;
 		}
 
 		.versions-container {
-			height: 300px;
+			height: 150px;
 		}
 	}
 </style>
@@ -111,11 +125,54 @@ import CaretUpDown from "./icons/CaretUpDown.astro"
 
 			// If not current version, open in new tab
 			if (selectedVersion !== "current" && versionUrls[selectedVersion]) {
-				window.open(versionUrls[selectedVersion], "_blank")
+				const newWindow = window.open(
+					versionUrls[selectedVersion],
+					"_blank"
+				)
+
+				// Announce to screen readers
+				announceVersionChange(selectedVersion)
+
+				// If popup was blocked, provide user feedback
+				if (
+					!newWindow ||
+					newWindow.closed ||
+					typeof newWindow.closed === "undefined"
+				) {
+					console.warn(
+						"Popup window was blocked. Please allow popups for this site."
+					)
+				}
 			}
 
-			// Reset to default option
+			// Reset to default option and return focus to the select
 			versionSelector.value = "current"
+			versionSelector.focus()
 		})
+
+		// Handle keyboard interactions
+		versionSelector.addEventListener("keydown", (e) => {
+			// Make Escape key close the dropdown if open
+			if (e.key === "Escape") {
+				e.preventDefault()
+				versionSelector.blur()
+			}
+		})
+
+		// Function to announce version change to screen readers
+		function announceVersionChange(version: string) {
+			const announcement = document.createElement("div")
+			announcement.setAttribute("role", "status")
+			announcement.setAttribute("aria-live", "polite")
+			announcement.className = "sr-only"
+			announcement.textContent = `Opening ${version} version in a new tab`
+
+			document.body.appendChild(announcement)
+
+			// Remove the announcement after it's been read
+			setTimeout(() => {
+				document.body.removeChild(announcement)
+			}, 3000)
+		}
 	})
 </script>

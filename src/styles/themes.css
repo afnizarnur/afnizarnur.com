@@ -108,8 +108,8 @@
 	--theme-dark-text-primary: var(--color-white);
 	--theme-dark-text-secondary: var(--color-gray-200);
 	--theme-dark-text-disabled: var(--color-gray-300);
-	--theme-dark-border-default: var(--color-gray-700);
-	--theme-dark-border-disabled: var(--color-gray-600);
+	--theme-dark-border-default: var(--color-gray-800);
+	--theme-dark-border-disabled: var(--color-gray-700);
 	--theme-dark-border-high: var(--color-gray-600);
 	--theme-dark-surface-default: var(--color-gray-900);
 	--theme-dark-surface-hover: var(--color-gray-800);
