@@ -6,13 +6,17 @@ import LinkWithArrow from "./ui/LinkWithArrow.astro"
 import DitherImage from "./ui/DitherImage.astro"
 import { Image } from "astro:assets"
 
-// Import placeholder images - replace these with actual images later
-// You can add your design tool images to the src/assets/design-tools directory
+// Import images
+import pageAutomatorImg from "../assets/design-tools/page-automator.png"
+import splitAnythingImg from "../assets/design-tools/split-anything.png"
+import designTokensImg from "../assets/design-tools/design-tokens.png"
+import variantInspectorImg from "../assets/design-tools/variant-inspector.png"
+import nataiconsImg from "../assets/design-tools/nataicons.png"
+import quickNewPageImg from "../assets/design-tools/quick-new-page.png"
 
 interface Tool {
 	title: string
 	description: string
-	color: string
 	link: string
 	image?: ImageMetadata
 }
@@ -29,39 +33,41 @@ interface DitherImageProps {
 const tools: Tool[] = [
 	{
 		title: "Page Automator",
-		description: "Automate the process of creating multiple pages.",
-		color: "var(--color-gray-100)",
-		link: "https://example.com/page-automator"
-	},
-	{
-		title: "Variant Inspector",
-		description: "Automate the process of creating multiple pages.",
-		color: "var(--color-gray-100)",
-		link: "https://example.com/variant-inspector"
+		description:
+			"Jumpstart your Figma projects, custom multi-page setup in seconds.",
+		link: "https://www.figma.com/community/plugin/841201477778898873/page-automator",
+		image: pageAutomatorImg
 	},
 	{
 		title: "Split Anything",
-		description: "Automate the process of creating multiple pages.",
-		color: "var(--color-gray-100)",
-		link: "https://example.com/split-anything"
+		description: "Split any type of layer into multiple column and rows.",
+		link: "https://www.figma.com/community/plugin/1418864507934515726/split-anything",
+		image: splitAnythingImg
 	},
 	{
 		title: "Design Tokens to Variables",
-		description: "Automate the process of creating multiple pages.",
-		color: "var(--color-gray-100)",
-		link: "https://example.com/design-tokens-to-variables"
+		description:
+			"Convert W3C Design Tokens, Leonardo, Huetone, Primer Prism to Variables.",
+		link: "https://www.figma.com/community/plugin/1410168064290005516/design-tokens-to-variables",
+		image: designTokensImg
 	},
 	{
-		title: "Split Anything",
-		description: "Automate the process of creating multiple pages.",
-		color: "var(--color-gray-100)",
-		link: "https://example.com/split-anything"
+		title: "Variant Inspector",
+		description: "Shows variant properties above components.",
+		link: "https://www.figma.com/community/plugin/1029334595972104332/variant-inspector",
+		image: variantInspectorImg
 	},
 	{
-		title: "Split Anything",
-		description: "Automate the process of creating multiple pages.",
-		color: "var(--color-gray-100)",
-		link: "https://example.com/split-anything"
+		title: "Nataicons",
+		description: "A fun-themed simple open source icon.",
+		link: "https://www.figma.com/community/plugin/1414251371186777649/nataicons",
+		image: nataiconsImg
+	},
+	{
+		title: "Quick New Page",
+		description: "Add one or multiple new pages quickly.",
+		link: "https://www.figma.com/community/plugin/1139177569116269825/quick-new-page",
+		image: quickNewPageImg
 	}
 ]
 
@@ -114,19 +120,17 @@ const totalPages = Math.ceil(tools.length / itemsPerPage)
 									)
 									.map((tool, index) => (
 										<div class="tool-card bg-bg p-6 overflow-hidden relative">
-											<div class="tool-icon bg-gray-100 w-8 h-8 rounded-lg mb-5 flex items-center justify-center">
-												{tool.image ? (
-													<Image
-														src={tool.image}
-														alt=""
-														width={36}
-														height={36}
-														class="w-8 h-8"
-													/>
-												) : (
-													<div class="w-8 h-8" />
-												)}
-											</div>
+											{tool.image ? (
+												<Image
+													src={tool.image}
+													alt=""
+													width={36}
+													height={36}
+													class="w-8 h-8 mb-5 rounded bg-surface"
+												/>
+											) : (
+												<div class="w-8 h-8 mb-5 rounded bg-surface" />
+											)}
 
 											<h3 class="text-primary font-sans text-body mb-2">
 												<LinkWithArrow
