@@ -25,4 +25,5 @@ pnpm-debug.log*
 
 # netlify
 .netlify
+.astro
 .vscode
