@@ -2,8 +2,8 @@
 import { defineConfig } from "astro/config"
 import tailwind from "@astrojs/tailwind"
 import sitemap from "@astrojs/sitemap"
+import umami from "@yeskunall/astro-umami"
 
-// https://astro.build/config
 export default defineConfig({
 	site: "https://afnizarnur.com",
 	integrations: [
@@ -12,6 +12,9 @@ export default defineConfig({
 			changefreq: "weekly",
 			priority: 0.7,
 			lastmod: new Date()
+		}),
+		umami({
+			id: "cc3e0e53-f632-4b18-9634-a422d703728e"
 		})
 	],
 	image: {
