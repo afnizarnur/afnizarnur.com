@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
- This is the source code of <a href="https://afnizarnur.com/">my personal site</a>. Handcrafted with 11ty and hosted in Netlify.
+ This is the source code of <a href="https://afnizarnur.com/">my personal site</a>. Handcrafted with Astro and hosted in Netlify.
 </p>
 
 <p align="center">
-  <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2013">2013</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2019">2019</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2020">2020</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2022">2022</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2023">2023</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/">Live</a>
+  <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2013">2013</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2019">2019</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2020">2020</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2022">2022</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2023">2023</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/tree/2024">2024</a> · <a href="https://github.com/afnizarnur/afnizarnur.com/">Live</a>
 </p>
 
 ---
