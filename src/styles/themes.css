@@ -88,8 +88,8 @@
 	--theme-light-text-primary: var(--color-gray-950);
 	--theme-light-text-secondary: var(--color-gray-500);
 	--theme-light-text-disabled: var(--color-gray-400);
-	--theme-light-border-default: var(--color-gray-100);
-	--theme-light-border-disabled: var(--color-gray-200);
+	--theme-light-border-default: var(--color-gray-50);
+	--theme-light-border-disabled: var(--color-gray-100);
 	--theme-light-border-high: var(--color-gray-200);
 	--theme-light-surface-default: var(--color-gray-50);
 	--theme-light-surface-hover: var(--color-gray-100);
@@ -129,7 +129,7 @@
 	--theme-gray-text-secondary: var(--color-gray-800);
 	--theme-gray-text-disabled: var(--color-gray-500);
 	--theme-gray-border-default: var(--color-gray-200);
-	--theme-gray-border-disabled: var(--color-gray-300);
+	--theme-gray-border-disabled: var(--color-gray-100);
 	--theme-gray-border-high: var(--color-gray-400);
 	--theme-gray-surface-default: var(--color-gray-50);
 	--theme-gray-surface-hover: var(--color-gray-100);
@@ -144,15 +144,15 @@
 	--theme-gray-button-focus-ring: var(--color-gray-700);
 
 	/* Pink theme */
-	--theme-pink-background: var(--color-gray-950);
+	--theme-pink-background: var(--color-pink-950);
 	--theme-pink-text-primary: var(--color-pink-200);
 	--theme-pink-text-secondary: var(--color-pink-100);
-	--theme-pink-text-disabled: var(--color-pink-100);
-	--theme-pink-border-default: var(--color-gray-700);
-	--theme-pink-border-disabled: var(--color-gray-500);
-	--theme-pink-border-high: var(--color-gray-500);
+	--theme-pink-text-disabled: var(--color-pink-50);
+	--theme-pink-border-default: var(--color-pink-900);
+	--theme-pink-border-disabled: var(--color-pink-800);
+	--theme-pink-border-high: var(--color-pink-800);
 	--theme-pink-surface-default: var(--color-pink-900);
-	--theme-pink-surface-hover: var(--color-pink-800);
+	--theme-pink-surface-hover: var(--color-gray-700);
 	--theme-pink-text-inverse-subdued: var(--color-pink-200);
 	--theme-pink-shadow: rgba(255, 198, 231, 0.2);
 	--theme-pink-overlay: rgba(255, 198, 231, 0.4);
