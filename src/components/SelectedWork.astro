@@ -1,0 +1,117 @@
+---
+import Section from "./ui/Section.astro"
+import WorkCard from "./ui/WorkCard.astro"
+import Grid from "./ui/Grid.astro"
+import Stack from "./ui/Stack.astro"
+import { Image } from "astro:assets"
+
+import raporPendidikanImg from "../assets/works/raporpendidikan-thumbnail.png"
+import siplahImg from "../assets/works/siplah-thumbnail.png"
+import natatokoImg from "../assets/works/natatoko-thumbnail.png"
+import datapawImg from "../assets/works/datapaw-thumbnail.png"
+import ruangmuridImg from "../assets/works/ruangmurid-thumbnail.png"
+
+interface Project {
+	title: string
+	description: string
+	color: string
+	link: string
+	image: ImageMetadata
+}
+
+const projects: Project[] = [
+	{
+		title: "Datapaw",
+		description:
+			"A Figma plugin I designed that generates realistic data for mockups based on user specs.",
+		color: "var(--color-pink-100)",
+		link: "https://www.figma.com/community/plugin/1434312636542908147/datapaw-google-sheets-json-api-string-currency-number-fake-data-and-more",
+		image: datapawImg
+	},
+	{
+		title: "Ruang Murid",
+		description:
+			"Digital learning platform for Indonesia's education system with intuitive, accessible interface.",
+		color: "var(--color-orange-400)",
+		link: "https://rumah.pendidikan.go.id/ruang/murid",
+		image: ruangmuridImg
+	},
+	{
+		title: "Rapor Pendidikan",
+		description:
+			"Analytics platform visualizing educational assessment data across Indonesia.",
+		color: "var(--color-blue-400)",
+		link: "https://raporpendidikan.dikdasmen.go.id/login",
+		image: raporPendidikanImg
+	},
+	{
+		title: "Natatoko",
+		description:
+			"Integrated e-commerce solution for managing orders, inventory, and analytics.",
+		color: "#B08DCC",
+		link: "https://natatoko.com/",
+		image: natatokoImg
+	},
+	{
+		title: "Situs informasi resmi SIPLah",
+		description:
+			"Redesigned government procurement system landing page improving user trust and accessibility.",
+		color: "var(--color-green-300)",
+		link: "https://data.dikdasmen.go.id/publikasi/pendidikan/asesmen-nasional-and-rapor-pendidikan?sub-topik=rapor-pendidikan-indonesia",
+		image: siplahImg
+	}
+]
+---
+
+<Section title="Selected Work" class="pt-4 lg:pt-[6rem]">
+	<Stack gap="xl" class="p-6 pr-6">
+		<Grid cols="grid-cols-1 md:grid-cols-2" gap="gap-6">
+			{
+				projects
+					.slice(0, 2)
+					.map((project) => (
+						<WorkCard
+							title={project.title}
+							description={project.description}
+							color={project.color}
+							link={project.link}
+							image={project.image}
+							className="work-card group"
+						/>
+					))
+			}
+		</Grid>
+
+		<WorkCard
+			title={projects[2].title}
+			description={projects[2].description}
+			color={projects[2].color}
+			link={projects[2].link}
+			image={projects[2].image}
+			className="work-card group"
+		/>
+
+		<Grid cols="grid-cols-1 md:grid-cols-2" gap="gap-6">
+			{
+				projects
+					.slice(3, 5)
+					.map((project) => (
+						<WorkCard
+							title={project.title}
+							description={project.description}
+							color={project.color}
+							link={project.link}
+							image={project.image}
+							className="work-card group"
+						/>
+					))
+			}
+		</Grid>
+	</Stack>
+</Section>
+
+<style>
+	.work-card :global(div.card-content) {
+		padding-top: 1.5rem;
+	}
+</style>

@@ -1,0 +1,205 @@
+---
+import { socialLinks } from "../config/social"
+---
+
+<div class="flex flex-col h-full justify-between">
+	<div>
+		<div class="text-stack mb-6" id="sidebarTitle">
+			<div class="stack-container">
+				<div class="stack-item primary-content">
+					<h1 class="original-text mb-0">Afnizar<br />Nur Ghifari</h1>
+				</div>
+				<div class="stack-item tools-content">
+					<h1 class="alternate-text mb-0">Design<br />Tooling</h1>
+				</div>
+				<div class="stack-item versions-content">
+					<h1 class="alternate-text mb-0">Site<br />Evolution</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-stack" id="sidebarDescription">
+			<div class="stack-container">
+				<div class="stack-item primary-content">
+					<p class="body text-secondary original-text lg:mb-2 mb-9">
+						Currently at <a
+							href="https://inadigital.co.id/"
+							class="underline text-secondary hover:text-primary transition-colors focus-ring rounded-sm"
+							target="_blank"
+							rel="noopener noreferrer">INA Digital Edu</a
+						>, crafting educational tech platforms. I work on
+						everything from design to implementation, teaming up
+						across departments to build solutions that work.
+					</p>
+				</div>
+
+				<div class="stack-item tools-content">
+					<p class="body text-secondary alternate-text mb-2 lg:mb-9">
+						I love bringing ideas to life through code! I build fun
+						tools that make work easier and solve tricky problems,
+						always looking for creative ways to make design and
+						development flow better.
+					</p>
+				</div>
+				<div class="stack-item versions-content">
+					<p class="body text-secondary alternate-text mb-2 lg:mb-9">
+						Check out how this site has evolved over time! <br />
+						<br />
+
+						It's a fun timeline of tech stacks and design styles
+						I've played with as I've grown as a designer who codes.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="mt-auto mb-0">
+		<div class="flex gap-2 items-center mb-9">
+			{
+				socialLinks.map(({ url, icon: Icon, ariaLabel }) => (
+					<a
+						href={url}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={ariaLabel}
+						class="text-primary hover:text-secondary transition-colors p-1 rounded-md focus-ring"
+					>
+						<Icon class="w-5 h-5" />
+					</a>
+				))
+			}
+		</div>
+		<p class="text-sm text-disabled">
+			Typeset in <a
+				href="https://www.tokotype.com/retail-fonts/aksen"
+				class="underline text-disabled hover:text-secondary transition-colors focus-ring rounded-sm"
+				target="_blank"
+				rel="noopener noreferrer">Aksen</a
+			>, <a
+				href="https://www.tokotype.com/retail-fonts/fonetika-mono"
+				class="underline text-disabled hover:text-secondary transition-colors focus-ring rounded-sm"
+				target="_blank"
+				rel="noopener noreferrer">Fonetika Mono</a
+			> and <a
+				href="https://rsms.me/inter/"
+				class="underline text-disabled hover:text-secondary transition-colors focus-ring rounded-sm"
+				target="_blank"
+				rel="noopener noreferrer">Inter</a
+			>.
+			<br />Developed with Astro from Serang, Indonesia.
+		</p>
+	</div>
+</div>
+
+<script>
+	import { initSidebarAnimation } from "../scripts/sidebarAnimation.js"
+
+	// Initialize the sidebar animation when the DOM is loaded
+	document.addEventListener("DOMContentLoaded", () => {
+		initSidebarAnimation()
+	})
+</script>
+
+<style>
+	.text-stack {
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* Gradient effect
+	.text-stack::before,
+	.text-stack::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 12px;
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.text-stack::before {
+		top: 0;
+		background: linear-gradient(
+			to bottom,
+			var(--background-default) 0%,
+			transparent 100%
+		);
+	}
+
+	.text-stack::after {
+		bottom: 0;
+		background: linear-gradient(
+			to top,
+			var(--background-default) 0%,
+			transparent 100%
+		);
+	} */
+
+	.stack-container {
+		position: relative;
+		width: 100%;
+	}
+
+	.stack-item {
+		width: 100%;
+		display: flex;
+		align-items: flex-start;
+	}
+
+	/* Initial state - Hide non-primary content by default to prevent flash */
+	.stack-item.tools-content,
+	.stack-item.versions-content {
+		display: none;
+	}
+
+	/* Default styles for small screens - only primary content visible */
+	.stack-item.primary-content {
+		position: relative;
+	}
+
+	/* Desktop styles */
+	@media (min-width: 1024px) {
+		.stack-item {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		/* On desktop, show all items for animation */
+		.stack-item.tools-content,
+		.stack-item.versions-content {
+			display: flex;
+			transform: translateY(100%);
+		}
+
+		.stack-item.primary-content {
+			transform: translateY(0);
+		}
+	}
+
+	.stack-item h1,
+	.stack-item p {
+		width: 100%;
+	}
+
+	.stack-item h1 {
+		line-height: 1.1;
+		margin-top: 8px;
+	}
+
+	.stack-item h1 br {
+		line-height: 0.9;
+	}
+
+	.stack-item p {
+		line-height: 1.5;
+		margin-top: 8px;
+	}
+
+	#sidebarTitle .stack-item,
+	#sidebarDescription .stack-item {
+		padding-top: 0;
+	}
+</style>

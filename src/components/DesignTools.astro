@@ -1,0 +1,301 @@
+---
+import Section from "./ui/Section.astro"
+import Grid from "./ui/Grid.astro"
+import Stack from "./ui/Stack.astro"
+import LinkWithArrow from "./ui/LinkWithArrow.astro"
+import DitherImage from "./ui/DitherImage.astro"
+import { Image } from "astro:assets"
+
+// Import images
+import pageAutomatorImg from "../assets/design-tools/page-automator.png"
+import splitAnythingImg from "../assets/design-tools/split-anything.png"
+import designTokensImg from "../assets/design-tools/design-tokens.png"
+import variantInspectorImg from "../assets/design-tools/variant-inspector.png"
+import nataiconsImg from "../assets/design-tools/nataicons.png"
+import quickNewPageImg from "../assets/design-tools/quick-new-page.png"
+
+interface Tool {
+	title: string
+	description: string
+	link: string
+	image?: ImageMetadata
+}
+
+// Add an interface for the dither image props
+interface DitherImageProps {
+	src: string
+	brightness?: number
+	contrast?: number
+	resolution?: number
+	ditherStep?: number
+}
+
+const tools: Tool[] = [
+	{
+		title: "Page Automator",
+		description:
+			"Jumpstart your Figma projects, custom multi-page setup in seconds.",
+		link: "https://www.figma.com/community/plugin/841201477778898873/page-automator",
+		image: pageAutomatorImg
+	},
+	{
+		title: "Split Anything",
+		description: "Split any type of layer into multiple column and rows.",
+		link: "https://www.figma.com/community/plugin/1418864507934515726/split-anything",
+		image: splitAnythingImg
+	},
+	{
+		title: "Design Tokens to Variables",
+		description:
+			"Convert W3C Design Tokens, Leonardo, Huetone, Primer Prism to Variables.",
+		link: "https://www.figma.com/community/plugin/1410168064290005516/design-tokens-to-variables",
+		image: designTokensImg
+	},
+	{
+		title: "Variant Inspector",
+		description: "Shows variant properties above components.",
+		link: "https://www.figma.com/community/plugin/1029334595972104332/variant-inspector",
+		image: variantInspectorImg
+	},
+	{
+		title: "Nataicons",
+		description: "A fun-themed simple open source icon.",
+		link: "https://www.figma.com/community/plugin/1414251371186777649/nataicons",
+		image: nataiconsImg
+	},
+	{
+		title: "Quick New Page",
+		description: "Add one or multiple new pages quickly.",
+		link: "https://www.figma.com/community/plugin/1139177569116269825/quick-new-page",
+		image: quickNewPageImg
+	}
+]
+
+// Define default dither image properties
+const ditherImageProps: DitherImageProps = {
+	src: "/designtools.png", // Using an existing image in the public directory
+	brightness: 1.8,
+	contrast: 1,
+	resolution: 130,
+	ditherStep: 1.2
+}
+
+// Carousel pages (2x2 grid per page)
+const itemsPerPage = 4
+const totalPages = Math.ceil(tools.length / itemsPerPage)
+---
+
+<Section title="Design Tooling" class="pt-6" id="tools-section">
+	<Stack gap="none">
+		<div class="dither-section w-full">
+			<div class="dither-header w-full relative">
+				<DitherImage
+					src={ditherImageProps.src}
+					brightness={ditherImageProps.brightness}
+					contrast={ditherImageProps.contrast}
+					resolution={ditherImageProps.resolution}
+					ditherStep={ditherImageProps.ditherStep}
+					class="w-full h-full"
+				/>
+			</div>
+		</div>
+
+		<div
+			id="tools-carousel"
+			class="carousel-container w-full relative overflow-hidden"
+			aria-live="polite"
+		>
+			<div
+				id="carousel-track"
+				class="flex transition-transform duration-300 ease-in-out"
+			>
+				{
+					Array.from({ length: totalPages }).map((_, pageIndex) => (
+						<div class="carousel-page w-full flex-shrink-0">
+							<div class="grid grid-cols-1 md:grid-cols-2 relative border-t border-b border-dashed border-border-high">
+								{tools
+									.slice(
+										pageIndex * itemsPerPage,
+										(pageIndex + 1) * itemsPerPage
+									)
+									.map((tool, index) => (
+										<div class="tool-card bg-bg p-6 overflow-hidden relative">
+											{tool.image ? (
+												<Image
+													src={tool.image}
+													alt=""
+													width={36}
+													height={36}
+													class="w-8 h-8 mb-5 rounded bg-surface border border-border"
+												/>
+											) : (
+												<div class="w-8 h-8 mb-5 rounded bg-surface" />
+											)}
+
+											<h3 class="text-primary font-sans text-body mb-2">
+												<LinkWithArrow
+													href={tool.link}
+													text={tool.title}
+													openInNewTab={true}
+												/>
+											</h3>
+
+											<p class="text-secondary mb-0">
+												{tool.description}
+											</p>
+
+											{/* Horizontal divider for the middle (between top and bottom rows) */}
+											{index === 0 || index === 1 ? (
+												<div class="absolute bottom-0 left-0 w-full border-b border-dashed border-border-high" />
+											) : null}
+
+											{/* Vertical divider for the middle (between left and right columns) */}
+											{index === 0 || index === 2 ? (
+												<div class="absolute top-0 right-0 h-full border-r border-dashed border-border-high hidden md:block" />
+											) : null}
+										</div>
+									))}
+							</div>
+						</div>
+					))
+				}
+			</div>
+
+			<!-- Carousel Dot Indicators -->
+			<div class="carousel-indicators flex justify-center my-7 gap-2">
+				{
+					Array.from({ length: totalPages }).map((_, i) => (
+						<button
+							class="carousel-indicator w-2 h-2 rounded-full bg-border flex items-center justify-center focus:outline-none focus-ring"
+							data-index={i}
+							aria-label={`Go to slide ${i + 1}`}
+							aria-current={i === 0 ? "true" : "false"}
+						>
+							<span class="sr-only">Page {i + 1}</span>
+						</button>
+					))
+				}
+			</div>
+		</div>
+	</Stack>
+</Section>
+
+<style>
+	.dither-header {
+		height: 250px;
+		overflow: hidden;
+		display: flex;
+	}
+
+	@media (max-width: 640px) {
+		.dither-header {
+			height: 100px;
+		}
+	}
+
+	.carousel-indicator[aria-current="true"] {
+		background-color: var(--text-primary);
+	}
+
+	.carousel-indicator:hover {
+		background-color: var(--border-high);
+	}
+</style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const carousel = document.getElementById("tools-carousel")
+		const track = document.getElementById("carousel-track")
+		const indicators = document.querySelectorAll(".carousel-indicator")
+		const pages = document.querySelectorAll(".carousel-page")
+
+		let currentIndex = 0
+		const totalPages = pages.length
+
+		// Update the carousel state
+		function updateCarousel() {
+			// Update track position
+			if (track) {
+				track.style.transform = `translateX(-${currentIndex * 100}%)`
+			}
+
+			// Update indicators
+			indicators.forEach((indicator, index) => {
+				indicator.setAttribute(
+					"aria-current",
+					index === currentIndex ? "true" : "false"
+				)
+			})
+
+			// Announce to screen readers
+			const liveRegion = carousel
+			if (liveRegion) {
+				liveRegion.setAttribute(
+					"aria-label",
+					`Showing page ${currentIndex + 1} of ${totalPages}`
+				)
+			}
+		}
+
+		// Go to specific page
+		function goToPage(index) {
+			if (index >= 0 && index < totalPages) {
+				currentIndex = index
+				updateCarousel()
+			}
+		}
+
+		// Add indicator click events
+		indicators.forEach((indicator, index) => {
+			indicator.addEventListener("click", () => {
+				goToPage(index)
+			})
+		})
+
+		// Add keyboard navigation
+		carousel?.addEventListener("keydown", (e) => {
+			if (e.key === "ArrowLeft") {
+				if (currentIndex > 0) {
+					goToPage(currentIndex - 1)
+				}
+				e.preventDefault()
+			} else if (e.key === "ArrowRight") {
+				if (currentIndex < totalPages - 1) {
+					goToPage(currentIndex + 1)
+				}
+				e.preventDefault()
+			}
+		})
+
+		// Initialize carousel
+		updateCarousel()
+
+		// Add touch/swipe support
+		let touchStartX = 0
+		let touchEndX = 0
+
+		carousel?.addEventListener("touchstart", (e) => {
+			touchStartX = e.changedTouches[0].screenX
+		})
+
+		carousel?.addEventListener("touchend", (e) => {
+			touchEndX = e.changedTouches[0].screenX
+			handleSwipe()
+		})
+
+		function handleSwipe() {
+			const swipeThreshold = 50
+			if (touchEndX < touchStartX - swipeThreshold) {
+				// Swipe left, go next
+				if (currentIndex < totalPages - 1) {
+					goToPage(currentIndex + 1)
+				}
+			} else if (touchEndX > touchStartX + swipeThreshold) {
+				// Swipe right, go prev
+				if (currentIndex > 0) {
+					goToPage(currentIndex - 1)
+				}
+			}
+		}
+	})
+</script>

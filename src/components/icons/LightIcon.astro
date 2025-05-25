@@ -1,0 +1,15 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<Icon class={className}>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+    <path d="M10 3.5V2M10 18v-1.5M5.05 5.05 4 4M16 16l-1.05-1.05M3.5 10H2M18 10h-1.5M16 4l-1.05 1.05M5.05 16 4 15M14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</Icon>

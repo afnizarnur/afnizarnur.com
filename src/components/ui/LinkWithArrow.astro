@@ -1,0 +1,30 @@
+---
+import { ArrowIcon } from "../icons"
+
+interface Props {
+	href: string
+	text: string
+	className?: string
+	openInNewTab?: boolean
+}
+
+const { href, text, className = "", openInNewTab = false } = Astro.props
+---
+
+<a
+	href={href}
+	{...openInNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+	class={`relative underline hover:no-underline focus-ring rounded-md ${className}`}
+>
+	{text}
+	<ArrowIcon class="inline-block ml-1 w-4 h-4 align-middle" />
+</a>
+
+<style>
+	a svg {
+		margin-left: 4px;
+		width: 16px;
+		height: 16px;
+		vertical-align: text-bottom;
+	}
+</style>

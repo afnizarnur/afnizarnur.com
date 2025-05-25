@@ -1,0 +1,203 @@
+@import "./themes.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: "Inter var";
+		src: url("/src/assets/fonts/Inter-roman.var.woff2") format("woff2");
+		font-weight: 100 900;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Aksen";
+		src: url("/src/assets/fonts/Aksen-Condensed-SemiBold.woff2")
+			format("woff2");
+		font-weight: 600;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Fonetika";
+		src: url("/src/assets/fonts/Fonetika-Mono-Regular.woff2")
+			format("woff2");
+		font-weight: 400;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	html {
+		font-family: "Inter var", system-ui, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	body {
+		@apply bg-bg text-primary transition-colors duration-200;
+	}
+
+	/* Heading styles */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-display text-primary mb-6 font-semibold;
+		text-rendering: optimizeLegibility;
+	}
+
+	h1 {
+		@apply text-heading-1 md:text-[2.875rem] md:leading-[3.1625rem] lg:text-[3.25rem] lg:leading-[3.575rem];
+	}
+
+	h2 {
+		@apply text-heading-2 sm:text-[2.875rem] sm:leading-[3.1625rem];
+	}
+
+	h3 {
+		@apply text-heading-3;
+	}
+
+	h4 {
+		@apply text-heading-4;
+	}
+
+	h5 {
+		@apply text-heading-5;
+	}
+
+	h6 {
+		@apply text-heading-6;
+	}
+
+	/* Default paragraph style */
+	p {
+		@apply text-body text-secondary;
+		margin-bottom: 1em;
+		letter-spacing: -0.01rem;
+		line-height: 1.5;
+	}
+
+	/* Default strong style */
+	strong,
+	b {
+		font-weight: 600;
+	}
+
+	/* Default small text style */
+	small {
+		@apply text-small;
+	}
+
+	/* Default links styling */
+	a {
+		@apply text-primary hover:no-underline transition-opacity;
+	}
+
+	p.bold,
+	p strong {
+		font-weight: 520;
+	}
+
+	p a {
+		color: var(--text-secondary);
+	}
+
+	p.subtitle {
+		@apply text-subtitle sm:text-[1.4375rem] sm:leading-[2.0125rem];
+	}
+
+	p.body-large {
+		@apply text-body-large font-medium;
+	}
+}
+
+/* Typography utility classes */
+@layer utilities {
+	.h1 {
+		@apply text-heading-1 font-display text-primary md:text-[2.875rem] md:leading-[3.1625rem] lg:text-[3.25rem] lg:leading-[3.575rem];
+	}
+
+	.h2 {
+		@apply text-heading-2 font-display text-primary sm:text-[2.875rem] sm:leading-[3.1625rem];
+	}
+
+	.h3 {
+		@apply text-heading-3 font-display text-primary;
+	}
+
+	.h4 {
+		@apply text-heading-4 font-display text-primary;
+	}
+
+	.h5 {
+		@apply text-heading-5 font-display text-primary;
+	}
+
+	.h6 {
+		@apply text-heading-6 font-display text-primary;
+	}
+
+	.subtitle {
+		@apply text-subtitle text-primary sm:text-[1.4375rem] sm:leading-[2.0125rem];
+	}
+
+	.body-large {
+		@apply text-body-large text-secondary;
+	}
+
+	.body {
+		@apply text-body text-secondary;
+	}
+
+	.small {
+		@apply text-small text-secondary;
+	}
+
+	.helper {
+		@apply text-helper text-disabled;
+	}
+
+	.mono {
+		@apply font-mono;
+	}
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.fade-in {
+	animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Focus ring utility */
+.focus-ring {
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring focus-visible:ring-btn-focus focus-visible:ring-offset-1;
+}
+
+/* You can customize further with specific variants */
+.focus-ring-primary {
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring focus-visible:ring-btn-focus focus-visible:ring-offset-2;
+}
+
+.focus-ring-inset {
+	@apply focus:outline-none focus-visible:ring-2 focus-visible:ring focus-visible:ring-inset focus-visible:ring-btn-focus;
+}
+
+/* A helper to make any interactive element show a focus ring when using keyboard */
+[data-focus-visible-added] {
+	@apply focus-ring;
+}

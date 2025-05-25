@@ -1,0 +1,432 @@
+---
+interface Props {
+	src: string
+	alt?: string
+	brightness?: number
+	contrast?: number
+	resolution?: number
+	ditherStep?: number
+	class?: string
+	id?: string
+}
+
+const {
+	src,
+	alt = "",
+	brightness = 1.0,
+	contrast = 1.0,
+	resolution = 100,
+	ditherStep = 3,
+	class: className = "",
+	id
+} = Astro.props
+
+const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
+---
+
+<div class={`dither-image-container w-full h-full ${className}`} id={id}>
+	<canvas id={uniqueId} class="w-full h-full"></canvas>
+	<div class="loading-placeholder">
+		<div class="loading-text">Processing dithered image...</div>
+	</div>
+</div>
+
+<script
+	define:vars={{
+		uniqueId,
+		src,
+		brightness,
+		contrast,
+		resolution,
+		ditherStep,
+		id
+	}}
+>
+	document.addEventListener("DOMContentLoaded", () => {
+		const container =
+			document.getElementById(id) ||
+			document.querySelector(".dither-image-container")
+		const canvas = document.getElementById(uniqueId)
+		const loadingPlaceholder = container.querySelector(
+			".loading-placeholder"
+		)
+		const ctx = canvas.getContext("2d", { alpha: false }) // Optimize by disabling alpha
+
+		// Current parameters
+		let currentParams = {
+			brightness: brightness,
+			contrast: contrast,
+			resolution: resolution,
+			ditherStep: ditherStep
+		}
+
+		// Get theme colors
+		function getThemeColors() {
+			const computedStyle = getComputedStyle(document.documentElement)
+			const bgColor =
+				computedStyle.getPropertyValue("--background-default").trim() ||
+				"#ffffff"
+			const textColor =
+				computedStyle.getPropertyValue("--text-primary").trim() ||
+				"#000000"
+
+			// Convert CSS color to RGB array
+			function colorToRgb(color) {
+				// If color is in hex format
+				if (color.charAt(0) === "#") {
+					const r = parseInt(color.substr(1, 2), 16)
+					const g = parseInt(color.substr(3, 2), 16)
+					const b = parseInt(color.substr(5, 2), 16)
+					return [r, g, b]
+				}
+				// If color is in rgb/rgba format
+				const match = color.match(
+					/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/
+				)
+				if (match) {
+					return [
+						parseInt(match[1]),
+						parseInt(match[2]),
+						parseInt(match[3])
+					]
+				}
+				// Default to black and white if parsing fails
+				return color === "#ffffff" ? [255, 255, 255] : [0, 0, 0]
+			}
+
+			return {
+				bgRgb: colorToRgb(bgColor),
+				textRgb: colorToRgb(textColor)
+			}
+		}
+
+		// Store the colors
+		let themeColors = getThemeColors()
+
+		// Pre-create offscreen canvas for better performance
+		const offscreenCanvas = document.createElement("canvas")
+		const offscreenCtx = offscreenCanvas.getContext("2d", { alpha: false })
+
+		// Track if processing is happening to prevent duplicate processing
+		let isProcessing = false
+
+		// Store original image for faster reprocessing
+		let originalImage = null
+
+		// MutationObserver to detect theme changes
+		const observer = new MutationObserver(() => {
+			const newColors = getThemeColors()
+			if (JSON.stringify(newColors) !== JSON.stringify(themeColors)) {
+				themeColors = newColors
+				if (originalImage) {
+					// Reprocess with the new theme immediately
+					applyDither(originalImage)
+				} else {
+					processImage()
+				}
+			}
+		})
+
+		// Enhance mutation observer for theme changes
+		function setupThemeDetection() {
+			// Watch document root for class changes (theme toggles often change classes)
+			observer.observe(document.documentElement, {
+				attributes: true,
+				attributeFilter: ["class", "data-theme"]
+			})
+
+			// Also watch for theme changes in body
+			observer.observe(document.body, {
+				attributes: true,
+				attributeFilter: ["class", "data-theme"]
+			})
+
+			// Watch for CSS variables changes
+			const sheet = document.createElement("style")
+			sheet.innerHTML = ":root {}"
+			document.head.appendChild(sheet)
+			observer.observe(sheet, { childList: true, subtree: true })
+
+			// Listen for custom theme change events
+			document.addEventListener("themechange", () => {
+				const newColors = getThemeColors()
+				themeColors = newColors
+				if (originalImage) {
+					applyDither(originalImage)
+				} else {
+					processImage()
+				}
+			})
+		}
+
+		// Main image processing function
+		function processImage() {
+			if (isProcessing) return
+			isProcessing = true
+
+			const img = new Image()
+			img.crossOrigin = "Anonymous"
+
+			img.onerror = function () {
+				console.error("Error loading image:", src)
+				if (loadingPlaceholder) {
+					loadingPlaceholder.style.display = "none"
+				}
+				createFallbackPattern()
+				isProcessing = false
+			}
+
+			img.onload = function () {
+				if (loadingPlaceholder) {
+					loadingPlaceholder.style.display = "none"
+				}
+
+				// Store the original image for faster reprocessing on theme changes
+				originalImage = img
+
+				// Set canvas dimensions
+				const containerWidth = container.offsetWidth
+				const containerHeight = container.offsetHeight
+				const aspectRatio = img.height / img.width
+				canvas.width = containerWidth
+
+				// If the container has a set height, use it; otherwise calculate based on aspect ratio
+				if (containerHeight > 0) {
+					canvas.height = containerHeight
+				} else {
+					canvas.height = containerWidth * aspectRatio
+				}
+
+				// Apply dithering
+				applyDither(img)
+				isProcessing = false
+			}
+
+			// Load the image
+			img.src = src
+		}
+
+		// Fallback pattern when image loading fails
+		function createFallbackPattern() {
+			const { bgRgb, textRgb } = themeColors
+			const bgColorStyle = `rgb(${bgRgb[0]}, ${bgRgb[1]}, ${bgRgb[2]})`
+			const textColorStyle = `rgb(${textRgb[0]}, ${textRgb[1]}, ${textRgb[2]})`
+
+			const containerWidth = container.offsetWidth
+			const containerHeight = container.offsetHeight || 250
+
+			canvas.width = containerWidth
+			canvas.height = containerHeight
+
+			ctx.fillStyle = bgColorStyle
+			ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+			// Simplified pattern for better performance
+			const patternSize = Math.max(
+				2,
+				Math.round(currentParams.resolution / 10)
+			)
+
+			ctx.fillStyle = textColorStyle
+			for (let y = 0; y < canvas.height; y += patternSize) {
+				for (let x = 0; x < canvas.width; x += patternSize) {
+					if (Math.random() > 0.6) {
+						ctx.fillRect(x, y, 1, 1)
+					}
+				}
+			}
+		}
+
+		// Optimized Atkinson dithering
+		function applyDither(img) {
+			// Get latest theme colors to ensure we're using current theme
+			themeColors = getThemeColors()
+			const { bgRgb, textRgb } = themeColors
+
+			// Calculate dimensions based on resolution
+			const scaleFactor = currentParams.resolution / 100
+			const scaledWidth = Math.max(
+				1,
+				Math.floor(canvas.width * scaleFactor)
+			)
+			const scaledHeight = Math.max(
+				1,
+				Math.floor(canvas.height * scaleFactor)
+			)
+
+			// Size the offscreen canvas
+			offscreenCanvas.width = scaledWidth
+			offscreenCanvas.height = scaledHeight
+
+			// Draw and resize image
+			offscreenCtx.drawImage(img, 0, 0, scaledWidth, scaledHeight)
+
+			// Get image data for processing
+			const imageData = offscreenCtx.getImageData(
+				0,
+				0,
+				scaledWidth,
+				scaledHeight
+			)
+			const pixels = imageData.data
+
+			// Optimize: pre-calculate constants
+			const brightnessVal = currentParams.brightness
+			const contrastVal = currentParams.contrast
+			const ditherStepVal = currentParams.ditherStep
+			const threshold = 128
+
+			// Convert to grayscale and apply brightness/contrast in a single pass
+			for (let i = 0; i < pixels.length; i += 4) {
+				// Faster grayscale conversion
+				const gray =
+					pixels[i] * 0.299 +
+					pixels[i + 1] * 0.587 +
+					pixels[i + 2] * 0.114
+
+				// Apply brightness and contrast in one formula
+				pixels[i] =
+					pixels[i + 1] =
+					pixels[i + 2] =
+						Math.min(
+							255,
+							Math.max(
+								0,
+								(gray * brightnessVal - 128) * contrastVal + 128
+							)
+						)
+			}
+
+			// Atkinson dithering using theme colors
+			for (let y = 0; y < scaledHeight; y++) {
+				for (let x = 0; x < scaledWidth; x++) {
+					const index = (y * scaledWidth + x) * 4
+					const oldPixel = pixels[index]
+
+					// Apply threshold
+					let newPixel
+					if (oldPixel > threshold) {
+						// Use background color
+						pixels[index] = bgRgb[0]
+						pixels[index + 1] = bgRgb[1]
+						pixels[index + 2] = bgRgb[2]
+						newPixel = 255
+					} else {
+						// Use text color
+						pixels[index] = textRgb[0]
+						pixels[index + 1] = textRgb[1]
+						pixels[index + 2] = textRgb[2]
+						newPixel = 0
+					}
+
+					// Calculate error
+					const error = oldPixel - newPixel
+					const errorPart = (error / 8) * ditherStepVal
+
+					// Optimized error diffusion using direct array access
+					if (x + 1 < scaledWidth) {
+						pixels[index + 4] += errorPart // right
+						if (x + 2 < scaledWidth) {
+							pixels[index + 8] += errorPart // two right
+						}
+					}
+
+					if (y + 1 < scaledHeight) {
+						const nextRowIndex = index + scaledWidth * 4
+						if (x - 1 >= 0) {
+							pixels[nextRowIndex - 4] += errorPart // bottom left
+						}
+						pixels[nextRowIndex] += errorPart // bottom
+						if (x + 1 < scaledWidth) {
+							pixels[nextRowIndex + 4] += errorPart // bottom right
+						}
+
+						if (y + 2 < scaledHeight) {
+							pixels[nextRowIndex + scaledWidth * 4] += errorPart // two rows down
+						}
+					}
+				}
+			}
+
+			// Put processed image back
+			offscreenCtx.putImageData(imageData, 0, 0)
+
+			// Draw final result
+			ctx.drawImage(offscreenCanvas, 0, 0, canvas.width, canvas.height)
+		}
+
+		// Event listener for parameter updates
+		if (id) {
+			const containerElement = document.getElementById(id)
+			if (containerElement) {
+				containerElement.addEventListener(
+					"update-dither-params",
+					(event) => {
+						// Update parameters
+						currentParams = { ...currentParams, ...event.detail }
+						// Reprocess image with new parameters
+						if (originalImage) {
+							applyDither(originalImage)
+						} else {
+							processImage()
+						}
+					}
+				)
+			}
+		}
+
+		// Set up enhanced theme detection
+		setupThemeDetection()
+
+		// Initial image processing
+		processImage()
+
+		// Handle window resize for responsive canvas
+		window.addEventListener("resize", () => {
+			if (originalImage) {
+				// Reset canvas dimensions
+				const containerWidth = container.offsetWidth
+				const containerHeight = container.offsetHeight
+
+				// If the container has a set height, use it; otherwise calculate based on aspect ratio
+				canvas.width = containerWidth
+				if (containerHeight > 0) {
+					canvas.height = containerHeight
+				} else {
+					const aspectRatio =
+						originalImage.height / originalImage.width
+					canvas.height = containerWidth * aspectRatio
+				}
+
+				// Reapply dithering
+				applyDither(originalImage)
+			}
+		})
+	})
+</script>
+
+<style>
+	.dither-image-container {
+		overflow: hidden;
+		border-radius: 0;
+		background-color: var(--background-default, white);
+		position: relative;
+	}
+
+	.loading-placeholder {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: var(--background-default, white);
+	}
+
+	.loading-text {
+		font-size: 0.875rem;
+		color: var(--text-secondary, #666);
+	}
+</style>

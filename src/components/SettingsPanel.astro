@@ -1,0 +1,158 @@
+---
+import {
+	DarkLightIcon,
+	LightIcon,
+	DarkIcon,
+	FontDecreaseIcon,
+	FontDefaultIcon,
+	FontIncreaseIcon
+} from "./icons"
+---
+
+<div
+	id="settings-panel"
+	class="hidden absolute z-50 top-6 right-0 left-0 mx-auto pt-0 pr-6 pb-6 pl-6"
+	role="dialog"
+	aria-labelledby="settings-panel-title"
+	aria-modal="true"
+>
+	<div
+		id="settings-panel-content"
+		class="bg-surface rounded-lg w-full overflow-hidden border border-disabled will-change-transform will-change-opacity"
+	>
+		<div class="mb-2">
+			<h3
+				id="settings-panel-title"
+				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled mb-0"
+			>
+				THEME
+			</h3>
+			<div
+				class="flex lg:grid lg:grid-cols-3 lg:gap-0 pt-0"
+				role="radiogroup"
+				aria-label="Theme selection"
+			>
+				<button
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus-ring lg:border-b lg:border-r lg:border-disabled hover:bg-surface-hover will-change-opacity"
+					data-theme="system"
+					aria-label="System theme"
+					aria-checked="false"
+					role="radio"
+				>
+					<DarkLightIcon class="w-5 h-5 text-primary theme-icon" />
+				</button>
+				<button
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus-ring lg:border-b lg:border-r lg:border-disabled hover:bg-surface-hover will-change-opacity"
+					data-theme="light"
+					aria-label="Light theme"
+					aria-checked="false"
+					role="radio"
+				>
+					<LightIcon class="w-5 h-5 text-primary theme-icon" />
+				</button>
+				<button
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus-ring lg:border-b lg:border-disabled hover:bg-surface-hover will-change-opacity"
+					data-theme="dark"
+					aria-label="Dark theme"
+					aria-checked="false"
+					role="radio"
+				>
+					<DarkIcon class="w-5 h-5 text-primary theme-icon" />
+				</button>
+				<button
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus-ring lg:border-b lg:border-r lg:border-disabled hover:bg-surface-hover will-change-opacity"
+					data-theme="gray"
+					aria-label="Gray theme"
+					aria-checked="false"
+					role="radio"
+				>
+					<div
+						class="w-5 h-5 rounded-full bg-white border border-primary"
+					>
+					</div>
+				</button>
+				<button
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus-ring lg:border-b lg:border-r lg:border-disabled hover:bg-surface-hover will-change-opacity"
+					data-theme="pink"
+					aria-label="Pink theme"
+					aria-checked="false"
+					role="radio"
+				>
+					<div
+						class="w-5 h-5 rounded-full bg-pink-300 border border-primary"
+					>
+					</div>
+				</button>
+				<button
+					class="settings-theme-btn w-full h-[50px] flex items-center justify-center transition-colors focus-ring lg:border-b lg:border-disabled hover:bg-surface-hover will-change-opacity"
+					data-theme="blue"
+					aria-label="Blue theme"
+					aria-checked="false"
+					role="radio"
+				>
+					<div
+						class="w-5 h-5 rounded-full bg-blue-300 border border-primary"
+					>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<div>
+			<h3
+				class="text-sm font-mono text-secondary uppercase font-normal p-4 pb-3 border-b border-disabled mb-0"
+				id="font-size-controls"
+			>
+				FONT SIZE
+			</h3>
+			<div
+				class="flex lg:grid lg:grid-cols-3 lg:gap-0 pt-0"
+				role="toolbar"
+				aria-labelledby="font-size-controls"
+			>
+				<button
+					class="settings-font-btn w-[50px] lg:w-full h-[50px] flex items-center justify-center transition-colors focus-ring lg:border-r lg:border-disabled hover:bg-surface-hover will-change-opacity"
+					id="font-decrease"
+					aria-label="Decrease font size"
+				>
+					<FontDecreaseIcon class="w-5 h-5 text-primary font-icon" />
+				</button>
+				<button
+					class="settings-font-btn w-[50px] lg:w-full h-[50px] flex items-center justify-center transition-colors focus-ring lg:border-r lg:border-disabled hover:bg-surface-hover will-change-opacity"
+					id="font-default"
+					aria-label="Default font size"
+				>
+					<FontDefaultIcon class="w-5 h-5 text-primary font-icon" />
+				</button>
+				<button
+					class="settings-font-btn w-[50px] lg:w-full h-[50px] flex items-center justify-center transition-colors focus-ring hover:bg-surface-hover will-change-opacity"
+					id="font-increase"
+					aria-label="Increase font size"
+				>
+					<FontIncreaseIcon class="w-5 h-5 text-primary font-icon" />
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		import { initSettingsPanel } from "../scripts/settings/index.js"
+
+		// Initialize the settings panel functionality when the DOM is loaded
+		document.addEventListener("DOMContentLoaded", () => {
+			initSettingsPanel()
+		})
+	</script>
+</div>
+
+<style>
+	#settings-panel-content {
+		transform: translateZ(0);
+		backface-visibility: hidden;
+	}
+
+	.settings-theme-btn,
+	.settings-font-btn {
+		transform: translateZ(0);
+	}
+</style>
