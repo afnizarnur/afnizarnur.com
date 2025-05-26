@@ -17,8 +17,10 @@ export function initThemeManager() {
 			const buttonIcon = button.querySelector(".theme-icon")
 			const isActive = buttonTheme === currentTheme
 
-			// Update ARIA state and visual indication
-			button.setAttribute("aria-checked", isActive ? "true" : "false")
+			// Only set aria-checked on elements with role="radio"
+			if (button.getAttribute("role") === "radio") {
+				button.setAttribute("aria-checked", isActive ? "true" : "false")
+			}
 
 			if (isActive) {
 				if (buttonIcon) {
