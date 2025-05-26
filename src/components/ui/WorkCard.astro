@@ -45,8 +45,8 @@ const inlineStyle = hasCssVar ? `background-color: ${color};` : ""
 			<Image
 				src={image}
 				alt={imageAlt}
-				width={800}
-				height={450}
+				width={image.width}
+				height={image.height}
 				quality={90}
 				format="webp"
 				loading="eager"
