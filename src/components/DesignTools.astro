@@ -13,6 +13,7 @@ import designTokensImg from "../assets/design-tools/design-tokens.png"
 import variantInspectorImg from "../assets/design-tools/variant-inspector.png"
 import nataiconsImg from "../assets/design-tools/nataicons.png"
 import quickNewPageImg from "../assets/design-tools/quick-new-page.png"
+import designToolsHeaderImg from "../assets/design-tools/tools.png"
 
 interface Tool {
 	title: string
@@ -23,7 +24,7 @@ interface Tool {
 
 // Add an interface for the dither image props
 interface DitherImageProps {
-	src: string
+	src: ImageMetadata
 	brightness?: number
 	contrast?: number
 	resolution?: number
@@ -73,7 +74,7 @@ const tools: Tool[] = [
 
 // Define default dither image properties
 const ditherImageProps: DitherImageProps = {
-	src: "/designtools.png", // Using an existing image in the public directory
+	src: designToolsHeaderImg,
 	brightness: 1.8,
 	contrast: 1,
 	resolution: 130,
@@ -162,15 +163,19 @@ const totalPages = Math.ceil(tools.length / itemsPerPage)
 			</div>
 
 			<!-- Carousel Dot Indicators -->
-			<div class="carousel-indicators flex justify-center my-7 gap-2">
+			<div class="carousel-indicators flex justify-center my-5">
 				{
 					Array.from({ length: totalPages }).map((_, i) => (
 						<button
-							class="carousel-indicator w-2 h-2 rounded-full bg-border flex items-center justify-center focus:outline-none focus-ring"
+							class="carousel-indicator w-6 h-6 rounded-full flex items-center justify-center focus:outline-none focus-ring"
 							data-index={i}
 							aria-label={`Go to slide ${i + 1}`}
 							aria-current={i === 0 ? "true" : "false"}
 						>
+							<span
+								class="w-2 h-2 rounded-full bg-border"
+								aria-hidden="true"
+							/>
 							<span class="sr-only">Page {i + 1}</span>
 						</button>
 					))
@@ -193,12 +198,12 @@ const totalPages = Math.ceil(tools.length / itemsPerPage)
 		}
 	}
 
-	.carousel-indicator[aria-current="true"] {
+	.carousel-indicator[aria-current="true"] > span:not(.sr-only) {
 		background-color: var(--text-primary);
 	}
 
-	.carousel-indicator:hover {
-		background-color: var(--border-high);
+	.carousel-indicator:hover > span:not(.sr-only) {
+		background-color: var(--text-primary);
 	}
 </style>
 

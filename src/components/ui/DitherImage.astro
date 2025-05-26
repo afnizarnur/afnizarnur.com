@@ -1,6 +1,8 @@
 ---
+import type { ImageMetadata } from "astro"
+
 interface Props {
-	src: string
+	src: string | ImageMetadata
 	alt?: string
 	brightness?: number
 	contrast?: number
@@ -22,6 +24,7 @@ const {
 } = Astro.props
 
 const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
+const imageSrc = typeof src === "string" ? src : src.src
 ---
 
 <div class={`dither-image-container w-full h-full ${className}`} id={id}>
@@ -34,7 +37,7 @@ const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
 <script
 	define:vars={{
 		uniqueId,
-		src,
+		imageSrc,
 		brightness,
 		contrast,
 		resolution,
@@ -168,7 +171,7 @@ const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
 			img.crossOrigin = "Anonymous"
 
 			img.onerror = function () {
-				console.error("Error loading image:", src)
+				console.error("Error loading image:", imageSrc)
 				if (loadingPlaceholder) {
 					loadingPlaceholder.style.display = "none"
 				}
@@ -203,7 +206,7 @@ const uniqueId = `dither-canvas-${Math.random().toString(36).substr(2, 9)}`
 			}
 
 			// Load the image
-			img.src = src
+			img.src = imageSrc
 		}
 
 		// Fallback pattern when image loading fails
