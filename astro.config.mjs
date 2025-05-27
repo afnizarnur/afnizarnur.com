@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config"
 import tailwind from "@astrojs/tailwind"
 import sitemap from "@astrojs/sitemap"
 import umami from "@yeskunall/astro-umami"
+import netlify from "@astrojs/netlify"
 
 export default defineConfig({
 	site: "https://afnizarnur.com",
@@ -15,7 +16,8 @@ export default defineConfig({
 		}),
 		umami({
 			id: "cc3e0e53-f632-4b18-9634-a422d703728e"
-		})
+		}),
+		netlify()
 	],
 	image: {
 		service: {
@@ -37,5 +39,7 @@ export default defineConfig({
 		optimizeDeps: {
 			include: ["gsap"]
 		}
-	}
+	},
+	output: "server",
+	adapter: netlify()
 })
