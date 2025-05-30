@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/afnizarnur">
-    <img src="https://raw.githubusercontent.com/afnizarnur/afnizarnur.com/refs/heads/main/public/avatar.png" width="44">
+    <img src="https://raw.githubusercontent.com/afnizarnur/afnizarnur.com/refs/heads/main/public/favicon.png" width="44">
   </a>
 </p>
 

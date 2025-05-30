@@ -88,7 +88,7 @@
 	--theme-light-text-primary: var(--color-gray-950);
 	--theme-light-text-secondary: var(--color-gray-500);
 	--theme-light-text-disabled: var(--color-gray-400);
-	--theme-light-border-default: var(--color-gray-50);
+	--theme-light-border-default: var(--color-gray-100);
 	--theme-light-border-disabled: var(--color-gray-100);
 	--theme-light-border-high: var(--color-gray-200);
 	--theme-light-surface-default: var(--color-gray-50);
