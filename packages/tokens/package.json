@@ -1,0 +1,24 @@
+{
+  "name": "@afnizarnur/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/tokens.css",
+  "exports": {
+    "./css": "./dist/tokens.css",
+    "./tailwind": "./dist/tailwind-theme.cjs",
+    "./types": "./dist/types.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "terrazzo build",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@terrazzo/cli": "^0.10.3",
+    "@terrazzo/plugin-css": "^0.10.3",
+    "@terrazzo/plugin-tailwind": "^0.3.3"
+  }
+}

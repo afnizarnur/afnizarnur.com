@@ -1,0 +1,84 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/v1.0.0/schema.json",
+  "color": {
+    "$type": "color",
+    "primary": {
+      "50": { "$value": "#f0f9ff" },
+      "100": { "$value": "#e0f2fe" },
+      "200": { "$value": "#bae6fd" },
+      "300": { "$value": "#7dd3fc" },
+      "400": { "$value": "#38bdf8" },
+      "500": { "$value": "#0ea5e9" },
+      "600": { "$value": "#0284c7" },
+      "700": { "$value": "#0369a1" },
+      "800": { "$value": "#075985" },
+      "900": { "$value": "#0c4a6e" }
+    },
+    "neutral": {
+      "50": { "$value": "#fafafa" },
+      "100": { "$value": "#f5f5f5" },
+      "200": { "$value": "#e5e5e5" },
+      "300": { "$value": "#d4d4d4" },
+      "400": { "$value": "#a3a3a3" },
+      "500": { "$value": "#737373" },
+      "600": { "$value": "#525252" },
+      "700": { "$value": "#404040" },
+      "800": { "$value": "#262626" },
+      "900": { "$value": "#171717" }
+    },
+    "semantic": {
+      "error": { "$value": "#ef4444" },
+      "success": { "$value": "#10b981" },
+      "warning": { "$value": "#f59e0b" },
+      "info": { "$value": "#3b82f6" }
+    }
+  },
+  "spacing": {
+    "$type": "dimension",
+    "0": { "$value": "0rem" },
+    "1": { "$value": "0.25rem" },
+    "2": { "$value": "0.5rem" },
+    "3": { "$value": "0.75rem" },
+    "4": { "$value": "1rem" },
+    "5": { "$value": "1.25rem" },
+    "6": { "$value": "1.5rem" },
+    "8": { "$value": "2rem" },
+    "10": { "$value": "2.5rem" },
+    "12": { "$value": "3rem" },
+    "16": { "$value": "4rem" },
+    "20": { "$value": "5rem" }
+  },
+  "fontSize": {
+    "$type": "dimension",
+    "xs": { "$value": "0.75rem" },
+    "sm": { "$value": "0.875rem" },
+    "base": { "$value": "1rem" },
+    "lg": { "$value": "1.125rem" },
+    "xl": { "$value": "1.25rem" },
+    "2xl": { "$value": "1.5rem" },
+    "3xl": { "$value": "1.875rem" },
+    "4xl": { "$value": "2.25rem" },
+    "5xl": { "$value": "3rem" },
+    "6xl": { "$value": "3.75rem" }
+  },
+  "fontWeight": {
+    "$type": "number",
+    "normal": { "$value": 400 },
+    "medium": { "$value": 500 },
+    "semibold": { "$value": 600 },
+    "bold": { "$value": 700 }
+  },
+  "lineHeight": {
+    "$type": "number",
+    "tight": { "$value": 1.25 },
+    "normal": { "$value": 1.5 },
+    "relaxed": { "$value": 1.75 },
+    "loose": { "$value": 2 }
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "mobile": { "$value": "375px" },
+    "tablet": { "$value": "768px" },
+    "desktop": { "$value": "1440px" }
+  }
+}

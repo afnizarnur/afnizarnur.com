@@ -23,16 +23,16 @@ This is a monorepo with apps and packages:
 
 **Purpose**: Project initialization and monorepo structure
 
-- [ ] T001 Create monorepo root structure with `apps/` and `packages/` directories
-- [ ] T002 Initialize root `package.json` with workspaces and Turborepo scripts
-- [ ] T003 Create `pnpm-workspace.yaml` defining workspace packages pattern
-- [ ] T004 Create `turbo.json` with build pipeline configuration and dependency graph
-- [ ] T005 Initialize `.gitignore` with Node.js, build artifacts, and environment files
-- [ ] T006 Create `.changeset/` directory with Changesets configuration
-- [ ] T007 [P] Create `packages/config-eslint/` with shared ESLint configuration
-- [ ] T008 [P] Create `packages/config-typescript/` with base and React TypeScript configs
-- [ ] T009 [P] Create `packages/config-tailwind/` with shared Tailwind preset
-- [ ] T010 Install root dependencies: `pnpm`, `turbo`, `@changesets/cli`
+- [X] T001 Create monorepo root structure with `apps/` and `packages/` directories
+- [X] T002 Initialize root `package.json` with workspaces and Turborepo scripts
+- [X] T003 Create `pnpm-workspace.yaml` defining workspace packages pattern
+- [X] T004 Create `turbo.json` with build pipeline configuration and dependency graph
+- [X] T005 Initialize `.gitignore` with Node.js, build artifacts, and environment files
+- [X] T006 Create `.changeset/` directory with Changesets configuration
+- [X] T007 [P] Create `packages/config-eslint/` with shared ESLint configuration
+- [X] T008 [P] Create `packages/config-typescript/` with base and React TypeScript configs
+- [X] T009 [P] Create `packages/config-tailwind/` with shared Tailwind preset
+- [X] T010 Install root dependencies: `pnpm`, `turbo`, `@changesets/cli`
 
 **Checkpoint**: Monorepo structure established, shared configs available
 
@@ -46,23 +46,23 @@ This is a monorepo with apps and packages:
 
 ### Package Versioning Infrastructure
 
-- [ ] T011 Create `.changeset/config.json` with configuration for internal package versioning
-- [ ] T012 Configure Changesets for linked packages: `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives`, config packages
-- [ ] T013 Add `changeset` and `version-packages` scripts to root `package.json`
-- [ ] T014 Document Changesets workflow in root `README.md`: when to create changesets, how to bump versions
+- [X] T011 Create `.changeset/config.json` with configuration for internal package versioning
+- [X] T012 Configure Changesets for linked packages: `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives`, config packages
+- [X] T013 Add `changeset` and `version-packages` scripts to root `package.json`
+- [X] T014 Document Changesets workflow in root `README.md`: when to create changesets, how to bump versions
 
 ### Design Token System (US1, US2, US3 all depend on this)
 
-- [ ] T015 Create `packages/tokens/` package structure with `src/` and `dist/` directories
-- [ ] T016 Add `packages/tokens/package.json` with Terrazzo as devDependency
-- [ ] T017 Create `packages/tokens/terrazzo.config.ts` with CSS and Tailwind output plugins
-- [ ] T018 Create `packages/tokens/src/tokens.json` following W3C Design Token format with semantic naming:
+- [X] T015 Create `packages/tokens/` package structure with `src/` and `dist/` directories
+- [X] T016 Add `packages/tokens/package.json` with Terrazzo as devDependency
+- [X] T017 Create `packages/tokens/terrazzo.config.ts` with CSS and Tailwind output plugins
+- [X] T018 Create `packages/tokens/src/tokens.json` following W3C Design Token format with semantic naming:
   - Colors: `color.primary.{50-900}`, `color.neutral.{50-900}`, `color.semantic.{error,success,warning}`
   - Spacing: `spacing.{0-20}` (0.25rem increments)
   - Typography: `fontSize.{xs,sm,base,lg,xl,2xl,3xl,4xl}`, `fontWeight.{normal,medium,semibold,bold}`, `lineHeight.{tight,normal,relaxed}`
   - Breakpoints: `breakpoint.{mobile: 375px, tablet: 768px, desktop: 1440px}`
-- [ ] T019 Add build script to `packages/tokens/package.json` running Terrazzo CLI
-- [ ] T020 Build tokens package to generate `dist/tokens.css`, `dist/tailwind-theme.cjs`, `dist/types.ts`
+- [X] T019 Add build script to `packages/tokens/package.json` running Terrazzo CLI
+- [X] T020 Build tokens package to generate `dist/tokens.css`, `dist/tailwind-theme.cjs`, `dist/types.ts`
 
 ### Sanity Studio Setup (US1 depends on this)
 
