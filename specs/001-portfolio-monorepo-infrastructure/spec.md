@@ -118,7 +118,7 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 #### Phase 2: Content Pipeline
 - **FR-007**: System MUST provide a content management interface for creating, editing, and deleting content
 - **FR-008**: System MUST define structured schemas for blog posts, projects, pages, navigation, and site settings
-- **FR-009**: System MUST fetch content from the CMS and render it on web pages
+- **FR-009**: System MUST fetch content from the CMS and render it on web pages (using Astro-native Portable Text renderer for rich text content)
 - **FR-010**: System MUST support dynamic routing for content items using URL-friendly slugs
 - **FR-011**: System MUST display lists of content items (blog index, project showcase)
 - **FR-012**: System MUST display detailed views for individual content items
@@ -164,7 +164,7 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 - **SC-001**: Developers can set up the complete development environment from a fresh clone in under 5 minutes using a single install command
 - **SC-002**: Content creators can publish new blog posts or projects through the CMS interface in under 3 minutes without technical assistance
 - **SC-003**: Visitors can load any page on the site in under 2 seconds on a standard broadband connection
-- **SC-004**: Content published in the CMS appears on the live site within 5 minutes of publication
+- **SC-004**: Content published in the CMS appears on the live site within 5 minutes of publication (includes Netlify build time + CDN cache propagation; measured from Sanity publish click to visible change on production URL)
 - **SC-005**: The site is accessible and functional on mobile devices, tablets, and desktop computers
 - **SC-006**: All automated quality checks (lint, typecheck, build) pass successfully before code can be merged
 - **SC-007**: 95% of content updates result in successful automated deployments without manual intervention
