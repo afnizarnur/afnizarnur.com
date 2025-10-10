@@ -66,28 +66,28 @@ This is a monorepo with apps and packages:
 
 ### Sanity Studio Setup (US1 depends on this)
 
-- [ ] T021 Create `apps/studio/` directory structure
-- [ ] T022 Initialize Sanity project with `sanity init` or create `package.json` manually
-- [ ] T023 Create `apps/studio/sanity.config.ts` with project ID, dataset, and schema configuration
-- [ ] T024 Create `apps/studio/.env.example` with `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` placeholders
-- [ ] T025 Add `apps/studio/tsconfig.json` extending `@afnizarnur/config-typescript/base.json`
+- [X] T021 Create `apps/studio/` directory structure
+- [X] T022 Initialize Sanity project with `sanity init` or create `package.json` manually
+- [X] T023 Create `apps/studio/sanity.config.ts` with project ID, dataset, and schema configuration
+- [X] T024 Create `apps/studio/.env.example` with `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` placeholders
+- [X] T025 Add `apps/studio/tsconfig.json` extending `@afnizarnur/config-typescript/base.json`
 
 ### Astro Web App Setup (US2, US3, US4 depend on this)
 
-- [ ] T026 Create `apps/web/` directory structure with `src/pages/`, `src/layouts/`, `src/components/`, `src/server/`
-- [ ] T027 Initialize Astro project with `package.json` and dependencies: `astro`, `@astrojs/react`, `@astrojs/netlify`, `@astrojs/tailwind`, `@sanity/client@^6.0.0`, `astro-portabletext`
-- [ ] T028 Create `apps/web/astro.config.mjs` with React, Tailwind, and Netlify adapter integrations
-- [ ] T029 Create `apps/web/tailwind.config.ts` importing theme from `@afnizarnur/tokens/dist/tailwind-theme.cjs`
-- [ ] T030 Create `apps/web/tsconfig.json` extending `@afnizarnur/config-typescript/base.json` with path aliases
-- [ ] T031 Create `apps/web/.env.example` with `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `PUBLIC_SITE_URL`
-- [ ] T032 Create `apps/web/src/server/sanity.ts` with Sanity client configuration
-- [ ] T033 Create `apps/web/src/styles/global.css` importing `@afnizarnur/tokens/dist/tokens.css` and Tailwind directives
+- [X] T026 Create `apps/web/` directory structure with `src/pages/`, `src/layouts/`, `src/components/`, `src/server/`
+- [X] T027 Initialize Astro project with `package.json` and dependencies: `astro`, `@astrojs/react`, `@astrojs/netlify`, `@astrojs/tailwind`, `@sanity/client@^6.0.0`, `astro-portabletext`
+- [X] T028 Create `apps/web/astro.config.mjs` with React, Tailwind, and Netlify adapter integrations
+- [X] T029 Create `apps/web/tailwind.config.ts` importing theme from `@afnizarnur/tokens/dist/tailwind-theme.cjs`
+- [X] T030 Create `apps/web/tsconfig.json` extending `@afnizarnur/config-typescript/base.json` with path aliases
+- [X] T031 Create `apps/web/.env.example` with `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `PUBLIC_SITE_URL`
+- [X] T032 Create `apps/web/src/server/sanity.ts` with Sanity client configuration
+- [X] T033 Create `apps/web/src/styles/global.css` importing `@afnizarnur/tokens/dist/tokens.css` and Tailwind directives
 
 ### CI/CD Infrastructure
 
-- [ ] T034 Create `.github/workflows/ci.yml` with GitHub Actions workflow
-- [ ] T035 Configure CI workflow to run on pull requests to main branch
-- [ ] T036 Add CI workflow jobs: install dependencies, run lint/typecheck/build across all workspaces using `pnpm turbo run lint typecheck build`
+- [X] T034 Create `.github/workflows/ci.yml` with GitHub Actions workflow
+- [X] T035 Configure CI workflow to run on pull requests to main branch
+- [X] T036 Add CI workflow jobs: install dependencies, run lint/typecheck/build across all workspaces using `pnpm turbo run lint typecheck build`
 - [ ] T037 Test CI workflow by creating a test branch and opening a PR
 
 **Checkpoint**: Foundation ready - all packages can be built, CI automation operational, user story implementation can now begin in parallel
