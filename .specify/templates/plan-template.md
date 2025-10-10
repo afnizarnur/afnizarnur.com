@@ -31,7 +31,22 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Verify compliance with `.specify/memory/constitution.md` principles:
+
+- [ ] **Code Quality (Principle I)**: Packages independently buildable, TypeScript strict mode, explicit dependencies
+- [ ] **Testing Standards (Principle II)**: Monorepo build/typecheck/lint gates planned; content pipeline validation included
+- [ ] **UX Consistency (Principle III)**: Token-driven styling via `@afnizarnur/tokens`; shared components from `@afnizarnur/ui`
+- [ ] **Performance (Principle IV)**: SSG-first approach; Lighthouse ≥90 mobile, ≥95 desktop; LCP <2.5s; selective hydration
+- [ ] **Quality Gates**: All 10 gates included in task list (Monorepo Build, Type Check, Lint, Package Isolation, Content Pipeline, Visual, Browser, Performance, Accessibility, CI)
+
+**Monorepo-Specific Checks**:
+- [ ] Package dependency chain respects build order (e.g., `tokens` → `ui` → `web`)
+- [ ] No circular dependencies between packages
+- [ ] Turborepo `dependsOn` configured if new packages added
+- [ ] Changesets workflow planned if packages versioned
+
+**Exceptions** (document in Complexity Tracking if any principle is violated):
+- None expected; document if needed
 
 ## Project Structure
 

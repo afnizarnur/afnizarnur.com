@@ -156,6 +156,37 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
+## Phase FINAL: Constitutional Quality Gates ⚠️ REQUIRED
+
+**Purpose**: Verify all constitutional requirements before feature completion
+
+Per `.specify/memory/constitution.md`, ALL features MUST pass these gates:
+
+### Core Monorepo Gates (1-5)
+- [ ] TXXX **Monorepo Build Gate**: Run `pnpm turbo run build` - must succeed across all workspaces without errors/warnings
+- [ ] TXXX **Type Check Gate**: Run `pnpm turbo run typecheck` - must pass for all packages + apps
+- [ ] TXXX **Lint Gate**: Run `pnpm turbo run lint` - must pass across all workspaces
+- [ ] TXXX **Package Isolation Gate**: For each modified package, run `pnpm build --filter=@afnizarnur/[package-name]` independently
+- [ ] TXXX **Content Pipeline Gate**: Verify Sanity → Astro data flow (`pnpm dev` in apps/web, check modified content types render)
+
+### User Experience Gates (6-9)
+- [ ] TXXX **Visual Gate**: Manual inspection at 375px (mobile), 768px (tablet), 1440px (desktop)
+- [ ] TXXX **Browser Gate**: Test in Chrome, Firefox, Safari (latest stable versions)
+- [ ] TXXX **Performance Gate**: Lighthouse audit on production build - ≥90 mobile, ≥95 desktop; LCP <2.5s; CLS <0.1; TBT <300ms
+- [ ] TXXX **Accessibility Gate**: Keyboard navigation test + WAVE/axe DevTools check (no critical violations)
+
+### CI/CD Gate (10)
+- [ ] TXXX **CI Gate**: GitHub Actions workflow passes (lint/typecheck/build)
+
+### Feature-Specific Gates (if applicable)
+- [ ] TXXX **Token Changes**: If `@afnizarnur/tokens` modified, verify outputs consumed by `apps/web/tailwind.config.ts`
+- [ ] TXXX **UI Component Changes**: If `@afnizarnur/ui` modified, test component import as Astro island (`client:load`)
+- [ ] TXXX **Sanity Schema Changes**: If `apps/studio/schemas/*` modified, verify GROQ queries still work
+
+**CRITICAL**: Feature is NOT complete until ALL applicable gates pass
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

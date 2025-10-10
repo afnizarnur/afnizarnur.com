@@ -105,11 +105,26 @@
 <!--
   ACTION REQUIRED: Define measurable success criteria.
   These must be technology-agnostic and measurable.
+
+  IMPORTANT: All features must meet constitutional requirements from `.specify/memory/constitution.md`:
+  - Performance: Lighthouse ≥90 mobile, ≥95 desktop; LCP <2.5s; CLS <0.1; TBT <300ms
+  - UX Consistency: Responsive at 375px, 768px, 1440px; consistent interaction patterns
+  - Quality: Passes all 6 quality gates (Build, Visual, Browser, Performance, Accessibility, Link)
 -->
 
 ### Measurable Outcomes
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
+- **SC-001**: [User journey metric, e.g., "Users can complete account creation in under 2 minutes"]
+- **SC-002**: [Performance metric, e.g., "Page load time under 2 seconds on 3G networks"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-004**: [Business/quality metric, e.g., "Zero accessibility violations in WAVE audit"]
+
+### Constitutional Compliance *(auto-required)*
+
+These criteria apply to ALL features per constitution:
+
+- **SC-PERF**: Lighthouse Performance ≥90 (mobile), ≥95 (desktop); LCP <2.5s; CLS <0.1; TBT <300ms
+- **SC-RESPONSIVE**: Functions correctly at 375px (mobile), 768px (tablet), 1440px (desktop) breakpoints
+- **SC-BROWSER**: Works in Chrome, Firefox, and Safari (latest versions)
+- **SC-A11Y**: Passes keyboard navigation test and has no critical accessibility violations
+- **SC-BUILD**: Production build completes without errors or warnings
