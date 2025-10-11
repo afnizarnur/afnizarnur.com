@@ -14,6 +14,7 @@ Before starting, ensure you have the following installed:
 - **Code Editor**: VS Code recommended (with TypeScript and Astro extensions)
 
 **Optional but Recommended**:
+
 - **Sanity CLI**: `npm install -g @sanity/cli` (for managing Sanity Studio)
 
 ---
@@ -35,12 +36,14 @@ pnpm install
 ```
 
 This will install dependencies for:
+
 - Root workspace
 - `apps/web` (Astro app)
 - `apps/studio` (Sanity Studio)
 - All packages in `packages/` directory
 
 Expected output:
+
 ```
 Packages: +XXX
 Progress: resolved XXX, reused XXX, downloaded X, added XXX, done
@@ -51,12 +54,14 @@ Progress: resolved XXX, reused XXX, downloaded X, added XXX, done
 Create environment files for each application:
 
 **For apps/web** (Astro):
+
 ```bash
 cd apps/web
 cp .env.example .env
 ```
 
 Edit `apps/web/.env`:
+
 ```env
 PUBLIC_SANITY_PROJECT_ID=your-project-id
 PUBLIC_SANITY_DATASET=production
@@ -64,12 +69,14 @@ PUBLIC_SITE_URL=http://localhost:4321
 ```
 
 **For apps/studio** (Sanity):
+
 ```bash
 cd apps/studio
 cp .env.example .env
 ```
 
 Edit `apps/studio/.env`:
+
 ```env
 SANITY_STUDIO_PROJECT_ID=your-project-id
 SANITY_STUDIO_DATASET=production
@@ -87,11 +94,13 @@ pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/token
 ```
 
 This ensures that:
+
 - Configuration packages are available
 - Design tokens are generated (CSS vars + Tailwind theme)
 - UI components can reference tokens
 
 Expected output:
+
 ```
 @afnizarnur/config-eslint:build: Build completed
 @afnizarnur/config-typescript:build: Build completed
@@ -111,10 +120,12 @@ pnpm dev
 ```
 
 This starts:
+
 - **Astro dev server**: http://localhost:4321
 - **Sanity Studio**: http://localhost:3333
 
 You should see output similar to:
+
 ```
 > afnizarnur@0.0.0 dev
 > turbo run dev --parallel
@@ -128,13 +139,13 @@ You should see output similar to:
 ### Access the Applications
 
 1. **Portfolio Website**: http://localhost:4321
-   - Homepage, blog, projects, about pages
-   - Hot reload enabled (changes update automatically)
+    - Homepage, blog, projects, about pages
+    - Hot reload enabled (changes update automatically)
 
 2. **Sanity Studio**: http://localhost:3333
-   - Content management interface
-   - Login with your Sanity account
-   - Create/edit blog posts, projects, pages
+    - Content management interface
+    - Login with your Sanity account
+    - Create/edit blog posts, projects, pages
 
 ---
 
@@ -176,11 +187,11 @@ Expected result: No ESLint errors.
 2. Click "Post" in the sidebar
 3. Click "Create new post"
 4. Fill in required fields:
-   - Title
-   - Slug (auto-generated from title)
-   - Published date
-   - Excerpt
-   - Body content
+    - Title
+    - Slug (auto-generated from title)
+    - Published date
+    - Excerpt
+    - Body content
 5. Click "Publish"
 6. View at: http://localhost:4321/blog/your-slug
 
@@ -190,11 +201,11 @@ Expected result: No ESLint errors.
 2. Click "Project" in the sidebar
 3. Click "Create new project"
 4. Fill in required fields:
-   - Title
-   - Slug
-   - Description
-   - Role (add at least one)
-   - Body content
+    - Title
+    - Slug
+    - Description
+    - Role (add at least one)
+    - Body content
 5. Toggle "Selected" to feature on homepage
 6. Upload gallery images
 7. Click "Publish"
@@ -205,29 +216,31 @@ Expected result: No ESLint errors.
 1. Edit `packages/tokens/src/tokens.json`
 2. Modify color, spacing, or typography values
 3. Rebuild tokens:
-   ```bash
-   pnpm turbo run build --filter="@afnizarnur/tokens"
-   ```
+    ```bash
+    pnpm turbo run build --filter="@afnizarnur/tokens"
+    ```
 4. Restart Astro dev server:
-   ```bash
-   pnpm --filter=@afnizarnur/web dev
-   ```
+    ```bash
+    pnpm --filter=@afnizarnur/web dev
+    ```
 5. Changes will be reflected in all consuming apps
 
 ### Add a New UI Component
 
 1. Create component in `packages/ui/src/components/MyComponent.tsx`
 2. Export from `packages/ui/src/index.ts`:
-   ```typescript
-   export { MyComponent } from './components/MyComponent'
-   ```
+    ```typescript
+    export { MyComponent } from "./components/MyComponent"
+    ```
 3. Import in Astro pages:
-   ```astro
-   ---
-   import { MyComponent } from '@afnizarnur/ui'
-   ---
-   <MyComponent client:load />
-   ```
+
+    ```astro
+    ---
+    import { MyComponent } from "@afnizarnur/ui"
+    ---
+
+    <MyComponent client:load />
+    ```
 
 ---
 
@@ -240,6 +253,7 @@ pnpm turbo run build
 ```
 
 This builds:
+
 - All config packages
 - Design tokens
 - UI component library
@@ -265,6 +279,7 @@ Visit http://localhost:4321 to see the production build.
 ### Issue: "Module not found: @afnizarnur/tokens"
 
 **Solution**: Build the tokens package first:
+
 ```bash
 pnpm turbo run build --filter="@afnizarnur/tokens"
 ```
@@ -272,6 +287,7 @@ pnpm turbo run build --filter="@afnizarnur/tokens"
 ### Issue: "Sanity Studio won't start"
 
 **Solution**: Check environment variables:
+
 ```bash
 cd apps/studio
 cat .env  # Verify SANITY_STUDIO_PROJECT_ID is set
@@ -280,6 +296,7 @@ cat .env  # Verify SANITY_STUDIO_PROJECT_ID is set
 ### Issue: "No content appearing in Astro"
 
 **Solution**: Verify Sanity client configuration:
+
 1. Check `apps/web/.env` has correct project ID
 2. Ensure dataset is "production" (or matches your dataset)
 3. Check Sanity Studio has published content (not drafts)
@@ -287,6 +304,7 @@ cat .env  # Verify SANITY_STUDIO_PROJECT_ID is set
 ### Issue: "TypeScript errors after updating a package"
 
 **Solution**: Rebuild dependencies and restart TypeScript server:
+
 ```bash
 pnpm turbo run build
 # In VS Code: Cmd+Shift+P → "TypeScript: Restart TS Server"
@@ -295,6 +313,7 @@ pnpm turbo run build
 ### Issue: "Build fails with 'turbo' command not found"
 
 **Solution**: Install Turborepo globally or use via pnpm:
+
 ```bash
 pnpm install turbo --global
 # OR use it via pnpm:
@@ -304,6 +323,7 @@ pnpm turbo run build
 ### Issue: "Styles not applying after token changes"
 
 **Solution**: Clear Astro cache and rebuild:
+
 ```bash
 rm -rf apps/web/.astro
 pnpm turbo run build --filter="@afnizarnur/tokens"
@@ -377,22 +397,22 @@ pnpm turbo run typecheck -- --watch
 ## Next Steps
 
 1. **Explore the codebase**:
-   - Review `apps/web/src/pages/` for page structure
-   - Check `apps/studio/schemas/` for content models
-   - Examine `packages/tokens/src/tokens.json` for design system
+    - Review `apps/web/src/pages/` for page structure
+    - Check `apps/studio/schemas/` for content models
+    - Examine `packages/tokens/src/tokens.json` for design system
 
 2. **Create sample content**:
-   - Add 2-3 blog posts in Sanity Studio
-   - Add 2-3 projects (mark some as "selected")
-   - Update site settings and navigation
+    - Add 2-3 blog posts in Sanity Studio
+    - Add 2-3 projects (mark some as "selected")
+    - Update site settings and navigation
 
 3. **Customize design**:
-   - Modify tokens in `packages/tokens/src/tokens.json`
-   - Update UI components in `packages/ui/src/components/`
+    - Modify tokens in `packages/tokens/src/tokens.json`
+    - Update UI components in `packages/ui/src/components/`
 
 4. **Set up deployment**:
-   - See `docs/deployment.md` for Netlify setup
-   - Configure Sanity webhook for automatic rebuilds
+    - See `docs/deployment.md` for Netlify setup
+    - Configure Sanity webhook for automatic rebuilds
 
 ---
 

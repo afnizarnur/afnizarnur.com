@@ -38,15 +38,16 @@ Follow-up TODOs:
 Every package, component, and module MUST adhere to clean code principles that ensure long-term maintainability in a monorepo environment.
 
 **Non-Negotiable Rules**:
+
 - **Packages MUST be independently buildable** - Each workspace package (`@afnizarnur/*`) must build in isolation
 - **Explicit dependencies only** - Internal dependencies declared in `package.json`; no implicit workspace coupling
 - **TypeScript strict mode** - All code MUST use `strict: true`; no implicit `any` types
 - **Single Responsibility Principle** - Components/modules serve one clear purpose
 - **Naming conventions**:
-  - Packages: `@afnizarnur/package-name` (kebab-case)
-  - React components: `PascalCase`
-  - Utilities/functions: `camelCase`
-  - Files: Match export name (e.g., `Button.tsx` exports `Button`)
+    - Packages: `@afnizarnur/package-name` (kebab-case)
+    - React components: `PascalCase`
+    - Utilities/functions: `camelCase`
+    - Files: Match export name (e.g., `Button.tsx` exports `Button`)
 - **No dead code** - Unused imports, commented-out blocks, or orphaned files removed before commit
 - **Props/interfaces explicitly typed** - All component props and function parameters have TypeScript interfaces
 
@@ -57,6 +58,7 @@ Every package, component, and module MUST adhere to clean code principles that e
 All features, packages, and integrations MUST be validated at multiple levels to ensure reliability and prevent regressions across the monorepo.
 
 **Non-Negotiable Rules**:
+
 - **Build verification** - `pnpm turbo run build` MUST succeed across all workspaces without errors or warnings
 - **Type safety** - `pnpm turbo run typecheck` MUST pass before merging to `main`
 - **Lint compliance** - `pnpm turbo run lint` MUST pass; no eslint-disable without justification
@@ -74,14 +76,15 @@ All features, packages, and integrations MUST be validated at multiple levels to
 Every interaction and visual element MUST maintain consistency through a centralized design token system and shared component library.
 
 **Non-Negotiable Rules**:
+
 - **Single source of truth** - ALL design decisions (colors, spacing, typography, shadows) defined in `@afnizarnur/tokens` (Terrazzo)
 - **Token-driven styling** - Components MUST consume tokens via Tailwind theme; no hardcoded colors/spacing values
 - **Shared component library** - UI elements (buttons, cards, navigation) built once in `@afnizarnur/ui` and reused across apps
 - **Mobile-first responsive design** - Build for 375px first, enhance with `md:` (768px) and `lg:` (1440px) breakpoints
 - **Consistent interaction patterns**:
-  - Hover/focus/active states defined per component type
-  - Loading states prevent layout shift (skeleton screens or placeholders)
-  - Animations use consistent timing curves (defined in tokens or GSAP config)
+    - Hover/focus/active states defined per component type
+    - Loading states prevent layout shift (skeleton screens or placeholders)
+    - Animations use consistent timing curves (defined in tokens or GSAP config)
 - **Typography hierarchy** - Heading scales, weights, line-heights enforced via token system
 - **Component API consistency** - Similar components share prop naming (e.g., `variant`, `size`, `disabled`)
 
@@ -92,23 +95,24 @@ Every interaction and visual element MUST maintain consistency through a central
 Performance directly impacts user experience and demonstrates technical competency; all apps MUST meet defined budgets.
 
 **Non-Negotiable Rules**:
+
 - **Core Web Vitals (production):**
-  - Largest Contentful Paint (LCP): <2.5s
-  - Cumulative Layout Shift (CLS): <0.1
-  - Total Blocking Time (TBT): <300ms
-  - First Contentful Paint (FCP): <1.5s on 3G networks
+    - Largest Contentful Paint (LCP): <2.5s
+    - Cumulative Layout Shift (CLS): <0.1
+    - Total Blocking Time (TBT): <300ms
+    - First Contentful Paint (FCP): <1.5s on 3G networks
 - **Lighthouse Performance score:** ≥90 mobile, ≥95 desktop (measured on production builds)
 - **Static generation preferred** - Use Astro SSG for all content pages; avoid unnecessary client-side hydration
 - **Selective hydration** - React islands (`client:load`, `client:visible`) only when interactivity required
 - **Image optimization:**
-  - Sanity asset pipeline for CMS images
-  - Astro Image component with responsive srcsets
-  - WebP/AVIF formats with fallbacks
-  - Lazy loading for below-fold images
+    - Sanity asset pipeline for CMS images
+    - Astro Image component with responsive srcsets
+    - WebP/AVIF formats with fallbacks
+    - Lazy loading for below-fold images
 - **Bundle optimization:**
-  - Code-splitting via Astro's built-in bundling
-  - Tree-shaking enabled (Vite default)
-  - Unused CSS purged by Tailwind
+    - Code-splitting via Astro's built-in bundling
+    - Tree-shaking enabled (Vite default)
+    - Unused CSS purged by Tailwind
 - **Build-time data fetching** - Sanity content fetched during build (SSG), not client-side
 
 **Rationale**: As a content-driven portfolio, fast page loads are critical for first impressions and SEO. Astro's island architecture enables near-zero JS for static content. Performance budgets ensure technical excellence is visible to visitors.
@@ -200,6 +204,7 @@ Before any feature can be marked complete, it MUST pass these gates:
 10. **CI Gate**: GitHub Actions workflow passes (auto-runs lint/typecheck/build on PRs)
 
 **Feature-Specific Gates** (apply if relevant):
+
 - **Token Changes**: Verify `@afnizarnur/tokens` builds and outputs are consumed correctly by `apps/web` Tailwind config
 - **UI Component Changes**: Verify component exports work in Astro islands (`client:load` test)
 - **Sanity Schema Changes**: Test in Sanity Studio locally; verify GROQ queries still work
@@ -211,9 +216,9 @@ Before any feature can be marked complete, it MUST pass these gates:
 1. Proposed changes MUST be documented with rationale
 2. Changes affecting existing implementations MUST include migration plan
 3. Version number MUST be incremented per semantic versioning rules:
-   - **MAJOR**: Breaking changes requiring code refactoring (e.g., removing a principle, changing fundamental architecture)
-   - **MINOR**: Additive changes (e.g., new principle, expanded guidance)
-   - **PATCH**: Clarifications, typo fixes, non-semantic refinements
+    - **MAJOR**: Breaking changes requiring code refactoring (e.g., removing a principle, changing fundamental architecture)
+    - **MINOR**: Additive changes (e.g., new principle, expanded guidance)
+    - **PATCH**: Clarifications, typo fixes, non-semantic refinements
 4. Sync Impact Report MUST be generated and embedded in constitution file
 5. Dependent templates MUST be reviewed and updated for consistency
 

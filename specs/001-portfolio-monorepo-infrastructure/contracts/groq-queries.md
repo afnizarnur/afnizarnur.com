@@ -19,6 +19,7 @@ This document specifies the exact GROQ queries used throughout the application. 
 **Purpose**: Fetch all published blog posts for the blog index page
 
 **Query**:
+
 ```groq
 *[_type == "post" && publishedAt <= now()] | order(publishedAt desc) {
   title,
@@ -35,22 +36,24 @@ This document specifies the exact GROQ queries used throughout the application. 
 ```
 
 **Return Type**:
+
 ```typescript
 interface PostPreview {
-  title: string
-  slug: string
-  publishedAt: string  // ISO 8601 datetime
-  excerpt: string
-  coverImage?: string  // Sanity CDN URL
-  coverImageAlt?: string
-  tags?: Array<{
     title: string
     slug: string
-  }>
+    publishedAt: string // ISO 8601 datetime
+    excerpt: string
+    coverImage?: string // Sanity CDN URL
+    coverImageAlt?: string
+    tags?: Array<{
+        title: string
+        slug: string
+    }>
 }
 ```
 
 **Usage**:
+
 - Blog index page (`/blog`)
 - Homepage recent posts section
 
@@ -63,6 +66,7 @@ interface PostPreview {
 **Purpose**: Fetch a single blog post for the detail page
 
 **Query**:
+
 ```groq
 *[_type == "post" && slug.current == $slug][0] {
   title,
@@ -85,35 +89,38 @@ interface PostPreview {
 ```
 
 **Parameters**:
+
 ```typescript
 {
-  slug: string  // URL slug (e.g., "building-design-system")
+    slug: string // URL slug (e.g., "building-design-system")
 }
 ```
 
 **Return Type**:
+
 ```typescript
 interface Post {
-  title: string
-  slug: string
-  publishedAt: string
-  excerpt: string
-  body: PortableTextBlock[]  // Sanity Portable Text array
-  coverImage?: string
-  coverImageAlt?: string
-  tags?: Array<{
     title: string
     slug: string
-  }>
-  seo?: {
-    title?: string
-    description?: string
-    keywords?: string[]
-  }
+    publishedAt: string
+    excerpt: string
+    body: PortableTextBlock[] // Sanity Portable Text array
+    coverImage?: string
+    coverImageAlt?: string
+    tags?: Array<{
+        title: string
+        slug: string
+    }>
+    seo?: {
+        title?: string
+        description?: string
+        keywords?: string[]
+    }
 }
 ```
 
 **Usage**:
+
 - Blog post detail page (`/blog/[slug]`)
 
 ---
@@ -125,6 +132,7 @@ interface Post {
 **Purpose**: Generate static paths for all blog post pages
 
 **Query**:
+
 ```groq
 *[_type == "post"] {
   "slug": slug.current
@@ -132,13 +140,15 @@ interface Post {
 ```
 
 **Return Type**:
+
 ```typescript
 interface PostSlug {
-  slug: string
+    slug: string
 }
 ```
 
 **Usage**:
+
 - `getStaticPaths()` in `src/pages/blog/[slug].astro`
 
 ---
@@ -152,6 +162,7 @@ interface PostSlug {
 **Purpose**: Fetch all projects for the work index page
 
 **Query**:
+
 ```groq
 *[_type == "project"] | order(_createdAt desc) {
   title,
@@ -168,25 +179,27 @@ interface PostSlug {
 ```
 
 **Return Type**:
+
 ```typescript
 interface ProjectPreview {
-  title: string
-  slug: string
-  description: string
-  role: string[]
-  selected?: boolean
-  year?: number
-  technologies?: string[]
-  thumbnail?: string
-  thumbnailAlt?: string
-  links?: Array<{
-    label: string
-    url: string
-  }>
+    title: string
+    slug: string
+    description: string
+    role: string[]
+    selected?: boolean
+    year?: number
+    technologies?: string[]
+    thumbnail?: string
+    thumbnailAlt?: string
+    links?: Array<{
+        label: string
+        url: string
+    }>
 }
 ```
 
 **Usage**:
+
 - Work index page (`/work`)
 
 ---
@@ -198,6 +211,7 @@ interface ProjectPreview {
 **Purpose**: Fetch only selected/featured projects for homepage
 
 **Query**:
+
 ```groq
 *[_type == "project" && selected == true] | order(_createdAt desc) {
   title,
@@ -211,19 +225,21 @@ interface ProjectPreview {
 ```
 
 **Return Type**:
+
 ```typescript
 interface FeaturedProject {
-  title: string
-  slug: string
-  description: string
-  role: string[]
-  year?: number
-  thumbnail?: string
-  thumbnailAlt?: string
+    title: string
+    slug: string
+    description: string
+    role: string[]
+    year?: number
+    thumbnail?: string
+    thumbnailAlt?: string
 }
 ```
 
 **Usage**:
+
 - Homepage featured work section
 
 ---
@@ -235,6 +251,7 @@ interface FeaturedProject {
 **Purpose**: Fetch a single project for the detail page
 
 **Query**:
+
 ```groq
 *[_type == "project" && slug.current == $slug][0] {
   title,
@@ -263,41 +280,44 @@ interface FeaturedProject {
 ```
 
 **Parameters**:
+
 ```typescript
 {
-  slug: string  // URL slug (e.g., "acme-ecommerce-redesign")
+    slug: string // URL slug (e.g., "acme-ecommerce-redesign")
 }
 ```
 
 **Return Type**:
+
 ```typescript
 interface Project {
-  title: string
-  slug: string
-  description: string
-  role: string[]
-  body: PortableTextBlock[]
-  gallery?: Array<{
-    url: string
-    alt?: string
-    caption?: string
-  }>
-  links?: Array<{
-    label: string
-    url: string
-  }>
-  technologies?: string[]
-  year?: number
-  client?: string
-  seo?: {
-    title?: string
-    description?: string
-    keywords?: string[]
-  }
+    title: string
+    slug: string
+    description: string
+    role: string[]
+    body: PortableTextBlock[]
+    gallery?: Array<{
+        url: string
+        alt?: string
+        caption?: string
+    }>
+    links?: Array<{
+        label: string
+        url: string
+    }>
+    technologies?: string[]
+    year?: number
+    client?: string
+    seo?: {
+        title?: string
+        description?: string
+        keywords?: string[]
+    }
 }
 ```
 
 **Usage**:
+
 - Project detail page (`/work/[slug]`)
 
 ---
@@ -309,6 +329,7 @@ interface Project {
 **Purpose**: Generate static paths for all project pages
 
 **Query**:
+
 ```groq
 *[_type == "project"] {
   "slug": slug.current
@@ -316,13 +337,15 @@ interface Project {
 ```
 
 **Return Type**:
+
 ```typescript
 interface ProjectSlug {
-  slug: string
+    slug: string
 }
 ```
 
 **Usage**:
+
 - `getStaticPaths()` in `src/pages/work/[slug].astro`
 
 ---
@@ -336,6 +359,7 @@ interface ProjectSlug {
 **Purpose**: Fetch a static page (About, Contact, etc.)
 
 **Query**:
+
 ```groq
 *[_type == "page" && slug.current == $slug][0] {
   title,
@@ -350,27 +374,30 @@ interface ProjectSlug {
 ```
 
 **Parameters**:
+
 ```typescript
 {
-  slug: string  // URL slug (e.g., "about")
+    slug: string // URL slug (e.g., "about")
 }
 ```
 
 **Return Type**:
+
 ```typescript
 interface Page {
-  title: string
-  slug: string
-  body: PortableTextBlock[]
-  seo?: {
-    title?: string
-    description?: string
-    keywords?: string[]
-  }
+    title: string
+    slug: string
+    body: PortableTextBlock[]
+    seo?: {
+        title?: string
+        description?: string
+        keywords?: string[]
+    }
 }
 ```
 
 **Usage**:
+
 - Static pages like `/about`, `/contact`
 
 ---
@@ -384,6 +411,7 @@ interface Page {
 **Purpose**: Fetch site navigation menu items
 
 **Query**:
+
 ```groq
 *[_type == "navigation"][0] {
   items[] {
@@ -395,17 +423,19 @@ interface Page {
 ```
 
 **Return Type**:
+
 ```typescript
 interface Navigation {
-  items: Array<{
-    title: string
-    href: string
-    newTab?: boolean
-  }>
+    items: Array<{
+        title: string
+        href: string
+        newTab?: boolean
+    }>
 }
 ```
 
 **Usage**:
+
 - Global navigation component (Navbar, Footer)
 - Used in BaseLayout
 
@@ -420,6 +450,7 @@ interface Navigation {
 **Purpose**: Fetch global site metadata for SEO and social
 
 **Query**:
+
 ```groq
 *[_type == "siteSettings"][0] {
   title,
@@ -436,22 +467,24 @@ interface Navigation {
 ```
 
 **Return Type**:
+
 ```typescript
 interface SiteSettings {
-  title: string
-  description: string
-  ogImage?: string
-  url?: string
-  social?: {
-    twitter?: string
-    github?: string
-    linkedin?: string
-    email?: string
-  }
+    title: string
+    description: string
+    ogImage?: string
+    url?: string
+    social?: {
+        twitter?: string
+        github?: string
+        linkedin?: string
+        email?: string
+    }
 }
 ```
 
 **Usage**:
+
 - SEO component in `<head>`
 - Footer social links
 - Homepage metadata
@@ -467,6 +500,7 @@ interface SiteSettings {
 **Purpose**: Fetch all available tags for filtering
 
 **Query**:
+
 ```groq
 *[_type == "tag"] | order(title asc) {
   title,
@@ -477,16 +511,18 @@ interface SiteSettings {
 ```
 
 **Return Type**:
+
 ```typescript
 interface Tag {
-  title: string
-  slug: string
-  description?: string
-  count: number  // Number of posts with this tag
+    title: string
+    slug: string
+    description?: string
+    count: number // Number of posts with this tag
 }
 ```
 
 **Usage**:
+
 - Tag filter UI (future enhancement)
 - Blog sidebar or footer
 
@@ -499,6 +535,7 @@ interface Tag {
 **Purpose**: Fetch all posts with a specific tag (future enhancement)
 
 **Query**:
+
 ```groq
 *[_type == "post" && publishedAt <= now() && references(*[_type == "tag" && slug.current == $tagSlug]._id)] | order(publishedAt desc) {
   title,
@@ -510,24 +547,27 @@ interface Tag {
 ```
 
 **Parameters**:
+
 ```typescript
 {
-  tagSlug: string  // Tag slug (e.g., "design-systems")
+    tagSlug: string // Tag slug (e.g., "design-systems")
 }
 ```
 
 **Return Type**:
+
 ```typescript
 interface PostPreview {
-  title: string
-  slug: string
-  publishedAt: string
-  excerpt: string
-  coverImage?: string
+    title: string
+    slug: string
+    publishedAt: string
+    excerpt: string
+    coverImage?: string
 }
 ```
 
 **Usage**:
+
 - Tag archive page `/blog/tag/[slug]` (future)
 
 ---
@@ -540,8 +580,7 @@ All image references use `asset->url` projection to fetch the CDN URL directly. 
 
 ```typescript
 // Example: Resize image to 800px width
-`${coverImage}?w=800&auto=format`
-
+;`${coverImage}?w=800&auto=format`
 // Example: Generate responsive srcset
 `${coverImage}?w=400&auto=format 400w, ${coverImage}?w=800&auto=format 800w`
 ```
@@ -579,15 +618,16 @@ All query functions should handle these cases:
 4. **Missing fields**: Use optional chaining and provide defaults
 
 **Example**:
+
 ```typescript
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  try {
-    const post = await sanity.fetch(QUERY, { slug })
-    return post || null
-  } catch (error) {
-    console.error('Failed to fetch post:', error)
-    return null
-  }
+    try {
+        const post = await sanity.fetch(QUERY, { slug })
+        return post || null
+    } catch (error) {
+        console.error("Failed to fetch post:", error)
+        return null
+    }
 }
 ```
 

@@ -1,24 +1,24 @@
 ---
-import PostLayout from '../../layouts/PostLayout.astro';
-import PortableText from '../../components/PortableText.astro';
-import { getPostBySlug, getAllPostSlugs } from '../../server/data';
+import PostLayout from "../../layouts/PostLayout.astro"
+import PortableText from "../../components/PortableText.astro"
+import { getPostBySlug, getAllPostSlugs } from "../../server/data"
 
 export async function getStaticPaths() {
-  const postSlugs = await getAllPostSlugs();
+    const postSlugs = await getAllPostSlugs()
 
-  return postSlugs.map((item) => ({
-    params: { slug: item.slug },
-  }));
+    return postSlugs.map((item) => ({
+        params: { slug: item.slug },
+    }))
 }
 
-const { slug } = Astro.params;
-const post = await getPostBySlug(slug);
+const { slug } = Astro.params
+const post = await getPostBySlug(slug)
 
 if (!post) {
-  return Astro.redirect('/404');
+    return Astro.redirect("/404")
 }
 ---
 
 <PostLayout post={post}>
-  <PortableText value={post.body} />
+    <PortableText value={post.body} />
 </PostLayout>

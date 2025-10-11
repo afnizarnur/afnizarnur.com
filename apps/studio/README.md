@@ -42,10 +42,12 @@ Studio will be available at http://localhost:3333
 Once Studio is running, create the following content:
 
 #### Required (Singletons):
+
 1. **Site Settings** - Configure site title, description, social links
 2. **Navigation** - Add menu items (Work, Blog, About)
 
 #### Recommended:
+
 3. **Tags** - Create some tags (e.g., "Design Systems", "Frontend", "React")
 4. **Projects** - Add 2-3 projects, mark 2 as "Featured"
 5. **Posts** - Add 2-3 blog posts
@@ -65,6 +67,7 @@ Once Studio is running, create the following content:
 ### Validation Rules
 
 All schemas include validation:
+
 - **Slugs** - Auto-generated from title, unique
 - **Required fields** - Title, slug, body for all content
 - **Character limits** - Enforced per data model specification
@@ -84,14 +87,17 @@ This will make Studio accessible at `https://your-project.sanity.studio`
 ## Troubleshooting
 
 ### "Project not found"
+
 - Verify your `SANITY_STUDIO_PROJECT_ID` in `.env`
 - Check that the project exists at https://sanity.io/manage
 
 ### "Schema errors"
+
 - Run `pnpm typecheck` to verify TypeScript types
 - Check that all schema files are imported in `schemas/index.ts`
 
 ### "Can't connect to Sanity"
+
 - Ensure you're logged in: `pnpm sanity login`
 - Verify your network connection
 - Check Sanity status: https://status.sanity.io

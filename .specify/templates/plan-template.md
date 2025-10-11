@@ -29,7 +29,7 @@
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
 Verify compliance with `.specify/memory/constitution.md` principles:
 
@@ -40,12 +40,14 @@ Verify compliance with `.specify/memory/constitution.md` principles:
 - [ ] **Quality Gates**: All 10 gates included in task list (Monorepo Build, Type Check, Lint, Package Isolation, Content Pipeline, Visual, Browser, Performance, Accessibility, CI)
 
 **Monorepo-Specific Checks**:
+
 - [ ] Package dependency chain respects build order (e.g., `tokens` → `ui` → `web`)
 - [ ] No circular dependencies between packages
 - [ ] Turborepo `dependsOn` configured if new packages added
 - [ ] Changesets workflow planned if packages versioned
 
 **Exceptions** (document in Complexity Tracking if any principle is violated):
+
 - None expected; document if needed
 
 ## Project Structure
@@ -63,6 +65,7 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
+
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
@@ -111,9 +114,9 @@ directories captured above]
 
 ## Complexity Tracking
 
-*Fill ONLY if Constitution Check has violations that must be justified*
+_Fill ONLY if Constitution Check has violations that must be justified_
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| Violation                  | Why Needed         | Simpler Alternative Rejected Because |
+| -------------------------- | ------------------ | ------------------------------------ |
+| [e.g., 4th project]        | [current need]     | [why 3 projects insufficient]        |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient]  |

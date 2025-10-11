@@ -53,7 +53,7 @@ This project uses a monorepo architecture with:
 - **apps/studio** - Sanity Studio CMS
 - **packages/tokens** - Design tokens (Terrazzo)
 - **packages/ui** - Shared React components
-- **packages/config-*** - Shared configurations (ESLint, TypeScript, Tailwind)
+- **packages/config-\*** - Shared configurations (ESLint, TypeScript, Tailwind)
 
 ## Package Versioning
 
@@ -68,6 +68,7 @@ pnpm changeset
 ```
 
 Follow the prompts to:
+
 1. Select which packages have changed
 2. Choose the version bump type (major, minor, patch)
 3. Describe the changes (this becomes the changelog entry)
@@ -81,6 +82,7 @@ pnpm version-packages
 ```
 
 This will:
+
 - Update package versions based on changesets
 - Generate/update CHANGELOG.md files
 - Remove consumed changeset files

@@ -12,31 +12,33 @@ description: "Task list template for feature implementation"
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
 ## Format: `[ID] [P?] [Story] Description`
+
 - **[P]**: Can run in parallel (different files, no dependencies)
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
 - Include exact file paths in descriptions
 
 ## Path Conventions
+
 - **Single project**: `src/`, `tests/` at repository root
 - **Web app**: `backend/src/`, `frontend/src/`
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
 
-<!-- 
+<!--
   ============================================================================
   IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
+
   The /speckit.tasks command MUST replace these with actual tasks based on:
   - User stories from spec.md (with their priorities P1, P2, P3...)
   - Feature requirements from plan.md
   - Entities from data-model.md
   - Endpoints from contracts/
-  
+
   Tasks MUST be organized by user story so each story can be:
   - Implemented independently
   - Tested independently
   - Delivered as an MVP increment
-  
+
   DO NOT keep these sample tasks in the generated tasks.md file.
   ============================================================================
 -->
@@ -80,8 +82,8 @@ Examples of foundational tasks (adjust based on your project):
 
 **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test\_[name].py
+- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test\_[name].py
 
 ### Implementation for User Story 1
 
@@ -104,8 +106,8 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test\_[name].py
+- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test\_[name].py
 
 ### Implementation for User Story 2
 
@@ -126,8 +128,8 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test\_[name].py
+- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test\_[name].py
 
 ### Implementation for User Story 3
 
@@ -163,6 +165,7 @@ Examples of foundational tasks (adjust based on your project):
 Per `.specify/memory/constitution.md`, ALL features MUST pass these gates:
 
 ### Core Monorepo Gates (1-5)
+
 - [ ] TXXX **Monorepo Build Gate**: Run `pnpm turbo run build` - must succeed across all workspaces without errors/warnings
 - [ ] TXXX **Type Check Gate**: Run `pnpm turbo run typecheck` - must pass for all packages + apps
 - [ ] TXXX **Lint Gate**: Run `pnpm turbo run lint` - must pass across all workspaces
@@ -170,15 +173,18 @@ Per `.specify/memory/constitution.md`, ALL features MUST pass these gates:
 - [ ] TXXX **Content Pipeline Gate**: Verify Sanity → Astro data flow (`pnpm dev` in apps/web, check modified content types render)
 
 ### User Experience Gates (6-9)
+
 - [ ] TXXX **Visual Gate**: Manual inspection at 375px (mobile), 768px (tablet), 1440px (desktop)
 - [ ] TXXX **Browser Gate**: Test in Chrome, Firefox, Safari (latest stable versions)
 - [ ] TXXX **Performance Gate**: Lighthouse audit on production build - ≥90 mobile, ≥95 desktop; LCP <2.5s; CLS <0.1; TBT <300ms
 - [ ] TXXX **Accessibility Gate**: Keyboard navigation test + WAVE/axe DevTools check (no critical violations)
 
 ### CI/CD Gate (10)
+
 - [ ] TXXX **CI Gate**: GitHub Actions workflow passes (lint/typecheck/build)
 
 ### Feature-Specific Gates (if applicable)
+
 - [ ] TXXX **Token Changes**: If `@afnizarnur/tokens` modified, verify outputs consumed by `apps/web/tailwind.config.ts`
 - [ ] TXXX **UI Component Changes**: If `@afnizarnur/ui` modified, test component import as Astro island (`client:load`)
 - [ ] TXXX **Sanity Schema Changes**: If `apps/studio/schemas/*` modified, verify GROQ queries still work
@@ -194,8 +200,8 @@ Per `.specify/memory/constitution.md`, ALL features MUST pass these gates:
 - **Setup (Phase 1)**: No dependencies - can start immediately
 - **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
 - **User Stories (Phase 3+)**: All depend on Foundational phase completion
-  - User stories can then proceed in parallel (if staffed)
-  - Or sequentially in priority order (P1 → P2 → P3)
+    - User stories can then proceed in parallel (if staffed)
+    - Or sequentially in priority order (P1 → P2 → P3)
 - **Polish (Final Phase)**: Depends on all desired user stories being complete
 
 ### User Story Dependencies
@@ -261,9 +267,9 @@ With multiple developers:
 
 1. Team completes Setup + Foundational together
 2. Once Foundational is done:
-   - Developer A: User Story 1
-   - Developer B: User Story 2
-   - Developer C: User Story 3
+    - Developer A: User Story 1
+    - Developer B: User Story 2
+    - Developer C: User Story 3
 3. Stories complete and integrate independently
 
 ---
@@ -277,5 +283,3 @@ With multiple developers:
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
-
-

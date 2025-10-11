@@ -1,5 +1,5 @@
 /* Import design tokens */
-@import '@afnizarnur/tokens/css';
+@import "@afnizarnur/tokens/css";
 
 /* Tailwind directives */
 @tailwind base;
@@ -8,21 +8,21 @@
 
 /* Base styles using design tokens */
 @layer base {
-  body {
-    @apply font-normal text-neutral-900 bg-neutral-50;
-    line-height: var(--afn-line-height-normal);
-  }
+    body {
+        @apply font-normal text-neutral-900 bg-neutral-50;
+        line-height: var(--afn-line-height-normal);
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-semibold text-neutral-900;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-semibold text-neutral-900;
+    }
 
-  a {
-    @apply text-primary-600 hover:text-primary-700 transition-colors;
-  }
+    a {
+        @apply text-primary-600 hover:text-primary-700 transition-colors;
+    }
 }

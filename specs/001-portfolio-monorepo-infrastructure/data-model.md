@@ -20,19 +20,20 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 
 **Fields**:
 
-| Field | Type | Required | Description | Validation |
-|-------|------|----------|-------------|------------|
-| `title` | string | Yes | Post title displayed in headings | Max 100 chars |
-| `slug` | slug | Yes | URL-friendly identifier | Auto-generated from title, unique, lowercase |
-| `publishedAt` | datetime | Yes | Publication date/time | Must be past or present date |
-| `excerpt` | text | Yes | Short summary for preview cards | Max 200 chars |
-| `body` | array (Portable Text) | Yes | Full article content | Rich text with headings, lists, code blocks, images |
-| `tags` | array of references | No | Categorization tags | References to `tag` documents |
-| `coverImage` | image | No | Hero image for post | Asset with alt text required if present |
-| `author` | reference | No | Post author (future use) | Reference to `author` document |
-| `seo` | object | No | SEO metadata | Title, description, keywords |
+| Field         | Type                  | Required | Description                      | Validation                                          |
+| ------------- | --------------------- | -------- | -------------------------------- | --------------------------------------------------- |
+| `title`       | string                | Yes      | Post title displayed in headings | Max 100 chars                                       |
+| `slug`        | slug                  | Yes      | URL-friendly identifier          | Auto-generated from title, unique, lowercase        |
+| `publishedAt` | datetime              | Yes      | Publication date/time            | Must be past or present date                        |
+| `excerpt`     | text                  | Yes      | Short summary for preview cards  | Max 200 chars                                       |
+| `body`        | array (Portable Text) | Yes      | Full article content             | Rich text with headings, lists, code blocks, images |
+| `tags`        | array of references   | No       | Categorization tags              | References to `tag` documents                       |
+| `coverImage`  | image                 | No       | Hero image for post              | Asset with alt text required if present             |
+| `author`      | reference             | No       | Post author (future use)         | Reference to `author` document                      |
+| `seo`         | object                | No       | SEO metadata                     | Title, description, keywords                        |
 
 **Validation Rules**:
+
 - `slug.current` must be unique across all posts
 - `publishedAt` cannot be in the future
 - `excerpt` length between 50-200 characters
@@ -40,10 +41,12 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 - `body` must contain at least one block
 
 **State Transitions**:
+
 - Draft → Published (when `publishedAt` is set and past)
 - Published → Draft (manual unpublish)
 
 **Example**:
+
 ```typescript
 {
   _type: 'post',
@@ -76,22 +79,23 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 
 **Fields**:
 
-| Field | Type | Required | Description | Validation |
-|-------|------|----------|-------------|------------|
-| `title` | string | Yes | Project name | Max 80 chars |
-| `slug` | slug | Yes | URL-friendly identifier | Auto-generated from title, unique |
-| `description` | text | Yes | One-sentence project summary | Max 150 chars |
-| `role` | array of strings | Yes | Roles performed (e.g., "UI Design", "Frontend Dev") | At least one role |
-| `selected` | boolean | No | Featured on homepage | Defaults to false |
-| `gallery` | array of images | No | Project screenshots/images | Max 10 images, alt text required |
-| `links` | array of objects | No | External links (live site, GitHub, etc.) | Each link has `label` and `url` |
-| `body` | array (Portable Text) | Yes | Detailed case study | Rich text with sections, images, quotes |
-| `technologies` | array of strings | No | Tech stack used | Freeform tags (e.g., "React", "Tailwind") |
-| `year` | number | No | Project completion year | 4-digit year (e.g., 2024) |
-| `client` | string | No | Client or company name | Max 80 chars |
-| `seo` | object | No | SEO metadata | Title, description, keywords |
+| Field          | Type                  | Required | Description                                         | Validation                                |
+| -------------- | --------------------- | -------- | --------------------------------------------------- | ----------------------------------------- |
+| `title`        | string                | Yes      | Project name                                        | Max 80 chars                              |
+| `slug`         | slug                  | Yes      | URL-friendly identifier                             | Auto-generated from title, unique         |
+| `description`  | text                  | Yes      | One-sentence project summary                        | Max 150 chars                             |
+| `role`         | array of strings      | Yes      | Roles performed (e.g., "UI Design", "Frontend Dev") | At least one role                         |
+| `selected`     | boolean               | No       | Featured on homepage                                | Defaults to false                         |
+| `gallery`      | array of images       | No       | Project screenshots/images                          | Max 10 images, alt text required          |
+| `links`        | array of objects      | No       | External links (live site, GitHub, etc.)            | Each link has `label` and `url`           |
+| `body`         | array (Portable Text) | Yes      | Detailed case study                                 | Rich text with sections, images, quotes   |
+| `technologies` | array of strings      | No       | Tech stack used                                     | Freeform tags (e.g., "React", "Tailwind") |
+| `year`         | number                | No       | Project completion year                             | 4-digit year (e.g., 2024)                 |
+| `client`       | string                | No       | Client or company name                              | Max 80 chars                              |
+| `seo`          | object                | No       | SEO metadata                                        | Title, description, keywords              |
 
 **Validation Rules**:
+
 - `slug.current` must be unique across all projects
 - `description` length between 50-150 characters
 - `role` array must have at least one entry
@@ -100,9 +104,11 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 - `year` must be between 2000 and current year + 1
 
 **Relationships**:
+
 - Can reference `tag` documents via `technologies` (future enhancement)
 
 **Example**:
+
 ```typescript
 {
   _type: 'project',
@@ -139,19 +145,21 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 
 **Fields**:
 
-| Field | Type | Required | Description | Validation |
-|-------|------|----------|-------------|------------|
-| `title` | string | Yes | Page title | Max 60 chars |
-| `slug` | slug | Yes | URL path | Unique, lowercase, no leading slash |
-| `body` | array (Portable Text) | Yes | Page content | Rich text with full formatting |
-| `seo` | object | No | SEO metadata | Title, description, keywords |
+| Field   | Type                  | Required | Description  | Validation                          |
+| ------- | --------------------- | -------- | ------------ | ----------------------------------- |
+| `title` | string                | Yes      | Page title   | Max 60 chars                        |
+| `slug`  | slug                  | Yes      | URL path     | Unique, lowercase, no leading slash |
+| `body`  | array (Portable Text) | Yes      | Page content | Rich text with full formatting      |
+| `seo`   | object                | No       | SEO metadata | Title, description, keywords        |
 
 **Validation Rules**:
+
 - `slug.current` must be unique across all pages
 - `slug.current` cannot be reserved route names (e.g., `blog`, `work`, `api`)
 - `body` must contain at least one block
 
 **Example**:
+
 ```typescript
 {
   _type: 'page',
@@ -178,11 +186,12 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 
 **Fields**:
 
-| Field | Type | Required | Description | Validation |
-|-------|------|----------|-------------|------------|
-| `items` | array of objects | Yes | Navigation links | At least one item |
+| Field   | Type             | Required | Description      | Validation        |
+| ------- | ---------------- | -------- | ---------------- | ----------------- |
+| `items` | array of objects | Yes      | Navigation links | At least one item |
 
 **Item Object Structure**:
+
 ```typescript
 {
   title: string       // Link text (e.g., "About")
@@ -192,17 +201,20 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 ```
 
 **Validation Rules**:
+
 - `items` must have at least one entry
 - Each `item.title` max 20 chars
 - `item.href` must be valid path or URL
 - Internal links start with `/`, external with `http://` or `https://`
 
 **Singleton Behavior**:
+
 - Only one `navigation` document can exist
 - Document ID is always `navigation`
 - Created during initial setup, edited thereafter
 
 **Example**:
+
 ```typescript
 {
   _id: 'navigation',
@@ -226,15 +238,16 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 
 **Fields**:
 
-| Field | Type | Required | Description | Validation |
-|-------|------|----------|-------------|------------|
-| `title` | string | Yes | Site name | Max 60 chars |
-| `description` | text | Yes | Default meta description | Max 160 chars |
-| `ogImage` | image | No | Default social sharing image | 1200x630px recommended |
-| `url` | url | No | Canonical site URL | Must be valid URL (e.g., https://afnizarnur.com) |
-| `social` | object | No | Social media links | Object with `twitter`, `github`, `linkedin`, etc. |
+| Field         | Type   | Required | Description                  | Validation                                        |
+| ------------- | ------ | -------- | ---------------------------- | ------------------------------------------------- |
+| `title`       | string | Yes      | Site name                    | Max 60 chars                                      |
+| `description` | text   | Yes      | Default meta description     | Max 160 chars                                     |
+| `ogImage`     | image  | No       | Default social sharing image | 1200x630px recommended                            |
+| `url`         | url    | No       | Canonical site URL           | Must be valid URL (e.g., https://afnizarnur.com)  |
+| `social`      | object | No       | Social media links           | Object with `twitter`, `github`, `linkedin`, etc. |
 
 **Social Object Structure**:
+
 ```typescript
 {
   twitter?: string   // Twitter/X handle (without @)
@@ -245,6 +258,7 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 ```
 
 **Validation Rules**:
+
 - `title` length 10-60 characters
 - `description` length 50-160 characters
 - `ogImage` must be at least 1200x630px if provided
@@ -252,10 +266,12 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 - Social handles validated as usernames (alphanumeric + dashes/underscores)
 
 **Singleton Behavior**:
+
 - Only one `siteSettings` document exists
 - Document ID is always `siteSettings`
 
 **Example**:
+
 ```typescript
 {
   _id: 'siteSettings',
@@ -288,22 +304,25 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 
 **Fields**:
 
-| Field | Type | Required | Description | Validation |
-|-------|------|----------|-------------|------------|
-| `title` | string | Yes | Tag name | Max 30 chars, unique |
-| `slug` | slug | Yes | URL-friendly identifier | Auto-generated, unique |
-| `description` | text | No | Tag explanation | Max 200 chars |
+| Field         | Type   | Required | Description             | Validation             |
+| ------------- | ------ | -------- | ----------------------- | ---------------------- |
+| `title`       | string | Yes      | Tag name                | Max 30 chars, unique   |
+| `slug`        | slug   | Yes      | URL-friendly identifier | Auto-generated, unique |
+| `description` | text   | No       | Tag explanation         | Max 200 chars          |
 
 **Validation Rules**:
+
 - `title` must be unique across all tags
 - `slug.current` must be unique
 - `title` max 30 characters
 
 **Usage**:
+
 - Referenced by `post.tags[]` array
 - Can be referenced by `project.technologies[]` (future enhancement)
 
 **Example**:
+
 ```typescript
 {
   _type: 'tag',
@@ -323,12 +342,12 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 
 **Fields**:
 
-| Field | Type | Required | Description | Validation |
-|-------|------|----------|-------------|------------|
-| `name` | string | Yes | Author full name | Max 60 chars |
-| `slug` | slug | Yes | URL-friendly identifier | Unique |
-| `bio` | text | No | Author biography | Max 500 chars |
-| `avatar` | image | No | Profile photo | Square aspect ratio recommended |
+| Field    | Type   | Required | Description             | Validation                      |
+| -------- | ------ | -------- | ----------------------- | ------------------------------- |
+| `name`   | string | Yes      | Author full name        | Max 60 chars                    |
+| `slug`   | slug   | Yes      | URL-friendly identifier | Unique                          |
+| `bio`    | text   | No       | Author biography        | Max 500 chars                   |
+| `avatar` | image  | No       | Profile photo           | Square aspect ratio recommended |
 
 **Note**: Currently not used (single-author site), but included for future scalability.
 
@@ -369,10 +388,12 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 ### Reference Types
 
 **Strong References** (referential integrity enforced):
+
 - `post.tags[]` → `tag._id`
 - `post.author` → `author._id` (future)
 
 **Weak References** (validation only):
+
 - None currently
 
 ---
@@ -398,16 +419,16 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 
 ### Character Limits
 
-| Entity | Field | Min | Max |
-|--------|-------|-----|-----|
-| Post | title | - | 100 |
-| Post | excerpt | 50 | 200 |
-| Project | title | - | 80 |
-| Project | description | 50 | 150 |
-| Page | title | - | 60 |
-| Site Settings | title | 10 | 60 |
-| Site Settings | description | 50 | 160 |
-| Tag | title | - | 30 |
+| Entity        | Field       | Min | Max |
+| ------------- | ----------- | --- | --- |
+| Post          | title       | -   | 100 |
+| Post          | excerpt     | 50  | 200 |
+| Project       | title       | -   | 80  |
+| Project       | description | 50  | 150 |
+| Page          | title       | -   | 60  |
+| Site Settings | title       | 10  | 60  |
+| Site Settings | description | 50  | 160 |
+| Tag           | title       | -   | 30  |
 
 ---
 
@@ -418,17 +439,20 @@ This data model defines the structure of all content managed in Sanity CMS. All 
 All `body` fields use Portable Text with these allowed block types:
 
 **Text Blocks**:
+
 - Normal paragraph
 - Headings (H2, H3, H4)
 - Blockquote
 - Ordered/unordered lists
 
 **Inline Elements**:
+
 - Bold, italic, underline
 - Links (internal and external)
 - Inline code
 
 **Custom Blocks**:
+
 - Code block (with language syntax highlighting)
 - Image (with caption and alt text)
 - Callout/note box (informational, warning, tip)
@@ -437,43 +461,43 @@ All `body` fields use Portable Text with these allowed block types:
 
 ```typescript
 body: [
-  {
-    _type: 'block',
-    style: 'h2',
-    children: [{ _type: 'span', text: 'Section Title' }]
-  },
-  {
-    _type: 'block',
-    style: 'normal',
-    children: [
-      { _type: 'span', text: 'This is a paragraph with ' },
-      { _type: 'span', text: 'bold text', marks: ['strong'] },
-      { _type: 'span', text: ' and a ' },
-      {
-        _type: 'span',
-        text: 'link',
-        marks: ['link-abc123']
-      }
-    ],
-    markDefs: [
-      {
-        _key: 'link-abc123',
-        _type: 'link',
-        href: 'https://example.com'
-      }
-    ]
-  },
-  {
-    _type: 'code',
-    language: 'typescript',
-    code: 'const greeting = "Hello World";'
-  },
-  {
-    _type: 'image',
-    asset: { _ref: 'image-xyz789' },
-    alt: 'Screenshot of the interface',
-    caption: 'The redesigned dashboard view'
-  }
+    {
+        _type: "block",
+        style: "h2",
+        children: [{ _type: "span", text: "Section Title" }],
+    },
+    {
+        _type: "block",
+        style: "normal",
+        children: [
+            { _type: "span", text: "This is a paragraph with " },
+            { _type: "span", text: "bold text", marks: ["strong"] },
+            { _type: "span", text: " and a " },
+            {
+                _type: "span",
+                text: "link",
+                marks: ["link-abc123"],
+            },
+        ],
+        markDefs: [
+            {
+                _key: "link-abc123",
+                _type: "link",
+                href: "https://example.com",
+            },
+        ],
+    },
+    {
+        _type: "code",
+        language: "typescript",
+        code: 'const greeting = "Hello World";',
+    },
+    {
+        _type: "image",
+        asset: { _ref: "image-xyz789" },
+        alt: "Screenshot of the interface",
+        caption: "The redesigned dashboard view",
+    },
 ]
 ```
 
@@ -484,6 +508,7 @@ body: [
 ### Initial Content Setup
 
 **Required for Launch**:
+
 1. Create `siteSettings` singleton with site metadata
 2. Create `navigation` singleton with menu items
 3. Create at least 2-3 sample blog posts
@@ -491,17 +516,20 @@ body: [
 5. Create "About" page
 
 **Optional for Launch**:
+
 - Author document (use default author for now)
 - Additional tags (can be created as needed)
 
 ### Content Import Strategy
 
 **Phase 1**: Manual creation in Sanity Studio
+
 - Site settings and navigation
 - Initial featured projects
 - About page
 
 **Phase 2**: Bulk import via script (if needed)
+
 - Historical blog posts from existing platform
 - Use Sanity CLI or import API
 
@@ -512,6 +540,7 @@ body: [
 ### Common Queries
 
 **Get all published posts (with excerpt)**:
+
 ```groq
 *[_type == "post" && publishedAt <= now()] | order(publishedAt desc) {
   title,
@@ -524,6 +553,7 @@ body: [
 ```
 
 **Get single post by slug**:
+
 ```groq
 *[_type == "post" && slug.current == $slug][0] {
   title,
@@ -536,6 +566,7 @@ body: [
 ```
 
 **Get featured projects**:
+
 ```groq
 *[_type == "project" && selected == true] | order(_createdAt desc) {
   title,
@@ -548,6 +579,7 @@ body: [
 ```
 
 **Get navigation items**:
+
 ```groq
 *[_type == "navigation"][0] {
   items[]{ title, href, newTab }
@@ -555,6 +587,7 @@ body: [
 ```
 
 **Get site settings**:
+
 ```groq
 *[_type == "siteSettings"][0] {
   title,

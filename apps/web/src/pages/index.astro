@@ -1,52 +1,54 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { ProjectCard } from '@afnizarnur/ui';
-import { getFeaturedProjects } from '../server/data';
+import BaseLayout from "../layouts/BaseLayout.astro"
+import { ProjectCard } from "@afnizarnur/ui"
+import { getFeaturedProjects } from "../server/data"
 
-const featuredProjects = await getFeaturedProjects();
+const featuredProjects = await getFeaturedProjects()
 ---
 
 <BaseLayout>
-  <!-- Hero Section -->
-  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-    <div class="max-w-3xl">
-      <h1 class="text-5xl font-bold text-neutral-900 sm:text-6xl">
-        Product Designer & Developer
-      </h1>
-      <p class="mt-6 text-xl text-neutral-600">
-        I design and build products that people love. Currently focused on design systems,
-        frontend development, and creating delightful user experiences.
-      </p>
-    </div>
-  </section>
-
-  <!-- Featured Projects Section -->
-  {featuredProjects && featuredProjects.length > 0 && (
-    <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div class="mb-12 flex items-center justify-between">
-        <h2 class="text-3xl font-bold text-neutral-900">Selected Work</h2>
-        <a
-          href="/work"
-          class="text-sm font-medium text-primary-600 hover:text-primary-700"
-        >
-          View all projects →
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {featuredProjects.map((project) => (
-          <ProjectCard
-            client:load
-            title={project.title}
-            slug={project.slug}
-            description={project.description}
-            role={project.role}
-            thumbnail={project.thumbnail}
-            thumbnailAlt={project.thumbnailAlt}
-            year={project.year}
-          />
-        ))}
-      </div>
+    <!-- Hero Section -->
+    <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <h1 class="text-5xl font-bold text-neutral-900 sm:text-6xl">
+                Product Designer & Developer
+            </h1>
+            <p class="mt-6 text-xl text-neutral-600">
+                I design and build products that people love. Currently focused on design systems,
+                frontend development, and creating delightful user experiences.
+            </p>
+        </div>
     </section>
-  )}
+
+    <!-- Featured Projects Section -->
+    {
+        featuredProjects && featuredProjects.length > 0 && (
+            <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div class="mb-12 flex items-center justify-between">
+                    <h2 class="text-3xl font-bold text-neutral-900">Selected Work</h2>
+                    <a
+                        href="/work"
+                        class="text-sm font-medium text-primary-600 hover:text-primary-700"
+                    >
+                        View all projects →
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {featuredProjects.map((project) => (
+                        <ProjectCard
+                            client:load
+                            title={project.title}
+                            slug={project.slug}
+                            description={project.description}
+                            role={project.role}
+                            thumbnail={project.thumbnail}
+                            thumbnailAlt={project.thumbnailAlt}
+                            year={project.year}
+                        />
+                    ))}
+                </div>
+            </section>
+        )
+    }
 </BaseLayout>

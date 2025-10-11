@@ -1,25 +1,29 @@
 {
-  "name": "afnizarnur-monorepo",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Portfolio and blog platform - monorepo",
-  "scripts": {
-    "dev": "turbo run dev --parallel",
-    "build": "turbo run build",
-    "typecheck": "turbo run typecheck",
-    "lint": "turbo run lint",
-    "clean": "turbo run clean && rm -rf node_modules",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.27.1",
-    "turbo": "^2.0.0"
-  },
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=9.0.0"
-  }
+    "name": "afnizarnur-monorepo",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Portfolio and blog platform - monorepo",
+    "scripts": {
+        "dev": "turbo run dev --parallel",
+        "build": "turbo run build",
+        "typecheck": "turbo run typecheck",
+        "lint": "turbo run lint",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx,css,astro}\"",
+        "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx,css,astro}\"",
+        "clean": "turbo run clean && rm -rf node_modules",
+        "changeset": "changeset",
+        "version-packages": "changeset version",
+        "release": "pnpm build && changeset publish"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.27.1",
+        "prettier": "^3.3.3",
+        "prettier-plugin-astro": "^0.14.1",
+        "turbo": "^2.0.0"
+    },
+    "packageManager": "pnpm@9.0.0",
+    "engines": {
+        "node": ">=20.0.0",
+        "pnpm": ">=9.0.0"
+    }
 }

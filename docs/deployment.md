@@ -22,11 +22,11 @@ These values are also codified in `netlify.toml`, so future deploy contexts inhe
 
 Add the following variables in **Site settings → Build & deploy → Environment**:
 
-| Variable | Example | Description |
-| --- | --- | --- |
-| `PUBLIC_SANITY_PROJECT_ID` | `abcd1234` | Sanity project ID used by both apps |
-| `PUBLIC_SANITY_DATASET` | `production` | Dataset that Astro queries |
-| `PUBLIC_SITE_URL` | `https://afnizarnur.com` | Absolute site URL for sitemap/open graph |
+| Variable                   | Example                  | Description                              |
+| -------------------------- | ------------------------ | ---------------------------------------- |
+| `PUBLIC_SANITY_PROJECT_ID` | `abcd1234`               | Sanity project ID used by both apps      |
+| `PUBLIC_SANITY_DATASET`    | `production`             | Dataset that Astro queries               |
+| `PUBLIC_SITE_URL`          | `https://afnizarnur.com` | Absolute site URL for sitemap/open graph |
 
 > Update values in the Netlify UI; the defaults in `netlify.toml` are placeholders only.
 
@@ -45,16 +45,16 @@ Add the following variables in **Site settings → Build & deploy → Environmen
 ## 6. Automate Deploys with Sanity Webhooks (T094–T097)
 
 1. **Create Netlify Build Hook**
-   - `Site settings → Build & deploy → Build hooks → Add build hook`.
-   - Name it `sanity-publish` and copy the generated URL.
+    - `Site settings → Build & deploy → Build hooks → Add build hook`.
+    - Name it `sanity-publish` and copy the generated URL.
 2. **Configure Sanity Webhook**
-   - In the Sanity project dashboard, open **Project settings → API → Webhooks**.
-   - Create a webhook pointing to the Netlify build hook URL.
-   - Events: enable `Create`, `Update`, `Delete`, `Publish`, and `Unpublish` for all document types.
-   - Ensure “HTTP POST” and “Status code 2XX indicates success” are selected.
+    - In the Sanity project dashboard, open **Project settings → API → Webhooks**.
+    - Create a webhook pointing to the Netlify build hook URL.
+    - Events: enable `Create`, `Update`, `Delete`, `Publish`, and `Unpublish` for all document types.
+    - Ensure “HTTP POST” and “Status code 2XX indicates success” are selected.
 3. **Test the Hook**
-   - Publish a draft document in Studio and watch for a new deploy in Netlify.
-   - Confirm `Deploy log` shows a `Hook triggered by Sanity` entry.
+    - Publish a draft document in Studio and watch for a new deploy in Netlify.
+    - Confirm `Deploy log` shows a `Hook triggered by Sanity` entry.
 
 ## 7. Resilience Testing (T098–T099)
 
@@ -78,4 +78,3 @@ Add the following variables in **Site settings → Build & deploy → Environmen
 - **Netlify notifications**: Configure email/slack notifications for failed deploys in **Team settings → Notifications**.
 
 Document the outcome of these tests in project notes so the automation remains auditable.
-

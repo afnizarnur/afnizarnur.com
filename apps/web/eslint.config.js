@@ -1,8 +1,8 @@
-import sharedConfig from '@afnizarnur/config-eslint';
+import sharedConfig from "@afnizarnur/config-eslint"
 
 export default [
-  ...sharedConfig,
-  {
-    ignores: ['dist/', 'node_modules/', '.astro/', '*.d.ts']
-  }
-];
+    ...sharedConfig,
+    {
+        ignores: ["dist/", "node_modules/", ".astro/", "*.d.ts"],
+    },
+]

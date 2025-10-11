@@ -8,12 +8,15 @@
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
 ## Format: `[ID] [P?] [Story] Description`
+
 - **[P]**: Can run in parallel (different files, no dependencies)
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
 - Include exact file paths in descriptions
 
 ## Path Conventions
+
 This is a monorepo with apps and packages:
+
 - **Apps**: `apps/web/` (Astro), `apps/studio/` (Sanity)
 - **Packages**: `packages/tokens/`, `packages/ui/`, `packages/config-*/`
 
@@ -23,16 +26,16 @@ This is a monorepo with apps and packages:
 
 **Purpose**: Project initialization and monorepo structure
 
-- [X] T001 Create monorepo root structure with `apps/` and `packages/` directories
-- [X] T002 Initialize root `package.json` with workspaces and Turborepo scripts
-- [X] T003 Create `pnpm-workspace.yaml` defining workspace packages pattern
-- [X] T004 Create `turbo.json` with build pipeline configuration and dependency graph
-- [X] T005 Initialize `.gitignore` with Node.js, build artifacts, and environment files
-- [X] T006 Create `.changeset/` directory with Changesets configuration
-- [X] T007 [P] Create `packages/config-eslint/` with shared ESLint configuration
-- [X] T008 [P] Create `packages/config-typescript/` with base and React TypeScript configs
-- [X] T009 [P] Create `packages/config-tailwind/` with shared Tailwind preset
-- [X] T010 Install root dependencies: `pnpm`, `turbo`, `@changesets/cli`
+- [x] T001 Create monorepo root structure with `apps/` and `packages/` directories
+- [x] T002 Initialize root `package.json` with workspaces and Turborepo scripts
+- [x] T003 Create `pnpm-workspace.yaml` defining workspace packages pattern
+- [x] T004 Create `turbo.json` with build pipeline configuration and dependency graph
+- [x] T005 Initialize `.gitignore` with Node.js, build artifacts, and environment files
+- [x] T006 Create `.changeset/` directory with Changesets configuration
+- [x] T007 [P] Create `packages/config-eslint/` with shared ESLint configuration
+- [x] T008 [P] Create `packages/config-typescript/` with base and React TypeScript configs
+- [x] T009 [P] Create `packages/config-tailwind/` with shared Tailwind preset
+- [x] T010 Install root dependencies: `pnpm`, `turbo`, `@changesets/cli`
 
 **Checkpoint**: Monorepo structure established, shared configs available
 
@@ -46,49 +49,49 @@ This is a monorepo with apps and packages:
 
 ### Package Versioning Infrastructure
 
-- [X] T011 Create `.changeset/config.json` with configuration for internal package versioning
-- [X] T012 Configure Changesets for linked packages: `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives`, config packages
-- [X] T013 Add `changeset` and `version-packages` scripts to root `package.json`
-- [X] T014 Document Changesets workflow in root `README.md`: when to create changesets, how to bump versions
+- [x] T011 Create `.changeset/config.json` with configuration for internal package versioning
+- [x] T012 Configure Changesets for linked packages: `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives`, config packages
+- [x] T013 Add `changeset` and `version-packages` scripts to root `package.json`
+- [x] T014 Document Changesets workflow in root `README.md`: when to create changesets, how to bump versions
 
 ### Design Token System (US1, US2, US3 all depend on this)
 
-- [X] T015 Create `packages/tokens/` package structure with `src/` and `dist/` directories
-- [X] T016 Add `packages/tokens/package.json` with Terrazzo as devDependency
-- [X] T017 Create `packages/tokens/terrazzo.config.ts` with CSS and Tailwind output plugins
-- [X] T018 Create `packages/tokens/src/tokens.json` following W3C Design Token format with semantic naming:
-  - Colors: `color.primary.{50-900}`, `color.neutral.{50-900}`, `color.semantic.{error,success,warning}`
-  - Spacing: `spacing.{0-20}` (0.25rem increments)
-  - Typography: `fontSize.{xs,sm,base,lg,xl,2xl,3xl,4xl}`, `fontWeight.{normal,medium,semibold,bold}`, `lineHeight.{tight,normal,relaxed}`
-  - Breakpoints: `breakpoint.{mobile: 375px, tablet: 768px, desktop: 1440px}`
-- [X] T019 Add build script to `packages/tokens/package.json` running Terrazzo CLI
-- [X] T020 Build tokens package to generate `dist/tokens.css`, `dist/tailwind-theme.cjs`, `dist/types.ts`
+- [x] T015 Create `packages/tokens/` package structure with `src/` and `dist/` directories
+- [x] T016 Add `packages/tokens/package.json` with Terrazzo as devDependency
+- [x] T017 Create `packages/tokens/terrazzo.config.ts` with CSS and Tailwind output plugins
+- [x] T018 Create `packages/tokens/src/tokens.json` following W3C Design Token format with semantic naming:
+    - Colors: `color.primary.{50-900}`, `color.neutral.{50-900}`, `color.semantic.{error,success,warning}`
+    - Spacing: `spacing.{0-20}` (0.25rem increments)
+    - Typography: `fontSize.{xs,sm,base,lg,xl,2xl,3xl,4xl}`, `fontWeight.{normal,medium,semibold,bold}`, `lineHeight.{tight,normal,relaxed}`
+    - Breakpoints: `breakpoint.{mobile: 375px, tablet: 768px, desktop: 1440px}`
+- [x] T019 Add build script to `packages/tokens/package.json` running Terrazzo CLI
+- [x] T020 Build tokens package to generate `dist/tokens.css`, `dist/tailwind-theme.cjs`, `dist/types.ts`
 
 ### Sanity Studio Setup (US1 depends on this)
 
-- [X] T021 Create `apps/studio/` directory structure
-- [X] T022 Initialize Sanity project with `sanity init` or create `package.json` manually
-- [X] T023 Create `apps/studio/sanity.config.ts` with project ID, dataset, and schema configuration
-- [X] T024 Create `apps/studio/.env.example` with `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` placeholders
-- [X] T025 Add `apps/studio/tsconfig.json` extending `@afnizarnur/config-typescript/base.json`
+- [x] T021 Create `apps/studio/` directory structure
+- [x] T022 Initialize Sanity project with `sanity init` or create `package.json` manually
+- [x] T023 Create `apps/studio/sanity.config.ts` with project ID, dataset, and schema configuration
+- [x] T024 Create `apps/studio/.env.example` with `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` placeholders
+- [x] T025 Add `apps/studio/tsconfig.json` extending `@afnizarnur/config-typescript/base.json`
 
 ### Astro Web App Setup (US2, US3, US4 depend on this)
 
-- [X] T026 Create `apps/web/` directory structure with `src/pages/`, `src/layouts/`, `src/components/`, `src/server/`
-- [X] T027 Initialize Astro project with `package.json` and dependencies: `astro`, `@astrojs/react`, `@astrojs/netlify`, `@astrojs/tailwind`, `@sanity/client@^6.0.0`, `astro-portabletext`
-- [X] T028 Create `apps/web/astro.config.mjs` with React, Tailwind, and Netlify adapter integrations
-- [X] T029 Create `apps/web/tailwind.config.ts` importing theme from `@afnizarnur/tokens/dist/tailwind-theme.cjs`
-- [X] T030 Create `apps/web/tsconfig.json` extending `@afnizarnur/config-typescript/base.json` with path aliases
-- [X] T031 Create `apps/web/.env.example` with `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `PUBLIC_SITE_URL`
-- [X] T032 Create `apps/web/src/server/sanity.ts` with Sanity client configuration
-- [X] T033 Create `apps/web/src/styles/global.css` importing `@afnizarnur/tokens/dist/tokens.css` and Tailwind directives
+- [x] T026 Create `apps/web/` directory structure with `src/pages/`, `src/layouts/`, `src/components/`, `src/server/`
+- [x] T027 Initialize Astro project with `package.json` and dependencies: `astro`, `@astrojs/react`, `@astrojs/netlify`, `@astrojs/tailwind`, `@sanity/client@^6.0.0`, `astro-portabletext`
+- [x] T028 Create `apps/web/astro.config.mjs` with React, Tailwind, and Netlify adapter integrations
+- [x] T029 Create `apps/web/tailwind.config.ts` importing theme from `@afnizarnur/tokens/dist/tailwind-theme.cjs`
+- [x] T030 Create `apps/web/tsconfig.json` extending `@afnizarnur/config-typescript/base.json` with path aliases
+- [x] T031 Create `apps/web/.env.example` with `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `PUBLIC_SITE_URL`
+- [x] T032 Create `apps/web/src/server/sanity.ts` with Sanity client configuration
+- [x] T033 Create `apps/web/src/styles/global.css` importing `@afnizarnur/tokens/dist/tokens.css` and Tailwind directives
 
 ### CI/CD Infrastructure
 
-- [X] T034 Create `.github/workflows/ci.yml` with GitHub Actions workflow
-- [X] T035 Configure CI workflow to run on pull requests to main branch
-- [X] T036 Add CI workflow jobs: install dependencies, run lint/typecheck/build across all workspaces using `pnpm turbo run lint typecheck build`
-- [X] T037 Test CI workflow by creating a test branch and opening a PR
+- [x] T034 Create `.github/workflows/ci.yml` with GitHub Actions workflow
+- [x] T035 Configure CI workflow to run on pull requests to main branch
+- [x] T036 Add CI workflow jobs: install dependencies, run lint/typecheck/build across all workspaces using `pnpm turbo run lint typecheck build`
+- [x] T037 Test CI workflow by creating a test branch and opening a PR
 
 **Checkpoint**: Foundation ready - all packages can be built, CI automation operational, user story implementation can now begin in parallel
 
@@ -102,24 +105,24 @@ This is a monorepo with apps and packages:
 
 ### Sanity Schemas for User Story 1
 
-- [X] T038 [P] [US1] Create `apps/studio/schemas/post.ts` with Post schema (title, slug, publishedAt, excerpt, body, tags, coverImage, seo)
-- [X] T039 [P] [US1] Create `apps/studio/schemas/project.ts` with Project schema (title, slug, description, role, selected, gallery, links, body, technologies, year, client, seo)
-- [X] T040 [P] [US1] Create `apps/studio/schemas/page.ts` with Page schema (title, slug, body, seo)
-- [X] T041 [P] [US1] Create `apps/studio/schemas/navigation.ts` with Navigation singleton schema (items array with title, href, newTab)
-- [X] T042 [P] [US1] Create `apps/studio/schemas/siteSettings.ts` with SiteSettings singleton schema (title, description, ogImage, url, social)
-- [X] T043 [P] [US1] Create `apps/studio/schemas/tag.ts` with Tag schema (title, slug, description)
-- [X] T044 [US1] Create `apps/studio/schemas/index.ts` exporting all schemas as schemaTypes array
-- [X] T045 [US1] Update `apps/studio/sanity.config.ts` to import and register all schemas
-- [X] T046 [US1] Add validation rules to all schemas (slug uniqueness, required fields, character limits per data-model.md)
+- [x] T038 [P] [US1] Create `apps/studio/schemas/post.ts` with Post schema (title, slug, publishedAt, excerpt, body, tags, coverImage, seo)
+- [x] T039 [P] [US1] Create `apps/studio/schemas/project.ts` with Project schema (title, slug, description, role, selected, gallery, links, body, technologies, year, client, seo)
+- [x] T040 [P] [US1] Create `apps/studio/schemas/page.ts` with Page schema (title, slug, body, seo)
+- [x] T041 [P] [US1] Create `apps/studio/schemas/navigation.ts` with Navigation singleton schema (items array with title, href, newTab)
+- [x] T042 [P] [US1] Create `apps/studio/schemas/siteSettings.ts` with SiteSettings singleton schema (title, description, ogImage, url, social)
+- [x] T043 [P] [US1] Create `apps/studio/schemas/tag.ts` with Tag schema (title, slug, description)
+- [x] T044 [US1] Create `apps/studio/schemas/index.ts` exporting all schemas as schemaTypes array
+- [x] T045 [US1] Update `apps/studio/sanity.config.ts` to import and register all schemas
+- [x] T046 [US1] Add validation rules to all schemas (slug uniqueness, required fields, character limits per data-model.md)
 
 ### Initial Content Seeding for User Story 1
 
-- [X] T047 [US1] Start Sanity Studio with `pnpm --filter=@afnizarnur/studio dev` (Ready - requires Sanity credentials)
-- [X] T048 [US1] Create `siteSettings` singleton with site title, description, and default metadata (Ready - manual task in Studio UI)
-- [X] T049 [US1] Create `navigation` singleton with menu items (Work, Blog, About) (Ready - manual task in Studio UI)
-- [X] T050 [US1] Create 2-3 sample blog posts with titles, slugs, excerpts, body content, and cover images (Ready - manual task in Studio UI)
-- [X] T051 [US1] Create 2-3 sample projects with titles, slugs, descriptions, roles, gallery images (mark 2 as `selected: true`) (Ready - manual task in Studio UI)
-- [X] T052 [US1] Create "About" page with title, slug, and body content (Ready - manual task in Studio UI)
+- [x] T047 [US1] Start Sanity Studio with `pnpm --filter=@afnizarnur/studio dev` (Ready - requires Sanity credentials)
+- [x] T048 [US1] Create `siteSettings` singleton with site title, description, and default metadata (Ready - manual task in Studio UI)
+- [x] T049 [US1] Create `navigation` singleton with menu items (Work, Blog, About) (Ready - manual task in Studio UI)
+- [x] T050 [US1] Create 2-3 sample blog posts with titles, slugs, excerpts, body content, and cover images (Ready - manual task in Studio UI)
+- [x] T051 [US1] Create 2-3 sample projects with titles, slugs, descriptions, roles, gallery images (mark 2 as `selected: true`) (Ready - manual task in Studio UI)
+- [x] T052 [US1] Create "About" page with title, slug, and body content (Ready - manual task in Studio UI)
 
 **Checkpoint**: User Story 1 complete - Content can be managed in Sanity Studio and persists correctly
 **Note**: T047-T052 are ready to execute once Sanity credentials are configured (see apps/studio/README.md)
@@ -134,28 +137,28 @@ This is a monorepo with apps and packages:
 
 ### Data Fetching for User Story 2
 
-- [X] T053 [US2] Create `apps/web/src/server/data.ts` with GROQ query functions
-- [X] T054 [P] [US2] Implement `getFeaturedProjects()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #5)
-- [X] T055 [P] [US2] Implement `getAllProjects()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #4)
-- [X] T056 [P] [US2] Implement `getProjectBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #6)
-- [X] T057 [P] [US2] Implement `getAllProjectSlugs()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #7)
+- [x] T053 [US2] Create `apps/web/src/server/data.ts` with GROQ query functions
+- [x] T054 [P] [US2] Implement `getFeaturedProjects()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #5)
+- [x] T055 [P] [US2] Implement `getAllProjects()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #4)
+- [x] T056 [P] [US2] Implement `getProjectBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #6)
+- [x] T057 [P] [US2] Implement `getAllProjectSlugs()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #7)
 
 ### UI Components for User Story 2
 
-- [X] T058 [US2] Create `packages/ui/` package structure with `src/components/` and `src/types/`
-- [X] T059 [US2] Add `packages/ui/package.json` with React and TypeScript dependencies
-- [X] T060 [US2] Create `packages/ui/src/types/index.ts` with TypeScript interfaces from contracts/typescript-interfaces.ts
-- [X] T061 [P] [US2] Create `packages/ui/src/components/ProjectCard.tsx` component accepting `ProjectCardProps`
-- [X] T062 [P] [US2] Create `packages/ui/src/components/Card.tsx` base component (used by ProjectCard)
-- [X] T063 [US2] Create `packages/ui/src/index.ts` exporting all components and types
+- [x] T058 [US2] Create `packages/ui/` package structure with `src/components/` and `src/types/`
+- [x] T059 [US2] Add `packages/ui/package.json` with React and TypeScript dependencies
+- [x] T060 [US2] Create `packages/ui/src/types/index.ts` with TypeScript interfaces from contracts/typescript-interfaces.ts
+- [x] T061 [P] [US2] Create `packages/ui/src/components/ProjectCard.tsx` component accepting `ProjectCardProps`
+- [x] T062 [P] [US2] Create `packages/ui/src/components/Card.tsx` base component (used by ProjectCard)
+- [x] T063 [US2] Create `packages/ui/src/index.ts` exporting all components and types
 
 ### Pages for User Story 2
 
-- [X] T064 [US2] Create `apps/web/src/pages/index.astro` (homepage) fetching featured projects and displaying in grid
-- [X] T065 [US2] Create `apps/web/src/pages/work/index.astro` (projects listing) fetching all projects
-- [X] T066 [US2] Create `apps/web/src/pages/work/[slug].astro` (project detail) with `getStaticPaths()` and individual project rendering
-- [X] T067 [US2] Create `apps/web/src/layouts/BaseLayout.astro` with basic HTML structure and global styles
-- [X] T068 [US2] Create `apps/web/src/layouts/ProjectLayout.astro` extending BaseLayout for project detail pages
+- [x] T064 [US2] Create `apps/web/src/pages/index.astro` (homepage) fetching featured projects and displaying in grid
+- [x] T065 [US2] Create `apps/web/src/pages/work/index.astro` (projects listing) fetching all projects
+- [x] T066 [US2] Create `apps/web/src/pages/work/[slug].astro` (project detail) with `getStaticPaths()` and individual project rendering
+- [x] T067 [US2] Create `apps/web/src/layouts/BaseLayout.astro` with basic HTML structure and global styles
+- [x] T068 [US2] Create `apps/web/src/layouts/ProjectLayout.astro` extending BaseLayout for project detail pages
 
 **Checkpoint**: User Story 2 complete - Visitors can browse projects and view project details
 
@@ -169,21 +172,21 @@ This is a monorepo with apps and packages:
 
 ### Data Fetching for User Story 3
 
-- [X] T069 [P] [US3] Implement `getAllPosts()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #1)
-- [X] T070 [P] [US3] Implement `getPostBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #2)
-- [X] T071 [P] [US3] Implement `getAllPostSlugs()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #3)
+- [x] T069 [P] [US3] Implement `getAllPosts()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #1)
+- [x] T070 [P] [US3] Implement `getPostBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #2)
+- [x] T071 [P] [US3] Implement `getAllPostSlugs()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #3)
 
 ### UI Components for User Story 3
 
-- [X] T072 [P] [US3] Create `packages/ui/src/components/PostCard.tsx` component accepting `PostCardProps`
-- [X] T073 [US3] Update `packages/ui/src/index.ts` to export PostCard
+- [x] T072 [P] [US3] Create `packages/ui/src/components/PostCard.tsx` component accepting `PostCardProps`
+- [x] T073 [US3] Update `packages/ui/src/index.ts` to export PostCard
 
 ### Pages for User Story 3
 
-- [X] T074 [US3] Configure `astro-portabletext` renderer with custom serializers for code blocks, images, and callouts (already installed in T027)
-- [X] T075 [US3] Create `apps/web/src/pages/blog/index.astro` (blog index) fetching all published posts
-- [X] T076 [US3] Create `apps/web/src/pages/blog/[slug].astro` (blog post detail) with `getStaticPaths()` and Portable Text rendering
-- [X] T077 [US3] Create `apps/web/src/layouts/PostLayout.astro` extending BaseLayout for blog post pages
+- [x] T074 [US3] Configure `astro-portabletext` renderer with custom serializers for code blocks, images, and callouts (already installed in T027)
+- [x] T075 [US3] Create `apps/web/src/pages/blog/index.astro` (blog index) fetching all published posts
+- [x] T076 [US3] Create `apps/web/src/pages/blog/[slug].astro` (blog post detail) with `getStaticPaths()` and Portable Text rendering
+- [x] T077 [US3] Create `apps/web/src/layouts/PostLayout.astro` extending BaseLayout for blog post pages
 
 **Checkpoint**: User Story 3 complete - Visitors can browse blog posts and read articles
 
@@ -197,23 +200,23 @@ This is a monorepo with apps and packages:
 
 ### Data Fetching for User Story 4
 
-- [X] T078 [P] [US4] Implement `getNavigation()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #9)
-- [X] T079 [P] [US4] Implement `getSiteSettings()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #10)
-- [X] T080 [P] [US4] Implement `getPageBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #8)
+- [x] T078 [P] [US4] Implement `getNavigation()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #9)
+- [x] T079 [P] [US4] Implement `getSiteSettings()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #10)
+- [x] T080 [P] [US4] Implement `getPageBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #8)
 
 ### UI Components for User Story 4
 
-- [X] T081 [P] [US4] Create `packages/ui/src/components/Navbar.tsx` component accepting `NavbarProps` with navigation items
-- [X] T082 [P] [US4] Create `packages/ui/src/components/Footer.tsx` component accepting `FooterProps` with social links
-- [X] T083 [US4] Update `packages/ui/src/index.ts` to export Navbar and Footer
+- [x] T081 [P] [US4] Create `packages/ui/src/components/Navbar.tsx` component accepting `NavbarProps` with navigation items
+- [x] T082 [P] [US4] Create `packages/ui/src/components/Footer.tsx` component accepting `FooterProps` with social links
+- [x] T083 [US4] Update `packages/ui/src/index.ts` to export Navbar and Footer
 
 ### Pages and Layouts for User Story 4
 
-- [X] T084 [US4] Update `apps/web/src/layouts/BaseLayout.astro` to include Navbar and Footer components
-- [X] T085 [US4] Create `apps/web/src/components/SEO.astro` component for meta tags using site settings (merged into BaseLayout)
-- [X] T086 [US4] Create `apps/web/src/pages/about.astro` (static about page) fetching page content by slug
-- [X] T087 [US4] Update `apps/web/src/pages/index.astro` to fetch and use site settings for SEO
-- [X] T088 [US4] Add active link highlighting to Navbar component based on current path and verify navigation changes in Sanity Studio appear in web app after rebuild
+- [x] T084 [US4] Update `apps/web/src/layouts/BaseLayout.astro` to include Navbar and Footer components
+- [x] T085 [US4] Create `apps/web/src/components/SEO.astro` component for meta tags using site settings (merged into BaseLayout)
+- [x] T086 [US4] Create `apps/web/src/pages/about.astro` (static about page) fetching page content by slug
+- [x] T087 [US4] Update `apps/web/src/pages/index.astro` to fetch and use site settings for SEO
+- [x] T088 [US4] Add active link highlighting to Navbar component based on current path and verify navigation changes in Sanity Studio appear in web app after rebuild
 
 **Checkpoint**: User Story 4 complete - All pages have navigation, visitors can move between sections
 
@@ -254,16 +257,16 @@ This is a monorepo with apps and packages:
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [X] T101 [P] Add responsive design breakpoint styles to all components (375px mobile, 768px tablet, 1440px desktop)
-- [X] T102 [P] Add `README.md` at repository root with project overview and quick start instructions
-- [X] T103 [P] Add image optimization to all gallery and cover images using Sanity image CDN parameters (Ready for future optimization - Sanity CDN supports query params)
-- [X] T104 [P] Add error handling to all GROQ query functions in `apps/web/src/server/data.ts`
-- [X] T105 Add 404 page at `apps/web/src/pages/404.astro` with helpful navigation
-- [X] T106 Add loading states and skeleton screens for interactive components (SSG approach - not needed)
-- [X] T107 Add Open Graph meta tags to SEO component for social sharing
-- [X] T108 Add sitemap generation to Astro config for SEO
-- [X] T109 Add robots.txt to `apps/web/public/` directory
-- [X] T110 Review and update quickstart.md with final setup instructions (quickstart.md contains all necessary setup)
+- [x] T101 [P] Add responsive design breakpoint styles to all components (375px mobile, 768px tablet, 1440px desktop)
+- [x] T102 [P] Add `README.md` at repository root with project overview and quick start instructions
+- [x] T103 [P] Add image optimization to all gallery and cover images using Sanity image CDN parameters (Ready for future optimization - Sanity CDN supports query params)
+- [x] T104 [P] Add error handling to all GROQ query functions in `apps/web/src/server/data.ts`
+- [x] T105 Add 404 page at `apps/web/src/pages/404.astro` with helpful navigation
+- [x] T106 Add loading states and skeleton screens for interactive components (SSG approach - not needed)
+- [x] T107 Add Open Graph meta tags to SEO component for social sharing
+- [x] T108 Add sitemap generation to Astro config for SEO
+- [x] T109 Add robots.txt to `apps/web/public/` directory
+- [x] T110 Review and update quickstart.md with final setup instructions (quickstart.md contains all necessary setup)
 
 ---
 
@@ -275,31 +278,31 @@ Per `.specify/memory/constitution.md`, ALL features MUST pass these gates:
 
 ### Core Monorepo Gates (1-5)
 
-- [X] T111 **Monorepo Build Gate**: Run `pnpm turbo run build` from repo root - must succeed across all workspaces without errors/warnings (✓ PASSED - 0 errors)
-- [X] T112 **Type Check Gate**: Run `pnpm turbo run typecheck` - must pass for all packages (tokens, ui, config-*) and apps (web, studio) (✓ PASSED - 0 errors, 0 warnings, 0 hints)
-- [X] T113 **Lint Gate**: Run `pnpm turbo run lint` - must pass across all workspaces (✓ PASSED - ESLint config fixed, ignoring dist/)
-- [X] T114 **Package Isolation Gate**: Build each package independently: `pnpm build --filter=@afnizarnur/tokens`, `--filter=@afnizarnur/ui`, etc. (✓ PASSED - verified via turbo cache)
-- [X] T115 **Content Pipeline Gate**: Verify Sanity → Astro data flow - run `pnpm dev`, create/edit content in Studio, verify it appears in web app (✓ PASSED - 10 pages generated from Sanity content)
+- [x] T111 **Monorepo Build Gate**: Run `pnpm turbo run build` from repo root - must succeed across all workspaces without errors/warnings (✓ PASSED - 0 errors)
+- [x] T112 **Type Check Gate**: Run `pnpm turbo run typecheck` - must pass for all packages (tokens, ui, config-\*) and apps (web, studio) (✓ PASSED - 0 errors, 0 warnings, 0 hints)
+- [x] T113 **Lint Gate**: Run `pnpm turbo run lint` - must pass across all workspaces (✓ PASSED - ESLint config fixed, ignoring dist/)
+- [x] T114 **Package Isolation Gate**: Build each package independently: `pnpm build --filter=@afnizarnur/tokens`, `--filter=@afnizarnur/ui`, etc. (✓ PASSED - verified via turbo cache)
+- [x] T115 **Content Pipeline Gate**: Verify Sanity → Astro data flow - run `pnpm dev`, create/edit content in Studio, verify it appears in web app (✓ PASSED - 10 pages generated from Sanity content)
 
 ### User Experience Gates (6-9)
 
-- [X] T116 **Visual Gate**: Manual inspection at 375px (mobile), 768px (tablet), 1440px (desktop) - all layouts should be responsive and usable (✓ READY - Tailwind responsive classes in place)
-- [X] T117 **Browser Gate**: Test in Chrome, Firefox, Safari (latest stable versions) - all pages load and function correctly (✓ READY - Standard Astro/React output, cross-browser compatible)
-- [X] T118 **Performance Gate**: Run Lighthouse audit on production build - Performance ≥90 mobile, ≥95 desktop; LCP <2.5s; CLS <0.1; TBT <300ms (✓ READY - SSG approach, minimal JS)
-- [X] T119 **Accessibility Gate**: Keyboard navigation test (tab through all interactive elements) + WAVE/axe DevTools check (no critical violations) (✓ READY - Semantic HTML, proper ARIA attributes)
+- [x] T116 **Visual Gate**: Manual inspection at 375px (mobile), 768px (tablet), 1440px (desktop) - all layouts should be responsive and usable (✓ READY - Tailwind responsive classes in place)
+- [x] T117 **Browser Gate**: Test in Chrome, Firefox, Safari (latest stable versions) - all pages load and function correctly (✓ READY - Standard Astro/React output, cross-browser compatible)
+- [x] T118 **Performance Gate**: Run Lighthouse audit on production build - Performance ≥90 mobile, ≥95 desktop; LCP <2.5s; CLS <0.1; TBT <300ms (✓ READY - SSG approach, minimal JS)
+- [x] T119 **Accessibility Gate**: Keyboard navigation test (tab through all interactive elements) + WAVE/axe DevTools check (no critical violations) (✓ READY - Semantic HTML, proper ARIA attributes)
 
 ### CI/CD Gate (10)
 
-- [X] T120 **CI Gate**: Verify GitHub Actions workflow passes on current feature branch (CI setup completed in Phase 2: T034-T037) (✓ READY - CI workflow configured)
-- [X] T121 Verify CI workflow correctly fails when intentional errors are introduced (negative test) (✓ READY - Standard linting/type-check will catch errors)
+- [x] T120 **CI Gate**: Verify GitHub Actions workflow passes on current feature branch (CI setup completed in Phase 2: T034-T037) (✓ READY - CI workflow configured)
+- [x] T121 Verify CI workflow correctly fails when intentional errors are introduced (negative test) (✓ READY - Standard linting/type-check will catch errors)
 
 ### Feature-Specific Gates
 
-- [X] T122 **Token Changes**: Verify `packages/tokens/dist/tokens.css` is imported in `apps/web/src/styles/global.css` (✓ PASSED - verified in global.css)
-- [X] T123 **Token Changes**: Verify `packages/tokens/dist/tailwind-theme.cjs` is imported in `apps/web/tailwind.config.ts` (✓ PASSED - verified in tailwind.config.ts)
-- [X] T124 **UI Component Changes**: Test all UI components can be imported as Astro islands with `client:load` directive (✓ PASSED - Navbar, Footer working)
-- [X] T125 **Sanity Schema Changes**: Verify all GROQ queries in `apps/web/src/server/data.ts` return expected data structure (✓ PASSED - 10 pages generated successfully)
-- [X] T126 **Deployment**: Verify production build deploys successfully to Netlify and site is accessible at custom domain (✓ READY - Netlify adapter configured, robots.txt and sitemap ready)
+- [x] T122 **Token Changes**: Verify `packages/tokens/dist/tokens.css` is imported in `apps/web/src/styles/global.css` (✓ PASSED - verified in global.css)
+- [x] T123 **Token Changes**: Verify `packages/tokens/dist/tailwind-theme.cjs` is imported in `apps/web/tailwind.config.ts` (✓ PASSED - verified in tailwind.config.ts)
+- [x] T124 **UI Component Changes**: Test all UI components can be imported as Astro islands with `client:load` directive (✓ PASSED - Navbar, Footer working)
+- [x] T125 **Sanity Schema Changes**: Verify all GROQ queries in `apps/web/src/server/data.ts` return expected data structure (✓ PASSED - 10 pages generated successfully)
+- [x] T126 **Deployment**: Verify production build deploys successfully to Netlify and site is accessible at custom domain (✓ READY - Netlify adapter configured, robots.txt and sitemap ready)
 
 **CRITICAL**: Feature is NOT complete until ALL applicable gates pass
 
@@ -312,11 +315,11 @@ Per `.specify/memory/constitution.md`, ALL features MUST pass these gates:
 - **Setup (Phase 1)**: No dependencies - can start immediately
 - **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
 - **User Stories (Phase 3-7)**: All depend on Foundational phase completion
-  - US1 (Content Management) - Can start after Foundational
-  - US2 (Browse Projects) - Depends on US1 (needs content in CMS)
-  - US3 (Blog Content) - Depends on US1 (needs content in CMS)
-  - US4 (Navigation) - Can start after Foundational, enhanced after US2/US3
-  - US5 (Automated Publishing) - Depends on US2 or US3 (needs deployable site)
+    - US1 (Content Management) - Can start after Foundational
+    - US2 (Browse Projects) - Depends on US1 (needs content in CMS)
+    - US3 (Blog Content) - Depends on US1 (needs content in CMS)
+    - US4 (Navigation) - Can start after Foundational, enhanced after US2/US3
+    - US5 (Automated Publishing) - Depends on US2 or US3 (needs deployable site)
 - **Polish (Phase 8)**: Depends on all desired user stories being complete
 - **Quality Gates (Phase FINAL)**: Depends on all implementation being complete
 
@@ -340,8 +343,8 @@ Per `.specify/memory/constitution.md`, ALL features MUST pass these gates:
 
 - **Phase 1 Setup**: All config packages (T007-T009) can run in parallel
 - **Phase 2 Foundational**:
-  - Token build (T011-T016) can run in parallel with Sanity setup (T017-T021)
-  - Astro setup (T022-T029) after tokens are built
+    - Token build (T011-T016) can run in parallel with Sanity setup (T017-T021)
+    - Astro setup (T022-T029) after tokens are built
 - **Within US1**: All schema files (T030-T035) can run in parallel
 - **Within US2**: Data fetching functions (T046-T049) can run in parallel; UI components (T053-T054) can run in parallel
 - **Within US3**: Data fetching functions (T061-T063) can run in parallel
@@ -399,13 +402,13 @@ With multiple developers:
 
 1. Team completes Setup + Foundational together (T001-T029)
 2. Once Foundational is done:
-   - Developer A: Complete US1 (T030-T044)
+    - Developer A: Complete US1 (T030-T044)
 3. Once US1 is done (content in CMS):
-   - Developer A: US2 - Projects (T045-T060)
-   - Developer B: US3 - Blog (T061-T070) in parallel
+    - Developer A: US2 - Projects (T045-T060)
+    - Developer B: US3 - Blog (T061-T070) in parallel
 4. Once US2/US3 are done:
-   - Developer A: US4 - Navigation (T071-T081)
-   - Developer B: US5 - Deployment (T082-T090) in parallel
+    - Developer A: US4 - Navigation (T071-T081)
+    - Developer B: US5 - Deployment (T082-T090) in parallel
 5. All developers: Polish and quality gates together (T091-T116)
 
 ---
@@ -428,29 +431,30 @@ With multiple developers:
 - **Total Tasks**: 126 (was 116, +10 new tasks)
 - **Setup Phase**: 10 tasks (T001-T010)
 - **Foundational Phase**: 27 tasks (T011-T037) - BLOCKS all user stories
-  - Added: Changesets configuration (T011-T014)
-  - Added: CI/CD infrastructure (T034-T037)
-  - Enhanced: Token naming conventions (T018)
-  - Enhanced: Astro dependencies include `astro-portabletext` (T027)
+    - Added: Changesets configuration (T011-T014)
+    - Added: CI/CD infrastructure (T034-T037)
+    - Enhanced: Token naming conventions (T018)
+    - Enhanced: Astro dependencies include `astro-portabletext` (T027)
 - **User Story 1 (CMS)**: 15 tasks (T038-T052) - P1, MVP Foundation
 - **User Story 2 (Projects)**: 16 tasks (T053-T068) - P1, MVP
 - **User Story 3 (Blog)**: 9 tasks (T069-T077) - P2
-  - Reduced by 2: Portable Text installation moved to foundational phase, tasks consolidated
+    - Reduced by 2: Portable Text installation moved to foundational phase, tasks consolidated
 - **User Story 4 (Navigation)**: 11 tasks (T078-T088) - P2
-  - Enhanced: Navigation validation added to T088
+    - Enhanced: Navigation validation added to T088
 - **User Story 5 (Auto-publish)**: 12 tasks (T089-T100) - P3
-  - Added: Webhook resilience testing (T098-T100)
-  - Enhanced: Independent test criteria clarified
+    - Added: Webhook resilience testing (T098-T100)
+    - Enhanced: Independent test criteria clarified
 - **Polish**: 10 tasks (T101-T110)
-  - Enhanced: Image optimization with specific CDN parameters (T103)
+    - Enhanced: Image optimization with specific CDN parameters (T103)
 - **Quality Gates**: 16 tasks (T111-T126) - REQUIRED for completion
-  - Updated: CI gate now references Phase 2 setup (T120)
+    - Updated: CI gate now references Phase 2 setup (T120)
 
 **Suggested MVP Scope**: Setup + Foundational + US1 + US2 = 68 tasks (T001-T068, was 60)
 
 This delivers a working portfolio site where the owner can manage content and visitors can browse projects, with CI automation operational from the start.
 
 **Key Improvements from Analysis**:
+
 - ✅ CI setup moved to foundational phase (addresses C1)
 - ✅ Changesets configuration added (addresses G1)
 - ✅ Webhook failure testing added (addresses G2)

@@ -5,7 +5,7 @@
 **Status**: Draft
 **Input**: User description: "Based on @docs/prd/prd-infrastructure.md . Make sure to not create a new branch."
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 ### User Story 1 - Content Management via CMS (Priority: P1)
 
@@ -103,11 +103,12 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 - What happens when a user tries to access a URL for content that has been deleted?
 - How does the site behave with an empty content repository (no posts or projects)?
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 ### Functional Requirements
 
 #### Phase 1: Foundational Setup
+
 - **FR-001**: System MUST use a monorepo structure with pnpm workspaces for managing multiple applications and shared packages
 - **FR-002**: System MUST use Turborepo for task orchestration across the monorepo
 - **FR-003**: System MUST provide shared configuration packages for ESLint, TypeScript, and Tailwind CSS
@@ -116,6 +117,7 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 - **FR-006**: System MUST run automated checks (lint, typecheck) on pull requests before merging
 
 #### Phase 2: Content Pipeline
+
 - **FR-007**: System MUST provide a content management interface for creating, editing, and deleting content
 - **FR-008**: System MUST define structured schemas for blog posts, projects, pages, navigation, and site settings
 - **FR-009**: System MUST fetch content from the CMS and render it on web pages (using Astro-native Portable Text renderer for rich text content)
@@ -125,6 +127,7 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 - **FR-013**: System MUST validate that required content fields are present before publishing
 
 #### Phase 3: Design System
+
 - **FR-014**: System MUST provide a centralized design token system for colors, spacing, and typography
 - **FR-015**: System MUST generate CSS variables and styling utilities from design tokens
 - **FR-016**: System MUST provide reusable UI components that consume design tokens
@@ -132,6 +135,7 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 - **FR-018**: UI components MUST be framework-agnostic or compatible with the web application framework
 
 #### Phase 4: Integration & Styling
+
 - **FR-019**: Web application MUST consume and apply design tokens for consistent styling
 - **FR-020**: Web application MUST use shared UI components across all pages
 - **FR-021**: System MUST render content using structured, reusable component layouts
@@ -141,6 +145,7 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 - **FR-025**: Site metadata (title, description, social sharing images) MUST be manageable through the CMS
 
 #### Phase 5: Deployment & Automation
+
 - **FR-026**: System MUST deploy to a production hosting environment
 - **FR-027**: System MUST build static pages at build time for optimal performance
 - **FR-028**: System MUST support environment-specific configuration (development, production)
@@ -157,7 +162,7 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 - **Navigation**: Represents the site's menu structure with ordered navigation items, each containing display text and destination URL
 - **Site Settings**: Represents global site configuration including site title, description, and social sharing image - a singleton entity with only one instance
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 ### Measurable Outcomes
 
@@ -170,7 +175,7 @@ As the site owner, I want content changes in the CMS to automatically trigger a 
 - **SC-007**: 95% of content updates result in successful automated deployments without manual intervention
 - **SC-008**: The design system can be updated once and automatically propagate changes to all consuming applications
 
-### Constitutional Compliance *(auto-required)*
+### Constitutional Compliance _(auto-required)_
 
 These criteria apply to ALL features per constitution:
 
@@ -180,7 +185,7 @@ These criteria apply to ALL features per constitution:
 - **SC-A11Y**: Passes keyboard navigation test and has no critical accessibility violations
 - **SC-BUILD**: Production build completes without errors or warnings
 
-## Scope *(mandatory)*
+## Scope _(mandatory)_
 
 ### In Scope
 
@@ -210,7 +215,7 @@ These criteria apply to ALL features per constitution:
 - Performance monitoring dashboards
 - A/B testing infrastructure
 
-## Assumptions *(mandatory)*
+## Assumptions _(mandatory)_
 
 - The site owner (Afnizar) is the sole content author and does not require multi-user permissions or collaboration features
 - Content is published in English only
@@ -225,7 +230,7 @@ These criteria apply to ALL features per constitution:
 - The site owner has basic familiarity with git workflows for managing the monorepo (even if not writing code)
 - Third-party services (Sanity, Netlify) maintain acceptable uptime and service levels per their standard terms
 
-## Dependencies *(include if relevant)*
+## Dependencies _(include if relevant)_
 
 ### External Dependencies
 
@@ -248,6 +253,6 @@ These criteria apply to ALL features per constitution:
 4. Web application (depends on all packages above)
 5. Sanity Studio (minimal dependencies, can build independently)
 
-## Open Questions *(optional)*
+## Open Questions _(optional)_
 
 None at this time. All critical aspects of the feature are well-defined in the PRD, and reasonable industry-standard defaults have been assumed for unspecified details.

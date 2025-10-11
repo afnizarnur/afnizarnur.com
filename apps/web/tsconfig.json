@@ -1,18 +1,18 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@afnizarnur/tokens": ["../../packages/tokens/dist"],
-      "@afnizarnur/ui": ["../../packages/ui/src"]
+    "extends": "astro/tsconfigs/strict",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "react",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"],
+            "@afnizarnur/tokens": ["../../packages/tokens/dist"],
+            "@afnizarnur/ui": ["../../packages/ui/src"]
+        },
+        "strict": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true
     },
-    "strict": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", ".astro"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", ".astro"]
 }

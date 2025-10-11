@@ -11,6 +11,7 @@ Build a scalable personal portfolio and blog platform using a monorepo architect
 
 **Language/Version**: TypeScript 5.x (strict mode), Node.js 20.x LTS
 **Primary Dependencies**:
+
 - Frontend: Astro 4.x, React 18.x, Tailwind CSS 3.x
 - CMS: Sanity v4, @sanity/client
 - Design Tokens: Terrazzo (latest)
@@ -18,6 +19,7 @@ Build a scalable personal portfolio and blog platform using a monorepo architect
 
 **Storage**: Sanity Content Lake (cloud-hosted CMS), Netlify CDN (static assets)
 **Testing**:
+
 - Build validation: Turborepo build pipeline
 - Type checking: TypeScript compiler across all workspaces
 - Linting: ESLint with shared config
@@ -26,12 +28,14 @@ Build a scalable personal portfolio and blog platform using a monorepo architect
 **Target Platform**: Web (static site generation), deployed to Netlify CDN
 **Project Type**: Monorepo with multiple apps and shared packages
 **Performance Goals**:
+
 - Lighthouse Performance ≥90 mobile, ≥95 desktop
 - LCP <2.5s, CLS <0.1, TBT <300ms, FCP <1.5s on 3G
 - Page load <2s on standard broadband
 - Build time <5 minutes for content updates
 
 **Constraints**:
+
 - Static generation only (no server-side rendering)
 - Single content author (no multi-user CMS features)
 - Build-time content fetching (no client-side data loading)
@@ -39,6 +43,7 @@ Build a scalable personal portfolio and blog platform using a monorepo architect
 - All styling must use design tokens (no hardcoded values)
 
 **Scale/Scope**:
+
 - 2 applications (web frontend, Sanity Studio)
 - 6 shared packages (tokens, ui, ui-primitives, 3 config packages)
 - 5 content types (post, project, page, navigation, siteSettings)
@@ -47,55 +52,57 @@ Build a scalable personal portfolio and blog platform using a monorepo architect
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
 Verify compliance with `.specify/memory/constitution.md` principles:
 
 - [x] **Code Quality (Principle I)**: Packages independently buildable, TypeScript strict mode, explicit dependencies
-  - All packages in `packages/*` will have explicit `package.json` dependencies
-  - `turbo.json` defines build order dependencies
-  - TypeScript strict mode enforced via `@afnizarnur/config-typescript`
+    - All packages in `packages/*` will have explicit `package.json` dependencies
+    - `turbo.json` defines build order dependencies
+    - TypeScript strict mode enforced via `@afnizarnur/config-typescript`
 
 - [x] **Testing Standards (Principle II)**: Monorepo build/typecheck/lint gates planned; content pipeline validation included
-  - Build gate: `pnpm turbo run build` across all workspaces
-  - Type gate: `pnpm turbo run typecheck` across all workspaces
-  - Lint gate: `pnpm turbo run lint` across all workspaces
-  - Content pipeline: Manual verification of Sanity → Astro data flow
+    - Build gate: `pnpm turbo run build` across all workspaces
+    - Type gate: `pnpm turbo run typecheck` across all workspaces
+    - Lint gate: `pnpm turbo run lint` across all workspaces
+    - Content pipeline: Manual verification of Sanity → Astro data flow
 
 - [x] **UX Consistency (Principle III)**: Token-driven styling via `@afnizarnur/tokens`; shared components from `@afnizarnur/ui`
-  - All colors, spacing, typography defined in `@afnizarnur/tokens`
-  - Terrazzo generates CSS variables and Tailwind theme
-  - UI components in `@afnizarnur/ui` consume tokens
-  - No hardcoded design values in `apps/web`
+    - All colors, spacing, typography defined in `@afnizarnur/tokens`
+    - Terrazzo generates CSS variables and Tailwind theme
+    - UI components in `@afnizarnur/ui` consume tokens
+    - No hardcoded design values in `apps/web`
 
 - [x] **Performance (Principle IV)**: SSG-first approach; Lighthouse ≥90 mobile, ≥95 desktop; LCP <2.5s; selective hydration
-  - Astro SSG for all content pages
-  - React islands only for interactive components (`client:load`, `client:visible`)
-  - Build-time GROQ queries (no client-side data fetching)
-  - Image optimization via Sanity asset pipeline + Astro Image component
+    - Astro SSG for all content pages
+    - React islands only for interactive components (`client:load`, `client:visible`)
+    - Build-time GROQ queries (no client-side data fetching)
+    - Image optimization via Sanity asset pipeline + Astro Image component
 
 - [x] **Quality Gates**: All 10 gates included in task list (Monorepo Build, Type Check, Lint, Package Isolation, Content Pipeline, Visual, Browser, Performance, Accessibility, CI)
-  - Tasks will include validation steps for all 10 constitutional gates
-  - GitHub Actions workflow for automated CI gates
+    - Tasks will include validation steps for all 10 constitutional gates
+    - GitHub Actions workflow for automated CI gates
 
 **Monorepo-Specific Checks**:
+
 - [x] Package dependency chain respects build order (e.g., `tokens` → `ui` → `web`)
-  - Build order: config packages → tokens → ui/ui-primitives → apps
-  - Enforced via `turbo.json` `dependsOn` configuration
+    - Build order: config packages → tokens → ui/ui-primitives → apps
+    - Enforced via `turbo.json` `dependsOn` configuration
 
 - [x] No circular dependencies between packages
-  - Apps depend on packages (one-way)
-  - Packages can depend on other packages (acyclic graph)
-  - Verified during package setup
+    - Apps depend on packages (one-way)
+    - Packages can depend on other packages (acyclic graph)
+    - Verified during package setup
 
 - [x] Turborepo `dependsOn` configured if new packages added
-  - `turbo.json` will define build/dev/lint/typecheck dependencies
+    - `turbo.json` will define build/dev/lint/typecheck dependencies
 
 - [x] Changesets workflow planned if packages versioned
-  - Changesets for internal package versioning
-  - Conventional commits for changelog generation
+    - Changesets for internal package versioning
+    - Conventional commits for changelog generation
 
 **Exceptions** (document in Complexity Tracking if any principle is violated):
+
 - None - all constitutional principles can be satisfied
 
 ## Project Structure
@@ -222,9 +229,10 @@ afnizarnur/                          # Monorepo root
 
 ## Complexity Tracking
 
-*No constitutional violations - this section is empty.*
+_No constitutional violations - this section is empty._
 
 The implementation strictly adheres to all constitutional principles:
+
 - **Principle I (Code Quality)**: All packages are independently buildable with explicit dependencies and TypeScript strict mode
 - **Principle II (Testing)**: All quality gates are included and enforceable via Turborepo + GitHub Actions
 - **Principle III (UX Consistency)**: Design tokens provide single source of truth; all styling is token-driven

@@ -19,32 +19,32 @@
  * Base interface for all Sanity documents
  */
 interface SanityDocument {
-  _id: string
-  _type: string
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
+    _id: string
+    _type: string
+    _createdAt: string
+    _updatedAt: string
+    _rev: string
 }
 
 /**
  * Sanity slug field structure
  */
 interface Slug {
-  _type: 'slug'
-  current: string
+    _type: "slug"
+    current: string
 }
 
 /**
  * Sanity image asset reference
  */
 interface ImageAsset {
-  _type: 'image'
-  asset: {
-    _ref: string
-    _type: 'reference'
-  }
-  alt?: string
-  caption?: string
+    _type: "image"
+    asset: {
+        _ref: string
+        _type: "reference"
+    }
+    alt?: string
+    caption?: string
 }
 
 /**
@@ -52,8 +52,8 @@ interface ImageAsset {
  * Full type available from @portabletext/types
  */
 type PortableTextBlock = {
-  _type: 'block' | 'code' | 'image'
-  [key: string]: any
+    _type: "block" | "code" | "image"
+    [key: string]: any
 }
 
 // =============================================================================
@@ -64,35 +64,35 @@ type PortableTextBlock = {
  * Blog post preview (for listing pages)
  */
 export interface PostPreview {
-  title: string
-  slug: string
-  publishedAt: string  // ISO 8601 datetime string
-  excerpt: string
-  coverImage?: string  // Sanity CDN URL
-  coverImageAlt?: string
-  tags?: TagPreview[]
+    title: string
+    slug: string
+    publishedAt: string // ISO 8601 datetime string
+    excerpt: string
+    coverImage?: string // Sanity CDN URL
+    coverImageAlt?: string
+    tags?: TagPreview[]
 }
 
 /**
  * Full blog post (for detail pages)
  */
 export interface Post {
-  title: string
-  slug: string
-  publishedAt: string
-  excerpt: string
-  body: PortableTextBlock[]
-  coverImage?: string
-  coverImageAlt?: string
-  tags?: TagPreview[]
-  seo?: SEOMetadata
+    title: string
+    slug: string
+    publishedAt: string
+    excerpt: string
+    body: PortableTextBlock[]
+    coverImage?: string
+    coverImageAlt?: string
+    tags?: TagPreview[]
+    seo?: SEOMetadata
 }
 
 /**
  * Post slug for static path generation
  */
 export interface PostSlug {
-  slug: string
+    slug: string
 }
 
 // =============================================================================
@@ -103,70 +103,70 @@ export interface PostSlug {
  * Project preview (for listing pages)
  */
 export interface ProjectPreview {
-  title: string
-  slug: string
-  description: string
-  role: string[]
-  selected?: boolean
-  year?: number
-  technologies?: string[]
-  thumbnail?: string
-  thumbnailAlt?: string
-  links?: ProjectLink[]
+    title: string
+    slug: string
+    description: string
+    role: string[]
+    selected?: boolean
+    year?: number
+    technologies?: string[]
+    thumbnail?: string
+    thumbnailAlt?: string
+    links?: ProjectLink[]
 }
 
 /**
  * Featured project (for homepage)
  */
 export interface FeaturedProject {
-  title: string
-  slug: string
-  description: string
-  role: string[]
-  year?: number
-  thumbnail?: string
-  thumbnailAlt?: string
+    title: string
+    slug: string
+    description: string
+    role: string[]
+    year?: number
+    thumbnail?: string
+    thumbnailAlt?: string
 }
 
 /**
  * Full project (for detail pages)
  */
 export interface Project {
-  title: string
-  slug: string
-  description: string
-  role: string[]
-  body: PortableTextBlock[]
-  gallery?: ProjectImage[]
-  links?: ProjectLink[]
-  technologies?: string[]
-  year?: number
-  client?: string
-  seo?: SEOMetadata
+    title: string
+    slug: string
+    description: string
+    role: string[]
+    body: PortableTextBlock[]
+    gallery?: ProjectImage[]
+    links?: ProjectLink[]
+    technologies?: string[]
+    year?: number
+    client?: string
+    seo?: SEOMetadata
 }
 
 /**
  * Project image in gallery
  */
 export interface ProjectImage {
-  url: string
-  alt?: string
-  caption?: string
+    url: string
+    alt?: string
+    caption?: string
 }
 
 /**
  * Project external link
  */
 export interface ProjectLink {
-  label: string
-  url: string
+    label: string
+    url: string
 }
 
 /**
  * Project slug for static path generation
  */
 export interface ProjectSlug {
-  slug: string
+    slug: string
 }
 
 // =============================================================================
@@ -177,10 +177,10 @@ export interface ProjectSlug {
  * Static page (About, Contact, etc.)
  */
 export interface Page {
-  title: string
-  slug: string
-  body: PortableTextBlock[]
-  seo?: SEOMetadata
+    title: string
+    slug: string
+    body: PortableTextBlock[]
+    seo?: SEOMetadata
 }
 
 // =============================================================================
@@ -191,16 +191,16 @@ export interface Page {
  * Navigation menu structure (singleton)
  */
 export interface Navigation {
-  items: NavigationItem[]
+    items: NavigationItem[]
 }
 
 /**
  * Single navigation link
  */
 export interface NavigationItem {
-  title: string
-  href: string
-  newTab?: boolean
+    title: string
+    href: string
+    newTab?: boolean
 }
 
 // =============================================================================
@@ -211,21 +211,21 @@ export interface NavigationItem {
  * Global site settings (singleton)
  */
 export interface SiteSettings {
-  title: string
-  description: string
-  ogImage?: string
-  url?: string
-  social?: SocialLinks
+    title: string
+    description: string
+    ogImage?: string
+    url?: string
+    social?: SocialLinks
 }
 
 /**
  * Social media links
  */
 export interface SocialLinks {
-  twitter?: string
-  github?: string
-  linkedin?: string
-  email?: string
+    twitter?: string
+    github?: string
+    linkedin?: string
+    email?: string
 }
 
 // =============================================================================
@@ -236,18 +236,18 @@ export interface SocialLinks {
  * Tag preview (for references in posts)
  */
 export interface TagPreview {
-  title: string
-  slug: string
+    title: string
+    slug: string
 }
 
 /**
  * Full tag (with post count)
  */
 export interface Tag {
-  title: string
-  slug: string
-  description?: string
-  count: number  // Number of posts with this tag
+    title: string
+    slug: string
+    description?: string
+    count: number // Number of posts with this tag
 }
 
 // =============================================================================
@@ -258,9 +258,9 @@ export interface Tag {
  * SEO metadata for pages
  */
 export interface SEOMetadata {
-  title?: string
-  description?: string
-  keywords?: string[]
+    title?: string
+    description?: string
+    keywords?: string[]
 }
 
 /**
@@ -268,14 +268,14 @@ export interface SEOMetadata {
  * Combines document SEO with site defaults
  */
 export interface PageSEO {
-  title: string
-  description: string
-  ogImage?: string
-  canonicalUrl?: string
-  keywords?: string[]
-  type?: 'website' | 'article'
-  publishedTime?: string
-  modifiedTime?: string
+    title: string
+    description: string
+    ogImage?: string
+    canonicalUrl?: string
+    keywords?: string[]
+    type?: "website" | "article"
+    publishedTime?: string
+    modifiedTime?: string
 }
 
 // =============================================================================
@@ -286,54 +286,54 @@ export interface PageSEO {
  * Props for PostCard component
  */
 export interface PostCardProps {
-  title: string
-  slug: string
-  excerpt: string
-  publishedAt: string
-  coverImage?: string
-  coverImageAlt?: string
-  tags?: TagPreview[]
+    title: string
+    slug: string
+    excerpt: string
+    publishedAt: string
+    coverImage?: string
+    coverImageAlt?: string
+    tags?: TagPreview[]
 }
 
 /**
  * Props for ProjectCard component
  */
 export interface ProjectCardProps {
-  title: string
-  slug: string
-  description: string
-  role: string[]
-  thumbnail?: string
-  thumbnailAlt?: string
-  year?: number
+    title: string
+    slug: string
+    description: string
+    role: string[]
+    thumbnail?: string
+    thumbnailAlt?: string
+    year?: number
 }
 
 /**
  * Props for Navbar component
  */
 export interface NavbarProps {
-  items: NavigationItem[]
-  currentPath?: string
+    items: NavigationItem[]
+    currentPath?: string
 }
 
 /**
  * Props for Footer component
  */
 export interface FooterProps {
-  navigationItems?: NavigationItem[]
-  socialLinks?: SocialLinks
+    navigationItems?: NavigationItem[]
+    socialLinks?: SocialLinks
 }
 
 /**
  * Props for SEO component (Astro)
  */
 export interface SEOProps {
-  title: string
-  description: string
-  ogImage?: string
-  canonicalUrl?: string
-  type?: 'website' | 'article'
-  publishedTime?: string
+    title: string
+    description: string
+    ogImage?: string
+    canonicalUrl?: string
+    type?: "website" | "article"
+    publishedTime?: string
 }
 
 // =============================================================================
@@ -343,17 +343,17 @@ export interface SEOProps {
 /**
  * Date formatting options
  */
-export type DateFormat = 'full' | 'short' | 'relative'
+export type DateFormat = "full" | "short" | "relative"
 
 /**
  * Responsive breakpoint sizes (from design tokens)
  */
-export type Breakpoint = 'mobile' | 'tablet' | 'desktop'
+export type Breakpoint = "mobile" | "tablet" | "desktop"
 
 /**
  * Theme mode (future dark mode support)
  */
-export type ThemeMode = 'light' | 'dark' | 'system'
+export type ThemeMode = "light" | "dark" | "system"
 
 // =============================================================================
 // API RESPONSE TYPES
@@ -363,19 +363,19 @@ export type ThemeMode = 'light' | 'dark' | 'system'
  * Generic API response wrapper
  */
 export interface ApiResponse<T> {
-  data: T | null
-  error?: string
+    data: T | null
+    error?: string
 }
 
 /**
  * Paginated response (future enhancement)
  */
 export interface PaginatedResponse<T> {
-  items: T[]
-  total: number
-  page: number
-  pageSize: number
-  hasMore: boolean
+    items: T[]
+    total: number
+    page: number
+    pageSize: number
+    hasMore: boolean
 }
 
 // =============================================================================
@@ -387,27 +387,27 @@ export interface PaginatedResponse<T> {
  * Located in apps/web/src/server/data.ts
  */
 export interface DataAPI {
-  // Blog posts
-  getAllPosts(): Promise<PostPreview[]>
-  getPostBySlug(slug: string): Promise<Post | null>
-  getAllPostSlugs(): Promise<PostSlug[]>
-  getPostsByTag(tagSlug: string): Promise<PostPreview[]>  // Future
+    // Blog posts
+    getAllPosts(): Promise<PostPreview[]>
+    getPostBySlug(slug: string): Promise<Post | null>
+    getAllPostSlugs(): Promise<PostSlug[]>
+    getPostsByTag(tagSlug: string): Promise<PostPreview[]> // Future
 
-  // Projects
-  getAllProjects(): Promise<ProjectPreview[]>
-  getFeaturedProjects(): Promise<FeaturedProject[]>
-  getProjectBySlug(slug: string): Promise<Project | null>
-  getAllProjectSlugs(): Promise<ProjectSlug[]>
+    // Projects
+    getAllProjects(): Promise<ProjectPreview[]>
+    getFeaturedProjects(): Promise<FeaturedProject[]>
+    getProjectBySlug(slug: string): Promise<Project | null>
+    getAllProjectSlugs(): Promise<ProjectSlug[]>
 
-  // Pages
-  getPageBySlug(slug: string): Promise<Page | null>
+    // Pages
+    getPageBySlug(slug: string): Promise<Page | null>
 
-  // Navigation & Settings
-  getNavigation(): Promise<Navigation | null>
-  getSiteSettings(): Promise<SiteSettings | null>
+    // Navigation & Settings
+    getNavigation(): Promise<Navigation | null>
+    getSiteSettings(): Promise<SiteSettings | null>
 
-  // Tags
-  getAllTags(): Promise<Tag[]>
+    // Tags
+    getAllTags(): Promise<Tag[]>
 }
 
 // =============================================================================
@@ -418,20 +418,20 @@ export interface DataAPI {
  * Sanity client configuration
  */
 export interface SanityConfig {
-  projectId: string
-  dataset: string
-  apiVersion: string
-  useCdn: boolean
-  token?: string
+    projectId: string
+    dataset: string
+    apiVersion: string
+    useCdn: boolean
+    token?: string
 }
 
 /**
  * Astro site configuration (subset)
  */
 export interface SiteConfig {
-  site: string  // Production URL
-  base?: string  // Base path
-  trailingSlash?: 'always' | 'never' | 'ignore'
+    site: string // Production URL
+    base?: string // Base path
+    trailingSlash?: "always" | "never" | "ignore"
 }
 
 // =============================================================================
@@ -442,22 +442,22 @@ export interface SiteConfig {
  * Custom error for data fetching failures
  */
 export class DataFetchError extends Error {
-  constructor(
-    message: string,
-    public readonly query: string,
-    public readonly cause?: unknown
-  ) {
-    super(message)
-    this.name = 'DataFetchError'
-  }
+    constructor(
+        message: string,
+        public readonly query: string,
+        public readonly cause?: unknown
+    ) {
+        super(message)
+        this.name = "DataFetchError"
+    }
 }
 
 /**
  * Error boundary props (React)
  */
 export interface ErrorBoundaryProps {
-  fallback?: React.ReactNode
-  onError?: (error: Error, errorInfo: React.ErrorInfo) => void
+    fallback?: React.ReactNode
+    onError?: (error: Error, errorInfo: React.ErrorInfo) => void
 }
 
 // =============================================================================
@@ -468,27 +468,27 @@ export interface ErrorBoundaryProps {
  * Type guard to check if a value is a valid Post
  */
 export function isPost(value: unknown): value is Post {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'title' in value &&
-    'slug' in value &&
-    'body' in value
-  )
+    return (
+        typeof value === "object" &&
+        value !== null &&
+        "title" in value &&
+        "slug" in value &&
+        "body" in value
+    )
 }
 
 /**
  * Type guard to check if a value is a valid Project
  */
 export function isProject(value: unknown): value is Project {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'title' in value &&
-    'slug' in value &&
-    'description' in value &&
-    'role' in value
-  )
+    return (
+        typeof value === "object" &&
+        value !== null &&
+        "title" in value &&
+        "slug" in value &&
+        "description" in value &&
+        "role" in value
+    )
 }
 
 // =============================================================================
@@ -498,21 +498,22 @@ export function isProject(value: unknown): value is Project {
 /**
  * Reserved route slugs that cannot be used for pages
  */
-export const RESERVED_SLUGS = ['blog', 'work', 'about', 'api', 'admin'] as const
-export type ReservedSlug = typeof RESERVED_SLUGS[number]
+export const RESERVED_SLUGS = ["blog", "work", "about", "api", "admin"] as const
+export type ReservedSlug = (typeof RESERVED_SLUGS)[number]
 
 /**
  * Supported content types
  */
-export const CONTENT_TYPES = ['post', 'project', 'page'] as const
-export type ContentType = typeof CONTENT_TYPES[number]
+export const CONTENT_TYPES = ["post", "project", "page"] as const
+export type ContentType = (typeof CONTENT_TYPES)[number]
 
 /**
  * Default SEO values
  */
 export const DEFAULT_SEO = {
-  titleTemplate: '%s | Afnizar Nur Ghifari',
-  description: 'Portfolio and blog of Afnizar Nur Ghifari, showcasing design systems, frontend development, and product design work.',
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
+    titleTemplate: "%s | Afnizar Nur Ghifari",
+    description:
+        "Portfolio and blog of Afnizar Nur Ghifari, showcasing design systems, frontend development, and product design work.",
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
 } as const
