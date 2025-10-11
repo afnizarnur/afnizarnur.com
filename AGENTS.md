@@ -1,280 +1,241 @@
-# AI Agent Guidelines for afnizarnur.com
+# AGENTS.md
 
-Guidelines for AI agents working on this Astro + Sanity monorepo.
+AI agent guidelines for the afnizarnur.com monorepo (Astro + Sanity CMS).
 
-## Quick Reference
+## Project Overview
 
-- **Package Manager:** pnpm 9.x (required)
-- **Node Version:** ≥20.0.0
-- **Build System:** Turborepo 2.x
-- **Primary Stack:** Astro 4.x + Sanity Studio 4.x + React 18.x + Tailwind CSS 3.x
-- **TypeScript:** Strict mode enabled
-- **Main Branch:** `main`
+**Tech Stack:** Astro 4.x, Sanity Studio 4.x, React 18.x, Tailwind CSS 3.x, TypeScript (strict)
+**Build System:** Turborepo 2.x with pnpm 9.x workspaces
+**Node Version:** ≥20.0.0
+**Main Branch:** `main`
 
-## Project Structure
+**Monorepo Structure:**
+- `apps/web` - Astro public website (Netlify)
+- `apps/studio` - Sanity Studio CMS
+- `packages/` - Shared configs, UI components, design tokens
 
-### Apps
+## Development Setup
 
-**`apps/web`** - Public Astro website
-- `src/pages/` - File-based routing
-- `src/components/` - React and Astro components
-- `src/layouts/` - Page layout templates
-- `src/lib/` - Client-side utilities and API integrations
-- `src/styles/` - Global styles and design tokens
-- `public/` - Static assets
-- `astro.config.mjs` - Astro configuration with Netlify adapter
-
-**`apps/studio`** - Sanity Studio CMS
-- `schemas/` - Content type definitions (post.ts, project.ts, page.ts)
-- `sanity.config.ts` - Studio configuration
-- Deployed separately to Sanity hosting
-
-### Packages
-
-**`packages/ui`** - Shared React/TSX components for web and studio
-
-**`packages/tokens`** - Design tokens (generated via Terrazzo)
-- Colors, typography, spacing, design primitives
-- Referenced by Tailwind config
-
-**`packages/config-eslint`** - ESLint configuration
-- Extends: `@eslint/js`, `typescript-eslint`, `eslint-plugin-astro`, `eslint-config-prettier`
-
-**`packages/config-tailwind`** - Tailwind CSS configuration with design token integration
-
-**`packages/config-typescript`** - TypeScript configuration (strict mode)
-
-### Documentation
-
-**`docs/`** - Project documentation
-- `deployment.md` - Netlify deployment guide
-- `prd/` - Product requirement documents
-
-**`specs/`** - Feature specifications
-
-## Commands
-
-### Essential Commands
+### Initial Setup
 
 ```bash
-# Initial setup
+# Clone and install
+git clone <repository-url>
+cd afnizarnur.com
 pnpm install
 
-# Development
-pnpm dev                                      # Run all apps
-pnpm --filter @afnizarnur/web dev             # Web only (port 4321)
-pnpm --filter @afnizarnur/studio dev          # Studio only (port 3333)
-
-# Build
-pnpm build                                    # Build all apps
-pnpm --filter @afnizarnur/web build           # Build web only
-
-# Quality checks (run before committing)
-pnpm typecheck                                # TypeScript type checking
-pnpm lint                                     # ESLint
-pnpm format                                   # Format with Prettier
-pnpm format:check                             # Check formatting
-
-# Maintenance
-pnpm clean                                    # Remove build artifacts
+# Build shared packages first (required)
+pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
 ```
 
-### Package-Specific Commands
+### Environment Configuration
+
+Create `.env` files in `apps/web` and `apps/studio`:
+
+**apps/web/.env:**
+```bash
+PUBLIC_SANITY_PROJECT_ID=your-project-id
+PUBLIC_SANITY_DATASET=production
+PUBLIC_SITE_URL=https://afnizarnur.com
+```
+
+**apps/studio/.env:**
+```bash
+SANITY_STUDIO_PROJECT_ID=your-project-id
+SANITY_STUDIO_DATASET=production
+```
+
+Get credentials from https://sanity.io/manage
+
+## Build and Test Commands
+
+### Development
 
 ```bash
-# Build shared packages (required after fresh install)
-pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
-
-# Preview production build
-pnpm --filter @afnizarnur/web preview
-
-# Deploy Sanity Studio
-pnpm --filter @afnizarnur/studio deploy
+pnpm dev                                  # Start all apps
+pnpm --filter @afnizarnur/web dev         # Web only (http://localhost:4321)
+pnpm --filter @afnizarnur/studio dev      # Studio only (http://localhost:3333)
 ```
 
-## Coding Conventions
+### Build
 
-### File Naming
+```bash
+pnpm build                                # Build all apps for production
+pnpm --filter @afnizarnur/web build       # Build web only
+pnpm --filter @afnizarnur/web preview     # Preview production build
+```
 
-- **Components:** `PascalCase.tsx` or `PascalCase.astro` (e.g., `ProjectCard.tsx`)
-- **Utilities:** `camelCase.ts` (e.g., `formatDate.ts`)
-- **Routes:** `kebab-case.astro` (e.g., `about-me.astro`)
-- **Config:** `kebab-case.ts` or `kebab-case.js`
+### Quality Checks
 
-### Code Formatting
+**Run these before committing:**
 
-- **Indentation:** 2 spaces
-- **Quotes:** Single quotes (except JSX attributes)
-- **Semicolons:** Required
-- **Line length:** 100 characters max
+```bash
+pnpm typecheck        # TypeScript validation (must pass)
+pnpm lint             # ESLint checks (must pass)
+pnpm format           # Auto-format with Prettier
+pnpm format:check     # Verify formatting
+```
+
+### Troubleshooting
+
+```bash
+# Clean build artifacts and reinstall
+pnpm clean
+pnpm install
+pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
+```
+
+## Code Style Guidelines
+
+### General Conventions
+
+**File Naming:**
+- Components: `PascalCase.tsx` / `PascalCase.astro`
+- Utilities: `camelCase.ts`
+- Routes: `kebab-case.astro`
+
+**Formatting:**
+- 2 space indentation
+- Single quotes (except JSX)
+- Semicolons required
+- 100 character line limit
+- Use Prettier for auto-formatting
 
 ### TypeScript
 
+- Strict mode enabled
+- Named exports only (no default exports)
+- Explicit return types for functions
+- Use `interface` for objects, `type` for unions
+
 ```typescript
-// ✅ Good: Named exports with explicit types
-export interface BlogPost {
+// ✅ Good
+export interface Post {
   title: string;
   slug: string;
-  publishedAt: Date;
 }
 
 export function formatDate(date: Date): string {
   return date.toLocaleDateString();
 }
 
-// ❌ Avoid: Default exports, implicit any
-export default function (date) {
-  return date.toLocaleDateString();
-}
+// ❌ Avoid
+export default function (date) { /* ... */ }
 ```
 
-### React/TSX
+### React Components
 
 ```tsx
-// ✅ Good: Functional component with typed props
+// ✅ Good - Typed functional component
 interface ButtonProps {
   label: string;
   onClick: () => void;
-  variant?: 'primary' | 'secondary';
 }
 
-export function Button({ label, onClick, variant = 'primary' }: ButtonProps) {
-  return (
-    <button onClick={onClick} className={`btn-${variant}`}>
-      {label}
-    </button>
-  );
-}
-
-// ❌ Avoid: Untyped props, default exports
-export default function Button({ label, onClick, variant }) {
-  // ...
+export function Button({ label, onClick }: ButtonProps) {
+  return <button onClick={onClick}>{label}</button>;
 }
 ```
 
 ### Styling
 
-- Prefer Tailwind utility classes over custom CSS
-- Use design tokens from `@afnizarnur/tokens`
-- Avoid inline styles unless necessary
+- Use Tailwind utilities (avoid custom CSS)
+- Reference design tokens from `@afnizarnur/tokens`
+- No inline styles
 
-```tsx
-// ✅ Good: Tailwind utilities with design tokens
-<div className="px-4 py-8 bg-surface text-primary">
+### Project Structure
 
-// ❌ Avoid: Inline styles with arbitrary values
-<div style={{ padding: '32px', backgroundColor: '#f5f5f5' }}>
+```
+apps/web/src/
+├── components/
+│   ├── ui/          # Generic UI components
+│   ├── features/    # Feature-specific components
+│   └── layouts/     # Layout components
+├── pages/           # Astro routes
+├── lib/             # Utilities and Sanity client
+└── styles/          # Global styles
 ```
 
 ## Testing
 
-### Pre-Commit Checklist
+### Required Pre-Commit Checks
 
-1. `pnpm typecheck` - Must pass with zero errors
-2. `pnpm lint` - Must pass with zero errors
-3. `pnpm format:check` - Must be properly formatted
-4. `pnpm build` - Must build successfully
+All must pass before committing:
 
-### Manual Testing
+```bash
+pnpm typecheck        # ✅ Zero TypeScript errors
+pnpm lint             # ✅ Zero ESLint errors
+pnpm format:check     # ✅ Properly formatted
+pnpm build            # ✅ Successful build
+```
 
-- **Schema changes:** Test in Studio with `pnpm --filter @afnizarnur/studio dev`
-- **UI changes:** Test in development and production builds
-- **Responsive design:** Test on mobile, tablet, desktop viewports
-- **Content rendering:** Verify Sanity content displays correctly
+### Manual Testing Checklist
 
-### Unit Testing
+- [ ] Schema changes: Test in Studio (`pnpm --filter @afnizarnur/studio dev`)
+- [ ] UI changes: Verify in dev and production builds
+- [ ] Responsive: Test mobile, tablet, desktop
+- [ ] Content: Sanity content renders correctly
 
-- Use Vitest-style tests adjacent to source: `component.test.tsx`
-- Document manual QA steps in PR if unit tests aren't feasible
+### Unit Tests
 
-## Commits & Pull Requests
+- Use Vitest: `component.test.tsx` adjacent to source
+- Document manual QA in PR if unit tests not feasible
+
+## Pull Request Guidelines
 
 ### Commit Message Format
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
+Use [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
 <type>(<scope>): <description>
-
-[optional body]
-
-[optional footer]
 ```
 
 **Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
 
 **Examples:**
-```bash
-feat(web): add project detail page with hero section
+```
+feat(web): add project detail page
 fix(studio): correct schema validation for tags
-docs(deployment): add Netlify configuration guide
-chore(eslint): upgrade ESLint and related dependencies
+docs: add deployment guide
+chore(deps): upgrade ESLint dependencies
 ```
 
-### Changesets
+### Changesets (for Package Changes)
 
-When modifying shared packages:
+When modifying versioned packages (`@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives`):
 
 ```bash
 pnpm changeset
 ```
 
-Follow prompts to select packages, version bump type, and write changelog entry.
+Note: `config-*` packages are not versioned.
 
-**Versioned packages:** `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives`
+### PR Template
 
-**Note:** `config-*` packages are NOT versioned.
+**What:** Describe the change and why it's needed
 
-### Pull Request Requirements
+**How:** Explain implementation approach
 
-1. **Intent:** What problem does this solve?
-2. **Changes:** What was modified and why?
-3. **Verification:** How did you test this?
-4. **References:** Link to relevant `docs/` or `specs/` files
-5. **Screenshots:** For UI changes, include before/after images
-6. **Breaking changes:** Document any breaking changes
+**Testing:**
+- [ ] `pnpm typecheck` passes
+- [ ] `pnpm lint` passes
+- [ ] `pnpm build` succeeds
+- [ ] Manual testing completed
 
-## Environment & Configuration
+**References:** Link to relevant docs or specs
 
-### Environment Variables
-
-**Web App (`apps/web/.env`):**
-```bash
-PUBLIC_SANITY_PROJECT_ID=your-project-id-here
-PUBLIC_SANITY_DATASET=production
-PUBLIC_SITE_URL=https://afnizarnur.com
-```
-
-**Studio App (`apps/studio/.env`):**
-```bash
-SANITY_STUDIO_PROJECT_ID=your-project-id-here
-SANITY_STUDIO_DATASET=production
-```
-
-**Getting Sanity credentials:**
-1. Visit https://sanity.io/manage
-2. Create or select your project
-3. Copy Project ID from project settings
-4. Use `production` dataset or create new one
-
-### Key Configuration Files
-
-- `turbo.json` - Turborepo task pipeline and caching
-- `pnpm-workspace.yaml` - Workspace package definitions
-- `netlify.toml` - Netlify deployment configuration
-- `.prettierrc.json` - Prettier formatting rules
-- `.changeset/config.json` - Changeset version management
+**Screenshots:** Include for UI changes
 
 ## Deployment
 
 ### Web App (Netlify)
 
-- **Build command:** `pnpm build`
-- **Publish directory:** `apps/web/dist`
-- **Node version:** ≥20.0.0
-- **Status:** [![Netlify Status](https://api.netlify.com/api/v1/badges/39910d3d-7848-4020-914c-209c03d34b82/deploy-status)](https://app.netlify.com/sites/afnizarnur/deploys)
-
-See `docs/deployment.md` for detailed configuration.
+- **Build:** `pnpm build`
+- **Output:** `apps/web/dist`
+- **Node:** ≥20.0.0
+- **Config:** `netlify.toml`
+- **Docs:** See `docs/deployment.md`
 
 ### Studio (Sanity)
 
@@ -282,12 +243,19 @@ See `docs/deployment.md` for detailed configuration.
 pnpm --filter @afnizarnur/studio deploy
 ```
 
-Deploys to `{studio-name}.sanity.studio`
+## Additional Information
 
-## Common Patterns
+### Key Configuration Files
 
-### Fetching Content from Sanity
+- `turbo.json` - Build pipeline and caching
+- `pnpm-workspace.yaml` - Workspace packages
+- `netlify.toml` - Deployment config
+- `.prettierrc.json` - Code formatting
+- `.changeset/config.json` - Version management
 
+### Common Patterns
+
+**Sanity Client:**
 ```typescript
 // apps/web/src/lib/sanity.ts
 import { createClient } from '@sanity/client';
@@ -298,85 +266,25 @@ export const client = createClient({
   useCdn: true,
   apiVersion: '2024-01-01',
 });
-
-// Fetch with GROQ
-const posts = await client.fetch('*[_type == "post"] | order(publishedAt desc)');
 ```
 
-### Astro Page Structure
-
+**Astro Pages:**
 ```astro
 ---
-// Frontmatter: Server-side logic
 import Layout from '@/layouts/Layout.astro';
 import { client } from '@/lib/sanity';
 
 const posts = await client.fetch('*[_type == "post"]');
 ---
 
-<!-- Template: HTML with components -->
 <Layout title="Blog">
-  <h1>Blog Posts</h1>
-  {posts.map(post => (
-    <article>
-      <h2>{post.title}</h2>
-    </article>
-  ))}
+  {posts.map(post => <article>{post.title}</article>)}
 </Layout>
 ```
 
-### Component Organization
+### Resources
 
-```
-src/components/
-├── ui/              # Generic UI (Button, Card)
-├── features/        # Feature-specific (BlogPost, ProjectCard)
-└── layouts/         # Layout components (Header, Footer)
-```
-
-## Troubleshooting
-
-### Build Fails with Module Errors
-
-```bash
-pnpm clean
-pnpm install
-pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
-pnpm build
-```
-
-### Type Errors After Package Updates
-
-```bash
-rm -rf .turbo
-pnpm typecheck
-```
-
-### Astro Dev Server Issues
-
-```bash
-rm -rf apps/web/.astro
-pnpm --filter @afnizarnur/web dev
-```
-
-### pnpm Lock File Conflicts
-
-```bash
-rm pnpm-lock.yaml
-pnpm install
-```
-
-## Resources
-
-- [Astro Documentation](https://docs.astro.build)
-- [Sanity Documentation](https://www.sanity.io/docs)
-- [Turborepo Documentation](https://turbo.build/repo/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Conventional Commits](https://www.conventionalcommits.org/)
-
-## Getting Help
-
-- Check `docs/` for project-specific documentation
-- Review `specs/` for feature specifications
-- Examine recent commits: `git log --oneline`
-- Reference similar existing components
+- [Astro Docs](https://docs.astro.build)
+- [Sanity Docs](https://www.sanity.io/docs)
+- [Turborepo Docs](https://turbo.build/repo/docs)
+- Project docs in `docs/` and `specs/`
