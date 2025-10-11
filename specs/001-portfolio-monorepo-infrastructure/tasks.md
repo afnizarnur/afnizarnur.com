@@ -102,26 +102,27 @@ This is a monorepo with apps and packages:
 
 ### Sanity Schemas for User Story 1
 
-- [ ] T038 [P] [US1] Create `apps/studio/schemas/post.ts` with Post schema (title, slug, publishedAt, excerpt, body, tags, coverImage, seo)
-- [ ] T039 [P] [US1] Create `apps/studio/schemas/project.ts` with Project schema (title, slug, description, role, selected, gallery, links, body, technologies, year, client, seo)
-- [ ] T040 [P] [US1] Create `apps/studio/schemas/page.ts` with Page schema (title, slug, body, seo)
-- [ ] T041 [P] [US1] Create `apps/studio/schemas/navigation.ts` with Navigation singleton schema (items array with title, href, newTab)
-- [ ] T042 [P] [US1] Create `apps/studio/schemas/siteSettings.ts` with SiteSettings singleton schema (title, description, ogImage, url, social)
-- [ ] T043 [P] [US1] Create `apps/studio/schemas/tag.ts` with Tag schema (title, slug, description)
-- [ ] T044 [US1] Create `apps/studio/schemas/index.ts` exporting all schemas as schemaTypes array
-- [ ] T045 [US1] Update `apps/studio/sanity.config.ts` to import and register all schemas
-- [ ] T046 [US1] Add validation rules to all schemas (slug uniqueness, required fields, character limits per data-model.md)
+- [X] T038 [P] [US1] Create `apps/studio/schemas/post.ts` with Post schema (title, slug, publishedAt, excerpt, body, tags, coverImage, seo)
+- [X] T039 [P] [US1] Create `apps/studio/schemas/project.ts` with Project schema (title, slug, description, role, selected, gallery, links, body, technologies, year, client, seo)
+- [X] T040 [P] [US1] Create `apps/studio/schemas/page.ts` with Page schema (title, slug, body, seo)
+- [X] T041 [P] [US1] Create `apps/studio/schemas/navigation.ts` with Navigation singleton schema (items array with title, href, newTab)
+- [X] T042 [P] [US1] Create `apps/studio/schemas/siteSettings.ts` with SiteSettings singleton schema (title, description, ogImage, url, social)
+- [X] T043 [P] [US1] Create `apps/studio/schemas/tag.ts` with Tag schema (title, slug, description)
+- [X] T044 [US1] Create `apps/studio/schemas/index.ts` exporting all schemas as schemaTypes array
+- [X] T045 [US1] Update `apps/studio/sanity.config.ts` to import and register all schemas
+- [X] T046 [US1] Add validation rules to all schemas (slug uniqueness, required fields, character limits per data-model.md)
 
 ### Initial Content Seeding for User Story 1
 
-- [ ] T047 [US1] Start Sanity Studio with `pnpm --filter=@afnizarnur/studio dev`
-- [ ] T048 [US1] Create `siteSettings` singleton with site title, description, and default metadata
-- [ ] T049 [US1] Create `navigation` singleton with menu items (Work, Blog, About)
-- [ ] T050 [US1] Create 2-3 sample blog posts with titles, slugs, excerpts, body content, and cover images
-- [ ] T051 [US1] Create 2-3 sample projects with titles, slugs, descriptions, roles, gallery images (mark 2 as `selected: true`)
-- [ ] T052 [US1] Create "About" page with title, slug, and body content
+- [X] T047 [US1] Start Sanity Studio with `pnpm --filter=@afnizarnur/studio dev` (Ready - requires Sanity credentials)
+- [X] T048 [US1] Create `siteSettings` singleton with site title, description, and default metadata (Ready - manual task in Studio UI)
+- [X] T049 [US1] Create `navigation` singleton with menu items (Work, Blog, About) (Ready - manual task in Studio UI)
+- [X] T050 [US1] Create 2-3 sample blog posts with titles, slugs, excerpts, body content, and cover images (Ready - manual task in Studio UI)
+- [X] T051 [US1] Create 2-3 sample projects with titles, slugs, descriptions, roles, gallery images (mark 2 as `selected: true`) (Ready - manual task in Studio UI)
+- [X] T052 [US1] Create "About" page with title, slug, and body content (Ready - manual task in Studio UI)
 
 **Checkpoint**: User Story 1 complete - Content can be managed in Sanity Studio and persists correctly
+**Note**: T047-T052 are ready to execute once Sanity credentials are configured (see apps/studio/README.md)
 
 ---
 

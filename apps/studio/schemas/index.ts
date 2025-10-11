@@ -1,4 +1,8 @@
-// Schema types will be added in Phase 3 (User Story 1)
-// This placeholder allows the Sanity config to load
+import tag from './tag'
+import post from './post'
+import project from './project'
+import page from './page'
+import navigation from './navigation'
+import siteSettings from './siteSettings'
 
-export const schemaTypes = []
+export const schemaTypes = [post, project, page, tag, navigation, siteSettings]
