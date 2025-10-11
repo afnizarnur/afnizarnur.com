@@ -2,7 +2,7 @@
 
 Personal portfolio and blog platform. Monorepo built with Astro, React, Sanity CMS, TypeScript, and Tailwind CSS.
 
-**Tech Stack:** Astro 4.x, React 18.3.x, Sanity Studio 4.x, TypeScript 5.6.x (strict), Tailwind CSS 3.4.x, Turborepo 2.x, Node.js 20+, pnpm 9.x
+**Tech Stack:** Astro 5.x, React 18.3.x, Sanity Studio 4.x, TypeScript 5.6.x (strict), Tailwind CSS 4.x, Turborepo 2.x, Node.js 20+, pnpm 9.x
 
 ## Structure
 
@@ -87,8 +87,11 @@ Formatting:
 - `.changeset/config.json` - Changeset configuration
 - `netlify.toml` - Netlify deployment config
 - `.prettierrc.json` - Prettier rules
-- Key Astro config: `apps/web/astro.config.mjs`
-- Key Sanity config: `apps/studio/sanity.config.ts`
+- `apps/web/astro.config.mjs` - Astro configuration
+- `apps/web/postcss.config.cjs` - PostCSS configuration (Tailwind v4)
+- `apps/web/src/styles/global.css` - Global styles and Tailwind v4 theme configuration
+- `apps/studio/sanity.config.ts` - Sanity CMS configuration
+- `packages/tokens/terrazzo.config.js` - Design tokens configuration
 
 ## Repository Etiquette
 
@@ -137,6 +140,36 @@ IMPORTANT: If build fails, check that shared config packages are built first bef
 - **Port conflicts**: Sanity Studio runs on port 3333 by default
 - **Changesets**: Only applies to `@afnizarnur/tokens`, `@afnizarnur/ui`, and `@afnizarnur/ui-primitives`
 - **Strict TypeScript**: All code must pass strict type checking
+- **Tailwind v4**: Uses CSS-first configuration (no JS config file). Custom colors and theme extensions are defined in `global.css` using `@theme` directive
+
+## Tailwind CSS v4 Configuration
+
+This project uses Tailwind CSS v4, which introduces a CSS-first configuration approach:
+
+**Setup:**
+- **No JS config file**: Tailwind v4 doesn't use `tailwind.config.js/ts`
+- **PostCSS plugin**: Uses `@tailwindcss/postcss` in `postcss.config.cjs`
+- **CSS configuration**: All config is in `apps/web/src/styles/global.css`
+
+**Key directives in global.css:**
+- `@import "tailwindcss"` - Imports Tailwind base, components, and utilities
+- `@source` - Defines content paths for class scanning
+- `@theme` - Extends theme with design tokens (colors, spacing, etc.)
+- `@layer base` - Custom base styles
+
+**Design tokens integration:**
+- Terrazzo generates CSS custom properties in `packages/tokens/dist/tokens.css`
+- These are imported and mapped to Tailwind utilities via `@theme` directive
+- Example: `--color-primary-600` becomes `text-primary-600` utility class
+
+**Component styles:**
+- Use `@reference "../styles/global.css"` when using `@apply` in component `<style>` blocks
+- Required for Tailwind v4 to resolve utilities in scoped styles
+
+**Migration notes:**
+- The `@astrojs/tailwind` integration is NOT used (removed for v4)
+- Pure PostCSS processing via `@tailwindcss/postcss`
+- No Terrazzo Tailwind plugin (generates v3 config, incompatible with v4)
 
 ## Resources
 
@@ -144,3 +177,4 @@ IMPORTANT: If build fails, check that shared config packages are built first bef
 - Sanity: https://www.sanity.io/docs
 - Turborepo: https://turbo.build/repo/docs
 - Changesets: https://github.com/changesets/changesets
+- Tailwind CSS v4: https://tailwindcss.com/docs
