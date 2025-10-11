@@ -3,14 +3,16 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemas'
 
+const plugins = [structureTool(), visionTool()] as any
+
 export default defineConfig({
   name: 'default',
-  title: 'Afnizar Portfolio',
+  title: 'Afnizar Nur Ghifari',
 
   projectId: process.env.SANITY_STUDIO_PROJECT_ID || '',
   dataset: process.env.SANITY_STUDIO_DATASET || 'production',
 
-  plugins: [structureTool(), visionTool()],
+  plugins,
 
   schema: {
     types: schemaTypes,

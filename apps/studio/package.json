@@ -20,6 +20,7 @@
     "@afnizarnur/config-typescript": "workspace:*",
     "@sanity/types": "^4.0.0",
     "@types/react": "^18.3.12",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "dotenv": "^16.4.5"
   }
 }

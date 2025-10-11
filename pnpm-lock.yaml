@@ -42,6 +42,9 @@ importers:
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.26
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.6.1
       typescript:
         specifier: ^5.6.3
         version: 5.9.3
