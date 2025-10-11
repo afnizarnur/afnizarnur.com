@@ -1,0 +1,15 @@
+{
+    "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+    "changelog": "@changesets/cli/changelog",
+    "commit": false,
+    "fixed": [],
+    "linked": [["@afnizarnur/tokens", "@afnizarnur/ui", "@afnizarnur/ui-primitives"]],
+    "access": "restricted",
+    "baseBranch": "main",
+    "updateInternalDependencies": "patch",
+    "ignore": [
+        "@afnizarnur/config-eslint",
+        "@afnizarnur/config-typescript",
+        "@afnizarnur/config-tailwind"
+    ]
+}

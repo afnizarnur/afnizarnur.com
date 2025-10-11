@@ -30,15 +30,73 @@ Now, I'm sharing this repository mainly for my own reference, but I thought, "Wh
 
 Clone the repository and install the dependencies:
 
-    git clone https://github.com/afnizarnur/afnizarnur.com.git
-    cd afnizarnur.com
-    npm install
+```bash
+git clone https://github.com/afnizarnur/afnizarnur.com.git
+cd afnizarnur.com
+pnpm install
 
-    # Start development server
-    npm start
+# Build shared packages first
+pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
 
-    # Build as production-ready
-    npm run build
+# Start development server
+pnpm dev
+
+# Build as production-ready
+pnpm build
+```
+
+## Monorepo Structure
+
+This project uses a monorepo architecture with:
+
+- **apps/web** - Astro frontend application
+- **apps/studio** - Sanity Studio CMS
+- **packages/tokens** - Design tokens (Terrazzo)
+- **packages/ui** - Shared React components
+- **packages/config-\*** - Shared configurations (ESLint, TypeScript, Tailwind)
+
+## Package Versioning
+
+This monorepo uses [Changesets](https://github.com/changesets/changesets) for version management:
+
+### Creating a Changeset
+
+When you make changes to any package:
+
+```bash
+pnpm changeset
+```
+
+Follow the prompts to:
+
+1. Select which packages have changed
+2. Choose the version bump type (major, minor, patch)
+3. Describe the changes (this becomes the changelog entry)
+
+### Bumping Versions
+
+To apply changesets and bump package versions:
+
+```bash
+pnpm version-packages
+```
+
+This will:
+
+- Update package versions based on changesets
+- Generate/update CHANGELOG.md files
+- Remove consumed changeset files
+
+### Publishing (Internal Packages)
+
+For internal package updates:
+
+```bash
+pnpm build
+pnpm changeset publish
+```
+
+Note: Config packages are ignored from changesets. Only versioned packages: `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives`
 
 ## License
 

@@ -1,0 +1,84 @@
+---
+import { PortableText as AstroPortableText } from "astro-portabletext"
+import type { PortableTextBlock } from "@afnizarnur/ui"
+
+export interface Props {
+    value: PortableTextBlock[]
+}
+
+const { value } = Astro.props
+---
+
+<div class="portable-text">
+    <AstroPortableText value={value} />
+</div>
+
+<style>
+    .portable-text :global(h2) {
+        @apply mt-12 mb-4 text-3xl font-bold text-neutral-900;
+    }
+
+    .portable-text :global(h3) {
+        @apply mt-8 mb-3 text-2xl font-bold text-neutral-900;
+    }
+
+    .portable-text :global(h4) {
+        @apply mt-6 mb-2 text-xl font-bold text-neutral-900;
+    }
+
+    .portable-text :global(p) {
+        @apply mb-4 text-neutral-700 leading-relaxed;
+    }
+
+    .portable-text :global(blockquote) {
+        @apply border-l-4 border-primary-500 pl-4 my-6 italic text-neutral-600;
+    }
+
+    .portable-text :global(ul) {
+        @apply list-disc pl-6 mb-4 space-y-2;
+    }
+
+    .portable-text :global(ol) {
+        @apply list-decimal pl-6 mb-4 space-y-2;
+    }
+
+    .portable-text :global(li) {
+        @apply text-neutral-700;
+    }
+
+    .portable-text :global(strong) {
+        @apply font-semibold;
+    }
+
+    .portable-text :global(em) {
+        @apply italic;
+    }
+
+    .portable-text :global(code) {
+        @apply rounded bg-neutral-100 px-1.5 py-0.5 text-sm font-mono text-neutral-800;
+    }
+
+    .portable-text :global(pre) {
+        @apply overflow-x-auto rounded-lg bg-neutral-900 p-4 my-6;
+    }
+
+    .portable-text :global(pre code) {
+        @apply text-sm text-neutral-100 bg-transparent p-0;
+    }
+
+    .portable-text :global(a) {
+        @apply text-primary-600 hover:text-primary-700 underline;
+    }
+
+    .portable-text :global(img) {
+        @apply rounded-lg w-full my-8;
+    }
+
+    .portable-text :global(figure) {
+        @apply my-8;
+    }
+
+    .portable-text :global(figcaption) {
+        @apply mt-2 text-center text-sm text-neutral-600;
+    }
+</style>

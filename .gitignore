@@ -1,5 +1,7 @@
 # build output
 dist/
+build/
+.next/
 
 # generated types
 .astro/
@@ -15,7 +17,9 @@ pnpm-debug.log*
 
 # environment variables
 .env
+.env.local
 .env.production
+.env.*.local
 
 # macOS-specific files
 .DS_Store
@@ -25,5 +29,11 @@ pnpm-debug.log*
 
 # netlify
 .netlify
-.astro
-.vscode
+
+# turborepo
+.turbo
+
+# changesets
+.changeset/*.md
+!.changeset/README.md
+!.changeset/config.json

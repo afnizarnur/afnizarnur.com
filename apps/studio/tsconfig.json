@@ -1,0 +1,13 @@
+{
+    "extends": "@afnizarnur/config-typescript/base.json",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "lib": ["ES2022", "DOM", "DOM.Iterable"],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./*"]
+        }
+    },
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules", "dist"]
+}

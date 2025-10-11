@@ -1,0 +1,12 @@
+{
+    "name": "@afnizarnur/config-tailwind",
+    "version": "0.0.0",
+    "private": true,
+    "main": "index.js",
+    "devDependencies": {
+        "tailwindcss": "^3.4.0"
+    },
+    "peerDependencies": {
+        "tailwindcss": ">=3.0.0"
+    }
+}
