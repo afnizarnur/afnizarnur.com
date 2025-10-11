@@ -9,6 +9,7 @@
 
 /* Theme configuration - Map design tokens to Tailwind utilities */
 @theme {
+    /* Color tokens */
     --color-primary-50: var(--color-primary-50);
     --color-primary-100: var(--color-primary-100);
     --color-primary-200: var(--color-primary-200);
@@ -30,6 +31,54 @@
     --color-neutral-700: var(--color-neutral-700);
     --color-neutral-800: var(--color-neutral-800);
     --color-neutral-900: var(--color-neutral-900);
+
+    --color-error: var(--color-semantic-error);
+    --color-success: var(--color-semantic-success);
+    --color-warning: var(--color-semantic-warning);
+    --color-info: var(--color-semantic-info);
+
+    /* Spacing tokens */
+    --spacing-0: var(--spacing-0);
+    --spacing-1: var(--spacing-1);
+    --spacing-2: var(--spacing-2);
+    --spacing-3: var(--spacing-3);
+    --spacing-4: var(--spacing-4);
+    --spacing-5: var(--spacing-5);
+    --spacing-6: var(--spacing-6);
+    --spacing-8: var(--spacing-8);
+    --spacing-10: var(--spacing-10);
+    --spacing-12: var(--spacing-12);
+    --spacing-16: var(--spacing-16);
+    --spacing-20: var(--spacing-20);
+
+    /* Font size tokens */
+    --font-size-xs: var(--font-size-xs);
+    --font-size-sm: var(--font-size-sm);
+    --font-size-base: var(--font-size-base);
+    --font-size-lg: var(--font-size-lg);
+    --font-size-xl: var(--font-size-xl);
+    --font-size-2xl: var(--font-size-2xl);
+    --font-size-3xl: var(--font-size-3xl);
+    --font-size-4xl: var(--font-size-4xl);
+    --font-size-5xl: var(--font-size-5xl);
+    --font-size-6xl: var(--font-size-6xl);
+
+    /* Font weight tokens */
+    --font-weight-normal: var(--font-weight-normal);
+    --font-weight-medium: var(--font-weight-medium);
+    --font-weight-semibold: var(--font-weight-semibold);
+    --font-weight-bold: var(--font-weight-bold);
+
+    /* Line height tokens */
+    --line-height-tight: var(--line-height-tight);
+    --line-height-normal: var(--line-height-normal);
+    --line-height-relaxed: var(--line-height-relaxed);
+    --line-height-loose: var(--line-height-loose);
+
+    /* Breakpoint tokens */
+    --breakpoint-mobile: var(--breakpoint-mobile);
+    --breakpoint-tablet: var(--breakpoint-tablet);
+    --breakpoint-desktop: var(--breakpoint-desktop);
 }
 
 /* Base styles using design tokens */
