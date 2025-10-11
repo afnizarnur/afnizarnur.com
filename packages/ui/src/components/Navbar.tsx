@@ -15,11 +15,17 @@ export function Navbar({ items, currentPath }: NavbarProps) {
 
           <ul className="flex space-x-8">
             {items.map((item) => {
-              const isActive = currentPath === item.href;
+              // Ensure href starts with / for internal links (not http/https)
+              const href = item.href.startsWith('http')
+                ? item.href
+                : item.href.startsWith('/')
+                  ? item.href
+                  : `/${item.href}`;
+              const isActive = currentPath === href;
               return (
                 <li key={item.href}>
                   <a
-                    href={item.href}
+                    href={href}
                     target={item.newTab ? '_blank' : undefined}
                     rel={item.newTab ? 'noopener noreferrer' : undefined}
                     className={`text-sm font-medium transition-colors ${

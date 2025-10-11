@@ -26,18 +26,26 @@ export function Footer({ navigationItems, socialLinks }: FooterProps) {
             <div>
               <h4 className="text-sm font-semibold text-neutral-900">Navigate</h4>
               <ul className="mt-4 space-y-2">
-                {navigationItems.map((item) => (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      target={item.newTab ? '_blank' : undefined}
-                      rel={item.newTab ? 'noopener noreferrer' : undefined}
-                      className="text-sm text-neutral-600 hover:text-neutral-900"
-                    >
-                      {item.title}
-                    </a>
-                  </li>
-                ))}
+                {navigationItems.map((item) => {
+                  // Ensure href starts with / for internal links (not http/https)
+                  const href = item.href.startsWith('http')
+                    ? item.href
+                    : item.href.startsWith('/')
+                      ? item.href
+                      : `/${item.href}`;
+                  return (
+                    <li key={item.href}>
+                      <a
+                        href={href}
+                        target={item.newTab ? '_blank' : undefined}
+                        rel={item.newTab ? 'noopener noreferrer' : undefined}
+                        className="text-sm text-neutral-600 hover:text-neutral-900"
+                      >
+                        {item.title}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}
