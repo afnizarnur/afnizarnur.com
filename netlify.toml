@@ -1,9 +1,15 @@
 [build]
-    command = "npm run build"
-    publish = "dist"
-    functions = "src/functions"
+  command = "pnpm turbo run build --filter=@afnizarnur/web"
+  publish = "apps/web/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "9"
 
 [context.production.environment]
+  PUBLIC_SANITY_PROJECT_ID = "replace-with-sanity-project-id"
+  PUBLIC_SANITY_DATASET = "production"
+  PUBLIC_SITE_URL = "https://afnizarnur.com"
 
 [[headers]]
     for = "/*"
@@ -24,6 +30,3 @@
     from = "*"
     to = "/404"
     status = 404
-
-[build.environment]
-  NODE_VERSION = "18"
