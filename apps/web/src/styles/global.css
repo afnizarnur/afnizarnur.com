@@ -1,10 +1,36 @@
-/* Import design tokens */
+/* Tailwind v4 - Import Tailwind and design tokens */
+@import "tailwindcss";
+
+/* Import CSS custom properties from Terrazzo */
 @import "@afnizarnur/tokens/css";
 
-/* Tailwind directives */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Configure Tailwind source paths */
+@source "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}";
+
+/* Theme configuration - Map design tokens to Tailwind utilities */
+@theme {
+    --color-primary-50: var(--color-primary-50);
+    --color-primary-100: var(--color-primary-100);
+    --color-primary-200: var(--color-primary-200);
+    --color-primary-300: var(--color-primary-300);
+    --color-primary-400: var(--color-primary-400);
+    --color-primary-500: var(--color-primary-500);
+    --color-primary-600: var(--color-primary-600);
+    --color-primary-700: var(--color-primary-700);
+    --color-primary-800: var(--color-primary-800);
+    --color-primary-900: var(--color-primary-900);
+
+    --color-neutral-50: var(--color-neutral-50);
+    --color-neutral-100: var(--color-neutral-100);
+    --color-neutral-200: var(--color-neutral-200);
+    --color-neutral-300: var(--color-neutral-300);
+    --color-neutral-400: var(--color-neutral-400);
+    --color-neutral-500: var(--color-neutral-500);
+    --color-neutral-600: var(--color-neutral-600);
+    --color-neutral-700: var(--color-neutral-700);
+    --color-neutral-800: var(--color-neutral-800);
+    --color-neutral-900: var(--color-neutral-900);
+}
 
 /* Base styles using design tokens */
 @layer base {

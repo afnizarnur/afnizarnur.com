@@ -6,7 +6,7 @@
     "main": "./dist/tokens.css",
     "exports": {
         "./css": "./dist/tokens.css",
-        "./tailwind": "./dist/tailwind-theme.cjs",
+        "./tailwind": "./dist/tailwind-theme.css",
         "./types": "./dist/types.ts"
     },
     "files": [

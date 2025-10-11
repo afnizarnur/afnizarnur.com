@@ -14,22 +14,23 @@
     },
     "dependencies": {
         "@afnizarnur/tokens": "workspace:*",
-        "@astrojs/netlify": "^5.5.3",
-        "@astrojs/react": "^3.6.2",
+        "@astrojs/netlify": "^6.5.12",
+        "@astrojs/react": "^4.4.0",
         "@astrojs/sitemap": "^3.6.0",
-        "@astrojs/tailwind": "^5.1.2",
+        "@astrojs/tailwind": "^6.0.2",
         "@sanity/client": "^6.23.0",
-        "astro": "^4.16.18",
+        "astro": "^5.14.4",
         "astro-portabletext": "^0.10.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "tailwindcss": "^3.4.14"
+        "tailwindcss": "^4.1.14"
     },
     "devDependencies": {
         "@afnizarnur/config-eslint": "workspace:*",
         "@afnizarnur/config-tailwind": "workspace:*",
         "@afnizarnur/config-typescript": "workspace:*",
         "@astrojs/check": "^0.9.4",
+        "@tailwindcss/postcss": "^4.1.14",
         "@types/react": "^18.3.12",
         "@types/react-dom": "^18.3.1",
         "typescript": "^5.6.3"
