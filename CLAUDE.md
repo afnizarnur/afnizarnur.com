@@ -1,208 +1,146 @@
-# afnizarnur.com Development Guidelines
+# afnizarnur.com
 
-Last updated: 2025-10-11
+Personal portfolio and blog platform. Monorepo built with Astro, React, Sanity CMS, TypeScript, and Tailwind CSS.
 
-## Project Overview
+**Tech Stack:** Astro 4.x, React 18.3.x, Sanity Studio 4.x, TypeScript 5.6.x (strict), Tailwind CSS 3.4.x, Turborepo 2.x, Node.js 20+, pnpm 9.x
 
-This is a monorepo for afnizarnur.com - a personal portfolio and blog platform built with Astro and Sanity CMS.
+## Structure
 
-## Tech Stack
+- `apps/web/` - Astro frontend (main site)
+- `apps/studio/` - Sanity Studio CMS (runs on port 3333)
+- `packages/ui/` - Shared React components
+- `packages/tokens/` - Design tokens (Terrazzo)
+- `packages/config-*` - Shared configs (ESLint, Tailwind, TypeScript)
+- `docs/` - Project documentation
+- `specs/` - Feature specifications
 
-### Core Technologies
-- **TypeScript 5.6.x** (strict mode)
-- **Node.js 20.x LTS** (minimum)
-- **pnpm 9.x** (package manager)
-- **Turbo 2.x** (monorepo build system)
+## Bash Commands
 
-### Frontend Stack
-- **Astro 4.x** - Main web framework
-- **React 18.3.x** - UI components
-- **Tailwind CSS 3.4.x** - Styling
-- **Sanity Client 6.x** - Content management
+Root commands:
+- `pnpm dev` - Start all apps in dev mode
+- `pnpm build` - Build all apps
+- `pnpm typecheck` - Type check all apps (IMPORTANT: run after code changes)
+- `pnpm lint` - Lint all apps
+- `pnpm format` - Format code with Prettier
+- `pnpm format:check` - Check formatting
+- `pnpm clean` - Clean build artifacts
+- `pnpm changeset` - Create changeset for version management
+- `pnpm version-packages` - Bump versions based on changesets
+- `pnpm release` - Build and publish packages
 
-### CMS
-- **Sanity Studio 4.x** - Content management system
-- **Sanity Vision 4.x** - GROQ query tool
+App-specific (using --filter):
+- `pnpm --filter @afnizarnur/web dev` - Start web dev server
+- `pnpm --filter @afnizarnur/web build` - Build web app
+- `pnpm --filter @afnizarnur/web preview` - Preview production build
+- `pnpm --filter @afnizarnur/studio dev` - Start Sanity Studio (port 3333)
+- `pnpm --filter @afnizarnur/studio deploy` - Deploy Sanity Studio
 
-## Monorepo Structure
+## Workflow
 
-```
-afnizarnur.com/
-├── apps/
-│   ├── web/                    # Astro frontend application
-│   │   ├── src/               # Source files
-│   │   ├── public/            # Static assets
-│   │   ├── astro.config.mjs   # Astro configuration
-│   │   └── package.json
-│   └── studio/                # Sanity Studio CMS
-│       ├── schemas/           # Content schemas
-│       ├── sanity.config.ts   # Sanity configuration
-│       └── package.json
-├── packages/
-│   ├── config-eslint/         # Shared ESLint config
-│   ├── config-tailwind/       # Shared Tailwind config
-│   ├── config-typescript/     # Shared TypeScript config
-│   ├── tokens/                # Design tokens (Terrazzo)
-│   └── ui/                    # Shared React components
-├── docs/                      # Project documentation
-├── specs/                     # Feature specifications
-├── .changeset/                # Changeset configurations
-├── turbo.json                 # Turborepo configuration
-├── pnpm-workspace.yaml        # Workspace configuration
-└── package.json               # Root package configuration
-```
+Initial setup:
+1. Clone repo and run `pnpm install`
+2. Build shared packages: `pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"`
+3. Start development: `pnpm dev`
 
-## Available Commands
+Making changes:
+1. Create feature branch from `main`
+2. Make changes in relevant apps/packages
+3. YOU MUST run `pnpm typecheck` after code changes
+4. YOU MUST run `pnpm lint` before committing
+5. Test locally with `pnpm dev`
+6. Format code: `pnpm format`
 
-### Root Level Commands
-```bash
-pnpm dev                # Start all apps in development mode
-pnpm build              # Build all apps
-pnpm typecheck          # Type check all apps
-pnpm lint               # Lint all apps
-pnpm format             # Format code with Prettier
-pnpm format:check       # Check code formatting
-pnpm clean              # Clean all build artifacts
-pnpm changeset          # Create a new changeset
-pnpm version-packages   # Bump package versions
-pnpm release            # Build and publish packages
-```
+Version management (uses Changesets):
+1. Create changeset: `pnpm changeset`
+2. Bump versions: `pnpm version-packages`
+3. Publish: `pnpm release`
 
-### App-Specific Commands
+IMPORTANT: Versioned packages are `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives` only. Config packages are ignored from changesets.
 
-**Web App (apps/web):**
-```bash
-pnpm --filter @afnizarnur/web dev        # Start dev server
-pnpm --filter @afnizarnur/web build      # Build for production
-pnpm --filter @afnizarnur/web preview    # Preview production build
-pnpm --filter @afnizarnur/web typecheck  # Type check
-pnpm --filter @afnizarnur/web lint       # Lint code
-```
+## Code Style
 
-**Studio App (apps/studio):**
-```bash
-pnpm --filter @afnizarnur/studio dev     # Start Sanity Studio (port 3333)
-pnpm --filter @afnizarnur/studio build   # Build Sanity Studio
-pnpm --filter @afnizarnur/studio deploy  # Deploy to Sanity
-```
+TypeScript:
+- Strict mode enabled
+- Prefer named exports over default exports
+- Use `interface` for object types, `type` for unions/intersections
+- Always add explicit return types for functions
 
-## Development Workflow
+React:
+- Use functional components with hooks
+- All components must be `.tsx` files
+- Follow React 18 best practices
 
-### Initial Setup
-```bash
-# Clone and install dependencies
-git clone https://github.com/afnizarnur/afnizarnur.com.git
-cd afnizarnur.com
-pnpm install
-
-# Build shared packages first
-pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
-
-# Start development
-pnpm dev
-```
-
-### Making Changes
-
-1. **Create a feature branch** from `main`
-2. **Make your changes** in the relevant apps/packages
-3. **Run type checking and linting:**
-   ```bash
-   pnpm typecheck
-   pnpm lint
-   ```
-4. **Test your changes** locally with `pnpm dev`
-5. **Format your code:**
-   ```bash
-   pnpm format
-   ```
-
-### Version Management
-
-This project uses [Changesets](https://github.com/changesets/changesets) for package versioning:
-
-```bash
-# 1. Create a changeset for your changes
-pnpm changeset
-
-# 2. Bump versions based on changesets
-pnpm version-packages
-
-# 3. Publish changes (if needed)
-pnpm release
-```
-
-**Versioned packages:** `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives`
-**Config packages are ignored** from changesets.
-
-## Code Style Guidelines
-
-### TypeScript
-- Use **strict mode** enabled
-- Prefer **named exports** over default exports
-- Use **interface** for object types, **type** for unions/intersections
-- Always add **explicit return types** for functions
-
-### React Components
-- Use **functional components** with hooks
-- Prefer **TypeScript** for all component files (.tsx)
-- Follow **React 18** best practices
-
-### File Naming
+File naming:
 - Components: `PascalCase.tsx` or `PascalCase.astro`
 - Utils/Helpers: `camelCase.ts`
-- Config files: `kebab-case.ts` or `kebab-case.js`
+- Config files: `kebab-case.ts` or `.js`
 
-### Formatting
-- Use **Prettier** for code formatting
+Formatting:
+- Prettier handles all formatting
+- ESLint enforces code quality
 - Run `pnpm format` before committing
-- Use **ESLint** for code quality
-
-## Deployment
-
-- **Frontend (apps/web):** Deployed to Netlify
-- **CMS (apps/studio):** Deployed to Sanity
-- **Status:** [![Netlify Status](https://api.netlify.com/api/v1/badges/39910d3d-7848-4020-914c-209c03d34b82/deploy-status)](https://app.netlify.com/sites/afnizarnur/deploys)
-
-### Build Configuration
-- Build command: `pnpm build`
-- Output directory: `apps/web/dist`
-- Node version: `>=20.0.0`
 
 ## Key Files
 
 - `turbo.json` - Turborepo task definitions and caching
-- `pnpm-workspace.yaml` - Workspace package configuration
+- `pnpm-workspace.yaml` - Workspace configuration
 - `.changeset/config.json` - Changeset configuration
-- `netlify.toml` - Netlify deployment configuration
-- `.prettierrc.json` - Prettier formatting rules
+- `netlify.toml` - Netlify deployment config
+- `.prettierrc.json` - Prettier rules
+- Key Astro config: `apps/web/astro.config.mjs`
+- Key Sanity config: `apps/studio/sanity.config.ts`
+
+## Repository Etiquette
+
+Commits:
+- Write clear, descriptive commit messages
+- Reference issue numbers when applicable
+- Keep commits focused and atomic
+
+Pull Requests:
+- Create PRs from feature branches to `main`
+- Include description of changes and testing done
+- Ensure all checks pass before requesting review
+
+IMPORTANT: Never commit without running `pnpm typecheck` and `pnpm lint` first.
 
 ## Environment Variables
 
-Required environment variables (create `.env` file):
-- Check `.env.example` if available
-- Sanity-related variables for CMS connection
+Required for CMS connection:
+- Check `.env.example` for Sanity-related variables
+- Create `.env` file in project root
+
+## Deployment
+
+- Frontend (`apps/web`): Netlify
+- CMS (`apps/studio`): Sanity
+- Build command: `pnpm build`
+- Output: `apps/web/dist`
+- Node: `>=20.0.0`
 
 ## Troubleshooting
 
-### Build Issues
-```bash
-# Clean and rebuild everything
-pnpm clean
-pnpm install
-pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
-pnpm build
-```
+Build issues:
+1. Clean everything: `pnpm clean`
+2. Reinstall: `pnpm install`
+3. Build shared packages: `pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"`
+4. Build all: `pnpm build`
 
-### Type Errors
-```bash
-# Run type checking across all packages
-pnpm typecheck
-```
+Type errors:
+- Run `pnpm typecheck` across all packages to identify issues
 
-## Additional Resources
+IMPORTANT: If build fails, check that shared config packages are built first before apps.
 
-- [Astro Documentation](https://docs.astro.build)
-- [Sanity Documentation](https://www.sanity.io/docs)
-- [Turborepo Documentation](https://turbo.build/repo/docs)
-- [Changesets Documentation](https://github.com/changesets/changesets)
+## Important Gotchas
+
+- **Shared packages must build first**: Config packages and tokens must be built before apps can use them
+- **Port conflicts**: Sanity Studio runs on port 3333 by default
+- **Changesets**: Only applies to `@afnizarnur/tokens`, `@afnizarnur/ui`, and `@afnizarnur/ui-primitives`
+- **Strict TypeScript**: All code must pass strict type checking
+
+## Resources
+
+- Astro: https://docs.astro.build
+- Sanity: https://www.sanity.io/docs
+- Turborepo: https://turbo.build/repo/docs
+- Changesets: https://github.com/changesets/changesets
