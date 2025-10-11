@@ -4,7 +4,7 @@ AI agent guidelines for the afnizarnur.com monorepo (Astro + Sanity CMS).
 
 ## Project Overview
 
-**Tech Stack:** Astro 4.x, Sanity Studio 4.x, React 18.x, Tailwind CSS 3.x, TypeScript (strict)
+**Tech Stack:** Astro 5.x, Sanity Studio 4.x, React 18.x, Tailwind CSS 4.x, TypeScript (strict)
 **Build System:** Turborepo 2.x with pnpm 9.x workspaces
 **Node Version:** ≥20.0.0
 **Main Branch:** `main`
@@ -141,6 +141,8 @@ export function Button({ label, onClick }: ButtonProps) {
 
 - Use Tailwind utilities (avoid custom CSS)
 - Reference design tokens from `@afnizarnur/tokens`
+- Tailwind v4: CSS-first configuration in `apps/web/src/styles/global.css`
+- Use `@reference` directive when using `@apply` in component `<style>` blocks
 - No inline styles
 
 ### Project Structure
@@ -252,6 +254,8 @@ pnpm --filter @afnizarnur/studio deploy
 - `netlify.toml` - Deployment config
 - `.prettierrc.json` - Code formatting
 - `.changeset/config.json` - Version management
+- `apps/web/postcss.config.cjs` - PostCSS configuration (Tailwind v4)
+- `apps/web/src/styles/global.css` - Tailwind v4 theme and configuration
 
 ### Common Patterns
 

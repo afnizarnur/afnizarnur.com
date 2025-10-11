@@ -16,7 +16,7 @@ This document describes the design system used across afnizarnur.com, including 
 
 ## Overview
 
-The design system is built on **design tokens** managed by [Terrazzo](https://terrazzo.app/), which generates CSS variables and integrates with Tailwind CSS.
+The design system is built on **design tokens** managed by [Terrazzo](https://terrazzo.app/), which generates CSS variables and integrates with Tailwind CSS v4.
 
 ### Architecture
 
@@ -31,7 +31,8 @@ packages/tokens/
 
 ↓ Consumed by ↓
 
-packages/config-tailwind/     # Tailwind configuration
+apps/web/postcss.config.cjs   # PostCSS configuration (Tailwind v4)
+apps/web/src/styles/global.css # Tailwind v4 theme configuration
 apps/web/                     # Web application
 ```
 
@@ -506,6 +507,32 @@ Consistent spacing creates visual rhythm and hierarchy.
 
 ## Styling with Tailwind
 
+### Tailwind CSS v4
+
+This project uses **Tailwind CSS v4**, which introduces a CSS-first configuration approach. Key differences from v3:
+
+- **No JS config file**: Configuration is done in CSS using directives
+- **PostCSS plugin**: Uses `@tailwindcss/postcss` instead of the Astro integration
+- **CSS directives**: `@theme`, `@source`, `@layer` for configuration
+- **Design tokens**: Mapped directly in `global.css` using `@theme`
+
+**Configuration location:**
+- `apps/web/postcss.config.cjs` - PostCSS configuration
+- `apps/web/src/styles/global.css` - Theme and token mapping
+
+**Using @apply in component styles:**
+When using `@apply` in Astro component `<style>` blocks, add the `@reference` directive:
+
+```astro
+<style>
+  @reference "../styles/global.css";
+
+  .my-class {
+    @apply text-primary-600 font-semibold;
+  }
+</style>
+```
+
 ### Utility-First Approach
 
 Tailwind CSS is utility-first, meaning you compose designs using utility classes:
@@ -768,5 +795,6 @@ Always provide alt text for images:
 - [Architecture Overview](./architecture.md)
 - [Development Workflow](./development-workflow.md)
 - [AGENTS.md](../AGENTS.md) - Coding guidelines
-- [Tailwind Documentation](https://tailwindcss.com/docs)
+- [Tailwind CSS v4 Documentation](https://tailwindcss.com/docs)
 - [Terrazzo Documentation](https://terrazzo.app)
+- [CLAUDE.md - Tailwind v4 Configuration](../CLAUDE.md#tailwind-css-v4-configuration)
