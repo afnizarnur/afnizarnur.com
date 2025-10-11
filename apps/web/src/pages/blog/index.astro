@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { PostCard } from '@afnizarnur/ui';
+import { getAllPosts } from '../../server/data';
+
+const posts = await getAllPosts();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Articles about design systems, frontend development, and product design."
+>
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- Page Header -->
+    <header class="mb-12">
+      <h1 class="text-4xl font-bold text-neutral-900 sm:text-5xl">Blog</h1>
+      <p class="mt-4 text-xl text-neutral-600">
+        Thoughts on design systems, frontend development, and product design.
+      </p>
+    </header>
+
+    <!-- Posts Grid -->
+    {posts && posts.length > 0 ? (
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <PostCard
+            client:load
+            title={post.title}
+            slug={post.slug}
+            excerpt={post.excerpt}
+            publishedAt={post.publishedAt}
+            coverImage={post.coverImage}
+            coverImageAlt={post.coverImageAlt}
+            tags={post.tags}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-neutral-600">No blog posts yet. Check back soon!</p>
+    )}
+  </div>
+</BaseLayout>

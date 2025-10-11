@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ProjectCard } from '@afnizarnur/ui';
+import { getAllProjects } from '../../server/data';
+
+const projects = await getAllProjects();
+---
+
+<BaseLayout
+  title="Work"
+  description="Browse my portfolio of projects, case studies, and design work."
+>
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- Page Header -->
+    <header class="mb-12">
+      <h1 class="text-4xl font-bold text-neutral-900 sm:text-5xl">Work</h1>
+      <p class="mt-4 text-xl text-neutral-600">
+        Selected projects and case studies showcasing my design and development work.
+      </p>
+    </header>
+
+    <!-- Projects Grid -->
+    {projects && projects.length > 0 ? (
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project) => (
+          <ProjectCard
+            client:load
+            title={project.title}
+            slug={project.slug}
+            description={project.description}
+            role={project.role}
+            thumbnail={project.thumbnail}
+            thumbnailAlt={project.thumbnailAlt}
+            year={project.year}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-neutral-600">No projects found. Check back soon!</p>
+    )}
+  </div>
+</BaseLayout>

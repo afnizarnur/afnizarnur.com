@@ -88,7 +88,7 @@ This is a monorepo with apps and packages:
 - [X] T034 Create `.github/workflows/ci.yml` with GitHub Actions workflow
 - [X] T035 Configure CI workflow to run on pull requests to main branch
 - [X] T036 Add CI workflow jobs: install dependencies, run lint/typecheck/build across all workspaces using `pnpm turbo run lint typecheck build`
-- [ ] T037 Test CI workflow by creating a test branch and opening a PR
+- [X] T037 Test CI workflow by creating a test branch and opening a PR
 
 **Checkpoint**: Foundation ready - all packages can be built, CI automation operational, user story implementation can now begin in parallel
 
@@ -134,28 +134,28 @@ This is a monorepo with apps and packages:
 
 ### Data Fetching for User Story 2
 
-- [ ] T053 [US2] Create `apps/web/src/server/data.ts` with GROQ query functions
-- [ ] T054 [P] [US2] Implement `getFeaturedProjects()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #5)
-- [ ] T055 [P] [US2] Implement `getAllProjects()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #4)
-- [ ] T056 [P] [US2] Implement `getProjectBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #6)
-- [ ] T057 [P] [US2] Implement `getAllProjectSlugs()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #7)
+- [X] T053 [US2] Create `apps/web/src/server/data.ts` with GROQ query functions
+- [X] T054 [P] [US2] Implement `getFeaturedProjects()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #5)
+- [X] T055 [P] [US2] Implement `getAllProjects()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #4)
+- [X] T056 [P] [US2] Implement `getProjectBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #6)
+- [X] T057 [P] [US2] Implement `getAllProjectSlugs()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #7)
 
 ### UI Components for User Story 2
 
-- [ ] T058 [US2] Create `packages/ui/` package structure with `src/components/` and `src/types/`
-- [ ] T059 [US2] Add `packages/ui/package.json` with React and TypeScript dependencies
-- [ ] T060 [US2] Create `packages/ui/src/types/index.ts` with TypeScript interfaces from contracts/typescript-interfaces.ts
-- [ ] T061 [P] [US2] Create `packages/ui/src/components/ProjectCard.tsx` component accepting `ProjectCardProps`
-- [ ] T062 [P] [US2] Create `packages/ui/src/components/Card.tsx` base component (used by ProjectCard)
-- [ ] T063 [US2] Create `packages/ui/src/index.ts` exporting all components and types
+- [X] T058 [US2] Create `packages/ui/` package structure with `src/components/` and `src/types/`
+- [X] T059 [US2] Add `packages/ui/package.json` with React and TypeScript dependencies
+- [X] T060 [US2] Create `packages/ui/src/types/index.ts` with TypeScript interfaces from contracts/typescript-interfaces.ts
+- [X] T061 [P] [US2] Create `packages/ui/src/components/ProjectCard.tsx` component accepting `ProjectCardProps`
+- [X] T062 [P] [US2] Create `packages/ui/src/components/Card.tsx` base component (used by ProjectCard)
+- [X] T063 [US2] Create `packages/ui/src/index.ts` exporting all components and types
 
 ### Pages for User Story 2
 
-- [ ] T064 [US2] Create `apps/web/src/pages/index.astro` (homepage) fetching featured projects and displaying in grid
-- [ ] T065 [US2] Create `apps/web/src/pages/work/index.astro` (projects listing) fetching all projects
-- [ ] T066 [US2] Create `apps/web/src/pages/work/[slug].astro` (project detail) with `getStaticPaths()` and individual project rendering
-- [ ] T067 [US2] Create `apps/web/src/layouts/BaseLayout.astro` with basic HTML structure and global styles
-- [ ] T068 [US2] Create `apps/web/src/layouts/ProjectLayout.astro` extending BaseLayout for project detail pages
+- [X] T064 [US2] Create `apps/web/src/pages/index.astro` (homepage) fetching featured projects and displaying in grid
+- [X] T065 [US2] Create `apps/web/src/pages/work/index.astro` (projects listing) fetching all projects
+- [X] T066 [US2] Create `apps/web/src/pages/work/[slug].astro` (project detail) with `getStaticPaths()` and individual project rendering
+- [X] T067 [US2] Create `apps/web/src/layouts/BaseLayout.astro` with basic HTML structure and global styles
+- [X] T068 [US2] Create `apps/web/src/layouts/ProjectLayout.astro` extending BaseLayout for project detail pages
 
 **Checkpoint**: User Story 2 complete - Visitors can browse projects and view project details
 
@@ -169,21 +169,21 @@ This is a monorepo with apps and packages:
 
 ### Data Fetching for User Story 3
 
-- [ ] T069 [P] [US3] Implement `getAllPosts()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #1)
-- [ ] T070 [P] [US3] Implement `getPostBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #2)
-- [ ] T071 [P] [US3] Implement `getAllPostSlugs()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #3)
+- [X] T069 [P] [US3] Implement `getAllPosts()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #1)
+- [X] T070 [P] [US3] Implement `getPostBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #2)
+- [X] T071 [P] [US3] Implement `getAllPostSlugs()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #3)
 
 ### UI Components for User Story 3
 
-- [ ] T072 [P] [US3] Create `packages/ui/src/components/PostCard.tsx` component accepting `PostCardProps`
-- [ ] T073 [US3] Update `packages/ui/src/index.ts` to export PostCard
+- [X] T072 [P] [US3] Create `packages/ui/src/components/PostCard.tsx` component accepting `PostCardProps`
+- [X] T073 [US3] Update `packages/ui/src/index.ts` to export PostCard
 
 ### Pages for User Story 3
 
-- [ ] T074 [US3] Configure `astro-portabletext` renderer with custom serializers for code blocks, images, and callouts (already installed in T027)
-- [ ] T075 [US3] Create `apps/web/src/pages/blog/index.astro` (blog index) fetching all published posts
-- [ ] T076 [US3] Create `apps/web/src/pages/blog/[slug].astro` (blog post detail) with `getStaticPaths()` and Portable Text rendering
-- [ ] T077 [US3] Create `apps/web/src/layouts/PostLayout.astro` extending BaseLayout for blog post pages
+- [X] T074 [US3] Configure `astro-portabletext` renderer with custom serializers for code blocks, images, and callouts (already installed in T027)
+- [X] T075 [US3] Create `apps/web/src/pages/blog/index.astro` (blog index) fetching all published posts
+- [X] T076 [US3] Create `apps/web/src/pages/blog/[slug].astro` (blog post detail) with `getStaticPaths()` and Portable Text rendering
+- [X] T077 [US3] Create `apps/web/src/layouts/PostLayout.astro` extending BaseLayout for blog post pages
 
 **Checkpoint**: User Story 3 complete - Visitors can browse blog posts and read articles
 
@@ -197,23 +197,23 @@ This is a monorepo with apps and packages:
 
 ### Data Fetching for User Story 4
 
-- [ ] T078 [P] [US4] Implement `getNavigation()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #9)
-- [ ] T079 [P] [US4] Implement `getSiteSettings()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #10)
-- [ ] T080 [P] [US4] Implement `getPageBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #8)
+- [X] T078 [P] [US4] Implement `getNavigation()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #9)
+- [X] T079 [P] [US4] Implement `getSiteSettings()` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #10)
+- [X] T080 [P] [US4] Implement `getPageBySlug(slug: string)` function in `apps/web/src/server/data.ts` (GROQ query from contracts/groq-queries.md #8)
 
 ### UI Components for User Story 4
 
-- [ ] T081 [P] [US4] Create `packages/ui/src/components/Navbar.tsx` component accepting `NavbarProps` with navigation items
-- [ ] T082 [P] [US4] Create `packages/ui/src/components/Footer.tsx` component accepting `FooterProps` with social links
-- [ ] T083 [US4] Update `packages/ui/src/index.ts` to export Navbar and Footer
+- [X] T081 [P] [US4] Create `packages/ui/src/components/Navbar.tsx` component accepting `NavbarProps` with navigation items
+- [X] T082 [P] [US4] Create `packages/ui/src/components/Footer.tsx` component accepting `FooterProps` with social links
+- [X] T083 [US4] Update `packages/ui/src/index.ts` to export Navbar and Footer
 
 ### Pages and Layouts for User Story 4
 
-- [ ] T084 [US4] Update `apps/web/src/layouts/BaseLayout.astro` to include Navbar and Footer components
-- [ ] T085 [US4] Create `apps/web/src/components/SEO.astro` component for meta tags using site settings
-- [ ] T086 [US4] Create `apps/web/src/pages/about.astro` (static about page) fetching page content by slug
-- [ ] T087 [US4] Update `apps/web/src/pages/index.astro` to fetch and use site settings for SEO
-- [ ] T088 [US4] Add active link highlighting to Navbar component based on current path and verify navigation changes in Sanity Studio appear in web app after rebuild
+- [X] T084 [US4] Update `apps/web/src/layouts/BaseLayout.astro` to include Navbar and Footer components
+- [X] T085 [US4] Create `apps/web/src/components/SEO.astro` component for meta tags using site settings (merged into BaseLayout)
+- [X] T086 [US4] Create `apps/web/src/pages/about.astro` (static about page) fetching page content by slug
+- [X] T087 [US4] Update `apps/web/src/pages/index.astro` to fetch and use site settings for SEO
+- [X] T088 [US4] Add active link highlighting to Navbar component based on current path and verify navigation changes in Sanity Studio appear in web app after rebuild
 
 **Checkpoint**: User Story 4 complete - All pages have navigation, visitors can move between sections
 
@@ -262,7 +262,7 @@ This is a monorepo with apps and packages:
   - Cover images: `?w=1600&h=900&fit=crop&auto=format` (hero images)
   - Generate responsive srcsets: `?w=400`, `?w=800`, `?w=1200` for `<img srcset>`
 - [ ] T104 [P] Add error handling to all GROQ query functions in `apps/web/src/server/data.ts`
-- [ ] T105 Add 404 page at `apps/web/src/pages/404.astro` with helpful navigation
+- [X] T105 Add 404 page at `apps/web/src/pages/404.astro` with helpful navigation
 - [ ] T106 Add loading states and skeleton screens for interactive components (if any)
 - [ ] T107 Add Open Graph meta tags to SEO component for social sharing
 - [ ] T108 Add sitemap generation to Astro config for SEO
