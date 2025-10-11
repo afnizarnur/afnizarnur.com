@@ -2,18 +2,22 @@
   "name": "@afnizarnur/config-eslint",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "main": "index.js",
   "exports": {
     ".": "./index.js"
   },
   "dependencies": {
-    "eslint": "^8.57.0",
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-astro": "^0.31.4",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0"
+    "eslint-plugin-astro": "^1.2.4",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "typescript-eslint": "^8.0.0",
+    "globals": "^15.0.0"
   },
   "peerDependencies": {
-    "eslint": ">=8.0.0"
+    "eslint": ">=9.0.0"
   }
 }
