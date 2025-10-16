@@ -10,6 +10,7 @@ AI agent guidelines for the afnizarnur.com monorepo (Astro + Sanity CMS).
 **Main Branch:** `main`
 
 **Monorepo Structure:**
+
 - `apps/web` - Astro public website (Netlify)
 - `apps/studio` - Sanity Studio CMS
 - `packages/` - Shared configs, UI components, design tokens
@@ -33,6 +34,7 @@ pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/token
 Create `.env` files in `apps/web` and `apps/studio`:
 
 **apps/web/.env:**
+
 ```bash
 PUBLIC_SANITY_PROJECT_ID=your-project-id
 PUBLIC_SANITY_DATASET=production
@@ -40,6 +42,7 @@ PUBLIC_SITE_URL=https://afnizarnur.com
 ```
 
 **apps/studio/.env:**
+
 ```bash
 SANITY_STUDIO_PROJECT_ID=your-project-id
 SANITY_STUDIO_DATASET=production
@@ -90,11 +93,13 @@ pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/token
 ### General Conventions
 
 **File Naming:**
+
 - Components: `PascalCase.tsx` / `PascalCase.astro`
 - Utilities: `camelCase.ts`
 - Routes: `kebab-case.astro`
 
 **Formatting:**
+
 - 2 space indentation
 - Single quotes (except JSX)
 - Semicolons required
@@ -111,16 +116,18 @@ pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/token
 ```typescript
 // ✅ Good
 export interface Post {
-  title: string;
-  slug: string;
+    title: string
+    slug: string
 }
 
 export function formatDate(date: Date): string {
-  return date.toLocaleDateString();
+    return date.toLocaleDateString()
 }
 
 // ❌ Avoid
-export default function (date) { /* ... */ }
+export default function (date) {
+    /* ... */
+}
 ```
 
 ### React Components
@@ -128,12 +135,12 @@ export default function (date) { /* ... */ }
 ```tsx
 // ✅ Good - Typed functional component
 interface ButtonProps {
-  label: string;
-  onClick: () => void;
+    label: string
+    onClick: () => void
 }
 
 export function Button({ label, onClick }: ButtonProps) {
-  return <button onClick={onClick}>{label}</button>;
+    return <button onClick={onClick}>{label}</button>
 }
 ```
 
@@ -196,6 +203,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 **Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
 
 **Examples:**
+
 ```
 feat(web): add project detail page
 fix(studio): correct schema validation for tags
@@ -220,6 +228,7 @@ Note: `config-*` packages are not versioned.
 **How:** Explain implementation approach
 
 **Testing:**
+
 - [ ] `pnpm typecheck` passes
 - [ ] `pnpm lint` passes
 - [ ] `pnpm build` succeeds
@@ -260,29 +269,31 @@ pnpm --filter @afnizarnur/studio deploy
 ### Common Patterns
 
 **Sanity Client:**
+
 ```typescript
 // apps/web/src/lib/sanity.ts
-import { createClient } from '@sanity/client';
+import { createClient } from "@sanity/client"
 
 export const client = createClient({
-  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-  dataset: import.meta.env.PUBLIC_SANITY_DATASET,
-  useCdn: true,
-  apiVersion: '2024-01-01',
-});
+    projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+    dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+    useCdn: true,
+    apiVersion: "2024-01-01",
+})
 ```
 
 **Astro Pages:**
+
 ```astro
 ---
-import Layout from '@/layouts/Layout.astro';
-import { client } from '@/lib/sanity';
+import Layout from "@/layouts/Layout.astro"
+import { client } from "@/lib/sanity"
 
-const posts = await client.fetch('*[_type == "post"]');
+const posts = await client.fetch('*[_type == "post"]')
 ---
 
 <Layout title="Blog">
-  {posts.map(post => <article>{post.title}</article>)}
+    {posts.map((post) => <article>{post.title}</article>)}
 </Layout>
 ```
 

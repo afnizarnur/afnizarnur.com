@@ -30,7 +30,11 @@ const hasTechnologies = project.technologies && project.technologies.length > 0
     <article class="mx-auto max-w-7xl px-16 py-60 sm:px-24 lg:px-32">
         <div class="mx-auto max-w-4xl">
             <!-- Project Header -->
-            <PageHeader title={project.title} description={project.description} actions={headerActions}>
+            <PageHeader
+                title={project.title}
+                description={project.description}
+                actions={headerActions}
+            >
                 {
                     project.year && (
                         <span
@@ -45,38 +49,36 @@ const hasTechnologies = project.technologies && project.technologies.length > 0
                 {
                     (hasRole || hasClient || hasTechnologies) && (
                         <div slot="meta" class="grid gap-16 md:grid-cols-2">
-                            {
-                                hasRole && (
-                                    <div class="flex flex-col gap-8">
-                                        <p class="text-sm font-semibold text-text-primary">Role</p>
-                                        <p class="text-sm text-text-secondary">{project.role!.join(", ")}</p>
-                                    </div>
-                                )
-                            }
+                            {hasRole && (
+                                <div class="flex flex-col gap-8">
+                                    <p class="text-sm font-semibold text-text-primary">Role</p>
+                                    <p class="text-sm text-text-secondary">
+                                        {project.role!.join(", ")}
+                                    </p>
+                                </div>
+                            )}
 
-                            {
-                                hasClient && (
-                                    <div class="flex flex-col gap-8">
-                                        <p class="text-sm font-semibold text-text-primary">Client</p>
-                                        <p class="text-sm text-text-secondary">{project.client}</p>
-                                    </div>
-                                )
-                            }
+                            {hasClient && (
+                                <div class="flex flex-col gap-8">
+                                    <p class="text-sm font-semibold text-text-primary">Client</p>
+                                    <p class="text-sm text-text-secondary">{project.client}</p>
+                                </div>
+                            )}
 
-                            {
-                                hasTechnologies && (
-                                    <div class="flex flex-col gap-8">
-                                        <p class="text-sm font-semibold text-text-primary">Technologies</p>
-                                        <div class="flex flex-wrap gap-8">
-                                            {project.technologies!.map((tech) => (
-                                                <span class="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary">
-                                                    {tech}
-                                                </span>
-                                            ))}
-                                        </div>
+                            {hasTechnologies && (
+                                <div class="flex flex-col gap-8">
+                                    <p class="text-sm font-semibold text-text-primary">
+                                        Technologies
+                                    </p>
+                                    <div class="flex flex-wrap gap-8">
+                                        {project.technologies!.map((tech) => (
+                                            <span class="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary">
+                                                {tech}
+                                            </span>
+                                        ))}
                                     </div>
-                                )
-                            }
+                                </div>
+                            )}
                         </div>
                     )
                 }

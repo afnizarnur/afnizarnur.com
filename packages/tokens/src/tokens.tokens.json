@@ -1252,5 +1252,14 @@
         "popover": { "$value": 1500 },
         "tooltip": { "$value": 1600 },
         "notification": { "$value": 1700 }
+    },
+    "breakpoint": {
+        "$type": "dimension",
+        "xsmall": { "$value": "320px" },
+        "small": { "$value": "544px" },
+        "medium": { "$value": "768px" },
+        "large": { "$value": "1012px" },
+        "xlarge": { "$value": "1280px" },
+        "xxlarge": { "$value": "1440px" }
     }
 }

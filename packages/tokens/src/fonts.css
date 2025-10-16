@@ -5,16 +5,16 @@
 
 /* Fonetika - Regular 400 */
 @font-face {
-    font-family: 'Fonetika';
-    src: url('/fonts/Fonetika-Regular-Trial.woff2') format('woff2');
+    font-family: "Fonetika";
+    src: url("/fonts/Fonetika-Regular-Trial.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Fonetika';
-    src: url('/fonts/Fonetika-Italic-Trial.woff2') format('woff2');
+    font-family: "Fonetika";
+    src: url("/fonts/Fonetika-Italic-Trial.woff2") format("woff2");
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -22,16 +22,16 @@
 
 /* Fonetika - Medium 500 */
 @font-face {
-    font-family: 'Fonetika';
-    src: url('/fonts/Fonetika-Medium-Trial.woff2') format('woff2');
+    font-family: "Fonetika";
+    src: url("/fonts/Fonetika-Medium-Trial.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Fonetika';
-    src: url('/fonts/Fonetika-MediumItalic-Trial.woff2') format('woff2');
+    font-family: "Fonetika";
+    src: url("/fonts/Fonetika-MediumItalic-Trial.woff2") format("woff2");
     font-weight: 500;
     font-style: italic;
     font-display: swap;
@@ -39,16 +39,16 @@
 
 /* Fonetika - SemiBold 600 */
 @font-face {
-    font-family: 'Fonetika';
-    src: url('/fonts/Fonetika-SemiBold-Trial.woff2') format('woff2');
+    font-family: "Fonetika";
+    src: url("/fonts/Fonetika-SemiBold-Trial.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Fonetika';
-    src: url('/fonts/Fonetika-SemiBoldItalic-Trial.woff2') format('woff2');
+    font-family: "Fonetika";
+    src: url("/fonts/Fonetika-SemiBoldItalic-Trial.woff2") format("woff2");
     font-weight: 600;
     font-style: italic;
     font-display: swap;
@@ -56,16 +56,16 @@
 
 /* Fonetika Mono - Regular 400 */
 @font-face {
-    font-family: 'Fonetika Mono';
-    src: url('/fonts/FonetikaMono-Regular-Trial.woff2') format('woff2');
+    font-family: "Fonetika Mono";
+    src: url("/fonts/FonetikaMono-Regular-Trial.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Fonetika Mono';
-    src: url('/fonts/FonetikaMono-Italic-Trial.woff2') format('woff2');
+    font-family: "Fonetika Mono";
+    src: url("/fonts/FonetikaMono-Italic-Trial.woff2") format("woff2");
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -73,16 +73,16 @@
 
 /* Fonetika Mono - Medium 500 */
 @font-face {
-    font-family: 'Fonetika Mono';
-    src: url('/fonts/FonetikaMono-Medium-Trial.woff2') format('woff2');
+    font-family: "Fonetika Mono";
+    src: url("/fonts/FonetikaMono-Medium-Trial.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Fonetika Mono';
-    src: url('/fonts/FonetikaMono-MediumItalic-Trial.woff2') format('woff2');
+    font-family: "Fonetika Mono";
+    src: url("/fonts/FonetikaMono-MediumItalic-Trial.woff2") format("woff2");
     font-weight: 500;
     font-style: italic;
     font-display: swap;
@@ -90,18 +90,17 @@
 
 /* Fonetika Mono - SemiBold 600 */
 @font-face {
-    font-family: 'Fonetika Mono';
-    src: url('/fonts/FonetikaMono-SemiBold-Trial.woff2') format('woff2');
+    font-family: "Fonetika Mono";
+    src: url("/fonts/FonetikaMono-SemiBold-Trial.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Fonetika Mono';
-    src: url('/fonts/FonetikaMono-SemiBoldItalic-Trial.woff2') format('woff2');
+    font-family: "Fonetika Mono";
+    src: url("/fonts/FonetikaMono-SemiBoldItalic-Trial.woff2") format("woff2");
     font-weight: 600;
     font-style: italic;
     font-display: swap;
 }
-

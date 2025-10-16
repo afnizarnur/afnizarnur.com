@@ -328,4 +328,12 @@
         line-height: var(--spacing-20);
         letter-spacing: var(--letter-spacing-compact);
     };
+
+    /* Breakpoint tokens */
+    --breakpoint-xsmall: var(--breakpoint-xsmall);
+    --breakpoint-small: var(--breakpoint-small);
+    --breakpoint-medium: var(--breakpoint-medium);
+    --breakpoint-large: var(--breakpoint-large);
+    --breakpoint-xlarge: var(--breakpoint-xlarge);
+    --breakpoint-xxlarge: var(--breakpoint-xxlarge);
 }

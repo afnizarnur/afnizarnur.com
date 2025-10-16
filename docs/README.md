@@ -14,7 +14,9 @@ Welcome to the afnizarnur.com documentation. This directory contains comprehensi
 ### Core Documentation
 
 #### [Architecture Overview](./architecture.md)
+
 Comprehensive system architecture documentation covering:
+
 - System architecture and data flow
 - Technology stack (Astro, Sanity, React, Tailwind)
 - Monorepo structure and organization
@@ -24,7 +26,9 @@ Comprehensive system architecture documentation covering:
 **Best for:** Understanding how the system works, onboarding new developers, making architectural decisions.
 
 #### [Development Workflow](./development-workflow.md)
+
 Day-to-day development guide covering:
+
 - Initial setup and prerequisites
 - Daily development workflow
 - Working with monorepo packages
@@ -37,7 +41,9 @@ Day-to-day development guide covering:
 **Best for:** Daily development tasks, contributing code, following best practices.
 
 #### [Content Management](./content-management.md)
+
 Complete guide to managing content with Sanity Studio:
+
 - Content types (Posts, Projects, Pages, Tags)
 - Publishing workflows
 - SEO optimization
@@ -48,7 +54,9 @@ Complete guide to managing content with Sanity Studio:
 **Best for:** Content editors, marketing team, anyone publishing content.
 
 #### [Design System](./design-system.md)
+
 Design system documentation covering:
+
 - Design tokens (colors, typography, spacing)
 - Component patterns
 - Styling with Tailwind CSS
@@ -58,7 +66,9 @@ Design system documentation covering:
 **Best for:** Designers, frontend developers, maintaining visual consistency.
 
 #### [Deployment Guide](./deployment.md)
+
 Detailed deployment instructions:
+
 - Netlify configuration
 - Environment variables
 - Webhook setup
@@ -68,7 +78,9 @@ Detailed deployment instructions:
 **Best for:** DevOps, setting up CI/CD, deployment troubleshooting.
 
 #### [Troubleshooting](./troubleshooting.md)
+
 Common issues and solutions for:
+
 - Build issues
 - Development server problems
 - Type errors
@@ -83,7 +95,9 @@ Common issues and solutions for:
 ### Additional Resources
 
 #### Product Requirements Documents (PRD)
+
 Located in [`prd/`](./prd/) directory:
+
 - Feature specifications
 - User stories
 - Technical requirements
@@ -94,7 +108,9 @@ Located in [`prd/`](./prd/) directory:
 Important documentation files in the project root:
 
 #### [CLAUDE.md](../CLAUDE.md)
+
 Project development guidelines for human developers:
+
 - Tech stack overview
 - Monorepo structure
 - Available commands
@@ -103,7 +119,9 @@ Project development guidelines for human developers:
 - Deployment information
 
 #### [AGENTS.md](../AGENTS.md)
+
 Guidelines specifically for AI agents (Claude, GitHub Copilot, Cursor):
+
 - Coding conventions
 - File naming patterns
 - Testing requirements
@@ -112,7 +130,9 @@ Guidelines specifically for AI agents (Claude, GitHub Copilot, Cursor):
 - Common patterns and examples
 
 #### [README.md](../README.md)
+
 Project overview and quick start:
+
 - Background and history
 - Installation instructions
 - Monorepo structure
@@ -124,69 +144,69 @@ Project overview and quick start:
 ### For New Developers
 
 1. **Read the README**
-   - Start with [../README.md](../README.md) for project overview
-   - Understand the background and goals
+    - Start with [../README.md](../README.md) for project overview
+    - Understand the background and goals
 
 2. **Understand the Architecture**
-   - Read [Architecture Overview](./architecture.md)
-   - Learn about the tech stack
-   - Understand data flow
+    - Read [Architecture Overview](./architecture.md)
+    - Learn about the tech stack
+    - Understand data flow
 
 3. **Set Up Your Environment**
-   - Follow [Development Workflow - Getting Started](./development-workflow.md#getting-started)
-   - Install dependencies
-   - Configure IDE
+    - Follow [Development Workflow - Getting Started](./development-workflow.md#getting-started)
+    - Install dependencies
+    - Configure IDE
 
 4. **Review Coding Standards**
-   - Read [AGENTS.md](../AGENTS.md) for coding conventions
-   - Check [Design System](./design-system.md) for styling guidelines
-   - Understand Git workflow
+    - Read [AGENTS.md](../AGENTS.md) for coding conventions
+    - Check [Design System](./design-system.md) for styling guidelines
+    - Understand Git workflow
 
 5. **Make Your First Change**
-   - Follow [Development Workflow](./development-workflow.md)
-   - Create a feature branch
-   - Make a small change
-   - Submit a pull request
+    - Follow [Development Workflow](./development-workflow.md)
+    - Create a feature branch
+    - Make a small change
+    - Submit a pull request
 
 ### For Content Editors
 
 1. **Learn the Basics**
-   - Read [Content Management](./content-management.md)
-   - Understand content types
-   - Learn about SEO best practices
+    - Read [Content Management](./content-management.md)
+    - Understand content types
+    - Learn about SEO best practices
 
 2. **Access Sanity Studio**
-   - Get credentials from team
-   - Log in to Studio
-   - Familiarize yourself with the interface
+    - Get credentials from team
+    - Log in to Studio
+    - Familiarize yourself with the interface
 
 3. **Create Your First Post**
-   - Follow [Publishing a New Blog Post](./content-management.md#publishing-a-new-blog-post)
-   - Write content
-   - Add images
-   - Publish
+    - Follow [Publishing a New Blog Post](./content-management.md#publishing-a-new-blog-post)
+    - Write content
+    - Add images
+    - Publish
 
 4. **Optimize for SEO**
-   - Follow [SEO Guidelines](./content-management.md#seo-guidelines)
-   - Use proper meta tags
-   - Optimize images
+    - Follow [SEO Guidelines](./content-management.md#seo-guidelines)
+    - Use proper meta tags
+    - Optimize images
 
 ### For Designers
 
 1. **Understand the Design System**
-   - Read [Design System](./design-system.md)
-   - Review design tokens
-   - Check color system and typography
+    - Read [Design System](./design-system.md)
+    - Review design tokens
+    - Check color system and typography
 
 2. **Review Components**
-   - Examine component patterns
-   - Understand responsive design approach
-   - Learn accessibility requirements
+    - Examine component patterns
+    - Understand responsive design approach
+    - Learn accessibility requirements
 
 3. **Make Design Changes**
-   - Update design tokens
-   - Create new components
-   - Ensure consistency
+    - Update design tokens
+    - Create new components
+    - Ensure consistency
 
 ## Project Structure
 
@@ -258,21 +278,25 @@ pnpm build
 ## Technology Stack
 
 ### Frontend
+
 - **[Astro](https://astro.build/)** - Static site framework
 - **[React](https://react.dev/)** - UI components
 - **[Tailwind CSS](https://tailwindcss.com/)** - Styling
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety
 
 ### CMS
+
 - **[Sanity Studio](https://www.sanity.io/)** - Content management
 - **[GROQ](https://www.sanity.io/docs/groq)** - Query language
 
 ### Build & Deploy
+
 - **[Turborepo](https://turbo.build/)** - Monorepo build system
 - **[pnpm](https://pnpm.io/)** - Package manager
 - **[Netlify](https://www.netlify.com/)** - Hosting & CDN
 
 ### Design Tokens
+
 - **[Terrazzo](https://terrazzo.app/)** - Token management
 
 ## Contributing
@@ -340,11 +364,13 @@ chore(scope): maintenance task
 This project uses [Changesets](https://github.com/changesets/changesets) for package versioning.
 
 **Versioned packages:**
+
 - `@afnizarnur/tokens`
 - `@afnizarnur/ui`
 - `@afnizarnur/ui-primitives`
 
 **Creating changesets:**
+
 ```bash
 pnpm changeset
 ```
@@ -384,11 +410,11 @@ This website is a personal project shared openly for educational purposes. It's 
 Major documentation updates:
 
 - **2025-10-11** - Initial comprehensive documentation
-  - Added architecture overview
-  - Added development workflow guide
-  - Added content management guide
-  - Added design system documentation
-  - Added troubleshooting guide
+    - Added architecture overview
+    - Added development workflow guide
+    - Added content management guide
+    - Added design system documentation
+    - Added troubleshooting guide
 
 ---
 

@@ -33,6 +33,12 @@ pnpm-debug.log*
 # turborepo
 .turbo
 
+# AI assistant configs
+.claude/
+.codex/
+.cursor/
+.specify/
+
 # changesets
 .changeset/*.md
 !.changeset/README.md

@@ -1,7 +1,7 @@
 ---
 import type { NavigationItem } from "@afnizarnur/ui"
-import { Palette, GearSix } from 'phosphor-react'
-import IconButton from './IconButton.astro'
+import { Palette, GearSix, List } from "phosphor-react"
+import IconButton from "./IconButton.astro"
 
 export interface Props {
     items: NavigationItem[]
@@ -37,70 +37,79 @@ const timeString = getFormattedTime()
 ---
 
 <nav
-    class="sticky top-0 z-40 h-[66px] border-b-[2px] border-border-tertiary px-[110px] py-2 grid grid-cols-8 gap-6 items-center bg-background-primary"
+    class="sticky top-0 z-40 h-[66px] border-b-[2px] border-border-tertiary bg-background-primary"
     role="navigation"
     aria-label="Main navigation"
 >
-    {/* Col 1-2 - Logo */}
-    <div class="col-span-2">
-        <a
-            href="/"
-            class="text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary rounded"
-            aria-label="Afnizar Nur Ghifari - Home"
-            title="Go to homepage"
-        >
-            Afnizar_Nur_Ghifari
-        </a>
-    </div>
+    <div
+        class="h-full px-6 md:px-6 lg:px-6 py-2 flex md:grid items-center md:grid-cols-2 lg:grid-cols-8 gap-6 mx-auto lg:max-w-[1220px]"
+    >
+        {/* Logo */}
+        <div class="flex-1 md:col-span-1 lg:col-span-2">
+            <a
+                href="/"
+                class="text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary rounded"
+                aria-label="Afnizar Nur Ghifari - Home"
+                title="Go to homepage"
+            >
+                Afnizar_Nur_Ghifari
+            </a>
+        </div>
 
-    {/* Col 3-5 - Navigation Menu */}
-    <div class="col-span-3">
-        <ul class="flex gap-48 list-none p-0 m-0">
-            {
-                items.map((item) => {
-                    const href = normalizeHref(item.href)
-                    const isActive = isNavItemActive(item.href, currentPath || "")
+        {/* Navigation Menu (Hidden on tablet and mobile) */}
+        <div class="col-span-3 hidden lg:block lg:col-span-3">
+            <ul class="flex gap-48 list-none p-0 m-0">
+                {
+                    items.map((item) => {
+                        const href = normalizeHref(item.href)
+                        const isActive = isNavItemActive(item.href, currentPath || "")
 
-                    return (
-                        <li key={item.href}>
-                            <a
-                                href={href}
-                                target={item.newTab ? "_blank" : undefined}
-                                rel={item.newTab ? "noopener noreferrer" : undefined}
-                                class={`text-eyebrow-1 transition-colors duration-150 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${
-                                    isActive
-                                        ? "text-text-primary cursor-default"
-                                        : "text-text-secondary hover:text-text-primary active:text-text-primary"
-                                }`}
-                                aria-current={isActive ? "page" : undefined}
-                            >
-                                {item.title}
-                            </a>
-                        </li>
-                    )
-                })
-            }
-        </ul>
-    </div>
+                        return (
+                            <li>
+                                <a
+                                    href={href}
+                                    target={item.newTab ? "_blank" : undefined}
+                                    rel={item.newTab ? "noopener noreferrer" : undefined}
+                                    class={`text-eyebrow-1 transition-colors duration-150 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${
+                                        isActive
+                                            ? "text-text-primary cursor-default"
+                                            : "text-text-secondary hover:text-text-primary active:text-text-primary"
+                                    }`}
+                                    aria-current={isActive ? "page" : undefined}
+                                >
+                                    {item.title}
+                                </a>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
 
-    {/* Col 6-7 - Time Display */}
-    <div class="col-span-2">
-        <time class="text-eyebrow-1 text-text-secondary" datetime={new Date().toISOString()}>
-            {timeString}
-        </time>
-    </div>
+        {/* Time Display (Hidden on tablet and mobile) */}
+        <div class="col-span-2 hidden lg:block lg:col-span-2">
+            <time class="text-eyebrow-1 text-text-secondary" datetime={new Date().toISOString()}>
+                {timeString}
+            </time>
+        </div>
 
-    {/* Col 8 - Icon Buttons */}
-    <div class="col-span-1 flex justify-end gap-4">
-        <IconButton
-            icon={Palette}
-            ariaLabel="Toggle theme"
-            size={24}
-        />
-        <IconButton
-            icon={GearSix}
-            ariaLabel="Open settings"
-            size={24}
-        />
+        {/* Icon Buttons + Hamburger Menu */}
+        <div class="flex justify-end gap-4 md:col-span-1 lg:col-span-1">
+            {/* Theme and Settings Icons (Hidden on mobile, shown on tablet+) */}
+            <div class="hidden md:flex gap-4">
+                <IconButton icon={Palette} ariaLabel="Toggle theme" size={24} />
+                <IconButton icon={GearSix} ariaLabel="Open settings" size={24} />
+            </div>
+
+            {/* Hamburger Menu Button (Shown on tablet and mobile) */}
+            <button
+                id="hamburger-menu-button"
+                class="lg:hidden w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-icon-primary active:text-icon-primary transition-colors"
+                aria-label="Open navigation menu"
+                type="button"
+            >
+                <List size={24} color="currentColor" />
+            </button>
+        </div>
     </div>
 </nav>
