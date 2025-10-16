@@ -16,11 +16,13 @@ const seoDescription =
 ---
 
 <BaseLayout title={seoTitle} description={seoDescription}>
-    <article class="page-shell page-shell--narrow">
-        <PageHeader eyebrow="About" title={page.title} />
+    <article class="mx-auto max-w-7xl px-16 py-60 sm:px-24 lg:px-32">
+        <div class="mx-auto max-w-2xl">
+            <PageHeader eyebrow="About" title={page.title} />
 
-        <div class="prose prose-lg prose-neutral max-w-none">
-            <PortableText value={page.body} />
+            <div class="prose prose-lg prose-neutral max-w-none">
+                <PortableText value={page.body} />
+            </div>
         </div>
     </article>
 </BaseLayout>

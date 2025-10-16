@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
-import { ProjectCard } from "@afnizarnur/ui"
+import ProjectCard from "../../components/ProjectCard.astro"
 import { getAllProjects } from "../../server/data"
 import PageHeader from "../../components/PageHeader.astro"
 
@@ -11,7 +11,7 @@ const projects = await getAllProjects()
     title="Work"
     description="Browse my portfolio of projects, case studies, and design work."
 >
-    <section class="page-shell">
+    <section class="mx-auto max-w-7xl px-16 py-60 sm:px-24 lg:px-32">
         <PageHeader
             eyebrow="Case Studies"
             title="Work"
@@ -23,7 +23,6 @@ const projects = await getAllProjects()
                 <div class="grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-3">
                     {projects.map((project) => (
                         <ProjectCard
-                            client:load
                             title={project.title}
                             slug={project.slug}
                             description={project.description}

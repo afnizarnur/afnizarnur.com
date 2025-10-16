@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
-import { PostCard } from "@afnizarnur/ui"
+import PostCard from "../../components/PostCard.astro"
 import { getAllPosts } from "../../server/data"
 import PageHeader from "../../components/PageHeader.astro"
 
@@ -11,7 +11,7 @@ const posts = await getAllPosts()
     title="Blog"
     description="Articles about design systems, frontend development, and product design."
 >
-    <section class="page-shell">
+    <section class="mx-auto max-w-7xl px-16 py-60 sm:px-24 lg:px-32">
         <PageHeader
             eyebrow="Journal"
             title="Blog"
@@ -23,7 +23,6 @@ const posts = await getAllPosts()
                 <div class="grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-3">
                     {posts.map((post) => (
                         <PostCard
-                            client:load
                             title={post.title}
                             slug={post.slug}
                             excerpt={post.excerpt}

@@ -9,78 +9,78 @@ export interface Props {
 const { value } = Astro.props
 ---
 
-<div class="portable-text">
+<div>
     <AstroPortableText value={value} />
 </div>
 
 <style>
     @reference "../styles/global.css";
 
-    .portable-text :global(h2) {
+    :global(div) h2 {
         @apply mt-48 mb-16 text-balance text-3xl font-bold text-fgColor-primary;
     }
 
-    .portable-text :global(h3) {
+    :global(div) h3 {
         @apply mt-32 mb-12 text-balance text-2xl font-bold text-fgColor-primary;
     }
 
-    .portable-text :global(h4) {
+    :global(div) h4 {
         @apply mt-24 mb-8 text-balance text-xl font-bold text-fgColor-primary;
     }
 
-    .portable-text :global(p) {
+    :global(div) p {
         @apply mb-16 text-balance text-fgColor-secondary leading-relaxed;
     }
 
-    .portable-text :global(blockquote) {
+    :global(div) blockquote {
         @apply border-l-4 border-borderColor-accent-primary pl-16 my-24 text-balance italic text-fgColor-tertiary;
     }
 
-    .portable-text :global(ul) {
+    :global(div) ul {
         @apply list-disc pl-24 mb-16 space-y-8;
     }
 
-    .portable-text :global(ol) {
+    :global(div) ol {
         @apply list-decimal pl-24 mb-16 space-y-8;
     }
 
-    .portable-text :global(li) {
+    :global(div) li {
         @apply text-fgColor-secondary;
     }
 
-    .portable-text :global(strong) {
+    :global(div) strong {
         @apply font-semibold;
     }
 
-    .portable-text :global(em) {
+    :global(div) em {
         @apply italic;
     }
 
-    .portable-text :global(code) {
+    :global(div) code {
         @apply rounded bg-bgColor-secondary px-8 py-2 text-sm font-mono text-fgColor-primary;
     }
 
-    .portable-text :global(pre) {
+    :global(div) pre {
         @apply overflow-x-auto rounded-lg bg-bgColor-black-solid p-16 my-24;
     }
 
-    .portable-text :global(pre code) {
+    :global(div) pre code {
         @apply text-sm text-fgColor-white bg-transparent p-0;
     }
 
-    .portable-text :global(a) {
+    :global(div) a {
         @apply text-fgColor-accent-primary hover:text-fgColor-accent-primary-hover underline;
     }
 
-    .portable-text :global(img) {
+    :global(div) img {
         @apply rounded-lg w-full my-32;
     }
 
-    .portable-text :global(figure) {
+    :global(div) figure {
         @apply my-32;
     }
 
-    .portable-text :global(figcaption) {
+    :global(div) figcaption {
         @apply mt-8 text-center text-sm text-fgColor-tertiary;
     }
 </style>

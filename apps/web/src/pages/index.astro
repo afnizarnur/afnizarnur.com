@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
-import { ProjectCard } from "@afnizarnur/ui"
+import ProjectCard from "../components/ProjectCard.astro"
 import { getFeaturedProjects } from "../server/data"
 import PageHeader from "../components/PageHeader.astro"
 
@@ -9,30 +9,33 @@ const featuredProjects = await getFeaturedProjects()
 
 <BaseLayout>
     <!-- Hero -->
-    <section class="page-shell page-shell--flush">
-        <div class="surface-panel">
-            <PageHeader
-                eyebrow="Afnizar Nur Ghifari"
-                title="Product Designer & Developer"
-                description="I design and build products that people love. Currently focused on design systems, frontend development, and creating delightful user experiences."
-                actions={[
-                    { href: "/work", label: "View portfolio" },
-                    { href: "/blog", label: "Read the blog", variant: "secondary" },
-                ]}
-            >
-                <div class="flex flex-wrap gap-12 text-sm text-fgColor-secondary">
-                    <span class="chip chip--accent">Design systems</span>
-                    <span class="chip">Frontend development</span>
-                    <span class="chip">Product strategy</span>
-                </div>
-            </PageHeader>
+    <section class="mx-auto max-w-7xl px-16 py-48 sm:px-24 lg:px-32">
+        <div class="relative overflow-hidden rounded-3xl border border-borderColor-secondary bg-gradient-to-br from-bgColor-secondary to-bgColor-primary p-32 shadow-lg">
+            <div class="absolute -right-1/5 -top-2/5 aspect-square w-1/2 rounded-full bg-radial-gradient opacity-80 pointer-events-none" style="background: radial-gradient(circle at center, var(--color-bgColor-accent-primary) 0%, transparent 65%); opacity: 0.8;"></div>
+            <div class="relative z-10">
+                <PageHeader
+                    eyebrow="Afnizar Nur Ghifari"
+                    title="Product Designer & Developer"
+                    description="I design and build products that people love. Currently focused on design systems, frontend development, and creating delightful user experiences."
+                    actions={[
+                        { href: "/work", label: "View portfolio" },
+                        { href: "/blog", label: "Read the blog", variant: "secondary" },
+                    ]}
+                >
+                    <div class="flex flex-wrap gap-12 text-sm text-fgColor-secondary">
+                        <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-accent-primary px-12 py-4 text-xs font-medium text-fgColor-accent-primary">Design systems</span>
+                        <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-secondary px-12 py-4 text-xs font-medium text-fgColor-primary">Frontend development</span>
+                        <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-secondary px-12 py-4 text-xs font-medium text-fgColor-primary">Product strategy</span>
+                    </div>
+                </PageHeader>
+            </div>
         </div>
     </section>
 
     <!-- Featured Projects -->
     {
         featuredProjects && featuredProjects.length > 0 && (
-            <section class="page-shell">
+            <section class="mx-auto max-w-7xl px-16 py-60 sm:px-24 lg:px-32">
                 <PageHeader
                     headingLevel="h2"
                     eyebrow="Selected Work"
@@ -43,7 +46,6 @@ const featuredProjects = await getFeaturedProjects()
                 <div class="grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-3">
                     {featuredProjects.map((project) => (
                         <ProjectCard
-                            client:load
                             title={project.title}
                             slug={project.slug}
                             description={project.description}
