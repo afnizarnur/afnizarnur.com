@@ -38,6 +38,7 @@ pnpm-debug.log*
 .codex/
 .cursor/
 .specify/
+.vscode/
 
 # changesets
 .changeset/*.md
