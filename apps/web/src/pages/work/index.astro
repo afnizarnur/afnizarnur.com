@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import { ProjectCard } from "@afnizarnur/ui"
 import { getAllProjects } from "../../server/data"
+import PageHeader from "../../components/PageHeader.astro"
 
 const projects = await getAllProjects()
 ---
@@ -10,19 +11,16 @@ const projects = await getAllProjects()
     title="Work"
     description="Browse my portfolio of projects, case studies, and design work."
 >
-    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <!-- Page Header -->
-        <header class="mb-12">
-            <h1 class="text-4xl font-bold text-fgColor-primary sm:text-5xl">Work</h1>
-            <p class="mt-4 text-xl text-fgColor-secondary">
-                Selected projects and case studies showcasing my design and development work.
-            </p>
-        </header>
+    <section class="page-shell">
+        <PageHeader
+            eyebrow="Case Studies"
+            title="Work"
+            description="Selected projects and case studies showcasing my design and development work."
+        />
 
-        <!-- Projects Grid -->
         {
             projects && projects.length > 0 ? (
-                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div class="grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-3">
                     {projects.map((project) => (
                         <ProjectCard
                             client:load
@@ -40,5 +38,5 @@ const projects = await getAllProjects()
                 <p class="text-fgColor-secondary">No projects found. Check back soon!</p>
             )
         }
-    </div>
+    </section>
 </BaseLayout>

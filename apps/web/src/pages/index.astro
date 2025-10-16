@@ -2,39 +2,45 @@
 import BaseLayout from "../layouts/BaseLayout.astro"
 import { ProjectCard } from "@afnizarnur/ui"
 import { getFeaturedProjects } from "../server/data"
+import PageHeader from "../components/PageHeader.astro"
 
 const featuredProjects = await getFeaturedProjects()
 ---
 
 <BaseLayout>
-    <!-- Hero Section -->
-    <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div class="max-w-3xl">
-            <h1 class="text-5xl font-bold text-fgColor-primary sm:text-6xl">
-                Product Designer & Developer
-            </h1>
-            <p class="mt-6 text-xl text-fgColor-secondary">
-                I design and build products that people love. Currently focused on design systems,
-                frontend development, and creating delightful user experiences.
-            </p>
+    <!-- Hero -->
+    <section class="page-shell page-shell--flush">
+        <div class="surface-panel">
+            <PageHeader
+                eyebrow="Afnizar Nur Ghifari"
+                title="Product Designer & Developer"
+                description="I design and build products that people love. Currently focused on design systems, frontend development, and creating delightful user experiences."
+                actions={[
+                    { href: "/work", label: "View portfolio" },
+                    { href: "/blog", label: "Read the blog", variant: "secondary" },
+                ]}
+            >
+                <div class="flex flex-wrap gap-12 text-sm text-fgColor-secondary">
+                    <span class="chip chip--accent">Design systems</span>
+                    <span class="chip">Frontend development</span>
+                    <span class="chip">Product strategy</span>
+                </div>
+            </PageHeader>
         </div>
     </section>
 
-    <!-- Featured Projects Section -->
+    <!-- Featured Projects -->
     {
         featuredProjects && featuredProjects.length > 0 && (
-            <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-                <div class="mb-12 flex items-center justify-between">
-                    <h2 class="text-3xl font-bold text-fgColor-primary">Selected Work</h2>
-                    <a
-                        href="/work"
-                        class="text-sm font-medium text-fgColor-accent-primary hover:text-fgColor-accent-primary-hover"
-                    >
-                        View all projects →
-                    </a>
-                </div>
+            <section class="page-shell">
+                <PageHeader
+                    headingLevel="h2"
+                    eyebrow="Selected Work"
+                    title="Featured projects"
+                    actions={[{ href: "/work", label: "View all projects", variant: "ghost" }]}
+                />
 
-                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div class="grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-3">
                     {featuredProjects.map((project) => (
                         <ProjectCard
                             client:load

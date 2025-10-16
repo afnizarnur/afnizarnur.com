@@ -21,36 +21,33 @@ export function PostCard({
     })
 
     return (
-        <Card href={`/blog/${slug}`} className="group">
+        <Card href={`/blog/${slug}`} className="group space-y-16">
             {coverImage && (
-                <div className="mb-4 overflow-hidden rounded-md">
+                <div className="overflow-hidden rounded-2xl">
                     <img
                         src={`${coverImage}?w=800&h=400&fit=crop&auto=format`}
                         alt={coverImageAlt || title}
-                        className="aspect-video w-full object-cover transition-transform group-hover:scale-105"
+                        className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"
                     />
                 </div>
             )}
 
-            <div className="space-y-2">
-                <time className="text-sm text-neutral-500" dateTime={publishedAt}>
+            <div className="space-y-8">
+                <time className="text-sm text-fgColor-tertiary" dateTime={publishedAt}>
                     {formattedDate}
                 </time>
 
-                <h3 className="text-xl font-semibold text-neutral-900 group-hover:text-primary-600">
+                <h3 className="text-xl font-semibold text-fgColor-primary transition-colors group-hover:text-fgColor-accent-primary">
                     {title}
                 </h3>
 
-                <p className="text-neutral-600">{excerpt}</p>
+                <p className="text-fgColor-secondary">{excerpt}</p>
 
                 {tags && tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-2">
+                    <div className="flex flex-wrap gap-8 pt-8">
                         {tags.map((tag) => (
-                            <span
-                                key={tag.slug}
-                                className="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-700"
-                            >
+                            <span key={tag.slug} className="chip">
                                 {tag.title}
                             </span>
                         ))}

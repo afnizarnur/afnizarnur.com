@@ -1,0 +1,98 @@
+---
+export interface HeaderAction {
+    href: string
+    label: string
+    variant?: "primary" | "secondary" | "ghost"
+    external?: boolean
+}
+
+export interface Props {
+    title: string
+    description?: string
+    eyebrow?: string
+    orientation?: "left" | "center"
+    actions?: HeaderAction[]
+    headingLevel?: "h1" | "h2" | "h3" | "h4"
+}
+
+const {
+    title,
+    description,
+    eyebrow,
+    orientation = "left",
+    actions = [],
+    headingLevel = "h1",
+} = Astro.props
+
+const normalizedActions = actions.map((action) => ({
+    ...action,
+    variant: action.variant ?? "primary",
+}))
+
+const hasEyebrowSlot = Astro.slots.has("eyebrow")
+const hasMetaSlot = Astro.slots.has("meta")
+const hasDefaultSlot = Astro.slots.has("default")
+---
+
+<header
+    class:list={{
+        "page-header": true,
+        "page-header--center": orientation === "center",
+    }}
+>
+    {
+        hasEyebrowSlot ? (
+            <slot name="eyebrow" />
+        ) : (
+            eyebrow && <span class="page-header__eyebrow">{eyebrow}</span>
+        )
+    }
+
+    <component is={headingLevel} class="page-header__title">
+        {title}
+    </component>
+
+    {description && <p class="page-header__description">{description}</p>}
+
+    {hasDefaultSlot && <slot />}
+
+    {
+        hasMetaSlot && (
+            <div
+                class:list={{
+                    "page-header__meta": true,
+                    "page-header__meta--center": orientation === "center",
+                }}
+            >
+                <slot name="meta" />
+            </div>
+        )
+    }
+
+    {
+        normalizedActions.length > 0 && (
+            <div
+                class:list={{
+                    "page-header__actions": true,
+                    "page-header__actions--center": orientation === "center",
+                }}
+            >
+                {normalizedActions.map((action) => (
+                    <a
+                        href={action.href}
+                        target={action.external ? "_blank" : undefined}
+                        rel={action.external ? "noopener noreferrer" : undefined}
+                        class:list={{
+                            button: true,
+                            "button--primary": action.variant === "primary",
+                            "button--secondary": action.variant === "secondary",
+                            "button--ghost": action.variant === "ghost",
+                        }}
+                    >
+                        {action.label}
+                    </a>
+                ))}
+            </div>
+        )
+    }
+</header>

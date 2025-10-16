@@ -17,31 +17,31 @@ const { value } = Astro.props
     @reference "../styles/global.css";
 
     .portable-text :global(h2) {
-        @apply mt-12 mb-4 text-3xl font-bold text-fgColor-primary;
+        @apply mt-48 mb-16 text-balance text-3xl font-bold text-fgColor-primary;
     }
 
     .portable-text :global(h3) {
-        @apply mt-8 mb-3 text-2xl font-bold text-fgColor-primary;
+        @apply mt-32 mb-12 text-balance text-2xl font-bold text-fgColor-primary;
     }
 
     .portable-text :global(h4) {
-        @apply mt-6 mb-2 text-xl font-bold text-fgColor-primary;
+        @apply mt-24 mb-8 text-balance text-xl font-bold text-fgColor-primary;
     }
 
     .portable-text :global(p) {
-        @apply mb-4 text-fgColor-secondary leading-relaxed;
+        @apply mb-16 text-balance text-fgColor-secondary leading-relaxed;
     }
 
     .portable-text :global(blockquote) {
-        @apply border-l-4 border-borderColor-accent-primary pl-4 my-6 italic text-fgColor-tertiary;
+        @apply border-l-4 border-borderColor-accent-primary pl-16 my-24 text-balance italic text-fgColor-tertiary;
     }
 
     .portable-text :global(ul) {
-        @apply list-disc pl-6 mb-4 space-y-2;
+        @apply list-disc pl-24 mb-16 space-y-8;
     }
 
     .portable-text :global(ol) {
-        @apply list-decimal pl-6 mb-4 space-y-2;
+        @apply list-decimal pl-24 mb-16 space-y-8;
     }
 
     .portable-text :global(li) {
@@ -57,11 +57,11 @@ const { value } = Astro.props
     }
 
     .portable-text :global(code) {
-        @apply rounded bg-bgColor-secondary px-1.5 py-0.5 text-sm font-mono text-fgColor-primary;
+        @apply rounded bg-bgColor-secondary px-8 py-2 text-sm font-mono text-fgColor-primary;
     }
 
     .portable-text :global(pre) {
-        @apply overflow-x-auto rounded-lg bg-bgColor-black-solid p-4 my-6;
+        @apply overflow-x-auto rounded-lg bg-bgColor-black-solid p-16 my-24;
     }
 
     .portable-text :global(pre code) {
@@ -73,14 +73,14 @@ const { value } = Astro.props
     }
 
     .portable-text :global(img) {
-        @apply rounded-lg w-full my-8;
+        @apply rounded-lg w-full my-32;
     }
 
     .portable-text :global(figure) {
-        @apply my-8;
+        @apply my-32;
     }
 
     .portable-text :global(figcaption) {
-        @apply mt-2 text-center text-sm text-fgColor-tertiary;
+        @apply mt-8 text-center text-sm text-fgColor-tertiary;
     }
 </style>
