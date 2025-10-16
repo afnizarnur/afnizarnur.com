@@ -1,0 +1,260 @@
+---
+import type { NavigationItem } from "@afnizarnur/ui"
+import { X } from "phosphor-react"
+
+export interface Props {
+    items: NavigationItem[]
+    currentPath?: string
+}
+
+const { items, currentPath } = Astro.props
+
+// Normalize navigation href
+function normalizeHref(href: string): string {
+    if (href.startsWith("http")) {
+        return href
+    }
+    return href.startsWith("/") ? href : `/${href}`
+}
+
+// Check if navigation item is active
+function isNavItemActive(itemHref: string, path: string): boolean {
+    const normalizedHref = normalizeHref(itemHref)
+    return path === normalizedHref
+}
+---
+
+<div
+    id="mobile-menu-overlay"
+    class="fixed inset-0 z-50 hidden lg:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigation menu"
+    aria-hidden="true"
+>
+    {/* Backdrop - Clickable to close */}
+    <div
+        id="mobile-menu-backdrop"
+        class="absolute inset-0 bg-background-inverse/70 backdrop-blur-sm transition-opacity duration-300 ease-out opacity-0"
+        aria-hidden="true"
+    />
+
+    {/* Menu Panel - Slides from bottom */}
+    <div
+        id="mobile-menu-panel"
+        class="fixed inset-0 w-screen h-screen bg-background-primary overflow-y-auto transform transition-transform duration-300 ease-out translate-y-full shadow-lg"
+        role="navigation"
+        aria-label="Primary navigation"
+    >
+        {/* Header with Close Button */}
+        <div class="sticky top-0 flex items-center justify-between px-spacing-24 py-spacing-20 bg-background-primary border-b-[2px] border-border-tertiary z-10">
+            <span class="text-body-2-semibold text-text-primary">Navigation</span>
+            <button
+                id="close-menu-button"
+                class="group w-size-40 h-size-40 p-size-8 flex items-center justify-center text-icon-secondary hover:text-icon-primary hover:bg-background-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-icon-primary active:text-icon-primary transition-all duration-150 rounded-radius-8"
+                aria-label="Close navigation menu"
+                aria-controls="mobile-menu-overlay"
+                type="button"
+            >
+                <X size={24} color="currentColor" />
+            </button>
+        </div>
+
+        {/* Navigation Links */}
+        <nav class="px-spacing-24 py-spacing-24" aria-label="Main menu items">
+            <ul class="flex flex-col gap-spacing-8 list-none p-0 m-0">
+                {
+                    items.map((item) => {
+                        const href = normalizeHref(item.href)
+                        const isActive = isNavItemActive(item.href, currentPath || "")
+
+                        return (
+                            <li>
+                                <a
+                                    href={href}
+                                    target={item.newTab ? "_blank" : undefined}
+                                    rel={item.newTab ? "noopener noreferrer" : undefined}
+                                    class={`group flex items-center justify-between px-spacing-20 py-spacing-16 text-body-2-regular rounded-radius-12 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${
+                                        isActive
+                                            ? "bg-background-accent-primary text-text-primary font-semibold shadow-sm"
+                                            : "text-text-secondary bg-background-secondary/50 hover:bg-background-secondary hover:text-text-primary active:bg-background-secondary active:text-text-primary"
+                                    }`}
+                                    aria-current={isActive ? "page" : undefined}
+                                    data-close-menu="true"
+                                >
+                                    <span>{item.title}</span>
+                                    {item.newTab && (
+                                        <span
+                                            class="text-icon-tertiary group-hover:text-icon-secondary transition-colors duration-150 text-xs"
+                                            aria-label="Opens in new window"
+                                            title="Opens in new window"
+                                        >
+                                            ↗
+                                        </span>
+                                    )}
+                                </a>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </nav>
+
+        {/* Bottom Spacing */}
+        <div class="h-spacing-24" />
+    </div>
+</div>
+
+<script is:inline>
+    function setupMobileMenu() {
+        const hamburgerBtn = document.getElementById("hamburger-menu-button")
+        const overlay = document.getElementById("mobile-menu-overlay")
+        const backdrop = document.getElementById("mobile-menu-backdrop")
+        const closeBtn = document.getElementById("close-menu-button")
+        const menuPanel = document.getElementById("mobile-menu-panel")
+        const menuLinks = document.querySelectorAll('[data-close-menu="true"]')
+
+        if (!hamburgerBtn || !overlay || !backdrop || !closeBtn || !menuPanel) {
+            return
+        }
+
+        let isMenuOpen = false
+
+        function openMenu() {
+            if (isMenuOpen) return
+
+            isMenuOpen = true
+            overlay.classList.remove("hidden")
+            overlay.setAttribute("aria-hidden", "false")
+            hamburgerBtn.setAttribute("aria-expanded", "true")
+
+            // Force reflow to trigger animation
+            void menuPanel.offsetHeight
+
+            // Animate menu panel from bottom to top
+            menuPanel.classList.remove("translate-y-full")
+            // Fade in backdrop
+            backdrop.classList.remove("opacity-0")
+            backdrop.classList.add("opacity-100")
+
+            // Prevent body scroll
+            document.body.style.overflow = "hidden"
+
+            // Focus close button for keyboard navigation
+            setTimeout(() => closeBtn.focus(), 100)
+        }
+
+        function closeMenu() {
+            if (!isMenuOpen) return
+
+            isMenuOpen = false
+            // Animate menu panel from top to bottom
+            menuPanel.classList.add("translate-y-full")
+            // Fade out backdrop
+            backdrop.classList.add("opacity-0")
+            backdrop.classList.remove("opacity-100")
+
+            overlay.setAttribute("aria-hidden", "true")
+            hamburgerBtn.setAttribute("aria-expanded", "false")
+
+            // Re-enable body scroll after animation completes
+            setTimeout(() => {
+                overlay.classList.add("hidden")
+                document.body.style.overflow = ""
+                // Return focus to hamburger button
+                hamburgerBtn.focus()
+            }, 300) // Match the transition duration
+        }
+
+        // Open menu on hamburger click
+        hamburgerBtn.addEventListener("click", openMenu)
+
+        // Close menu on close button click
+        closeBtn.addEventListener("click", closeMenu)
+
+        // Close menu on backdrop click
+        backdrop.addEventListener("click", (e) => {
+            // Only close if clicking on backdrop itself, not children
+            if (e.target === backdrop) {
+                closeMenu()
+            }
+        })
+
+        // Close menu when navigation link is clicked
+        menuLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                // Check if it's an internal link (not target="_blank")
+                if (!link.getAttribute("target")) {
+                    closeMenu()
+                }
+            })
+        })
+
+        // Close menu on Escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isMenuOpen) {
+                e.preventDefault()
+                closeMenu()
+            }
+        })
+
+        // Trap focus within menu when open
+        document.addEventListener("keydown", (e) => {
+            if (!isMenuOpen || e.key !== "Tab") return
+
+            const focusableElements = menuPanel.querySelectorAll(
+                "button, a, [tabindex]:not([tabindex='-1'])"
+            )
+            const firstElement = focusableElements[0]
+            const lastElement = focusableElements[focusableElements.length - 1]
+
+            if (e.shiftKey) {
+                // Shift + Tab
+                if (document.activeElement === firstElement) {
+                    e.preventDefault()
+                    lastElement?.focus()
+                }
+            } else {
+                // Tab
+                if (document.activeElement === lastElement) {
+                    e.preventDefault()
+                    firstElement?.focus()
+                }
+            }
+        })
+    }
+
+    // Initialize on DOM ready
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", setupMobileMenu)
+    } else {
+        setupMobileMenu()
+    }
+</script>
+
+<style>
+    /* Optimize animations with GPU acceleration */
+    #mobile-menu-panel {
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+
+    #mobile-menu-backdrop {
+        will-change: opacity;
+    }
+
+    /* Smooth transitions for all interactive elements */
+    :global(#mobile-menu-panel a) {
+        will-change: background-color, color;
+    }
+
+    /* Active link visual state */
+    :global(#mobile-menu-panel a[aria-current="page"]) {
+        position: relative;
+    }
+
+    /* Prevent layout shift during animations */
+    :global(body) {
+        transition: overflow 0s;
+    }
+</style>
