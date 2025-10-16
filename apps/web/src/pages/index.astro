@@ -10,10 +10,10 @@ const featuredProjects = await getFeaturedProjects()
     <!-- Hero Section -->
     <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-            <h1 class="text-5xl font-bold text-neutral-900 sm:text-6xl">
+            <h1 class="text-5xl font-bold text-fgColor-primary sm:text-6xl">
                 Product Designer & Developer
             </h1>
-            <p class="mt-6 text-xl text-neutral-600">
+            <p class="mt-6 text-xl text-fgColor-secondary">
                 I design and build products that people love. Currently focused on design systems,
                 frontend development, and creating delightful user experiences.
             </p>
@@ -25,10 +25,10 @@ const featuredProjects = await getFeaturedProjects()
         featuredProjects && featuredProjects.length > 0 && (
             <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
                 <div class="mb-12 flex items-center justify-between">
-                    <h2 class="text-3xl font-bold text-neutral-900">Selected Work</h2>
+                    <h2 class="text-3xl font-bold text-fgColor-primary">Selected Work</h2>
                     <a
                         href="/work"
-                        class="text-sm font-medium text-primary-600 hover:text-primary-700"
+                        class="text-sm font-medium text-fgColor-accent-primary hover:text-fgColor-accent-primary-hover"
                     >
                         View all projects →
                     </a>

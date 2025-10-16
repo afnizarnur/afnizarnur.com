@@ -29,22 +29,22 @@ const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
     <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <!-- Post Header -->
         <header class="mb-12">
-            <time class="text-sm text-neutral-500" datetime={post.publishedAt}>
+            <time class="text-sm text-fgColor-tertiary" datetime={post.publishedAt}>
                 {formattedDate}
             </time>
 
-            <h1 class="mt-2 text-4xl font-bold text-neutral-900 sm:text-5xl">
+            <h1 class="mt-2 text-4xl font-bold text-fgColor-primary sm:text-5xl">
                 {post.title}
             </h1>
 
-            <p class="mt-4 text-xl text-neutral-600">{post.excerpt}</p>
+            <p class="mt-4 text-xl text-fgColor-secondary">{post.excerpt}</p>
 
             {/* Tags */}
             {
                 post.tags && post.tags.length > 0 && (
                     <div class="mt-6 flex flex-wrap gap-2">
                         {post.tags.map((tag) => (
-                            <span class="rounded-full bg-neutral-100 px-3 py-1 text-sm text-neutral-700">
+                            <span class="rounded-full bg-bgColor-secondary px-3 py-1 text-sm text-fgColor-primary">
                                 {tag.title}
                             </span>
                         ))}

@@ -71,7 +71,7 @@ const currentPath = new URL(Astro.url).pathname
         <!-- Canonical URL -->
         {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     </head>
-    <body class="min-h-screen flex flex-col bg-white text-neutral-900">
+    <body class="min-h-screen flex flex-col bg-bgColor-primary text-fgColor-primary">
         {navigation && <Navbar client:load items={navigation.items} currentPath={currentPath} />}
 
         <main class="flex-grow">
