@@ -43,7 +43,7 @@ const hasTags = post.tags && post.tags.length > 0
             <PageHeader title={post.title} description={post.excerpt} actions={actions}>
                 <time
                     slot="eyebrow"
-                    class="text-sm font-semibold uppercase tracking-wide text-fgColor-tertiary"
+                    class="text-sm font-semibold uppercase tracking-wide text-text-tertiary"
                     datetime={post.publishedAt}
                 >
                     {formattedDate}
@@ -53,7 +53,7 @@ const hasTags = post.tags && post.tags.length > 0
                     hasTags && (
                         <div slot="meta" class="flex flex-wrap gap-8">
                             {post.tags!.map((tag) => (
-                                <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-secondary px-12 py-4 text-xs font-medium text-fgColor-primary">
+                                <span class="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary">
                                     {tag.title}
                                 </span>
                             ))}

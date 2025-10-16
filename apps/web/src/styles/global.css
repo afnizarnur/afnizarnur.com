@@ -13,11 +13,11 @@
 /* Tailwind v4 Core */
 @import "tailwindcss";
 
-/* Configure Tailwind source paths for content scanning */
-@source "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}";
-
 /* Design Tokens Theme Mapping */
 @import "./theme.css";
+
+/* Configure Tailwind source paths for content scanning */
+@source "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}";
 
 /* Base HTML Element Styles */
 @layer base {
@@ -26,8 +26,8 @@
         font-family: var(--font-family-switzer);
         font-size: var(--font-size-body);
         line-height: var(--line-height-normal);
-        color: var(--color-fgColor-primary);
-        background-color: var(--color-bgColor-primary);
+        color: var(--color-text-primary);
+        background-color: var(--color-background-primary);
     }
 
     /* Heading Elements */
@@ -37,7 +37,7 @@
     h4,
     h5,
     h6 {
-        color: var(--color-fgColor-primary);
+        color: var(--color-text-primary);
         font-family: var(--font-family-fonetika);
         font-weight: var(--font-weight-medium);
         line-height: var(--line-height-normal);
@@ -81,13 +81,14 @@
 
     /* Links */
     a {
-        color: var(--color-fgColor-accent-primary);
+        color: var(--color-text-accent-primary);
         transition-property: color;
         transition-timing-function: ease;
         transition-duration: 150ms;
     }
 
     a:hover {
-        color: var(--color-fgColor-accent-primary-hover);
+        color: var(--color-text-accent-primary);
+        opacity: 0.8;
     }
 }

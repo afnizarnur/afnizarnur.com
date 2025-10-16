@@ -45,18 +45,18 @@ const hasDefaultSlot = Astro.slots.has("default")
             <slot name="eyebrow" />
         ) : (
             eyebrow && (
-                <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-accent-primary px-12 py-4 text-xs font-semibold uppercase tracking-wide text-fgColor-accent-primary">
+                <span class="inline-flex items-center gap-8 rounded-full bg-background-accent-primary px-12 py-4 text-xs font-semibold uppercase tracking-wide text-text-accent-primary">
                     {eyebrow}
                 </span>
             )
         )
     }
 
-    <component is={headingLevel} class="text-balance text-4xl font-bold text-fgColor-primary sm:text-5xl">
+    <component is={headingLevel} class="text-balance text-4xl font-bold text-text-primary sm:text-5xl">
         {title}
     </component>
 
-    {description && <p class="text-balance text-xl text-fgColor-secondary">{description}</p>}
+    {description && <p class="text-balance text-xl text-text-secondary">{description}</p>}
 
     {hasDefaultSlot && <slot />}
 
@@ -88,9 +88,9 @@ const hasDefaultSlot = Astro.slots.has("default")
                         rel={action.external ? "noopener noreferrer" : undefined}
                         class:list={{
                             "inline-flex items-center justify-center gap-8 rounded-full px-16 py-8 text-sm font-semibold transition-colors duration-150": true,
-                            "bg-bgColor-accent-solid text-fgColor-white hover:bg-bgColor-accent-solid-hover": action.variant === "primary",
-                            "border border-borderColor-primary bg-bgColor-primary text-fgColor-primary hover:bg-bgColor-secondary": action.variant === "secondary",
-                            "text-fgColor-primary hover:text-fgColor-accent-primary": action.variant === "ghost",
+                            "bg-background-accent-solid text-text-inverse hover:bg-background-accent-solid-hover": action.variant === "primary",
+                            "border border-border-primary bg-background-primary text-text-primary hover:bg-background-secondary": action.variant === "secondary",
+                            "text-text-primary hover:text-text-accent-primary": action.variant === "ghost",
                         }}
                     >
                         {action.label}

@@ -14,7 +14,7 @@ const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
 
 <a
     href={`/blog/${slug}`}
-    class="group relative block overflow-hidden rounded-3xl border border-borderColor-secondary bg-gradient-to-br from-bgColor-secondary to-bgColor-primary p-24 transition-transform duration-200 hover:translate-y-1 hover:shadow-lg"
+    class="group relative block overflow-hidden rounded-3xl border border-border-secondary bg-gradient-to-br from-bgColor-secondary to-bgColor-primary p-24 transition-transform duration-200 hover:translate-y-1 hover:shadow-lg"
 >
     <div class="space-y-16">
         {
@@ -31,21 +31,21 @@ const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
         }
 
         <div class="space-y-8">
-            <time class="text-sm text-fgColor-tertiary" datetime={publishedAt}>
+            <time class="text-sm text-text-tertiary" datetime={publishedAt}>
                 {formattedDate}
             </time>
 
-            <h3 class="text-xl font-semibold text-fgColor-primary transition-colors group-hover:text-fgColor-accent-primary">
+            <h3 class="text-xl font-semibold text-text-primary transition-colors group-hover:text-text-accent-primary">
                 {title}
             </h3>
 
-            <p class="text-fgColor-secondary">{excerpt}</p>
+            <p class="text-text-secondary">{excerpt}</p>
 
             {
                 tags && tags.length > 0 && (
                     <div class="flex flex-wrap gap-8 pt-8">
                         {tags.map((tag) => (
-                            <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-secondary px-12 py-4 text-xs font-medium text-fgColor-primary">
+                            <span class="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary">
                                 {tag.title}
                             </span>
                         ))}

@@ -9,21 +9,21 @@ export interface Props {
 const { items, currentPath } = Astro.props
 ---
 
-<nav class="sticky top-0 z-40 border-b border-borderColor-secondary bg-bgColor-primary backdrop-blur">
+<nav class="sticky top-0 z-40 border-b border-border-secondary bg-background-primary backdrop-blur">
     <div class="mx-auto max-w-7xl px-16 py-12 sm:px-24 lg:px-32 flex items-center justify-between gap-16">
         <a
             href="/"
-            class="flex items-center gap-8 text-fgColor-primary transition-colors hover:text-fgColor-accent-primary"
+            class="flex items-center gap-8 text-text-primary transition-colors hover:text-text-accent-primary"
             aria-label="Afnizar Nur Ghifari home"
         >
-            <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-accent-primary px-12 py-4 text-xs font-medium text-fgColor-accent-primary"
+            <span class="inline-flex items-center gap-8 rounded-full bg-background-accent-primary px-12 py-4 text-xs font-medium text-text-accent-primary"
                 >AN</span
             >
             <span class="hidden sm:flex flex-col leading-tight">
                 <span class="text-sm font-semibold tracking-wide uppercase">
                     Afnizar Nur
                 </span>
-                <span class="text-xs font-medium text-fgColor-secondary">
+                <span class="text-xs font-medium text-text-secondary">
                     Product Designer & Developer
                 </span>
             </span>
@@ -46,9 +46,9 @@ const { items, currentPath } = Astro.props
                                 rel={item.newTab ? "noopener noreferrer" : undefined}
                                 class:list={{
                                     "inline-flex items-center justify-center gap-8 rounded-full px-12 py-8 text-sm font-semibold transition-colors duration-150": true,
-                                    "bg-bgColor-secondary text-fgColor-primary box-shadow-[0_18px_40px_rgba(0,_0,_0,_0.06)]":
+                                    "bg-background-secondary text-text-primary box-shadow-[0_18px_40px_rgba(0,_0,_0,_0.06)]":
                                         isActive,
-                                    "text-fgColor-secondary hover:text-fgColor-primary hover:bg-bgColor-secondary":
+                                    "text-text-secondary hover:text-text-primary hover:bg-background-secondary":
                                         !isActive,
                                 }}
                                 aria-current={isActive ? "page" : undefined}

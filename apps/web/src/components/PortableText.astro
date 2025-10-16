@@ -17,23 +17,23 @@ const { value } = Astro.props
     @reference "../styles/global.css";
 
     :global(div) h2 {
-        @apply mt-48 mb-16 text-balance text-3xl font-bold text-fgColor-primary;
+        @apply mt-48 mb-16 text-balance text-3xl font-bold text-text-primary;
     }
 
     :global(div) h3 {
-        @apply mt-32 mb-12 text-balance text-2xl font-bold text-fgColor-primary;
+        @apply mt-32 mb-12 text-balance text-2xl font-bold text-text-primary;
     }
 
     :global(div) h4 {
-        @apply mt-24 mb-8 text-balance text-xl font-bold text-fgColor-primary;
+        @apply mt-24 mb-8 text-balance text-xl font-bold text-text-primary;
     }
 
     :global(div) p {
-        @apply mb-16 text-balance text-fgColor-secondary leading-relaxed;
+        @apply mb-16 text-balance text-text-secondary leading-relaxed;
     }
 
     :global(div) blockquote {
-        @apply border-l-4 border-borderColor-accent-primary pl-16 my-24 text-balance italic text-fgColor-tertiary;
+        @apply border-l-4 border-border-accent-primary pl-16 my-24 text-balance italic text-text-tertiary;
     }
 
     :global(div) ul {
@@ -45,7 +45,7 @@ const { value } = Astro.props
     }
 
     :global(div) li {
-        @apply text-fgColor-secondary;
+        @apply text-text-secondary;
     }
 
     :global(div) strong {
@@ -57,19 +57,19 @@ const { value } = Astro.props
     }
 
     :global(div) code {
-        @apply rounded bg-bgColor-secondary px-8 py-2 text-sm font-mono text-fgColor-primary;
+        @apply rounded bg-background-secondary px-8 py-2 text-sm font-mono text-text-primary;
     }
 
     :global(div) pre {
-        @apply overflow-x-auto rounded-lg bg-bgColor-black-solid p-16 my-24;
+        @apply overflow-x-auto rounded-lg bg-background-inverse p-16 my-24;
     }
 
     :global(div) pre code {
-        @apply text-sm text-fgColor-white bg-transparent p-0;
+        @apply text-sm text-text-inverse bg-transparent p-0;
     }
 
     :global(div) a {
-        @apply text-fgColor-accent-primary hover:text-fgColor-accent-primary-hover underline;
+        @apply text-text-accent-primary hover:opacity-80 underline;
     }
 
     :global(div) img {
@@ -81,6 +81,6 @@ const { value } = Astro.props
     }
 
     :global(div) figcaption {
-        @apply mt-8 text-center text-sm text-fgColor-tertiary;
+        @apply mt-8 text-center text-sm text-text-tertiary;
     }
 </style>

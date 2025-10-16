@@ -8,7 +8,7 @@ const { title, slug, description, role, thumbnail, thumbnailAlt, year } = Astro.
 
 <a
     href={`/work/${slug}`}
-    class="group relative block overflow-hidden rounded-3xl border border-borderColor-secondary bg-gradient-to-br from-bgColor-secondary to-bgColor-primary p-24 transition-transform duration-200 hover:translate-y-1 hover:shadow-lg"
+    class="group relative block overflow-hidden rounded-3xl border border-border-secondary bg-gradient-to-br from-bgColor-secondary to-bgColor-primary p-24 transition-transform duration-200 hover:translate-y-1 hover:shadow-lg"
 >
     <div class="space-y-16">
         {
@@ -25,19 +25,19 @@ const { title, slug, description, role, thumbnail, thumbnailAlt, year } = Astro.
         }
 
         <div class="space-y-8">
-            {year && <p class="text-sm text-fgColor-tertiary">{year}</p>}
+            {year && <p class="text-sm text-text-tertiary">{year}</p>}
 
-            <h3 class="text-xl font-semibold text-fgColor-primary transition-colors group-hover:text-fgColor-accent-primary">
+            <h3 class="text-xl font-semibold text-text-primary transition-colors group-hover:text-text-accent-primary">
                 {title}
             </h3>
 
-            <p class="text-fgColor-secondary">{description}</p>
+            <p class="text-text-secondary">{description}</p>
 
             {
                 role && role.length > 0 && (
                     <div class="flex flex-wrap gap-8 pt-8">
                         {role.map((r) => (
-                            <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-secondary px-12 py-4 text-xs font-medium text-fgColor-primary">
+                            <span class="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary">
                                 {r}
                             </span>
                         ))}

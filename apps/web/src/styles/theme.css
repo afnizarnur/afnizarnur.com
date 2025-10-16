@@ -144,90 +144,80 @@
 
     /* Semantic tokens - Direct mapping from JSON structure */
 
-    /* Background colors -> bg-bgColor-* utilities */
-    --color-bgColor-primary: var(--color-semantic-bgColor-primary);
-    --color-bgColor-secondary: var(--color-semantic-bgColor-secondary);
-    --color-bgColor-tertiary: var(--color-semantic-bgColor-tertiary);
-    --color-bgColor-quartiary: var(--color-semantic-bgColor-quartiary);
-    --color-bgColor-primary-hover: var(--color-semantic-bgColor-primary-hover);
-    --color-bgColor-secondary-hover: var(--color-semantic-bgColor-secondary-hover);
-    --color-bgColor-tertiary-hover: var(--color-semantic-bgColor-tertiary-hover);
-    --color-bgColor-quartiary-hover: var(--color-semantic-bgColor-quartiary-hover);
-    --color-bgColor-black-solid: var(--color-semantic-bgColor-black-solid);
-    --color-bgColor-black-solid-hover: var(--color-semantic-bgColor-black-solid-hover);
-    --color-bgColor-disabled: var(--color-semantic-bgColor-disabled);
-    --color-bgColor-disabled-alt: var(--color-semantic-bgColor-disabled-alt);
-    --color-bgColor-accent-primary: var(--color-semantic-bgColor-accent-primary);
-    --color-bgColor-accent-primary-hover: var(--color-semantic-bgColor-accent-primary-hover);
-    --color-bgColor-accent-solid: var(--color-semantic-bgColor-accent-solid);
-    --color-bgColor-accent-solid-hover: var(--color-semantic-bgColor-accent-solid-hover);
-    --color-bgColor-error-primary: var(--color-semantic-bgColor-error-primary);
-    --color-bgColor-error-primary-hover: var(--color-semantic-bgColor-error-primary-hover);
-    --color-bgColor-error-secondary: var(--color-semantic-bgColor-error-secondary);
-    --color-bgColor-error-secondary-hover: var(--color-semantic-bgColor-error-secondary-hover);
-    --color-bgColor-success-primary: var(--color-semantic-bgColor-success-primary);
-    --color-bgColor-success-primary-hover: var(--color-semantic-bgColor-success-primary-hover);
-    --color-bgColor-success-secondary: var(--color-semantic-bgColor-success-secondary);
-    --color-bgColor-success-secondary-hover: var(--color-semantic-bgColor-success-secondary-hover);
-    --color-bgColor-warning-primary: var(--color-semantic-bgColor-warning-primary);
-    --color-bgColor-warning-primary-hover: var(--color-semantic-bgColor-warning-primary-hover);
-    --color-bgColor-warning-secondary: var(--color-semantic-bgColor-warning-secondary);
-    --color-bgColor-warning-secondary-hover: var(--color-semantic-bgColor-warning-secondary-hover);
-    --color-bgColor-info-primary: var(--color-semantic-bgColor-info-primary);
-    --color-bgColor-info-primary-hover: var(--color-semantic-bgColor-info-primary-hover);
-    --color-bgColor-info-secondary: var(--color-semantic-bgColor-info-secondary);
-    --color-bgColor-info-secondary-hover: var(--color-semantic-bgColor-info-secondary-hover);
+    /* Background colors -> bg-background-* utilities */
+    --color-background-primary: var(--color-semantic-background-primary);
+    --color-background-secondary: var(--color-semantic-background-secondary);
+    --color-background-tertiary: var(--color-semantic-background-tertiary);
+    --color-background-quartiary: var(--color-semantic-background-quartiary);
+    --color-background-inverse: var(--color-semantic-background-inverse);
+    --color-background-disabled: var(--color-semantic-background-disabled);
+    --color-background-accent-primary: var(--color-semantic-background-accent-primary);
+    --color-background-accent-secondary: var(--color-semantic-background-accent-secondary);
+    --color-background-accent-solid: var(--color-semantic-background-accent-solid);
+    --color-background-error-primary: var(--color-semantic-background-error-primary);
+    --color-background-error-secondary: var(--color-semantic-background-error-secondary);
+    --color-background-error-solid: var(--color-semantic-background-error-solid);
+    --color-background-success-primary: var(--color-semantic-background-success-primary);
+    --color-background-success-secondary: var(--color-semantic-background-success-secondary);
+    --color-background-success-solid: var(--color-semantic-background-success-solid);
+    --color-background-warning-primary: var(--color-semantic-background-warning-primary);
+    --color-background-warning-secondary: var(--color-semantic-background-warning-secondary);
+    --color-background-warning-solid: var(--color-semantic-background-warning-solid);
+    --color-background-info-primary: var(--color-semantic-background-info-primary);
+    --color-background-info-secondary: var(--color-semantic-background-info-secondary);
+    --color-background-info-solid: var(--color-semantic-background-info-solid);
 
-    /* Text/Foreground colors -> text-fgColor-* utilities */
-    --color-fgColor-primary: var(--color-semantic-fgColor-primary);
-    --color-fgColor-secondary: var(--color-semantic-fgColor-secondary);
-    --color-fgColor-tertiary: var(--color-semantic-fgColor-tertiary);
-    --color-fgColor-primary-hover: var(--color-semantic-fgColor-primary-hover);
-    --color-fgColor-secondary-hover: var(--color-semantic-fgColor-secondary-hover);
-    --color-fgColor-tertiary-hover: var(--color-semantic-fgColor-tertiary-hover);
-    --color-fgColor-disabled: var(--color-semantic-fgColor-disabled);
-    --color-fgColor-disabled-alt: var(--color-semantic-fgColor-disabled-alt);
-    --color-fgColor-placeholder: var(--color-semantic-fgColor-placeholder);
-    --color-fgColor-white: var(--color-semantic-fgColor-white);
-    --color-fgColor-on-dark: var(--color-semantic-fgColor-on-dark-color);
-    --color-fgColor-accent-primary: var(--color-semantic-fgColor-accent-primary);
-    --color-fgColor-accent-secondary: var(--color-semantic-fgColor-accent-secondary);
-    --color-fgColor-accent-primary-hover: var(--color-semantic-fgColor-accent-primary-hover);
-    --color-fgColor-accent-secondary-hover: var(--color-semantic-fgColor-accent-secondary-hover);
-    --color-fgColor-error-primary: var(--color-semantic-fgColor-error-primary);
-    --color-fgColor-error-secondary: var(--color-semantic-fgColor-error-secondary);
-    --color-fgColor-error-primary-hover: var(--color-semantic-fgColor-error-primary-hover);
-    --color-fgColor-error-secondary-hover: var(--color-semantic-fgColor-error-secondary-hover);
-    --color-fgColor-success-primary: var(--color-semantic-fgColor-success-primary);
-    --color-fgColor-success-secondary: var(--color-semantic-fgColor-success-secondary);
-    --color-fgColor-success-primary-hover: var(--color-semantic-fgColor-success-primary-hover);
-    --color-fgColor-success-secondary-hover: var(--color-semantic-fgColor-success-secondary-hover);
-    --color-fgColor-warning-primary: var(--color-semantic-fgColor-warning-primary);
-    --color-fgColor-warning-secondary: var(--color-semantic-fgColor-warning-secondary);
-    --color-fgColor-warning-primary-hover: var(--color-semantic-fgColor-warning-primary-hover);
-    --color-fgColor-warning-secondary-hover: var(--color-semantic-fgColor-warning-secondary-hover);
-    --color-fgColor-info-primary: var(--color-semantic-fgColor-info-primary);
-    --color-fgColor-info-secondary: var(--color-semantic-fgColor-info-secondary);
-    --color-fgColor-info-primary-hover: var(--color-semantic-fgColor-info-primary-hover);
-    --color-fgColor-info-secondary-hover: var(--color-semantic-fgColor-info-secondary-hover);
+    /* Text colors -> text-text-* utilities */
+    --color-text-primary: var(--color-semantic-text-primary);
+    --color-text-secondary: var(--color-semantic-text-secondary);
+    --color-text-tertiary: var(--color-semantic-text-tertiary);
+    --color-text-placeholder: var(--color-semantic-text-placeholder);
+    --color-text-disabled: var(--color-semantic-text-disabled);
+    --color-text-inverse: var(--color-semantic-text-inverse);
+    --color-text-accent-primary: var(--color-semantic-text-accent-primary);
+    --color-text-accent-secondary: var(--color-semantic-text-accent-secondary);
+    --color-text-error-primary: var(--color-semantic-text-error-primary);
+    --color-text-error-secondary: var(--color-semantic-text-error-secondary);
+    --color-text-success-primary: var(--color-semantic-text-success-primary);
+    --color-text-success-secondary: var(--color-semantic-text-success-secondary);
+    --color-text-warning-primary: var(--color-semantic-text-warning-primary);
+    --color-text-warning-secondary: var(--color-semantic-text-warning-secondary);
+    --color-text-info-primary: var(--color-semantic-text-info-primary);
+    --color-text-info-secondary: var(--color-semantic-text-info-secondary);
 
-    /* Border colors -> border-borderColor-* utilities */
-    --color-borderColor-primary: var(--color-semantic-borderColor-primary);
-    --color-borderColor-secondary: var(--color-semantic-borderColor-secondary);
-    --color-borderColor-tertiary: var(--color-semantic-borderColor-tertiary);
-    --color-borderColor-primary-solid: var(--color-semantic-borderColor-primary-solid);
-    --color-borderColor-disabled: var(--color-semantic-borderColor-disabled);
-    --color-borderColor-disabled-alt: var(--color-semantic-borderColor-disabled-alt);
-    --color-borderColor-accent-primary: var(--color-semantic-borderColor-accent-primary);
-    --color-borderColor-accent-secondary: var(--color-semantic-borderColor-accent-secondary);
-    --color-borderColor-error-primary: var(--color-semantic-borderColor-error-primary);
-    --color-borderColor-error-secondary: var(--color-semantic-borderColor-error-secondary);
-    --color-borderColor-success-primary: var(--color-semantic-borderColor-success-primary);
-    --color-borderColor-success-secondary: var(--color-semantic-borderColor-success-secondary);
-    --color-borderColor-warning-primary: var(--color-semantic-borderColor-warning-primary);
-    --color-borderColor-warning-secondary: var(--color-semantic-borderColor-warning-secondary);
-    --color-borderColor-info-primary: var(--color-semantic-borderColor-info-primary);
-    --color-borderColor-info-secondary: var(--color-semantic-borderColor-info-secondary);
+    /* Icon colors -> text-icon-* utilities (icons use text- prefix in Tailwind) */
+    --color-icon-primary: var(--color-semantic-icon-primary);
+    --color-icon-secondary: var(--color-semantic-icon-secondary);
+    --color-icon-tertiary: var(--color-semantic-icon-tertiary);
+    --color-icon-disabled: var(--color-semantic-icon-disabled);
+    --color-icon-inverse: var(--color-semantic-icon-inverse);
+    --color-icon-accent-primary: var(--color-semantic-icon-accent-primary);
+    --color-icon-accent-secondary: var(--color-semantic-icon-accent-secondary);
+    --color-icon-error-primary: var(--color-semantic-icon-error-primary);
+    --color-icon-error-secondary: var(--color-semantic-icon-error-secondary);
+    --color-icon-success-primary: var(--color-semantic-icon-success-primary);
+    --color-icon-success-secondary: var(--color-semantic-icon-success-secondary);
+    --color-icon-warning-primary: var(--color-semantic-icon-warning-primary);
+    --color-icon-warning-secondary: var(--color-semantic-icon-warning-secondary);
+    --color-icon-info-primary: var(--color-semantic-icon-info-primary);
+    --color-icon-info-secondary: var(--color-semantic-icon-info-secondary);
+
+    /* Border colors -> border-border-* utilities */
+    --color-border-primary: var(--color-semantic-border-primary);
+    --color-border-secondary: var(--color-semantic-border-secondary);
+    --color-border-tertiary: var(--color-semantic-border-tertiary);
+    --color-border-solid: var(--color-semantic-border-solid);
+    --color-border-disabled: var(--color-semantic-border-disabled);
+    --color-border-accent-primary: var(--color-semantic-border-accent-primary);
+    --color-border-accent-secondary: var(--color-semantic-border-accent-secondary);
+    --color-border-error-primary: var(--color-semantic-border-error-primary);
+    --color-border-error-secondary: var(--color-semantic-border-error-secondary);
+    --color-border-success-primary: var(--color-semantic-border-success-primary);
+    --color-border-success-secondary: var(--color-semantic-border-success-secondary);
+    --color-border-warning-primary: var(--color-semantic-border-warning-primary);
+    --color-border-warning-secondary: var(--color-semantic-border-warning-secondary);
+    --color-border-info-primary: var(--color-semantic-border-info-primary);
+    --color-border-info-secondary: var(--color-semantic-border-info-secondary);
 
     /* Border radius tokens */
     --radius-2: var(--radius-2);

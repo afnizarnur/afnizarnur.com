@@ -10,18 +10,18 @@ const { navigationItems, socialLinks } = Astro.props
 const currentYear = new Date().getFullYear()
 ---
 
-<footer class="border-t border-borderColor-secondary bg-bgColor-primary">
+<footer class="border-t border-border-secondary bg-background-primary">
     <div class="mx-auto max-w-7xl px-16 py-60 sm:px-24 lg:px-32">
         <div class="grid gap-32 md:grid-cols-[2fr_1fr_1fr]">
             <div class="space-y-12">
-                <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-accent-primary px-12 py-4 text-xs font-medium text-fgColor-accent-primary"
+                <span class="inline-flex items-center gap-8 rounded-full bg-background-accent-primary px-12 py-4 text-xs font-medium text-text-accent-primary"
                     >Let's collaborate</span
                 >
                 <div class="space-y-4">
-                    <h3 class="text-2xl font-semibold text-fgColor-primary">
+                    <h3 class="text-2xl font-semibold text-text-primary">
                         Afnizar Nur Ghifari
                     </h3>
-                    <p class="text-fgColor-secondary">
+                    <p class="text-text-secondary">
                         Product designer and developer crafting intentional experiences for
                         digital products and design systems.
                     </p>
@@ -31,7 +31,7 @@ const currentYear = new Date().getFullYear()
             {
                 navigationItems && navigationItems.length > 0 && (
                     <div class="space-y-12">
-                        <h4 class="text-sm font-semibold uppercase tracking-wide text-fgColor-tertiary">
+                        <h4 class="text-sm font-semibold uppercase tracking-wide text-text-tertiary">
                             Navigate
                         </h4>
                         <ul class="grid gap-8">
@@ -49,7 +49,7 @@ const currentYear = new Date().getFullYear()
                                             rel={
                                                 item.newTab ? "noopener noreferrer" : undefined
                                             }
-                                            class="inline-flex items-center gap-8 text-sm font-medium text-fgColor-secondary transition-colors hover:text-fgColor-primary"
+                                            class="inline-flex items-center gap-8 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
                                         >
                                             {item.title}
                                         </a>
@@ -64,7 +64,7 @@ const currentYear = new Date().getFullYear()
             {
                 socialLinks && (
                     <div class="space-y-12">
-                        <h4 class="text-sm font-semibold uppercase tracking-wide text-fgColor-tertiary">
+                        <h4 class="text-sm font-semibold uppercase tracking-wide text-text-tertiary">
                             Connect
                         </h4>
                         <ul class="grid gap-8">
@@ -74,7 +74,7 @@ const currentYear = new Date().getFullYear()
                                         href={`https://twitter.com/${socialLinks.twitter}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-8 text-sm font-medium text-fgColor-secondary transition-colors hover:text-fgColor-primary"
+                                        class="inline-flex items-center gap-8 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
                                     >
                                         Twitter
                                     </a>
@@ -86,7 +86,7 @@ const currentYear = new Date().getFullYear()
                                         href={`https://github.com/${socialLinks.github}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-8 text-sm font-medium text-fgColor-secondary transition-colors hover:text-fgColor-primary"
+                                        class="inline-flex items-center gap-8 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
                                     >
                                         GitHub
                                     </a>
@@ -98,7 +98,7 @@ const currentYear = new Date().getFullYear()
                                         href={socialLinks.linkedin}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-8 text-sm font-medium text-fgColor-secondary transition-colors hover:text-fgColor-primary"
+                                        class="inline-flex items-center gap-8 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
                                     >
                                         LinkedIn
                                     </a>
@@ -108,7 +108,7 @@ const currentYear = new Date().getFullYear()
                                 <li>
                                     <a
                                         href={`mailto:${socialLinks.email}`}
-                                        class="inline-flex items-center gap-8 text-sm font-medium text-fgColor-secondary transition-colors hover:text-fgColor-primary"
+                                        class="inline-flex items-center gap-8 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
                                     >
                                         Email
                                     </a>
@@ -120,7 +120,7 @@ const currentYear = new Date().getFullYear()
             }
         </div>
 
-        <div class="mt-48 flex flex-col gap-16 border-t border-borderColor-secondary pt-24 text-sm text-fgColor-tertiary md:flex-row md:items-center md:justify-between">
+        <div class="mt-48 flex flex-col gap-16 border-t border-border-secondary pt-24 text-sm text-text-tertiary md:flex-row md:items-center md:justify-between">
             <p>© {currentYear} Afnizar Nur Ghifari. All rights reserved.</p>
             <p>
                 Built with care using Astro, Sanity, and a custom design system powered by

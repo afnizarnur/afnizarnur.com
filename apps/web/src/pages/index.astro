@@ -10,7 +10,7 @@ const featuredProjects = await getFeaturedProjects()
 <BaseLayout>
     <!-- Hero -->
     <section class="mx-auto max-w-7xl px-16 py-48 sm:px-24 lg:px-32">
-        <div class="relative overflow-hidden rounded-3xl border border-borderColor-secondary bg-gradient-to-br from-bgColor-secondary to-bgColor-primary p-32 shadow-lg">
+        <div class="relative overflow-hidden rounded-3xl border border-border-secondary bg-gradient-to-br from-bgColor-secondary to-bgColor-primary p-32 shadow-lg">
             <div class="absolute -right-1/5 -top-2/5 aspect-square w-1/2 rounded-full bg-radial-gradient opacity-80 pointer-events-none" style="background: radial-gradient(circle at center, var(--color-bgColor-accent-primary) 0%, transparent 65%); opacity: 0.8;"></div>
             <div class="relative z-10">
                 <PageHeader
@@ -22,10 +22,10 @@ const featuredProjects = await getFeaturedProjects()
                         { href: "/blog", label: "Read the blog", variant: "secondary" },
                     ]}
                 >
-                    <div class="flex flex-wrap gap-12 text-sm text-fgColor-secondary">
-                        <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-accent-primary px-12 py-4 text-xs font-medium text-fgColor-accent-primary">Design systems</span>
-                        <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-secondary px-12 py-4 text-xs font-medium text-fgColor-primary">Frontend development</span>
-                        <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-secondary px-12 py-4 text-xs font-medium text-fgColor-primary">Product strategy</span>
+                    <div class="flex flex-wrap gap-12 text-sm text-text-secondary">
+                        <span class="inline-flex items-center gap-8 rounded-full bg-background-accent-primary px-12 py-4 text-xs font-medium text-text-accent-primary">Design systems</span>
+                        <span class="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary">Frontend development</span>
+                        <span class="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary">Product strategy</span>
                     </div>
                 </PageHeader>
             </div>

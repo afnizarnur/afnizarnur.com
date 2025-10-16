@@ -35,7 +35,7 @@ const hasTechnologies = project.technologies && project.technologies.length > 0
                     project.year && (
                         <span
                             slot="eyebrow"
-                            class="text-sm font-semibold uppercase tracking-wide text-fgColor-tertiary"
+                            class="text-sm font-semibold uppercase tracking-wide text-text-tertiary"
                         >
                             {project.year}
                         </span>
@@ -48,8 +48,8 @@ const hasTechnologies = project.technologies && project.technologies.length > 0
                             {
                                 hasRole && (
                                     <div class="flex flex-col gap-8">
-                                        <p class="text-sm font-semibold text-fgColor-primary">Role</p>
-                                        <p class="text-sm text-fgColor-secondary">{project.role!.join(", ")}</p>
+                                        <p class="text-sm font-semibold text-text-primary">Role</p>
+                                        <p class="text-sm text-text-secondary">{project.role!.join(", ")}</p>
                                     </div>
                                 )
                             }
@@ -57,8 +57,8 @@ const hasTechnologies = project.technologies && project.technologies.length > 0
                             {
                                 hasClient && (
                                     <div class="flex flex-col gap-8">
-                                        <p class="text-sm font-semibold text-fgColor-primary">Client</p>
-                                        <p class="text-sm text-fgColor-secondary">{project.client}</p>
+                                        <p class="text-sm font-semibold text-text-primary">Client</p>
+                                        <p class="text-sm text-text-secondary">{project.client}</p>
                                     </div>
                                 )
                             }
@@ -66,10 +66,10 @@ const hasTechnologies = project.technologies && project.technologies.length > 0
                             {
                                 hasTechnologies && (
                                     <div class="flex flex-col gap-8">
-                                        <p class="text-sm font-semibold text-fgColor-primary">Technologies</p>
+                                        <p class="text-sm font-semibold text-text-primary">Technologies</p>
                                         <div class="flex flex-wrap gap-8">
                                             {project.technologies!.map((tech) => (
-                                                <span class="inline-flex items-center gap-8 rounded-full bg-bgColor-secondary px-12 py-4 text-xs font-medium text-fgColor-primary">
+                                                <span class="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary">
                                                     {tech}
                                                 </span>
                                             ))}
@@ -91,7 +91,7 @@ const hasTechnologies = project.technologies && project.technologies.length > 0
             {
                 project.gallery && project.gallery.length > 1 && (
                     <div class="mt-48">
-                        <h2 class="mb-24 text-2xl font-bold text-fgColor-primary">Gallery</h2>
+                        <h2 class="mb-24 text-2xl font-bold text-text-primary">Gallery</h2>
                         <div class="grid grid-cols-1 gap-24 md:grid-cols-2">
                             {project.gallery.slice(1).map((image) => (
                                 <figure>
@@ -102,7 +102,7 @@ const hasTechnologies = project.technologies && project.technologies.length > 0
                                         loading="lazy"
                                     />
                                     {image.caption && (
-                                        <figcaption class="mt-8 text-sm text-fgColor-tertiary">
+                                        <figcaption class="mt-8 text-sm text-text-tertiary">
                                             {image.caption}
                                         </figcaption>
                                     )}
