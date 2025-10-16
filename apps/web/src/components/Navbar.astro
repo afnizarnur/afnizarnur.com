@@ -6,13 +6,21 @@ import IconButton from "./IconButton.astro"
 export interface Props {
     items: NavigationItem[]
     currentPath?: string
+    logo?: {
+        type: "text" | "image"
+        text?: string
+        image?: {
+            url: string
+            alt: string
+        }
+    }
     timezone?: {
         timeZone?: string
         displayLabel?: string
     }
 }
 
-const { items, currentPath, timezone } = Astro.props
+const { items, currentPath, logo, timezone } = Astro.props
 
 // Get current time in HH:MM_AM/PM format (12-hour format) with timezone
 function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
@@ -62,11 +70,18 @@ const timeString = getFormattedTime(timezone)
         <div class="flex-1 md:col-span-1 lg:col-span-2">
             <a
                 href="/"
-                class="text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary rounded"
+                class="flex items-center gap-2 text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary rounded w-fit"
                 aria-label="Afnizar Nur Ghifari - Home"
                 title="Go to homepage"
             >
-                Afnizar_Nur_Ghifari
+                {logo?.type === "image" && logo?.image ? (
+                    <img
+                        src={logo.image.url}
+                        alt={logo.image.alt}
+                        class="w-6 h-6 rounded-full object-cover"
+                    />
+                ) : null}
+                {logo?.type === "text" ? logo?.text : "Afnizar_Nur_Ghifari"}
             </a>
         </div>
 

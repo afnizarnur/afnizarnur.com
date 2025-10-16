@@ -179,11 +179,24 @@ export interface TimezoneConfig {
 }
 
 /**
+ * Logo configuration
+ */
+export interface LogoConfig {
+    type: "text" | "image"
+    text?: string // Text to display as logo
+    image?: {
+        url: string
+        alt: string
+    }
+}
+
+/**
  * Global site settings (singleton)
  */
 export interface SiteSettings {
     title: string
     description: string
+    logo?: LogoConfig
     ogImage?: string
     url?: string
     social?: SocialLinks
