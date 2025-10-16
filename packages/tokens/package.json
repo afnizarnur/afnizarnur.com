@@ -6,11 +6,13 @@
     "main": "./dist/tokens.css",
     "exports": {
         "./css": "./dist/tokens.css",
+        "./fonts": "./src/fonts.css",
         "./tailwind": "./dist/tailwind-theme.css",
         "./types": "./dist/types.ts"
     },
     "files": [
-        "dist"
+        "dist",
+        "src/fonts.css"
     ],
     "scripts": {
         "build": "terrazzo build",
