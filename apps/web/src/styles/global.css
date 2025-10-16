@@ -4,6 +4,9 @@
 /* Import CSS custom properties from Terrazzo */
 @import "@afnizarnur/tokens/css";
 
+/* Import font-face declarations */
+@import "@afnizarnur/tokens/fonts";
+
 /* Configure Tailwind source paths */
 @source "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}";
 
@@ -281,6 +284,46 @@
     --spacing-48: var(--space-48);
     --spacing-60: var(--space-60);
     --spacing-72: var(--space-72);
+
+    /* Typography tokens - Font families */
+    --font-family-fonetika: var(--typography-fontFamily-fonetika);
+    --font-family-fonetikaMono: var(--typography-fontFamily-fonetikaMono);
+    --font-family-switzer: var(--typography-fontFamily-switzer);
+
+    /* Typography tokens - Font sizes */
+    --font-size-display-1: var(--typography-fontSize-display-1);
+    --font-size-display-2: var(--typography-fontSize-display-2);
+    --font-size-heading-1: var(--typography-fontSize-heading-1);
+    --font-size-heading-2: var(--typography-fontSize-heading-2);
+    --font-size-heading-3: var(--typography-fontSize-heading-3);
+    --font-size-heading-4: var(--typography-fontSize-heading-4);
+    --font-size-heading-5: var(--typography-fontSize-heading-5);
+    --font-size-subhead-1: var(--typography-fontSize-subhead-1);
+    --font-size-body: var(--typography-fontSize-body);
+    --font-size-eyebrow-1: var(--typography-fontSize-eyebrow-1);
+    --font-size-eyebrow-2: var(--typography-fontSize-eyebrow-2);
+
+    /* Typography tokens - Font weights */
+    --font-weight-extralight: var(--typography-fontWeight-extralight);
+    --font-weight-light: var(--typography-fontWeight-light);
+    --font-weight-regular: var(--typography-fontWeight-regular);
+    --font-weight-medium: var(--typography-fontWeight-medium);
+    --font-weight-semibold: var(--typography-fontWeight-semibold);
+    --font-weight-bold: var(--typography-fontWeight-bold);
+    --font-weight-extrabold: var(--typography-fontWeight-extrabold);
+    --font-weight-black: var(--typography-fontWeight-black);
+
+    /* Typography tokens - Line heights */
+    --line-height-tight: var(--typography-lineHeight-tight);
+    --line-height-snug: var(--typography-lineHeight-snug);
+    --line-height-normal: var(--typography-lineHeight-normal);
+    --line-height-relaxed: var(--typography-lineHeight-relaxed);
+
+    /* Typography tokens - Letter spacing */
+    --letter-spacing-tight: var(--typography-letterSpacing-tight);
+    --letter-spacing-normal: var(--typography-letterSpacing-normal);
+    --letter-spacing-wide: var(--typography-letterSpacing-wide);
+    --letter-spacing-wider: var(--typography-letterSpacing-wider);
 }
 
 /* Shared component utilities aligned with design tokens */
@@ -531,6 +574,9 @@
 @layer base {
     body {
         @apply font-normal text-fgColor-primary bg-bgColor-primary;
+        font-family: var(--font-family-switzer);
+        font-size: var(--font-size-body);
+        line-height: var(--line-height-normal);
     }
 
     h1,
@@ -539,7 +585,45 @@
     h4,
     h5,
     h6 {
-        @apply font-semibold text-fgColor-primary;
+        @apply text-fgColor-primary;
+        font-family: var(--font-family-fonetika);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-normal);
+    }
+
+    h1 {
+        font-size: var(--font-size-heading-1);
+        line-height: var(--line-height-normal);
+    }
+
+    h2 {
+        font-size: var(--font-size-heading-2);
+        line-height: var(--line-height-normal);
+    }
+
+    h3 {
+        font-size: var(--font-size-heading-3);
+        line-height: var(--line-height-normal);
+    }
+
+    h4 {
+        font-size: var(--font-size-heading-4);
+        line-height: var(--line-height-normal);
+    }
+
+    h5 {
+        font-size: var(--font-size-heading-5);
+        line-height: var(--line-height-normal);
+    }
+
+    h6 {
+        font-size: var(--font-size-heading-5);
+        line-height: var(--line-height-normal);
+    }
+
+    code,
+    pre {
+        font-family: var(--font-family-fonetikaMono);
     }
 
     a {

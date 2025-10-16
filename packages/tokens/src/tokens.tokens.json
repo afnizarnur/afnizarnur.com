@@ -313,5 +313,52 @@
         "48": { "$value": "48px" },
         "60": { "$value": "60px" },
         "72": { "$value": "72px" }
+    },
+    "typography": {
+        "fontFamily": {
+            "$type": "fontFamily",
+            "fonetika": { "$value": ["Fonetika", "system-ui", "sans-serif"] },
+            "fonetikaMono": { "$value": ["Fonetika Mono", "ui-monospace", "monospace"] },
+            "switzer": { "$value": ["Switzer", "system-ui", "sans-serif"] }
+        },
+        "fontSize": {
+            "$type": "dimension",
+            "display-1": { "$value": "61px" },
+            "display-2": { "$value": "49px" },
+            "heading-1": { "$value": "39px" },
+            "heading-2": { "$value": "31px" },
+            "heading-3": { "$value": "25px" },
+            "heading-4": { "$value": "20px" },
+            "heading-5": { "$value": "16px" },
+            "subhead-1": { "$value": "18px" },
+            "body": { "$value": "16px" },
+            "eyebrow-1": { "$value": "15px" },
+            "eyebrow-2": { "$value": "13px" }
+        },
+        "fontWeight": {
+            "$type": "number",
+            "extralight": { "$value": 200 },
+            "light": { "$value": 300 },
+            "regular": { "$value": 400 },
+            "medium": { "$value": 500 },
+            "semibold": { "$value": 600 },
+            "bold": { "$value": 700 },
+            "extrabold": { "$value": 800 },
+            "black": { "$value": 900 }
+        },
+        "lineHeight": {
+            "$type": "number",
+            "tight": { "$value": 1.1 },
+            "snug": { "$value": 1.2 },
+            "normal": { "$value": 1.3 },
+            "relaxed": { "$value": 1.5 }
+        },
+        "letterSpacing": {
+            "$type": "dimension",
+            "tight": { "$value": "-0.01em" },
+            "normal": { "$value": "0em" },
+            "wide": { "$value": "0.05em" },
+            "wider": { "$value": "0.08em" }
+        }
     }
 }
