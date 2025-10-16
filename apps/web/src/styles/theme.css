@@ -304,10 +304,28 @@
     --line-height-snug: var(--typography-lineHeight-snug);
     --line-height-normal: var(--typography-lineHeight-normal);
     --line-height-relaxed: var(--typography-lineHeight-relaxed);
+    --line-height-solid: var(--typography-lineHeight-solid);
 
     /* Typography tokens - Letter spacing */
     --letter-spacing-tight: var(--typography-letterSpacing-tight);
     --letter-spacing-normal: var(--typography-letterSpacing-normal);
     --letter-spacing-wide: var(--typography-letterSpacing-wide);
     --letter-spacing-wider: var(--typography-letterSpacing-wider);
+    --letter-spacing-compact: var(--typography-letterSpacing-compact);
+
+    /* Typography tokens - Complete eyebrow styles */
+    --eyebrow-1: {
+        font-family: var(--font-family-fonetikaMono);
+        font-size: var(--font-size-eyebrow-1);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-solid);
+        letter-spacing: var(--letter-spacing-compact);
+    };
+    --eyebrow-2: {
+        font-family: var(--font-family-fonetikaMono);
+        font-size: var(--font-size-eyebrow-2);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--spacing-20);
+        letter-spacing: var(--letter-spacing-compact);
+    };
 }

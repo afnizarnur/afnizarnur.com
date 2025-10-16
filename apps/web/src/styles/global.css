@@ -92,3 +92,24 @@
         opacity: 0.8;
     }
 }
+
+/* Typography utility classes */
+@layer components {
+    .text-eyebrow-1 {
+        font-family: var(--typography-font-family-fonetika-mono);
+        font-size: var(--typography-font-size-eyebrow-1);
+        font-weight: var(--typography-font-weight-medium);
+        line-height: var(--typography-line-height-solid);
+        letter-spacing: var(--typography-letter-spacing-wide);
+        text-transform: uppercase;
+    }
+
+    .text-eyebrow-2 {
+        font-family: var(--typography-font-family-fonetika-mono);
+        font-size: var(--typography-font-size-eyebrow-2);
+        font-weight: var(--typography-font-weight-medium);
+        line-height: var(--space-20);
+        letter-spacing: var(--typography-letter-spacing-wider);
+        text-transform: uppercase;
+    }
+}

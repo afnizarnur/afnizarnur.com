@@ -1,6 +1,5 @@
 ---
 import Navbar from "../components/Navbar.astro"
-import Footer from "../components/Footer.astro"
 import { getNavigation, getSiteSettings } from "../server/data"
 import "../styles/global.css"
 
@@ -94,14 +93,5 @@ const currentPath = new URL(Astro.url).pathname
         <main class="flex-grow">
             <slot />
         </main>
-
-        {
-            navigation && siteSettings && (
-                <Footer
-                    navigationItems={navigation.items}
-                    socialLinks={siteSettings.social}
-                />
-            )
-        }
     </body>
 </html>

@@ -1,5 +1,7 @@
 ---
 import type { NavigationItem } from "@afnizarnur/ui"
+import { Palette, GearSix } from 'phosphor-react'
+import IconButton from './IconButton.astro'
 
 export interface Props {
     items: NavigationItem[]
@@ -7,50 +9,69 @@ export interface Props {
 }
 
 const { items, currentPath } = Astro.props
+
+// Get current time in HH:MM_AM/PM format
+function getFormattedTime(): string {
+    const now = new Date()
+    const hours = String(now.getHours()).padStart(2, "0")
+    const minutes = String(now.getMinutes()).padStart(2, "0")
+    const period = now.getHours() >= 12 ? "PM" : "AM"
+    return `ID ${hours}:${minutes}_${period}`
+}
+
+// Normalize navigation href
+function normalizeHref(href: string): string {
+    if (href.startsWith("http")) {
+        return href
+    }
+    return href.startsWith("/") ? href : `/${href}`
+}
+
+// Check if navigation item is active
+function isNavItemActive(itemHref: string, path: string): boolean {
+    const normalizedHref = normalizeHref(itemHref)
+    return path === normalizedHref
+}
+
+const timeString = getFormattedTime()
 ---
 
-<nav class="sticky top-0 z-40 border-b border-border-secondary bg-background-primary backdrop-blur">
-    <div class="mx-auto max-w-7xl px-16 py-12 sm:px-24 lg:px-32 flex items-center justify-between gap-16">
+<nav
+    class="sticky top-0 z-40 h-[66px] border-b-[2px] border-border-tertiary px-[110px] py-2 grid grid-cols-8 gap-6 items-center bg-background-primary"
+    role="navigation"
+    aria-label="Main navigation"
+>
+    {/* Col 1-2 - Logo */}
+    <div class="col-span-2">
         <a
             href="/"
-            class="flex items-center gap-8 text-text-primary transition-colors hover:text-text-accent-primary"
-            aria-label="Afnizar Nur Ghifari home"
+            class="text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary rounded"
+            aria-label="Afnizar Nur Ghifari - Home"
+            title="Go to homepage"
         >
-            <span class="inline-flex items-center gap-8 rounded-full bg-background-accent-primary px-12 py-4 text-xs font-medium text-text-accent-primary"
-                >AN</span
-            >
-            <span class="hidden sm:flex flex-col leading-tight">
-                <span class="text-sm font-semibold tracking-wide uppercase">
-                    Afnizar Nur
-                </span>
-                <span class="text-xs font-medium text-text-secondary">
-                    Product Designer & Developer
-                </span>
-            </span>
+            Afnizar_Nur_Ghifari
         </a>
+    </div>
 
-        <ul class="flex items-center gap-12">
+    {/* Col 3-5 - Navigation Menu */}
+    <div class="col-span-3">
+        <ul class="flex gap-48 list-none p-0 m-0">
             {
                 items.map((item) => {
-                    const href = item.href.startsWith("http")
-                        ? item.href
-                        : item.href.startsWith("/")
-                          ? item.href
-                          : `/${item.href}`
-                    const isActive = currentPath === href
+                    const href = normalizeHref(item.href)
+                    const isActive = isNavItemActive(item.href, currentPath || "")
+
                     return (
-                        <li>
+                        <li key={item.href}>
                             <a
                                 href={href}
                                 target={item.newTab ? "_blank" : undefined}
                                 rel={item.newTab ? "noopener noreferrer" : undefined}
-                                class:list={{
-                                    "inline-flex items-center justify-center gap-8 rounded-full px-12 py-8 text-sm font-semibold transition-colors duration-150": true,
-                                    "bg-background-secondary text-text-primary box-shadow-[0_18px_40px_rgba(0,_0,_0,_0.06)]":
-                                        isActive,
-                                    "text-text-secondary hover:text-text-primary hover:bg-background-secondary":
-                                        !isActive,
-                                }}
+                                class={`text-eyebrow-1 transition-colors duration-150 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${
+                                    isActive
+                                        ? "text-text-primary cursor-default"
+                                        : "text-text-secondary hover:text-text-primary active:text-text-primary"
+                                }`}
                                 aria-current={isActive ? "page" : undefined}
                             >
                                 {item.title}
@@ -60,5 +81,26 @@ const { items, currentPath } = Astro.props
                 })
             }
         </ul>
+    </div>
+
+    {/* Col 6-7 - Time Display */}
+    <div class="col-span-2">
+        <time class="text-eyebrow-1 text-text-secondary" datetime={new Date().toISOString()}>
+            {timeString}
+        </time>
+    </div>
+
+    {/* Col 8 - Icon Buttons */}
+    <div class="col-span-1 flex justify-end gap-4">
+        <IconButton
+            icon={Palette}
+            ariaLabel="Toggle theme"
+            size={24}
+        />
+        <IconButton
+            icon={GearSix}
+            ariaLabel="Open settings"
+            size={24}
+        />
     </div>
 </nav>
