@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro"
 import type { Post } from "@afnizarnur/ui"
+import PageHeader from "../components/PageHeader.astro"
 
 export interface Props {
     post: Post
@@ -17,6 +18,16 @@ const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
 })
+
+const actions = [
+    {
+        href: "/blog",
+        label: "Back to blog",
+        variant: "ghost" as const,
+    },
+]
+
+const hasTags = post.tags && post.tags.length > 0
 ---
 
 <BaseLayout
@@ -26,37 +37,32 @@ const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
     type="article"
     publishedTime={post.publishedAt}
 >
-    <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <article class="page-shell page-shell--narrow">
         <!-- Post Header -->
-        <header class="mb-12">
-            <time class="text-sm text-neutral-500" datetime={post.publishedAt}>
+        <PageHeader title={post.title} description={post.excerpt} actions={actions}>
+            <time
+                slot="eyebrow"
+                class="text-sm font-semibold uppercase tracking-wide text-fgColor-tertiary"
+                datetime={post.publishedAt}
+            >
                 {formattedDate}
             </time>
 
-            <h1 class="mt-2 text-4xl font-bold text-neutral-900 sm:text-5xl">
-                {post.title}
-            </h1>
-
-            <p class="mt-4 text-xl text-neutral-600">{post.excerpt}</p>
-
-            {/* Tags */}
             {
-                post.tags && post.tags.length > 0 && (
-                    <div class="mt-6 flex flex-wrap gap-2">
-                        {post.tags.map((tag) => (
-                            <span class="rounded-full bg-neutral-100 px-3 py-1 text-sm text-neutral-700">
-                                {tag.title}
-                            </span>
+                hasTags && (
+                    <div slot="meta" class="flex flex-wrap gap-8">
+                        {post.tags!.map((tag) => (
+                            <span class="chip">{tag.title}</span>
                         ))}
                     </div>
                 )
             }
-        </header>
+        </PageHeader>
 
         {/* Cover Image */}
         {
             post.coverImage && (
-                <figure class="mb-12">
+                <figure class="mb-48">
                     <img
                         src={`${post.coverImage}?w=1200&auto=format`}
                         alt={post.coverImageAlt || post.title}

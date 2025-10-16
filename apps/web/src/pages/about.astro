@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro"
 import PortableText from "../components/PortableText.astro"
 import { getPageBySlug } from "../server/data"
+import PageHeader from "../components/PageHeader.astro"
 
 const page = await getPageBySlug("about")
 
@@ -15,12 +16,8 @@ const seoDescription =
 ---
 
 <BaseLayout title={seoTitle} description={seoDescription}>
-    <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-        <header class="mb-12">
-            <h1 class="text-4xl font-bold text-neutral-900 sm:text-5xl">
-                {page.title}
-            </h1>
-        </header>
+    <article class="page-shell page-shell--narrow">
+        <PageHeader eyebrow="About" title={page.title} />
 
         <div class="prose prose-lg prose-neutral max-w-none">
             <PortableText value={page.body} />

@@ -15,34 +15,31 @@ export function ProjectCard({
     year,
 }: ProjectCardProps) {
     return (
-        <Card href={`/work/${slug}`} className="group">
+        <Card href={`/work/${slug}`} className="group space-y-16">
             {thumbnail && (
-                <div className="mb-4 overflow-hidden rounded-md">
+                <div className="overflow-hidden rounded-2xl">
                     <img
                         src={`${thumbnail}?w=800&h=500&fit=crop&auto=format`}
                         alt={thumbnailAlt || title}
-                        className="aspect-video w-full object-cover transition-transform group-hover:scale-105"
+                        className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"
                     />
                 </div>
             )}
 
-            <div className="space-y-2">
-                {year && <p className="text-sm text-neutral-500">{year}</p>}
+            <div className="space-y-8">
+                {year && <p className="text-sm text-fgColor-tertiary">{year}</p>}
 
-                <h3 className="text-xl font-semibold text-neutral-900 group-hover:text-primary-600">
+                <h3 className="text-xl font-semibold text-fgColor-primary transition-colors group-hover:text-fgColor-accent-primary">
                     {title}
                 </h3>
 
-                <p className="text-neutral-600">{description}</p>
+                <p className="text-fgColor-secondary">{description}</p>
 
                 {role && role.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-2">
+                    <div className="flex flex-wrap gap-8 pt-8">
                         {role.map((r) => (
-                            <span
-                                key={r}
-                                className="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-700"
-                            >
+                            <span key={r} className="chip">
                                 {r}
                             </span>
                         ))}
