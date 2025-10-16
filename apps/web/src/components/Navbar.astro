@@ -6,17 +6,31 @@ import IconButton from "./IconButton.astro"
 export interface Props {
     items: NavigationItem[]
     currentPath?: string
+    timezone?: {
+        timeZone?: string
+        displayLabel?: string
+    }
 }
 
-const { items, currentPath } = Astro.props
+const { items, currentPath, timezone } = Astro.props
 
-// Get current time in HH:MM_AM/PM format
-function getFormattedTime(): string {
+// Get current time in HH:MM_AM/PM format (12-hour format) with timezone
+function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
+    const options = tzConfig?.timeZone
+        ? { hour: "2-digit", minute: "2-digit", hour12: true, timeZone: tzConfig.timeZone }
+        : { hour: "2-digit", minute: "2-digit", hour12: true }
+
     const now = new Date()
-    const hours = String(now.getHours()).padStart(2, "0")
-    const minutes = String(now.getMinutes()).padStart(2, "0")
-    const period = now.getHours() >= 12 ? "PM" : "AM"
-    return `ID ${hours}:${minutes}_${period}`
+    const formatter = new Intl.DateTimeFormat("en-US", options as Intl.DateTimeFormatOptions)
+    const parts = formatter.formatToParts(now)
+
+    const hourPart = parts.find((p) => p.type === "hour")?.value || "00"
+    const minutePart = parts.find((p) => p.type === "minute")?.value || "00"
+    const periodPart = parts.find((p) => p.type === "dayPeriod")?.value || "AM"
+
+    const displayLabel = tzConfig?.displayLabel || "ID"
+
+    return `${displayLabel} ${hourPart}:${minutePart}_${periodPart}`
 }
 
 // Normalize navigation href
@@ -33,7 +47,7 @@ function isNavItemActive(itemHref: string, path: string): boolean {
     return path === normalizedHref
 }
 
-const timeString = getFormattedTime()
+const timeString = getFormattedTime(timezone)
 ---
 
 <nav

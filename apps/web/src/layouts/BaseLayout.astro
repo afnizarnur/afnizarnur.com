@@ -88,7 +88,7 @@ const currentPath = new URL(Astro.url).pathname
         {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     </head>
     <body class="min-h-screen flex flex-col bg-background-primary text-text-primary">
-        {navigation && <Navbar items={navigation.items} currentPath={currentPath} />}
+        {navigation && <Navbar items={navigation.items} currentPath={currentPath} timezone={siteSettings?.timezone} />}
 
         <main class="flex-grow">
             <slot />

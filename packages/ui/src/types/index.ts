@@ -171,6 +171,14 @@ export interface NavigationItem {
 // =============================================================================
 
 /**
+ * Timezone configuration
+ */
+export interface TimezoneConfig {
+    timeZone?: string // IANA timezone identifier
+    displayLabel?: string // Text to display next to the time (e.g., 'Jakarta', 'CGK', 'Indonesia')
+}
+
+/**
  * Global site settings (singleton)
  */
 export interface SiteSettings {
@@ -179,6 +187,7 @@ export interface SiteSettings {
     ogImage?: string
     url?: string
     social?: SocialLinks
+    timezone?: TimezoneConfig
 }
 
 /**

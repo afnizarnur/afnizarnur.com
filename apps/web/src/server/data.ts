@@ -269,6 +269,10 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
         github,
         linkedin,
         email
+      },
+      timezone {
+        timeZone,
+        displayLabel
       }
     }`
 

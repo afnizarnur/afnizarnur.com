@@ -68,5 +68,27 @@ export default defineType({
                 },
             ],
         },
+        {
+            name: "timezone",
+            title: "Timezone",
+            type: "object",
+            description: "Configure the timezone and location display",
+            fields: [
+                {
+                    name: "timeZone",
+                    title: "Time Zone (IANA)",
+                    type: "string",
+                    description: "IANA timezone identifier (e.g., 'Asia/Jakarta', 'America/New_York')",
+                    validation: (Rule: any) => Rule.required(),
+                },
+                {
+                    name: "displayLabel",
+                    title: "Display Label",
+                    type: "string",
+                    description: "Text to display next to the time (e.g., 'Jakarta', 'Indonesia', 'CGK')",
+                    validation: (Rule: any) => Rule.required(),
+                },
+            ],
+        },
     ],
 })
