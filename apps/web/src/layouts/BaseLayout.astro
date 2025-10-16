@@ -37,6 +37,53 @@ const currentPath = new URL(Astro.url).pathname
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
 
+        <!-- Theme initialization script - runs early to prevent flash of unstyled content -->
+        <script is:inline>
+            (function () {
+                const THEME_KEY = "theme-preference"
+                const THEME_ATTRIBUTE = "data-theme"
+
+                function getSavedTheme() {
+                    try {
+                        const saved = localStorage.getItem(THEME_KEY)
+                        return saved === "light" || saved === "dark" ? saved : null
+                    } catch {
+                        return null
+                    }
+                }
+
+                function getSystemTheme() {
+                    return window.matchMedia("(prefers-color-scheme: dark)").matches
+                        ? "dark"
+                        : "light"
+                }
+
+                function applyTheme(theme) {
+                    document.documentElement.setAttribute(THEME_ATTRIBUTE, theme)
+                }
+
+                function initializeTheme() {
+                    const savedTheme = getSavedTheme()
+                    const systemTheme = getSystemTheme()
+                    const theme = savedTheme || systemTheme
+                    applyTheme(theme)
+                }
+
+                // Initialize on page load
+                initializeTheme()
+
+                // Listen for system theme changes (when user changes OS theme)
+                window
+                    .matchMedia("(prefers-color-scheme: dark)")
+                    .addEventListener("change", (e) => {
+                        // Only apply system theme if user hasn't saved a preference
+                        if (!getSavedTheme()) {
+                            applyTheme(e.matches ? "dark" : "light")
+                        }
+                    })
+            })()
+        </script>
+
         <!-- Preload critical fonts for better performance -->
         <link
             rel="preload"

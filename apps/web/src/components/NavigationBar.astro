@@ -1,8 +1,9 @@
 ---
 import type { NavigationItem } from "@afnizarnur/ui"
-import { Palette, GearSix, List } from "phosphor-react"
+import { GearSix, List } from "phosphor-react"
 import IconButton from "./IconButton.astro"
 import MobileMenu from "./MobileMenu.astro"
+import ThemeToggle from "./ThemeToggle.astro"
 
 export interface Props {
     items: NavigationItem[]
@@ -129,7 +130,7 @@ const timeString = getFormattedTime(timezone)
         <div class="flex justify-end gap-4 md:col-span-1 lg:col-span-1">
             {/* Theme and Settings Icons (Hidden on mobile, shown on tablet+) */}
             <div class="hidden md:flex gap-4">
-                <IconButton icon={Palette} ariaLabel="Toggle theme" size={24} />
+                <ThemeToggle size={24} />
                 <IconButton icon={GearSix} ariaLabel="Open settings" size={24} />
             </div>
 
