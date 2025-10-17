@@ -22,30 +22,6 @@ export function HorizontalHeader({
     containerHeight = 200,
 }: HorizontalHeaderProps): React.ReactElement {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
-    const [scrollPosition, setScrollPosition] = useState(0)
-    const [containerWidth, setContainerWidth] = useState(0)
-
-    useEffect(() => {
-        const container = scrollContainerRef.current
-        if (!container) return
-
-        const handleScroll = () => {
-            setScrollPosition(container.scrollLeft)
-        }
-
-        const handleResize = () => {
-            setContainerWidth(container.clientWidth)
-        }
-
-        container.addEventListener("scroll", handleScroll)
-        window.addEventListener("resize", handleResize)
-        handleResize()
-
-        return () => {
-            container.removeEventListener("scroll", handleScroll)
-            window.removeEventListener("resize", handleResize)
-        }
-    }, [])
 
     const currentItemIndex = items.findIndex((item) => item.id === currentItemId)
 
@@ -80,7 +56,7 @@ export function HorizontalHeader({
                     {items.map((item, index) => (
                         <div
                             key={item.id}
-                            className="flex flex-col flex-shrink-0 border-r border-border-primary cursor-pointer"
+                            className="flex flex-col flex-shrink-0 border-r border-border-primary"
                             style={{
                                 width: `${SEGMENT_WIDTH}px`,
                             }}
@@ -88,7 +64,7 @@ export function HorizontalHeader({
                         >
                             {/* Main header content */}
                             <div
-                                className="flex flex-col items-center justify-center hover:bg-background-secondary transition-colors"
+                                className="flex flex-col items-center justify-center"
                                 style={{
                                     height: `${containerHeight}px`,
                                 }}
