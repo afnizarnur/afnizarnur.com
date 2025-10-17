@@ -11,7 +11,7 @@ const { icon: Icon, ariaLabel, size = 24, className = "" } = Astro.props
 ---
 
 <button
-    class={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-icon-primary active:text-icon-primary transition-colors ${className}`}
+    class={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-icon-primary active:text-icon-primary transition-colors ${className}`}
     aria-label={ariaLabel}
     type="button"
 >

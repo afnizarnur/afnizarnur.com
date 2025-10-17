@@ -74,7 +74,7 @@ const timeString = getFormattedTime(timezone)
         <div class="flex-1 md:col-span-1 lg:col-span-2">
             <a
                 href="/"
-                class="flex items-center gap-2 text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary rounded w-fit"
+                class="flex items-center gap-2 text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary rounded w-fit"
                 aria-label="Afnizar Nur Ghifari - Home"
                 title="Go to homepage"
             >
@@ -103,7 +103,7 @@ const timeString = getFormattedTime(timezone)
                                     href={href}
                                     target={item.newTab ? "_blank" : undefined}
                                     rel={item.newTab ? "noopener noreferrer" : undefined}
-                                    class={`text-eyebrow-1 transition-colors duration-150 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${
+                                    class={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${
                                         isActive
                                             ? "text-text-primary cursor-default"
                                             : "text-text-secondary hover:text-text-primary active:text-text-primary"
@@ -128,16 +128,18 @@ const timeString = getFormattedTime(timezone)
 
         {/* Icon Buttons + Hamburger Menu */}
         <div class="flex justify-end gap-4 md:col-span-1 lg:col-span-1">
-            {/* Theme and Settings Icons (Hidden on mobile, shown on tablet+) */}
-            <div class="hidden md:flex gap-4">
-                <ThemeToggle size={24} />
+            {/* Theme Toggle (Shown on all screens) */}
+            <ThemeToggle size={24} />
+
+            {/* Settings Icon (Hidden on mobile, shown on tablet+) */}
+            <div class="hidden md:flex">
                 <IconButton icon={GearSix} ariaLabel="Open settings" size={24} />
             </div>
 
             {/* Hamburger Menu Button (Shown on tablet and mobile) */}
             <button
                 id="hamburger-menu-button"
-                class="lg:hidden w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-icon-primary active:text-icon-primary transition-colors rounded-radius-8"
+                class="lg:hidden w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-icon-primary active:text-icon-primary transition-colors rounded-radius-8"
                 aria-label="Open navigation menu"
                 aria-expanded="false"
                 aria-controls="mobile-menu-overlay"

@@ -38,7 +38,7 @@ pnpm-debug.log*
 .codex/
 .cursor/
 .specify/
-.vscode/
+.kiro/
 
 # changesets
 .changeset/*.md
