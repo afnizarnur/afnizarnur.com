@@ -1,0 +1,33 @@
+---
+import { HorizontalHeader as HorizontalHeaderComponent } from './HorizontalHeader'
+import type { HeaderItem } from './HorizontalHeader'
+
+export interface Props {
+  items: HeaderItem[]
+  currentItemId: string
+  containerHeight?: number
+}
+
+const { items, currentItemId, containerHeight = 200 } = Astro.props
+---
+
+<div data-component="horizontal-header">
+  <HorizontalHeaderComponent
+    client:load
+    items={items}
+    currentItemId={currentItemId}
+    containerHeight={containerHeight}
+  />
+</div>
+
+<style>
+  /* Hide scrollbar but keep scrolling functionality */
+  :global(.scrollbar-hide) {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  :global(.scrollbar-hide::-webkit-scrollbar) {
+    display: none;
+  }
+</style>
