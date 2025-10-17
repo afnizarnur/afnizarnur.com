@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef } from "react"
 
 export interface HeaderItem {
     id: string
@@ -10,20 +10,16 @@ const SEGMENT_WIDTH = 800 // pixels per segment
 
 export interface HorizontalHeaderProps {
     items: HeaderItem[]
-    currentItemId: string
     onItemChange?: (itemId: string) => void
     containerHeight?: number // in pixels
 }
 
 export function HorizontalHeader({
     items,
-    currentItemId,
     onItemChange,
     containerHeight = 200,
 }: HorizontalHeaderProps): React.ReactElement {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
-
-    const currentItemIndex = items.findIndex((item) => item.id === currentItemId)
 
     const handleItemClick = (itemId: string) => {
         onItemChange?.(itemId)
@@ -31,7 +27,9 @@ export function HorizontalHeader({
         // Auto-scroll to center the selected item
         const index = items.findIndex((item) => item.id === itemId)
         if (scrollContainerRef.current) {
-            const targetScroll = index * SEGMENT_WIDTH - containerWidth / 2 + SEGMENT_WIDTH / 2
+            const containerClientWidth = scrollContainerRef.current.clientWidth
+            const targetScroll =
+                index * SEGMENT_WIDTH - containerClientWidth / 2 + SEGMENT_WIDTH / 2
             scrollContainerRef.current.scrollTo({
                 left: Math.max(0, targetScroll),
                 behavior: "smooth",
@@ -40,13 +38,9 @@ export function HorizontalHeader({
     }
 
     return (
-        <div className="flex flex-col bg-background-primary">
+        <div className="flex flex-col bg-background-secondary">
             {/* Main scrollable header with footer */}
-            <div
-                ref={scrollContainerRef}
-                className="overflow-x-auto scrollbar-hide"
-                style={{ height: `${containerHeight + 60}px` }}
-            >
+            <div ref={scrollContainerRef} className="overflow-x-auto scrollbar-hide w-full">
                 <div
                     className="flex gap-0"
                     style={{
@@ -64,7 +58,7 @@ export function HorizontalHeader({
                         >
                             {/* Main header content */}
                             <div
-                                className="flex flex-col items-center justify-center"
+                                className="flex flex-col items-center justify-center bg-background-secondary"
                                 style={{
                                     height: `${containerHeight}px`,
                                 }}
@@ -75,19 +69,35 @@ export function HorizontalHeader({
                             </div>
 
                             {/* Footer for each segment */}
-                            <div className="bg-background-primary border-t border-b border-border-primary flex flex-col items-center justify-center relative px-4 py-3">
+                            <div className="bg-background-primary flex flex-col items-start justify-start relative py-16">
                                 {/* Triangle pointer */}
-                                {index === currentItemIndex && (
+                                <div
+                                    className="absolute -top-2.5 transition-all duration-200"
+                                    style={{
+                                        left: "12px",
+                                    }}
+                                >
                                     <div
-                                        className="absolute -top-4 transform -translate-x-1/2 transition-all duration-200"
+                                        className="w-0 h-0"
                                         style={{
-                                            left: `${SEGMENT_WIDTH / 2}px`,
+                                            borderLeft: "12px solid transparent",
+                                            borderRight: "12px solid transparent",
+                                            borderBottom:
+                                                "12px solid var(--color-semantic-background-primary)",
                                         }}
-                                    >
-                                        <div className="w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-text-primary" />
-                                    </div>
-                                )}
-                                <span className="text-xs font-semibold text-text-tertiary uppercase tracking-wide">
+                                    />
+                                </div>
+                                <span
+                                    className="text-eyebrow-1"
+                                    style={{
+                                        fontFamily: "var(--typography-font-family-fonetika-mono)",
+                                        fontSize: "var(--typography-font-size-eyebrow-1)",
+                                        fontWeight: "var(--typography-font-weight-medium)",
+                                        letterSpacing: "var(--typography-letter-spacing-wide)",
+                                        lineHeight: "var(--typography-line-height-solid)",
+                                        color: "var(--color-semantic-text-disabled)",
+                                    }}
+                                >
                                     {index === 0 ? "Current Location" : `${item.distance}m`}
                                 </span>
                             </div>
