@@ -84,7 +84,7 @@ export function HorizontalHeader({
 }: HorizontalHeaderProps): React.ReactElement {
     return (
         <div className="flex flex-col bg-background-primary">
-            <div className="overflow-x-auto scrollbar-hide w-full">
+            <div className="overflow-x-auto scrollbar-hide w-full overscroll-none">
                 {/* Header section with segments as background */}
                 <div
                     style={{
@@ -102,30 +102,43 @@ export function HorizontalHeader({
                         }}
                     >
                         <div
-                            className="overflow-x-auto scrollbar-hide px-6 py-24 pointer-events-auto"
+                            className="scrollbar-hide px-6 py-24 pointer-events-auto"
                             style={{ gridColumn: "2" }}
                         >
-                            <div className="flex gap-6">
+                            <div className="flex gap-6 items-start">
                                 <Widget
                                     title="Intro"
                                     showClose
                                     onClose={() => console.log("Widget closed")}
+                                    width={598}
                                 >
-                                    <div className="flex-1 justify-start text-text-primary text-heading-1">
+                                    <h1 className="flex-1 justify-start text-text-primary text-heading-1">
                                         Afnizar works at the intersection of design, code, and
                                         strategy. Building things that last.
-                                    </div>
+                                    </h1>
                                 </Widget>
                                 <Widget
                                     title="Short bio"
                                     showClose
                                     onClose={() => console.log("Widget closed")}
+                                    width={443}
                                 >
                                     <div className="flex-1 justify-start text-text-primary text-subhead-1">
-                                        Creative technologist and digital strategist passionate
-                                        about building intuitive, meaningful digital experiences
-                                        that solve real problems.
+                                        Designer. Engineer. Cat dad of two. Works where design meets
+                                        infrastructure. Collects diecasts, photographs light, builds
+                                        minimal tools for complex systems.
                                     </div>
+                                </Widget>
+                                <Widget title="Current Work" width={641} backgroundColor="#FEF3C7">
+                                    <h2 className="flex-1 text-text-primary text-heading-2">
+                                        Currently part of{" "}
+                                        <span className="font-semibold">INA Digital Edu</span>,
+                                        designing and developing digital learning platforms for{" "}
+                                        <span className="font-semibold">
+                                            Kementerian Pendidikan Dasar dan Menengah
+                                        </span>
+                                        .
+                                    </h2>
                                 </Widget>
                             </div>
                         </div>

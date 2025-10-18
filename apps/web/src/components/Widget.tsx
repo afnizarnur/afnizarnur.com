@@ -24,7 +24,7 @@ export function Widget({
 }: WidgetProps): React.ReactElement {
     return (
         <div
-            className="bg-background-primary rounded-2xl inline-flex flex-col justify-start items-end overflow-hidden"
+            className="bg-background-primary rounded-2xl inline-flex flex-col justify-start items-end flex-none"
             style={{
                 width: typeof width === "number" ? `${width}px` : width,
                 height: typeof height === "number" ? `${height}px` : height,
