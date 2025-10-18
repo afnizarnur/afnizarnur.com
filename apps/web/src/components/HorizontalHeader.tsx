@@ -40,10 +40,18 @@ export function HorizontalHeader({
     return (
         <div className="flex flex-col bg-background-secondary">
             {/* Main scrollable header with footer */}
-            <div ref={scrollContainerRef} className="overflow-x-auto scrollbar-hide w-full">
+            <div
+                ref={scrollContainerRef}
+                className="overflow-x-auto scrollbar-hide w-full"
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr min(1220px, 100% - 48px) 1fr",
+                }}
+            >
                 <div
                     className="flex gap-0"
                     style={{
+                        gridColumn: "2",
                         minWidth: `${items.length * SEGMENT_WIDTH}px`,
                     }}
                 >
