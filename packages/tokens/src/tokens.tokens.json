@@ -283,29 +283,29 @@
                 },
                 "warning": {
                     "primary": {
-                        "$value": "{color.primitive.orange.50}",
+                        "$value": "{color.primitive.yellow.100}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.50}",
-                                "dark": "{color.primitive.orange.900}"
+                                "light": "{color.primitive.yellow.100}",
+                                "dark": "{color.primitive.yellow.900}"
                             }
                         }
                     },
                     "secondary": {
-                        "$value": "{color.primitive.orange.100}",
+                        "$value": "{color.primitive.yellow.100}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.100}",
-                                "dark": "{color.primitive.orange.800}"
+                                "light": "{color.primitive.yellow.100}",
+                                "dark": "{color.primitive.yellow.800}"
                             }
                         }
                     },
                     "solid": {
-                        "$value": "{color.primitive.orange.600}",
+                        "$value": "{color.primitive.yellow.600}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.600}",
-                                "dark": "{color.primitive.orange.400}"
+                                "light": "{color.primitive.yellow.600}",
+                                "dark": "{color.primitive.yellow.400}"
                             }
                         }
                     }
@@ -457,20 +457,20 @@
                 },
                 "warning": {
                     "primary": {
-                        "$value": "{color.primitive.orange.600}",
+                        "$value": "{color.primitive.yellow.600}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.600}",
-                                "dark": "{color.primitive.orange.400}"
+                                "light": "{color.primitive.yellow.600}",
+                                "dark": "{color.primitive.yellow.400}"
                             }
                         }
                     },
                     "secondary": {
-                        "$value": "{color.primitive.orange.400}",
+                        "$value": "{color.primitive.yellow.400}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.400}",
-                                "dark": "{color.primitive.orange.500}"
+                                "light": "{color.primitive.yellow.400}",
+                                "dark": "{color.primitive.yellow.500}"
                             }
                         }
                     }
@@ -604,20 +604,20 @@
                 },
                 "warning": {
                     "primary": {
-                        "$value": "{color.primitive.orange.600}",
+                        "$value": "{color.primitive.yellow.600}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.600}",
-                                "dark": "{color.primitive.orange.400}"
+                                "light": "{color.primitive.yellow.600}",
+                                "dark": "{color.primitive.yellow.400}"
                             }
                         }
                     },
                     "secondary": {
-                        "$value": "{color.primitive.orange.400}",
+                        "$value": "{color.primitive.yellow.400}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.400}",
-                                "dark": "{color.primitive.orange.500}"
+                                "light": "{color.primitive.yellow.400}",
+                                "dark": "{color.primitive.yellow.500}"
                             }
                         }
                     }
@@ -751,20 +751,20 @@
                 },
                 "warning": {
                     "primary": {
-                        "$value": "{color.primitive.orange.500}",
+                        "$value": "{color.primitive.yellow.500}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.500}",
-                                "dark": "{color.primitive.orange.400}"
+                                "light": "{color.primitive.yellow.500}",
+                                "dark": "{color.primitive.yellow.400}"
                             }
                         }
                     },
                     "secondary": {
-                        "$value": "{color.primitive.orange.300}",
+                        "$value": "{color.primitive.yellow.300}",
                         "$extensions": {
                             "mode": {
-                                "light": "{color.primitive.orange.300}",
-                                "dark": "{color.primitive.orange.600}"
+                                "light": "{color.primitive.yellow.300}",
+                                "dark": "{color.primitive.yellow.600}"
                             }
                         }
                     }

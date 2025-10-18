@@ -132,7 +132,7 @@ export function HorizontalHeader({
                                 <Widget
                                     title="Current Work"
                                     width={641}
-                                    backgroundColor="#FEF3C7"
+                                    backgroundColor="var(--color-background-warning-primary)"
                                     showClose
                                 >
                                     <h2 className="flex-1 text-text-primary text-heading-2">
@@ -151,7 +151,9 @@ export function HorizontalHeader({
                                     width={420}
                                     height={420}
                                     backgroundImage="/avatar.png"
-                                />
+                                >
+                                    <div />
+                                </Widget>
                             </div>
                         </div>
                     </div>

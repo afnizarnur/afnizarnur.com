@@ -12,7 +12,7 @@ export interface WidgetProps {
     children: React.ReactNode
 }
 
-function isDarkColor(color: string): boolean {
+function isDarkColor(color: string | undefined): boolean {
     if (!color) return false
 
     // Handle hex colors
