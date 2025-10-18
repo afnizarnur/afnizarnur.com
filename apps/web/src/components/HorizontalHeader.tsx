@@ -1,4 +1,5 @@
 import React from "react"
+import { Widget } from "./Widget"
 
 export interface HeaderItem {
     id: string
@@ -25,6 +26,7 @@ export function HorizontalHeader({
         <div className="flex flex-col bg-background-primary">
             <div className="overflow-x-auto scrollbar-hide w-full">
                 {/* Header section */}
+
                 <div
                     style={{
                         display: "grid",
@@ -62,6 +64,28 @@ export function HorizontalHeader({
                                 </div>
                             </div>
                         ))}
+                    </div>
+                </div>
+
+                {/* Widget placement section */}
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: GRID_TEMPLATE,
+                    }}
+                    className="bg-background-primary"
+                >
+                    <div className="flex gap-6 py-8" style={{ gridColumn: "2" }}>
+                        <Widget
+                            title="INTRO"
+                            showClose
+                            onClose={() => console.log("Widget closed")}
+                        >
+                            <div className="flex-1 justify-start text-text-primary text-4xl font-medium">
+                                Afnizar works at the intersection of design, code, and strategy.
+                                Building things that last.
+                            </div>
+                        </Widget>
                     </div>
                 </div>
 
