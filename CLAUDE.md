@@ -96,8 +96,7 @@ Formatting:
 - `.changeset/config.json` - Changeset configuration
 - `netlify.toml` - Netlify deployment config
 - `.prettierrc.json` - Prettier rules
-- `apps/web/astro.config.mjs` - Astro configuration
-- `apps/web/postcss.config.cjs` - PostCSS configuration (Tailwind v4)
+- `apps/web/astro.config.mjs` - Astro configuration (includes Tailwind Vite plugin)
 - `apps/web/src/styles/global.css` - Global styles and Tailwind v4 theme configuration
 - `apps/studio/sanity.config.ts` - Sanity CMS configuration
 - `packages/tokens/terrazzo.config.js` - Design tokens configuration
@@ -163,7 +162,7 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 **Setup:**
 
 - **No JS config file**: Tailwind v4 doesn't use `tailwind.config.js/ts`
-- **PostCSS plugin**: Uses `@tailwindcss/postcss` in `postcss.config.cjs`
+- **Vite plugin**: Uses `@tailwindcss/vite` plugin in `astro.config.mjs` (recommended approach for Astro)
 - **CSS configuration**: All config is in `apps/web/src/styles/global.css`
 
 **Key directives in global.css:**
@@ -195,7 +194,7 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 **Migration notes:**
 
 - The `@astrojs/tailwind` integration is NOT used (removed for v4)
-- Pure PostCSS processing via `@tailwindcss/postcss`
+- Uses `@tailwindcss/vite` plugin for optimal performance with Vite/Astro
 - Uses `@terrazzo/plugin-tailwind` with custom theme structure for clean utility names
 - Build script `copy-theme.js` removes `@import "tailwindcss"` from generated theme
 
