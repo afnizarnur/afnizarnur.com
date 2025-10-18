@@ -33,6 +33,11 @@ pnpm-debug.log*
 # turborepo
 .turbo
 
+# changesets
+.changeset/*.md
+!.changeset/README.md
+!.changeset/config.json
+
 # AI assistant configs
 .claude/
 .codex/
@@ -40,9 +45,3 @@ pnpm-debug.log*
 .specify/
 .kiro/
 .vscode/
-
-# changesets
-.changeset/*.md
-!.changeset/README.md
-!.changeset/config.json
-
