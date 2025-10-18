@@ -3,6 +3,8 @@ import react from '@astrojs/react';
 import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
 
+import tailwindcss from '@tailwindcss/vite';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -12,4 +14,8 @@ export default defineConfig({
   output: 'static',
   adapter: netlify(),
   site: process.env.PUBLIC_SITE_URL || 'http://localhost:4321',
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
