@@ -33,7 +33,7 @@ export function Widget({
             }}
         >
             {/* Widget Header - Always rendered */}
-            <div className="self-stretch px-16 py-16 inline-flex justify-start items-center gap-1">
+            <div className="self-stretch px-32 py-16 inline-flex justify-start items-center gap-1">
                 {title && (
                     <div className="flex-1 opacity-50 justify-start text-text-primary text-eyebrow-1 uppercase">
                         {title}
@@ -53,7 +53,7 @@ export function Widget({
             </div>
 
             {/* Widget Content */}
-            <div className="self-stretch px-16 py-32 inline-flex justify-center items-center gap-1">
+            <div className="self-stretch px-32 py-32 inline-flex justify-center items-center gap-1">
                 {children}
             </div>
         </div>

@@ -10,82 +10,128 @@ export interface HeaderItem {
 const SEGMENT_WIDTH = 800 // pixels per segment
 const GRID_TEMPLATE = "1fr min(1220px, 100% - 48px) 1fr"
 
+interface SegmentProps {
+    label?: string
+    width: number
+    height: number
+}
+
+function Segment({ label, width, height }: SegmentProps): React.ReactElement {
+    return (
+        <div className="flex-shrink-0" style={{ width: `${width}px` }}>
+            <div
+                className="flex flex-col py-100 items-center justify-center bg-background-secondary relative"
+                style={{ height: `${height}px` }}
+            >
+                <div
+                    className="absolute inset-y-0 left-24 overflow-hidden"
+                    style={{
+                        width: "24px",
+                        backgroundImage:
+                            "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0px 20px)",
+                        backgroundRepeat: "repeat-y",
+                    }}
+                />
+
+                {/* Content on top, fill the whole segment */}
+                {label && (
+                    <div className="relative z-10 flex flex-col items-center justify-center bg-background-secondary h-full">
+                        <span className="text-sm font-medium text-text-primary truncate px-2">
+                            {label}
+                        </span>
+                    </div>
+                )}
+            </div>
+        </div>
+    )
+}
+
+interface FooterSegmentProps {
+    label: string
+    width: number
+}
+
+function FooterSegment({ label, width }: FooterSegmentProps): React.ReactElement {
+    return (
+        <div className="flex-shrink-0" style={{ width: `${width}px` }}>
+            <div className="relative py-16 px-6">
+                {/* Triangle pointer */}
+                <div
+                    className="absolute -top-2.5 transition-all duration-200"
+                    style={{ left: "24px" }}
+                >
+                    <div
+                        className="w-0 h-0"
+                        style={{
+                            borderLeft: "12px solid transparent",
+                            borderRight: "12px solid transparent",
+                            borderBottom: "12px solid var(--color-semantic-background-primary)",
+                        }}
+                    />
+                </div>
+                <span className="text-eyebrow-1 text-text-disabled">{label}</span>
+            </div>
+        </div>
+    )
+}
+
 export interface HorizontalHeaderProps {
-    items: HeaderItem[]
     containerHeight?: number // in pixels
 }
 
 export function HorizontalHeader({
-    items,
     containerHeight = 200,
 }: HorizontalHeaderProps): React.ReactElement {
-    // Use only first 8 items
-    const segments = items.slice(0, 8)
-
     return (
         <div className="flex flex-col bg-background-primary">
             <div className="overflow-x-auto scrollbar-hide w-full">
-                {/* Header section */}
-
+                {/* Header section with segments as background */}
                 <div
                     style={{
                         display: "grid",
                         gridTemplateColumns: GRID_TEMPLATE,
                     }}
-                    className="bg-background-secondary"
+                    className="bg-background-secondary relative"
                 >
-                    <div className="flex" style={{ gridColumn: "2" }}>
-                        {segments.map((item) => (
-                            <div
-                                key={item.id}
-                                className="flex-shrink-0"
-                                style={{ width: `${SEGMENT_WIDTH}px` }}
-                            >
-                                <div
-                                    className="flex flex-col items-center justify-center bg-background-secondary relative"
-                                    style={{ height: `${containerHeight}px` }}
-                                >
-                                    <div
-                                        className="absolute inset-y-0 left-24 overflow-hidden"
-                                        style={{
-                                            width: "24px",
-                                            backgroundImage:
-                                                "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0px 20px)",
-                                            backgroundRepeat: "repeat-y",
-                                        }}
-                                    />
-
-                                    {/* Content on top, fill the whole segment */}
-                                    <div className="relative z-10 flex flex-col items-center justify-center bg-background-secondary h-full">
-                                        <span className="text-sm font-medium text-text-primary truncate px-2">
-                                            {item.label}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Widget placement section */}
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: GRID_TEMPLATE,
-                    }}
-                    className="bg-background-primary"
-                >
-                    <div className="flex gap-6 py-8" style={{ gridColumn: "2" }}>
-                        <Widget
-                            title="INTRO"
-                            showClose
-                            onClose={() => console.log("Widget closed")}
+                    {/* Floating widget - Using centered max-width scrolling pattern */}
+                    <div
+                        className="absolute inset-0 z-20 pointer-events-none"
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: GRID_TEMPLATE,
+                        }}
+                    >
+                        <div
+                            className="overflow-x-auto scrollbar-hide px-6 py-24 pointer-events-auto"
+                            style={{ gridColumn: "2" }}
                         >
-                            <div className="flex-1 justify-start text-text-primary text-4xl font-medium">
-                                Afnizar works at the intersection of design, code, and strategy.
-                                Building things that last.
+                            <div className="flex gap-6">
+                                <Widget
+                                    title="INTRO"
+                                    showClose
+                                    onClose={() => console.log("Widget closed")}
+                                >
+                                    <div className="flex-1 justify-start text-text-primary text-4xl font-medium">
+                                        Afnizar works at the intersection of design, code, and
+                                        strategy. Building things that last.
+                                    </div>
+                                </Widget>
                             </div>
-                        </Widget>
+                        </div>
+                    </div>
+
+                    {/* Segments as background */}
+                    <div className="flex" style={{ gridColumn: "2" }}>
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
                     </div>
                 </div>
 
@@ -98,34 +144,16 @@ export function HorizontalHeader({
                     className="bg-background-primary"
                 >
                     <div className="flex" style={{ gridColumn: "2" }}>
-                        {segments.map((item, index) => (
-                            <div
-                                key={item.id}
-                                className="flex-shrink-0"
-                                style={{ width: `${SEGMENT_WIDTH}px` }}
-                            >
-                                <div className="relative py-16 px-6">
-                                    {/* Triangle pointer */}
-                                    <div
-                                        className="absolute -top-2.5 transition-all duration-200"
-                                        style={{ left: "24px" }}
-                                    >
-                                        <div
-                                            className="w-0 h-0"
-                                            style={{
-                                                borderLeft: "12px solid transparent",
-                                                borderRight: "12px solid transparent",
-                                                borderBottom:
-                                                    "12px solid var(--color-semantic-background-primary)",
-                                            }}
-                                        />
-                                    </div>
-                                    <span className="text-eyebrow-1 text-text-disabled">
-                                        {index === 0 ? "Current Location" : `${item.distance}m`}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
+                        <FooterSegment label="Current Location" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="50m" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="100m" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="150m" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="200m" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="250m" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="300m" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="350m" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="400m" width={SEGMENT_WIDTH} />
+                        <FooterSegment label="450m" width={SEGMENT_WIDTH} />
                     </div>
                 </div>
             </div>

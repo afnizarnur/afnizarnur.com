@@ -2,20 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro"
 import PageHeader from "../components/PageHeader.astro"
 import HorizontalHeader from "../components/HorizontalHeader.astro"
-
-const headerItems = [
-  { id: 'start', label: 'Start', distance: 0 },
-  { id: 'checkpoint1', label: 'Checkpoint 1', distance: 50 },
-  { id: 'checkpoint2', label: 'Checkpoint 2', distance: 100 },
-  { id: 'checkpoint3', label: 'Checkpoint 3', distance: 150 },
-  { id: 'checkpoint4', label: 'Checkpoint 4', distance: 200 },
-  { id: 'end', label: 'End', distance: 250 },
-]
 ---
 
 <BaseLayout>
         <HorizontalHeader
-            items={headerItems}
             containerHeight={200}
         />
 </BaseLayout>

@@ -1,19 +1,16 @@
 ---
 import { HorizontalHeader as HorizontalHeaderComponent } from './HorizontalHeader'
-import type { HeaderItem } from './HorizontalHeader'
 
 export interface Props {
-  items: HeaderItem[]
   containerHeight?: number
 }
 
-const { items, containerHeight = 200 } = Astro.props
+const { containerHeight = 200 } = Astro.props
 ---
 
 <div data-component="horizontal-header">
   <HorizontalHeaderComponent
     client:load
-    items={items}
     containerHeight={containerHeight}
   />
 </div>
