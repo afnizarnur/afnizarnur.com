@@ -65,7 +65,7 @@ function FooterSegment({ label, width }: FooterSegmentProps): React.ReactElement
                         style={{
                             borderLeft: "12px solid transparent",
                             borderRight: "12px solid transparent",
-                            borderBottom: "12px solid var(--color-semantic-background-primary)",
+                            borderBottom: "12px solid var(--color-background-primary)",
                         }}
                     />
                 </div>

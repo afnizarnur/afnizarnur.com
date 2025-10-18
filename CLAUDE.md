@@ -175,9 +175,17 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 
 **Design tokens integration:**
 
-- Terrazzo generates CSS custom properties in `packages/tokens/dist/tokens.css`
-- These are imported and mapped to Tailwind utilities via `@theme` directive
-- Example: `--color-primary-600` becomes `text-primary-600` utility class
+- Terrazzo generates two outputs:
+  - `packages/tokens/dist/tokens.css` - Raw CSS custom properties (not imported, reference only)
+  - `packages/tokens/dist/tailwind-theme.css` - Auto-generated Tailwind v4 theme (imported via `@afnizarnur/tokens/tailwind`)
+- Build process: `pnpm build` runs `process-theme.js` script to:
+  - Remove `@import "tailwindcss"` from generated theme
+  - Fix variable references (--color-primitive-* → --color-*)
+- Theme mapping uses custom keys for clean utility names:
+  - Primitive colors: `bg-gray-900`, `text-red-500`
+  - Semantic colors: `bg-background-primary`, `text-text-primary`, `border-border-accent-primary`
+- Supports dark mode via `@variant dark` directive
+- **Single source of truth**: Only `@afnizarnur/tokens/tailwind` is imported in global.css
 
 **Component styles:**
 
@@ -188,7 +196,8 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 
 - The `@astrojs/tailwind` integration is NOT used (removed for v4)
 - Pure PostCSS processing via `@tailwindcss/postcss`
-- No Terrazzo Tailwind plugin (generates v3 config, incompatible with v4)
+- Uses `@terrazzo/plugin-tailwind` with custom theme structure for clean utility names
+- Build script `copy-theme.js` removes `@import "tailwindcss"` from generated theme
 
 ## Resources
 

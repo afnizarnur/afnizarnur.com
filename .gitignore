@@ -39,8 +39,10 @@ pnpm-debug.log*
 .cursor/
 .specify/
 .kiro/
+.vscode/
 
 # changesets
 .changeset/*.md
 !.changeset/README.md
 !.changeset/config.json
+

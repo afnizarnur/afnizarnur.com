@@ -15,7 +15,7 @@
         "src/fonts.css"
     ],
     "scripts": {
-        "build": "terrazzo build",
+        "build": "terrazzo build && node scripts/process-theme.js",
         "clean": "rm -rf dist"
     },
     "devDependencies": {
