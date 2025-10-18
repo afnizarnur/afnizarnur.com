@@ -107,13 +107,24 @@ export function HorizontalHeader({
                         >
                             <div className="flex gap-6">
                                 <Widget
-                                    title="INTRO"
+                                    title="Intro"
                                     showClose
                                     onClose={() => console.log("Widget closed")}
                                 >
-                                    <div className="flex-1 justify-start text-text-primary text-4xl font-medium">
+                                    <div className="flex-1 justify-start text-text-primary text-heading-1">
                                         Afnizar works at the intersection of design, code, and
                                         strategy. Building things that last.
+                                    </div>
+                                </Widget>
+                                <Widget
+                                    title="Short bio"
+                                    showClose
+                                    onClose={() => console.log("Widget closed")}
+                                >
+                                    <div className="flex-1 justify-start text-text-primary text-subhead-1">
+                                        Creative technologist and digital strategist passionate
+                                        about building intuitive, meaningful digital experiences
+                                        that solve real problems.
                                     </div>
                                 </Widget>
                             </div>

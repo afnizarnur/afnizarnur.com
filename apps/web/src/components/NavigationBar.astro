@@ -78,13 +78,15 @@ const timeString = getFormattedTime(timezone)
                 aria-label="Afnizar Nur Ghifari - Home"
                 title="Go to homepage"
             >
-                {logo?.type === "image" && logo?.image ? (
-                    <img
-                        src={logo.image.url}
-                        alt={logo.image.alt}
-                        class="w-6 h-6 rounded-full object-cover"
-                    />
-                ) : null}
+                {
+                    logo?.type === "image" && logo?.image ? (
+                        <img
+                            src={logo.image.url}
+                            alt={logo.image.alt}
+                            class="w-6 h-6 rounded-full object-cover"
+                        />
+                    ) : null
+                }
                 {logo?.type === "text" ? logo?.text : "Afnizar_Nur_Ghifari"}
             </a>
         </div>

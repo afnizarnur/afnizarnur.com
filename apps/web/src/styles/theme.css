@@ -315,22 +315,6 @@
     --letter-spacing-wider: var(--typography-letterSpacing-wider);
     --letter-spacing-compact: var(--typography-letterSpacing-compact);
 
-    /* Typography tokens - Complete eyebrow styles */
-    --eyebrow-1: {
-        font-family: var(--font-family-fonetikaMono);
-        font-size: var(--font-size-eyebrow-1);
-        font-weight: var(--font-weight-semibold);
-        line-height: var(--line-height-solid);
-        letter-spacing: var(--letter-spacing-compact);
-    };
-    --eyebrow-2: {
-        font-family: var(--font-family-fonetikaMono);
-        font-size: var(--font-size-eyebrow-2);
-        font-weight: var(--font-weight-semibold);
-        line-height: var(--spacing-20);
-        letter-spacing: var(--letter-spacing-compact);
-    };
-
     /* Breakpoint tokens */
     --breakpoint-xsmall: var(--breakpoint-xsmall);
     --breakpoint-small: var(--breakpoint-small);

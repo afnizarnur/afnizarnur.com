@@ -926,7 +926,7 @@
                 "$value": {
                     "fontFamily": "{typography.fontFamily.fonetika}",
                     "fontSize": "{typography.fontSize.heading-1}",
-                    "fontWeight": "{typography.fontWeight.bold}",
+                    "fontWeight": "{typography.fontWeight.medium}",
                     "lineHeight": "{typography.lineHeight.snug}",
                     "letterSpacing": "{typography.letterSpacing.tight}"
                 }
@@ -936,7 +936,7 @@
                 "$value": {
                     "fontFamily": "{typography.fontFamily.fonetika}",
                     "fontSize": "{typography.fontSize.heading-2}",
-                    "fontWeight": "{typography.fontWeight.bold}",
+                    "fontWeight": "{typography.fontWeight.medium}",
                     "lineHeight": "{typography.lineHeight.snug}",
                     "letterSpacing": "{typography.letterSpacing.tight}"
                 }
@@ -946,7 +946,7 @@
                 "$value": {
                     "fontFamily": "{typography.fontFamily.fonetika}",
                     "fontSize": "{typography.fontSize.heading-3}",
-                    "fontWeight": "{typography.fontWeight.semibold}",
+                    "fontWeight": "{typography.fontWeight.medium}",
                     "lineHeight": "{typography.lineHeight.snug}",
                     "letterSpacing": "{typography.letterSpacing.normal}"
                 }
@@ -956,7 +956,7 @@
                 "$value": {
                     "fontFamily": "{typography.fontFamily.fonetika}",
                     "fontSize": "{typography.fontSize.heading-4}",
-                    "fontWeight": "{typography.fontWeight.semibold}",
+                    "fontWeight": "{typography.fontWeight.medium}",
                     "lineHeight": "{typography.lineHeight.normal}",
                     "letterSpacing": "{typography.letterSpacing.normal}"
                 }
@@ -966,7 +966,7 @@
                 "$value": {
                     "fontFamily": "{typography.fontFamily.fonetika}",
                     "fontSize": "{typography.fontSize.heading-5}",
-                    "fontWeight": "{typography.fontWeight.semibold}",
+                    "fontWeight": "{typography.fontWeight.medium}",
                     "lineHeight": "{typography.lineHeight.normal}",
                     "letterSpacing": "{typography.letterSpacing.normal}"
                 }
@@ -978,7 +978,7 @@
                 "$value": {
                     "fontFamily": "{typography.fontFamily.switzer}",
                     "fontSize": "{typography.fontSize.subhead-1}",
-                    "fontWeight": "{typography.fontWeight.medium}",
+                    "fontWeight": "{typography.fontWeight.regular}",
                     "lineHeight": "{typography.lineHeight.normal}",
                     "letterSpacing": "{typography.letterSpacing.normal}"
                 }

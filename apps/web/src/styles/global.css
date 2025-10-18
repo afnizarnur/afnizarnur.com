@@ -93,23 +93,39 @@
     }
 }
 
-/* Typography utility classes */
+/* Typography utility classes - using Terrazzo composite tokens */
 @layer components {
+    .text-heading-1 {
+        font-family: var(--typography-heading-1-font-family);
+        font-size: var(--typography-heading-1-font-size);
+        font-weight: var(--typography-heading-1-font-weight);
+        line-height: var(--typography-heading-1-line-height);
+        letter-spacing: var(--typography-heading-1-letter-spacing);
+    }
+
+    .text-subhead-1 {
+        font-family: var(--typography-subhead-1-font-family);
+        font-size: var(--typography-subhead-1-font-size);
+        font-weight: var(--typography-subhead-1-font-weight);
+        line-height: var(--typography-subhead-1-line-height);
+        letter-spacing: var(--typography-subhead-1-letter-spacing);
+    }
+
     .text-eyebrow-1 {
-        font-family: var(--typography-font-family-fonetika-mono);
-        font-size: var(--typography-font-size-eyebrow-1);
-        font-weight: var(--typography-font-weight-medium);
-        line-height: var(--typography-line-height-solid);
-        letter-spacing: var(--typography-letter-spacing-wide);
+        font-family: var(--typography-eyebrow-1-font-family);
+        font-size: var(--typography-eyebrow-1-font-size);
+        font-weight: var(--typography-eyebrow-1-font-weight);
+        line-height: var(--typography-eyebrow-1-line-height);
+        letter-spacing: var(--typography-eyebrow-1-letter-spacing);
         text-transform: uppercase;
     }
 
     .text-eyebrow-2 {
-        font-family: var(--typography-font-family-fonetika-mono);
-        font-size: var(--typography-font-size-eyebrow-2);
-        font-weight: var(--typography-font-weight-medium);
-        line-height: var(--space-20);
-        letter-spacing: var(--typography-letter-spacing-wider);
+        font-family: var(--typography-eyebrow-2-font-family);
+        font-size: var(--typography-eyebrow-2-font-size);
+        font-weight: var(--typography-eyebrow-2-font-weight);
+        line-height: var(--typography-eyebrow-2-line-height);
+        letter-spacing: var(--typography-eyebrow-2-letter-spacing);
         text-transform: uppercase;
     }
 }

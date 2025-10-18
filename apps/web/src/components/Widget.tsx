@@ -36,7 +36,7 @@ export function Widget({
             <div className="self-stretch px-32 py-16 inline-flex justify-start items-center gap-1">
                 {title && (
                     <div className="flex-1 opacity-50 justify-start text-text-primary text-eyebrow-1 uppercase">
-                        {title}
+                        {title.replace(/ /g, "_")}
                     </div>
                 )}
                 {!title && <div className="flex-1" />}
