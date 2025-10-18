@@ -68,11 +68,11 @@ export function HorizontalHeader({
                                     className="flex-shrink-0 border-r border-border-primary"
                                     style={{ width: `${SEGMENT_WIDTH}px` }}
                                 >
-                                    <div className="relative py-16 px-16">
+                                    <div className="relative py-16 px-6">
                                         {/* Triangle pointer */}
                                         <div
                                             className="absolute -top-2.5 transition-all duration-200"
-                                            style={{ left: "12px" }}
+                                            style={{ left: "24px" }}
                                         >
                                             <div
                                                 className="w-0 h-0"
