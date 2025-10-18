@@ -129,7 +129,12 @@ export function HorizontalHeader({
                                         minimal tools for complex systems.
                                     </div>
                                 </Widget>
-                                <Widget title="Current Work" width={641} backgroundColor="#FEF3C7">
+                                <Widget
+                                    title="Current Work"
+                                    width={641}
+                                    backgroundColor="#FEF3C7"
+                                    showClose
+                                >
                                     <h2 className="flex-1 text-text-primary text-heading-2">
                                         Currently part of{" "}
                                         <span className="font-semibold">INA Digital Edu</span>,
@@ -140,6 +145,13 @@ export function HorizontalHeader({
                                         .
                                     </h2>
                                 </Widget>
+                                <Widget
+                                    showClose
+                                    onClose={() => console.log("Image widget closed")}
+                                    width={420}
+                                    height={420}
+                                    backgroundImage="/avatar.png"
+                                />
                             </div>
                         </div>
                     </div>
