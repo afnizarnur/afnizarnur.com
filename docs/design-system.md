@@ -54,10 +54,10 @@ Tokens follow the [W3C Design Tokens Community Group specification](https://desi
 
 ```json
 {
-  "$type": "color",
-  "token-name": {
-    "$value": "#0ea5e9"
-  }
+    "$type": "color",
+    "token-name": {
+        "$value": "#0ea5e9"
+    }
 }
 ```
 
@@ -76,40 +76,45 @@ packages/tokens/src/tokens.tokens.json
 ### Modifying Tokens
 
 1. **Edit token file:**
-   ```json
-   // packages/tokens/src/tokens.tokens.json
-   {
-     "color": {
-       "$type": "color",
-       "primary": {
-         "500": { "$value": "#0ea5e9" }
-       }
-     }
-   }
-   ```
+
+    ```json
+    // packages/tokens/src/tokens.tokens.json
+    {
+        "color": {
+            "$type": "color",
+            "primary": {
+                "500": { "$value": "#0ea5e9" }
+            }
+        }
+    }
+    ```
 
 2. **Rebuild tokens:**
-   ```bash
-   pnpm --filter @afnizarnur/tokens build
-   ```
+
+    ```bash
+    pnpm --filter @afnizarnur/tokens build
+    ```
 
 3. **Generated output:**
-   ```css
-   /* packages/tokens/dist/tokens.css */
-   :root {
-     --color-primary-500: #0ea5e9;
-   }
-   ```
+
+    ```css
+    /* packages/tokens/dist/tokens.css */
+    :root {
+        --color-primary-500: #0ea5e9;
+    }
+    ```
 
 4. **Use in code:**
-   ```css
-   color: var(--color-primary-500);
-   ```
 
-   Or with Tailwind:
-   ```html
-   <div class="text-primary-500">
-   ```
+    ```css
+    color: var(--color-primary-500);
+    ```
+
+    Or with Tailwind:
+
+    ```html
+    <div class="text-primary-500"></div>
+    ```
 
 ## Color System
 
@@ -131,21 +136,16 @@ primary-900  #0c4a6e   Darkest - text on light backgrounds
 ```
 
 **Usage:**
+
 ```html
 <!-- Buttons -->
-<button class="bg-primary-500 hover:bg-primary-600 text-white">
-  Click me
-</button>
+<button class="bg-primary-500 hover:bg-primary-600 text-white">Click me</button>
 
 <!-- Links -->
-<a class="text-primary-600 hover:text-primary-700">
-  Learn more
-</a>
+<a class="text-primary-600 hover:text-primary-700"> Learn more </a>
 
 <!-- Backgrounds -->
-<div class="bg-primary-50 border border-primary-200">
-  Info box
-</div>
+<div class="bg-primary-50 border border-primary-200">Info box</div>
 ```
 
 ### Neutral Colors
@@ -166,6 +166,7 @@ neutral-900  #171717   Darkest text
 ```
 
 **Usage:**
+
 ```html
 <!-- Text -->
 <h1 class="text-neutral-900">Heading</h1>
@@ -192,20 +193,15 @@ info     #3b82f6   Informational messages
 ```
 
 **Usage:**
+
 ```html
 <!-- Alerts -->
-<div class="bg-error/10 border border-error text-error">
-  Error message
-</div>
+<div class="bg-error/10 border border-error text-error">Error message</div>
 
-<div class="bg-success/10 border border-success text-success">
-  Success message
-</div>
+<div class="bg-success/10 border border-success text-success">Success message</div>
 
 <!-- Status badges -->
-<span class="bg-warning text-warning-900 px-2 py-1 rounded">
-  Pending
-</span>
+<span class="bg-warning text-warning-900 px-2 py-1 rounded"> Pending </span>
 ```
 
 ### Color Contrast
@@ -213,23 +209,29 @@ info     #3b82f6   Informational messages
 Ensure sufficient contrast for accessibility:
 
 **Text on Backgrounds:**
+
 - Large text (18pt+): 3:1 minimum
 - Normal text: 4.5:1 minimum
 - UI components: 3:1 minimum
 
 **Recommended Combinations:**
+
 ```html
 <!-- ✅ Good contrast -->
 <div class="bg-white text-neutral-900">
-<div class="bg-neutral-900 text-white">
-<div class="bg-primary-500 text-white">
-
-<!-- ❌ Poor contrast -->
-<div class="bg-neutral-200 text-neutral-300">
-<div class="bg-primary-100 text-primary-200">
+    <div class="bg-neutral-900 text-white">
+        <div class="bg-primary-500 text-white">
+            <!-- ❌ Poor contrast -->
+            <div class="bg-neutral-200 text-neutral-300">
+                <div class="bg-primary-100 text-primary-200"></div>
+            </div>
+        </div>
+    </div>
+</div>
 ```
 
 **Tools:**
+
 - [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - Chrome DevTools (Lighthouse)
 
@@ -271,13 +273,13 @@ loose     2      - Extra readability
 ### Typography Scale
 
 **Display Text:**
+
 ```html
-<h1 class="text-6xl font-bold leading-tight">
-  Display Heading
-</h1>
+<h1 class="text-6xl font-bold leading-tight">Display Heading</h1>
 ```
 
 **Headings:**
+
 ```html
 <h1 class="text-5xl font-bold leading-tight">Page Title</h1>
 <h2 class="text-4xl font-semibold leading-tight">Section</h2>
@@ -286,21 +288,17 @@ loose     2      - Extra readability
 ```
 
 **Body Text:**
+
 ```html
-<p class="text-base font-normal leading-normal">
-  Regular paragraph text
-</p>
+<p class="text-base font-normal leading-normal">Regular paragraph text</p>
 
-<p class="text-lg font-normal leading-relaxed">
-  Large, easy-to-read body text
-</p>
+<p class="text-lg font-normal leading-relaxed">Large, easy-to-read body text</p>
 
-<p class="text-sm font-normal leading-normal text-neutral-600">
-  Secondary text or captions
-</p>
+<p class="text-sm font-normal leading-normal text-neutral-600">Secondary text or captions</p>
 ```
 
 **Emphasis:**
+
 ```html
 <strong class="font-semibold">Important text</strong>
 <em class="italic">Emphasized text</em>
@@ -331,6 +329,7 @@ Consistent spacing creates visual rhythm and hierarchy.
 ### Spacing Usage
 
 **Padding:**
+
 ```html
 <!-- Component padding -->
 <div class="p-4">Comfortable padding</div>
@@ -342,11 +341,12 @@ Consistent spacing creates visual rhythm and hierarchy.
 ```
 
 **Margin:**
+
 ```html
 <!-- Stack elements -->
 <div class="space-y-4">
-  <div>Item 1</div>
-  <div>Item 2</div>
+    <div>Item 1</div>
+    <div>Item 2</div>
 </div>
 
 <!-- Section spacing -->
@@ -355,18 +355,19 @@ Consistent spacing creates visual rhythm and hierarchy.
 ```
 
 **Gap (Flexbox/Grid):**
+
 ```html
 <!-- Flex gaps -->
 <div class="flex gap-4">
-  <div>Item 1</div>
-  <div>Item 2</div>
+    <div>Item 1</div>
+    <div>Item 2</div>
 </div>
 
 <!-- Grid gaps -->
 <div class="grid grid-cols-3 gap-6">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
 </div>
 ```
 
@@ -375,124 +376,133 @@ Consistent spacing creates visual rhythm and hierarchy.
 ### Button Patterns
 
 **Primary Button:**
+
 ```html
-<button class="
+<button
+    class="
   px-6 py-3
   bg-primary-500 hover:bg-primary-600
   text-white font-semibold
   rounded-lg
   transition-colors duration-200
-">
-  Primary Action
+"
+>
+    Primary Action
 </button>
 ```
 
 **Secondary Button:**
+
 ```html
-<button class="
+<button
+    class="
   px-6 py-3
   bg-neutral-100 hover:bg-neutral-200
   text-neutral-900 font-semibold
   rounded-lg
   transition-colors duration-200
-">
-  Secondary Action
+"
+>
+    Secondary Action
 </button>
 ```
 
 **Outline Button:**
+
 ```html
-<button class="
+<button
+    class="
   px-6 py-3
   border-2 border-primary-500
   text-primary-500 hover:bg-primary-50 font-semibold
   rounded-lg
   transition-colors duration-200
-">
-  Outline Action
+"
+>
+    Outline Action
 </button>
 ```
 
 ### Card Patterns
 
 **Basic Card:**
+
 ```html
-<div class="
+<div
+    class="
   bg-white
   border border-neutral-200
   rounded-lg
   p-6
   shadow-sm hover:shadow-md
   transition-shadow duration-200
-">
-  <h3 class="text-xl font-semibold mb-2">Card Title</h3>
-  <p class="text-neutral-600">Card content</p>
+"
+>
+    <h3 class="text-xl font-semibold mb-2">Card Title</h3>
+    <p class="text-neutral-600">Card content</p>
 </div>
 ```
 
 **Project Card:**
+
 ```html
 <article class="group">
-  <div class="
+    <div
+        class="
     bg-neutral-50
     rounded-lg
     overflow-hidden
     border border-neutral-200
     transition-all duration-200
     hover:shadow-lg
-  ">
-    <img
-      src="project.jpg"
-      alt="Project"
-      class="w-full h-64 object-cover"
-    />
-    <div class="p-6">
-      <h3 class="text-2xl font-semibold mb-2">Project Title</h3>
-      <p class="text-neutral-600 mb-4">Description</p>
-      <div class="flex gap-2">
-        <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">
-          React
-        </span>
-        <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">
-          TypeScript
-        </span>
-      </div>
+  "
+    >
+        <img src="project.jpg" alt="Project" class="w-full h-64 object-cover" />
+        <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">Project Title</h3>
+            <p class="text-neutral-600 mb-4">Description</p>
+            <div class="flex gap-2">
+                <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">
+                    React
+                </span>
+                <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">
+                    TypeScript
+                </span>
+            </div>
+        </div>
     </div>
-  </div>
 </article>
 ```
 
 ### Form Patterns
 
 **Input Field:**
+
 ```html
 <div class="space-y-2">
-  <label class="block text-sm font-medium text-neutral-700">
-    Email
-  </label>
-  <input
-    type="email"
-    class="
+    <label class="block text-sm font-medium text-neutral-700"> Email </label>
+    <input
+        type="email"
+        class="
       w-full px-4 py-2
       border border-neutral-300
       rounded-lg
       focus:outline-none focus:ring-2 focus:ring-primary-500
       transition-all duration-200
     "
-    placeholder="your@email.com"
-  />
+        placeholder="your@email.com"
+    />
 </div>
 ```
 
 **Textarea:**
+
 ```html
 <div class="space-y-2">
-  <label class="block text-sm font-medium text-neutral-700">
-    Message
-  </label>
-  <textarea
-    rows="4"
-    class="
+    <label class="block text-sm font-medium text-neutral-700"> Message </label>
+    <textarea
+        rows="4"
+        class="
       w-full px-4 py-2
       border border-neutral-300
       rounded-lg
@@ -500,8 +510,8 @@ Consistent spacing creates visual rhythm and hierarchy.
       resize-y
       transition-all duration-200
     "
-    placeholder="Your message..."
-  ></textarea>
+        placeholder="Your message..."
+    ></textarea>
 </div>
 ```
 
@@ -517,6 +527,7 @@ This project uses **Tailwind CSS v4**, which introduces a CSS-first configuratio
 - **Design tokens**: Mapped directly in `global.css` using `@theme`
 
 **Configuration location:**
+
 - `apps/web/postcss.config.cjs` - PostCSS configuration
 - `apps/web/src/styles/global.css` - Theme and token mapping
 
@@ -525,11 +536,11 @@ When using `@apply` in Astro component `<style>` blocks, add the `@reference` di
 
 ```astro
 <style>
-  @reference "../styles/global.css";
+    @reference "../styles/global.css";
 
-  .my-class {
-    @apply text-primary-600 font-semibold;
-  }
+    .my-class {
+        @apply text-primary-600 font-semibold;
+    }
 </style>
 ```
 
@@ -538,20 +549,20 @@ When using `@apply` in Astro component `<style>` blocks, add the `@reference` di
 Tailwind CSS is utility-first, meaning you compose designs using utility classes:
 
 **❌ Don't create custom CSS for every component:**
+
 ```css
 /* Avoid this */
 .my-button {
-  background-color: #0ea5e9;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+    background-color: #0ea5e9;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
 }
 ```
 
 **✅ Use utility classes:**
+
 ```html
-<button class="bg-primary-500 px-6 py-3 rounded-lg">
-  Button
-</button>
+<button class="bg-primary-500 px-6 py-3 rounded-lg">Button</button>
 ```
 
 ### Component Extraction
@@ -559,43 +570,41 @@ Tailwind CSS is utility-first, meaning you compose designs using utility classes
 When patterns repeat, extract them to components:
 
 **React Component:**
+
 ```tsx
 // apps/web/src/components/Button.tsx
 interface ButtonProps {
-  variant?: 'primary' | 'secondary';
-  children: React.ReactNode;
+    variant?: "primary" | "secondary"
+    children: React.ReactNode
 }
 
-export function Button({ variant = 'primary', children }: ButtonProps) {
-  const baseClasses = 'px-6 py-3 font-semibold rounded-lg transition-colors';
-  const variantClasses = {
-    primary: 'bg-primary-500 hover:bg-primary-600 text-white',
-    secondary: 'bg-neutral-100 hover:bg-neutral-200 text-neutral-900'
-  };
+export function Button({ variant = "primary", children }: ButtonProps) {
+    const baseClasses = "px-6 py-3 font-semibold rounded-lg transition-colors"
+    const variantClasses = {
+        primary: "bg-primary-500 hover:bg-primary-600 text-white",
+        secondary: "bg-neutral-100 hover:bg-neutral-200 text-neutral-900",
+    }
 
-  return (
-    <button className={`${baseClasses} ${variantClasses[variant]}`}>
-      {children}
-    </button>
-  );
+    return <button className={`${baseClasses} ${variantClasses[variant]}`}>{children}</button>
 }
 ```
 
 **Astro Component:**
+
 ```astro
 ---
 // apps/web/src/components/Card.astro
 export interface Props {
-  title: string;
-  description: string;
+    title: string
+    description: string
 }
 
-const { title, description } = Astro.props;
+const { title, description } = Astro.props
 ---
 
 <div class="bg-white border border-neutral-200 rounded-lg p-6">
-  <h3 class="text-xl font-semibold mb-2">{title}</h3>
-  <p class="text-neutral-600">{description}</p>
+    <h3 class="text-xl font-semibold mb-2">{title}</h3>
+    <p class="text-neutral-600">{description}</p>
 </div>
 ```
 
@@ -620,42 +629,52 @@ lg:        - ≥ 1440px (desktop and up)
 ### Responsive Patterns
 
 **Layout:**
+
 ```html
 <!-- Stack on mobile, grid on tablet/desktop -->
-<div class="
+<div
+    class="
   grid
   grid-cols-1
   md:grid-cols-2
   lg:grid-cols-3
   gap-6
-">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
+"
+>
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
 </div>
 ```
 
 **Typography:**
+
 ```html
-<h1 class="
+<h1
+    class="
   text-3xl md:text-4xl lg:text-5xl
   font-bold
-">
-  Responsive Heading
+"
+>
+    Responsive Heading
 </h1>
 ```
 
 **Spacing:**
+
 ```html
-<section class="
+<section
+    class="
   px-4 md:px-8 lg:px-16
   py-8 md:py-12 lg:py-16
-">
-  Content
+"
+>
+    Content
 </section>
 ```
 
 **Visibility:**
+
 ```html
 <!-- Hide on mobile, show on tablet+ -->
 <div class="hidden md:block">Desktop only</div>
@@ -670,11 +689,13 @@ lg:        - ≥ 1440px (desktop and up)
 
 ```html
 <button aria-label="Close modal">
-  <svg>...</svg>
+    <svg>...</svg>
 </button>
 
 <nav aria-label="Main navigation">
-  <ul>...</ul>
+    <ul>
+        ...
+    </ul>
 </nav>
 ```
 
@@ -683,22 +704,26 @@ lg:        - ≥ 1440px (desktop and up)
 Always include focus states for keyboard navigation:
 
 ```html
-<button class="
+<button
+    class="
   focus:outline-none
   focus:ring-2
   focus:ring-primary-500
   focus:ring-offset-2
-">
-  Accessible Button
+"
+>
+    Accessible Button
 </button>
 
-<a class="
+<a
+    class="
   focus:outline-none
   focus:underline
   focus:ring-2
   focus:ring-primary-500
-">
-  Accessible Link
+"
+>
+    Accessible Link
 </a>
 ```
 
@@ -709,10 +734,11 @@ Ensure text is readable:
 ```html
 <!-- ✅ Good: High contrast -->
 <div class="bg-neutral-900 text-white">
-<div class="bg-white text-neutral-900">
-
-<!-- ❌ Bad: Low contrast -->
-<div class="bg-neutral-200 text-neutral-400">
+    <div class="bg-white text-neutral-900">
+        <!-- ❌ Bad: Low contrast -->
+        <div class="bg-neutral-200 text-neutral-400"></div>
+    </div>
+</div>
 ```
 
 ### Semantic HTML
@@ -722,14 +748,14 @@ Use proper HTML elements:
 ```html
 <!-- ✅ Good: Semantic -->
 <nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-  </ul>
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
 </nav>
 
 <!-- ❌ Bad: Non-semantic -->
 <div class="nav">
-  <div class="item" onclick="...">Home</div>
+    <div class="item" onclick="...">Home</div>
 </div>
 ```
 
@@ -749,21 +775,25 @@ Always provide alt text for images:
 ### Do's
 
 ✅ **Use design tokens consistently**
+
 ```html
 <div class="text-primary-500"><!-- Use tokens --></div>
 ```
 
 ✅ **Follow spacing scale**
+
 ```html
 <div class="p-4 mb-6"><!-- Use scale values --></div>
 ```
 
 ✅ **Maintain color contrast**
+
 ```html
 <div class="bg-neutral-900 text-white"><!-- High contrast --></div>
 ```
 
 ✅ **Use semantic HTML**
+
 ```html
 <button>Click</button><!-- Use <button>, not <div> --></div>
 ```
@@ -771,21 +801,25 @@ Always provide alt text for images:
 ### Don'ts
 
 ❌ **Don't use hardcoded colors**
+
 ```html
 <div style="color: #0ea5e9"><!-- Use text-primary-500 --></div>
 ```
 
 ❌ **Don't use arbitrary values**
+
 ```html
 <div class="p-[13px]"><!-- Use scale: p-3 or p-4 --></div>
 ```
 
 ❌ **Don't ignore responsive design**
+
 ```html
 <div class="w-[800px]"><!-- Use responsive widths --></div>
 ```
 
 ❌ **Don't skip accessibility**
+
 ```html
 <div onclick="..."><!-- Use <button> --></div>
 ```

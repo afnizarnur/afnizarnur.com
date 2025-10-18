@@ -17,10 +17,12 @@ This guide explains how to manage content for afnizarnur.com using Sanity Studio
 ### Accessing Sanity Studio
 
 **Local Development:**
+
 ```bash
 cd afnizarnur.com
 pnpm --filter @afnizarnur/studio dev
 ```
+
 Studio will be available at `http://localhost:3333`
 
 **Production Studio:**
@@ -40,51 +42,54 @@ Visit your deployed studio at `https://[your-studio-name].sanity.studio`
 Blog posts are articles that appear in the `/blog` section of the website.
 
 **Required Fields:**
+
 - **Title** (max 100 characters)
-  - Clear, descriptive title
-  - Used in page title and social shares
+    - Clear, descriptive title
+    - Used in page title and social shares
 
 - **Slug** (auto-generated from title)
-  - URL-friendly identifier
-  - Example: "my-first-post" → `/blog/my-first-post`
-  - Can be customized but should not be changed after publishing
+    - URL-friendly identifier
+    - Example: "my-first-post" → `/blog/my-first-post`
+    - Can be customized but should not be changed after publishing
 
 - **Published At** (datetime)
-  - Publication date and time
-  - Used for sorting and display
-  - Can be future-dated for scheduled publishing
+    - Publication date and time
+    - Used for sorting and display
+    - Can be future-dated for scheduled publishing
 
 - **Excerpt** (50-200 characters)
-  - Brief summary of the post
-  - Displayed in post listings
-  - Used in meta descriptions
+    - Brief summary of the post
+    - Displayed in post listings
+    - Used in meta descriptions
 
 **Optional Fields:**
+
 - **Body** (rich text)
-  - Main content of the post
-  - Supports:
-    - Text formatting (bold, italic, headings)
-    - Lists (ordered and unordered)
-    - Links
-    - Images (inline)
-    - Code blocks
+    - Main content of the post
+    - Supports:
+        - Text formatting (bold, italic, headings)
+        - Lists (ordered and unordered)
+        - Links
+        - Images (inline)
+        - Code blocks
 
 - **Tags** (references)
-  - Categorize your posts
-  - Multiple tags allowed
-  - Create tags first in the Tags section
+    - Categorize your posts
+    - Multiple tags allowed
+    - Create tags first in the Tags section
 
 - **Cover Image**
-  - Featured image for the post
-  - Recommended size: 1200x630px
-  - Include alt text for accessibility
+    - Featured image for the post
+    - Recommended size: 1200x630px
+    - Include alt text for accessibility
 
 - **SEO** (object)
-  - Custom meta title
-  - Custom meta description
-  - Keywords (comma-separated)
+    - Custom meta title
+    - Custom meta description
+    - Keywords (comma-separated)
 
 **Example Post Structure:**
+
 ```
 Title: "Building a Design System with Terrazzo"
 Slug: building-design-system-terrazzo
@@ -105,63 +110,66 @@ SEO:
 Projects showcase your work in the `/work` section.
 
 **Required Fields:**
+
 - **Title** (max 80 characters)
-  - Project name
-  - Keep it concise and clear
+    - Project name
+    - Keep it concise and clear
 
 - **Slug** (auto-generated)
-  - URL identifier
-  - Example: "ecommerce-redesign" → `/work/ecommerce-redesign`
+    - URL identifier
+    - Example: "ecommerce-redesign" → `/work/ecommerce-redesign`
 
 - **Description** (50-150 characters)
-  - One-sentence summary
-  - Displayed in project listings
+    - One-sentence summary
+    - Displayed in project listings
 
 - **Role** (array of strings)
-  - Your role(s) in the project
-  - Examples: "UI Designer", "Frontend Developer", "Product Designer"
-  - Multiple roles supported
+    - Your role(s) in the project
+    - Examples: "UI Designer", "Frontend Developer", "Product Designer"
+    - Multiple roles supported
 
 **Optional Fields:**
+
 - **Selected** (boolean)
-  - Mark as featured project
-  - Featured projects appear first on homepage
-  - Default: false
+    - Mark as featured project
+    - Featured projects appear first on homepage
+    - Default: false
 
 - **Gallery** (array of images, max 10)
-  - Project screenshots/images
-  - Include alt text for each image
-  - First image used as cover
-  - Recommended size: 1600x1200px
+    - Project screenshots/images
+    - Include alt text for each image
+    - First image used as cover
+    - Recommended size: 1600x1200px
 
 - **Links** (array of link objects)
-  - External links (live site, case study, etc.)
-  - Each link has:
-    - Label: "View Live Site", "Read Case Study"
-    - URL: Full URL with https://
+    - External links (live site, case study, etc.)
+    - Each link has:
+        - Label: "View Live Site", "Read Case Study"
+        - URL: Full URL with https://
 
 - **Body** (rich text)
-  - Detailed project description
-  - Process, challenges, solutions
-  - Supports images and formatting
+    - Detailed project description
+    - Process, challenges, solutions
+    - Supports images and formatting
 
 - **Technologies** (array of strings)
-  - Tech stack used
-  - Examples: "React", "TypeScript", "Figma"
-  - Displayed as tags
+    - Tech stack used
+    - Examples: "React", "TypeScript", "Figma"
+    - Displayed as tags
 
 - **Year** (number)
-  - Project year (2000-current year + 1)
-  - Used for chronological sorting
+    - Project year (2000-current year + 1)
+    - Used for chronological sorting
 
 - **Client** (string, max 80 characters)
-  - Client or company name
-  - Optional for personal projects
+    - Client or company name
+    - Optional for personal projects
 
 - **SEO** (object)
-  - Same structure as Posts
+    - Same structure as Posts
 
 **Example Project Structure:**
+
 ```
 Title: "E-commerce Redesign"
 Slug: ecommerce-redesign
@@ -184,12 +192,14 @@ Client: "Example Corp"
 Create custom pages like "About", "Contact", etc.
 
 **Fields:**
+
 - **Title** (required, max 100 characters)
 - **Slug** (required, auto-generated)
 - **Body** (optional, rich text)
 - **SEO** (optional, object)
 
 **Example:**
+
 ```
 Title: "About Me"
 Slug: about
@@ -202,16 +212,18 @@ SEO: [Custom meta tags]
 Tags help categorize posts and make content discoverable.
 
 **Fields:**
+
 - **Title** (required, max 50 characters)
-  - Tag name (e.g., "Design Systems", "JavaScript", "Tutorial")
+    - Tag name (e.g., "Design Systems", "JavaScript", "Tutorial")
 
 - **Slug** (required, auto-generated)
-  - URL-friendly identifier
+    - URL-friendly identifier
 
 - **Description** (optional, max 200 characters)
-  - Brief explanation of what this tag represents
+    - Brief explanation of what this tag represents
 
 **Best Practices:**
+
 - Create tags before tagging posts
 - Use title case for tag names
 - Keep tags specific but not too narrow
@@ -223,109 +235,111 @@ Tags help categorize posts and make content discoverable.
 Define the main navigation menu.
 
 **Fields:**
+
 - **Title** (required)
-  - Navigation label (e.g., "Work", "Blog", "About")
+    - Navigation label (e.g., "Work", "Blog", "About")
 
 - **Items** (array)
-  - Navigation links
-  - Order determines display order
-  - Each item has:
-    - Label: Display text
-    - URL: Internal (/about) or external (https://...)
+    - Navigation links
+    - Order determines display order
+    - Each item has:
+        - Label: Display text
+        - URL: Internal (/about) or external (https://...)
 
 ### 6. Site Settings (Global Configuration)
 
 Global site configuration.
 
 **Fields:**
+
 - **Site Title** (required)
 - **Site Description** (required)
 - **Site URL** (required)
 - **Social Links** (optional)
-  - Twitter, GitHub, LinkedIn, etc.
+    - Twitter, GitHub, LinkedIn, etc.
 - **Default SEO** (optional)
-  - Default meta tags for pages
+    - Default meta tags for pages
 
 ## Content Workflows
 
 ### Publishing a New Blog Post
 
 1. **Create Draft**
-   - Navigate to "Post" in Sanity Studio
-   - Click "Create new Post"
-   - Fill in required fields (Title, Slug, Published At, Excerpt)
+    - Navigate to "Post" in Sanity Studio
+    - Click "Create new Post"
+    - Fill in required fields (Title, Slug, Published At, Excerpt)
 
 2. **Write Content**
-   - Add body content using the rich text editor
-   - Insert images inline if needed
-   - Format text with headings, lists, links
+    - Add body content using the rich text editor
+    - Insert images inline if needed
+    - Format text with headings, lists, links
 
 3. **Add Metadata**
-   - Select relevant tags (create new ones if needed)
-   - Upload cover image with alt text
-   - Fill in SEO fields for better search visibility
+    - Select relevant tags (create new ones if needed)
+    - Upload cover image with alt text
+    - Fill in SEO fields for better search visibility
 
 4. **Review & Publish**
-   - Preview content in Studio
-   - Check for typos and formatting
-   - Click "Publish" button
-   - Content will trigger automatic site rebuild (via webhook)
+    - Preview content in Studio
+    - Check for typos and formatting
+    - Click "Publish" button
+    - Content will trigger automatic site rebuild (via webhook)
 
 5. **Verify**
-   - Wait for Netlify deployment (~2-5 minutes)
-   - Visit the live post URL
-   - Check formatting, images, and links
+    - Wait for Netlify deployment (~2-5 minutes)
+    - Visit the live post URL
+    - Check formatting, images, and links
 
 ### Adding a New Project
 
 1. **Prepare Assets**
-   - Gather project images (1600x1200px recommended)
-   - Prepare descriptions and case study text
-   - Collect external links (live site, case study, etc.)
+    - Gather project images (1600x1200px recommended)
+    - Prepare descriptions and case study text
+    - Collect external links (live site, case study, etc.)
 
 2. **Create Project**
-   - Navigate to "Project" in Sanity Studio
-   - Click "Create new Project"
-   - Fill in title, slug, description, role
+    - Navigate to "Project" in Sanity Studio
+    - Click "Create new Project"
+    - Fill in title, slug, description, role
 
 3. **Upload Gallery**
-   - Add project images to gallery
-   - Include alt text for accessibility
-   - First image becomes the cover
+    - Add project images to gallery
+    - Include alt text for accessibility
+    - First image becomes the cover
 
 4. **Add Details**
-   - Write detailed body content (process, challenges, solutions)
-   - Add technologies used
-   - Set year and client name
-   - Add external links
+    - Write detailed body content (process, challenges, solutions)
+    - Add technologies used
+    - Set year and client name
+    - Add external links
 
 5. **Feature (Optional)**
-   - Toggle "Selected" to feature on homepage
-   - Only feature your best work
+    - Toggle "Selected" to feature on homepage
+    - Only feature your best work
 
 6. **Publish & Verify**
-   - Click "Publish"
-   - Wait for deployment
-   - Check `/work` page and individual project page
+    - Click "Publish"
+    - Wait for deployment
+    - Check `/work` page and individual project page
 
 ### Updating Existing Content
 
 1. **Find Content**
-   - Use search bar or browse content lists
-   - Click on item to edit
+    - Use search bar or browse content lists
+    - Click on item to edit
 
 2. **Make Changes**
-   - Edit fields as needed
-   - Studio auto-saves drafts
+    - Edit fields as needed
+    - Studio auto-saves drafts
 
 3. **Publish Changes**
-   - Click "Publish" to make changes live
-   - Site will rebuild automatically
+    - Click "Publish" to make changes live
+    - Site will rebuild automatically
 
 4. **Important Notes**
-   - **Never change slugs** after publishing (breaks links)
-   - **Check references** when deleting tags
-   - **Preserve image URLs** when possible
+    - **Never change slugs** after publishing (breaks links)
+    - **Check references** when deleting tags
+    - **Preserve image URLs** when possible
 
 ### Scheduling Content
 
@@ -342,17 +356,20 @@ To schedule a post for future publication:
 ### Writing Guidelines
 
 **Post Titles:**
+
 - Keep under 60 characters for SEO
 - Be descriptive and specific
 - Use title case
 - Avoid clickbait
 
 **Excerpts:**
+
 - Write compelling summaries (50-200 chars)
 - Don't just copy the first paragraph
 - Include key takeaways or hooks
 
 **Body Content:**
+
 - Use headings (H2, H3) for structure
 - Keep paragraphs short (2-4 sentences)
 - Use lists for scannable content
@@ -360,6 +377,7 @@ To schedule a post for future publication:
 - Link to relevant internal and external resources
 
 **Project Descriptions:**
+
 - Focus on outcomes and impact
 - Highlight your specific contributions
 - Use concrete numbers when possible
@@ -368,6 +386,7 @@ To schedule a post for future publication:
 ### Content Structure
 
 **Heading Hierarchy:**
+
 ```
 Post Title (H1 - automatic)
 ├── Main Section (H2)
@@ -378,8 +397,9 @@ Post Title (H1 - automatic)
 ```
 
 **Rich Text Formatting:**
+
 - **Bold** for emphasis
-- *Italic* for quotes or emphasis
+- _Italic_ for quotes or emphasis
 - `Code` for inline code
 - Links for references
 - Lists for steps or items
@@ -387,12 +407,14 @@ Post Title (H1 - automatic)
 ### Content Organization
 
 **Tagging Strategy:**
+
 - Use 2-4 tags per post
 - Prioritize broad, reusable tags
 - Create new tags only when necessary
 - Audit tags quarterly
 
 **Project Organization:**
+
 - Feature only your best work (3-5 projects)
 - Keep gallery to 5-7 high-quality images
 - Update older projects with new images/info
@@ -403,30 +425,35 @@ Post Title (H1 - automatic)
 ### Optimizing for Search Engines
 
 **Title Tags:**
+
 - Include primary keyword
 - Keep under 60 characters
 - Make it unique and descriptive
 - Format: "Page Title | Site Name"
 
 **Meta Descriptions:**
+
 - 150-160 characters
 - Include primary keyword naturally
 - Write for humans, not robots
 - Include a call-to-action
 
 **Keywords:**
+
 - Focus on 2-3 primary keywords
 - Use long-tail keywords
 - Don't keyword stuff
 - Research with Google Search Console
 
 **Images:**
+
 - Always include alt text
 - Use descriptive filenames
 - Optimize file size (< 200KB)
 - Use modern formats (WebP when possible)
 
 **URLs (Slugs):**
+
 - Keep short and descriptive
 - Use hyphens, not underscores
 - Use lowercase only
@@ -435,6 +462,7 @@ Post Title (H1 - automatic)
 ### Example SEO Setup
 
 **Blog Post:**
+
 ```
 Title: Building a Design System with Terrazzo
 SEO Title: Building a Design System with Terrazzo | Afnizar Nur
@@ -446,6 +474,7 @@ URL: /blog/building-design-system-terrazzo
 ```
 
 **Project:**
+
 ```
 Title: E-commerce Redesign
 SEO Title: E-commerce Platform Redesign Case Study | Afnizar Nur
@@ -461,22 +490,26 @@ URL: /work/ecommerce-redesign
 ### Image Guidelines
 
 **Recommended Sizes:**
+
 - Blog cover images: 1200x630px (OG image standard)
 - Project gallery: 1600x1200px or 1920x1080px
 - Inline images: 800-1200px wide
 - Icons/logos: SVG preferred, or PNG at 2x size
 
 **File Formats:**
+
 - Photos: JPG (optimized quality 80-90%)
 - Graphics: PNG or SVG
 - Avoid: BMP, TIFF
 
 **File Size:**
+
 - Cover images: < 200KB
 - Gallery images: < 300KB
 - Inline images: < 150KB
 
 **Image Optimization Tools:**
+
 - [TinyPNG](https://tinypng.com/) - Compress PNG/JPG
 - [Squoosh](https://squoosh.app/) - Advanced optimization
 - [ImageOptim](https://imageoptim.com/) - Mac app
@@ -484,26 +517,28 @@ URL: /work/ecommerce-redesign
 ### Uploading Images
 
 1. **In Sanity Studio:**
-   - Click image field
-   - Drag & drop or click to upload
-   - Add alt text (required for accessibility)
-   - Image is automatically uploaded to Sanity CDN
+    - Click image field
+    - Drag & drop or click to upload
+    - Add alt text (required for accessibility)
+    - Image is automatically uploaded to Sanity CDN
 
 2. **Best Practices:**
-   - Optimize before uploading
-   - Use descriptive filenames
-   - Always add alt text
-   - Crop/resize to appropriate dimensions
+    - Optimize before uploading
+    - Use descriptive filenames
+    - Always add alt text
+    - Crop/resize to appropriate dimensions
 
 ### Alt Text Guidelines
 
 **Good Alt Text:**
+
 - Describes the image content
 - Provides context
 - Kept under 125 characters
 - Omits "image of" or "picture of"
 
 **Examples:**
+
 ```
 ❌ Bad: "screenshot"
 ✅ Good: "Dashboard showing analytics with graph and metrics"
@@ -520,28 +555,33 @@ URL: /work/ecommerce-redesign
 ### Common Issues
 
 **Problem: Content not showing on website**
+
 - **Check:** Is the document published (not just saved as draft)?
 - **Check:** Has Netlify deployment finished? (Check deploy status)
 - **Check:** Clear browser cache and refresh
 - **Solution:** If still not visible, trigger manual deploy in Netlify
 
 **Problem: Images not loading**
+
 - **Check:** Are images properly uploaded in Sanity?
 - **Check:** Is alt text provided?
 - **Check:** Are images too large (>5MB)?
 - **Solution:** Re-upload optimized images
 
 **Problem: Slug conflict**
+
 - **Error:** "Document already exists with this slug"
 - **Solution:** Choose a different slug or update the existing document
 
 **Problem: Can't publish (validation errors)**
+
 - **Check:** Red indicators show which fields have errors
 - **Check:** Required fields must be filled
 - **Check:** Character limits (titles, descriptions)
 - **Solution:** Fix validation errors before publishing
 
 **Problem: Rich text editor not working**
+
 - **Solution:** Refresh the page
 - **Solution:** Clear browser cache
 - **Solution:** Try a different browser
@@ -549,11 +589,13 @@ URL: /work/ecommerce-redesign
 ### Getting Help
 
 **Studio Issues:**
+
 - Check [Sanity Documentation](https://www.sanity.io/docs)
 - Visit [Sanity Slack Community](https://slack.sanity.io/)
 - Check browser console for errors
 
 **Content Questions:**
+
 - Review this guide
 - Check existing content for examples
 - Ask the development team

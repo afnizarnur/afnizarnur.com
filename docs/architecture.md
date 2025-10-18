@@ -59,22 +59,26 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
 ### Frontend (apps/web)
 
 **Framework: Astro 4.x**
+
 - Static site generation (SSG)
 - File-based routing
 - Component islands architecture
 - Built-in image optimization
 
 **UI Layer: React 18.x**
+
 - Interactive components
 - Client-side hydration (minimal)
 - Shared component library
 
 **Styling: Tailwind CSS 3.x**
+
 - Utility-first CSS
 - Design token integration
 - Custom configuration via workspace package
 
 **Content Client: Sanity Client 6.x**
+
 - Content fetching via GROQ queries
 - Build-time data fetching
 - CDN-backed content delivery
@@ -82,12 +86,14 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
 ### CMS (apps/studio)
 
 **Platform: Sanity Studio 4.x**
+
 - Real-time collaborative editing
 - Customizable content schemas
 - Preview functionality
 - Deployed separately from main site
 
 **Content Types:**
+
 - Posts (blog articles)
 - Projects (portfolio items)
 - Pages (custom pages)
@@ -98,12 +104,14 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
 ### Build System
 
 **Monorepo Manager: Turborepo 2.x**
+
 - Parallel task execution
 - Intelligent caching
 - Task dependency management
 - Remote caching support
 
 **Package Manager: pnpm 9.x**
+
 - Workspace management
 - Efficient disk usage
 - Fast installation
@@ -112,12 +120,14 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
 ### Infrastructure
 
 **Hosting: Netlify**
+
 - CDN distribution
 - Automatic HTTPS
 - Deploy previews
 - Edge functions support
 
 **CMS Hosting: Sanity Cloud**
+
 - Content API hosting
 - Studio hosting
 - Asset CDN
@@ -283,12 +293,14 @@ pnpm build
 ### Cache Strategy
 
 Turborepo caches build outputs based on:
+
 - Source file contents (git hash)
 - Dependencies in package.json
 - Environment variables
 - Configuration files
 
 **Cache Locations:**
+
 - Local: `.turbo/cache/`
 - Remote: Configured via `turbo.json` (optional)
 
@@ -329,12 +341,14 @@ Developer Machine
 ### Environment Separation
 
 **Production:**
+
 - Domain: afnizarnur.com
 - Branch: main
 - Dataset: production
 - Content: Published content only
 
 **Development:**
+
 - Domain: localhost:4321
 - Branch: Any
 - Dataset: production (read-only)
@@ -345,12 +359,14 @@ Developer Machine
 ### Build Performance
 
 **Turborepo Optimizations:**
+
 - Parallel task execution
 - Incremental builds (only rebuild changed packages)
 - Build artifact caching
 - Smart hashing for cache invalidation
 
 **Astro Optimizations:**
+
 - Static site generation (no runtime overhead)
 - Automatic code splitting
 - Image optimization (Sharp)
@@ -359,12 +375,14 @@ Developer Machine
 ### Runtime Performance
 
 **Static Site Benefits:**
+
 - Instant page loads (pre-rendered HTML)
 - CDN edge caching
 - No database queries at runtime
 - Predictable performance
 
 **Content Delivery:**
+
 - Sanity CDN for images and assets
 - Netlify CDN for HTML/CSS/JS
 - Global edge distribution
@@ -430,28 +448,28 @@ Developer Machine
 ### Potential Enhancements
 
 1. **Incremental Static Regeneration (ISR)**
-   - Rebuild only changed pages
-   - Faster build times with large content
+    - Rebuild only changed pages
+    - Faster build times with large content
 
 2. **Edge Functions**
-   - Dynamic personalization
-   - A/B testing
-   - Geolocation-based content
+    - Dynamic personalization
+    - A/B testing
+    - Geolocation-based content
 
 3. **Preview Mode**
-   - Preview unpublished content
-   - Draft content viewing
-   - Editorial workflow
+    - Preview unpublished content
+    - Draft content viewing
+    - Editorial workflow
 
 4. **Build Optimization**
-   - Remote caching (Vercel/Nx Cloud)
-   - Parallel builds across machines
-   - Build time monitoring
+    - Remote caching (Vercel/Nx Cloud)
+    - Parallel builds across machines
+    - Build time monitoring
 
 5. **Performance Monitoring**
-   - Real User Monitoring (RUM)
-   - Synthetic monitoring
-   - Core Web Vitals tracking
+    - Real User Monitoring (RUM)
+    - Synthetic monitoring
+    - Core Web Vitals tracking
 
 ## Related Documentation
 

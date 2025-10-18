@@ -36,23 +36,30 @@ const hasDefaultSlot = Astro.slots.has("default")
 
 <header
     class:list={{
-        "page-header": true,
-        "page-header--center": orientation === "center",
+        "mb-48 flex flex-col gap-16": true,
+        "items-center text-center": orientation === "center",
     }}
 >
     {
         hasEyebrowSlot ? (
             <slot name="eyebrow" />
         ) : (
-            eyebrow && <span class="page-header__eyebrow">{eyebrow}</span>
+            eyebrow && (
+                <span class="inline-flex items-center gap-8 rounded-full bg-background-accent-primary px-12 py-4 text-xs font-semibold uppercase tracking-wide text-text-accent-primary">
+                    {eyebrow}
+                </span>
+            )
         )
     }
 
-    <component is={headingLevel} class="page-header__title">
+    <component
+        is={headingLevel}
+        class="text-balance text-4xl font-bold text-text-primary sm:text-5xl"
+    >
         {title}
     </component>
 
-    {description && <p class="page-header__description">{description}</p>}
+    {description && <p class="text-balance text-xl text-text-secondary">{description}</p>}
 
     {hasDefaultSlot && <slot />}
 
@@ -60,8 +67,8 @@ const hasDefaultSlot = Astro.slots.has("default")
         hasMetaSlot && (
             <div
                 class:list={{
-                    "page-header__meta": true,
-                    "page-header__meta--center": orientation === "center",
+                    "flex flex-wrap gap-16": true,
+                    "justify-center": orientation === "center",
                 }}
             >
                 <slot name="meta" />
@@ -73,8 +80,8 @@ const hasDefaultSlot = Astro.slots.has("default")
         normalizedActions.length > 0 && (
             <div
                 class:list={{
-                    "page-header__actions": true,
-                    "page-header__actions--center": orientation === "center",
+                    "mt-16 flex flex-wrap gap-16": true,
+                    "justify-center": orientation === "center",
                 }}
             >
                 {normalizedActions.map((action) => (
@@ -83,10 +90,13 @@ const hasDefaultSlot = Astro.slots.has("default")
                         target={action.external ? "_blank" : undefined}
                         rel={action.external ? "noopener noreferrer" : undefined}
                         class:list={{
-                            button: true,
-                            "button--primary": action.variant === "primary",
-                            "button--secondary": action.variant === "secondary",
-                            "button--ghost": action.variant === "ghost",
+                            "inline-flex items-center justify-center gap-8 rounded-full px-16 py-8 text-sm font-semibold transition-colors duration-150": true,
+                            "bg-background-accent-solid text-text-inverse hover:bg-background-accent-solid-hover":
+                                action.variant === "primary",
+                            "border border-border-primary bg-background-primary text-text-primary hover:bg-background-secondary":
+                                action.variant === "secondary",
+                            "text-text-primary hover:text-text-accent-primary":
+                                action.variant === "ghost",
                         }}
                     >
                         {action.label}

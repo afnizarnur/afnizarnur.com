@@ -1,0 +1,70 @@
+---
+import { Moon, Sun } from "phosphor-react"
+
+interface Props {
+    size?: number
+    className?: string
+}
+
+const { size = 24, className = "" } = Astro.props
+---
+
+<button
+    id="theme-toggle-button"
+    class={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-icon-primary active:text-icon-primary transition-colors ${className}`}
+    aria-label="Toggle theme"
+    type="button"
+>
+    <span id="theme-icon-light" style="display: none;">
+        <Moon size={size} color="currentColor" />
+    </span>
+    <span id="theme-icon-dark" style="display: none;">
+        <Sun size={size} color="currentColor" />
+    </span>
+</button>
+
+<script is:inline>
+    // Theme toggle functionality
+    const button = document.getElementById("theme-toggle-button")
+    const lightIcon = document.getElementById("theme-icon-light")
+    const darkIcon = document.getElementById("theme-icon-dark")
+
+    if (button && lightIcon && darkIcon) {
+        let currentTheme = document.documentElement.getAttribute("data-theme") || "light"
+
+        // Initialize button UI on page load
+        updateButtonUI(currentTheme)
+
+        // Add click handler
+        button.addEventListener("click", () => {
+            currentTheme = currentTheme === "light" ? "dark" : "light"
+
+            // Apply theme to DOM
+            document.documentElement.setAttribute("data-theme", currentTheme)
+
+            // Save preference to localStorage
+            try {
+                localStorage.setItem("theme-preference", currentTheme)
+            } catch {
+                // Silently fail if localStorage is not available
+            }
+
+            // Update button UI
+            updateButtonUI(currentTheme)
+        })
+
+        function updateButtonUI(theme) {
+            if (theme === "dark") {
+                lightIcon.style.display = "none"
+                darkIcon.style.display = "inline"
+                button.setAttribute("aria-label", "Toggle theme (currently dark)")
+                button.setAttribute("aria-pressed", "true")
+            } else {
+                lightIcon.style.display = "inline"
+                darkIcon.style.display = "none"
+                button.setAttribute("aria-label", "Toggle theme (currently light)")
+                button.setAttribute("aria-pressed", "false")
+            }
+        }
+    }
+</script>

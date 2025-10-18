@@ -7,6 +7,19 @@ export default defineConfig({
     plugins: [
         css({
             fileName: "tokens.css",
+            modeSelectors: [
+                {
+                    mode: "light",
+                    selectors: [":root", '[data-theme="light"]'],
+                    scheme: "light",
+                },
+                {
+                    mode: "dark",
+                    selectors: ['[data-theme="dark"]'],
+                    scheme: "dark",
+                },
+            ],
+            baseScheme: "light dark",
         }),
     ],
 })

@@ -4,22 +4,31 @@ import PageHeader from "../components/PageHeader.astro"
 ---
 
 <BaseLayout title="Page Not Found">
-    <section class="page-shell page-shell--flush">
-        <div class="surface-panel">
-            <PageHeader
-                orientation="center"
-                title="Page not found"
-                description="The page you're looking for doesn't exist or has been moved."
-                actions={[
-                    { href: "/", label: "Go home" },
-                    { href: "/work", label: "View projects", variant: "secondary" },
-                ]}
+    <section class="mx-auto max-w-7xl px-16 py-48 sm:px-24 lg:px-32">
+        <div
+            class="relative overflow-hidden rounded-3xl border border-border-secondary bg-gradient-to-br from-bgColor-secondary to-bgColor-primary p-32 shadow-lg"
+        >
+            <div
+                class="absolute -right-1/5 -top-2/5 aspect-square w-1/2 rounded-full pointer-events-none"
+                style="background: radial-gradient(circle at center, var(--color-bgColor-accent-primary) 0%, transparent 65%); opacity: 0.8;"
             >
-                <span slot="eyebrow" class="text-6xl font-bold text-fgColor-primary">404</span>
-                <p class="text-fgColor-tertiary">
-                    Double-check the URL or head back to the homepage to continue exploring.
-                </p>
-            </PageHeader>
+            </div>
+            <div class="relative z-10">
+                <PageHeader
+                    orientation="center"
+                    title="Page not found"
+                    description="The page you're looking for doesn't exist or has been moved."
+                    actions={[
+                        { href: "/", label: "Go home" },
+                        { href: "/work", label: "View projects", variant: "secondary" },
+                    ]}
+                >
+                    <span slot="eyebrow" class="text-6xl font-bold text-text-primary">404</span>
+                    <p class="text-text-tertiary">
+                        Double-check the URL or head back to the homepage to continue exploring.
+                    </p>
+                </PageHeader>
+            </div>
         </div>
     </section>
 </BaseLayout>

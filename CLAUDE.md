@@ -17,6 +17,7 @@ Personal portfolio and blog platform. Monorepo built with Astro, React, Sanity C
 ## Bash Commands
 
 Root commands:
+
 - `pnpm dev` - Start all apps in dev mode
 - `pnpm build` - Build all apps
 - `pnpm typecheck` - Type check all apps (IMPORTANT: run after code changes)
@@ -29,6 +30,7 @@ Root commands:
 - `pnpm release` - Build and publish packages
 
 App-specific (using --filter):
+
 - `pnpm --filter @afnizarnur/web dev` - Start web dev server
 - `pnpm --filter @afnizarnur/web build` - Build web app
 - `pnpm --filter @afnizarnur/web preview` - Preview production build
@@ -38,11 +40,13 @@ App-specific (using --filter):
 ## Workflow
 
 Initial setup:
+
 1. Clone repo and run `pnpm install`
 2. Build shared packages: `pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"`
 3. Start development: `pnpm dev`
 
 Making changes:
+
 1. Create feature branch from `main`
 2. Make changes in relevant apps/packages
 3. YOU MUST run `pnpm typecheck` after code changes
@@ -51,6 +55,7 @@ Making changes:
 6. Format code: `pnpm format`
 
 Version management (uses Changesets):
+
 1. Create changeset: `pnpm changeset`
 2. Bump versions: `pnpm version-packages`
 3. Publish: `pnpm release`
@@ -60,22 +65,26 @@ IMPORTANT: Versioned packages are `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afni
 ## Code Style
 
 TypeScript:
+
 - Strict mode enabled
 - Prefer named exports over default exports
 - Use `interface` for object types, `type` for unions/intersections
 - Always add explicit return types for functions
 
 React:
+
 - Use functional components with hooks
 - All components must be `.tsx` files
 - Follow React 18 best practices
 
 File naming:
+
 - Components: `PascalCase.tsx` or `PascalCase.astro`
 - Utils/Helpers: `camelCase.ts`
 - Config files: `kebab-case.ts` or `.js`
 
 Formatting:
+
 - Prettier handles all formatting
 - ESLint enforces code quality
 - Run `pnpm format` before committing
@@ -96,11 +105,13 @@ Formatting:
 ## Repository Etiquette
 
 Commits:
+
 - Write clear, descriptive commit messages
 - Reference issue numbers when applicable
 - Keep commits focused and atomic
 
 Pull Requests:
+
 - Create PRs from feature branches to `main`
 - Include description of changes and testing done
 - Ensure all checks pass before requesting review
@@ -110,6 +121,7 @@ IMPORTANT: Never commit without running `pnpm typecheck` and `pnpm lint` first.
 ## Environment Variables
 
 Required for CMS connection:
+
 - Check `.env.example` for Sanity-related variables
 - Create `.env` file in project root
 
@@ -124,12 +136,14 @@ Required for CMS connection:
 ## Troubleshooting
 
 Build issues:
+
 1. Clean everything: `pnpm clean`
 2. Reinstall: `pnpm install`
 3. Build shared packages: `pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"`
 4. Build all: `pnpm build`
 
 Type errors:
+
 - Run `pnpm typecheck` across all packages to identify issues
 
 IMPORTANT: If build fails, check that shared config packages are built first before apps.
@@ -147,26 +161,31 @@ IMPORTANT: If build fails, check that shared config packages are built first bef
 This project uses Tailwind CSS v4, which introduces a CSS-first configuration approach:
 
 **Setup:**
+
 - **No JS config file**: Tailwind v4 doesn't use `tailwind.config.js/ts`
 - **PostCSS plugin**: Uses `@tailwindcss/postcss` in `postcss.config.cjs`
 - **CSS configuration**: All config is in `apps/web/src/styles/global.css`
 
 **Key directives in global.css:**
+
 - `@import "tailwindcss"` - Imports Tailwind base, components, and utilities
 - `@source` - Defines content paths for class scanning
 - `@theme` - Extends theme with design tokens (colors, spacing, etc.)
 - `@layer base` - Custom base styles
 
 **Design tokens integration:**
+
 - Terrazzo generates CSS custom properties in `packages/tokens/dist/tokens.css`
 - These are imported and mapped to Tailwind utilities via `@theme` directive
 - Example: `--color-primary-600` becomes `text-primary-600` utility class
 
 **Component styles:**
+
 - Use `@reference "../styles/global.css"` when using `@apply` in component `<style>` blocks
 - Required for Tailwind v4 to resolve utilities in scoped styles
 
 **Migration notes:**
+
 - The `@astrojs/tailwind` integration is NOT used (removed for v4)
 - Pure PostCSS processing via `@tailwindcss/postcss`
 - No Terrazzo Tailwind plugin (generates v3 config, incompatible with v4)

@@ -262,6 +262,14 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
         const query = `*[_type == "siteSettings"][0] {
       title,
       description,
+      logo {
+        type,
+        text,
+        "image": {
+          "url": image.asset->url,
+          "alt": image.alt
+        }
+      },
       "ogImage": ogImage.asset->url,
       url,
       social {
@@ -269,6 +277,10 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
         github,
         linkedin,
         email
+      },
+      timezone {
+        timeZone,
+        displayLabel
       }
     }`
 
