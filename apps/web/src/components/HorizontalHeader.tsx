@@ -25,72 +25,83 @@ export function HorizontalHeader({
         <div className="flex flex-col bg-background-primary">
             <div className="overflow-x-auto scrollbar-hide w-full">
                 {/* Header section */}
-                <div className="bg-background-secondary">
-                    <div
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: GRID_TEMPLATE,
-                        }}
-                    >
-                        <div className="flex" style={{ gridColumn: "2" }}>
-                            {segments.map((item) => (
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: GRID_TEMPLATE,
+                    }}
+                    className="bg-background-secondary"
+                >
+                    <div className="flex" style={{ gridColumn: "2" }}>
+                        {segments.map((item) => (
+                            <div
+                                key={item.id}
+                                className="flex-shrink-0"
+                                style={{ width: `${SEGMENT_WIDTH}px` }}
+                            >
                                 <div
-                                    key={item.id}
-                                    className="flex-shrink-0 border-r border-border-primary"
-                                    style={{ width: `${SEGMENT_WIDTH}px` }}
+                                    className="flex flex-col items-center justify-center bg-background-secondary relative"
+                                    style={{ height: `${containerHeight}px` }}
                                 >
                                     <div
-                                        className="flex flex-col items-center justify-center bg-background-secondary"
-                                        style={{ height: `${containerHeight}px` }}
-                                    >
+                                        className="absolute inset-y-0 left-24 overflow-hidden"
+                                        style={{
+                                            width: "24px",
+                                            backgroundImage:
+                                                "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0px 20px)",
+                                            backgroundRepeat: "repeat-y",
+                                        }}
+                                    />
+
+                                    {/* Content on top, fill the whole segment */}
+                                    <div className="relative z-10 flex flex-col items-center justify-center bg-background-secondary h-full">
                                         <span className="text-sm font-medium text-text-primary truncate px-2">
                                             {item.label}
                                         </span>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
                 {/* Footer section */}
-                <div className="bg-background-primary">
-                    <div
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: GRID_TEMPLATE,
-                        }}
-                    >
-                        <div className="flex" style={{ gridColumn: "2" }}>
-                            {segments.map((item, index) => (
-                                <div
-                                    key={item.id}
-                                    className="flex-shrink-0 border-r border-border-primary"
-                                    style={{ width: `${SEGMENT_WIDTH}px` }}
-                                >
-                                    <div className="relative py-16 px-6">
-                                        {/* Triangle pointer */}
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: GRID_TEMPLATE,
+                    }}
+                    className="bg-background-primary"
+                >
+                    <div className="flex" style={{ gridColumn: "2" }}>
+                        {segments.map((item, index) => (
+                            <div
+                                key={item.id}
+                                className="flex-shrink-0"
+                                style={{ width: `${SEGMENT_WIDTH}px` }}
+                            >
+                                <div className="relative py-16 px-6">
+                                    {/* Triangle pointer */}
+                                    <div
+                                        className="absolute -top-2.5 transition-all duration-200"
+                                        style={{ left: "24px" }}
+                                    >
                                         <div
-                                            className="absolute -top-2.5 transition-all duration-200"
-                                            style={{ left: "24px" }}
-                                        >
-                                            <div
-                                                className="w-0 h-0"
-                                                style={{
-                                                    borderLeft: "12px solid transparent",
-                                                    borderRight: "12px solid transparent",
-                                                    borderBottom:
-                                                        "12px solid var(--color-semantic-background-primary)",
-                                                }}
-                                            />
-                                        </div>
-                                        <span className="text-eyebrow-1 text-text-disabled">
-                                            {index === 0 ? "Current Location" : `${item.distance}m`}
-                                        </span>
+                                            className="w-0 h-0"
+                                            style={{
+                                                borderLeft: "12px solid transparent",
+                                                borderRight: "12px solid transparent",
+                                                borderBottom:
+                                                    "12px solid var(--color-semantic-background-primary)",
+                                            }}
+                                        />
                                     </div>
+                                    <span className="text-eyebrow-1 text-text-disabled">
+                                        {index === 0 ? "Current Location" : `${item.distance}m`}
+                                    </span>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
