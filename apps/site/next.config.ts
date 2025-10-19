@@ -1,9 +1,13 @@
 import type { NextConfig } from "next"
+import path from "path"
 
 const nextConfig: NextConfig = {
     // Enable static export with ISR support
     // Note: For Netlify deployment with ISR, we'll use their adapter
     output: "standalone",
+
+    // Set the monorepo root for proper file tracing
+    outputFileTracingRoot: path.join(__dirname, "../../"),
 
     // Image optimization
     images: {
