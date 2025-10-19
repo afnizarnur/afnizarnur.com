@@ -12,8 +12,9 @@ export interface HeaderItem {
 
 const SEGMENT_WIDTH = 800 // pixels per segment
 const GRID_TEMPLATE = "1fr min(1220px, 100% - 48px) 1fr"
-const SNAP_THRESHOLD = 20 // pixels
 const STORAGE_KEY = "horizontal-header-widget-positions"
+const AUTO_SCROLL_THRESHOLD = 50 // pixels from edge to trigger auto-scroll
+const AUTO_SCROLL_SPEED = 5 // pixels per frame
 
 interface SegmentProps {
     label?: string
@@ -167,7 +168,11 @@ export function HorizontalHeader({
     const [draggingId, setDraggingId] = useState<string | null>(null)
     const [stackOrder, setStackOrder] = useState<string[]>([])
     const containerRef = useRef<HTMLDivElement>(null)
+    const scrollContainerRef = useRef<HTMLDivElement>(null)
+    const contentRef = useRef<HTMLDivElement>(null)
     const [containerBounds, setContainerBounds] = useState({ width: 0, height: 0 })
+    const [contentWidth, setContentWidth] = useState(0)
+    const autoScrollIntervalRef = useRef<number | null>(null)
 
     // Load positions from localStorage on mount
     useEffect(() => {
@@ -183,12 +188,16 @@ export function HorizontalHeader({
         setStackOrder(WIDGET_CONFIGS.map((config) => config.id))
     }, [])
 
-    // Calculate container bounds
+    // Calculate container bounds and content width
     useEffect(() => {
         const updateBounds = (): void => {
             if (containerRef.current) {
                 const rect = containerRef.current.getBoundingClientRect()
                 setContainerBounds({ width: rect.width, height: rect.height })
+            }
+            if (contentRef.current) {
+                // Get the full scrollable content width
+                setContentWidth(contentRef.current.scrollWidth)
             }
         }
 
@@ -197,104 +206,96 @@ export function HorizontalHeader({
         return () => window.removeEventListener("resize", updateBounds)
     }, [])
 
+    // Clamp position to valid bounds (use content width for horizontal bounds)
+    const clampPosition = useCallback(
+        (x: number, y: number, width: number, height: number): { x: number; y: number } => {
+            const maxX = Math.max(0, contentWidth - width)
+            const maxY = Math.max(0, containerBounds.height - height)
+            return {
+                x: Math.max(0, Math.min(x, maxX)),
+                y: Math.max(0, Math.min(y, maxY)),
+            }
+        },
+        [contentWidth, containerBounds]
+    )
+
     // Save position to localStorage
-    const savePosition = useCallback((id: string, x: number, y: number): void => {
-        setPositions((prev) => {
-            const newPositions = { ...prev, [id]: { x, y } }
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(newPositions))
-            return newPositions
-        })
+    const savePosition = useCallback(
+        (id: string, x: number, y: number, width: number, height: number): void => {
+            const clamped = clampPosition(x, y, width, height)
+            setPositions((prev) => {
+                const newPositions = { ...prev, [id]: clamped }
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(newPositions))
+                return newPositions
+            })
+        },
+        [clampPosition]
+    )
+
+    // Auto-scroll logic
+    const startAutoScroll = useCallback((mouseX: number): void => {
+        if (!scrollContainerRef.current) return
+
+        const scrollContainer = scrollContainerRef.current
+        const rect = scrollContainer.getBoundingClientRect()
+        const mouseRelativeX = mouseX - rect.left
+
+        // Stop any existing auto-scroll
+        if (autoScrollIntervalRef.current) {
+            cancelAnimationFrame(autoScrollIntervalRef.current)
+            autoScrollIntervalRef.current = null
+        }
+
+        // Check if we should auto-scroll
+        let shouldScroll = false
+        let scrollDirection = 0
+
+        if (mouseRelativeX < AUTO_SCROLL_THRESHOLD) {
+            // Near left edge - scroll left
+            shouldScroll = true
+            scrollDirection = -1
+        } else if (mouseRelativeX > rect.width - AUTO_SCROLL_THRESHOLD) {
+            // Near right edge - scroll right
+            shouldScroll = true
+            scrollDirection = 1
+        }
+
+        if (shouldScroll) {
+            const scroll = (): void => {
+                if (!scrollContainerRef.current) return
+
+                scrollContainerRef.current.scrollLeft += scrollDirection * AUTO_SCROLL_SPEED
+
+                // Continue scrolling
+                autoScrollIntervalRef.current = requestAnimationFrame(scroll)
+            }
+            autoScrollIntervalRef.current = requestAnimationFrame(scroll)
+        }
     }, [])
 
-    // Calculate snap offset based on proximity to other widgets and edges
-    const calculateSnapOffset = useCallback(
-        (
-            widgetId: string,
-            currentX: number,
-            currentY: number,
-            widgetWidth: number,
-            widgetHeight: number
-        ): { x: number; y: number } => {
-            let snapX = 0
-            let snapY = 0
+    const stopAutoScroll = useCallback((): void => {
+        if (autoScrollIntervalRef.current) {
+            cancelAnimationFrame(autoScrollIntervalRef.current)
+            autoScrollIntervalRef.current = null
+        }
+    }, [])
 
-            // Check snap to container edges
-            if (Math.abs(currentX) < SNAP_THRESHOLD) snapX = -currentX
-            if (Math.abs(currentY) < SNAP_THRESHOLD) snapY = -currentY
-            if (
-                Math.abs(currentX + widgetWidth - containerBounds.width) < SNAP_THRESHOLD &&
-                containerBounds.width > 0
-            ) {
-                snapX = containerBounds.width - widgetWidth - currentX
+    // Clean up auto-scroll on unmount
+    useEffect(() => {
+        return () => {
+            if (autoScrollIntervalRef.current) {
+                cancelAnimationFrame(autoScrollIntervalRef.current)
             }
-            if (
-                Math.abs(currentY + widgetHeight - containerBounds.height) < SNAP_THRESHOLD &&
-                containerBounds.height > 0
-            ) {
-                snapY = containerBounds.height - widgetHeight - currentY
-            }
+        }
+    }, [])
 
-            // Check snap to container center
-            const centerX = containerBounds.width / 2 - widgetWidth / 2
-            const centerY = containerBounds.height / 2 - widgetHeight / 2
-            if (Math.abs(currentX - centerX) < SNAP_THRESHOLD && containerBounds.width > 0) {
-                snapX = centerX - currentX
-            }
-            if (Math.abs(currentY - centerY) < SNAP_THRESHOLD && containerBounds.height > 0) {
-                snapY = centerY - currentY
-            }
-
-            // Check snap to other widgets
-            WIDGET_CONFIGS.forEach((config) => {
-                if (config.id === widgetId) return
-
-                const otherPos = positions[config.id] || {
-                    x: config.defaultX,
-                    y: config.defaultY,
-                }
-                const otherWidth = config.width
-                const otherHeight = config.height || 200
-
-                // Horizontal alignment
-                if (Math.abs(otherPos.x - currentX) < SNAP_THRESHOLD) {
-                    snapX = otherPos.x - currentX
-                }
-                if (Math.abs(otherPos.x + otherWidth - (currentX + widgetWidth)) < SNAP_THRESHOLD) {
-                    snapX = otherPos.x + otherWidth - widgetWidth - currentX
-                }
-
-                // Vertical alignment
-                if (Math.abs(otherPos.y - currentY) < SNAP_THRESHOLD) {
-                    snapY = otherPos.y - currentY
-                }
-                if (
-                    Math.abs(otherPos.y + otherHeight - (currentY + widgetHeight)) < SNAP_THRESHOLD
-                ) {
-                    snapY = otherPos.y + otherHeight - widgetHeight - currentY
-                }
-
-                // Center alignment with other widgets
-                const otherCenterX = otherPos.x + otherWidth / 2
-                const thisCenterX = currentX + widgetWidth / 2
-                if (Math.abs(otherCenterX - thisCenterX) < SNAP_THRESHOLD) {
-                    snapX = otherCenterX - widgetWidth / 2 - currentX
-                }
-
-                const otherCenterY = otherPos.y + otherHeight / 2
-                const thisCenterY = currentY + widgetHeight / 2
-                if (Math.abs(otherCenterY - thisCenterY) < SNAP_THRESHOLD) {
-                    snapY = otherCenterY - widgetHeight / 2 - currentY
-                }
-            })
-
-            return { x: snapX, y: snapY }
-        },
-        [positions, containerBounds]
-    )
 
     return (
         <div className="flex flex-col bg-background-primary">
-            <div className="overflow-x-auto scrollbar-hide w-full overscroll-none">
+            <div
+                ref={scrollContainerRef}
+                className="overflow-x-auto scrollbar-hide w-full overscroll-none"
+            >
                 {/* Header section with segments as background */}
                 <div
                     style={{
@@ -313,26 +314,41 @@ export function HorizontalHeader({
                         }}
                     >
                         <div
+                            ref={contentRef}
                             className="relative pointer-events-auto"
                             style={{ gridColumn: "2", height: `${containerHeight}px` }}
                         >
                             {WIDGET_CONFIGS.map((config) => {
-                                const position = positions[config.id] || {
-                                    x: config.defaultX,
-                                    y: config.defaultY,
-                                }
-                                const isActive = draggingId === config.id
                                 const widgetHeight = config.height || 200
+                                const savedPosition = positions[config.id]
+                                // Clamp position to valid bounds to prevent lost widgets
+                                const position = savedPosition
+                                    ? clampPosition(
+                                          savedPosition.x,
+                                          savedPosition.y,
+                                          config.width,
+                                          widgetHeight
+                                      )
+                                    : { x: config.defaultX, y: config.defaultY }
+                                const isActive = draggingId === config.id
                                 // Calculate z-index based on stack order
                                 const stackIndex = stackOrder.indexOf(config.id)
                                 const baseZIndex = stackIndex >= 0 ? stackIndex + 10 : 10
                                 const zIndex = isActive ? 100 : baseZIndex
 
+                                // Calculate drag constraints to keep widget within scrollable content
+                                const dragConstraints = {
+                                    left: 0,
+                                    top: 0,
+                                    right: Math.max(0, contentWidth - config.width),
+                                    bottom: Math.max(0, containerBounds.height - widgetHeight),
+                                }
+
                                 return (
                                     <motion.div
                                         key={config.id}
                                         drag
-                                        dragConstraints={containerRef}
+                                        dragConstraints={dragConstraints}
                                         dragElastic={0}
                                         dragMomentum={false}
                                         initial={false}
@@ -353,23 +369,32 @@ export function HorizontalHeader({
                                                 return [...filtered, config.id]
                                             })
                                         }}
+                                        onDrag={(_event, _info) => {
+                                            // Get mouse position for auto-scroll
+                                            const mouseEvent =
+                                                _event as unknown as React.MouseEvent | TouchEvent
+                                            let clientX = 0
+
+                                            if ("clientX" in mouseEvent) {
+                                                clientX = mouseEvent.clientX
+                                            } else if (
+                                                "touches" in mouseEvent &&
+                                                mouseEvent.touches.length > 0
+                                            ) {
+                                                clientX = mouseEvent.touches[0].clientX
+                                            }
+
+                                            if (clientX > 0) {
+                                                startAutoScroll(clientX)
+                                            }
+                                        }}
                                         onDragEnd={(_event, info) => {
+                                            stopAutoScroll()
+
                                             const finalX = position.x + info.offset.x
                                             const finalY = position.y + info.offset.y
 
-                                            const snap = calculateSnapOffset(
-                                                config.id,
-                                                finalX,
-                                                finalY,
-                                                config.width,
-                                                widgetHeight
-                                            )
-
-                                            savePosition(
-                                                config.id,
-                                                finalX + snap.x,
-                                                finalY + snap.y
-                                            )
+                                            savePosition(config.id, finalX, finalY, config.width, widgetHeight)
                                             setDraggingId(null)
                                         }}
                                         style={{
