@@ -61,7 +61,9 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
     const closeMenu = (): void => {
         setIsOpen(false)
         setTimeout(() => {
-            const hamburgerBtn = document.getElementById("hamburger-menu-button") as HTMLButtonElement | null
+            const hamburgerBtn = document.getElementById(
+                "hamburger-menu-button"
+            ) as HTMLButtonElement | null
             hamburgerBtn?.focus()
         }, 300)
     }

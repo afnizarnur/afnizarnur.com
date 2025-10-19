@@ -13,7 +13,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
     return {
         title: page.seo?.title || page.title,
-        description: page.seo?.description || "Learn about Afnizar Nur Ghifari, product designer and developer.",
+        description:
+            page.seo?.description ||
+            "Learn about Afnizar Nur Ghifari, product designer and developer.",
     }
 }
 

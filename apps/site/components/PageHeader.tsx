@@ -40,15 +40,14 @@ export function PageHeader({
         <header
             className={`mb-48 flex flex-col gap-16 ${isCenter ? "items-center text-center" : ""}`}
         >
-            {eyebrow && (
-                typeof eyebrow === "string" ? (
+            {eyebrow &&
+                (typeof eyebrow === "string" ? (
                     <span className="inline-flex items-center gap-8 rounded-full bg-background-accent-primary px-12 py-4 text-xs font-semibold uppercase tracking-wide text-text-accent-primary">
                         {eyebrow}
                     </span>
                 ) : (
                     eyebrow
-                )
-            )}
+                ))}
 
             <HeadingTag className="text-balance text-4xl font-bold text-text-primary sm:text-5xl">
                 {title}
@@ -92,11 +91,7 @@ export function PageHeader({
                         }
 
                         return (
-                            <Link
-                                key={action.href}
-                                href={action.href}
-                                className={className}
-                            >
+                            <Link key={action.href} href={action.href} className={className}>
                                 {action.label}
                             </Link>
                         )

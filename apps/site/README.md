@@ -89,11 +89,11 @@ NEXT_PUBLIC_SITE_URL=https://afnizarnur.com
 
 1. **Routing:** Next.js App Router (app directory) with file-based routing
 2. **Components:** Mix of React Server Components and Client Components
-   - Server Components: Default for all pages and static components
-   - Client Components: Only for interactive elements (theme toggle, navigation, etc.)
+    - Server Components: Default for all pages and static components
+    - Client Components: Only for interactive elements (theme toggle, navigation, etc.)
 3. **Data Fetching:** Server Components with ISR (Incremental Static Regeneration)
-   - Content revalidates every 1 hour (posts/projects)
-   - Settings revalidate every 24 hours
+    - Content revalidates every 1 hour (posts/projects)
+    - Settings revalidate every 24 hours
 4. **Styling:** Tailwind CSS v4 with PostCSS, design tokens from monorepo
 5. **Icons:** @phosphor-icons/react (React 19 compatible)
 

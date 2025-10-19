@@ -22,11 +22,11 @@ These values are also codified in `netlify.toml`, so future deploy contexts inhe
 
 Add the following variables in **Site settings → Build & deploy → Environment**:
 
-| Variable                   | Example                  | Description                              |
-| -------------------------- | ------------------------ | ---------------------------------------- |
+| Variable                        | Example                  | Description                              |
+| ------------------------------- | ------------------------ | ---------------------------------------- |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | `abcd1234`               | Sanity project ID used by both apps      |
 | `NEXT_PUBLIC_SANITY_DATASET`    | `production`             | Dataset that Astro queries               |
-| `PUBLIC_SITE_URL`          | `https://afnizarnur.com` | Absolute site URL for sitemap/open graph |
+| `PUBLIC_SITE_URL`               | `https://afnizarnur.com` | Absolute site URL for sitemap/open graph |
 
 > Update values in the Netlify UI; the defaults in `netlify.toml` are placeholders only.
 

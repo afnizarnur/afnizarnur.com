@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { getAllProjectSlugs, getProjectBySlug } from "@/lib/sanity/queries"
 import { PageHeader } from "@/components/PageHeader"
@@ -23,7 +24,8 @@ export async function generateMetadata({ params }: WorkProjectPageProps): Promis
         return {}
     }
 
-    const ogImage = project.gallery && project.gallery.length > 0 ? project.gallery[0].url : undefined
+    const ogImage =
+        project.gallery && project.gallery.length > 0 ? project.gallery[0].url : undefined
 
     return {
         title: project.seo?.title || project.title,
@@ -35,7 +37,9 @@ export async function generateMetadata({ params }: WorkProjectPageProps): Promis
     }
 }
 
-export default async function WorkProjectPage({ params }: WorkProjectPageProps): Promise<JSX.Element> {
+export default async function WorkProjectPage({
+    params,
+}: WorkProjectPageProps): Promise<JSX.Element> {
     const { slug } = await params
     const project = await getProjectBySlug(slug)
 
@@ -75,21 +79,31 @@ export default async function WorkProjectPage({ params }: WorkProjectPageProps):
                             <div className="grid gap-16 md:grid-cols-2">
                                 {hasRole && (
                                     <div className="flex flex-col gap-8">
-                                        <p className="text-sm font-semibold text-text-primary">Role</p>
-                                        <p className="text-sm text-text-secondary">{project.role!.join(", ")}</p>
+                                        <p className="text-sm font-semibold text-text-primary">
+                                            Role
+                                        </p>
+                                        <p className="text-sm text-text-secondary">
+                                            {project.role!.join(", ")}
+                                        </p>
                                     </div>
                                 )}
 
                                 {hasClient && (
                                     <div className="flex flex-col gap-8">
-                                        <p className="text-sm font-semibold text-text-primary">Client</p>
-                                        <p className="text-sm text-text-secondary">{project.client}</p>
+                                        <p className="text-sm font-semibold text-text-primary">
+                                            Client
+                                        </p>
+                                        <p className="text-sm text-text-secondary">
+                                            {project.client}
+                                        </p>
                                     </div>
                                 )}
 
                                 {hasTechnologies && (
                                     <div className="flex flex-col gap-8">
-                                        <p className="text-sm font-semibold text-text-primary">Technologies</p>
+                                        <p className="text-sm font-semibold text-text-primary">
+                                            Technologies
+                                        </p>
                                         <div className="flex flex-wrap gap-8">
                                             {project.technologies!.map((tech) => (
                                                 <span
@@ -118,12 +132,12 @@ export default async function WorkProjectPage({ params }: WorkProjectPageProps):
                         <h2 className="mb-24 text-2xl font-bold text-text-primary">Gallery</h2>
                         <div className="grid grid-cols-1 gap-24 md:grid-cols-2">
                             {project.gallery.slice(1).map((image, index) => (
-                                <figure key={index}>
-                                    <img
+                                <figure key={index} className="relative w-full aspect-video">
+                                    <Image
                                         src={`${image.url}?w=800&auto=format`}
                                         alt={image.alt || ""}
-                                        className="rounded-lg"
-                                        loading="lazy"
+                                        fill
+                                        className="rounded-lg object-cover"
                                     />
                                     {image.caption && (
                                         <figcaption className="mt-8 text-sm text-text-tertiary">

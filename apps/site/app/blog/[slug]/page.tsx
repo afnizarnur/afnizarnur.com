@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { getAllPostSlugs, getPostBySlug } from "@/lib/sanity/queries"
 import { PageHeader } from "@/components/PageHeader"
@@ -92,11 +93,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps): Promi
 
                 {/* Cover Image */}
                 {post.coverImage && (
-                    <figure className="mb-48">
-                        <img
+                    <figure className="mb-48 relative w-full aspect-video">
+                        <Image
                             src={`${post.coverImage}?w=1200&auto=format`}
                             alt={post.coverImageAlt || post.title}
-                            className="rounded-lg w-full"
+                            fill
+                            className="rounded-lg object-cover"
                         />
                     </figure>
                 )}

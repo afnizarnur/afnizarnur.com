@@ -1,4 +1,5 @@
 import type { PostCardProps } from "@afnizarnur/ui"
+import Image from "next/image"
 import Link from "next/link"
 
 export function PostCard({
@@ -23,12 +24,12 @@ export function PostCard({
         >
             <div className="space-y-16">
                 {coverImage && (
-                    <div className="overflow-hidden rounded-2xl">
-                        <img
+                    <div className="overflow-hidden rounded-2xl relative w-full aspect-video">
+                        <Image
                             src={`${coverImage}?w=800&h=400&fit=crop&auto=format`}
                             alt={coverImageAlt || title}
-                            className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            loading="lazy"
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                     </div>
                 )}

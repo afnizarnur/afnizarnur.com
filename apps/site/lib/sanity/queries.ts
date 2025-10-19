@@ -35,7 +35,11 @@ export async function getAllProjects(): Promise<ProjectPreview[]> {
       links
     }`
 
-        const projects = await sanity.fetch<ProjectPreview[]>(query, {}, { next: { revalidate: 3600, tags: ["projects"] } })
+        const projects = await sanity.fetch<ProjectPreview[]>(
+            query,
+            {},
+            { next: { revalidate: 3600, tags: ["projects"] } }
+        )
         return projects || []
     } catch (error) {
         console.error("Failed to fetch all projects:", error)
@@ -58,7 +62,11 @@ export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
       "thumbnailAlt": gallery[0].alt
     }`
 
-        const projects = await sanity.fetch<FeaturedProject[]>(query, {}, { next: { revalidate: 3600, tags: ["projects", "featured"] } })
+        const projects = await sanity.fetch<FeaturedProject[]>(
+            query,
+            {},
+            { next: { revalidate: 3600, tags: ["projects", "featured"] } }
+        )
         return projects || []
     } catch (error) {
         console.error("Failed to fetch featured projects:", error)
@@ -96,7 +104,11 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       }
     }`
 
-        const project = await sanity.fetch<Project>(query, { slug }, { next: { revalidate: 3600, tags: [`project-${slug}`] } })
+        const project = await sanity.fetch<Project>(
+            query,
+            { slug },
+            { next: { revalidate: 3600, tags: [`project-${slug}`] } }
+        )
         return project || null
     } catch (error) {
         console.error(`Failed to fetch project with slug "${slug}":`, error)
@@ -113,7 +125,11 @@ export async function getAllProjectSlugs(): Promise<ProjectSlug[]> {
       "slug": slug.current
     }`
 
-        const slugs = await sanity.fetch<ProjectSlug[]>(query, {}, { next: { revalidate: 3600, tags: ["projects"] } })
+        const slugs = await sanity.fetch<ProjectSlug[]>(
+            query,
+            {},
+            { next: { revalidate: 3600, tags: ["projects"] } }
+        )
         return slugs || []
     } catch (error) {
         console.error("Failed to fetch project slugs:", error)
@@ -144,7 +160,11 @@ export async function getAllPosts(): Promise<PostPreview[]> {
       }
     }`
 
-        const posts = await sanity.fetch<PostPreview[]>(query, {}, { next: { revalidate: 3600, tags: ["posts"] } })
+        const posts = await sanity.fetch<PostPreview[]>(
+            query,
+            {},
+            { next: { revalidate: 3600, tags: ["posts"] } }
+        )
         return posts || []
     } catch (error) {
         console.error("Failed to fetch all posts:", error)
@@ -176,7 +196,11 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       }
     }`
 
-        const post = await sanity.fetch<Post>(query, { slug }, { next: { revalidate: 3600, tags: [`post-${slug}`] } })
+        const post = await sanity.fetch<Post>(
+            query,
+            { slug },
+            { next: { revalidate: 3600, tags: [`post-${slug}`] } }
+        )
         return post || null
     } catch (error) {
         console.error(`Failed to fetch post with slug "${slug}":`, error)
@@ -193,7 +217,11 @@ export async function getAllPostSlugs(): Promise<PostSlug[]> {
       "slug": slug.current
     }`
 
-        const slugs = await sanity.fetch<PostSlug[]>(query, {}, { next: { revalidate: 3600, tags: ["posts"] } })
+        const slugs = await sanity.fetch<PostSlug[]>(
+            query,
+            {},
+            { next: { revalidate: 3600, tags: ["posts"] } }
+        )
         return slugs || []
     } catch (error) {
         console.error("Failed to fetch post slugs:", error)
@@ -221,7 +249,11 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
       }
     }`
 
-        const page = await sanity.fetch<Page>(query, { slug }, { next: { revalidate: 86400, tags: [`page-${slug}`] } })
+        const page = await sanity.fetch<Page>(
+            query,
+            { slug },
+            { next: { revalidate: 86400, tags: [`page-${slug}`] } }
+        )
         return page || null
     } catch (error) {
         console.error(`Failed to fetch page with slug "${slug}":`, error)
@@ -246,7 +278,11 @@ export async function getNavigation(): Promise<Navigation | null> {
       }
     }`
 
-        const navigation = await sanity.fetch<Navigation>(query, {}, { next: { revalidate: 86400, tags: ["navigation"] } })
+        const navigation = await sanity.fetch<Navigation>(
+            query,
+            {},
+            { next: { revalidate: 86400, tags: ["navigation"] } }
+        )
         return navigation || null
     } catch (error) {
         console.error("Failed to fetch navigation:", error)
@@ -284,7 +320,11 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       }
     }`
 
-        const settings = await sanity.fetch<SiteSettings>(query, {}, { next: { revalidate: 86400, tags: ["settings"] } })
+        const settings = await sanity.fetch<SiteSettings>(
+            query,
+            {},
+            { next: { revalidate: 86400, tags: ["settings"] } }
+        )
         return settings || null
     } catch (error) {
         console.error("Failed to fetch site settings:", error)
@@ -308,7 +348,11 @@ export async function getAllTags(): Promise<Tag[]> {
       "count": count(*[_type == "post" && references(^._id)])
     }`
 
-        const tags = await sanity.fetch<Tag[]>(query, {}, { next: { revalidate: 3600, tags: ["tags"] } })
+        const tags = await sanity.fetch<Tag[]>(
+            query,
+            {},
+            { next: { revalidate: 3600, tags: ["tags"] } }
+        )
         return tags || []
     } catch (error) {
         console.error("Failed to fetch tags:", error)
@@ -329,7 +373,11 @@ export async function getPostsByTag(tagSlug: string): Promise<PostPreview[]> {
       "coverImage": coverImage.asset->url
     }`
 
-        const posts = await sanity.fetch<PostPreview[]>(query, { tagSlug }, { next: { revalidate: 3600, tags: [`tag-${tagSlug}`, "posts"] } })
+        const posts = await sanity.fetch<PostPreview[]>(
+            query,
+            { tagSlug },
+            { next: { revalidate: 3600, tags: [`tag-${tagSlug}`, "posts"] } }
+        )
         return posts || []
     } catch (error) {
         console.error(`Failed to fetch posts for tag "${tagSlug}":`, error)

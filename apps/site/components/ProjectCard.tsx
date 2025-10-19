@@ -1,4 +1,5 @@
 import type { ProjectCardProps } from "@afnizarnur/ui"
+import Image from "next/image"
 import Link from "next/link"
 
 export function ProjectCard({
@@ -17,12 +18,12 @@ export function ProjectCard({
         >
             <div className="space-y-16">
                 {thumbnail && (
-                    <div className="overflow-hidden rounded-2xl">
-                        <img
+                    <div className="overflow-hidden rounded-2xl relative w-full aspect-video">
+                        <Image
                             src={`${thumbnail}?w=800&h=500&fit=crop&auto=format`}
                             alt={thumbnailAlt || title}
-                            className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            loading="lazy"
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                     </div>
                 )}

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import type { NavigationItem } from "@afnizarnur/ui"
 import { GearSix, List } from "@phosphor-icons/react"
 import { IconButton } from "./IconButton"
@@ -28,7 +29,12 @@ interface NavigationBarProps {
 
 function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
     const options = tzConfig?.timeZone
-        ? { hour: "2-digit" as const, minute: "2-digit" as const, hour12: true, timeZone: tzConfig.timeZone }
+        ? {
+              hour: "2-digit" as const,
+              minute: "2-digit" as const,
+              hour12: true,
+              timeZone: tzConfig.timeZone,
+          }
         : { hour: "2-digit" as const, minute: "2-digit" as const, hour12: true }
 
     const now = new Date()
@@ -44,7 +50,11 @@ function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string 
     return `${displayLabel} ${hourPart}:${minutePart}_${periodPart}`
 }
 
-function TimeDisplay({ timezone }: { timezone?: { timeZone?: string; displayLabel?: string } }): JSX.Element {
+function TimeDisplay({
+    timezone,
+}: {
+    timezone?: { timeZone?: string; displayLabel?: string }
+}): JSX.Element {
     const [timeString, setTimeString] = useState<string>("")
     const [mounted, setMounted] = useState(false)
 
@@ -83,7 +93,11 @@ function isNavItemActive(itemHref: string, path: string): boolean {
     return path === normalizedHref
 }
 
-export function NavigationBar({ items, logo, timezone }: Omit<NavigationBarProps, "currentPath">): JSX.Element {
+export function NavigationBar({
+    items,
+    logo,
+    timezone,
+}: Omit<NavigationBarProps, "currentPath">): JSX.Element {
     const pathname = usePathname()
 
     return (
@@ -105,9 +119,11 @@ export function NavigationBar({ items, logo, timezone }: Omit<NavigationBarProps
                             title="Go to homepage"
                         >
                             {logo?.type === "image" && logo?.image ? (
-                                <img
+                                <Image
                                     src={logo.image.url}
                                     alt={logo.image.alt}
+                                    width={24}
+                                    height={24}
                                     className="w-6 h-6 rounded-full object-cover"
                                 />
                             ) : null}
@@ -129,7 +145,9 @@ export function NavigationBar({ items, logo, timezone }: Omit<NavigationBarProps
                                             <a
                                                 href={href}
                                                 target={item.newTab ? "_blank" : undefined}
-                                                rel={item.newTab ? "noopener noreferrer" : undefined}
+                                                rel={
+                                                    item.newTab ? "noopener noreferrer" : undefined
+                                                }
                                                 className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${
                                                     isActive
                                                         ? "text-text-primary cursor-default"

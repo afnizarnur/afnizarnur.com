@@ -52,11 +52,27 @@ export default async function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <head>
                 {/* Theme initialization script - runs early to prevent FOUC */}
-                <Script id="theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+                <Script
+                    id="theme-init"
+                    strategy="beforeInteractive"
+                    dangerouslySetInnerHTML={{ __html: themeInitScript }}
+                />
 
                 {/* Preload critical fonts */}
-                <link rel="preload" href="/fonts/Fonetika-Medium-Trial.woff2" as="font" type="font/woff2" crossOrigin="" />
-                <link rel="preload" href="/fonts/Fonetika-Regular-Trial.woff2" as="font" type="font/woff2" crossOrigin="" />
+                <link
+                    rel="preload"
+                    href="/fonts/Fonetika-Medium-Trial.woff2"
+                    as="font"
+                    type="font/woff2"
+                    crossOrigin=""
+                />
+                <link
+                    rel="preload"
+                    href="/fonts/Fonetika-Regular-Trial.woff2"
+                    as="font"
+                    type="font/woff2"
+                    crossOrigin=""
+                />
             </head>
             <body className="min-h-screen flex flex-col bg-background-primary text-text-primary">
                 {navigation && (

@@ -150,7 +150,7 @@ export function PostCard({ title, slug }: PostCardProps) {
 }
 
 // ✅ Good - Client Component (interactive)
-"use client"
+;("use client")
 
 interface ButtonProps {
     label: string
@@ -319,9 +319,13 @@ import { sanity } from "./client"
 
 export async function getAllPosts() {
     const query = `*[_type == "post"] | order(publishedAt desc)`
-    return await sanity.fetch(query, {}, {
-        next: { revalidate: 3600, tags: ["posts"] }
-    })
+    return await sanity.fetch(
+        query,
+        {},
+        {
+            next: { revalidate: 3600, tags: ["posts"] },
+        }
+    )
 }
 ```
 

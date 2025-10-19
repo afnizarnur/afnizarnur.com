@@ -131,6 +131,7 @@ Required for CMS connection:
 ## Deployment
 
 Frontend (`apps/site`):
+
 - Platform: Netlify with ISR support
 - Build command: `pnpm build`
 - Output: `apps/site/.next`
@@ -138,6 +139,7 @@ Frontend (`apps/site`):
 - Node: `>=20.0.0`
 
 CMS (`apps/studio`):
+
 - Platform: Sanity
 - Deploy command: `pnpm --filter @afnizarnur/studio deploy`
 
@@ -184,14 +186,14 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 **Design tokens integration:**
 
 - Terrazzo generates two outputs:
-  - `packages/tokens/dist/tokens.css` - Raw CSS custom properties (not imported, reference only)
-  - `packages/tokens/dist/tailwind-theme.css` - Auto-generated Tailwind v4 theme (imported via `@afnizarnur/tokens/tailwind`)
+    - `packages/tokens/dist/tokens.css` - Raw CSS custom properties (not imported, reference only)
+    - `packages/tokens/dist/tailwind-theme.css` - Auto-generated Tailwind v4 theme (imported via `@afnizarnur/tokens/tailwind`)
 - Build process: `pnpm build` runs `process-theme.js` script to:
-  - Remove `@import "tailwindcss"` from generated theme
-  - Fix variable references (--color-primitive-* → --color-*)
+    - Remove `@import "tailwindcss"` from generated theme
+    - Fix variable references (--color-primitive-_ → --color-_)
 - Theme mapping uses custom keys for clean utility names:
-  - Primitive colors: `bg-gray-900`, `text-red-500`
-  - Semantic colors: `bg-background-primary`, `text-text-primary`, `border-border-accent-primary`
+    - Primitive colors: `bg-gray-900`, `text-red-500`
+    - Semantic colors: `bg-background-primary`, `text-text-primary`, `border-border-accent-primary`
 - Supports dark mode via `@variant dark` directive
 - **Single source of truth**: Only `@afnizarnur/tokens/tailwind` is imported in global.css
 
