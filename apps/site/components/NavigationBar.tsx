@@ -46,7 +46,7 @@ function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string 
                 ...baseOptions,
                 timeZone: tzConfig.timeZone,
             })
-        } catch (error) {
+        } catch {
             // Log warning for invalid timezone and fall back
             console.warn(
                 `Invalid timezone "${tzConfig.timeZone}", falling back to browser timezone`
