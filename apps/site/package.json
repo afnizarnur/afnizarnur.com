@@ -17,11 +17,13 @@
         "@netlify/plugin-nextjs": "^5.7.4",
         "@phosphor-icons/react": "^2.1.10",
         "@portabletext/react": "^3.1.0",
-        "@sanity/client": "^6.23.0",
+        "@sanity/client": "^7.12.0",
         "framer-motion": "^12.23.24",
         "next": "^15.5.6",
+        "next-sanity": "^11.5.5",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
+        "server-only": "^0.0.1",
         "tailwindcss": "^4.1.14"
     },
     "devDependencies": {

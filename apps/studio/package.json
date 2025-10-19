@@ -10,17 +10,18 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "sanity": "^4.0.0",
         "@sanity/vision": "^4.0.0",
+        "next-sanity": "^11.5.5",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
+        "sanity": "^4.10.3",
         "styled-components": "^6.1.15"
     },
     "devDependencies": {
         "@afnizarnur/config-typescript": "workspace:*",
         "@sanity/types": "^4.0.0",
         "@types/react": "^18.3.12",
-        "typescript": "^5.6.3",
-        "dotenv": "^16.4.5"
+        "dotenv": "^16.4.5",
+        "typescript": "^5.6.3"
     }
 }

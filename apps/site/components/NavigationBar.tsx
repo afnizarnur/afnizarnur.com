@@ -28,17 +28,35 @@ interface NavigationBarProps {
 }
 
 function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
-    const options = tzConfig?.timeZone
-        ? {
-              hour: "2-digit" as const,
-              minute: "2-digit" as const,
-              hour12: true,
-              timeZone: tzConfig.timeZone,
-          }
-        : { hour: "2-digit" as const, minute: "2-digit" as const, hour12: true }
-
     const now = new Date()
-    const formatter = new Intl.DateTimeFormat("en-US", options)
+
+    // Base options without timezone
+    const baseOptions = {
+        hour: "2-digit" as const,
+        minute: "2-digit" as const,
+        hour12: true,
+    }
+
+    let formatter: Intl.DateTimeFormat
+
+    // Try to use the provided timezone, fall back to browser timezone if invalid
+    if (tzConfig?.timeZone) {
+        try {
+            formatter = new Intl.DateTimeFormat("en-US", {
+                ...baseOptions,
+                timeZone: tzConfig.timeZone,
+            })
+        } catch (error) {
+            // Log warning for invalid timezone and fall back
+            console.warn(
+                `Invalid timezone "${tzConfig.timeZone}", falling back to browser timezone`
+            )
+            formatter = new Intl.DateTimeFormat("en-US", baseOptions)
+        }
+    } else {
+        formatter = new Intl.DateTimeFormat("en-US", baseOptions)
+    }
+
     const parts = formatter.formatToParts(now)
 
     const hourPart = parts.find((p) => p.type === "hour")?.value || "00"

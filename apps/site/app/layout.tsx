@@ -1,7 +1,10 @@
 import type { Metadata } from "next"
 import Script from "next/script"
+import { draftMode } from "next/headers"
+import { VisualEditing } from "next-sanity/visual-editing"
 import { getNavigation, getSiteSettings } from "@/lib/sanity/queries"
 import { NavigationBar } from "@/components/NavigationBar"
+import { SanityLive } from "@/lib/sanity/live"
 import { themeInitScript } from "@/lib/theme"
 import "./styles/global.css"
 
@@ -47,6 +50,7 @@ export default async function RootLayout({
 }): Promise<JSX.Element> {
     const navigation = await getNavigation()
     const siteSettings = await getSiteSettings()
+    const isDraftMode = (await draftMode()).isEnabled
 
     return (
         <html lang="en" suppressHydrationWarning>
@@ -84,6 +88,14 @@ export default async function RootLayout({
                 )}
 
                 <main className="flex-grow">{children}</main>
+
+                {/* Live preview components - only active in draft mode */}
+                {isDraftMode && (
+                    <>
+                        <SanityLive />
+                        <VisualEditing />
+                    </>
+                )}
             </body>
         </html>
     )

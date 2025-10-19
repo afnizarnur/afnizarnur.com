@@ -100,10 +100,16 @@ Formatting:
 - `packages/tokens/terrazzo.config.js` - Design tokens configuration
 - `apps/site/next.config.ts` - Next.js configuration
 - `apps/site/postcss.config.mjs` - PostCSS with Tailwind CSS v4 plugin
-- `apps/site/app/layout.tsx` - Root layout with navigation and metadata
+- `apps/site/app/layout.tsx` - Root layout with navigation, metadata, and live preview
 - `apps/site/app/styles/global.css` - Tailwind v4 CSS configuration
-- `apps/site/lib/sanity/queries.ts` - Sanity queries with ISR
-- `apps/studio/sanity.config.ts` - Sanity CMS configuration
+- `apps/site/app/api/draft-mode/enable/route.ts` - Draft mode enable endpoint
+- `apps/site/app/api/draft-mode/disable/route.ts` - Draft mode disable endpoint
+- `apps/site/lib/sanity/client.ts` - Sanity client with visual editing support
+- `apps/site/lib/sanity/live.ts` - Live Content API configuration
+- `apps/site/lib/sanity/fetch.ts` - Unified fetch wrapper (draft mode + ISR)
+- `apps/site/lib/sanity/queries.ts` - Sanity queries with ISR and sanitization
+- `apps/site/lib/sanity/sanitize.ts` - Text sanitization utilities
+- `apps/studio/sanity.config.ts` - Sanity Studio with Presentation Tool
 
 ## Repository Etiquette
 
@@ -121,12 +127,85 @@ Pull Requests:
 
 IMPORTANT: Never commit without running `pnpm typecheck` and `pnpm lint` first.
 
+## Sanity CMS Integration
+
+This project uses **next-sanity** (v11.5.5) for seamless Next.js integration with Sanity Studio.
+
+### Architecture
+
+**Data Layer:**
+
+- `apps/site/lib/sanity/client.ts` - Sanity client with visual editing support
+- `apps/site/lib/sanity/live.ts` - Live Content API configuration for real-time previews
+- `apps/site/lib/sanity/fetch.ts` - Unified fetch wrapper (handles both draft mode and ISR)
+- `apps/site/lib/sanity/queries.ts` - All CMS queries with ISR tags and sanitization
+- `apps/site/lib/sanity/sanitize.ts` - Text sanitization utilities
+
+**Features:**
+
+- ✅ Live preview with Live Content API
+- ✅ Visual editing in Sanity Studio's Presentation Tool
+- ✅ Draft mode for content preview before publishing
+- ✅ ISR with on-demand revalidation via cache tags
+- ✅ Automatic sanitization of CMS content (removes invisible Unicode characters)
+
+### Draft Mode & Visual Editing
+
+**API Routes:**
+
+- `/api/draft-mode/enable` - Enables draft mode from Sanity Studio
+- `/api/draft-mode/disable` - Disables draft mode
+
+**Components:**
+
+- `<SanityLive />` - Enables real-time content updates
+- `<VisualEditing />` - Enables in-context editing in Presentation Tool
+
+Both components are conditionally rendered in `app/layout.tsx` when draft mode is enabled.
+
+### Content Sanitization
+
+All text content from Sanity is automatically sanitized at the data layer to handle:
+
+- Zero-width characters (invisible characters from copy-paste)
+- Multiple consecutive whitespace
+- Non-breaking spaces and other Unicode whitespace
+- Leading/trailing whitespace
+
+This ensures clean rendering without invisible characters affecting the layout.
+
+### Sanity Studio
+
+The CMS interface runs separately at `apps/studio` with:
+
+- Structure Tool for content management
+- Vision Tool for GROQ query testing
+- Presentation Tool for live preview and visual editing
+
+Configure preview URL in `apps/studio/sanity.config.ts`.
+
 ## Environment Variables
 
 Required for CMS connection:
 
-- Check `.env.example` for Sanity-related variables
-- Create `.env` file in project root
+**Frontend (apps/site/.env.local):**
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_READ_TOKEN=your_read_token  # Required for draft mode
+NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3333  # For visual editing
+```
+
+**Studio (apps/studio/.env.local):**
+
+```env
+SANITY_STUDIO_PROJECT_ID=your_project_id
+SANITY_STUDIO_DATASET=production
+SANITY_STUDIO_PREVIEW_URL=http://localhost:3000  # Optional
+```
+
+See `.env.example` files for complete documentation.
 
 ## Deployment
 

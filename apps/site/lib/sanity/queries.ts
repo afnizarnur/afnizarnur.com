@@ -1,4 +1,5 @@
-import { sanity } from "./client"
+import { sanityFetch } from "./fetch"
+import { sanitizeNavigationItems, sanitizeSiteSettings } from "./sanitize"
 import type {
     PostPreview,
     Post,
@@ -35,11 +36,12 @@ export async function getAllProjects(): Promise<ProjectPreview[]> {
       links
     }`
 
-        const projects = await sanity.fetch<ProjectPreview[]>(
+        const projects = await sanityFetch<ProjectPreview[]>({
             query,
-            {},
-            { next: { revalidate: 3600, tags: ["projects"] } }
-        )
+            params: {},
+            tags: ["projects"],
+            revalidate: 3600,
+        })
         return projects || []
     } catch (error) {
         console.error("Failed to fetch all projects:", error)
@@ -62,11 +64,12 @@ export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
       "thumbnailAlt": gallery[0].alt
     }`
 
-        const projects = await sanity.fetch<FeaturedProject[]>(
+        const projects = await sanityFetch<FeaturedProject[]>({
             query,
-            {},
-            { next: { revalidate: 3600, tags: ["projects", "featured"] } }
-        )
+            params: {},
+            tags: ["projects", "featured"],
+            revalidate: 3600,
+        })
         return projects || []
     } catch (error) {
         console.error("Failed to fetch featured projects:", error)
@@ -104,11 +107,12 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       }
     }`
 
-        const project = await sanity.fetch<Project>(
+        const project = await sanityFetch<Project>({
             query,
-            { slug },
-            { next: { revalidate: 3600, tags: [`project-${slug}`] } }
-        )
+            params: { slug },
+            tags: [`project-${slug}`],
+            revalidate: 3600,
+        })
         return project || null
     } catch (error) {
         console.error(`Failed to fetch project with slug "${slug}":`, error)
@@ -125,11 +129,12 @@ export async function getAllProjectSlugs(): Promise<ProjectSlug[]> {
       "slug": slug.current
     }`
 
-        const slugs = await sanity.fetch<ProjectSlug[]>(
+        const slugs = await sanityFetch<ProjectSlug[]>({
             query,
-            {},
-            { next: { revalidate: 3600, tags: ["projects"] } }
-        )
+            params: {},
+            tags: ["projects"],
+            revalidate: 3600,
+        })
         return slugs || []
     } catch (error) {
         console.error("Failed to fetch project slugs:", error)
@@ -160,11 +165,12 @@ export async function getAllPosts(): Promise<PostPreview[]> {
       }
     }`
 
-        const posts = await sanity.fetch<PostPreview[]>(
+        const posts = await sanityFetch<PostPreview[]>({
             query,
-            {},
-            { next: { revalidate: 3600, tags: ["posts"] } }
-        )
+            params: {},
+            tags: ["posts"],
+            revalidate: 3600,
+        })
         return posts || []
     } catch (error) {
         console.error("Failed to fetch all posts:", error)
@@ -196,11 +202,12 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       }
     }`
 
-        const post = await sanity.fetch<Post>(
+        const post = await sanityFetch<Post>({
             query,
-            { slug },
-            { next: { revalidate: 3600, tags: [`post-${slug}`] } }
-        )
+            params: { slug },
+            tags: [`post-${slug}`],
+            revalidate: 3600,
+        })
         return post || null
     } catch (error) {
         console.error(`Failed to fetch post with slug "${slug}":`, error)
@@ -217,11 +224,12 @@ export async function getAllPostSlugs(): Promise<PostSlug[]> {
       "slug": slug.current
     }`
 
-        const slugs = await sanity.fetch<PostSlug[]>(
+        const slugs = await sanityFetch<PostSlug[]>({
             query,
-            {},
-            { next: { revalidate: 3600, tags: ["posts"] } }
-        )
+            params: {},
+            tags: ["posts"],
+            revalidate: 3600,
+        })
         return slugs || []
     } catch (error) {
         console.error("Failed to fetch post slugs:", error)
@@ -249,11 +257,12 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
       }
     }`
 
-        const page = await sanity.fetch<Page>(
+        const page = await sanityFetch<Page>({
             query,
-            { slug },
-            { next: { revalidate: 86400, tags: [`page-${slug}`] } }
-        )
+            params: { slug },
+            tags: [`page-${slug}`],
+            revalidate: 86400,
+        })
         return page || null
     } catch (error) {
         console.error(`Failed to fetch page with slug "${slug}":`, error)
@@ -278,12 +287,20 @@ export async function getNavigation(): Promise<Navigation | null> {
       }
     }`
 
-        const navigation = await sanity.fetch<Navigation>(
+        const navigation = await sanityFetch<Navigation>({
             query,
-            {},
-            { next: { revalidate: 86400, tags: ["navigation"] } }
-        )
-        return navigation || null
+            params: {},
+            tags: ["navigation"],
+            revalidate: 86400,
+        })
+
+        if (!navigation) return null
+
+        // Sanitize navigation items to remove unwanted whitespace/characters
+        return {
+            ...navigation,
+            items: sanitizeNavigationItems(navigation.items),
+        }
     } catch (error) {
         console.error("Failed to fetch navigation:", error)
         return null
@@ -320,12 +337,15 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       }
     }`
 
-        const settings = await sanity.fetch<SiteSettings>(
+        const settings = await sanityFetch<SiteSettings>({
             query,
-            {},
-            { next: { revalidate: 86400, tags: ["settings"] } }
-        )
-        return settings || null
+            params: {},
+            tags: ["settings"],
+            revalidate: 86400,
+        })
+
+        // Sanitize settings to remove unwanted whitespace/characters
+        return sanitizeSiteSettings(settings)
     } catch (error) {
         console.error("Failed to fetch site settings:", error)
         return null
@@ -348,11 +368,12 @@ export async function getAllTags(): Promise<Tag[]> {
       "count": count(*[_type == "post" && references(^._id)])
     }`
 
-        const tags = await sanity.fetch<Tag[]>(
+        const tags = await sanityFetch<Tag[]>({
             query,
-            {},
-            { next: { revalidate: 3600, tags: ["tags"] } }
-        )
+            params: {},
+            tags: ["tags"],
+            revalidate: 3600,
+        })
         return tags || []
     } catch (error) {
         console.error("Failed to fetch tags:", error)
@@ -373,11 +394,12 @@ export async function getPostsByTag(tagSlug: string): Promise<PostPreview[]> {
       "coverImage": coverImage.asset->url
     }`
 
-        const posts = await sanity.fetch<PostPreview[]>(
+        const posts = await sanityFetch<PostPreview[]>({
             query,
-            { tagSlug },
-            { next: { revalidate: 3600, tags: [`tag-${tagSlug}`, "posts"] } }
-        )
+            params: { tagSlug },
+            tags: [`tag-${tagSlug}`, "posts"],
+            revalidate: 3600,
+        })
         return posts || []
     } catch (error) {
         console.error(`Failed to fetch posts for tag "${tagSlug}":`, error)
