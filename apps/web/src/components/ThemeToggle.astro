@@ -30,17 +30,25 @@ const { size = 24, className = "" } = Astro.props
     const darkIcon = document.getElementById("theme-icon-dark")
 
     if (button && lightIcon && darkIcon) {
-        let currentTheme = document.documentElement.getAttribute("data-theme") || "light"
+        // Check for saved theme or default to light
+        let currentTheme = localStorage.getItem("theme-preference") || "light"
+
+        // Check current data-theme attribute
+        const currentDataTheme = document.documentElement.getAttribute("data-theme")
+        if (currentDataTheme) {
+            currentTheme = currentDataTheme
+        }
 
         // Initialize button UI on page load
         updateButtonUI(currentTheme)
+        applyTheme(currentTheme)
 
         // Add click handler
         button.addEventListener("click", () => {
             currentTheme = currentTheme === "light" ? "dark" : "light"
 
             // Apply theme to DOM
-            document.documentElement.setAttribute("data-theme", currentTheme)
+            applyTheme(currentTheme)
 
             // Save preference to localStorage
             try {
@@ -52,6 +60,10 @@ const { size = 24, className = "" } = Astro.props
             // Update button UI
             updateButtonUI(currentTheme)
         })
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme)
+        }
 
         function updateButtonUI(theme) {
             if (theme === "dark") {

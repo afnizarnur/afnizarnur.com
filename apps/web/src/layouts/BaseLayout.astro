@@ -39,7 +39,7 @@ const currentPath = new URL(Astro.url).pathname
 
         <!-- Theme initialization script - runs early to prevent flash of unstyled content -->
         <script is:inline>
-            (function () {
+            ;(function () {
                 const THEME_KEY = "theme-preference"
                 const THEME_ATTRIBUTE = "data-theme"
 
@@ -135,7 +135,16 @@ const currentPath = new URL(Astro.url).pathname
         {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     </head>
     <body class="min-h-screen flex flex-col bg-background-primary text-text-primary">
-        {navigation && <NavigationBar items={navigation.items} currentPath={currentPath} logo={siteSettings?.logo} timezone={siteSettings?.timezone} />}
+        {
+            navigation && (
+                <NavigationBar
+                    items={navigation.items}
+                    currentPath={currentPath}
+                    logo={siteSettings?.logo}
+                    timezone={siteSettings?.timezone}
+                />
+            )
+        }
 
         <main class="flex-grow">
             <slot />

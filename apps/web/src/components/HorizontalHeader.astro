@@ -1,0 +1,25 @@
+---
+import { HorizontalHeader as HorizontalHeaderComponent } from "./HorizontalHeader"
+
+export interface Props {
+    containerHeight?: number
+}
+
+const { containerHeight = 200 } = Astro.props
+---
+
+<div data-component="horizontal-header">
+    <HorizontalHeaderComponent client:load containerHeight={containerHeight} />
+</div>
+
+<style>
+    /* Hide scrollbar but keep scrolling functionality */
+    :global(.scrollbar-hide) {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    :global(.scrollbar-hide::-webkit-scrollbar) {
+        display: none;
+    }
+</style>

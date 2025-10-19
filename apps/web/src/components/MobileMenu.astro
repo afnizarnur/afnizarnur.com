@@ -37,7 +37,8 @@ function isNavItemActive(itemHref: string, path: string): boolean {
         id="mobile-menu-backdrop"
         class="absolute inset-0 bg-background-inverse/70 backdrop-blur-sm transition-opacity duration-300 ease-out opacity-0"
         aria-hidden="true"
-    />
+    >
+    </div>
 
     {/* Menu Panel - Slides from bottom */}
     <div
@@ -47,7 +48,9 @@ function isNavItemActive(itemHref: string, path: string): boolean {
         aria-label="Primary navigation"
     >
         {/* Header with Close Button */}
-        <div class="sticky top-0 flex items-center justify-between px-spacing-24 py-spacing-20 bg-background-primary border-b-[2px] border-border-tertiary z-10">
+        <div
+            class="sticky top-0 flex items-center justify-between px-spacing-24 py-spacing-20 bg-background-primary border-b-[2px] border-border-tertiary z-10"
+        >
             <span class="text-body-2-semibold text-text-primary">Navigation</span>
             <button
                 id="close-menu-button"
@@ -101,7 +104,7 @@ function isNavItemActive(itemHref: string, path: string): boolean {
         </nav>
 
         {/* Bottom Spacing */}
-        <div class="h-spacing-24" />
+        <div class="h-spacing-24"></div>
     </div>
 </div>
 

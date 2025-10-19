@@ -96,8 +96,7 @@ Formatting:
 - `.changeset/config.json` - Changeset configuration
 - `netlify.toml` - Netlify deployment config
 - `.prettierrc.json` - Prettier rules
-- `apps/web/astro.config.mjs` - Astro configuration
-- `apps/web/postcss.config.cjs` - PostCSS configuration (Tailwind v4)
+- `apps/web/astro.config.mjs` - Astro configuration (includes Tailwind Vite plugin)
 - `apps/web/src/styles/global.css` - Global styles and Tailwind v4 theme configuration
 - `apps/studio/sanity.config.ts` - Sanity CMS configuration
 - `packages/tokens/terrazzo.config.js` - Design tokens configuration
@@ -163,7 +162,7 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 **Setup:**
 
 - **No JS config file**: Tailwind v4 doesn't use `tailwind.config.js/ts`
-- **PostCSS plugin**: Uses `@tailwindcss/postcss` in `postcss.config.cjs`
+- **Vite plugin**: Uses `@tailwindcss/vite` plugin in `astro.config.mjs` (recommended approach for Astro)
 - **CSS configuration**: All config is in `apps/web/src/styles/global.css`
 
 **Key directives in global.css:**
@@ -175,9 +174,17 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 
 **Design tokens integration:**
 
-- Terrazzo generates CSS custom properties in `packages/tokens/dist/tokens.css`
-- These are imported and mapped to Tailwind utilities via `@theme` directive
-- Example: `--color-primary-600` becomes `text-primary-600` utility class
+- Terrazzo generates two outputs:
+  - `packages/tokens/dist/tokens.css` - Raw CSS custom properties (not imported, reference only)
+  - `packages/tokens/dist/tailwind-theme.css` - Auto-generated Tailwind v4 theme (imported via `@afnizarnur/tokens/tailwind`)
+- Build process: `pnpm build` runs `process-theme.js` script to:
+  - Remove `@import "tailwindcss"` from generated theme
+  - Fix variable references (--color-primitive-* → --color-*)
+- Theme mapping uses custom keys for clean utility names:
+  - Primitive colors: `bg-gray-900`, `text-red-500`
+  - Semantic colors: `bg-background-primary`, `text-text-primary`, `border-border-accent-primary`
+- Supports dark mode via `@variant dark` directive
+- **Single source of truth**: Only `@afnizarnur/tokens/tailwind` is imported in global.css
 
 **Component styles:**
 
@@ -187,8 +194,9 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 **Migration notes:**
 
 - The `@astrojs/tailwind` integration is NOT used (removed for v4)
-- Pure PostCSS processing via `@tailwindcss/postcss`
-- No Terrazzo Tailwind plugin (generates v3 config, incompatible with v4)
+- Uses `@tailwindcss/vite` plugin for optimal performance with Vite/Astro
+- Uses `@terrazzo/plugin-tailwind` with custom theme structure for clean utility names
+- Build script `copy-theme.js` removes `@import "tailwindcss"` from generated theme
 
 ## Resources
 

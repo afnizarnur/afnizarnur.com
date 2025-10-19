@@ -44,3 +44,11 @@ pnpm-debug.log*
 .changeset/*.md
 !.changeset/README.md
 !.changeset/config.json
+
+# AI assistant configs
+.claude/
+.codex/
+.cursor/
+.specify/
+.kiro/
+.vscode/
