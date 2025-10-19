@@ -1,0 +1,37 @@
+{
+    "name": "@afnizarnur/site",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint .",
+        "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\"",
+        "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx}\""
+    },
+    "dependencies": {
+        "@afnizarnur/tokens": "workspace:*",
+        "@netlify/plugin-nextjs": "^5.7.4",
+        "@phosphor-icons/react": "^2.1.10",
+        "@portabletext/react": "^3.1.0",
+        "@sanity/client": "^6.23.0",
+        "framer-motion": "^12.23.24",
+        "next": "^15.5.6",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "tailwindcss": "^4.1.14"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.14",
+        "@types/node": "^22.10.5",
+        "@types/react": "^19.2.2",
+        "@types/react-dom": "^19.2.2",
+        "eslint": "^9.18.0",
+        "eslint-config-next": "^15.5.6",
+        "prettier": "^3.4.2",
+        "typescript": "^5.6.3"
+    }
+}
