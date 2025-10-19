@@ -1,15 +1,16 @@
 # @afnizarnur/site
 
-Next.js 15 application with App Router - migrated from Astro.
+Next.js 15 application with App Router - production site for afnizarnur.com.
 
 ## Tech Stack
 
 - **Framework:** Next.js 15.5.6 (App Router)
-- **React:** 18.3.1
-- **Styling:** Tailwind CSS v4 (CSS-first configuration)
+- **React:** 19.2.0 (latest)
+- **Icons:** @phosphor-icons/react 2.x (React 19 compatible)
+- **Styling:** Tailwind CSS v4 (PostCSS configuration)
 - **CMS:** Sanity Client 6.29.1
 - **Content:** @portabletext/react 3.2.4
-- **Design Tokens:** @afnizarnur/tokens (shared with Astro app)
+- **Design Tokens:** @afnizarnur/tokens (shared monorepo package)
 - **TypeScript:** 5.9.3 (strict mode)
 - **Deployment:** Netlify with ISR support
 
@@ -84,13 +85,17 @@ NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SITE_URL=https://afnizarnur.com
 ```
 
-## Key Differences from Astro Version
+## Architecture Decisions
 
-1. **Routing:** File-based App Router instead of Astro pages
-2. **Components:** React components (RSC + Client) instead of Astro components
-3. **Data Fetching:** Server Components with ISR instead of build-time only
-4. **Styling:** Same Tailwind v4 setup, identical visual design
-5. **Interactive Elements:** "use client" directive for client-side interactivity
+1. **Routing:** Next.js App Router (app directory) with file-based routing
+2. **Components:** Mix of React Server Components and Client Components
+   - Server Components: Default for all pages and static components
+   - Client Components: Only for interactive elements (theme toggle, navigation, etc.)
+3. **Data Fetching:** Server Components with ISR (Incremental Static Regeneration)
+   - Content revalidates every 1 hour (posts/projects)
+   - Settings revalidate every 24 hours
+4. **Styling:** Tailwind CSS v4 with PostCSS, design tokens from monorepo
+5. **Icons:** @phosphor-icons/react (React 19 compatible)
 
 ## Deployment
 

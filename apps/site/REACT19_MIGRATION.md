@@ -1,6 +1,9 @@
-# React 19 Migration Notes
+# React 19 & Next.js 15 Setup
 
-This app uses **React 19.2.0** with **Next.js 15.5.6**.
+This app uses the latest stable versions:
+- **React 19.2.0**
+- **Next.js 15.5.6**
+- **Tailwind CSS 4.1.14** (PostCSS)
 
 ## Changes Made for React 19 Compatibility
 
@@ -60,10 +63,24 @@ NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SITE_URL=https://afnizarnur.com
 ```
 
+## Tailwind CSS v4 Setup
+
+**PostCSS Configuration:**
+- Uses `@tailwindcss/postcss` plugin
+- Configuration in `postcss.config.mjs`
+- CSS imports in `app/styles/global.css`
+- Design tokens from `@afnizarnur/tokens` package
+
+**No Vite plugin needed** - Next.js uses PostCSS by default.
+
 ## Verification
 
-To verify React 19 is working:
+To verify everything is working:
 1. Start dev server: `pnpm dev`
-2. Check for no `createContext` errors
-3. Navigate between pages to test routing
-4. Test theme toggle and mobile menu
+2. Visit http://localhost:3000
+3. Check for:
+   - ✅ No `createContext` errors
+   - ✅ Tailwind styles applied correctly
+   - ✅ Theme toggle works
+   - ✅ Mobile menu functions
+   - ✅ Navigation highlights active route
