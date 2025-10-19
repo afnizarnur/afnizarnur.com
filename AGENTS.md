@@ -1,17 +1,17 @@
 # AGENTS.md
 
-AI agent guidelines for the afnizarnur.com monorepo (Astro + Sanity CMS).
+AI agent guidelines for the afnizarnur.com monorepo (Next.js + Sanity CMS).
 
 ## Project Overview
 
-**Tech Stack:** Astro 5.x, Sanity Studio 4.x, React 18.x, Tailwind CSS 4.x, TypeScript (strict)
+**Tech Stack:** Next.js 15.x, React 19.x, Sanity Studio 4.x, Tailwind CSS 4.x, TypeScript (strict)
 **Build System:** Turborepo 2.x with pnpm 9.x workspaces
 **Node Version:** ≥20.0.0
 **Main Branch:** `main`
 
 **Monorepo Structure:**
 
-- `apps/web` - Astro public website (Netlify)
+- `apps/site` - Next.js 15 frontend (React 19, App Router, ISR)
 - `apps/studio` - Sanity Studio CMS
 - `packages/` - Shared configs, UI components, design tokens
 
@@ -31,14 +31,14 @@ pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/token
 
 ### Environment Configuration
 
-Create `.env` files in `apps/web` and `apps/studio`:
+Create `.env.local` in `apps/site` and `.env` in `apps/studio`:
 
-**apps/web/.env:**
+**apps/site/.env.local:**
 
 ```bash
-PUBLIC_SANITY_PROJECT_ID=your-project-id
-PUBLIC_SANITY_DATASET=production
-PUBLIC_SITE_URL=https://afnizarnur.com
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SITE_URL=https://afnizarnur.com
 ```
 
 **apps/studio/.env:**
@@ -56,7 +56,7 @@ Get credentials from https://sanity.io/manage
 
 ```bash
 pnpm dev                                  # Start all apps
-pnpm --filter @afnizarnur/web dev         # Web only (http://localhost:4321)
+pnpm --filter @afnizarnur/site dev        # Next.js only (http://localhost:3000)
 pnpm --filter @afnizarnur/studio dev      # Studio only (http://localhost:3333)
 ```
 
@@ -64,8 +64,8 @@ pnpm --filter @afnizarnur/studio dev      # Studio only (http://localhost:3333)
 
 ```bash
 pnpm build                                # Build all apps for production
-pnpm --filter @afnizarnur/web build       # Build web only
-pnpm --filter @afnizarnur/web preview     # Preview production build
+pnpm --filter @afnizarnur/site build      # Build Next.js only
+pnpm --filter @afnizarnur/site start      # Start Next.js production server
 ```
 
 ### Quality Checks
@@ -94,9 +94,9 @@ pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/token
 
 **File Naming:**
 
-- Components: `PascalCase.tsx` / `PascalCase.astro`
+- Components: `PascalCase.tsx`
 - Utilities: `camelCase.ts`
-- Routes: `kebab-case.astro`
+- Routes: `kebab-case/page.tsx` (App Router convention)
 
 **Formatting:**
 
@@ -132,8 +132,26 @@ export default function (date) {
 
 ### React Components
 
+Use Server Components by default, mark with `"use client"` only when needed:
+
 ```tsx
-// ✅ Good - Typed functional component
+// ✅ Good - Server Component (default)
+interface PostCardProps {
+    title: string
+    slug: string
+}
+
+export function PostCard({ title, slug }: PostCardProps) {
+    return (
+        <article>
+            <h2>{title}</h2>
+        </article>
+    )
+}
+
+// ✅ Good - Client Component (interactive)
+;("use client")
+
 interface ButtonProps {
     label: string
     onClick: () => void
@@ -148,21 +166,29 @@ export function Button({ label, onClick }: ButtonProps) {
 
 - Use Tailwind utilities (avoid custom CSS)
 - Reference design tokens from `@afnizarnur/tokens`
-- Tailwind v4: CSS-first configuration in `apps/web/src/styles/global.css`
-- Use `@reference` directive when using `@apply` in component `<style>` blocks
+- Tailwind v4: CSS-first configuration in `apps/site/app/styles/global.css`
+- PostCSS plugin configured in `postcss.config.mjs`
 - No inline styles
 
 ### Project Structure
 
 ```
-apps/web/src/
-├── components/
-│   ├── ui/          # Generic UI components
-│   ├── features/    # Feature-specific components
-│   └── layouts/     # Layout components
-├── pages/           # Astro routes
-├── lib/             # Utilities and Sanity client
-└── styles/          # Global styles
+apps/site/
+├── app/             # Next.js App Router
+│   ├── page.tsx           # Homepage
+│   ├── layout.tsx         # Root layout
+│   ├── about/             # About page
+│   ├── blog/              # Blog pages
+│   ├── work/              # Work pages
+│   └── styles/            # Global styles
+├── components/      # React components
+│   ├── NavigationBar.tsx  # Client component
+│   ├── ThemeToggle.tsx    # Client component
+│   └── ...                # Other components
+└── lib/             # Utilities and Sanity client
+    └── sanity/
+        ├── client.ts      # Sanity client
+        └── queries.ts     # Queries with ISR
 ```
 
 ## Testing
@@ -240,11 +266,12 @@ Note: `config-*` packages are not versioned.
 
 ## Deployment
 
-### Web App (Netlify)
+### Next.js App (Netlify)
 
 - **Build:** `pnpm build`
-- **Output:** `apps/web/dist`
+- **Output:** `apps/site/.next`
 - **Node:** ≥20.0.0
+- **Plugin:** `@netlify/plugin-nextjs`
 - **Config:** `netlify.toml`
 - **Docs:** See `docs/deployment.md`
 
@@ -263,43 +290,92 @@ pnpm --filter @afnizarnur/studio deploy
 - `netlify.toml` - Deployment config
 - `.prettierrc.json` - Code formatting
 - `.changeset/config.json` - Version management
-- `apps/web/postcss.config.cjs` - PostCSS configuration (Tailwind v4)
-- `apps/web/src/styles/global.css` - Tailwind v4 theme and configuration
+- `apps/site/next.config.ts` - Next.js configuration
+- `apps/site/postcss.config.mjs` - PostCSS configuration (Tailwind v4)
+- `apps/site/app/styles/global.css` - Tailwind v4 theme and configuration
+- `apps/site/tsconfig.json` - TypeScript configuration
 
 ### Common Patterns
 
 **Sanity Client:**
 
 ```typescript
-// apps/web/src/lib/sanity.ts
+// apps/site/lib/sanity/client.ts
 import { createClient } from "@sanity/client"
 
-export const client = createClient({
-    projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-    dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+export const sanity = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
     useCdn: true,
     apiVersion: "2024-01-01",
 })
 ```
 
-**Astro Pages:**
+**Sanity Queries with ISR:**
 
-```astro
----
-import Layout from "@/layouts/Layout.astro"
-import { client } from "@/lib/sanity"
+```typescript
+// apps/site/lib/sanity/queries.ts
+import { sanity } from "./client"
 
-const posts = await client.fetch('*[_type == "post"]')
----
+export async function getAllPosts() {
+    const query = `*[_type == "post"] | order(publishedAt desc)`
+    return await sanity.fetch(
+        query,
+        {},
+        {
+            next: { revalidate: 3600, tags: ["posts"] },
+        }
+    )
+}
+```
 
-<Layout title="Blog">
-    {posts.map((post) => <article>{post.title}</article>)}
-</Layout>
+**Next.js Pages (Server Components):**
+
+```tsx
+// apps/site/app/blog/page.tsx
+import { getAllPosts } from "@/lib/sanity/queries"
+import { PostCard } from "@/components/PostCard"
+
+export default async function BlogPage() {
+    const posts = await getAllPosts()
+
+    return (
+        <div>
+            {posts.map((post) => (
+                <PostCard key={post.slug} {...post} />
+            ))}
+        </div>
+    )
+}
+```
+
+**Dynamic Routes:**
+
+```tsx
+// apps/site/app/blog/[slug]/page.tsx
+import { getPostBySlug, getAllPostSlugs } from "@/lib/sanity/queries"
+
+export async function generateStaticParams() {
+    const slugs = await getAllPostSlugs()
+    return slugs.map((item) => ({ slug: item.slug }))
+}
+
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
+    const post = await getPostBySlug(slug)
+
+    return <article>{post.title}</article>
+}
 ```
 
 ### Resources
 
-- [Astro Docs](https://docs.astro.build)
+- [Next.js 15 Docs](https://nextjs.org/docs)
+- [React 19 Docs](https://react.dev)
+- [App Router Guide](https://nextjs.org/docs/app)
+- [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 - [Sanity Docs](https://www.sanity.io/docs)
 - [Turborepo Docs](https://turbo.build/repo/docs)
+- [Tailwind CSS v4](https://tailwindcss.com/docs)
 - Project docs in `docs/` and `specs/`
+- Migration guide: `apps/site/MIGRATION_FROM_ASTRO.md`

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
- This is the source code of <a href="https://afnizarnur.com/">my personal site</a>. Handcrafted with Astro and hosted in Netlify.
+ This is the source code of <a href="https://afnizarnur.com/">my personal site</a>. Built with Next.js and hosted on Netlify.
 </p>
 
 <p align="center">
@@ -49,7 +49,7 @@ pnpm build
 
 This project uses a monorepo architecture with:
 
-- **apps/web** - Astro frontend application
+- **apps/site** - Next.js 15 frontend (React 19, App Router)
 - **apps/studio** - Sanity Studio CMS
 - **packages/tokens** - Design tokens (Terrazzo)
 - **packages/ui** - Shared React components

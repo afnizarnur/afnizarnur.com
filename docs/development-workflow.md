@@ -29,7 +29,7 @@ pnpm install
 pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
 
 # Set up environment variables
-cp apps/web/.env.example apps/web/.env
+cp apps/site/.env.example apps/site/.env
 cp apps/studio/.env.example apps/studio/.env
 # Edit .env files with your Sanity credentials
 ```
@@ -168,7 +168,7 @@ The monorepo includes several shared packages:
 In any app, you can import from shared packages:
 
 ```typescript
-// apps/web/src/components/Button.tsx
+// apps/site/src/components/Button.tsx
 import { tokens } from '@afnizarnur/tokens';
 
 export function Button() {
@@ -227,7 +227,7 @@ pnpm add -w package-name -D
 **File Structure:**
 
 ```
-apps/web/src/
+apps/site/src/
 ├── pages/           # Routes (file-based routing)
 ├── layouts/         # Page templates
 ├── components/      # UI components
@@ -239,7 +239,7 @@ apps/web/src/
 
 ```astro
 ---
-// apps/web/src/pages/contact.astro
+// apps/site/src/pages/contact.astro
 import BaseLayout from "@/layouts/BaseLayout.astro"
 
 const pageTitle = "Contact"
@@ -254,7 +254,7 @@ const pageTitle = "Contact"
 **Creating a New Component:**
 
 ```tsx
-// apps/web/src/components/ProjectCard.tsx
+// apps/site/src/components/ProjectCard.tsx
 export interface ProjectCardProps {
     title: string
     description: string
@@ -275,7 +275,7 @@ export function ProjectCard({ title, description, imageUrl }: ProjectCardProps) 
 **Fetching Content from Sanity:**
 
 ```typescript
-// apps/web/src/server/data.ts
+// apps/site/src/server/data.ts
 import { sanityClient } from "./sanity"
 
 export async function getAllProjects() {
@@ -646,7 +646,7 @@ Closes #123
 
 1. Netlify detects change
 2. Runs build: `pnpm build`
-3. Deploys `apps/web/dist/` to CDN
+3. Deploys `apps/site/dist/` to CDN
 4. Site updated (~2-5 minutes)
 
 **Monitor deployment:**
@@ -773,7 +773,7 @@ pnpm typecheck
 
 ```bash
 # Solution: Clear Astro cache
-rm -rf apps/web/.astro
+rm -rf apps/site/.astro
 pnpm --filter @afnizarnur/web dev
 ```
 
@@ -820,9 +820,9 @@ git push origin feature/my-feature
 ### File Locations
 
 ```
-apps/web/src/pages/          # Routes
-apps/web/src/components/     # Components
-apps/web/src/layouts/        # Layouts
+apps/site/src/pages/          # Routes
+apps/site/src/components/     # Components
+apps/site/src/layouts/        # Layouts
 apps/studio/schemas/         # Content schemas
 packages/tokens/             # Design tokens
 docs/                        # Documentation

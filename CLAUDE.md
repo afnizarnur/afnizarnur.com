@@ -1,12 +1,12 @@
 # afnizarnur.com
 
-Personal portfolio and blog platform. Monorepo built with Astro, React, Sanity CMS, TypeScript, and Tailwind CSS.
+Personal portfolio and blog platform. Monorepo built with Next.js, React, Sanity CMS, TypeScript, and Tailwind CSS.
 
-**Tech Stack:** Astro 5.x, React 18.3.x, Sanity Studio 4.x, TypeScript 5.6.x (strict), Tailwind CSS 4.x, Turborepo 2.x, Node.js 20+, pnpm 9.x
+**Tech Stack:** Next.js 15.x, React 19.x, Sanity Studio 4.x, TypeScript 5.6.x (strict), Tailwind CSS 4.x, Turborepo 2.x, Node.js 20+, pnpm 9.x
 
 ## Structure
 
-- `apps/web/` - Astro frontend (main site)
+- `apps/site/` - Next.js 15 frontend (React 19, App Router, ISR, Server Components)
 - `apps/studio/` - Sanity Studio CMS (runs on port 3333)
 - `packages/ui/` - Shared React components
 - `packages/tokens/` - Design tokens (Terrazzo)
@@ -31,9 +31,9 @@ Root commands:
 
 App-specific (using --filter):
 
-- `pnpm --filter @afnizarnur/web dev` - Start web dev server
-- `pnpm --filter @afnizarnur/web build` - Build web app
-- `pnpm --filter @afnizarnur/web preview` - Preview production build
+- `pnpm --filter @afnizarnur/site dev` - Start Next.js dev server (port 3000)
+- `pnpm --filter @afnizarnur/site build` - Build Next.js app
+- `pnpm --filter @afnizarnur/site start` - Start Next.js production server
 - `pnpm --filter @afnizarnur/studio dev` - Start Sanity Studio (port 3333)
 - `pnpm --filter @afnizarnur/studio deploy` - Deploy Sanity Studio
 
@@ -75,11 +75,12 @@ React:
 
 - Use functional components with hooks
 - All components must be `.tsx` files
-- Follow React 18 best practices
+- Follow React 19 best practices
+- Use Server Components by default (mark with `"use client"` only when needed)
 
 File naming:
 
-- Components: `PascalCase.tsx` or `PascalCase.astro`
+- Components: `PascalCase.tsx`
 - Utils/Helpers: `camelCase.ts`
 - Config files: `kebab-case.ts` or `.js`
 
@@ -96,10 +97,19 @@ Formatting:
 - `.changeset/config.json` - Changeset configuration
 - `netlify.toml` - Netlify deployment config
 - `.prettierrc.json` - Prettier rules
-- `apps/web/astro.config.mjs` - Astro configuration (includes Tailwind Vite plugin)
-- `apps/web/src/styles/global.css` - Global styles and Tailwind v4 theme configuration
-- `apps/studio/sanity.config.ts` - Sanity CMS configuration
 - `packages/tokens/terrazzo.config.js` - Design tokens configuration
+- `apps/site/next.config.ts` - Next.js configuration
+- `apps/site/postcss.config.mjs` - PostCSS with Tailwind CSS v4 plugin
+- `apps/site/app/layout.tsx` - Root layout with navigation, metadata, and live preview
+- `apps/site/app/styles/global.css` - Tailwind v4 CSS configuration
+- `apps/site/app/api/draft-mode/enable/route.ts` - Draft mode enable endpoint
+- `apps/site/app/api/draft-mode/disable/route.ts` - Draft mode disable endpoint
+- `apps/site/lib/sanity/client.ts` - Sanity client with visual editing support
+- `apps/site/lib/sanity/live.ts` - Live Content API configuration
+- `apps/site/lib/sanity/fetch.ts` - Unified fetch wrapper (draft mode + ISR)
+- `apps/site/lib/sanity/queries.ts` - Sanity queries with ISR and sanitization
+- `apps/site/lib/sanity/sanitize.ts` - Text sanitization utilities
+- `apps/studio/sanity.config.ts` - Sanity Studio with Presentation Tool
 
 ## Repository Etiquette
 
@@ -117,20 +127,100 @@ Pull Requests:
 
 IMPORTANT: Never commit without running `pnpm typecheck` and `pnpm lint` first.
 
+## Sanity CMS Integration
+
+This project uses **next-sanity** (v11.5.5) for seamless Next.js integration with Sanity Studio.
+
+### Architecture
+
+**Data Layer:**
+
+- `apps/site/lib/sanity/client.ts` - Sanity client with visual editing support
+- `apps/site/lib/sanity/live.ts` - Live Content API configuration for real-time previews
+- `apps/site/lib/sanity/fetch.ts` - Unified fetch wrapper (handles both draft mode and ISR)
+- `apps/site/lib/sanity/queries.ts` - All CMS queries with ISR tags and sanitization
+- `apps/site/lib/sanity/sanitize.ts` - Text sanitization utilities
+
+**Features:**
+
+- ✅ Live preview with Live Content API
+- ✅ Visual editing in Sanity Studio's Presentation Tool
+- ✅ Draft mode for content preview before publishing
+- ✅ ISR with on-demand revalidation via cache tags
+- ✅ Automatic sanitization of CMS content (removes invisible Unicode characters)
+
+### Draft Mode & Visual Editing
+
+**API Routes:**
+
+- `/api/draft-mode/enable` - Enables draft mode from Sanity Studio
+- `/api/draft-mode/disable` - Disables draft mode
+
+**Components:**
+
+- `<SanityLive />` - Enables real-time content updates
+- `<VisualEditing />` - Enables in-context editing in Presentation Tool
+
+Both components are conditionally rendered in `app/layout.tsx` when draft mode is enabled.
+
+### Content Sanitization
+
+All text content from Sanity is automatically sanitized at the data layer to handle:
+
+- Zero-width characters (invisible characters from copy-paste)
+- Multiple consecutive whitespace
+- Non-breaking spaces and other Unicode whitespace
+- Leading/trailing whitespace
+
+This ensures clean rendering without invisible characters affecting the layout.
+
+### Sanity Studio
+
+The CMS interface runs separately at `apps/studio` with:
+
+- Structure Tool for content management
+- Vision Tool for GROQ query testing
+- Presentation Tool for live preview and visual editing
+
+Configure preview URL in `apps/studio/sanity.config.ts`.
+
 ## Environment Variables
 
 Required for CMS connection:
 
-- Check `.env.example` for Sanity-related variables
-- Create `.env` file in project root
+**Frontend (apps/site/.env.local):**
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_READ_TOKEN=your_read_token  # Required for draft mode
+NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3333  # For visual editing
+```
+
+**Studio (apps/studio/.env.local):**
+
+```env
+SANITY_STUDIO_PROJECT_ID=your_project_id
+SANITY_STUDIO_DATASET=production
+SANITY_STUDIO_PREVIEW_URL=http://localhost:3000  # Optional
+```
+
+See `.env.example` files for complete documentation.
 
 ## Deployment
 
-- Frontend (`apps/web`): Netlify
-- CMS (`apps/studio`): Sanity
+Frontend (`apps/site`):
+
+- Platform: Netlify with ISR support
 - Build command: `pnpm build`
-- Output: `apps/web/dist`
+- Output: `apps/site/.next`
+- Plugin: `@netlify/plugin-nextjs`
 - Node: `>=20.0.0`
+
+CMS (`apps/studio`):
+
+- Platform: Sanity
+- Deploy command: `pnpm --filter @afnizarnur/studio deploy`
 
 ## Troubleshooting
 
@@ -162,8 +252,8 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 **Setup:**
 
 - **No JS config file**: Tailwind v4 doesn't use `tailwind.config.js/ts`
-- **Vite plugin**: Uses `@tailwindcss/vite` plugin in `astro.config.mjs` (recommended approach for Astro)
-- **CSS configuration**: All config is in `apps/web/src/styles/global.css`
+- **PostCSS plugin**: Uses `@tailwindcss/postcss` in `postcss.config.mjs` (Next.js standard)
+- **CSS configuration**: All config is in `apps/site/app/styles/global.css`
 
 **Key directives in global.css:**
 
@@ -175,32 +265,30 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 **Design tokens integration:**
 
 - Terrazzo generates two outputs:
-  - `packages/tokens/dist/tokens.css` - Raw CSS custom properties (not imported, reference only)
-  - `packages/tokens/dist/tailwind-theme.css` - Auto-generated Tailwind v4 theme (imported via `@afnizarnur/tokens/tailwind`)
+    - `packages/tokens/dist/tokens.css` - Raw CSS custom properties (not imported, reference only)
+    - `packages/tokens/dist/tailwind-theme.css` - Auto-generated Tailwind v4 theme (imported via `@afnizarnur/tokens/tailwind`)
 - Build process: `pnpm build` runs `process-theme.js` script to:
-  - Remove `@import "tailwindcss"` from generated theme
-  - Fix variable references (--color-primitive-* → --color-*)
+    - Remove `@import "tailwindcss"` from generated theme
+    - Fix variable references (--color-primitive-_ → --color-_)
 - Theme mapping uses custom keys for clean utility names:
-  - Primitive colors: `bg-gray-900`, `text-red-500`
-  - Semantic colors: `bg-background-primary`, `text-text-primary`, `border-border-accent-primary`
+    - Primitive colors: `bg-gray-900`, `text-red-500`
+    - Semantic colors: `bg-background-primary`, `text-text-primary`, `border-border-accent-primary`
 - Supports dark mode via `@variant dark` directive
 - **Single source of truth**: Only `@afnizarnur/tokens/tailwind` is imported in global.css
 
-**Component styles:**
-
-- Use `@reference "../styles/global.css"` when using `@apply` in component `<style>` blocks
-- Required for Tailwind v4 to resolve utilities in scoped styles
-
 **Migration notes:**
 
-- The `@astrojs/tailwind` integration is NOT used (removed for v4)
-- Uses `@tailwindcss/vite` plugin for optimal performance with Vite/Astro
+- Uses PostCSS plugin for Next.js (standard approach)
+- Design tokens imported from `@afnizarnur/tokens/tailwind`
 - Uses `@terrazzo/plugin-tailwind` with custom theme structure for clean utility names
-- Build script `copy-theme.js` removes `@import "tailwindcss"` from generated theme
+- Build script `process-theme.js` processes the generated theme file
 
 ## Resources
 
-- Astro: https://docs.astro.build
+- Next.js 15: https://nextjs.org/docs
+- React 19: https://react.dev
+- App Router: https://nextjs.org/docs/app
+- Server Components: https://nextjs.org/docs/app/building-your-application/rendering/server-components
 - Sanity: https://www.sanity.io/docs
 - Turborepo: https://turbo.build/repo/docs
 - Changesets: https://github.com/changesets/changesets
