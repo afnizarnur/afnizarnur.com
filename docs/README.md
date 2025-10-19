@@ -18,7 +18,7 @@ Welcome to the afnizarnur.com documentation. This directory contains comprehensi
 Comprehensive system architecture documentation covering:
 
 - System architecture and data flow
-- Technology stack (Astro, Sanity, React, Tailwind)
+- Technology stack (Next.js, Sanity, React, Tailwind)
 - Monorepo structure and organization
 - Build pipeline and deployment architecture
 - Performance and scalability considerations
@@ -213,7 +213,7 @@ Project overview and quick start:
 ```
 afnizarnur.com/
 ├── apps/
-│   ├── web/                   # Astro frontend
+│   ├── site/                  # Next.js frontend
 │   └── studio/                # Sanity CMS
 ├── packages/
 │   ├── config-*/              # Shared configurations
@@ -279,9 +279,9 @@ pnpm build
 
 ### Frontend
 
-- **[Astro](https://astro.build/)** - Static site framework
-- **[React](https://react.dev/)** - UI components
-- **[Tailwind CSS](https://tailwindcss.com/)** - Styling
+- **[Next.js](https://nextjs.org/)** - React framework with App Router
+- **[React](https://react.dev/)** - UI library (v19)
+- **[Tailwind CSS](https://tailwindcss.com/)** - Styling (v4)
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety
 
 ### CMS
@@ -334,9 +334,9 @@ Documentation improvements are always welcome!
 
 ### File Naming
 
-- **Components:** `PascalCase.tsx` or `PascalCase.astro`
+- **Components:** `PascalCase.tsx`
 - **Utils:** `camelCase.ts`
-- **Routes:** `kebab-case.astro`
+- **Routes:** `kebab-case/page.tsx` (App Router)
 - **Config:** `kebab-case.ts`
 
 ### Commit Messages
@@ -395,10 +395,10 @@ pnpm changeset
 
 ### External Documentation
 
-- [Astro Docs](https://docs.astro.build)
+- [Next.js Docs](https://nextjs.org/docs)
+- [React Docs](https://react.dev)
 - [Sanity Docs](https://www.sanity.io/docs)
 - [Tailwind Docs](https://tailwindcss.com/docs)
-- [React Docs](https://react.dev)
 - [Turborepo Docs](https://turbo.build/repo/docs)
 
 ## License

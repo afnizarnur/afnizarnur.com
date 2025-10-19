@@ -29,7 +29,7 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                      Astro Static Site                           │
-│                    (apps/web/dist)                               │
+│                    (apps/site/dist)                               │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
 │  │    Pages     │  │  Components  │  │   Layouts    │          │
 │  └──────────────┘  └──────────────┘  └──────────────┘          │
@@ -56,7 +56,7 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
 
 ## Technology Stack
 
-### Frontend (apps/web)
+### Frontend (apps/site)
 
 **Framework: Astro 4.x**
 
@@ -188,7 +188,7 @@ packages/
    ├─> Build shared packages (config-*, tokens)
    └─> Build apps (web, studio)
 
-3. Astro Build Process (apps/web)
+3. Astro Build Process (apps/site)
    ├─> Parse .astro files
    ├─> Fetch content from Sanity
    │   └─> GROQ queries to Sanity Content Lake
@@ -249,7 +249,7 @@ React Components (.tsx)
 ```
 pnpm dev
 ├─> Turborepo: Run dev tasks in parallel
-│   ├─> apps/web: astro dev (port 4321)
+│   ├─> apps/site: astro dev (port 3000)
 │   └─> apps/studio: sanity dev (port 3333)
 │
 ├─> Hot Module Replacement (HMR)
@@ -273,7 +273,7 @@ pnpm build
 │   │   └─> tokens
 │   │
 │   └─> Phase 2: Build applications
-│       ├─> apps/web
+│       ├─> apps/site
 │       │   ├─> astro check (type checking)
 │       │   └─> astro build
 │       │       ├─> Content fetching
@@ -286,7 +286,7 @@ pnpm build
 │               └─> Output to dist/
 │
 └─> Build Artifacts
-    ├─> apps/web/dist/     (deployed to Netlify)
+    ├─> apps/site/dist/     (deployed to Netlify)
     └─> apps/studio/dist/  (deployed to Sanity)
 ```
 
@@ -324,7 +324,7 @@ Netlify Build Process
 ├─> Install dependencies (pnpm install)
 ├─> Run build command
 │   └─> pnpm turbo run build --filter=@afnizarnur/web
-├─> Upload apps/web/dist/ to CDN
+├─> Upload apps/site/dist/ to CDN
 └─> Deploy to production URL
 ```
 

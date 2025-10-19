@@ -31,9 +31,9 @@ packages/tokens/
 
 ↓ Consumed by ↓
 
-apps/web/postcss.config.cjs   # PostCSS configuration (Tailwind v4)
-apps/web/src/styles/global.css # Tailwind v4 theme configuration
-apps/web/                     # Web application
+apps/site/postcss.config.cjs   # PostCSS configuration (Tailwind v4)
+apps/site/src/styles/global.css # Tailwind v4 theme configuration
+apps/site/                     # Web application
 ```
 
 ### Key Principles
@@ -528,8 +528,8 @@ This project uses **Tailwind CSS v4**, which introduces a CSS-first configuratio
 
 **Configuration location:**
 
-- `apps/web/postcss.config.cjs` - PostCSS configuration
-- `apps/web/src/styles/global.css` - Theme and token mapping
+- `apps/site/postcss.config.cjs` - PostCSS configuration
+- `apps/site/src/styles/global.css` - Theme and token mapping
 
 **Using @apply in component styles:**
 When using `@apply` in Astro component `<style>` blocks, add the `@reference` directive:
@@ -572,7 +572,7 @@ When patterns repeat, extract them to components:
 **React Component:**
 
 ```tsx
-// apps/web/src/components/Button.tsx
+// apps/site/src/components/Button.tsx
 interface ButtonProps {
     variant?: "primary" | "secondary"
     children: React.ReactNode
@@ -593,7 +593,7 @@ export function Button({ variant = "primary", children }: ButtonProps) {
 
 ```astro
 ---
-// apps/web/src/components/Card.astro
+// apps/site/src/components/Card.astro
 export interface Props {
     title: string
     description: string

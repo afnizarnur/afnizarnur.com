@@ -119,11 +119,11 @@ pnpm turbo run build --concurrency=1
 
 ```bash
 # Verify .env files exist and are correct
-cat apps/web/.env
+cat apps/site/.env
 
 # Should contain:
-# PUBLIC_SANITY_PROJECT_ID=your-project-id
-# PUBLIC_SANITY_DATASET=production
+# NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+# NEXT_PUBLIC_SANITY_DATASET=production
 # PUBLIC_SITE_URL=https://afnizarnur.com
 ```
 
@@ -131,7 +131,7 @@ cat apps/web/.env
 
 ```bash
 # Check dist directory exists and has content
-ls -la apps/web/dist
+ls -la apps/site/dist
 # Should contain index.html and other files
 ```
 
@@ -164,7 +164,7 @@ Error: listen EADDRINUSE: address already in use :::3333
 **1. Kill process on port:**
 
 ```bash
-# For web app (port 4321)
+# For web app (port 3000)
 lsof -ti:4321 | xargs kill -9
 
 # For studio (port 3333)
@@ -206,7 +206,7 @@ killall node
 **1. Clear Astro cache:**
 
 ```bash
-rm -rf apps/web/.astro
+rm -rf apps/site/.astro
 pnpm --filter @afnizarnur/web dev
 ```
 
@@ -259,7 +259,7 @@ pnpm dev
 
 ```bash
 # Check environment variables
-cat apps/web/.env
+cat apps/site/.env
 
 # Test Sanity connection
 curl https://[PROJECT_ID].api.sanity.io/v2021-10-21/data/query/production?query=*[_type==\"post\"]
@@ -293,8 +293,8 @@ Type error: Cannot find name 'Z'
 **1. Clear TypeScript cache:**
 
 ```bash
-rm -rf apps/web/node_modules/.astro
-rm -rf apps/web/.astro
+rm -rf apps/site/node_modules/.astro
+rm -rf apps/site/.astro
 pnpm typecheck
 ```
 
@@ -475,15 +475,15 @@ pnpm install --legacy-peer-deps
 
 - Go to Site Settings → Build & Deploy → Environment
 - Ensure all required variables are set:
-    - `PUBLIC_SANITY_PROJECT_ID`
-    - `PUBLIC_SANITY_DATASET`
+    - `NEXT_PUBLIC_SANITY_PROJECT_ID`
+    - `NEXT_PUBLIC_SANITY_DATASET`
     - `PUBLIC_SITE_URL`
 
 **2. Verify build settings:**
 
 ```
 Build command: pnpm build
-Publish directory: apps/web/dist
+Publish directory: apps/site/dist
 Base directory: (leave empty)
 ```
 
@@ -561,7 +561,7 @@ pnpm build
 **1. Add \_redirects file:**
 
 ```
-# apps/web/public/_redirects
+# apps/site/public/_redirects
 /* /index.html 200
 ```
 
@@ -588,7 +588,7 @@ export default defineConfig({
 
 ```bash
 # Check that all pages are generated
-ls -R apps/web/dist
+ls -R apps/site/dist
 ```
 
 ## Sanity Studio Issues
@@ -863,7 +863,7 @@ pnpm turbo run build --profile
 ```bash
 pnpm --filter @afnizarnur/web build
 # Check dist/ folder sizes
-du -sh apps/web/dist/*
+du -sh apps/site/dist/*
 ```
 
 **2. Optimize images:**

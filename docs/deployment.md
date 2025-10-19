@@ -13,7 +13,7 @@ This guide covers the deployment workflow for the portfolio monorepo, aligning w
 ## 2. Configure Build Settings (T090)
 
 - **Build command**: `pnpm turbo run build --filter=@afnizarnur/web`
-- **Publish directory**: `apps/web/dist`
+- **Publish directory**: `apps/site/dist`
 - **Base directory**: leave empty (Netlify clones to repo root)
 
 These values are also codified in `netlify.toml`, so future deploy contexts inherit them automatically.
@@ -24,8 +24,8 @@ Add the following variables in **Site settings → Build & deploy → Environmen
 
 | Variable                   | Example                  | Description                              |
 | -------------------------- | ------------------------ | ---------------------------------------- |
-| `PUBLIC_SANITY_PROJECT_ID` | `abcd1234`               | Sanity project ID used by both apps      |
-| `PUBLIC_SANITY_DATASET`    | `production`             | Dataset that Astro queries               |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `abcd1234`               | Sanity project ID used by both apps      |
+| `NEXT_PUBLIC_SANITY_DATASET`    | `production`             | Dataset that Astro queries               |
 | `PUBLIC_SITE_URL`          | `https://afnizarnur.com` | Absolute site URL for sitemap/open graph |
 
 > Update values in the Netlify UI; the defaults in `netlify.toml` are placeholders only.
