@@ -1,3 +1,5 @@
+"use client"
+
 import { PortableText as ReactPortableText } from "@portabletext/react"
 import type { PortableTextBlock } from "@afnizarnur/ui"
 
