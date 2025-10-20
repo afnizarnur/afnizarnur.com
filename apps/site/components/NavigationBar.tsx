@@ -9,7 +9,7 @@ import { MobileMenu } from "./MobileMenu"
 import { ThemeToggle } from "./ThemeToggle"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LineTextHover } from "./LineTextHover"
+import { TerminalTextEffect } from "./TerminalTextEffect"
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -26,6 +26,7 @@ interface NavigationBarProps {
         timeZone?: string
         displayLabel?: string
     }
+    hoverEffect?: "cursor" | "background" | "colorful"
 }
 
 function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
@@ -116,6 +117,7 @@ export function NavigationBar({
     items,
     logo,
     timezone,
+    hoverEffect = "cursor",
 }: Omit<NavigationBarProps, "currentPath">): JSX.Element {
     const pathname = usePathname()
 
@@ -147,9 +149,9 @@ export function NavigationBar({
                                 />
                             ) : null}
                             {logo?.type === "text" && logo.text ? (
-                                <LineTextHover>{logo.text}</LineTextHover>
+                                <TerminalTextEffect effect="cursor">{logo.text}</TerminalTextEffect>
                             ) : (
-                                <LineTextHover>Afnizar_Nur_Ghifari</LineTextHover>
+                                <TerminalTextEffect effect="cursor">Afnizar_Nur_Ghifari</TerminalTextEffect>
                             )}
                         </Link>
                     </div>
@@ -171,24 +173,30 @@ export function NavigationBar({
                                                 rel={
                                                     item.newTab ? "noopener noreferrer" : undefined
                                                 }
-                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${isActive
+                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${
+                                                    isActive
                                                         ? "text-text-primary cursor-default"
                                                         : "text-text-secondary hover:text-text-primary active:text-text-primary"
-                                                    }`}
+                                                }`}
                                                 aria-current={isActive ? "page" : undefined}
                                             >
-                                                <LineTextHover>{item.title}</LineTextHover>
+                                                <TerminalTextEffect effect="cursor">
+                                                    {item.title}
+                                                </TerminalTextEffect>
                                             </a>
                                         ) : (
                                             <Link
                                                 href={href}
-                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${isActive
+                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${
+                                                    isActive
                                                         ? "text-text-primary cursor-default"
                                                         : "text-text-secondary hover:text-text-primary active:text-text-primary"
-                                                    }`}
+                                                }`}
                                                 aria-current={isActive ? "page" : undefined}
                                             >
-                                                <LineTextHover>{item.title}</LineTextHover>
+                                                <TerminalTextEffect effect="cursor">
+                                                    {item.title}
+                                                </TerminalTextEffect>
                                             </Link>
                                         )}
                                     </li>
