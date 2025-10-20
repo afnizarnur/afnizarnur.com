@@ -88,6 +88,7 @@ interface WidgetConfig {
     defaultY: number
     width: number
     height?: number
+    minHeight?: number
     backgroundColor?: string
     backgroundImage?: string
     title?: string
@@ -102,6 +103,7 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
         defaultX: 24,
         defaultY: 24,
         width: 598,
+        minHeight: 200,
         title: "Intro",
         showClose: true,
         content: (
@@ -116,6 +118,7 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
         defaultX: 650,
         defaultY: 24,
         width: 443,
+        minHeight: 200,
         title: "Short bio",
         showClose: true,
         content: (
@@ -130,6 +133,7 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
         defaultX: 1120,
         defaultY: 24,
         width: 641,
+        minHeight: 200,
         title: "Current Work",
         backgroundColor: "var(--color-background-warning-primary)",
         showClose: true,
@@ -163,6 +167,8 @@ export function HorizontalHeader(): React.ReactElement {
     const [containerBounds, setContainerBounds] = useState({ width: 0, height: 0 })
     const [contentWidth, setContentWidth] = useState(0)
     const autoScrollIntervalRef = useRef<number | null>(null)
+    const widgetRefs = useRef<Record<string, HTMLDivElement | null>>({})
+    const [widgetHeights, setWidgetHeights] = useState<Record<string, number>>({})
 
     // Load positions from localStorage on mount
     useEffect(() => {
@@ -195,6 +201,38 @@ export function HorizontalHeader(): React.ReactElement {
         window.addEventListener("resize", updateBounds)
         return () => window.removeEventListener("resize", updateBounds)
     }, [])
+
+    // Measure widget heights dynamically
+    useEffect(() => {
+        const measureWidgetHeights = (): void => {
+            const newHeights: Record<string, number> = {}
+            WIDGET_CONFIGS.forEach((config) => {
+                const widgetElement = widgetRefs.current[config.id]
+                if (widgetElement) {
+                    // Get the actual rendered height
+                    const height = widgetElement.offsetHeight
+                    // Use the larger of: fixed height, measured height, or minHeight
+                    newHeights[config.id] = config.height || Math.max(height, config.minHeight || 200)
+                } else {
+                    // Fallback if ref not available yet
+                    newHeights[config.id] = config.height || config.minHeight || 200
+                }
+            })
+            setWidgetHeights(newHeights)
+        }
+
+        // Measure initially and on window resize
+        measureWidgetHeights()
+        window.addEventListener("resize", measureWidgetHeights)
+
+        // Also re-measure after a short delay to catch any dynamic content loading
+        const timeoutId = setTimeout(measureWidgetHeights, 100)
+
+        return () => {
+            window.removeEventListener("resize", measureWidgetHeights)
+            clearTimeout(timeoutId)
+        }
+    }, [positions]) // Re-measure when positions change
 
     // Clamp position to valid bounds (use content width for horizontal bounds)
     const clampPosition = useCallback(
@@ -308,7 +346,12 @@ export function HorizontalHeader(): React.ReactElement {
                             style={{ gridColumn: "2" }}
                         >
                             {WIDGET_CONFIGS.map((config) => {
-                                const widgetHeight = config.height || 200
+                                // Use dynamically measured height, fallback to config values
+                                const widgetHeight =
+                                    widgetHeights[config.id] ||
+                                    config.height ||
+                                    config.minHeight ||
+                                    200
                                 const savedPosition = positions[config.id]
                                 // Clamp position to valid bounds to prevent lost widgets
                                 const position = savedPosition
@@ -336,6 +379,9 @@ export function HorizontalHeader(): React.ReactElement {
                                 return (
                                     <motion.div
                                         key={config.id}
+                                        ref={(el) => {
+                                            widgetRefs.current[config.id] = el
+                                        }}
                                         drag
                                         dragConstraints={dragConstraints}
                                         dragElastic={0}
