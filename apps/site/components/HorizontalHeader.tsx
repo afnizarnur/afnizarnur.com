@@ -11,6 +11,8 @@ export interface HeaderItem {
 }
 
 const SEGMENT_WIDTH = 800 // pixels per segment
+const TOTAL_SEGMENTS = 3 // number of segments in the header
+const TOTAL_CONTENT_WIDTH = SEGMENT_WIDTH * TOTAL_SEGMENTS // total draggable width
 const GRID_TEMPLATE = "1fr min(1220px, 100% - 48px) 1fr"
 const STORAGE_KEY = "horizontal-header-widget-positions"
 const AUTO_SCROLL_THRESHOLD = 50 // pixels from edge to trigger auto-scroll
@@ -116,7 +118,7 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "bio",
         defaultX: 24,
-        defaultY: 436,
+        defaultY: 450,
         width: 443,
         minHeight: 200,
         title: "Short bio",
@@ -161,14 +163,11 @@ export function HorizontalHeader(): React.ReactElement {
     const [positions, setPositions] = useState<Record<string, WidgetPosition>>({})
     const [draggingId, setDraggingId] = useState<string | null>(null)
     const [stackOrder, setStackOrder] = useState<string[]>([])
-    const containerRef = useRef<HTMLDivElement>(null)
     const scrollContainerRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
-    const [containerBounds, setContainerBounds] = useState({ width: 0, height: 0 })
-    const [contentWidth, setContentWidth] = useState(0)
     const widgetRefs = useRef<Record<string, HTMLDivElement | null>>({})
-    const [widgetHeights, setWidgetHeights] = useState<Record<string, number>>({})
     const autoScrollIntervalRef = useRef<number | null>(null)
+    const [widgetHeights, setWidgetHeights] = useState<Record<string, number>>({})
 
     // Load positions from localStorage on mount
     useEffect(() => {
@@ -184,24 +183,6 @@ export function HorizontalHeader(): React.ReactElement {
         setStackOrder(WIDGET_CONFIGS.map((config) => config.id))
     }, [])
 
-    // Calculate container bounds and content width
-    useEffect(() => {
-        const updateBounds = (): void => {
-            if (containerRef.current) {
-                const rect = containerRef.current.getBoundingClientRect()
-                setContainerBounds({ width: rect.width, height: rect.height })
-            }
-            if (contentRef.current) {
-                // Get the full scrollable content width
-                setContentWidth(contentRef.current.scrollWidth)
-            }
-        }
-
-        updateBounds()
-        window.addEventListener("resize", updateBounds)
-        return () => window.removeEventListener("resize", updateBounds)
-    }, [])
-
     // Measure widget heights dynamically
     useEffect(() => {
         const measureWidgetHeights = (): void => {
@@ -209,43 +190,58 @@ export function HorizontalHeader(): React.ReactElement {
             WIDGET_CONFIGS.forEach((config) => {
                 const widgetElement = widgetRefs.current[config.id]
                 if (widgetElement) {
-                    // Get the actual rendered height
-                    const height = widgetElement.offsetHeight
-                    // Use the larger of: fixed height, measured height, or minHeight
-                    newHeights[config.id] =
-                        config.height || Math.max(height, config.minHeight || 200)
+                    newHeights[config.id] = widgetElement.offsetHeight
                 } else {
-                    // Fallback if ref not available yet
                     newHeights[config.id] = config.height || config.minHeight || 200
                 }
             })
             setWidgetHeights(newHeights)
         }
 
-        // Measure initially and on window resize
+        // Measure initially
         measureWidgetHeights()
-        window.addEventListener("resize", measureWidgetHeights)
 
-        // Also re-measure after a short delay to catch any dynamic content loading
-        const timeoutId = setTimeout(measureWidgetHeights, 100)
+        // Re-measure on window resize
+        const resizeObserver = new ResizeObserver(measureWidgetHeights)
+        Object.values(widgetRefs.current).forEach((el) => {
+            if (el) resizeObserver.observe(el)
+        })
 
         return () => {
-            window.removeEventListener("resize", measureWidgetHeights)
-            clearTimeout(timeoutId)
+            resizeObserver.disconnect()
         }
-    }, [positions]) // Re-measure when positions change
+    }, [])
 
-    // Clamp position to valid bounds (use content width for horizontal bounds)
+    // Get constraint bounds for a widget
+    const getConstraintBounds = useCallback((widgetWidth: number, widgetHeight: number) => {
+        if (!contentRef.current || !contentRef.current.parentElement) return null
+
+        // Get the header section (parent of contentRef)
+        const headerSection = contentRef.current.parentElement.parentElement
+        if (!headerSection) return null
+
+        const headerHeight = headerSection.offsetHeight
+
+        return {
+            minX: 0,
+            minY: 0,
+            maxX: Math.max(0, TOTAL_CONTENT_WIDTH - widgetWidth),
+            maxY: Math.max(0, headerHeight - widgetHeight),
+        }
+    }, [])
+
+    // Clamp position to valid bounds
     const clampPosition = useCallback(
-        (x: number, y: number, width: number, height: number): { x: number; y: number } => {
-            const maxX = Math.max(0, contentWidth - width)
-            const maxY = Math.max(0, containerBounds.height - height)
+        (x: number, y: number, widgetWidth: number, widgetHeight: number) => {
+            const bounds = getConstraintBounds(widgetWidth, widgetHeight)
+            if (!bounds) return { x, y }
+
             return {
-                x: Math.max(0, Math.min(x, maxX)),
-                y: Math.max(0, Math.min(y, maxY)),
+                x: Math.max(bounds.minX, Math.min(x, bounds.maxX)),
+                y: Math.max(bounds.minY, Math.min(y, bounds.maxY)),
             }
         },
-        [contentWidth, containerBounds]
+        [getConstraintBounds]
     )
 
     // Save position to localStorage
@@ -334,7 +330,6 @@ export function HorizontalHeader(): React.ReactElement {
                 >
                     {/* Draggable widgets container */}
                     <div
-                        ref={containerRef}
                         className="absolute inset-0 z-20 pointer-events-none"
                         style={{
                             display: "grid",
@@ -344,38 +339,23 @@ export function HorizontalHeader(): React.ReactElement {
                         <div
                             ref={contentRef}
                             className="relative pointer-events-auto h-full"
-                            style={{ gridColumn: "2" }}
+                            style={{ gridColumn: "2", width: `${TOTAL_CONTENT_WIDTH - 44}px` }}
                         >
                             {WIDGET_CONFIGS.map((config) => {
-                                // Use dynamically measured height, fallback to config values
+                                const position = positions[config.id] || {
+                                    x: config.defaultX,
+                                    y: config.defaultY,
+                                }
                                 const widgetHeight =
                                     widgetHeights[config.id] ||
                                     config.height ||
                                     config.minHeight ||
                                     200
-                                const savedPosition = positions[config.id]
-                                // Clamp position to valid bounds to prevent lost widgets
-                                const position = savedPosition
-                                    ? clampPosition(
-                                          savedPosition.x,
-                                          savedPosition.y,
-                                          config.width,
-                                          widgetHeight
-                                      )
-                                    : { x: config.defaultX, y: config.defaultY }
                                 const isActive = draggingId === config.id
                                 // Calculate z-index based on stack order
                                 const stackIndex = stackOrder.indexOf(config.id)
                                 const baseZIndex = stackIndex >= 0 ? stackIndex + 10 : 10
                                 const zIndex = isActive ? 100 : baseZIndex
-
-                                // Calculate drag constraints to keep widget within scrollable content
-                                const dragConstraints = {
-                                    left: 0,
-                                    top: 0,
-                                    right: Math.max(0, contentWidth - config.width),
-                                    bottom: Math.max(0, containerBounds.height - widgetHeight),
-                                }
 
                                 return (
                                     <motion.div
@@ -384,7 +364,7 @@ export function HorizontalHeader(): React.ReactElement {
                                             widgetRefs.current[config.id] = el
                                         }}
                                         drag
-                                        dragConstraints={dragConstraints}
+                                        dragConstraints={contentRef}
                                         dragElastic={0}
                                         dragMomentum={false}
                                         dragTransition={{
@@ -498,13 +478,6 @@ export function HorizontalHeader(): React.ReactElement {
                         <Segment width={SEGMENT_WIDTH} />
                         <Segment width={SEGMENT_WIDTH} />
                         <Segment width={SEGMENT_WIDTH} />
-                        <Segment width={SEGMENT_WIDTH} />
-                        <Segment width={SEGMENT_WIDTH} />
-                        <Segment width={SEGMENT_WIDTH} />
-                        <Segment width={SEGMENT_WIDTH} />
-                        <Segment width={SEGMENT_WIDTH} />
-                        <Segment width={SEGMENT_WIDTH} />
-                        <Segment width={SEGMENT_WIDTH} />
                     </div>
                 </div>
 
@@ -520,13 +493,6 @@ export function HorizontalHeader(): React.ReactElement {
                         <FooterSegment label="Current Location" width={SEGMENT_WIDTH} />
                         <FooterSegment label="50m" width={SEGMENT_WIDTH} />
                         <FooterSegment label="100m" width={SEGMENT_WIDTH} />
-                        <FooterSegment label="150m" width={SEGMENT_WIDTH} />
-                        <FooterSegment label="200m" width={SEGMENT_WIDTH} />
-                        <FooterSegment label="250m" width={SEGMENT_WIDTH} />
-                        <FooterSegment label="300m" width={SEGMENT_WIDTH} />
-                        <FooterSegment label="350m" width={SEGMENT_WIDTH} />
-                        <FooterSegment label="400m" width={SEGMENT_WIDTH} />
-                        <FooterSegment label="450m" width={SEGMENT_WIDTH} />
                     </div>
                 </div>
             </div>
