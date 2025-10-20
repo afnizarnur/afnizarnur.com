@@ -1,32 +1,42 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { HorizontalHeader } from "@/components/HorizontalHeader"
 
 interface PointerState {
     pointerId: number | null
     lastX: number
     lastY: number
-    pointerType: PointerEvent["pointerType"] | null
     isActive: boolean
+    pointerType: PointerEvent["pointerType"] | null
 }
+
+const HORIZONTAL_CONTAINER_SELECTOR = '[data-scroll-container="horizontal-header"]'
+const EDGE_EPSILON = 1
 
 export default function HomePage(): JSX.Element {
     const pageRef = useRef<HTMLDivElement>(null)
+
+    useHorizontalScrollLock(pageRef)
+
+    return (
+        <div ref={pageRef} className="flex flex-col">
+            <HorizontalHeader />
+            <section className="min-h-[150vh]" aria-hidden="true" />
+        </div>
+    )
+}
+
+function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement>): void {
     const horizontalTargetRef = useRef<HTMLDivElement | null>(null)
-    const [isScrollReleased, setIsScrollReleased] = useState(false)
-    const isScrollReleasedRef = useRef(isScrollReleased)
+    const isScrollReleasedRef = useRef(false)
     const pointerStateRef = useRef<PointerState>({
         pointerId: null,
         lastX: 0,
         lastY: 0,
-        pointerType: null,
         isActive: false,
+        pointerType: null,
     })
-
-    useEffect(() => {
-        isScrollReleasedRef.current = isScrollReleased
-    }, [isScrollReleased])
 
     useEffect(() => {
         const pageElement = pageRef.current
@@ -34,44 +44,65 @@ export default function HomePage(): JSX.Element {
 
         const resolveHorizontalTarget = (): HTMLDivElement | null => {
             const current = horizontalTargetRef.current
-            if (current && pageElement.contains(current)) {
+            if (current && current.isConnected && pageElement.contains(current)) {
                 return current
             }
 
-            const target = pageElement.querySelector<HTMLDivElement>(".scrollbar-hide")
-            if (target) {
-                horizontalTargetRef.current = target
-            }
-            return horizontalTargetRef.current
-        }
-
-        const releaseScroll = (): void => {
-            if (!isScrollReleasedRef.current) {
-                isScrollReleasedRef.current = true
-                setIsScrollReleased(true)
-            }
-        }
-
-        const lockScroll = (): void => {
-            if (isScrollReleasedRef.current) {
-                isScrollReleasedRef.current = false
-                setIsScrollReleased(false)
-            }
+            const target = pageElement.querySelector<HTMLDivElement>(HORIZONTAL_CONTAINER_SELECTOR)
+            horizontalTargetRef.current = target ?? null
+            return target ?? null
         }
 
         const getHorizontalTarget = (): HTMLDivElement | null => {
             return horizontalTargetRef.current ?? resolveHorizontalTarget()
         }
 
-        resolveHorizontalTarget()
+        const releaseScroll = (): void => {
+            if (!isScrollReleasedRef.current) {
+                isScrollReleasedRef.current = true
+            }
+        }
+
+        const lockScroll = (): void => {
+            if (isScrollReleasedRef.current) {
+                isScrollReleasedRef.current = false
+            }
+        }
+
+        const hasHorizontalOverflow = (target: HTMLDivElement): boolean => {
+            return target.scrollWidth - target.clientWidth > EDGE_EPSILON
+        }
+
+        const isAtStart = (target: HTMLDivElement): boolean => {
+            return target.scrollLeft <= EDGE_EPSILON
+        }
+
+        const isAtEnd = (target: HTMLDivElement): boolean => {
+            return target.scrollLeft + target.clientWidth >= target.scrollWidth - EDGE_EPSILON
+        }
+
+        const applyHorizontalDelta = (target: HTMLDivElement, delta: number): boolean => {
+            if (delta === 0) return false
+
+            const maxScroll = Math.max(0, target.scrollWidth - target.clientWidth)
+            const nextScroll = Math.min(maxScroll, Math.max(0, target.scrollLeft + delta))
+
+            if (nextScroll === target.scrollLeft) return false
+
+            target.scrollLeft = nextScroll
+            return true
+        }
+
+        const applyVerticalDelta = (delta: number): void => {
+            if (delta === 0) return
+            window.scrollBy({ top: delta })
+        }
 
         const handleWheel = (event: WheelEvent): void => {
             const horizontalTarget = getHorizontalTarget()
             if (!horizontalTarget) return
 
-            const hasHorizontalOverflow =
-                horizontalTarget.scrollWidth > horizontalTarget.clientWidth
-            if (!hasHorizontalOverflow) {
+            if (!hasHorizontalOverflow(horizontalTarget)) {
                 releaseScroll()
                 return
             }
@@ -87,40 +118,38 @@ export default function HomePage(): JSX.Element {
                 const scrollingUp = deltaY < 0
 
                 if (scrollingUp && atWindowTop) {
-                    const atStart = horizontalTarget.scrollLeft <= 0
-                    if (!atStart) {
+                    if (!isAtStart(horizontalTarget)) {
                         event.preventDefault()
-                        horizontalTarget.scrollLeft += deltaY
+                        applyHorizontalDelta(horizontalTarget, deltaY)
                         return
                     }
+
+                    event.preventDefault()
                     lockScroll()
                     return
                 }
 
                 event.preventDefault()
-                window.scrollBy({ top: deltaY })
+                applyVerticalDelta(deltaY)
                 return
             }
 
             if (!prefersVertical) return
 
-            const atStart = horizontalTarget.scrollLeft <= 0
-            const atEnd =
-                Math.ceil(horizontalTarget.scrollLeft + horizontalTarget.clientWidth) >=
-                horizontalTarget.scrollWidth - 1
-
             const scrollingForward = deltaY > 0
             const scrollingBackward = deltaY < 0
 
-            if ((scrollingForward && !atEnd) || (scrollingBackward && !atStart)) {
+            const shouldScrollHorizontally =
+                (scrollingForward && !isAtEnd(horizontalTarget)) ||
+                (scrollingBackward && !isAtStart(horizontalTarget))
+
+            if (shouldScrollHorizontally) {
                 event.preventDefault()
-                horizontalTarget.scrollLeft += deltaY
+                applyHorizontalDelta(horizontalTarget, deltaY)
                 return
             }
 
-            if ((scrollingForward && atEnd) || (scrollingBackward && atStart)) {
-                releaseScroll()
-            }
+            releaseScroll()
         }
 
         const pointerState = pointerStateRef.current
@@ -129,9 +158,9 @@ export default function HomePage(): JSX.Element {
             if (event.pointerType !== "touch" && event.pointerType !== "pen") return
 
             pointerState.pointerId = event.pointerId
+            pointerState.pointerType = event.pointerType
             pointerState.lastX = event.clientX
             pointerState.lastY = event.clientY
-            pointerState.pointerType = event.pointerType
             pointerState.isActive = true
         }
 
@@ -141,9 +170,7 @@ export default function HomePage(): JSX.Element {
             const horizontalTarget = getHorizontalTarget()
             if (!horizontalTarget) return
 
-            const hasHorizontalOverflow =
-                horizontalTarget.scrollWidth > horizontalTarget.clientWidth
-            if (!hasHorizontalOverflow) {
+            if (!hasHorizontalOverflow(horizontalTarget)) {
                 releaseScroll()
                 return
             }
@@ -158,26 +185,22 @@ export default function HomePage(): JSX.Element {
             if (!prefersVertical) return
 
             const verticalDelta = -deltaY
-            if (verticalDelta === 0) return
-
-            const atStart = horizontalTarget.scrollLeft <= 0
-            const atEnd =
-                Math.ceil(horizontalTarget.scrollLeft + horizontalTarget.clientWidth) >=
-                horizontalTarget.scrollWidth - 1
 
             if (!isScrollReleasedRef.current) {
                 const scrollingForward = verticalDelta > 0
                 const scrollingBackward = verticalDelta < 0
 
-                if ((scrollingForward && !atEnd) || (scrollingBackward && !atStart)) {
+                const shouldScrollHorizontally =
+                    (scrollingForward && !isAtEnd(horizontalTarget)) ||
+                    (scrollingBackward && !isAtStart(horizontalTarget))
+
+                if (shouldScrollHorizontally) {
                     event.preventDefault()
-                    horizontalTarget.scrollLeft += verticalDelta
+                    applyHorizontalDelta(horizontalTarget, verticalDelta)
                     return
                 }
 
-                if ((scrollingForward && atEnd) || (scrollingBackward && atStart)) {
-                    releaseScroll()
-                }
+                releaseScroll()
                 return
             }
 
@@ -185,17 +208,19 @@ export default function HomePage(): JSX.Element {
             const scrollingUp = verticalDelta < 0
 
             if (scrollingUp && atWindowTop) {
-                if (!atStart) {
+                if (!isAtStart(horizontalTarget)) {
                     event.preventDefault()
-                    horizontalTarget.scrollLeft += verticalDelta
+                    applyHorizontalDelta(horizontalTarget, verticalDelta)
                     return
                 }
+
+                event.preventDefault()
                 lockScroll()
                 return
             }
 
             event.preventDefault()
-            window.scrollBy({ top: verticalDelta })
+            applyVerticalDelta(verticalDelta)
         }
 
         const handlePointerEnd = (): void => {
@@ -204,38 +229,61 @@ export default function HomePage(): JSX.Element {
             pointerState.isActive = false
         }
 
-        const horizontalTarget = getHorizontalTarget()
-        if (horizontalTarget) {
-            const previousTouchAction = horizontalTarget.style.touchAction
-            horizontalTarget.style.touchAction = "pan-y"
-            horizontalTarget.addEventListener("pointerdown", handlePointerDown)
-            horizontalTarget.addEventListener("pointermove", handlePointerMove, { passive: false })
-            horizontalTarget.addEventListener("pointerup", handlePointerEnd)
-            horizontalTarget.addEventListener("pointercancel", handlePointerEnd)
+        let detachPointerListeners: (() => void) | null = null
 
-            window.addEventListener("wheel", handleWheel, { passive: false })
+        const attachPointerListeners = (target: HTMLDivElement): void => {
+            if (detachPointerListeners) return
 
-            return () => {
-                window.removeEventListener("wheel", handleWheel)
-                horizontalTarget.style.touchAction = previousTouchAction
-                horizontalTarget.removeEventListener("pointerdown", handlePointerDown)
-                horizontalTarget.removeEventListener("pointermove", handlePointerMove)
-                horizontalTarget.removeEventListener("pointerup", handlePointerEnd)
-                horizontalTarget.removeEventListener("pointercancel", handlePointerEnd)
+            const previousTouchAction = target.style.touchAction
+            target.style.touchAction = "pan-y"
+
+            target.addEventListener("pointerdown", handlePointerDown)
+            target.addEventListener("pointermove", handlePointerMove, { passive: false })
+            target.addEventListener("pointerup", handlePointerEnd)
+            target.addEventListener("pointercancel", handlePointerEnd)
+            target.addEventListener("pointerleave", handlePointerEnd)
+
+            detachPointerListeners = () => {
+                handlePointerEnd()
+                target.style.touchAction = previousTouchAction
+                target.removeEventListener("pointerdown", handlePointerDown)
+                target.removeEventListener("pointermove", handlePointerMove)
+                target.removeEventListener("pointerup", handlePointerEnd)
+                target.removeEventListener("pointercancel", handlePointerEnd)
+                target.removeEventListener("pointerleave", handlePointerEnd)
+                detachPointerListeners = null
             }
         }
+
+        const ensurePointerListeners = (): void => {
+            const target = resolveHorizontalTarget()
+            if (!target) {
+                if (detachPointerListeners) {
+                    detachPointerListeners()
+                }
+                return
+            }
+
+            attachPointerListeners(target)
+        }
+
+        ensurePointerListeners()
+
+        const observer = new MutationObserver(() => {
+            ensurePointerListeners()
+        })
+
+        observer.observe(pageElement, { childList: true, subtree: true })
 
         window.addEventListener("wheel", handleWheel, { passive: false })
 
         return () => {
             window.removeEventListener("wheel", handleWheel)
+            observer.disconnect()
+
+            if (detachPointerListeners) {
+                detachPointerListeners()
+            }
         }
     }, [])
-
-    return (
-        <div ref={pageRef} className="flex flex-col">
-            <HorizontalHeader />
-            <section className="min-h-[150vh]" aria-hidden="true" />
-        </div>
-    )
 }
