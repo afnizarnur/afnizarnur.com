@@ -28,8 +28,8 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
                                 │ Serves
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                      Astro Static Site                           │
-│                    (apps/site/dist)                               │
+│                    Next.js Application                           │
+│                    (apps/site/.next)                             │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
 │  │    Pages     │  │  Components  │  │   Layouts    │          │
 │  └──────────────┘  └──────────────┘  └──────────────┘          │
@@ -58,24 +58,24 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
 
 ### Frontend (apps/site)
 
-**Framework: Astro 4.x**
+**Framework: Next.js 15.x**
 
-- Static site generation (SSG)
-- File-based routing
-- Component islands architecture
+- App Router with Server Components
+- Dynamic and static rendering
+- Incremental Static Regeneration (ISR)
 - Built-in image optimization
 
-**UI Layer: React 18.x**
+**UI Layer: React 19.x**
 
-- Interactive components
-- Client-side hydration (minimal)
+- Server Components by default
+- Client Components for interactivity
 - Shared component library
 
-**Styling: Tailwind CSS 3.x**
+**Styling: Tailwind CSS 4.x**
 
-- Utility-first CSS
+- CSS-first configuration
 - Design token integration
-- Custom configuration via workspace package
+- PostCSS plugin-based setup
 
 **Content Client: Sanity Client 6.x**
 
@@ -139,15 +139,18 @@ This document provides a comprehensive overview of the afnizarnur.com monorepo a
 
 ```
 apps/
-├── web/                    # Public-facing website
-│   ├── src/
-│   │   ├── pages/         # Route pages (Astro)
-│   │   ├── layouts/       # Page templates
-│   │   ├── components/    # UI components
-│   │   ├── server/        # Server utilities
+├── site/                   # Public-facing website
+│   ├── app/
+│   │   ├── (pages)/       # Route segments
+│   │   ├── layout.tsx     # Root layout
 │   │   └── styles/        # Global styles
+│   ├── lib/
+│   │   ├── sanity/        # Sanity client and queries
+│   │   └── utils/         # Utility functions
+│   ├── components/        # Reusable components
 │   ├── public/            # Static assets
-│   └── astro.config.mjs   # Astro configuration
+│   ├── next.config.ts     # Next.js configuration
+│   └── package.json
 │
 └── studio/                # Content management
     ├── schemas/           # Content type definitions
@@ -188,17 +191,17 @@ packages/
    ├─> Build shared packages (config-*, tokens)
    └─> Build apps (web, studio)
 
-3. Astro Build Process (apps/site)
-   ├─> Parse .astro files
-   ├─> Fetch content from Sanity
+3. Next.js Build Process (apps/site)
+   ├─> Parse app directory routes
+   ├─> Fetch content from Sanity (Server Components)
    │   └─> GROQ queries to Sanity Content Lake
    ├─> Render pages to HTML
    ├─> Optimize images
-   ├─> Bundle JavaScript (minimal)
-   └─> Output to dist/
+   ├─> Bundle JavaScript (Server/Client split)
+   └─> Output to .next/
 
 4. Deploy to Netlify
-   ├─> Upload dist/ to CDN
+   ├─> Upload .next/ to CDN
    └─> Invalidate old cache
 ```
 
@@ -227,19 +230,17 @@ packages/
 ### Component Rendering Flow
 
 ```
-Astro Components (.astro)
-├─> Server-rendered by default (zero JS)
-├─> Can include React components
-└─> Output: Static HTML
+Server Components (.tsx)
+├─> Rendered server-side (zero JS by default)
+├─> Direct database/API access
+├─> Secrets safe
+└─> Output: HTML
 
-React Components (.tsx)
-├─> Rendered server-side during build
-├─> Optional client hydration
-│   ├─> client:load (immediate)
-│   ├─> client:idle (when idle)
-│   ├─> client:visible (when visible)
-│   └─> client:media (responsive)
-└─> Output: HTML + minimal JS
+Client Components (.tsx with "use client")
+├─> Rendered both server and client
+├─> Interactivity and browser APIs
+├─> Event listeners and hooks
+└─> Output: HTML + interactive JS
 ```
 
 ## Build Pipeline
@@ -249,16 +250,17 @@ React Components (.tsx)
 ```
 pnpm dev
 ├─> Turborepo: Run dev tasks in parallel
-│   ├─> apps/site: astro dev (port 3000)
+│   ├─> apps/site: next dev (port 3000)
 │   └─> apps/studio: sanity dev (port 3333)
 │
-├─> Hot Module Replacement (HMR)
+├─> Fast Refresh
 │   ├─> File changes trigger instant updates
+│   ├─> Component state preserved
 │   └─> No full page reload needed
 │
 └─> Watch Mode
     ├─> TypeScript type checking
-    └─> Astro compilation
+    └─> React Server Components compilation
 ```
 
 ### Production Build
@@ -274,19 +276,18 @@ pnpm build
 │   │
 │   └─> Phase 2: Build applications
 │       ├─> apps/site
-│       │   ├─> astro check (type checking)
-│       │   └─> astro build
+│       │   ├─> next build
 │       │       ├─> Content fetching
 │       │       ├─> Page generation
 │       │       ├─> Asset optimization
-│       │       └─> Output to dist/
+│       │       └─> Output to .next/
 │       │
 │       └─> apps/studio
 │           └─> sanity build
 │               └─> Output to dist/
 │
 └─> Build Artifacts
-    ├─> apps/site/dist/     (deployed to Netlify)
+    ├─> apps/site/.next     (deployed to Netlify)
     └─> apps/studio/dist/  (deployed to Sanity)
 ```
 
@@ -323,8 +324,8 @@ Netlify Build Process
 ├─> Clone repository
 ├─> Install dependencies (pnpm install)
 ├─> Run build command
-│   └─> pnpm turbo run build --filter=@afnizarnur/web
-├─> Upload apps/site/dist/ to CDN
+│   └─> pnpm turbo run build --filter=@afnizarnur/site
+├─> Upload apps/site/.next to CDN
 └─> Deploy to production URL
 ```
 
@@ -349,7 +350,7 @@ Developer Machine
 
 **Development:**
 
-- Domain: localhost:4321
+- Domain: localhost:3000
 - Branch: Any
 - Dataset: production (read-only)
 - Content: Latest from Sanity
@@ -365,12 +366,12 @@ Developer Machine
 - Build artifact caching
 - Smart hashing for cache invalidation
 
-**Astro Optimizations:**
+**Next.js Optimizations:**
 
-- Static site generation (no runtime overhead)
-- Automatic code splitting
-- Image optimization (Sharp)
-- Minimal JavaScript by default
+- Server Components (no JavaScript for static content)
+- Automatic code splitting and lazy loading
+- Image optimization (Next.js Image component)
+- ISR for frequently updated content
 
 ### Runtime Performance
 
@@ -447,9 +448,9 @@ Developer Machine
 
 ### Potential Enhancements
 
-1. **Incremental Static Regeneration (ISR)**
-    - Rebuild only changed pages
-    - Faster build times with large content
+1. **On-Demand Revalidation**
+    - Tag-based cache invalidation for Sanity updates
+    - Faster updates without full rebuilds
 
 2. **Edge Functions**
     - Dynamic personalization

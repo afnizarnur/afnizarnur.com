@@ -203,11 +203,11 @@ killall node
 
 **Solutions:**
 
-**1. Clear Astro cache:**
+**1. Clear Next.js cache:**
 
 ```bash
-rm -rf apps/site/.astro
-pnpm --filter @afnizarnur/web dev
+rm -rf apps/site/.next
+pnpm --filter @afnizarnur/site dev
 ```
 
 **2. Increase file watch limit (Linux/Mac):**
@@ -290,11 +290,11 @@ Type error: Cannot find name 'Z'
 
 **Solutions:**
 
-**1. Clear TypeScript cache:**
+**1. Clear Next.js and TypeScript cache:**
 
 ```bash
-rm -rf apps/site/node_modules/.astro
-rm -rf apps/site/.astro
+rm -rf apps/site/.next
+rm -rf apps/site/node_modules/.next
 pnpm typecheck
 ```
 
@@ -319,20 +319,21 @@ pnpm add -D @types/react@latest
 - Update code to match new types
 - Run `pnpm outdated` to see version changes
 
-### Astro Type Errors
+### React/TypeScript Type Errors
 
 **Symptoms:**
 
 ```
 Cannot find module '@/components/...'
-Property does not exist on type 'Astro.props'
+Type 'never' has no properties
+Property does not exist on type 'ComponentProps'
 ```
 
 **Causes:**
 
 - Missing path aliases configuration
 - Props not properly typed
-- Astro types not loaded
+- TypeScript not recognizing types
 
 **Solutions:**
 
@@ -348,23 +349,28 @@ Property does not exist on type 'Astro.props'
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./app/*", "./lib/*", "./components/*"]
         }
     }
 }
 ```
 
-**3. Add prop types to Astro components:**
+**3. Add prop types to React components:**
 
-```astro
----
-export interface Props {
+```tsx
+interface CardProps {
     title: string
     description?: string
 }
 
-const { title, description } = Astro.props
----
+export function Card({ title, description }: CardProps) {
+    return (
+        <div>
+            <h1>{title}</h1>
+            {description && <p>{description}</p>}
+        </div>
+    )
+}
 ```
 
 ## Dependency Issues
@@ -574,21 +580,21 @@ Or use `netlify.toml`:
   status = 200
 ```
 
-**2. Check Astro output mode:**
+**2. Check Next.js build output:**
 
 ```javascript
-// astro.config.mjs
-export default defineConfig({
-    output: "static",
-    adapter: netlify(),
-})
+// apps/site/next.config.ts
+export default {
+    output: "standalone",
+    // or use default (uses ISR strategy)
+}
 ```
 
 **3. Verify build output:**
 
 ```bash
-# Check that all pages are generated
-ls -R apps/site/dist
+# Check that build succeeded
+ls -R apps/site/.next
 ```
 
 ## Sanity Studio Issues
@@ -861,23 +867,30 @@ pnpm turbo run build --profile
 **1. Analyze bundle:**
 
 ```bash
-pnpm --filter @afnizarnur/web build
-# Check dist/ folder sizes
-du -sh apps/site/dist/*
+pnpm --filter @afnizarnur/site build
+# Check .next folder sizes
+du -sh apps/site/.next/*
 ```
 
 **2. Optimize images:**
 
-- Use Astro's built-in image optimization
-- Serve WebP format
-- Use appropriate sizes
+- Use Next.js Image component
+- Enable automatic optimization
+- Serve multiple formats (WebP, etc.)
 
-**3. Use client directives sparingly:**
+**3. Use Server Components by default:**
 
-```astro
-<!-- Only hydrate when necessary -->
-<Component client:idle />
-<Component client:visible />
+```tsx
+// Server Component - no JS sent
+export default function Page() {
+    return <div>Content</div>
+}
+
+// Only use Client Component when needed
+"use client"
+export default function InteractiveComponent() {
+    // Interactive code here
+}
 ```
 
 **4. Check Core Web Vitals:**
@@ -899,14 +912,14 @@ du -sh apps/site/dist/*
 
 ### External Resources
 
-- [Astro Documentation](https://docs.astro.build)
+- [Next.js Documentation](https://nextjs.org/docs)
 - [Sanity Documentation](https://www.sanity.io/docs)
 - [Turborepo Documentation](https://turbo.build/repo/docs)
 - [pnpm Documentation](https://pnpm.io/)
 
 ### Community Support
 
-- Astro Discord: https://astro.build/chat
+- Next.js Discord: https://discord.gg/nextjs
 - Sanity Slack: https://slack.sanity.io/
 - GitHub Issues: Create issue in repository
 

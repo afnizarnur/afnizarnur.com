@@ -7,7 +7,7 @@
 
 ### 1\. Executive Summary 📝
 
-This document outlines the plan to build afnizarnur.com, a modern personal portfolio, blog, and project showcase. The project's core is a **monorepo architecture** designed for long-term scalability and maintainability. We will use a headless stack featuring **Astro** for the frontend, **Sanity** for content management, and a shared design system powered by **Terrazzo** and **Tailwind CSS**.
+This document outlines the plan to build afnizarnur.com, a modern personal portfolio, blog, and project showcase. The project's core is a **monorepo architecture** designed for long-term scalability and maintainability. We will use a headless stack featuring **Next.js** for the frontend, **Sanity** for content management, and a shared design system powered by **Terrazzo** and **Tailwind CSS**.
 
 The goal is to create a high-performance, content-driven static site that is easy to update, showcases modern development practices, and provides a solid foundation for future projects. This plan breaks the work into five distinct, sequential phases, from foundational setup to final deployment.
 
@@ -51,25 +51,25 @@ This is the core sequence of tasks required to build the project. Each phase bui
 
 ---
 
-#### **Phase 2: The Content Pipeline (Sanity ↔️ Astro)** 🔗
+#### **Phase 2: The Content Pipeline (Sanity ↔️ Next.js)** 🔗
 
-**Goal:** Establish the core data flow. Fetch content from Sanity and render it in a minimal Astro app.
+**Goal:** Establish the core data flow. Fetch content from Sanity and render it in a minimal Next.js app.
 
 - **Tasks:**
     1.  Set up the **Sanity Studio** project (`apps/studio`).
     2.  Define and implement all Sanity schemas (`post`, `project`, `siteSettings`, etc.).
     3.  Add some dummy content in the Studio.
-    4.  Initialize the **Astro** application (`apps/web`).
+    4.  Initialize the **Next.js** application (`apps/site`).
     5.  Establish a connection to the Sanity client (`@sanity/client`).
     6.  Create a simple data-fetching module to get all posts using GROQ.
-    7.  Create two Astro pages:
+    7.  Create two Next.js route pages:
         - A blog index page (`/blog`) that lists the titles of the dummy posts.
         - A dynamic route page (`/blog/[slug]`) that displays the full body of a single post.
     8.  No styling is needed at this stage.
 
 - **Definition of Done:**
     - The Sanity Studio is locally runnable with `pnpm dev`.
-    - The Astro dev server (`pnpm dev`) successfully fetches and displays content from Sanity on unstyled pages.
+    - The Next.js dev server (`pnpm dev`) successfully fetches and displays content from Sanity on unstyled pages.
 
 ---
 
@@ -93,18 +93,18 @@ This is the core sequence of tasks required to build the project. Each phase bui
 
 #### **Phase 4: Assembly & Styling (Putting It All Together)** ✨
 
-**Goal:** Integrate the design system into the Astro app to create a visually complete website.
+**Goal:** Integrate the design system into the Next.js app to create a visually complete website.
 
 - **Tasks:**
-    1.  Integrate the `@afnizarnur/tokens` package into the Astro app's Tailwind configuration and global CSS.
-    2.  Install the Astro React integration (`@astrojs/react`).
-    3.  Import components from `@afnizarnur/ui` into the Astro pages as "Astro Islands" (`client:load`, etc.).
+    1.  Integrate the `@afnizarnur/tokens` package into the Next.js app's Tailwind configuration and global CSS.
+    2.  Create React components that consume Sanity data using Next.js rendering strategies (Server Components by default).
+    3.  Import and use components from `@afnizarnur/ui` throughout the Next.js pages and layouts.
     4.  Replace the unstyled HTML from Phase 2 with styled UI components (e.g., use a `PostCard` component on the blog index).
     5.  Build out all remaining pages (Homepage, Project showcase, About page).
     6.  Ensure the site is responsive and accessible.
 
 - **Definition of Done:**
-    - The local Astro site looks and feels like the final product.
+    - The local Next.js site looks and feels like the final product.
     - All content from Sanity is rendered using the shared UI components.
     - Navigation, managed from Sanity, is fully functional.
 
@@ -116,8 +116,8 @@ This is the core sequence of tasks required to build the project. Each phase bui
 
 - **Tasks:**
     1.  Create a new project on **Netlify**.
-    2.  Configure the build settings (`pnpm build`, `apps/web/dist`, environment variables).
-    3.  Install and configure the `@astrojs/netlify` adapter.
+    2.  Configure the build settings (`pnpm build`, `apps/site/.next`, environment variables).
+    3.  Configure Next.js ISR and deployment settings for Netlify.
     4.  Perform the first successful production deploy.
     5.  Set up the **Sanity Webhook** to trigger a new Netlify build on content changes.
     6.  Set up **Changesets** for automated package versioning.
@@ -137,7 +137,7 @@ This section contains the detailed technical information required to execute the
 
 - **In Scope:**
     - Monorepo structure using Turborepo + pnpm.
-    - Astro app (`apps/web`) consuming Sanity content.
+    - Next.js app (`apps/site`) consuming Sanity content.
     - Sanity Studio (`apps/studio`) with schemas for posts, projects, navigation, and settings.
     - Token package with Terrazzo pipeline.
     - Shared UI and config packages.
@@ -152,7 +152,7 @@ This section contains the detailed technical information required to execute the
 ```
 afnizarnur/
 ├─ apps/
-│  ├─ web/                → Astro app (portfolio & blog)
+│  ├─ site/               → Next.js app (portfolio & blog)
 │  └─ studio/             → Sanity Studio (CMS backend)
 ├─ packages/
 │  ├─ tokens/             → Terrazzo-based design tokens
@@ -172,13 +172,13 @@ afnizarnur/
 
 | Layer                | Technology                                 | Purpose                                      |
 | :------------------- | :----------------------------------------- | :------------------------------------------- |
-| **Framework**        | Astro + @astrojs/react + @astrojs/tailwind | Static / hybrid rendering with React islands |
+| **Framework**        | Next.js 15 + React 19 + Tailwind CSS v4    | Server Components with ISR and dynamic rendering |
 | **CMS**              | Sanity v4                                  | Structured content management                |
 | **Design tokens**    | Terrazzo                                   | Generate CSS vars + Tailwind theme           |
-| **Styling**          | Tailwind CSS                               | Utility-first design with token integration  |
+| **Styling**          | Tailwind CSS v4                            | Utility-first design with token integration  |
 | **Shared UI**        | React + shadcn                             | Reusable, themeable components               |
 | **Monorepo tooling** | Turborepo + pnpm + Changesets              | Workspace orchestration & versioning         |
-| **Deployment**       | Netlify + @astrojs/netlify adapter         | CDN-backed static hosting / SSR              |
+| **Deployment**       | Netlify with ISR support                   | CDN-backed hosting with on-demand revalidation |
 | **CI/CD**            | GitHub Actions                             | Lint/build verification on PRs               |
 
 #### **4.4 Content Model (Sanity)**
@@ -195,61 +195,62 @@ afnizarnur/
 
 #### **4.5 Data Flow & Integration**
 
-**Fetching strategy:** Use `@sanity/client` and GROQ inside Astro server modules. All content is fetched at build-time for maximum performance (SSG). Astro’s `getStaticPaths()` pre-generates pages for dynamic routes.
+**Fetching strategy:** Use `@sanity/client` and GROQ inside Next.js API routes or Server Components. Content is fetched at build-time using ISR for optimal performance. Dynamic routes are generated with `generateStaticParams()`.
 
 **Example `getAllPosts` query:**
 
-```javascript
-// apps/web/src/server/data.ts
-import { sanity } from "./sanity"
+```typescript
+// apps/site/lib/sanity/queries.ts
+import { sanity } from "./client"
 
 export async function getAllPosts() {
     return sanity.fetch(`*[_type=="post"]{title, "slug":slug.current, excerpt}`)
 }
 ```
 
-**Example Astro route:**
+**Example Next.js route (Server Component):**
 
-```astro
-// src/pages/blog/[slug].astro import {getPost} from '../../server/data' const {slug} = Astro.params
-const post = await getPost(slug)
-<html>
-    <body>
+```typescript
+// apps/site/app/blog/[slug]/page.tsx
+import { getPost } from "@/lib/sanity/queries"
+
+export default async function BlogPost({ params }: { params: { slug: string } }) {
+    const post = await getPost(params.slug)
+
+    return (
         <article>
             <h1>{post.title}</h1>
-            <div innerHTML={post.body}></div>
+            <div>{post.body}</div>
         </article>
-    </body>
-</html>
+    )
+}
 ```
 
 #### **4.6 Design Token System**
 
-The `@afnizarnur/tokens` package uses Terrazzo to generate CSS variables, a Tailwind theme, and TypeScript exports. These outputs are consumed by the `apps/web` application.
+The `@afnizarnur/tokens` package uses Terrazzo to generate CSS variables, a Tailwind theme, and TypeScript exports. These outputs are consumed by the `apps/site` application.
 
-**Example `tailwind.config.ts`:**
-
-```javascript
-import theme from "@afnizarnur/tokens/dist/tailwind-theme.cjs"
-
-export default {
-    content: ["./src/**/*.{astro,tsx,ts}"],
-    theme,
-}
-```
-
-**Example `global.css`:**
+**Example `global.css` (Tailwind v4):**
 
 ```css
-@import "@afnizarnur/tokens/dist/tokens.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@afnizarnur/tokens/tailwind";
+@source "../components" "../app";
+```
+
+**Example `postcss.config.mjs`:**
+
+```javascript
+export default {
+    plugins: {
+        "@tailwindcss/postcss": {},
+    },
+}
 ```
 
 #### **4.7 Shared UI Packages**
 
-- **@afnizarnur/ui:** Contains primary React components (e.g., Navbar, Footer, PostCard) imported as Astro islands.
+- **@afnizarnur/ui:** Contains primary React components (e.g., Navbar, Footer, PostCard) used in Next.js pages and layouts.
 - **(Optional) @afnizarnur/ui-primitives:** Lightweight base components from `shadcn/ui` used by `@afnizarnur/ui`.
 
 #### **4.8 Development & Deployment Flow**
@@ -265,8 +266,8 @@ export default {
     4.  `pnpm changeset publish`
 - **Netlify Build Settings:**
     - **Build command:** `pnpm build`
-    - **Publish directory:** `apps/web/dist`
-    - **Environment variables:** `SANITY_PROJECT_ID`, `SANITY_DATASET`
+    - **Publish directory:** `apps/site/.next`
+    - **Environment variables:** `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_API_READ_TOKEN`
 
 #### **4.9 Governance & Maintenance**
 
@@ -281,9 +282,9 @@ export default {
 
 - Repository is reproducible with `pnpm i && pnpm dev`.
 - The token package builds before dependent apps, and Tailwind correctly uses the generated theme.
-- The Astro site successfully fetches and renders all content types (lists and detail pages) from Sanity.
+- The Next.js site successfully fetches and renders all content types (lists and detail pages) from Sanity.
 - Site-wide navigation and metadata are fully managed via Sanity singletons.
-- Netlify deploys a clean static build, and rebuilds are automatically triggered by content updates in Sanity.
+- Netlify deploys with ISR support, and rebuilds are automatically triggered by content updates in Sanity.
 - Lint, typecheck, and build scripts pass across all monorepo workspaces.
 
 ---
@@ -293,5 +294,5 @@ export default {
 - Add an `apps/experiments` package for design prototypes or 3D/Three.js demos.
 - Add an `apps/docs` for technical notes and documentation.
 - Export design tokens to native platforms (iOS/Android) via Terrazzo.
-- Integrate image optimization with Sanity's asset pipeline and Astro's Image component.
+- Integrate image optimization with Sanity's asset pipeline and Next.js Image component.
 - Introduce visual regression testing with a tool like Chromatic or Playwright.
