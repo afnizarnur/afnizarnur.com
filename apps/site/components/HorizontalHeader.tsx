@@ -391,7 +391,10 @@ export function HorizontalHeader(): React.ReactElement {
                                             power: 0.1,
                                             timeConstant: 200,
                                         }}
-                                        initial={false}
+                                        initial={{
+                                            x: position.x,
+                                            y: position.y,
+                                        }}
                                         animate={{
                                             x: position.x,
                                             y: position.y,
@@ -471,7 +474,6 @@ export function HorizontalHeader(): React.ReactElement {
                                             cursor: isActive ? "grabbing" : "grab",
                                             touchAction: "none",
                                             zIndex,
-                                            borderRadius: "1rem",
                                         }}
                                     >
                                         <Widget
