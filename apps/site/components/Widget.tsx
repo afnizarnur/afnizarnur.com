@@ -79,7 +79,7 @@ export function Widget({
                     alt={imageProps.alt}
                     fill
                     priority
-                    className="object-cover"
+                    className="object-cover pointer-events-none"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             )}
@@ -87,7 +87,7 @@ export function Widget({
             {/* Fallback to CSS background image */}
             {backgroundImage && !imageProps && (
                 <div
-                    className="absolute inset-0"
+                    className="absolute inset-0 pointer-events-none"
                     style={{
                         backgroundImage: `url(${backgroundImage})`,
                         backgroundSize: "cover",
