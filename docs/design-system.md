@@ -522,26 +522,24 @@ Consistent spacing creates visual rhythm and hierarchy.
 This project uses **Tailwind CSS v4**, which introduces a CSS-first configuration approach. Key differences from v3:
 
 - **No JS config file**: Configuration is done in CSS using directives
-- **PostCSS plugin**: Uses `@tailwindcss/postcss` instead of the Astro integration
+- **PostCSS plugin**: Uses `@tailwindcss/postcss` for Next.js integration
 - **CSS directives**: `@theme`, `@source`, `@layer` for configuration
 - **Design tokens**: Mapped directly in `global.css` using `@theme`
 
 **Configuration location:**
 
-- `apps/site/postcss.config.cjs` - PostCSS configuration
-- `apps/site/src/styles/global.css` - Theme and token mapping
+- `apps/site/postcss.config.mjs` - PostCSS configuration
+- `apps/site/app/styles/global.css` - Theme and token mapping
 
-**Using @apply in component styles:**
-When using `@apply` in Astro component `<style>` blocks, add the `@reference` directive:
+**Using Tailwind in Next.js Components:**
 
-```astro
-<style>
-    @reference "../styles/global.css";
+Tailwind classes are available globally in all components (no `@apply` directive needed):
 
-    .my-class {
-        @apply text-primary-600 font-semibold;
-    }
-</style>
+```tsx
+// apps/site/components/Button.tsx
+export function Button() {
+    return <button className="text-primary-600 font-semibold">Button</button>
+}
 ```
 
 ### Utility-First Approach
@@ -569,10 +567,10 @@ Tailwind CSS is utility-first, meaning you compose designs using utility classes
 
 When patterns repeat, extract them to components:
 
-**React Component:**
+**React Component (Client or Server):**
 
 ```tsx
-// apps/site/src/components/Button.tsx
+// apps/site/components/Button.tsx
 interface ButtonProps {
     variant?: "primary" | "secondary"
     children: React.ReactNode
@@ -589,23 +587,23 @@ export function Button({ variant = "primary", children }: ButtonProps) {
 }
 ```
 
-**Astro Component:**
+**Server Component Example:**
 
-```astro
----
-// apps/site/src/components/Card.astro
-export interface Props {
+```tsx
+// apps/site/app/components/Card.tsx
+interface CardProps {
     title: string
     description: string
 }
 
-const { title, description } = Astro.props
----
-
-<div class="bg-white border border-neutral-200 rounded-lg p-6">
-    <h3 class="text-xl font-semibold mb-2">{title}</h3>
-    <p class="text-neutral-600">{description}</p>
-</div>
+export function Card({ title, description }: CardProps) {
+    return (
+        <div className="bg-white border border-neutral-200 rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-2">{title}</h3>
+            <p className="text-neutral-600">{description}</p>
+        </div>
+    )
+}
 ```
 
 ## Responsive Design

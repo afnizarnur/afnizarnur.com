@@ -378,4 +378,3 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 - [Turborepo Docs](https://turbo.build/repo/docs)
 - [Tailwind CSS v4](https://tailwindcss.com/docs)
 - Project docs in `docs/` and `specs/`
-- Migration guide: `apps/site/MIGRATION_FROM_ASTRO.md`

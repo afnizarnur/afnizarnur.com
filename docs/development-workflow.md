@@ -47,10 +47,10 @@ cp apps/studio/.env.example apps/studio/.env
 
 Install these extensions:
 
-- Astro (astro-build.astro-vscode)
 - ESLint (dbaeumer.vscode-eslint)
 - Prettier (esbenp.prettier-vscode)
 - Tailwind CSS IntelliSense (bradlc.vscode-tailwindcss)
+- Thunder Client or REST Client for API testing
 
 **VS Code Settings:**
 
@@ -58,8 +58,11 @@ Install these extensions:
 {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[astro]": {
-        "editor.defaultFormatter": "astro-build.astro-vscode"
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }
 ```
@@ -82,7 +85,7 @@ pnpm dev
 
 This will start:
 
-- Web app at `http://localhost:4321`
+- Web app at `http://localhost:3000`
 - Studio at `http://localhost:3333`
 
 ### Typical Development Session
@@ -199,8 +202,8 @@ pnpm build
 **To a specific app:**
 
 ```bash
-# Add to web app
-pnpm --filter @afnizarnur/web add package-name
+# Add to site app
+pnpm --filter @afnizarnur/site add package-name
 
 # Add to studio
 pnpm --filter @afnizarnur/studio add package-name
@@ -227,28 +230,37 @@ pnpm add -w package-name -D
 **File Structure:**
 
 ```
-apps/site/src/
-├── pages/           # Routes (file-based routing)
-├── layouts/         # Page templates
-├── components/      # UI components
-├── server/          # Server utilities (Sanity, data)
-└── styles/          # Global styles
+apps/site/app/
+├── (routes)/        # Route segments with optional grouping
+├── layout.tsx       # Root and segment layouts
+├── page.tsx         # Page components
+└── api/             # API routes (optional)
+
+apps/site/lib/
+├── sanity/          # Sanity client and queries
+└── utils/           # Utility functions
+
+apps/site/components/
+└── *.tsx            # Reusable React components
 ```
 
 **Creating a New Page:**
 
-```astro
----
-// apps/site/src/pages/contact.astro
-import BaseLayout from "@/layouts/BaseLayout.astro"
+```tsx
+// apps/site/app/contact/page.tsx
+export const metadata = {
+    title: "Contact",
+    description: "Get in touch with me"
+}
 
-const pageTitle = "Contact"
----
-
-<BaseLayout title={pageTitle}>
-    <h1>Contact Me</h1>
-    <p>Get in touch...</p>
-</BaseLayout>
+export default function ContactPage() {
+    return (
+        <main>
+            <h1>Contact Me</h1>
+            <p>Get in touch...</p>
+        </main>
+    )
+}
 ```
 
 **Creating a New Component:**
@@ -272,23 +284,47 @@ export function ProjectCard({ title, description, imageUrl }: ProjectCardProps) 
 }
 ```
 
-**Fetching Content from Sanity:**
+**Fetching Content from Sanity (Server Component):**
 
 ```typescript
-// apps/site/src/server/data.ts
-import { sanityClient } from "./sanity"
+// apps/site/lib/sanity/queries.ts
+import { sanity } from "./client"
 
 export async function getAllProjects() {
-    return await sanityClient.fetch(`
-    *[_type == "project"] | order(year desc) {
-      _id,
-      title,
-      slug,
-      description,
-      year,
-      technologies
-    }
-  `)
+    return await sanity.fetch(`
+        *[_type == "project"] | order(_createdAt desc) {
+            _id,
+            title,
+            slug,
+            description,
+            technologies
+        }
+    `)
+}
+```
+
+**Using in a Page:**
+
+```tsx
+// apps/site/app/projects/page.tsx
+import { getAllProjects } from "@/lib/sanity/queries"
+
+export default async function ProjectsPage() {
+    const projects = await getAllProjects()
+
+    return (
+        <main>
+            <h1>Projects</h1>
+            <div className="grid">
+                {projects.map((project) => (
+                    <div key={project._id}>
+                        <h2>{project.title}</h2>
+                        <p>{project.description}</p>
+                    </div>
+                ))}
+            </div>
+        </main>
+    )
 }
 ```
 
@@ -415,7 +451,7 @@ pnpm --filter @afnizarnur/tokens build
 pnpm typecheck
 
 # Check specific app
-pnpm --filter @afnizarnur/web typecheck
+pnpm --filter @afnizarnur/site typecheck
 ```
 
 ### Running Linters
@@ -428,7 +464,7 @@ pnpm lint
 pnpm lint --fix
 
 # Lint specific app
-pnpm --filter @afnizarnur/web lint
+pnpm --filter @afnizarnur/site lint
 ```
 
 ### Testing Builds
@@ -437,10 +473,10 @@ pnpm --filter @afnizarnur/web lint
 # Build everything
 pnpm build
 
-# Build and preview web app
-pnpm --filter @afnizarnur/web build
-pnpm --filter @afnizarnur/web preview
-# Visit http://localhost:4321
+# Build and preview site app
+pnpm --filter @afnizarnur/site build
+pnpm --filter @afnizarnur/site start
+# Visit http://localhost:3000
 ```
 
 ### Browser Testing
@@ -505,11 +541,11 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 **Examples:**
 
 ```bash
-feat(web): add project filtering by technology
+feat(site): add project filtering by technology
 fix(studio): correct slug generation for posts
 docs(deployment): add troubleshooting section
 refactor(components): simplify ProjectCard logic
-chore(deps): upgrade Astro to v4.16
+chore(deps): upgrade Next.js to v15.1
 ```
 
 ### Working with Branches

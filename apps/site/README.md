@@ -167,5 +167,4 @@ This prevents layout issues from invisible characters that can occur when conten
 - Uses middleware to track current pathname for navigation highlighting
 - All Sanity queries include ISR revalidation and cache tags
 - Theme initialization script runs before content to prevent FOUC
-- Identical design tokens and Tailwind configuration as Astro app
 - Draft mode requires `SANITY_API_READ_TOKEN` to be set in environment variables

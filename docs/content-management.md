@@ -349,7 +349,7 @@ To schedule a post for future publication:
 2. Publish the document in Sanity
 3. On the website, implement a filter to show only posts where `publishedAt <= now()`
 
-**Note:** The site currently shows all published posts. To implement scheduling, you'll need to add date filtering in the Astro pages.
+**Note:** The site currently shows all published posts. To implement scheduling, you'll need to add date filtering in the Next.js Server Components that fetch posts.
 
 ## Best Practices
 
