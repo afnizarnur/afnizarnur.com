@@ -9,6 +9,7 @@ import { MobileMenu } from "./MobileMenu"
 import { ThemeToggle } from "./ThemeToggle"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { LineTextHover } from "./LineTextHover"
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -145,7 +146,11 @@ export function NavigationBar({
                                     className="w-6 h-6 rounded-full object-cover"
                                 />
                             ) : null}
-                            {logo?.type === "text" ? logo?.text : "Afnizar_Nur_Ghifari"}
+                            {logo?.type === "text" && logo.text ? (
+                                <LineTextHover>{logo.text}</LineTextHover>
+                            ) : (
+                                <LineTextHover>Afnizar_Nur_Ghifari</LineTextHover>
+                            )}
                         </Link>
                     </div>
 
@@ -166,26 +171,24 @@ export function NavigationBar({
                                                 rel={
                                                     item.newTab ? "noopener noreferrer" : undefined
                                                 }
-                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${
-                                                    isActive
+                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${isActive
                                                         ? "text-text-primary cursor-default"
                                                         : "text-text-secondary hover:text-text-primary active:text-text-primary"
-                                                }`}
+                                                    }`}
                                                 aria-current={isActive ? "page" : undefined}
                                             >
-                                                {item.title}
+                                                <LineTextHover>{item.title}</LineTextHover>
                                             </a>
                                         ) : (
                                             <Link
                                                 href={href}
-                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${
-                                                    isActive
+                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${isActive
                                                         ? "text-text-primary cursor-default"
                                                         : "text-text-secondary hover:text-text-primary active:text-text-primary"
-                                                }`}
+                                                    }`}
                                                 aria-current={isActive ? "page" : undefined}
                                             >
-                                                {item.title}
+                                                <LineTextHover>{item.title}</LineTextHover>
                                             </Link>
                                         )}
                                     </li>
