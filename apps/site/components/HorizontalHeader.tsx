@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef, useCallback } from "react"
-import { motion } from "framer-motion"
+import { motion, type PanInfo } from "framer-motion"
 import { Widget } from "./Widget"
 
 export interface HeaderItem {
@@ -166,9 +166,9 @@ export function HorizontalHeader(): React.ReactElement {
     const contentRef = useRef<HTMLDivElement>(null)
     const [containerBounds, setContainerBounds] = useState({ width: 0, height: 0 })
     const [contentWidth, setContentWidth] = useState(0)
-    const autoScrollIntervalRef = useRef<number | null>(null)
     const widgetRefs = useRef<Record<string, HTMLDivElement | null>>({})
     const [widgetHeights, setWidgetHeights] = useState<Record<string, number>>({})
+    const autoScrollIntervalRef = useRef<number | null>(null)
 
     // Load positions from localStorage on mount
     useEffect(() => {
@@ -406,9 +406,9 @@ export function HorizontalHeader(): React.ReactElement {
                                                 return [...filtered, config.id]
                                             })
                                         }}
-                                        onDrag={(_event, _info) => {
+                                        onDrag={(event, _info: PanInfo) => {
                                             // Get mouse position for auto-scroll
-                                            const mouseEvent = _event as unknown as
+                                            const mouseEvent = event as unknown as
                                                 | React.MouseEvent
                                                 | TouchEvent
                                             let clientX = 0
@@ -426,7 +426,7 @@ export function HorizontalHeader(): React.ReactElement {
                                                 startAutoScroll(clientX)
                                             }
                                         }}
-                                        onDragEnd={(_event, info) => {
+                                        onDragEnd={(_event, info: PanInfo) => {
                                             stopAutoScroll()
 
                                             const finalX = position.x + info.offset.x
