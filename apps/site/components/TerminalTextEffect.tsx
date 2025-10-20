@@ -214,7 +214,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
                 color: currentColor,
                 transformOrigin: effect === "colorful" ? '50% 0%' : 'center'
             }}
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={shouldAnimate ? {
                 opacity: 1,
                 transition: {
