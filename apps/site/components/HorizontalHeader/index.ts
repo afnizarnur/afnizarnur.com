@@ -1,2 +1,2 @@
-export { HorizontalHeader } from "./HorizontalHeaderMain"
+export { HorizontalHeader } from "./HorizontalHeader"
 export type { WidgetConfig, WidgetPosition } from "./types"

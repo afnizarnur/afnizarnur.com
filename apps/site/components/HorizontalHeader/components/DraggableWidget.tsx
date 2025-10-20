@@ -17,7 +17,7 @@ interface DraggableWidgetProps {
     position: WidgetPosition
     zIndex: number
     isActive: boolean
-    widgetHeight: number
+    _widgetHeight: number
     contentRef: React.RefObject<HTMLDivElement | null>
     widgetRef: (el: HTMLDivElement | null) => void
     onDragStart: () => void
@@ -33,7 +33,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
     position,
     zIndex,
     isActive,
-    widgetHeight,
+    _widgetHeight,
     contentRef,
     widgetRef,
     onDragStart,

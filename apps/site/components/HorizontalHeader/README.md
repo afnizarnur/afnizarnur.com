@@ -8,7 +8,7 @@ The component has been split into a modular architecture for better maintainabil
 
 ```
 HorizontalHeader/
-├── HorizontalHeaderMain.tsx    # Main component (orchestrates everything)
+├── HorizontalHeader.tsx        # Main component (orchestrates everything)
 ├── index.ts                    # Public exports
 ├── types.ts                    # TypeScript interfaces
 ├── constants.ts                # Configuration constants

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react"
+import React, { useCallback } from "react"
 import { DraggableWidget } from "./DraggableWidget"
 import type { WidgetConfig, WidgetPosition, ConstraintBounds } from "../types"
 import { TOTAL_CONTENT_WIDTH } from "../constants"
@@ -60,7 +60,7 @@ export const WidgetContainer = React.memo(function WidgetContainer({
                     position={position}
                     zIndex={zIndex}
                     isActive={isActive}
-                    widgetHeight={widgetHeight}
+                    _widgetHeight={widgetHeight}
                     contentRef={contentRef}
                     widgetRef={(el) => {
                         widgetRefs.current[config.id] = el
