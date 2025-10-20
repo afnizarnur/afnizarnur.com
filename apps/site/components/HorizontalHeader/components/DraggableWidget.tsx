@@ -80,6 +80,12 @@ export const DraggableWidget = React.memo(function DraggableWidget({
                 power: 0.1,
                 timeConstant: 200,
             }}
+            initial={{
+                x: position.x,
+                y: position.y,
+                scale: 1,
+                rotate: 0,
+            }}
             animate={{
                 x: position.x,
                 y: position.y,

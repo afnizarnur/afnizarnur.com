@@ -55,7 +55,7 @@ export const WidgetContainer = React.memo(function WidgetContainer({
 
             return (
                 <DraggableWidget
-                    key={config.id}
+                    key={`${config.id}`}
                     config={config}
                     position={position}
                     zIndex={zIndex}
