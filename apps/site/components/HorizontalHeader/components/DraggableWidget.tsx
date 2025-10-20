@@ -133,6 +133,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
                 height={config.height}
                 backgroundColor={config.backgroundColor}
                 backgroundImage={config.backgroundImage}
+                imageProps={config.imageProps}
             >
                 {config.content}
             </Widget>

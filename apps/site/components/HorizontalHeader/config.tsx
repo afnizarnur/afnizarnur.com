@@ -41,7 +41,10 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         defaultY: 100,
         width: 420,
         height: 420,
-        backgroundImage: "/avatar.png",
+        imageProps: {
+            src: "/avatar.png",
+            alt: "Afnizar's avatar",
+        },
         showClose: true,
         content: <div />,
     },

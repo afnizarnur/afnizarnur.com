@@ -36,8 +36,13 @@ export interface WidgetConfig {
     minHeight?: number
     /** Background color CSS value */
     backgroundColor?: string
-    /** Background image URL */
+    /** Background image URL (deprecated, use imageProps instead) */
     backgroundImage?: string
+    /** Next.js Image props for optimized image rendering */
+    imageProps?: {
+        src: string
+        alt: string
+    }
     /** Widget title */
     title?: string
     /** Whether to show close button */

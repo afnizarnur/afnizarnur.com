@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import Image from "next/image"
 import { X } from "@phosphor-icons/react"
 
 export interface WidgetProps {
@@ -11,6 +12,10 @@ export interface WidgetProps {
     height?: number | string
     backgroundColor?: string
     backgroundImage?: string
+    imageProps?: {
+        src: string
+        alt: string
+    }
     children: React.ReactNode
 }
 
@@ -50,26 +55,50 @@ export function Widget({
     height = "auto",
     backgroundColor,
     backgroundImage,
+    imageProps,
     children,
 }: WidgetProps): React.ReactElement {
-    const hasBackgroundImage = !!backgroundImage
+    const hasBackgroundImage = !!backgroundImage || !!imageProps
     const isDark = isDarkColor(backgroundColor)
+    const containerWidth = typeof width === "number" ? width : (width === "auto" ? undefined : parseInt(width as string))
+    const containerHeight = typeof height === "number" ? height : (height === "auto" ? undefined : parseInt(height as string))
 
     return (
         <div
-            className="bg-background-primary rounded-2xl inline-flex flex-col justify-start items-end flex-none"
+            className="bg-background-primary rounded-2xl inline-flex flex-col justify-start items-end flex-none relative overflow-hidden"
             style={{
                 width: typeof width === "number" ? `${width}px` : width,
                 height: typeof height === "number" ? `${height}px` : height,
                 backgroundColor: backgroundColor,
-                backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
-                backgroundSize: hasBackgroundImage ? "cover" : undefined,
-                backgroundPosition: hasBackgroundImage ? "center" : undefined,
             }}
         >
+            {/* Background Image using Next.js Image */}
+            {imageProps && containerWidth && containerHeight && (
+                <Image
+                    src={imageProps.src}
+                    alt={imageProps.alt}
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+            )}
+
+            {/* Fallback to CSS background image */}
+            {backgroundImage && !imageProps && (
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage: `url(${backgroundImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                    }}
+                />
+            )}
+
             {/* Widget Header - Always rendered */}
             <div
-                className={`self-stretch inline-flex justify-start items-center gap-1 ${
+                className={`self-stretch inline-flex justify-start items-center gap-1 relative z-10 ${
                     hasBackgroundImage ? "px-16 py-12" : "px-32 py-16"
                 }`}
             >
