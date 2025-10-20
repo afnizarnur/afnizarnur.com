@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useCallback, useRef, useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
 
 const lettersAndSymbols = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -78,7 +78,54 @@ interface CharSpanProps {
 function CharSpan({ char, index, shouldAnimate }: CharSpanProps) {
     const [displayChar, setDisplayChar] = useState(char)
     const [cursorOpacity, setCursorOpacity] = useState(0)
-    const repeatCount = useRef(0)
+
+    // Use useEffect to handle the animation timing more precisely
+    React.useEffect(() => {
+        if (!shouldAnimate) {
+            setDisplayChar(char)
+            setCursorOpacity(0)
+            return
+        }
+
+        const delay = (index + 1) * 70 // 0.07s delay
+        const duration = 30 // 0.03s duration
+        const repeatDelay = 40 // 0.04s repeat delay
+        
+        const timeout = setTimeout(() => {
+            // Show cursor at start (onStart equivalent)
+            setCursorOpacity(1)
+            
+            let repeatCount = 0
+            
+            // Create the repeating animation manually
+            const animate = () => {
+                // Set random character
+                const randomChar = lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)]
+                setDisplayChar(randomChar)
+                
+                // After first repeat, hide cursor
+                if (repeatCount === 1) {
+                    setCursorOpacity(0)
+                }
+                
+                repeatCount++
+                
+                if (repeatCount <= 3) {
+                    setTimeout(animate, duration + repeatDelay)
+                } else {
+                    // Animation complete - restore original character
+                    setTimeout(() => {
+                        setDisplayChar(char)
+                        setCursorOpacity(0)
+                    }, duration)
+                }
+            }
+            
+            animate()
+        }, delay)
+
+        return () => clearTimeout(timeout)
+    }, [shouldAnimate, char, index])
 
     return (
         <motion.span
@@ -97,35 +144,9 @@ function CharSpan({ char, index, shouldAnimate }: CharSpanProps) {
                     repeatDelay: 0.04
                 }
             } : { opacity: 1 }}
-            onAnimationStart={() => {
-                if (shouldAnimate) {
-                    setCursorOpacity(1)
-                    repeatCount.current = 0
-                }
-            }}
-            onAnimationComplete={() => {
-                if (shouldAnimate) {
-                    setDisplayChar(char)
-                    setCursorOpacity(0)
-                }
-            }}
-            onUpdate={(latest) => {
-                if (!shouldAnimate) return
-                
-                // This is a bit hacky but works for the scramble effect
-                if (latest.opacity === 1) {
-                    const randomChar = lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)]
-                    setDisplayChar(randomChar)
-                    
-                    repeatCount.current++
-                    if (repeatCount.current === 2) { // After first repeat
-                        setCursorOpacity(0)
-                    }
-                }
-            }}
         >
             {displayChar}
-            {/* Cursor square - matches CSS implementation */}
+            {/* Cursor square - only shows during this character's animation */}
             <span
                 style={{
                     content: '',
