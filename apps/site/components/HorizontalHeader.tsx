@@ -24,7 +24,7 @@ interface SegmentProps {
 function Segment({ label, width }: SegmentProps): React.ReactElement {
     return (
         <div className="flex-shrink-0" style={{ width: `${width}px` }}>
-            <div className="flex flex-col py-100 items-center justify-center bg-background-secondary relative h-full">
+            <div className="flex flex-col py-98 items-center justify-center bg-background-secondary relative h-full">
                 <div
                     className="absolute inset-y-0 left-24 overflow-hidden"
                     style={{
@@ -101,7 +101,7 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "intro",
         defaultX: 24,
-        defaultY: 24,
+        defaultY: 100,
         width: 598,
         minHeight: 200,
         title: "Intro",
@@ -115,8 +115,8 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
     },
     {
         id: "bio",
-        defaultX: 650,
-        defaultY: 24,
+        defaultX: 24,
+        defaultY: 436,
         width: 443,
         minHeight: 200,
         title: "Short bio",
@@ -129,9 +129,19 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
         ),
     },
     {
+        id: "avatar",
+        defaultX: 658,
+        defaultY: 100,
+        width: 420,
+        height: 420,
+        backgroundImage: "/avatar.png",
+        showClose: true,
+        content: <div />,
+    },
+    {
         id: "work",
-        defaultX: 1120,
-        defaultY: 24,
+        defaultX: 1114,
+        defaultY: 100,
         width: 641,
         minHeight: 200,
         title: "Current Work",
@@ -144,16 +154,6 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
                 <span className="font-semibold">Kementerian Pendidikan Dasar dan Menengah</span>.
             </h2>
         ),
-    },
-    {
-        id: "avatar",
-        defaultX: 1790,
-        defaultY: 24,
-        width: 420,
-        height: 420,
-        backgroundImage: "/avatar.png",
-        showClose: true,
-        content: <div />,
     },
 ]
 
@@ -212,7 +212,8 @@ export function HorizontalHeader(): React.ReactElement {
                     // Get the actual rendered height
                     const height = widgetElement.offsetHeight
                     // Use the larger of: fixed height, measured height, or minHeight
-                    newHeights[config.id] = config.height || Math.max(height, config.minHeight || 200)
+                    newHeights[config.id] =
+                        config.height || Math.max(height, config.minHeight || 200)
                 } else {
                     // Fallback if ref not available yet
                     newHeights[config.id] = config.height || config.minHeight || 200
@@ -386,15 +387,39 @@ export function HorizontalHeader(): React.ReactElement {
                                         dragConstraints={dragConstraints}
                                         dragElastic={0}
                                         dragMomentum={false}
+                                        dragTransition={{
+                                            power: 0.1,
+                                            timeConstant: 200,
+                                        }}
                                         initial={false}
                                         animate={{
                                             x: position.x,
                                             y: position.y,
+                                            scale: 1,
+                                            rotate: 0,
+                                        }}
+                                        whileHover={{
+                                            scale: 1.02,
+                                            transition: {
+                                                type: "spring",
+                                                stiffness: 400,
+                                                damping: 25,
+                                            },
+                                        }}
+                                        whileDrag={{
+                                            scale: 1.05,
+                                            rotate: 0.8,
+                                            transition: {
+                                                type: "spring",
+                                                stiffness: 400,
+                                                damping: 25,
+                                            },
                                         }}
                                         transition={{
                                             type: "spring",
-                                            stiffness: 300,
-                                            damping: 30,
+                                            stiffness: 350,
+                                            damping: 35,
+                                            mass: 1,
                                         }}
                                         onDragStart={() => {
                                             setDraggingId(config.id)
@@ -446,6 +471,7 @@ export function HorizontalHeader(): React.ReactElement {
                                             cursor: isActive ? "grabbing" : "grab",
                                             touchAction: "none",
                                             zIndex,
+                                            borderRadius: "1rem",
                                         }}
                                     >
                                         <Widget
