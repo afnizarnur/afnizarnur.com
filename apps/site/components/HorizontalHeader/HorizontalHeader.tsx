@@ -121,18 +121,6 @@ export function HorizontalHeader(): React.ReactElement {
                     </div>
                 </div>
             </div>
-
-            <style jsx global>{`
-                /* Hide scrollbar but keep scrolling functionality */
-                .scrollbar-hide {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-
-                .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                }
-            `}</style>
         </div>
     )
 }
