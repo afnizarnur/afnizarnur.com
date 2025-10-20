@@ -19,16 +19,12 @@ const AUTO_SCROLL_SPEED = 5 // pixels per frame
 interface SegmentProps {
     label?: string
     width: number
-    height: number
 }
 
-function Segment({ label, width, height }: SegmentProps): React.ReactElement {
+function Segment({ label, width }: SegmentProps): React.ReactElement {
     return (
         <div className="flex-shrink-0" style={{ width: `${width}px` }}>
-            <div
-                className="flex flex-col py-100 items-center justify-center bg-background-secondary relative"
-                style={{ height: `${height}px` }}
-            >
+            <div className="flex flex-col py-100 items-center justify-center bg-background-secondary relative h-full">
                 <div
                     className="absolute inset-y-0 left-24 overflow-hidden"
                     style={{
@@ -79,10 +75,6 @@ function FooterSegment({ label, width }: FooterSegmentProps): React.ReactElement
             </div>
         </div>
     )
-}
-
-export interface HorizontalHeaderProps {
-    containerHeight?: number // in pixels
 }
 
 interface WidgetPosition {
@@ -161,9 +153,7 @@ const WIDGET_CONFIGS: WidgetConfig[] = [
     },
 ]
 
-export function HorizontalHeader({
-    containerHeight = 200,
-}: HorizontalHeaderProps): React.ReactElement {
+export function HorizontalHeader(): React.ReactElement {
     const [positions, setPositions] = useState<Record<string, WidgetPosition>>({})
     const [draggingId, setDraggingId] = useState<string | null>(null)
     const [stackOrder, setStackOrder] = useState<string[]>([])
@@ -289,7 +279,6 @@ export function HorizontalHeader({
         }
     }, [])
 
-
     return (
         <div className="flex flex-col bg-background-primary">
             <div
@@ -315,8 +304,8 @@ export function HorizontalHeader({
                     >
                         <div
                             ref={contentRef}
-                            className="relative pointer-events-auto"
-                            style={{ gridColumn: "2", height: `${containerHeight}px` }}
+                            className="relative pointer-events-auto h-full"
+                            style={{ gridColumn: "2" }}
                         >
                             {WIDGET_CONFIGS.map((config) => {
                                 const widgetHeight = config.height || 200
@@ -365,14 +354,17 @@ export function HorizontalHeader({
                                             setDraggingId(config.id)
                                             // Bring to front by moving to end of stack order
                                             setStackOrder((prev) => {
-                                                const filtered = prev.filter((id) => id !== config.id)
+                                                const filtered = prev.filter(
+                                                    (id) => id !== config.id
+                                                )
                                                 return [...filtered, config.id]
                                             })
                                         }}
                                         onDrag={(_event, _info) => {
                                             // Get mouse position for auto-scroll
-                                            const mouseEvent =
-                                                _event as unknown as React.MouseEvent | TouchEvent
+                                            const mouseEvent = _event as unknown as
+                                                | React.MouseEvent
+                                                | TouchEvent
                                             let clientX = 0
 
                                             if ("clientX" in mouseEvent) {
@@ -394,7 +386,13 @@ export function HorizontalHeader({
                                             const finalX = position.x + info.offset.x
                                             const finalY = position.y + info.offset.y
 
-                                            savePosition(config.id, finalX, finalY, config.width, widgetHeight)
+                                            savePosition(
+                                                config.id,
+                                                finalX,
+                                                finalY,
+                                                config.width,
+                                                widgetHeight
+                                            )
                                             setDraggingId(null)
                                         }}
                                         style={{
@@ -422,17 +420,17 @@ export function HorizontalHeader({
                     </div>
 
                     {/* Segments as background */}
-                    <div className="flex" style={{ gridColumn: "2" }}>
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
-                        <Segment width={SEGMENT_WIDTH} height={containerHeight} />
+                    <div className="flex h-full" style={{ gridColumn: "2" }}>
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
+                        <Segment width={SEGMENT_WIDTH} />
                     </div>
                 </div>
 
