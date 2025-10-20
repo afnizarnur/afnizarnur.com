@@ -9,6 +9,7 @@ import { MobileMenu } from "./MobileMenu"
 import { ThemeToggle } from "./ThemeToggle"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { TerminalTextEffect } from "./TerminalTextEffect"
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -25,6 +26,7 @@ interface NavigationBarProps {
         timeZone?: string
         displayLabel?: string
     }
+    hoverEffect?: "cursor" | "background" | "colorful"
 }
 
 function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
@@ -115,6 +117,7 @@ export function NavigationBar({
     items,
     logo,
     timezone,
+    hoverEffect = "cursor",
 }: Omit<NavigationBarProps, "currentPath">): JSX.Element {
     const pathname = usePathname()
 
@@ -145,7 +148,11 @@ export function NavigationBar({
                                     className="w-6 h-6 rounded-full object-cover"
                                 />
                             ) : null}
-                            {logo?.type === "text" ? logo?.text : "Afnizar_Nur_Ghifari"}
+                            {logo?.type === "text" && logo.text ? (
+                                <TerminalTextEffect effect="cursor">{logo.text}</TerminalTextEffect>
+                            ) : (
+                                <TerminalTextEffect effect="cursor">Afnizar_Nur_Ghifari</TerminalTextEffect>
+                            )}
                         </Link>
                     </div>
 
@@ -173,7 +180,9 @@ export function NavigationBar({
                                                 }`}
                                                 aria-current={isActive ? "page" : undefined}
                                             >
-                                                {item.title}
+                                                <TerminalTextEffect effect="cursor">
+                                                    {item.title}
+                                                </TerminalTextEffect>
                                             </a>
                                         ) : (
                                             <Link
@@ -185,7 +194,9 @@ export function NavigationBar({
                                                 }`}
                                                 aria-current={isActive ? "page" : undefined}
                                             >
-                                                {item.title}
+                                                <TerminalTextEffect effect="cursor">
+                                                    {item.title}
+                                                </TerminalTextEffect>
                                             </Link>
                                         )}
                                     </li>
