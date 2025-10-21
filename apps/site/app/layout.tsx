@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Script from "next/script"
 import { draftMode } from "next/headers"
 import { VisualEditing } from "next-sanity/visual-editing"
 import { getNavigation, getSiteSettings } from "@/lib/sanity/queries"
@@ -55,12 +54,14 @@ export default async function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
-                {/* Theme initialization script - runs early to prevent FOUC */}
-                <Script
-                    id="theme-init"
-                    strategy="beforeInteractive"
-                    dangerouslySetInnerHTML={{ __html: themeInitScript }}
-                />
+                {/*
+                    BLOCKING theme initialization script
+                    This MUST be an inline script (not Next.js Script component)
+                    to prevent FART (Flash of inAccurate coloR Theme)
+                    Runs synchronously before any content renders
+                */}
+                {/* eslint-disable-next-line react/no-danger */}
+                <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
 
                 {/* Preload critical fonts */}
                 <link

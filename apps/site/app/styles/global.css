@@ -24,6 +24,11 @@
 
 /* Base HTML Element Styles */
 @layer base {
+    /* Root element with color-scheme support for browser UI */
+    :root {
+        color-scheme: light dark;
+    }
+
     /* Body and Global Text Styles */
     body {
         font-family: var(--fontFamily-switzer);

@@ -15,7 +15,7 @@ const HORIZONTAL_CONTAINER_SELECTOR = '[data-scroll-container="horizontal-header
 const EDGE_EPSILON = 1
 
 export default function HomePage(): JSX.Element {
-    const pageRef = useRef<HTMLDivElement>(null)
+    const pageRef = useRef<HTMLDivElement | null>(null)
 
     useHorizontalScrollLock(pageRef)
 
@@ -27,7 +27,7 @@ export default function HomePage(): JSX.Element {
     )
 }
 
-function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement>): void {
+function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>): void {
     const horizontalTargetRef = useRef<HTMLDivElement | null>(null)
     const isScrollReleasedRef = useRef(false)
     const pointerStateRef = useRef<PointerState>({
