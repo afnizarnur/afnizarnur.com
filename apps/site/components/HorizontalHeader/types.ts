@@ -47,6 +47,8 @@ export interface WidgetConfig {
     title?: string
     /** Whether to show close button */
     showClose?: boolean
+    /** Whether to disable padding on content (for full-fill content like games) */
+    noPadding?: boolean
     /** Widget content */
     content: React.ReactNode
 }
