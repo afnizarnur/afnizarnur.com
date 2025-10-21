@@ -1,4 +1,5 @@
 import type { WidgetConfig } from "./types"
+import { SnakeGame } from "./components/SnakeGame"
 
 /**
  * Widget configurations with default positions and content
@@ -64,5 +65,16 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
                 <span className="font-semibold">Kementerian Pendidikan Dasar dan Menengah</span>.
             </h2>
         ),
+    },
+    {
+        id: "game_snake",
+        defaultX: 1114,
+        defaultY: 410,
+        width: 443,
+        height: 250,
+        title: "Play Snake Game",
+        showClose: true,
+        noPadding: true,
+        content: <SnakeGame />,
     },
 ]

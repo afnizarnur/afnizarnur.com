@@ -16,6 +16,7 @@ export interface WidgetProps {
         src: string
         alt: string
     }
+    noPadding?: boolean
     children: React.ReactNode
 }
 
@@ -56,6 +57,7 @@ export function Widget({
     backgroundColor,
     backgroundImage,
     imageProps,
+    noPadding = false,
     children,
 }: WidgetProps): React.ReactElement {
     const hasBackgroundImage = !!backgroundImage || !!imageProps
@@ -125,8 +127,13 @@ export function Widget({
             </div>
 
             {/* Widget Content */}
-            {!hasBackgroundImage && (
+            {!hasBackgroundImage && !noPadding && (
                 <div className="self-stretch px-32 py-32 inline-flex justify-center items-center gap-1">
+                    {children}
+                </div>
+            )}
+            {!hasBackgroundImage && noPadding && (
+                <div className="self-stretch inline-flex justify-center items-center gap-1">
                     {children}
                 </div>
             )}
