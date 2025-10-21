@@ -91,7 +91,7 @@ export const WidgetContainer = React.memo(function WidgetContainer({
     return (
         <div
             ref={contentRef}
-            className="relative pointer-events-auto h-full"
+            className="relative pointer-events-auto h-full px-6"
             style={{ gridColumn: "2", width: `${TOTAL_CONTENT_WIDTH - 44}px` }}
         >
             {configs.map(renderWidget)}

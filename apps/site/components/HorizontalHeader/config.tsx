@@ -8,7 +8,7 @@ import { SnakeGame } from "./components/SnakeGame"
 export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "intro",
-        defaultX: 24,
+        defaultX: 0,
         defaultY: 100,
         width: 598,
         minHeight: 200,
@@ -23,7 +23,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     },
     {
         id: "bio",
-        defaultX: 24,
+        defaultX: 0,
         defaultY: 450,
         width: 443,
         minHeight: 200,
@@ -38,7 +38,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     },
     {
         id: "avatar",
-        defaultX: 658,
+        defaultX: 634,
         defaultY: 100,
         width: 420,
         height: 420,
@@ -51,7 +51,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     },
     {
         id: "work",
-        defaultX: 1114,
+        defaultX: 1090,
         defaultY: 100,
         width: 641,
         minHeight: 200,
@@ -68,7 +68,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     },
     {
         id: "game_snake",
-        defaultX: 1114,
+        defaultX: 1090,
         defaultY: 410,
         width: 443,
         height: 250,
