@@ -300,7 +300,7 @@ export function SnakeGame(): React.ReactElement {
     return (
         <div className="flex flex-col items-center justify-between w-full h-full overflow-hidden gap-2 p-2">
             <pre
-                className="font-mono text-text-secondary m-0 select-none flex-1 w-full flex items-center justify-center overflow-hidden"
+                className="font-mono text-text-primary m-0 select-none flex-1 w-full flex items-center justify-center overflow-hidden"
                 style={{
                     fontSize: "16px",
                     lineHeight: "1.4",

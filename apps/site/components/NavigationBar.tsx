@@ -26,7 +26,7 @@ interface NavigationBarProps {
         timeZone?: string
         displayLabel?: string
     }
-    hoverEffect?: "cursor" | "background" | "colorful"
+    _hoverEffect?: "cursor" | "background" | "colorful"
 }
 
 function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
@@ -120,7 +120,7 @@ export function NavigationBar({
     items,
     logo,
     timezone,
-    hoverEffect = "cursor",
+    _hoverEffect = "cursor",
 }: Omit<NavigationBarProps, "currentPath">): JSX.Element {
     const pathname = usePathname()
 
