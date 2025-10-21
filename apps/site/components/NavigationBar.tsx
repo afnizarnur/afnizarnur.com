@@ -75,11 +75,14 @@ function TimeDisplay({
 }: {
     timezone?: { timeZone?: string; displayLabel?: string }
 }): JSX.Element {
-    const [timeString, setTimeString] = useState<string>("")
-    const [mounted, setMounted] = useState(false)
+    // Initialize with actual server-rendered time to prevent layout shift
+    const [timeString, setTimeString] = useState<string>(() => {
+        // Get real time on both server and client initial render
+        return getFormattedTime(timezone)
+    })
 
     useEffect(() => {
-        setMounted(true)
+        // Update to client time immediately (might differ slightly from server)
         setTimeString(getFormattedTime(timezone))
 
         // Update time every minute
@@ -90,12 +93,12 @@ function TimeDisplay({
         return () => clearInterval(interval)
     }, [timezone])
 
-    if (!mounted) {
-        return <div className="text-eyebrow-1 text-text-secondary">&nbsp;</div>
-    }
-
     return (
-        <time className="text-eyebrow-1 text-text-secondary" dateTime={new Date().toISOString()}>
+        <time
+            className="text-eyebrow-1 text-text-secondary"
+            dateTime={new Date().toISOString()}
+            suppressHydrationWarning
+        >
             {timeString}
         </time>
     )

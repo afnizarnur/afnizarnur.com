@@ -9,12 +9,21 @@ interface ThemeToggleProps {
 }
 
 export function ThemeToggle({ size = 24, className = "" }: ThemeToggleProps): JSX.Element {
-    const [theme, setTheme] = useState<"light" | "dark">("light")
+    // Initialize with the current theme from DOM (set by blocking script)
+    const [theme, setTheme] = useState<"light" | "dark">(() => {
+        // On client, read the theme that was set by the blocking script
+        if (typeof document !== "undefined") {
+            const currentTheme = document.documentElement.getAttribute("data-theme")
+            return currentTheme === "dark" ? "dark" : "light"
+        }
+        // On server, default to light (will be overridden immediately on client)
+        return "light"
+    })
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
         setMounted(true)
-        // Get current theme from document
+        // Sync theme state with DOM on mount (in case blocking script set a different theme)
         const currentTheme = document.documentElement.getAttribute("data-theme")
         if (currentTheme === "dark" || currentTheme === "light") {
             setTheme(currentTheme)
@@ -37,16 +46,18 @@ export function ThemeToggle({ size = 24, className = "" }: ThemeToggleProps): JS
         setTheme(newTheme)
     }
 
-    // Don't render until mounted to avoid hydration mismatch
+    // Don't render icon until mounted to prevent hydration mismatch
+    // Server doesn't know user's theme preference (stored in localStorage)
     if (!mounted) {
         return (
             <button
-                className={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary transition-colors ${className}`}
+                className={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary transition-colors rounded-radius-8 ${className}`}
                 aria-label="Toggle theme"
                 type="button"
                 disabled
             >
-                <div className="w-6 h-6" />
+                {/* Invisible placeholder to prevent layout shift */}
+                <div className="w-6 h-6" aria-hidden="true" />
             </button>
         )
     }
