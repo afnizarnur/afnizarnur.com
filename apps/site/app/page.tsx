@@ -30,6 +30,7 @@ export default function HomePage(): JSX.Element {
 function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>): void {
     const horizontalTargetRef = useRef<HTMLDivElement | null>(null)
     const isScrollReleasedRef = useRef(false)
+    const hasOverflowRef = useRef(false)
     const pointerStateRef = useRef<PointerState>({
         pointerId: null,
         lastX: 0,
@@ -69,8 +70,12 @@ function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>
             }
         }
 
-        const hasHorizontalOverflow = (target: HTMLDivElement): boolean => {
-            return target.scrollWidth - target.clientWidth > EDGE_EPSILON
+        const updateOverflowState = (target: HTMLDivElement): void => {
+            hasOverflowRef.current = target.scrollWidth - target.clientWidth > EDGE_EPSILON
+        }
+
+        const hasHorizontalOverflow = (): boolean => {
+            return hasOverflowRef.current
         }
 
         const isAtStart = (target: HTMLDivElement): boolean => {
@@ -102,8 +107,7 @@ function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>
             const horizontalTarget = getHorizontalTarget()
             if (!horizontalTarget) return
 
-            if (!hasHorizontalOverflow(horizontalTarget)) {
-                releaseScroll()
+            if (!hasHorizontalOverflow()) {
                 return
             }
 
@@ -149,7 +153,10 @@ function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>
                 return
             }
 
-            releaseScroll()
+            // Only release if at end and scrolling forward (down)
+            if (scrollingForward && isAtEnd(horizontalTarget)) {
+                releaseScroll()
+            }
         }
 
         const pointerState = pointerStateRef.current
@@ -170,8 +177,7 @@ function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>
             const horizontalTarget = getHorizontalTarget()
             if (!horizontalTarget) return
 
-            if (!hasHorizontalOverflow(horizontalTarget)) {
-                releaseScroll()
+            if (!hasHorizontalOverflow()) {
                 return
             }
 
@@ -200,7 +206,10 @@ function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>
                     return
                 }
 
-                releaseScroll()
+                // Only release if at end and scrolling forward (down)
+                if (scrollingForward && isAtEnd(horizontalTarget)) {
+                    releaseScroll()
+                }
                 return
             }
 
@@ -261,10 +270,12 @@ function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>
                 if (detachPointerListeners) {
                     detachPointerListeners()
                 }
+                hasOverflowRef.current = false
                 return
             }
 
             attachPointerListeners(target)
+            updateOverflowState(target)
         }
 
         ensurePointerListeners()
@@ -275,10 +286,19 @@ function useHorizontalScrollLock(pageRef: React.RefObject<HTMLDivElement | null>
 
         observer.observe(pageElement, { childList: true, subtree: true })
 
+        const handleResize = (): void => {
+            const target = horizontalTargetRef.current
+            if (target) {
+                updateOverflowState(target)
+            }
+        }
+
         window.addEventListener("wheel", handleWheel, { passive: false })
+        window.addEventListener("resize", handleResize)
 
         return () => {
             window.removeEventListener("wheel", handleWheel)
+            window.removeEventListener("resize", handleResize)
             observer.disconnect()
 
             if (detachPointerListeners) {
