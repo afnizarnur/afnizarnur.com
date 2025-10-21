@@ -74,9 +74,7 @@ export function HorizontalHeader(): React.ReactElement {
                 }
             >
                 {/* Header section with segments as background */}
-                <div
-                    className="bg-background-secondary relative grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]"
-                >
+                <div className="bg-background-secondary relative grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)] [--widget-offset-y:-4rem] md:[--widget-offset-y:-4.2rem] lg:[--widget-offset-y:-2rem]">
                     {/* Draggable widgets container */}
                     <div className="absolute inset-0 z-20 pointer-events-none grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]">
                         <WidgetContainer

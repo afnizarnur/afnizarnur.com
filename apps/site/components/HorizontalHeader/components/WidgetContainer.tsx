@@ -91,7 +91,11 @@ export const WidgetContainer = React.memo(function WidgetContainer({
         <div
             ref={contentRef}
             className="relative pointer-events-auto h-full px-6 md:px-6 lg:px-6"
-            style={{ gridColumn: "2", width: `${TOTAL_CONTENT_WIDTH - 44}px` }}
+            style={{
+                gridColumn: "2",
+                width: `${TOTAL_CONTENT_WIDTH - 44}px`,
+                transform: 'translateY(var(--widget-offset-y, -2rem))',
+            }}
         >
             {configs.map(renderWidget)}
         </div>

@@ -14,7 +14,7 @@ export const Segment = React.memo(function Segment({
 }: SegmentProps): React.ReactElement {
     return (
         <div className="flex-shrink-0" style={{ width: `${width}px` }}>
-            <div className="flex flex-col py-98 items-center justify-center bg-background-secondary relative h-full">
+            <div className="flex flex-col py-64 md:py-80 lg:py-90 items-center justify-center bg-background-secondary relative h-full">
                 <div
                     className="absolute inset-y-0 left-24 overflow-hidden"
                     style={{
