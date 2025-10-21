@@ -4,7 +4,7 @@ import React, { useRef, useCallback } from "react"
 import { Segment, FooterSegment, WidgetContainer } from "./components"
 import { useWidgetPositions, useWidgetDimensions, useAutoScroll, useStackOrder } from "./hooks"
 import { WIDGET_CONFIGS } from "./config"
-import { SEGMENT_WIDTH, GRID_TEMPLATE } from "./constants"
+import { SEGMENT_WIDTH, GRID_TEMPLATE_MOBILE, GRID_TEMPLATE_DESKTOP } from "./constants"
 import type { ConstraintBounds } from "./types"
 
 /**
@@ -66,23 +66,19 @@ export function HorizontalHeader(): React.ReactElement {
                 ref={scrollContainerRef}
                 className="overflow-x-auto scrollbar-hide w-full overscroll-none"
                 data-scroll-container="horizontal-header"
+                style={
+                    {
+                        "--grid-template-mobile": GRID_TEMPLATE_MOBILE,
+                        "--grid-template-desktop": GRID_TEMPLATE_DESKTOP,
+                    } as React.CSSProperties
+                }
             >
                 {/* Header section with segments as background */}
                 <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: GRID_TEMPLATE,
-                    }}
-                    className="bg-background-secondary relative"
+                    className="bg-background-secondary relative grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]"
                 >
                     {/* Draggable widgets container */}
-                    <div
-                        className="absolute inset-0 z-20 pointer-events-none"
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: GRID_TEMPLATE,
-                        }}
-                    >
+                    <div className="absolute inset-0 z-20 pointer-events-none grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]">
                         <WidgetContainer
                             configs={WIDGET_CONFIGS}
                             positions={positions}
@@ -107,13 +103,7 @@ export function HorizontalHeader(): React.ReactElement {
                 </div>
 
                 {/* Footer section */}
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: GRID_TEMPLATE,
-                    }}
-                    className="bg-background-primary"
-                >
+                <div className="bg-background-primary grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]">
                     <div className="flex" style={{ gridColumn: "2" }}>
                         <FooterSegment label="Current Location" width={SEGMENT_WIDTH} />
                         <FooterSegment label="50m" width={SEGMENT_WIDTH} />
