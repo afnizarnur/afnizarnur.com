@@ -65,6 +65,7 @@ export function HorizontalHeader(): React.ReactElement {
             <div
                 ref={scrollContainerRef}
                 className="overflow-x-auto scrollbar-hide w-full overscroll-none"
+                data-scroll-container="horizontal-header"
             >
                 {/* Header section with segments as background */}
                 <div
@@ -120,18 +121,6 @@ export function HorizontalHeader(): React.ReactElement {
                     </div>
                 </div>
             </div>
-
-            <style jsx global>{`
-                /* Hide scrollbar but keep scrolling functionality */
-                .scrollbar-hide {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-
-                .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                }
-            `}</style>
         </div>
     )
 }

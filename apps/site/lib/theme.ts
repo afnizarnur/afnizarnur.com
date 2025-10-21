@@ -51,6 +51,8 @@ export function initializeTheme(): void {
 export function applyTheme(theme: Theme): void {
     if (typeof document !== "undefined") {
         document.documentElement.setAttribute(THEME_ATTRIBUTE, theme)
+        // Set color-scheme for browser UI hints (scrollbars, form controls, etc.)
+        document.documentElement.style.colorScheme = theme
     }
 }
 
@@ -127,6 +129,8 @@ export const themeInitScript = `
 
     function applyTheme(theme) {
         document.documentElement.setAttribute(THEME_ATTRIBUTE, theme)
+        // Set color-scheme for browser UI hints (scrollbars, form controls, etc.)
+        document.documentElement.style.colorScheme = theme
     }
 
     function initializeTheme() {

@@ -24,6 +24,11 @@
 
 /* Base HTML Element Styles */
 @layer base {
+    /* Root element with color-scheme support for browser UI */
+    :root {
+        color-scheme: light dark;
+    }
+
     /* Body and Global Text Styles */
     body {
         font-family: var(--fontFamily-switzer);
@@ -146,5 +151,16 @@
         line-height: var(--lineHeight-solid);
         letter-spacing: var(--letterSpacing-wider);
         text-transform: uppercase;
+    }
+}
+
+@layer utilities {
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
     }
 }
