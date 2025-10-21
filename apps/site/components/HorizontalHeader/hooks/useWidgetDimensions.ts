@@ -15,6 +15,12 @@ interface UseWidgetDimensionsReturn {
 export function useWidgetDimensions(configs: WidgetConfig[]): UseWidgetDimensionsReturn {
     const [widgetHeights, setWidgetHeights] = useState<Record<string, number>>({})
     const widgetRefs = useRef<Record<string, HTMLDivElement | null>>({})
+    const configsRef = useRef(configs)
+
+    // Update configs ref when configs change (but don't recreate observer)
+    useEffect(() => {
+        configsRef.current = configs
+    }, [configs])
 
     // Get widget height with fallbacks
     const getWidgetHeight = useCallback(
@@ -30,7 +36,7 @@ export function useWidgetDimensions(configs: WidgetConfig[]): UseWidgetDimension
     useEffect(() => {
         const measureWidgetHeights = (): void => {
             const newHeights: Record<string, number> = {}
-            configs.forEach((config) => {
+            configsRef.current.forEach((config) => {
                 const widgetElement = widgetRefs.current[config.id]
                 if (widgetElement) {
                     newHeights[config.id] = widgetElement.offsetHeight
@@ -57,7 +63,8 @@ export function useWidgetDimensions(configs: WidgetConfig[]): UseWidgetDimension
         return () => {
             resizeObserver.disconnect()
         }
-    }, [configs])
+        // Empty deps - only create observer once on mount
+    }, [])
 
     return {
         widgetHeights,

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState, useEffect } from "react"
+import React, { useCallback, useRef, useState, useEffect, useMemo } from "react"
 import { motion, type PanInfo } from "framer-motion"
 import { Widget } from "../../Widget"
 import type { WidgetConfig, WidgetPosition, DragMouseEvent } from "../types"
@@ -17,12 +17,28 @@ interface DraggableWidgetProps {
     position: WidgetPosition
     zIndex: number
     isActive: boolean
-    _widgetHeight: number
     contentRef: React.RefObject<HTMLDivElement | null>
     widgetRef: (el: HTMLDivElement | null) => void
     onDragStart: () => void
     onDrag: (clientX: number) => void
     onDragEnd: (finalX: number, finalY: number) => void
+}
+
+/**
+ * Custom comparison function for React.memo to prevent unnecessary re-renders
+ * Only re-render if position, zIndex, or isActive changes
+ */
+function arePropsEqual(
+    prevProps: DraggableWidgetProps,
+    nextProps: DraggableWidgetProps
+): boolean {
+    return (
+        prevProps.position.x === nextProps.position.x &&
+        prevProps.position.y === nextProps.position.y &&
+        prevProps.zIndex === nextProps.zIndex &&
+        prevProps.isActive === nextProps.isActive &&
+        prevProps.config.id === nextProps.config.id
+    )
 }
 
 /**
@@ -33,7 +49,6 @@ export const DraggableWidget = React.memo(function DraggableWidget({
     position,
     zIndex,
     isActive,
-    _widgetHeight,
     contentRef,
     widgetRef,
     onDragStart,
@@ -45,6 +60,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
     const [hoverTrigger, setHoverTrigger] = useState(0)
     const internalWidgetRef = useRef<HTMLDivElement | null>(null)
     const constraintsInitialized = useRef(false)
+    const isMountedRef = useRef(false)
 
     // Use a ref for constraints to keep object reference stable
     // This prevents Framer Motion from auto-repositioning widgets when constraints change
@@ -90,9 +106,10 @@ export const DraggableWidget = React.memo(function DraggableWidget({
 
     const handleDragStart = useCallback((): void => {
         // Capture current position when drag starts
+        // Read directly from animateValues to avoid position.x/y dependency
         dragStartPosRef.current = { x: position.x, y: position.y }
         onDragStart()
-    }, [position.x, position.y, onDragStart])
+    }, [onDragStart, position.x, position.y])
 
     const handleDrag = useCallback(
         (event: MouseEvent | TouchEvent | PointerEvent): void => {
@@ -114,6 +131,43 @@ export const DraggableWidget = React.memo(function DraggableWidget({
         [onDragEnd]
     )
 
+    // Memoize motion style object to prevent re-creation on every render
+    const motionStyle = useMemo(
+        () => ({
+            position: "absolute" as const,
+            cursor: isActive ? "grabbing" : "grab",
+            touchAction: "none" as const,
+            zIndex,
+        }),
+        [isActive, zIndex]
+    )
+
+    // Memoize animation values to prevent re-creation
+    const animateValues = useMemo(
+        () => ({
+            x: position.x,
+            y: position.y,
+            scale: 1,
+            rotate: 0,
+        }),
+        [position.x, position.y]
+    )
+
+    // Set initial position only on first mount, then use animate values
+    // This prevents animation from (0,0) on mount while avoiding re-animations on updates
+    const initialValues = useMemo(() => {
+        if (!isMountedRef.current) {
+            isMountedRef.current = true
+            return {
+                x: position.x,
+                y: position.y,
+                scale: 1,
+                rotate: 0,
+            }
+        }
+        return undefined
+    }, [position.x, position.y])
+
     return (
         <motion.div
             ref={(el) => {
@@ -128,18 +182,8 @@ export const DraggableWidget = React.memo(function DraggableWidget({
                 power: 0.1,
                 timeConstant: 200,
             }}
-            initial={{
-                x: position.x,
-                y: position.y,
-                scale: 1,
-                rotate: 0,
-            }}
-            animate={{
-                x: position.x,
-                y: position.y,
-                scale: 1,
-                rotate: 0,
-            }}
+            initial={initialValues}
+            animate={animateValues}
             whileDrag={{
                 scale: DRAG_SCALE,
                 rotate: DRAG_ROTATION,
@@ -159,12 +203,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}
             onMouseEnter={() => setHoverTrigger((prev) => prev + 1)}
-            style={{
-                position: "absolute",
-                cursor: isActive ? "grabbing" : "grab",
-                touchAction: "none",
-                zIndex,
-            }}
+            style={motionStyle}
         >
             <Widget
                 title={config.title}
@@ -182,4 +221,4 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             </Widget>
         </motion.div>
     )
-})
+}, arePropsEqual)
