@@ -1,8 +1,9 @@
 import React from "react"
+import { SEGMENT_WIDTH } from "../constants"
 
 interface SegmentProps {
     label?: string
-    width: number
+    width?: number | string
 }
 
 /**
@@ -10,10 +11,12 @@ interface SegmentProps {
  */
 export const Segment = React.memo(function Segment({
     label,
-    width,
+    width = SEGMENT_WIDTH,
 }: SegmentProps): React.ReactElement {
+    const resolvedWidth = typeof width === "number" ? `${width}px` : width
+
     return (
-        <div className="flex-shrink-0" style={{ width: `${width}px` }}>
+        <div className="flex-shrink-0" style={{ width: resolvedWidth }}>
             <div className="flex flex-col py-64 md:py-80 lg:py-90 items-center justify-center bg-background-secondary relative h-full">
                 <div
                     className="absolute inset-y-0 left-24 overflow-hidden"

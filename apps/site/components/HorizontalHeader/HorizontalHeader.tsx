@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useRef, useCallback } from "react"
+import { Widget } from "../Widget"
 import { Segment, FooterSegment, WidgetContainer } from "./components"
 import { useWidgetPositions, useWidgetDimensions, useAutoScroll, useStackOrder } from "./hooks"
 import { WIDGET_CONFIGS } from "./config"
@@ -8,15 +9,9 @@ import { SEGMENT_WIDTH, GRID_TEMPLATE_MOBILE, GRID_TEMPLATE_DESKTOP } from "./co
 import type { ConstraintBounds } from "./types"
 
 /**
- * Horizontal header with draggable widgets
- * Features:
- * - Draggable widgets with smooth animations
- * - Auto-scroll when dragging near edges
- * - Persistent positions via localStorage
- * - Dynamic z-index management
- * - Responsive to window resize
+ * Desktop implementation keeps the draggable behavior with horizontal scrolling.
  */
-export function HorizontalHeader(): React.ReactElement {
+function HorizontalHeaderDesktop(): React.ReactElement {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
 
@@ -61,7 +56,7 @@ export function HorizontalHeader(): React.ReactElement {
     )
 
     return (
-        <div className="flex flex-col bg-background-primary">
+        <div className="flex flex-col">
             <div
                 ref={scrollContainerRef}
                 className="overflow-x-auto scrollbar-hide w-full overscroll-none"
@@ -108,6 +103,71 @@ export function HorizontalHeader(): React.ReactElement {
                         <FooterSegment label="100m" width={SEGMENT_WIDTH} />
                     </div>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+/**
+ * Mobile implementation renders widgets vertically for native scrolling while
+ * reusing the shared Widget presentation component.
+ */
+function HorizontalHeaderMobile(): React.ReactElement {
+    return (
+        <div className="flex flex-col bg-background-primary">
+            <div className="relative overflow-hidden bg-background-secondary">
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-y-0 left-6 w-24"
+                    style={{
+                        backgroundImage:
+                            "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0 20px)",
+                        backgroundRepeat: "repeat-y",
+                    }}
+                />
+                <div className="relative z-10 flex flex-col gap-6 px-6 pt-6 pb-32">
+                    {WIDGET_CONFIGS.filter((config) => config.id !== "game_snake").map((config) => (
+                        <div key={config.id} className="flex w-full justify-center">
+                            <Widget
+                                title={config.title}
+                                showClose={config.showClose}
+                                onClose={() => console.log(`${config.id} closed`)}
+                                width="100%"
+                                height={config.height ?? "auto"}
+                                backgroundColor={config.backgroundColor}
+                                backgroundImage={config.backgroundImage}
+                                imageProps={config.imageProps}
+                                noPadding={config.noPadding}
+                            >
+                                {config.content}
+                            </Widget>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="bg-background-primary px-6">
+                <FooterSegment
+                    label="Current Location"
+                    width="100%"
+                    className="relative z-10"
+                    innerClassName="relative py-16"
+                />
+            </div>
+        </div>
+    )
+}
+
+/**
+ * Horizontal header with responsive desktop and mobile variants.
+ */
+export function HorizontalHeader(): React.ReactElement {
+    return (
+        <div className="bg-background-primary">
+            <div className="md:hidden">
+                <HorizontalHeaderMobile />
+            </div>
+            <div className="hidden md:block">
+                <HorizontalHeaderDesktop />
             </div>
         </div>
     )
