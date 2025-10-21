@@ -6,7 +6,6 @@ import {
     SPRING_STIFFNESS,
     SPRING_DAMPING,
     SPRING_MASS,
-    HOVER_SCALE,
     DRAG_SCALE,
     DRAG_ROTATION,
 } from "../constants"
@@ -91,14 +90,6 @@ export const DraggableWidget = React.memo(function DraggableWidget({
                 y: position.y,
                 scale: 1,
                 rotate: 0,
-            }}
-            whileHover={{
-                scale: HOVER_SCALE,
-                transition: {
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 25,
-                },
             }}
             whileDrag={{
                 scale: DRAG_SCALE,
