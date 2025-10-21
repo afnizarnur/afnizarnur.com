@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react"
+import React, { useCallback, useRef, useState, useEffect } from "react"
 import { motion, type PanInfo } from "framer-motion"
 import { Widget } from "../../Widget"
 import type { WidgetConfig, WidgetPosition, DragMouseEvent } from "../types"
@@ -8,6 +8,7 @@ import {
     SPRING_MASS,
     DRAG_SCALE,
     DRAG_ROTATION,
+    TOTAL_CONTENT_WIDTH,
 } from "../constants"
 import { getClientX } from "../utils"
 
@@ -41,7 +42,51 @@ export const DraggableWidget = React.memo(function DraggableWidget({
 }: DraggableWidgetProps): React.ReactElement {
     // Track the position at drag start to calculate absolute position
     const dragStartPosRef = useRef<WidgetPosition>({ x: 0, y: 0 })
-    const [hoverTrigger, setHoverTrigger] = React.useState(0)
+    const [hoverTrigger, setHoverTrigger] = useState(0)
+    const internalWidgetRef = useRef<HTMLDivElement | null>(null)
+    const constraintsInitialized = useRef(false)
+
+    // Use a ref for constraints to keep object reference stable
+    // This prevents Framer Motion from auto-repositioning widgets when constraints change
+    // Match the calculation from calculateConstraintBounds utility
+    const dragConstraintsRef = useRef({
+        left: 0,
+        right: Math.max(0, TOTAL_CONTENT_WIDTH - config.width - 48),
+        top: 0,
+        bottom: 800, // Will be updated with actual header height
+    })
+
+    // Initialize constraints once when widget is first measured
+    // We only do this ONCE to prevent any constraint updates that could trigger repositioning
+    useEffect(() => {
+        if (constraintsInitialized.current) return
+
+        const initializeConstraints = (): void => {
+            if (!contentRef.current?.parentElement?.parentElement || !internalWidgetRef.current) {
+                return
+            }
+
+            const headerHeight = contentRef.current.parentElement.parentElement.offsetHeight
+            const actualWidgetHeight = internalWidgetRef.current.offsetHeight
+
+            // Add 48px padding before the right edge to match container padding
+            // maxX = TOTAL_CONTENT_WIDTH - widgetWidth - 48
+            // maxY = headerHeight - widgetHeight
+            dragConstraintsRef.current.right = Math.max(0, TOTAL_CONTENT_WIDTH - config.width - 48)
+            dragConstraintsRef.current.bottom = Math.max(0, headerHeight - actualWidgetHeight)
+
+            constraintsInitialized.current = true
+        }
+
+        // Try to initialize immediately
+        initializeConstraints()
+
+        // If not ready, wait a tick for render to complete
+        if (!constraintsInitialized.current) {
+            const timer = setTimeout(initializeConstraints, 100)
+            return () => clearTimeout(timer)
+        }
+    }, [config.width, contentRef])
 
     const handleDragStart = useCallback((): void => {
         // Capture current position when drag starts
@@ -71,9 +116,12 @@ export const DraggableWidget = React.memo(function DraggableWidget({
 
     return (
         <motion.div
-            ref={widgetRef}
+            ref={(el) => {
+                internalWidgetRef.current = el
+                widgetRef(el)
+            }}
             drag
-            dragConstraints={contentRef}
+            dragConstraints={dragConstraintsRef.current}
             dragElastic={0}
             dragMomentum={false}
             dragTransition={{
@@ -110,7 +158,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             onDragStart={handleDragStart}
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}
-            onMouseEnter={() => setHoverTrigger(prev => prev + 1)}
+            onMouseEnter={() => setHoverTrigger((prev) => prev + 1)}
             style={{
                 position: "absolute",
                 cursor: isActive ? "grabbing" : "grab",
