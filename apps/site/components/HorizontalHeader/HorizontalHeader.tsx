@@ -151,6 +151,7 @@ function HorizontalHeaderMobile(): React.ReactElement {
                     width="100%"
                     className="relative z-10"
                     innerClassName="relative py-16"
+                    triangleOffset="16"
                 />
             </div>
         </div>

@@ -7,6 +7,7 @@ interface FooterSegmentProps {
     className?: string
     innerClassName?: string
     triangleColor?: string
+    triangleOffset?: number | string
 }
 
 /**
@@ -18,11 +19,18 @@ export const FooterSegment = React.memo(function FooterSegment({
     className,
     innerClassName,
     triangleColor,
+    triangleOffset,
 }: FooterSegmentProps): React.ReactElement {
     const resolvedWidth = typeof width === "number" ? `${width}px` : width
     const containerClassName = className ? `flex-shrink-0 ${className}` : "flex-shrink-0"
     const contentClassName = innerClassName ?? "relative py-16 px-6"
     const pointerColor = triangleColor ?? "var(--color-background-primary)"
+    const pointerLeft =
+        triangleOffset === undefined
+            ? "24px"
+            : typeof triangleOffset === "number"
+              ? `${triangleOffset}px`
+              : triangleOffset
 
     return (
         <div className={containerClassName} style={{ width: resolvedWidth }}>
@@ -30,7 +38,7 @@ export const FooterSegment = React.memo(function FooterSegment({
                 {/* Triangle pointer */}
                 <div
                     className="absolute -top-2.5 transition-all duration-200 z-10"
-                    style={{ left: "24px" }}
+                    style={{ left: pointerLeft }}
                 >
                     <div
                         className="w-0 h-0"
