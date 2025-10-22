@@ -4,10 +4,16 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import type { NavigationItem } from "@afnizarnur/ui"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { GearSix, GearSixIcon } from "@phosphor-icons/react"
+import { IconButton } from "./IconButton"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 
 interface MobileMenuProps {
     items: NavigationItem[]
+    timezone?: {
+        timeZone?: string
+        displayLabel?: string
+    }
 }
 
 function normalizeHref(href: string): string {
@@ -22,7 +28,75 @@ function isNavItemActive(itemHref: string, path: string): boolean {
     return path === normalizedHref
 }
 
-export function MobileMenu({ items }: MobileMenuProps): React.ReactElement {
+function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
+    const now = new Date()
+
+    const baseOptions = {
+        hour: "2-digit" as const,
+        minute: "2-digit" as const,
+        hour12: true,
+    }
+
+    let formatter: Intl.DateTimeFormat
+
+    if (tzConfig?.timeZone) {
+        try {
+            formatter = new Intl.DateTimeFormat("en-US", {
+                ...baseOptions,
+                timeZone: tzConfig.timeZone,
+            })
+        } catch {
+            console.warn(
+                `Invalid timezone "${tzConfig.timeZone}", falling back to browser timezone`
+            )
+            formatter = new Intl.DateTimeFormat("en-US", baseOptions)
+        }
+    } else {
+        formatter = new Intl.DateTimeFormat("en-US", baseOptions)
+    }
+
+    const parts = formatter.formatToParts(now)
+
+    const hourPart = parts.find((p) => p.type === "hour")?.value || "00"
+    const minutePart = parts.find((p) => p.type === "minute")?.value || "00"
+    const periodPart = parts.find((p) => p.type === "dayPeriod")?.value || "AM"
+
+    const displayLabel = tzConfig?.displayLabel || "ID"
+
+    return `${displayLabel} ${hourPart}:${minutePart}_${periodPart}`
+}
+
+function TimeDisplay({
+    timezone,
+}: {
+    timezone?: { timeZone?: string; displayLabel?: string }
+}): JSX.Element {
+    const [timeString, setTimeString] = useState<string>(() => {
+        return getFormattedTime(timezone)
+    })
+
+    useEffect(() => {
+        setTimeString(getFormattedTime(timezone))
+
+        const interval = setInterval(() => {
+            setTimeString(getFormattedTime(timezone))
+        }, 60000)
+
+        return () => clearInterval(interval)
+    }, [timezone])
+
+    return (
+        <time
+            className="text-eyebrow-1 text-text-secondary"
+            dateTime={new Date().toISOString()}
+            suppressHydrationWarning
+        >
+            {timeString}
+        </time>
+    )
+}
+
+export function MobileMenu({ items, timezone }: MobileMenuProps): React.ReactElement {
     const [isOpen, setIsOpen] = useState(false)
     const [triggerAnimation, setTriggerAnimation] = useState(0)
     const pathname = usePathname()
@@ -150,7 +224,7 @@ export function MobileMenu({ items }: MobileMenuProps): React.ReactElement {
             {/* Menu Panel */}
             <div
                 ref={menuPanelRef}
-                className={`fixed left-0 right-0 bottom-0 w-screen bg-background-primary overflow-y-auto transform transition-transform duration-300 ease-out ${isOpen ? "translate-y-0" : "translate-y-full"} shadow-lg`}
+                className={`fixed left-0 right-0 bottom-0 w-screen bg-background-primary flex flex-col transform transition-transform duration-300 ease-out ${isOpen ? "translate-y-0" : "translate-y-full"} shadow-lg`}
                 role="navigation"
                 aria-label="Primary navigation"
                 style={{
@@ -164,7 +238,7 @@ export function MobileMenu({ items }: MobileMenuProps): React.ReactElement {
                     Navigation menu
                 </h2>
                 {/* Navigation Links */}
-                <nav className="py-spacing-24" aria-label="Main menu items">
+                <nav aria-label="Main menu items" className="flex-1 overflow-y-auto">
                     <ul className="flex flex-col list-none p-0 m-0">
                         {items.map((item, index) => {
                             const href = normalizeHref(item.href)
@@ -193,7 +267,7 @@ export function MobileMenu({ items }: MobileMenuProps): React.ReactElement {
                                 </>
                             )
 
-                            const linkClassName = `group p-24 flex items-center justify-start py-spacing-32 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary bg-background-primary ${isActive
+                            const linkClassName = `group p-24 flex items-center justify-start transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary bg-background-primary ${isActive
                                 ? "text-text-primary"
                                 : "text-text-secondary hover:text-text-primary active:text-text-primary"
                                 }`
@@ -241,8 +315,11 @@ export function MobileMenu({ items }: MobileMenuProps): React.ReactElement {
                     </ul>
                 </nav>
 
-                {/* Bottom Spacing */}
-                <div className="h-spacing-24" />
+                {/* Bottom Section with Time and Settings */}
+                <div className="p-24 flex items-center justify-between bg-background-primary flex-shrink-0">
+                    <TimeDisplay timezone={timezone} />
+                    <IconButton icon={GearSixIcon} ariaLabel="Open settings" size={24} />
+                </div>
             </div>
         </div>
     )

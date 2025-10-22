@@ -146,7 +146,7 @@ export function NavigationBar({
 
     return (
         <>
-            <MobileMenu items={items} />
+            <MobileMenu items={items} timezone={timezone} />
 
             <nav
                 className="sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary bg-background-secondary"
