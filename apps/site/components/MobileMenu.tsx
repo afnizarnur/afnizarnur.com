@@ -109,34 +109,18 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
                     backfaceVisibility: "hidden",
                 }}
             >
-                {/* Header with Close Button */}
-                <div className="sticky flex items-center justify-between px-spacing-24 py-spacing-20 bg-background-primary border-b-[2px] border-border-tertiary z-10"
-                    style={{
-                        top: 0,
-                    }}
-                >
-                    <span className="text-body-2-semibold text-text-primary">Navigation</span>
-                    <button
-                        onClick={closeMenu}
-                        className="group w-size-40 h-size-40 p-size-8 flex items-center justify-center text-icon-secondary hover:text-icon-primary hover:bg-background-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-icon-primary active:text-icon-primary transition-all duration-150 rounded-radius-8"
-                        aria-label="Close navigation menu"
-                        type="button"
-                    >
-                        <X size={24} color="currentColor" />
-                    </button>
-                </div>
-
                 {/* Navigation Links */}
-                <nav className="px-spacing-24 py-spacing-24" aria-label="Main menu items">
-                    <ul className="flex flex-col gap-spacing-8 list-none p-0 m-0">
-                        {items.map((item) => {
+                <nav className="py-spacing-24" aria-label="Main menu items">
+                    <ul className="flex flex-col list-none p-0 m-0">
+                        {items.map((item, index) => {
                             const href = normalizeHref(item.href)
                             const isActive = isNavItemActive(item.href, pathname)
                             const isExternal = item.newTab || href.startsWith("http")
+                            const isEven = index % 2 === 0
 
                             const linkContent = (
                                 <>
-                                    <span>{item.title}</span>
+                                    <span className="text-heading-1">{item.title}</span>
                                     {item.newTab && (
                                         <span
                                             className="text-icon-tertiary group-hover:text-icon-secondary transition-colors duration-150 text-xs"
@@ -149,34 +133,47 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
                                 </>
                             )
 
-                            const linkClassName = `group flex items-center justify-between px-spacing-20 py-spacing-16 text-body-2-regular rounded-radius-12 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${isActive
-                                ? "bg-background-accent-primary text-text-primary font-semibold shadow-sm"
-                                : "text-text-secondary bg-background-secondary/50 hover:bg-background-secondary hover:text-text-primary active:bg-background-secondary active:text-text-primary"
+                            const linkClassName = `group p-24 flex items-center justify-start py-spacing-32 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary bg-background-primary ${isActive
+                                ? "text-text-primary"
+                                : "text-text-secondary hover:text-text-primary active:text-text-primary"
                                 }`
 
                             return (
-                                <li key={item.href}>
-                                    {isExternal ? (
-                                        <a
-                                            href={href}
-                                            target={item.newTab ? "_blank" : undefined}
-                                            rel={item.newTab ? "noopener noreferrer" : undefined}
-                                            className={linkClassName}
-                                            aria-current={isActive ? "page" : undefined}
-                                            onClick={!item.newTab ? closeMenu : undefined}
-                                        >
-                                            {linkContent}
-                                        </a>
-                                    ) : (
-                                        <Link
-                                            href={href}
-                                            className={linkClassName}
-                                            aria-current={isActive ? "page" : undefined}
-                                            onClick={closeMenu}
-                                        >
-                                            {linkContent}
-                                        </Link>
-                                    )}
+                                <li key={item.href} className="grid border-b border-border-tertiary" style={{ gridTemplateColumns: isEven ? "1fr 20%" : "20% 1fr" }}>
+                                    {/* Striped box - alternates left/right */}
+                                    <div
+                                        className={`overflow-hidden bg-background-primary ${isEven ? "order-2" : "order-1"}`}
+                                        style={{
+                                            backgroundImage:
+                                                "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0px 20px)",
+                                            backgroundRepeat: "repeat-y",
+                                        }}
+                                    />
+
+                                    {/* Menu content */}
+                                    <div className={` ${isEven ? "order-1" : "order-2"}`}>
+                                        {isExternal ? (
+                                            <a
+                                                href={href}
+                                                target={item.newTab ? "_blank" : undefined}
+                                                rel={item.newTab ? "noopener noreferrer" : undefined}
+                                                className={linkClassName}
+                                                aria-current={isActive ? "page" : undefined}
+                                                onClick={!item.newTab ? closeMenu : undefined}
+                                            >
+                                                {linkContent}
+                                            </a>
+                                        ) : (
+                                            <Link
+                                                href={href}
+                                                className={linkClassName}
+                                                aria-current={isActive ? "page" : undefined}
+                                                onClick={closeMenu}
+                                            >
+                                                {linkContent}
+                                            </Link>
+                                        )}
+                                    </div>
                                 </li>
                             )
                         })}
