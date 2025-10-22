@@ -3,6 +3,7 @@
 import React from "react"
 import Image from "next/image"
 import { X } from "@phosphor-icons/react"
+import { TerminalTextEffect } from "./TerminalTextEffect"
 
 export interface WidgetProps {
     title?: string
@@ -17,6 +18,7 @@ export interface WidgetProps {
         alt: string
     }
     noPadding?: boolean
+    triggerTitleAnimation?: number
     children: React.ReactNode
 }
 
@@ -58,12 +60,19 @@ export function Widget({
     backgroundImage,
     imageProps,
     noPadding = false,
+    triggerTitleAnimation,
     children,
 }: WidgetProps): React.ReactElement {
     const hasBackgroundImage = !!backgroundImage || !!imageProps
     const isDark = isDarkColor(backgroundColor)
-    const containerWidth = typeof width === "number" ? width : (width === "auto" ? undefined : parseInt(width as string))
-    const containerHeight = typeof height === "number" ? height : (height === "auto" ? undefined : parseInt(height as string))
+    const containerWidth =
+        typeof width === "number" ? width : width === "auto" ? undefined : parseInt(width as string)
+    const containerHeight =
+        typeof height === "number"
+            ? height
+            : height === "auto"
+              ? undefined
+              : parseInt(height as string)
 
     return (
         <div
@@ -101,12 +110,17 @@ export function Widget({
             {/* Widget Header - Always rendered */}
             <div
                 className={`self-stretch inline-flex justify-start items-center gap-1 relative z-10 ${
-                    hasBackgroundImage ? "px-16 py-12" : "px-32 py-16"
+                    hasBackgroundImage ? "px-16 py-12" : "pl-24 md:pl-32 pr-24 py-16"
                 }`}
             >
                 {title && (
                     <div className="flex-1 opacity-50 justify-start text-text-primary text-eyebrow-1 uppercase">
-                        {title.replace(/ /g, "_")}
+                        <TerminalTextEffect
+                            effect="cursor"
+                            triggerAnimation={triggerTitleAnimation}
+                        >
+                            {title.replace(/ /g, "_")}
+                        </TerminalTextEffect>
                     </div>
                 )}
                 {!title && <div className="flex-1" />}
@@ -128,7 +142,7 @@ export function Widget({
 
             {/* Widget Content */}
             {!hasBackgroundImage && !noPadding && (
-                <div className="self-stretch px-32 py-32 inline-flex justify-center items-center gap-1">
+                <div className="self-stretch px-24 md:px-32 py-32 inline-flex justify-center items-center gap-1">
                     {children}
                 </div>
             )}

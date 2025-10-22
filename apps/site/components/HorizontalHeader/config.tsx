@@ -8,12 +8,11 @@ import { SnakeGame } from "./components/SnakeGame"
 export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "intro",
-        defaultX: 24,
-        defaultY: 100,
+        defaultX: 0,
+        defaultY: 60,
         width: 598,
         minHeight: 200,
         title: "Intro",
-        showClose: true,
         content: (
             <h1 className="flex-1 justify-start text-text-primary text-heading-1">
                 Afnizar works at the intersection of design, code, and strategy. Building things
@@ -23,12 +22,11 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     },
     {
         id: "bio",
-        defaultX: 24,
-        defaultY: 450,
+        defaultX: 0,
+        defaultY: 408,
         width: 443,
         minHeight: 200,
         title: "Short bio",
-        showClose: true,
         content: (
             <div className="flex-1 justify-start text-text-primary text-subhead-1">
                 Designer. Engineer. Cat dad of two. Works where design meets infrastructure.
@@ -38,26 +36,24 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     },
     {
         id: "avatar",
-        defaultX: 658,
-        defaultY: 100,
+        defaultX: 634,
+        defaultY: 60,
         width: 420,
         height: 420,
         imageProps: {
             src: "/avatar.png",
             alt: "Afnizar's avatar",
         },
-        showClose: true,
         content: <div />,
     },
     {
         id: "work",
-        defaultX: 1114,
-        defaultY: 100,
+        defaultX: 1090,
+        defaultY: 60,
         width: 641,
         minHeight: 200,
         title: "Current Work",
         backgroundColor: "var(--color-background-warning-primary)",
-        showClose: true,
         content: (
             <h2 className="flex-1 text-text-primary text-heading-2">
                 Currently part of <span className="font-semibold">INA Digital Edu</span>, designing
@@ -68,12 +64,11 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     },
     {
         id: "game_snake",
-        defaultX: 1114,
-        defaultY: 410,
+        defaultX: 1090,
+        defaultY: 368,
         width: 443,
         height: 250,
         title: "Play Snake Game",
-        showClose: true,
         noPadding: true,
         content: <SnakeGame />,
     },

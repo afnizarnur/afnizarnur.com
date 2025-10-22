@@ -129,7 +129,7 @@ export function NavigationBar({
             <MobileMenu items={items} />
 
             <nav
-                className="sticky top-0 z-40 h-[66px] border-b-[2px] border-border-tertiary bg-background-primary"
+                className="sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary bg-background-secondary"
                 role="navigation"
                 aria-label="Main navigation"
             >
@@ -154,7 +154,9 @@ export function NavigationBar({
                             {logo?.type === "text" && logo.text ? (
                                 <TerminalTextEffect effect="cursor">{logo.text}</TerminalTextEffect>
                             ) : (
-                                <TerminalTextEffect effect="cursor">Afnizar_Nur_Ghifari</TerminalTextEffect>
+                                <TerminalTextEffect effect="cursor">
+                                    Afnizar_Nur_Ghifari
+                                </TerminalTextEffect>
                             )}
                         </Link>
                     </div>

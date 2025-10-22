@@ -20,6 +20,7 @@ interface TerminalTextEffectProps {
     onHoverStart?: () => void
     onHoverEnd?: () => void
     colors?: string[] // For colorful effect
+    triggerAnimation?: number // External trigger - increment to trigger animation
 }
 
 export function TerminalTextEffect({
@@ -29,7 +30,8 @@ export function TerminalTextEffect({
     as: Component = "span",
     onHoverStart,
     onHoverEnd,
-    colors = defaultColors
+    colors = defaultColors,
+    triggerAnimation
 }: TerminalTextEffectProps) {
     const [animationKey, setAnimationKey] = useState(0)
     const [isHovered, setIsHovered] = useState(false)
@@ -69,6 +71,13 @@ export function TerminalTextEffect({
         setIsHovered(false)
         onHoverEnd?.()
     }, [onHoverEnd])
+
+    // Handle external trigger
+    React.useEffect(() => {
+        if (triggerAnimation !== undefined && triggerAnimation > 0) {
+            handleMouseEnter()
+        }
+    }, [triggerAnimation, handleMouseEnter])
 
     return (
         <Component

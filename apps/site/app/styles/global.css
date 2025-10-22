@@ -111,6 +111,12 @@
         letter-spacing: var(--letterSpacing-normal);
     }
 
+    @media only screen and (max-width: 544px) {
+        .text-heading-1 {
+            font-size: var(--fontSize-heading-2);
+        }
+    }  
+
     .text-heading-2 {
         font-family: var(--fontFamily-fonetika);
         font-size: var(--fontSize-heading-2);
@@ -118,6 +124,12 @@
         line-height: var(--lineHeight-normal);
         letter-spacing: var(--letterSpacing-normal);
     }
+
+    @media only screen and (max-width: 544px) {
+        .text-heading-2 {
+            font-size: var(--fontSize-heading-3);
+        }
+    }  
 
     .text-heading-3 {
         font-family: var(--fontFamily-fonetika);

@@ -11,8 +11,11 @@ export const TOTAL_SEGMENTS = 3
 /** Total draggable content width */
 export const TOTAL_CONTENT_WIDTH = SEGMENT_WIDTH * TOTAL_SEGMENTS
 
-/** Grid template for the header layout */
-export const GRID_TEMPLATE = "1fr min(1220px, 100% - 48px) 1fr"
+/** Grid template for the header layout - Mobile/Tablet (full width) */
+export const GRID_TEMPLATE_MOBILE = "1fr 100% 1fr"
+
+/** Grid template for the header layout - Desktop (max 1220px) */
+export const GRID_TEMPLATE_DESKTOP = "1fr min(1220px, 100% - 48px) 1fr"
 
 /** LocalStorage key for persisting widget positions */
 export const STORAGE_KEY = "horizontal-header-widget-positions"
