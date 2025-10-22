@@ -118,7 +118,7 @@ function HorizontalHeaderMobile(): React.ReactElement {
             <div className="relative overflow-hidden bg-background-secondary">
                 <div
                     aria-hidden
-                    className="pointer-events-none absolute inset-y-0 left-6 w-24"
+                    className="pointer-events-none absolute inset-y-0 left-6 w-44"
                     style={{
                         backgroundImage:
                             "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0 20px)",

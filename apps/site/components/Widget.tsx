@@ -110,7 +110,7 @@ export function Widget({
             {/* Widget Header - Always rendered */}
             <div
                 className={`self-stretch inline-flex justify-start items-center gap-1 relative z-10 ${
-                    hasBackgroundImage ? "px-16 py-12" : "pl-32 pr-16 py-16"
+                    hasBackgroundImage ? "px-16 py-12" : "pl-24 md:pl-32 pr-24 py-16"
                 }`}
             >
                 {title && (
@@ -142,7 +142,7 @@ export function Widget({
 
             {/* Widget Content */}
             {!hasBackgroundImage && !noPadding && (
-                <div className="self-stretch px-32 py-32 inline-flex justify-center items-center gap-1">
+                <div className="self-stretch px-24 md:px-32 py-32 inline-flex justify-center items-center gap-1">
                     {children}
                 </div>
             )}
