@@ -9,7 +9,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "intro",
         defaultX: 0,
-        defaultY: 64,
+        defaultY: 60,
         width: 598,
         minHeight: 200,
         title: "Intro",
@@ -23,7 +23,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "bio",
         defaultX: 0,
-        defaultY: 424,
+        defaultY: 408,
         width: 443,
         minHeight: 200,
         title: "Short bio",
@@ -37,7 +37,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "avatar",
         defaultX: 634,
-        defaultY: 64,
+        defaultY: 60,
         width: 420,
         height: 420,
         imageProps: {
@@ -49,7 +49,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "work",
         defaultX: 1090,
-        defaultY: 64,
+        defaultY: 60,
         width: 641,
         minHeight: 200,
         title: "Current Work",
@@ -65,7 +65,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "game_snake",
         defaultX: 1090,
-        defaultY: 384,
+        defaultY: 368,
         width: 443,
         height: 250,
         title: "Play Snake Game",
