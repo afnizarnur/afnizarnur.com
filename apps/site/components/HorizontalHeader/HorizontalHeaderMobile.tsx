@@ -24,11 +24,11 @@ export function HorizontalHeaderMobile(): React.ReactElement {
                         backgroundRepeat: "repeat-y",
                     }}
                 />
-                <div className="relative">
+                <div className="relative pb-6">
                     {filteredConfigs.map((config, index) => (
                         <div
                             key={config.id}
-                            className="sticky px-6 pt-6 pb-6"
+                            className="sticky px-6 pt-5 pb-2"
                             style={{
                                 top: "var(--navbar-height, 66px)",
                                 zIndex: index + 1,
