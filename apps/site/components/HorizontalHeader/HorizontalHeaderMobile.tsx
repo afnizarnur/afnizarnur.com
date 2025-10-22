@@ -28,13 +28,13 @@ export function HorizontalHeaderMobile(): React.ReactElement {
                     {filteredConfigs.map((config, index) => (
                         <div
                             key={config.id}
-                            className="sticky px-6 pt-6"
+                            className="sticky px-6 pt-6 pb-6"
                             style={{
-                                top: 0,
+                                top: "var(--navbar-height, 66px)",
                                 zIndex: index + 1,
                             }}
                         >
-                            <div className="flex w-full justify-center pb-6">
+                            <div className="flex w-full justify-center pb-4">
                                 <Widget
                                     title={config.title}
                                     showClose={config.showClose}
