@@ -13,7 +13,6 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         width: 598,
         minHeight: 200,
         title: "Intro",
-        showClose: true,
         content: (
             <h1 className="flex-1 justify-start text-text-primary text-heading-1">
                 Afnizar works at the intersection of design, code, and strategy. Building things
@@ -28,7 +27,6 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         width: 443,
         minHeight: 200,
         title: "Short bio",
-        showClose: true,
         content: (
             <div className="flex-1 justify-start text-text-primary text-subhead-1">
                 Designer. Engineer. Cat dad of two. Works where design meets infrastructure.
@@ -46,7 +44,6 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
             src: "/avatar.png",
             alt: "Afnizar's avatar",
         },
-        showClose: true,
         content: <div />,
     },
     {
@@ -57,7 +54,6 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         minHeight: 200,
         title: "Current Work",
         backgroundColor: "var(--color-background-warning-primary)",
-        showClose: true,
         content: (
             <h2 className="flex-1 text-text-primary text-heading-2">
                 Currently part of <span className="font-semibold">INA Digital Edu</span>, designing
@@ -73,7 +69,6 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         width: 443,
         height: 250,
         title: "Play Snake Game",
-        showClose: true,
         noPadding: true,
         content: <SnakeGame />,
     },
