@@ -58,7 +58,7 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
         <div className="flex flex-col">
             <div
                 ref={scrollContainerRef}
-                className="overflow-x-auto scrollbar-hide w-full overscroll-none"
+                className="overflow-x-auto scrollbar-hide w-full overscroll-x-none"
                 data-scroll-container="horizontal-header"
                 style={
                     {
