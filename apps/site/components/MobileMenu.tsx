@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { X } from "@phosphor-icons/react"
 import type { NavigationItem } from "@afnizarnur/ui"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { TerminalTextEffect } from "./TerminalTextEffect"
 
 interface MobileMenuProps {
     items: NavigationItem[]
@@ -24,6 +24,7 @@ function isNavItemActive(itemHref: string, path: string): boolean {
 
 export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
     const [isOpen, setIsOpen] = useState(false)
+    const [triggerAnimation, setTriggerAnimation] = useState(0)
     const pathname = usePathname()
 
     useEffect(() => {
@@ -51,6 +52,9 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
 
         if (isOpen) {
             document.body.style.overflow = "hidden"
+
+            // Trigger animation when menu opens
+            setTriggerAnimation(prev => prev + 1)
 
             const handleEscape = (e: KeyboardEvent): void => {
                 if (e.key === "Escape") {
@@ -120,7 +124,13 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
 
                             const linkContent = (
                                 <>
-                                    <span className="text-heading-1">{item.title}</span>
+                                    <TerminalTextEffect
+                                        className="text-heading-1"
+                                        effect="cursor"
+                                        triggerAnimation={triggerAnimation}
+                                    >
+                                        {item.title}
+                                    </TerminalTextEffect>
                                     {item.newTab && (
                                         <span
                                             className="text-icon-tertiary group-hover:text-icon-secondary transition-colors duration-150 text-xs"
