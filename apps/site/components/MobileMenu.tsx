@@ -29,17 +29,26 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
     useEffect(() => {
         const hamburgerBtn = document.getElementById("hamburger-menu-button")
 
-        const handleOpen = (): void => {
-            setIsOpen(true)
+        const handleToggle = (): void => {
+            setIsOpen((prev) => !prev)
         }
 
         if (hamburgerBtn) {
-            hamburgerBtn.addEventListener("click", handleOpen)
-            return () => hamburgerBtn.removeEventListener("click", handleOpen)
+            hamburgerBtn.addEventListener("click", handleToggle)
+            return () => hamburgerBtn.removeEventListener("click", handleToggle)
         }
     }, [])
 
     useEffect(() => {
+        const hamburgerBtn = document.getElementById("hamburger-menu-button")
+
+        if (hamburgerBtn) {
+            // Update button attributes and icon
+            hamburgerBtn.setAttribute("aria-expanded", String(isOpen))
+            hamburgerBtn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu")
+            hamburgerBtn.setAttribute("data-menu-open", String(isOpen))
+        }
+
         if (isOpen) {
             document.body.style.overflow = "hidden"
 
@@ -76,30 +85,36 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
             aria-modal="true"
             aria-label="Navigation menu"
             aria-hidden={!isOpen}
+            style={{
+                top: "var(--navbar-height, 66px)",
+            }}
         >
             {/* Backdrop */}
             <div
                 onClick={closeMenu}
-                className={`absolute inset-0 bg-background-inverse/70 backdrop-blur-sm transition-opacity duration-300 ease-out ${
-                    isOpen ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 bg-background-inverse/70 backdrop-blur-sm transition-opacity duration-300 ease-out ${isOpen ? "opacity-100" : "opacity-0"
+                    }`}
                 aria-hidden="true"
             />
 
             {/* Menu Panel */}
             <div
-                className={`fixed inset-0 w-screen h-screen bg-background-primary overflow-y-auto transform transition-transform duration-300 ease-out ${
-                    isOpen ? "translate-y-0" : "translate-y-full"
-                } shadow-lg`}
+                className={`fixed left-0 right-0 bottom-0 w-screen bg-background-primary overflow-y-auto transform transition-transform duration-300 ease-out ${isOpen ? "translate-y-0" : "translate-y-full"
+                    } shadow-lg`}
                 role="navigation"
                 aria-label="Primary navigation"
                 style={{
+                    top: "var(--navbar-height, 66px)",
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                 }}
             >
                 {/* Header with Close Button */}
-                <div className="sticky top-0 flex items-center justify-between px-spacing-24 py-spacing-20 bg-background-primary border-b-[2px] border-border-tertiary z-10">
+                <div className="sticky flex items-center justify-between px-spacing-24 py-spacing-20 bg-background-primary border-b-[2px] border-border-tertiary z-10"
+                    style={{
+                        top: 0,
+                    }}
+                >
                     <span className="text-body-2-semibold text-text-primary">Navigation</span>
                     <button
                         onClick={closeMenu}
@@ -134,11 +149,10 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
                                 </>
                             )
 
-                            const linkClassName = `group flex items-center justify-between px-spacing-20 py-spacing-16 text-body-2-regular rounded-radius-12 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${
-                                isActive
-                                    ? "bg-background-accent-primary text-text-primary font-semibold shadow-sm"
-                                    : "text-text-secondary bg-background-secondary/50 hover:bg-background-secondary hover:text-text-primary active:bg-background-secondary active:text-text-primary"
-                            }`
+                            const linkClassName = `group flex items-center justify-between px-spacing-20 py-spacing-16 text-body-2-regular rounded-radius-12 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${isActive
+                                ? "bg-background-accent-primary text-text-primary font-semibold shadow-sm"
+                                : "text-text-secondary bg-background-secondary/50 hover:bg-background-secondary hover:text-text-primary active:bg-background-secondary active:text-text-primary"
+                                }`
 
                             return (
                                 <li key={item.href}>
