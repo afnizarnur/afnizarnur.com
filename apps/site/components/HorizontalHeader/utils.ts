@@ -107,3 +107,28 @@ export function throttle<T extends (...args: unknown[]) => void>(
         }
     }
 }
+
+/**
+ * Gets a namespaced storage key for widget-specific data
+ */
+export function getWidgetStorageKey(widgetId: string, dataType: string): string {
+    return `horizontal-header-widget-data:${widgetId}:${dataType}`
+}
+
+/**
+ * Clears all widget data for a specific widget
+ */
+export function clearWidgetData(widgetId: string): void {
+    try {
+        const keysToRemove: string[] = []
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i)
+            if (key?.startsWith(`horizontal-header-widget-data:${widgetId}:`)) {
+                keysToRemove.push(key)
+            }
+        }
+        keysToRemove.forEach((key) => localStorage.removeItem(key))
+    } catch (error) {
+        console.error(`Failed to clear widget data for "${widgetId}":`, error)
+    }
+}

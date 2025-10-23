@@ -1,9 +1,13 @@
 "use client"
 
-import React, { useCallback, useRef, useMemo, useSyncExternalStore } from "react"
+import React, { useCallback, useRef, useMemo, useSyncExternalStore, useEffect } from "react"
 import { ReactSketchCanvas, type ReactSketchCanvasRef } from "react-sketch-canvas"
 import { PencilSimpleIcon, ClockClockwiseIcon } from "@phosphor-icons/react/dist/ssr"
 import { useDragContext } from "../../contexts/DragContext"
+import { getWidgetStorageKey, parseStorageData, writeStorageData } from "../../utils"
+
+// Constants
+const CANVAS_LOAD_DELAY = 300 // ms - delay to ensure canvas is fully initialized
 
 // Types
 interface AvatarStateData {
@@ -17,6 +21,7 @@ class AvatarState {
     private canvasRefInternal: React.RefObject<ReactSketchCanvasRef | null> | null = null
     private state: AvatarStateData = { isDrawMode: false }
     private listeners = new Set<() => void>()
+    private hasLoadedData = false
 
     static getInstance(widgetId: string): AvatarState {
         if (!this.instances.has(widgetId)) {
@@ -26,6 +31,10 @@ class AvatarState {
     }
 
     static cleanup(widgetId: string): void {
+        const instance = this.instances.get(widgetId)
+        if (instance) {
+            instance.resetLoadState()
+        }
         this.instances.delete(widgetId)
     }
 
@@ -60,6 +69,45 @@ class AvatarState {
     clearCanvas(): void {
         this.canvasRefInternal?.current?.clearCanvas()
     }
+
+    async saveCanvasData(widgetId: string): Promise<void> {
+        try {
+            const canvas = this.canvasRefInternal?.current
+            if (!canvas) return
+
+            const paths = await canvas.exportPaths()
+            const storageKey = getWidgetStorageKey(widgetId, "canvas")
+            writeStorageData(storageKey, paths)
+        } catch (error) {
+            console.error("Failed to save canvas data:", error)
+        }
+    }
+
+    async loadCanvasData(widgetId: string): Promise<void> {
+        try {
+            // Prevent multiple loads
+            if (this.hasLoadedData) return
+
+            const canvas = this.canvasRefInternal?.current
+            if (!canvas) return
+
+            const storageKey = getWidgetStorageKey(widgetId, "canvas")
+            const savedData = parseStorageData<unknown>(storageKey, null)
+            
+            // exportPaths() returns an array directly, not wrapped in an object
+            if (Array.isArray(savedData) && savedData.length > 0) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                canvas.loadPaths(savedData as any)
+                this.hasLoadedData = true
+            }
+        } catch (error) {
+            console.error("Failed to load canvas data:", error)
+        }
+    }
+
+    resetLoadState(): void {
+        this.hasLoadedData = false
+    }
 }
 
 // Hook to use avatar state with useSyncExternalStore for better performance
@@ -76,12 +124,12 @@ function useAvatarState(widgetId: string) {
     )
 
     // Set canvas ref on mount
-    React.useEffect(() => {
+    useEffect(() => {
         stateManager.setCanvasRef(canvasRef)
     }, [stateManager])
 
     // Cleanup on unmount
-    React.useEffect(() => {
+    useEffect(() => {
         return () => {
             // Only cleanup if this is the last instance
             if (stateManager.getSnapshot().isDrawMode) {
@@ -98,13 +146,21 @@ function useAvatarState(widgetId: string) {
 
     const handleClear = useCallback(() => {
         stateManager.clearCanvas()
-    }, [stateManager])
+        stateManager.resetLoadState()
+        const storageKey = getWidgetStorageKey(widgetId, "canvas")
+        writeStorageData(storageKey, null)
+    }, [stateManager, widgetId])
+
+    const handleSave = useCallback(() => {
+        stateManager.saveCanvasData(widgetId)
+    }, [stateManager, widgetId])
 
     return {
         canvasRef,
         isDrawMode: state.isDrawMode,
         handleToggleDrawMode,
         handleClear,
+        handleSave,
     }
 }
 
@@ -114,13 +170,31 @@ export const AvatarContent = React.memo(function AvatarContent({
 }: { 
     widgetId: string 
 }): React.ReactElement {
-    const { canvasRef, isDrawMode } = useAvatarState(widgetId)
+    const { canvasRef, isDrawMode, handleSave } = useAvatarState(widgetId)
+    const stateManager = useMemo(() => AvatarState.getInstance(widgetId), [widgetId])
+    const hasAttemptedLoad = useRef(false)
 
     const handlePointerDown = useCallback((e: React.PointerEvent) => {
         if (isDrawMode) {
             e.stopPropagation()
         }
     }, [isDrawMode])
+
+    // Auto-save when stroke ends
+    const handleStrokeEnd = useCallback(() => {
+        handleSave()
+    }, [handleSave])
+
+    // Load canvas data when canvas is ready (single attempt)
+    useEffect(() => {
+        if (canvasRef.current && !hasAttemptedLoad.current) {
+            hasAttemptedLoad.current = true
+            const timeoutId = setTimeout(() => {
+                void stateManager.loadCanvasData(widgetId)
+            }, CANVAS_LOAD_DELAY)
+            return () => clearTimeout(timeoutId)
+        }
+    }, [canvasRef, stateManager, widgetId])
 
     // Memoize container styles to prevent unnecessary recalculations
     const containerStyle = useMemo(() => ({
@@ -160,6 +234,7 @@ export const AvatarContent = React.memo(function AvatarContent({
                 svgStyle={{
                     pointerEvents: isDrawMode ? "auto" : "none",
                 }}
+                onStroke={handleStrokeEnd}
             />
         </div>
     )
