@@ -158,7 +158,7 @@ export function NavigationBar({
                     <div className="flex-1 md:col-span-1 lg:col-span-2">
                         <Link
                             href="/"
-                            className="flex items-center gap-2 text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary rounded w-fit"
+                            className="flex items-center gap-2 text-eyebrow-1 text-text-primary transition-colors duration-150 hover:text-text-secondary rounded w-fit"
                             aria-label="Afnizar Nur Ghifari - Home"
                             title="Go to homepage"
                         >
@@ -198,7 +198,7 @@ export function NavigationBar({
                                                 rel={
                                                     item.newTab ? "noopener noreferrer" : undefined
                                                 }
-                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${
+                                                className={`text-eyebrow-1 transition-colors duration-150 rounded ${
                                                     isActive
                                                         ? "text-text-primary cursor-default"
                                                         : "text-text-secondary hover:text-text-primary active:text-text-primary"
@@ -212,7 +212,7 @@ export function NavigationBar({
                                         ) : (
                                             <Link
                                                 href={href}
-                                                className={`text-eyebrow-1 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary ${
+                                                className={`text-eyebrow-1 transition-colors duration-150 rounded ${
                                                     isActive
                                                         ? "text-text-primary cursor-default"
                                                         : "text-text-secondary hover:text-text-primary active:text-text-primary"
@@ -248,7 +248,7 @@ export function NavigationBar({
                         {/* Hamburger Menu Button (Shown on tablet and mobile) */}
                         <button
                             id="hamburger-menu-button"
-                            className="lg:hidden w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-icon-primary active:text-icon-primary transition-colors rounded-radius-8"
+                            className="lg:hidden w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary active:text-icon-primary transition-colors rounded-radius-8"
                             aria-label="Open navigation menu"
                             aria-expanded="false"
                             aria-controls="mobile-menu-overlay"

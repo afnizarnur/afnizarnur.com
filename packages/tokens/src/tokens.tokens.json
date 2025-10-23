@@ -789,8 +789,33 @@
                         }
                     }
                 }
+            },
+            "focus": {
+                "ring": {
+                    "$value": "{color.primitive.purple.500}",
+                    "$extensions": {
+                        "mode": {
+                            "light": "{color.primitive.purple.500}",
+                            "dark": "{color.primitive.purple.400}"
+                        }
+                    }
+                },
+                "ring-offset": {
+                    "$value": "{color.primitive.gray.white}",
+                    "$extensions": {
+                        "mode": {
+                            "light": "{color.primitive.gray.white}",
+                            "dark": "{color.primitive.gray.900}"
+                        }
+                    }
+                }
             }
         }
+    },
+    "focusRing": {
+        "$type": "dimension",
+        "width": { "$value": "2px" },
+        "offset": { "$value": "2px" }
     },
     "radius": {
         "$type": "dimension",
