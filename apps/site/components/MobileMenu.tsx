@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import type { NavigationItem } from "@afnizarnur/ui"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { GearSix, GearSixIcon } from "@phosphor-icons/react"
+import { GearSixIcon } from "@phosphor-icons/react"
 import { IconButton } from "./IconButton"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 
@@ -98,11 +98,11 @@ function TimeDisplay({
     )
 }
 
-export function MobileMenu({ 
-    items, 
+export function MobileMenu({
+    items,
     timezone,
     isOpen: externalIsOpen,
-    onToggle: externalOnToggle 
+    onToggle: externalOnToggle,
 }: MobileMenuProps): React.ReactElement {
     const [internalIsOpen, setInternalIsOpen] = useState(false)
     const [triggerAnimation, setTriggerAnimation] = useState(0)
@@ -152,7 +152,10 @@ export function MobileMenu({
 
         if (hamburgerBtn) {
             hamburgerBtn.setAttribute("aria-expanded", String(isOpen))
-            hamburgerBtn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu")
+            hamburgerBtn.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            )
             hamburgerBtn.setAttribute("data-menu-open", String(isOpen))
         }
 
@@ -163,13 +166,16 @@ export function MobileMenu({
             document.body.style.paddingRight = `${scrollbarWidth}px`
 
             // Trigger animation when menu opens
-            setTriggerAnimation(prev => prev + 1)
+            setTriggerAnimation((prev) => prev + 1)
 
             // Get all focusable elements for focus trap
             const getFocusableElements = (): HTMLElement[] => {
                 if (!menuPanelRef.current) return []
-                const focusableSelectors = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-                return Array.from(menuPanelRef.current.querySelectorAll<HTMLElement>(focusableSelectors))
+                const focusableSelectors =
+                    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                return Array.from(
+                    menuPanelRef.current.querySelectorAll<HTMLElement>(focusableSelectors)
+                )
             }
 
             // Focus first element after menu is visible
@@ -218,7 +224,7 @@ export function MobileMenu({
             }
 
             document.addEventListener("keydown", handleKeyDown)
-            
+
             return () => {
                 document.body.style.overflow = ""
                 document.body.style.paddingRight = ""
@@ -320,13 +326,18 @@ export function MobileMenu({
                                 </>
                             )
 
-                            const linkClassName = `group p-24 flex items-center justify-start transition-all duration-150 bg-background-primary ${isActive
-                                ? "text-text-primary"
-                                : "text-text-secondary hover:text-text-primary active:text-text-primary"
-                                }`
+                            const linkClassName = `group p-24 flex items-center justify-start transition-all duration-150 bg-background-primary ${
+                                isActive
+                                    ? "text-text-primary"
+                                    : "text-text-secondary hover:text-text-primary active:text-text-primary"
+                            }`
 
                             return (
-                                <li key={item.href} className="grid border-b border-border-tertiary" style={{ gridTemplateColumns: isEven ? "1fr 20%" : "20% 1fr" }}>
+                                <li
+                                    key={item.href}
+                                    className="grid border-b border-border-tertiary"
+                                    style={{ gridTemplateColumns: isEven ? "1fr 20%" : "20% 1fr" }}
+                                >
                                     {/* Striped box - alternates left/right */}
                                     <div
                                         className={`border-border-tertiary overflow-hidden bg-background-primary ${isEven ? "order-2 border-l" : "order-1 border-r"}`}
@@ -344,7 +355,9 @@ export function MobileMenu({
                                             <a
                                                 href={href}
                                                 target={item.newTab ? "_blank" : undefined}
-                                                rel={item.newTab ? "noopener noreferrer" : undefined}
+                                                rel={
+                                                    item.newTab ? "noopener noreferrer" : undefined
+                                                }
                                                 className={linkClassName}
                                                 aria-current={isActive ? "page" : undefined}
                                                 onClick={!item.newTab ? closeMenu : undefined}

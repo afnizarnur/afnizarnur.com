@@ -17,7 +17,7 @@ export function IconButton({
 }: IconButtonProps): JSX.Element {
     return (
         <button
-            className={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary active:text-icon-primary transition-colors rounded-radius-8 ${className}`}
+            className={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary active:text-icon-primary transition-colors rounded-radius-8 cursor-pointer ${className}`}
             aria-label={ariaLabel}
             type="button"
             onClick={onClick}
