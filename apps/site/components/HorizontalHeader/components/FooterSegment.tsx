@@ -19,7 +19,6 @@ export const FooterSegment = React.memo(function FooterSegment({
     className,
     innerClassName,
     triangleColor,
-    triangleOffset,
 }: FooterSegmentProps): React.ReactElement {
     const resolvedWidth = typeof width === "number" ? `${width}px` : width
     const containerClassName = className ? `flex-shrink-0 ${className}` : "flex-shrink-0"
