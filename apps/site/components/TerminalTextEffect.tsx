@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
-import React, { useCallback, useRef, useState, useEffect } from "react"
+import React, { useCallback, useRef, useState } from "react"
 
 const lettersAndSymbols = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',

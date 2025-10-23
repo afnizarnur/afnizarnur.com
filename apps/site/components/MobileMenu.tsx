@@ -114,7 +114,6 @@ export function MobileMenu({
 
     // Use external state if provided, otherwise use internal state
     const isOpen = externalIsOpen ?? internalIsOpen
-    const setIsOpen = externalOnToggle ? () => externalOnToggle() : setInternalIsOpen
 
     const closeMenu = useCallback((): void => {
         if (externalOnToggle) {
