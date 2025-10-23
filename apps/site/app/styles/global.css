@@ -115,7 +115,7 @@
         .text-heading-1 {
             font-size: var(--fontSize-heading-2);
         }
-    }  
+    }
 
     .text-heading-2 {
         font-family: var(--fontFamily-fonetika);
@@ -129,7 +129,7 @@
         .text-heading-2 {
             font-size: var(--fontSize-heading-3);
         }
-    }  
+    }
 
     .text-heading-3 {
         font-family: var(--fontFamily-fonetika);
@@ -170,8 +170,9 @@
     /* Focus Ring Utilities - Standardized focus states for accessibility */
     .focus-ring {
         outline: none;
-        box-shadow: 0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
-                    0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
+        box-shadow:
+            0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
+            0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
     }
 
     .focus-ring-inset {
@@ -182,8 +183,9 @@
     /* Apply focus ring on focus-visible (keyboard navigation only) */
     *:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
-                    0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
+        box-shadow:
+            0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
+            0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
     }
 
     .scrollbar-hide {
@@ -193,6 +195,34 @@
 
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
+    }
+
+    .diagonal-stripes {
+        background-image: repeating-linear-gradient(
+            -40deg,
+            rgba(0, 0, 0, 0.06) 0 8px,
+            transparent 0px 20px
+        );
+        background-repeat: repeat-y;
+    }
+
+    [data-theme="dark"] .diagonal-stripes {
+        background-image: repeating-linear-gradient(
+            -40deg,
+            rgba(255, 255, 255, 0.12) 0 8px,
+            transparent 0px 20px
+        );
+    }
+
+    /* Fallback for prefers-color-scheme when data-theme is not used */
+    @media (prefers-color-scheme: dark) {
+        .diagonal-stripes {
+            background-image: repeating-linear-gradient(
+                -40deg,
+                rgba(255, 255, 255, 0.08) 0 8px,
+                transparent 0px 20px
+            );
+        }
     }
 
     /* Reduced Motion Support - Respect user preferences */

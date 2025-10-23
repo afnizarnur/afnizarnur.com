@@ -29,10 +29,7 @@ interface DraggableWidgetProps {
  * Custom comparison function for React.memo to prevent unnecessary re-renders
  * Only re-render if position, zIndex, or isActive changes
  */
-function arePropsEqual(
-    prevProps: DraggableWidgetProps,
-    nextProps: DraggableWidgetProps
-): boolean {
+function arePropsEqual(prevProps: DraggableWidgetProps, nextProps: DraggableWidgetProps): boolean {
     return (
         prevProps.position.x === nextProps.position.x &&
         prevProps.position.y === nextProps.position.y &&
@@ -142,18 +139,19 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             // Enter or Space to grab/release widget
             if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault()
-                setIsKeyboardGrabbed((prev) => {
-                    const newState = !prev
-                    if (newState) {
-                        onDragStart()
-                    }
-                    return newState
-                })
+                setIsKeyboardGrabbed((prev) => !prev)
+                // Defer the onDragStart call to avoid setState during render
+                if (!isKeyboardGrabbed) {
+                    setTimeout(() => onDragStart(), 0)
+                }
                 return
             }
 
             // Arrow keys to move widget (only when grabbed)
-            if (isKeyboardGrabbed && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)) {
+            if (
+                isKeyboardGrabbed &&
+                ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)
+            ) {
                 event.preventDefault()
 
                 let newX = position.x
@@ -161,16 +159,28 @@ export const DraggableWidget = React.memo(function DraggableWidget({
 
                 switch (event.key) {
                     case "ArrowLeft":
-                        newX = Math.max(dragConstraintsRef.current.left, position.x - KEYBOARD_MOVE_STEP)
+                        newX = Math.max(
+                            dragConstraintsRef.current.left,
+                            position.x - KEYBOARD_MOVE_STEP
+                        )
                         break
                     case "ArrowRight":
-                        newX = Math.min(dragConstraintsRef.current.right, position.x + KEYBOARD_MOVE_STEP)
+                        newX = Math.min(
+                            dragConstraintsRef.current.right,
+                            position.x + KEYBOARD_MOVE_STEP
+                        )
                         break
                     case "ArrowUp":
-                        newY = Math.max(dragConstraintsRef.current.top, position.y - KEYBOARD_MOVE_STEP)
+                        newY = Math.max(
+                            dragConstraintsRef.current.top,
+                            position.y - KEYBOARD_MOVE_STEP
+                        )
                         break
                     case "ArrowDown":
-                        newY = Math.min(dragConstraintsRef.current.bottom, position.y + KEYBOARD_MOVE_STEP)
+                        newY = Math.min(
+                            dragConstraintsRef.current.bottom,
+                            position.y + KEYBOARD_MOVE_STEP
+                        )
                         break
                 }
 

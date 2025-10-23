@@ -1,5 +1,5 @@
 import type { WidgetConfig } from "./types"
-import { SnakeGame } from "./components/widgets/SnakeGame"
+import { SnakeGame, SnakeGameActions } from "./components/widgets/SnakeGame"
 import { AvatarContent, AvatarActions } from "./components/widgets/Avatar"
 
 /**
@@ -73,6 +73,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         height: 250,
         title: "Play Snake Game",
         noPadding: true,
+        customActions: <SnakeGameActions />,
         content: <SnakeGame />,
     },
 ]

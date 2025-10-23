@@ -887,7 +887,7 @@ export default function Page() {
 }
 
 // Only use Client Component when needed
-"use client"
+;("use client")
 export default function InteractiveComponent() {
     // Interactive code here
 }

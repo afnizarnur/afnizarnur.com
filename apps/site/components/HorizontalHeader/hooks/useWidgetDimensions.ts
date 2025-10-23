@@ -41,8 +41,7 @@ export function useWidgetDimensions(configs: WidgetConfig[]): UseWidgetDimension
                 if (widgetElement) {
                     newHeights[config.id] = widgetElement.offsetHeight
                 } else {
-                    newHeights[config.id] =
-                        config.height || config.minHeight || DEFAULT_MIN_HEIGHT
+                    newHeights[config.id] = config.height || config.minHeight || DEFAULT_MIN_HEIGHT
                 }
             })
             setWidgetHeights(newHeights)

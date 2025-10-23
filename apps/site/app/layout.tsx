@@ -24,13 +24,13 @@ export async function generateMetadata(): Promise<Metadata> {
             siteName: siteSettings?.title || "Afnizar Nur Ghifari",
             images: siteSettings?.ogImage
                 ? [
-                    {
-                        url: siteSettings.ogImage,
-                        width: 1200,
-                        height: 630,
-                        alt: siteSettings?.title || "Afnizar Nur Ghifari",
-                    },
-                ]
+                      {
+                          url: siteSettings.ogImage,
+                          width: 1200,
+                          height: 630,
+                          alt: siteSettings?.title || "Afnizar Nur Ghifari",
+                      },
+                  ]
                 : [],
         },
         twitter: {
@@ -90,7 +90,9 @@ export default async function RootLayout({
                     />
                 )}
 
-                <main id="main-content" className="flex-grow">{children}</main>
+                <main id="main-content" className="flex-grow">
+                    {children}
+                </main>
 
                 {/* Live preview components - only active in draft mode */}
                 {isDraftMode && (

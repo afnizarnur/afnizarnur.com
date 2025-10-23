@@ -2,7 +2,7 @@
 
 import React, { useCallback, useRef, useMemo, useSyncExternalStore, useEffect } from "react"
 import { ReactSketchCanvas, type ReactSketchCanvasRef } from "react-sketch-canvas"
-import { PencilSimpleIcon, ClockClockwiseIcon } from "@phosphor-icons/react/dist/ssr"
+import { PencilSimpleIcon, ClockClockwiseIcon, CheckIcon } from "@phosphor-icons/react/dist/ssr"
 import { useDragContext } from "../../contexts/DragContext"
 import { getWidgetStorageKey, parseStorageData, writeStorageData } from "../../utils"
 
@@ -301,17 +301,21 @@ export const AvatarActions = React.memo(
                 <button
                     type="button"
                     onClick={handleToggleDrawMode}
-                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-white hover:text-gray-200 cursor-pointer"
+                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-icon-inverse hover:opacity-50 cursor-pointer"
                     aria-label={drawModeLabel}
                     title={drawModeLabel}
                 >
-                    <PencilSimpleIcon size={24} weight={pencilWeight} />
+                    {isDrawMode ? (
+                        <CheckIcon size={24} />
+                    ) : (
+                        <PencilSimpleIcon size={24} weight={pencilWeight} />
+                    )}
                 </button>
 
                 <button
                     type="button"
                     onClick={handleClear}
-                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-white hover:text-gray-200 cursor-pointer"
+                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-icon-inverse hover:opacity-50 cursor-pointer"
                     aria-label="Clear drawing"
                     title="Clear drawing"
                 >

@@ -4,11 +4,52 @@ import { motion, useReducedMotion } from "framer-motion"
 import React, { useCallback, useRef, useState } from "react"
 
 const lettersAndSymbols = [
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '!', '@', '#', '$', '%', '^', '&', '*', '-', '_', '+', '=', ';', ':', '<', '>', ','
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "!",
+    "@",
+    "#",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "-",
+    "_",
+    "+",
+    "=",
+    ";",
+    ":",
+    "<",
+    ">",
+    ",",
 ]
 
-const defaultColors = ['#22a3a9', '#4ca922', '#a99222', '#1d2619']
+const defaultColors = ["#22a3a9", "#4ca922", "#a99222", "#1d2619"]
 
 type EffectType = "cursor" | "background" | "colorful"
 
@@ -31,12 +72,12 @@ export function TerminalTextEffect({
     onHoverStart,
     onHoverEnd,
     colors = defaultColors,
-    triggerAnimation
+    triggerAnimation,
 }: TerminalTextEffectProps) {
     const [animationKey, setAnimationKey] = useState(0)
     const [isHovered, setIsHovered] = useState(false)
     const isAnimatingRef = useRef(false)
-    const chars = children.split('')
+    const chars = children.split("")
     const prefersReducedMotion = useReducedMotion()
 
     // Get timing based on effect type
@@ -64,11 +105,14 @@ export function TerminalTextEffect({
 
         isAnimatingRef.current = true
         setIsHovered(true)
-        setAnimationKey(prev => prev + 1)
+        setAnimationKey((prev) => prev + 1)
         onHoverStart?.()
 
         const timing = getTimingConfig(effect)
-        const textAnimationDuration = (chars.length * timing.charDelay) + ((timing.repeats + 1) * (timing.duration + timing.repeatDelay)) + 100
+        const textAnimationDuration =
+            chars.length * timing.charDelay +
+            (timing.repeats + 1) * (timing.duration + timing.repeatDelay) +
+            100
         setTimeout(() => {
             isAnimatingRef.current = false
         }, textAnimationDuration)
@@ -92,10 +136,10 @@ export function TerminalTextEffect({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             style={{
-                cursor: 'pointer',
-                fontKerning: 'none',
-                position: 'relative',
-                whiteSpace: 'nowrap'
+                cursor: "pointer",
+                fontKerning: "none",
+                position: "relative",
+                whiteSpace: "nowrap",
             }}
         >
             {chars.map((char, index) => (
@@ -113,23 +157,23 @@ export function TerminalTextEffect({
             {effect === "background" && !prefersReducedMotion && (
                 <motion.span
                     style={{
-                        content: '',
-                        position: 'absolute',
+                        content: "",
+                        position: "absolute",
                         left: 0,
-                        width: '100%',
-                        height: 'calc(100% + 3px)',
+                        width: "100%",
+                        height: "calc(100% + 3px)",
                         top: 0,
-                        backgroundColor: 'white',
-                        mixBlendMode: 'difference',
-                        transformOrigin: '0% 50%',
-                        pointerEvents: 'none'
+                        backgroundColor: "white",
+                        mixBlendMode: "difference",
+                        transformOrigin: "0% 50%",
+                        pointerEvents: "none",
                     }}
                     initial={{ scaleX: 0 }}
                     animate={{
                         scaleX: isHovered ? 1 : 0,
                         transition: isHovered
                             ? { duration: 1, ease: [0.19, 1, 0.22, 1] } // expo ease
-                            : { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } // power4 ease
+                            : { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }, // power4 ease
                     }}
                 />
             )}
@@ -147,7 +191,7 @@ interface CharSpanProps {
 
 function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps) {
     const [displayChar, setDisplayChar] = useState(char)
-    const [currentColor, setCurrentColor] = useState('currentColor')
+    const [currentColor, setCurrentColor] = useState("currentColor")
     const [cursorOpacity, setCursorOpacity] = useState(0)
     const prefersReducedMotion = useReducedMotion()
 
@@ -169,7 +213,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
     React.useEffect(() => {
         if (!shouldAnimate || prefersReducedMotion) {
             setDisplayChar(char)
-            setCurrentColor('currentColor')
+            setCurrentColor("currentColor")
             setCursorOpacity(0)
             return
         }
@@ -187,7 +231,8 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
 
             const animate = () => {
                 // Set random character
-                const randomChar = lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)]
+                const randomChar =
+                    lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)]
                 setDisplayChar(randomChar)
 
                 // Set random color for colorful effect
@@ -210,7 +255,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
                     const restoreDelay = effect === "background" ? 100 : timing.duration
                     setTimeout(() => {
                         setDisplayChar(char)
-                        setCurrentColor('currentColor')
+                        setCurrentColor("currentColor")
                         setCursorOpacity(0)
                     }, restoreDelay)
                 }
@@ -225,23 +270,27 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
     return (
         <motion.span
             style={{
-                position: 'relative',
-                display: 'inline-block',
-                minWidth: char === ' ' ? '0.25em' : 'auto',
+                position: "relative",
+                display: "inline-block",
+                minWidth: char === " " ? "0.25em" : "auto",
                 color: currentColor,
-                transformOrigin: effect === "colorful" ? '50% 0%' : 'center'
+                transformOrigin: effect === "colorful" ? "50% 0%" : "center",
             }}
             initial={{ opacity: 1 }}
-            animate={shouldAnimate ? {
-                opacity: 1,
-                transition: {
-                    duration: getTimingConfig(effect).duration / 1000,
-                    delay: (index + 1) * (getTimingConfig(effect).charDelay / 1000),
-                    repeat: getTimingConfig(effect).repeats,
-                    repeatDelay: getTimingConfig(effect).repeatDelay / 1000,
-                    ease: effect === "colorful" ? 'linear' : 'easeOut'
-                }
-            } : { opacity: 1 }}
+            animate={
+                shouldAnimate
+                    ? {
+                          opacity: 1,
+                          transition: {
+                              duration: getTimingConfig(effect).duration / 1000,
+                              delay: (index + 1) * (getTimingConfig(effect).charDelay / 1000),
+                              repeat: getTimingConfig(effect).repeats,
+                              repeatDelay: getTimingConfig(effect).repeatDelay / 1000,
+                              ease: effect === "colorful" ? "linear" : "easeOut",
+                          },
+                      }
+                    : { opacity: 1 }
+            }
         >
             {displayChar}
 
@@ -249,15 +298,15 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
             {effect === "cursor" && (
                 <span
                     style={{
-                        content: '',
-                        width: '1ch',
+                        content: "",
+                        width: "1ch",
                         top: 0,
                         left: 0,
-                        position: 'absolute',
-                        background: 'currentColor',
-                        height: '100%',
+                        position: "absolute",
+                        background: "currentColor",
+                        height: "100%",
                         opacity: cursorOpacity,
-                        pointerEvents: 'none'
+                        pointerEvents: "none",
                     }}
                 />
             )}

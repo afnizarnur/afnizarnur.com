@@ -334,17 +334,12 @@ export function MobileMenu({
                             return (
                                 <li
                                     key={item.href}
-                                    className="grid border-b border-border-tertiary"
+                                    className="grid border-b border-border-secondary"
                                     style={{ gridTemplateColumns: isEven ? "1fr 20%" : "20% 1fr" }}
                                 >
                                     {/* Striped box - alternates left/right */}
                                     <div
-                                        className={`border-border-tertiary overflow-hidden bg-background-primary ${isEven ? "order-2 border-l" : "order-1 border-r"}`}
-                                        style={{
-                                            backgroundImage:
-                                                "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0px 20px)",
-                                            backgroundRepeat: "repeat-y",
-                                        }}
+                                        className={`border-border-secondary overflow-hidden bg-background-primary diagonal-stripes ${isEven ? "order-2 border-l" : "order-1 border-r"}`}
                                         aria-hidden="true"
                                     />
 

@@ -170,16 +170,16 @@ afnizarnur/
 
 #### **4.3 Infrastructure Components**
 
-| Layer                | Technology                                 | Purpose                                      |
-| :------------------- | :----------------------------------------- | :------------------------------------------- |
-| **Framework**        | Next.js 15 + React 19 + Tailwind CSS v4    | Server Components with ISR and dynamic rendering |
-| **CMS**              | Sanity v4                                  | Structured content management                |
-| **Design tokens**    | Terrazzo                                   | Generate CSS vars + Tailwind theme           |
-| **Styling**          | Tailwind CSS v4                            | Utility-first design with token integration  |
-| **Shared UI**        | React + shadcn                             | Reusable, themeable components               |
-| **Monorepo tooling** | Turborepo + pnpm + Changesets              | Workspace orchestration & versioning         |
-| **Deployment**       | Netlify with ISR support                   | CDN-backed hosting with on-demand revalidation |
-| **CI/CD**            | GitHub Actions                             | Lint/build verification on PRs               |
+| Layer                | Technology                              | Purpose                                          |
+| :------------------- | :-------------------------------------- | :----------------------------------------------- |
+| **Framework**        | Next.js 15 + React 19 + Tailwind CSS v4 | Server Components with ISR and dynamic rendering |
+| **CMS**              | Sanity v4                               | Structured content management                    |
+| **Design tokens**    | Terrazzo                                | Generate CSS vars + Tailwind theme               |
+| **Styling**          | Tailwind CSS v4                         | Utility-first design with token integration      |
+| **Shared UI**        | React + shadcn                          | Reusable, themeable components                   |
+| **Monorepo tooling** | Turborepo + pnpm + Changesets           | Workspace orchestration & versioning             |
+| **Deployment**       | Netlify with ISR support                | CDN-backed hosting with on-demand revalidation   |
+| **CI/CD**            | GitHub Actions                          | Lint/build verification on PRs                   |
 
 #### **4.4 Content Model (Sanity)**
 
