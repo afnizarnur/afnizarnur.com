@@ -154,7 +154,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.50}",
-                            "dark": "{color.primitive.gray.800}"
+                            "dark": "{color.primitive.gray.black}"
                         }
                     }
                 },
@@ -163,7 +163,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.100}",
-                            "dark": "{color.primitive.gray.700}"
+                            "dark": "{color.primitive.gray.800}"
                         }
                     }
                 },
@@ -172,7 +172,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.300}",
-                            "dark": "{color.primitive.gray.600}"
+                            "dark": "{color.primitive.gray.700}"
                         }
                     }
                 },
@@ -190,7 +190,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.100}",
-                            "dark": "{color.primitive.gray.800}"
+                            "dark": "{color.primitive.gray.900}"
                         }
                     }
                 },
@@ -287,7 +287,7 @@
                         "$extensions": {
                             "mode": {
                                 "light": "{color.primitive.yellow.100}",
-                                "dark": "{color.primitive.yellow.900}"
+                                "dark": "{color.primitive.yellow.800}"
                             }
                         }
                     },
@@ -346,7 +346,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.900}",
-                            "dark": "{color.primitive.gray.white}"
+                            "dark": "{color.primitive.gray.100}"
                         }
                     }
                 },
@@ -355,7 +355,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.600}",
-                            "dark": "{color.primitive.gray.400}"
+                            "dark": "{color.primitive.gray.300}"
                         }
                     }
                 },
@@ -364,7 +364,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.500}",
-                            "dark": "{color.primitive.gray.500}"
+                            "dark": "{color.primitive.gray.400}"
                         }
                     }
                 },
@@ -373,7 +373,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.400}",
-                            "dark": "{color.primitive.gray.600}"
+                            "dark": "{color.primitive.gray.500}"
                         }
                     }
                 },
@@ -391,7 +391,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.white}",
-                            "dark": "{color.primitive.gray.900}"
+                            "dark": "{color.primitive.gray.black}"
                         }
                     }
                 },
@@ -502,7 +502,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.900}",
-                            "dark": "{color.primitive.gray.white}"
+                            "dark": "{color.primitive.gray.100}"
                         }
                     }
                 },
@@ -511,7 +511,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.600}",
-                            "dark": "{color.primitive.gray.400}"
+                            "dark": "{color.primitive.gray.300}"
                         }
                     }
                 },
@@ -520,7 +520,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.400}",
-                            "dark": "{color.primitive.gray.600}"
+                            "dark": "{color.primitive.gray.500}"
                         }
                     }
                 },
@@ -529,7 +529,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.300}",
-                            "dark": "{color.primitive.gray.700}"
+                            "dark": "{color.primitive.gray.600}"
                         }
                     }
                 },
@@ -538,7 +538,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.white}",
-                            "dark": "{color.primitive.gray.900}"
+                            "dark": "{color.primitive.gray.black}"
                         }
                     }
                 },
@@ -676,7 +676,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.900}",
-                            "dark": "{color.primitive.gray.white}"
+                            "dark": "{color.primitive.gray.100}"
                         }
                     }
                 },
@@ -685,7 +685,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.200}",
-                            "dark": "{color.primitive.gray.800}"
+                            "dark": "{color.primitive.gray.700}"
                         }
                     }
                 },
@@ -805,7 +805,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.white}",
-                            "dark": "{color.primitive.gray.900}"
+                            "dark": "{color.primitive.gray.black}"
                         }
                     }
                 }
