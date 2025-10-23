@@ -1,13 +1,19 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { X } from "@phosphor-icons/react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import type { NavigationItem } from "@afnizarnur/ui"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { GearSix, GearSixIcon } from "@phosphor-icons/react"
+import { IconButton } from "./IconButton"
+import { TerminalTextEffect } from "./TerminalTextEffect"
 
 interface MobileMenuProps {
     items: NavigationItem[]
+    timezone?: {
+        timeZone?: string
+        displayLabel?: string
+    }
 }
 
 function normalizeHref(href: string): string {
@@ -22,26 +28,135 @@ function isNavItemActive(itemHref: string, path: string): boolean {
     return path === normalizedHref
 }
 
-export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
-    const [isOpen, setIsOpen] = useState(false)
-    const pathname = usePathname()
+function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
+    const now = new Date()
 
+    const baseOptions = {
+        hour: "2-digit" as const,
+        minute: "2-digit" as const,
+        hour12: true,
+    }
+
+    let formatter: Intl.DateTimeFormat
+
+    if (tzConfig?.timeZone) {
+        try {
+            formatter = new Intl.DateTimeFormat("en-US", {
+                ...baseOptions,
+                timeZone: tzConfig.timeZone,
+            })
+        } catch {
+            console.warn(
+                `Invalid timezone "${tzConfig.timeZone}", falling back to browser timezone`
+            )
+            formatter = new Intl.DateTimeFormat("en-US", baseOptions)
+        }
+    } else {
+        formatter = new Intl.DateTimeFormat("en-US", baseOptions)
+    }
+
+    const parts = formatter.formatToParts(now)
+
+    const hourPart = parts.find((p) => p.type === "hour")?.value || "00"
+    const minutePart = parts.find((p) => p.type === "minute")?.value || "00"
+    const periodPart = parts.find((p) => p.type === "dayPeriod")?.value || "AM"
+
+    const displayLabel = tzConfig?.displayLabel || "ID"
+
+    return `${displayLabel} ${hourPart}:${minutePart}_${periodPart}`
+}
+
+function TimeDisplay({
+    timezone,
+}: {
+    timezone?: { timeZone?: string; displayLabel?: string }
+}): JSX.Element {
+    const [timeString, setTimeString] = useState<string>(() => {
+        return getFormattedTime(timezone)
+    })
+
+    useEffect(() => {
+        setTimeString(getFormattedTime(timezone))
+
+        const interval = setInterval(() => {
+            setTimeString(getFormattedTime(timezone))
+        }, 60000)
+
+        return () => clearInterval(interval)
+    }, [timezone])
+
+    return (
+        <time
+            className="text-eyebrow-1 text-text-secondary"
+            dateTime={new Date().toISOString()}
+            suppressHydrationWarning
+        >
+            {timeString}
+        </time>
+    )
+}
+
+export function MobileMenu({ items, timezone }: MobileMenuProps): React.ReactElement {
+    const [isOpen, setIsOpen] = useState(false)
+    const [triggerAnimation, setTriggerAnimation] = useState(0)
+    const pathname = usePathname()
+    const menuPanelRef = useRef<HTMLDivElement>(null)
+    const closeTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
+
+    const closeMenu = useCallback((): void => {
+        setIsOpen(false)
+        closeTimeoutRef.current = setTimeout(() => {
+            const hamburgerBtn = document.getElementById(
+                "hamburger-menu-button"
+            ) as HTMLButtonElement | null
+            hamburgerBtn?.focus()
+        }, 300)
+    }, [])
+
+    const handleToggle = useCallback((): void => {
+        setIsOpen((prev) => !prev)
+    }, [])
+
+    // Handle menu toggle - only run once on mount
     useEffect(() => {
         const hamburgerBtn = document.getElementById("hamburger-menu-button")
 
-        const handleOpen = (): void => {
-            setIsOpen(true)
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener("click", handleToggle)
         }
 
-        if (hamburgerBtn) {
-            hamburgerBtn.addEventListener("click", handleOpen)
-            return () => hamburgerBtn.removeEventListener("click", handleOpen)
+        return () => {
+            if (hamburgerBtn) {
+                hamburgerBtn.removeEventListener("click", handleToggle)
+            }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // Handle menu state changes
     useEffect(() => {
+        const hamburgerBtn = document.getElementById("hamburger-menu-button")
+
+        if (hamburgerBtn) {
+            hamburgerBtn.setAttribute("aria-expanded", String(isOpen))
+            hamburgerBtn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu")
+            hamburgerBtn.setAttribute("data-menu-open", String(isOpen))
+        }
+
         if (isOpen) {
+            // Prevent body scroll
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
             document.body.style.overflow = "hidden"
+            document.body.style.paddingRight = `${scrollbarWidth}px`
+
+            // Trigger animation when menu opens
+            setTriggerAnimation(prev => prev + 1)
+
+            // Focus trap - focus first focusable element
+            const firstFocusable = menuPanelRef.current?.querySelector<HTMLElement>(
+                'a[href], button:not([disabled])'
+            )
+            firstFocusable?.focus()
 
             const handleEscape = (e: KeyboardEvent): void => {
                 if (e.key === "Escape") {
@@ -53,75 +168,93 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
             document.addEventListener("keydown", handleEscape)
             return () => {
                 document.body.style.overflow = ""
+                document.body.style.paddingRight = ""
                 document.removeEventListener("keydown", handleEscape)
             }
         }
-    }, [isOpen])
+    }, [isOpen, closeMenu])
 
-    const closeMenu = (): void => {
-        setIsOpen(false)
-        setTimeout(() => {
-            const hamburgerBtn = document.getElementById(
-                "hamburger-menu-button"
-            ) as HTMLButtonElement | null
-            hamburgerBtn?.focus()
-        }, 300)
-    }
+    // Close menu on route change - use ref to track previous pathname
+    const prevPathnameRef = useRef(pathname)
+
+    useEffect(() => {
+        if (prevPathnameRef.current !== pathname && isOpen) {
+            closeMenu()
+        }
+        prevPathnameRef.current = pathname
+    }, [pathname, isOpen, closeMenu])
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (closeTimeoutRef.current) {
+                clearTimeout(closeTimeoutRef.current)
+            }
+        }
+    }, [])
 
     return (
         <div
             id="mobile-menu-overlay"
-            className={`fixed inset-0 z-50 lg:hidden ${!isOpen ? "hidden" : ""}`}
+            className={`fixed inset-0 z-50 lg:hidden ${!isOpen ? "pointer-events-none" : ""}`}
             role="dialog"
             aria-modal="true"
-            aria-label="Navigation menu"
+            aria-labelledby="mobile-menu-title"
             aria-hidden={!isOpen}
+            style={{
+                top: "var(--navbar-height, 66px)",
+                visibility: isOpen ? "visible" : "hidden",
+            }}
         >
             {/* Backdrop */}
             <div
                 onClick={closeMenu}
-                className={`absolute inset-0 bg-background-inverse/70 backdrop-blur-sm transition-opacity duration-300 ease-out ${
-                    isOpen ? "opacity-100" : "opacity-0"
-                }`}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault()
+                        closeMenu()
+                    }
+                }}
+                className={`absolute inset-0 bg-background-inverse/70 backdrop-blur-sm transition-opacity duration-300 ease-out ${isOpen ? "opacity-100" : "opacity-0"}`}
                 aria-hidden="true"
+                role="button"
+                tabIndex={-1}
             />
 
             {/* Menu Panel */}
             <div
-                className={`fixed inset-0 w-screen h-screen bg-background-primary overflow-y-auto transform transition-transform duration-300 ease-out ${
-                    isOpen ? "translate-y-0" : "translate-y-full"
-                } shadow-lg`}
+                ref={menuPanelRef}
+                className={`fixed left-0 right-0 bottom-0 w-screen bg-background-primary flex flex-col transform transition-transform duration-300 ease-out ${isOpen ? "translate-y-0" : "translate-y-full"} shadow-lg`}
                 role="navigation"
                 aria-label="Primary navigation"
                 style={{
+                    top: "var(--navbar-height, 66px)",
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                 }}
             >
-                {/* Header with Close Button */}
-                <div className="sticky top-0 flex items-center justify-between px-spacing-24 py-spacing-20 bg-background-primary border-b-[2px] border-border-tertiary z-10">
-                    <span className="text-body-2-semibold text-text-primary">Navigation</span>
-                    <button
-                        onClick={closeMenu}
-                        className="group w-size-40 h-size-40 p-size-8 flex items-center justify-center text-icon-secondary hover:text-icon-primary hover:bg-background-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-icon-primary active:text-icon-primary transition-all duration-150 rounded-radius-8"
-                        aria-label="Close navigation menu"
-                        type="button"
-                    >
-                        <X size={24} color="currentColor" />
-                    </button>
-                </div>
-
+                {/* Hidden title for screen readers */}
+                <h2 id="mobile-menu-title" className="sr-only">
+                    Navigation menu
+                </h2>
                 {/* Navigation Links */}
-                <nav className="px-spacing-24 py-spacing-24" aria-label="Main menu items">
-                    <ul className="flex flex-col gap-spacing-8 list-none p-0 m-0">
-                        {items.map((item) => {
+                <nav aria-label="Main menu items" className="flex-1 overflow-y-auto">
+                    <ul className="flex flex-col list-none p-0 m-0">
+                        {items.map((item, index) => {
                             const href = normalizeHref(item.href)
                             const isActive = isNavItemActive(item.href, pathname)
                             const isExternal = item.newTab || href.startsWith("http")
+                            const isEven = index % 2 === 0
 
                             const linkContent = (
                                 <>
-                                    <span>{item.title}</span>
+                                    <TerminalTextEffect
+                                        className="text-heading-1"
+                                        effect="cursor"
+                                        triggerAnimation={triggerAnimation}
+                                    >
+                                        {item.title}
+                                    </TerminalTextEffect>
                                     {item.newTab && (
                                         <span
                                             className="text-icon-tertiary group-hover:text-icon-secondary transition-colors duration-150 text-xs"
@@ -134,43 +267,59 @@ export function MobileMenu({ items }: MobileMenuProps): JSX.Element {
                                 </>
                             )
 
-                            const linkClassName = `group flex items-center justify-between px-spacing-20 py-spacing-16 text-body-2-regular rounded-radius-12 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-primary ${
-                                isActive
-                                    ? "bg-background-accent-primary text-text-primary font-semibold shadow-sm"
-                                    : "text-text-secondary bg-background-secondary/50 hover:bg-background-secondary hover:text-text-primary active:bg-background-secondary active:text-text-primary"
-                            }`
+                            const linkClassName = `group p-24 flex items-center justify-start transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary bg-background-primary ${isActive
+                                ? "text-text-primary"
+                                : "text-text-secondary hover:text-text-primary active:text-text-primary"
+                                }`
 
                             return (
-                                <li key={item.href}>
-                                    {isExternal ? (
-                                        <a
-                                            href={href}
-                                            target={item.newTab ? "_blank" : undefined}
-                                            rel={item.newTab ? "noopener noreferrer" : undefined}
-                                            className={linkClassName}
-                                            aria-current={isActive ? "page" : undefined}
-                                            onClick={!item.newTab ? closeMenu : undefined}
-                                        >
-                                            {linkContent}
-                                        </a>
-                                    ) : (
-                                        <Link
-                                            href={href}
-                                            className={linkClassName}
-                                            aria-current={isActive ? "page" : undefined}
-                                            onClick={closeMenu}
-                                        >
-                                            {linkContent}
-                                        </Link>
-                                    )}
+                                <li key={item.href} className="grid border-b border-border-tertiary" style={{ gridTemplateColumns: isEven ? "1fr 20%" : "20% 1fr" }}>
+                                    {/* Striped box - alternates left/right */}
+                                    <div
+                                        className={`border-border-tertiary overflow-hidden bg-background-primary ${isEven ? "order-2 border-l" : "order-1 border-r"}`}
+                                        style={{
+                                            backgroundImage:
+                                                "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0px 20px)",
+                                            backgroundRepeat: "repeat-y",
+                                        }}
+                                        aria-hidden="true"
+                                    />
+
+                                    {/* Menu content */}
+                                    <div className={isEven ? "order-1" : "order-2"}>
+                                        {isExternal ? (
+                                            <a
+                                                href={href}
+                                                target={item.newTab ? "_blank" : undefined}
+                                                rel={item.newTab ? "noopener noreferrer" : undefined}
+                                                className={linkClassName}
+                                                aria-current={isActive ? "page" : undefined}
+                                                onClick={!item.newTab ? closeMenu : undefined}
+                                            >
+                                                {linkContent}
+                                            </a>
+                                        ) : (
+                                            <Link
+                                                href={href}
+                                                className={linkClassName}
+                                                aria-current={isActive ? "page" : undefined}
+                                                onClick={closeMenu}
+                                            >
+                                                {linkContent}
+                                            </Link>
+                                        )}
+                                    </div>
                                 </li>
                             )
                         })}
                     </ul>
                 </nav>
 
-                {/* Bottom Spacing */}
-                <div className="h-spacing-24" />
+                {/* Bottom Section with Time and Settings */}
+                <div className="p-24 flex items-center justify-between bg-background-primary flex-shrink-0">
+                    <TimeDisplay timezone={timezone} />
+                    <IconButton icon={GearSixIcon} ariaLabel="Open settings" size={24} />
+                </div>
             </div>
         </div>
     )

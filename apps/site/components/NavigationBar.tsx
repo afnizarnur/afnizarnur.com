@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import type { NavigationItem } from "@afnizarnur/ui"
-import { GearSix, List } from "@phosphor-icons/react"
+import { GearSix, List, X } from "@phosphor-icons/react"
 import { IconButton } from "./IconButton"
 import { MobileMenu } from "./MobileMenu"
 import { ThemeToggle } from "./ThemeToggle"
@@ -123,10 +123,30 @@ export function NavigationBar({
     _hoverEffect = "cursor",
 }: Omit<NavigationBarProps, "currentPath">): JSX.Element {
     const pathname = usePathname()
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    useEffect(() => {
+        const hamburgerBtn = document.getElementById("hamburger-menu-button")
+        
+        if (hamburgerBtn) {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === "attributes" && mutation.attributeName === "data-menu-open") {
+                        const isOpen = hamburgerBtn.getAttribute("data-menu-open") === "true"
+                        setIsMenuOpen(isOpen)
+                    }
+                })
+            })
+
+            observer.observe(hamburgerBtn, { attributes: true })
+
+            return () => observer.disconnect()
+        }
+    }, [])
 
     return (
         <>
-            <MobileMenu items={items} />
+            <MobileMenu items={items} timezone={timezone} />
 
             <nav
                 className="sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary bg-background-secondary"
@@ -233,8 +253,13 @@ export function NavigationBar({
                             aria-expanded="false"
                             aria-controls="mobile-menu-overlay"
                             type="button"
+                            data-menu-open="false"
                         >
-                            <List size={24} color="currentColor" />
+                            {isMenuOpen ? (
+                                <X size={24} color="currentColor" />
+                            ) : (
+                                <List size={24} color="currentColor" />
+                            )}
                         </button>
                     </div>
                 </div>
