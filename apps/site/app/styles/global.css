@@ -115,7 +115,7 @@
         .text-heading-1 {
             font-size: var(--fontSize-heading-2);
         }
-    }  
+    }
 
     .text-heading-2 {
         font-family: var(--fontFamily-fonetika);
@@ -129,7 +129,7 @@
         .text-heading-2 {
             font-size: var(--fontSize-heading-3);
         }
-    }  
+    }
 
     .text-heading-3 {
         font-family: var(--fontFamily-fonetika);
@@ -170,8 +170,9 @@
     /* Focus Ring Utilities - Standardized focus states for accessibility */
     .focus-ring {
         outline: none;
-        box-shadow: 0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
-                    0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
+        box-shadow:
+            0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
+            0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
     }
 
     .focus-ring-inset {
@@ -182,8 +183,9 @@
     /* Apply focus ring on focus-visible (keyboard navigation only) */
     *:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
-                    0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
+        box-shadow:
+            0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
+            0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
     }
 
     .scrollbar-hide {

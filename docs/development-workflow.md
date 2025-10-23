@@ -250,7 +250,7 @@ apps/site/components/
 // apps/site/app/contact/page.tsx
 export const metadata = {
     title: "Contact",
-    description: "Get in touch with me"
+    description: "Get in touch with me",
 }
 
 export default function ContactPage() {

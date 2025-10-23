@@ -63,18 +63,15 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
     return (
         <div className="flex flex-col">
             {/* Screen reader announcements */}
-            <div
-                role="status"
-                aria-live="polite"
-                aria-atomic="true"
-                className="sr-only"
-            >
+            <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
                 {announcement}
             </div>
 
             {/* Instructions for screen readers */}
             <div id="widget-instructions" className="sr-only">
-                Interactive widgets. Use Tab to navigate between widgets. Use arrow keys to reposition widgets when focused. Press Enter or Space to grab a widget, then use arrow keys to move it, and press Enter or Space again to release.
+                Interactive widgets. Use Tab to navigate between widgets. Use arrow keys to
+                reposition widgets when focused. Press Enter or Space to grab a widget, then use
+                arrow keys to move it, and press Enter or Space again to release.
             </div>
 
             <div

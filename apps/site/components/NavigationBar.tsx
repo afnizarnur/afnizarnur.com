@@ -127,11 +127,14 @@ export function NavigationBar({
 
     useEffect(() => {
         const hamburgerBtn = document.getElementById("hamburger-menu-button")
-        
+
         if (hamburgerBtn) {
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
-                    if (mutation.type === "attributes" && mutation.attributeName === "data-menu-open") {
+                    if (
+                        mutation.type === "attributes" &&
+                        mutation.attributeName === "data-menu-open"
+                    ) {
                         const isOpen = hamburgerBtn.getAttribute("data-menu-open") === "true"
                         setIsMenuOpen(isOpen)
                     }

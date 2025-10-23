@@ -1,6 +1,14 @@
 "use client"
 
-import React, { useEffect, useRef, useState, useCallback } from "react"
+import React, {
+    useEffect,
+    useRef,
+    useState,
+    useCallback,
+    useMemo,
+    useSyncExternalStore,
+} from "react"
+import { PlayIcon, PauseIcon } from "@phosphor-icons/react/dist/ssr"
 
 interface Position {
     x: number
@@ -9,6 +17,10 @@ interface Position {
 
 type Direction = "up" | "down" | "left" | "right"
 type GameState = "menu" | "playing" | "paused" | "gameOver"
+
+interface SnakeGameStateData {
+    gameState: GameState
+}
 
 const WIDTH = 40
 const HEIGHT = 4
@@ -21,7 +33,63 @@ const INITIAL_DIRECTION: Direction = "right"
 const BASE_SPEED = 250
 const LEVEL_UP = 25
 
+// Global state manager for snake game (singleton pattern)
+class SnakeGameStateManager {
+    private static instance: SnakeGameStateManager | null = null
+    private state: SnakeGameStateData = { gameState: "menu" }
+    private listeners = new Set<() => void>()
+    private resetCallback: (() => void) | null = null
+
+    static getInstance(): SnakeGameStateManager {
+        if (!this.instance) {
+            this.instance = new SnakeGameStateManager()
+        }
+        return this.instance
+    }
+
+    subscribe = (listener: () => void): (() => void) => {
+        this.listeners.add(listener)
+        return () => this.listeners.delete(listener)
+    }
+
+    getSnapshot = (): SnakeGameStateData => {
+        return this.state
+    }
+
+    private notify(): void {
+        this.listeners.forEach((listener) => listener())
+    }
+
+    setGameState(value: GameState): void {
+        if (this.state.gameState !== value) {
+            this.state = { ...this.state, gameState: value }
+            this.notify()
+        }
+    }
+
+    setResetCallback(callback: () => void): void {
+        this.resetCallback = callback
+    }
+
+    performReset(): void {
+        if (this.resetCallback) {
+            this.resetCallback()
+        }
+    }
+}
+
+function useSnakeGameState() {
+    const stateManager = useMemo(() => SnakeGameStateManager.getInstance(), [])
+    const state = useSyncExternalStore(
+        stateManager.subscribe,
+        stateManager.getSnapshot,
+        stateManager.getSnapshot
+    )
+    return { state, stateManager }
+}
+
 export function SnakeGame(): React.ReactElement {
+    const { stateManager } = useSnakeGameState()
     const [snake, setSnake] = useState<Position[]>(INITIAL_SNAKE)
     const [food, setFood] = useState<Position>({ x: 20, y: 2 })
     const [score, setScore] = useState<number>(0)
@@ -33,6 +101,29 @@ export function SnakeGame(): React.ReactElement {
     const directionRef = useRef<Direction>(INITIAL_DIRECTION)
     const directionQueueRef = useRef<Direction[]>([])
     const gameLoopRef = useRef<NodeJS.Timeout | null>(null)
+    const lastSyncedStateRef = useRef<GameState>("menu")
+
+    // Sync internal state with external state manager (one-way, game logic -> actions)
+    useEffect(() => {
+        // Only update external state if it's different from what we last synced
+        if (lastSyncedStateRef.current !== gameState) {
+            lastSyncedStateRef.current = gameState
+            stateManager.setGameState(gameState)
+        }
+    }, [gameState, stateManager])
+
+    // Listen to external state changes from action buttons (actions -> game logic)
+    useEffect(() => {
+        const unsubscribe = stateManager.subscribe(() => {
+            const externalGameState = stateManager.getSnapshot().gameState
+            // Only update if it's actually different to avoid circular updates
+            if (lastSyncedStateRef.current !== externalGameState) {
+                lastSyncedStateRef.current = externalGameState
+                setGameState(externalGameState)
+            }
+        })
+        return unsubscribe
+    }, [stateManager])
 
     // Generate random food position
     const generateFood = useCallback((currentSnake: Position[]): Position => {
@@ -58,6 +149,11 @@ export function SnakeGame(): React.ReactElement {
         setIncPoints(1)
         setGameState("menu")
     }, [generateFood])
+
+    // Register reset callback with state manager
+    useEffect(() => {
+        stateManager.setResetCallback(resetGame)
+    }, [resetGame, stateManager])
 
     // Start game
     const startGame = useCallback((): void => {
@@ -267,25 +363,11 @@ export function SnakeGame(): React.ReactElement {
         const topBorder = "+" + "-".repeat(WIDTH) + "+"
         const bottomBorder = "+" + "-".repeat(WIDTH) + "+"
 
-        // Get button text for bottom
-        let buttonText = ""
-        if (gameState === "menu") {
-            buttonText = "[SPACE] Start"
-        } else if (gameState === "playing") {
-            buttonText = "[SPACE] Pause"
-        } else if (gameState === "paused") {
-            buttonText = "[SPACE] Resume"
-        } else if (gameState === "gameOver") {
-            buttonText = "[SPACE] Restart"
-        }
-
-        // Combine status and button on one line with padding
+        // Create status line with padding
         const padding = "  "
         const statusText = `Score:${score.toString().padStart(2, " ")} | Level:${level.toString().padStart(2, " ")}`
-        const combinedLength = statusText.length + buttonText.length + padding.length * 2
-        const spaceBetween = Math.max(1, WIDTH - combinedLength)
-        const headerLine =
-            "|" + padding + statusText + " ".repeat(spaceBetween) + buttonText + padding + "|"
+        const spaceBetween = Math.max(1, WIDTH - statusText.length - padding.length * 2)
+        const headerLine = "|" + padding + statusText + " ".repeat(spaceBetween) + padding + "|"
         const headerBorder = "+" + "-".repeat(WIDTH) + "+"
 
         return [
@@ -295,20 +377,89 @@ export function SnakeGame(): React.ReactElement {
             ...lines.map((line) => "|" + line + "|"),
             bottomBorder,
         ].join("\n")
-    }, [snake, food, score, level, gameState])
+    }, [snake, food, score, level])
 
     return (
-        <div className="flex flex-col items-center justify-between w-full h-full overflow-hidden gap-2 p-2">
-            <pre
-                className="font-mono text-text-primary m-0 select-none flex-1 w-full flex items-center justify-center overflow-hidden"
-                style={{
-                    fontSize: "16px",
-                    lineHeight: "1.4",
-                    whiteSpace: "pre",
-                }}
-            >
-                {renderBoard()}
-            </pre>
-        </div>
+        <pre
+            className="font-mono text-text-primary m-0 select-none w-full flex items-center justify-center overflow-hidden"
+            style={{
+                fontSize: "16px",
+                lineHeight: "1.4",
+                whiteSpace: "pre",
+            }}
+        >
+            {renderBoard()}
+        </pre>
     )
+}
+
+// Actions component (rendered in widget header)
+export const SnakeGameActions = React.memo(function SnakeGameActions(): React.ReactElement {
+    const { state } = useSnakeGameState()
+    const { startGame, pauseGame, resetGame } = useSnakeGameHandlers()
+
+    const playLabel = useMemo(() => {
+        if (state.gameState === "menu") return "Start game"
+        if (state.gameState === "gameOver") return "Restart game"
+        return "Resume game"
+    }, [state.gameState])
+
+    const pauseLabel = useMemo(() => "Pause game", [])
+
+    return (
+        <>
+            {state.gameState !== "playing" && (
+                <button
+                    type="button"
+                    onClick={() => {
+                        if (state.gameState === "gameOver") {
+                            resetGame()
+                        }
+                        startGame()
+                    }}
+                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-icon-tertiary hover:opacity-50 cursor-pointer"
+                    aria-label={playLabel}
+                    title={playLabel}
+                >
+                    <PlayIcon size={20} />
+                </button>
+            )}
+            {state.gameState === "playing" && (
+                <button
+                    type="button"
+                    onClick={pauseGame}
+                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-icon-tertiary hover:opacity-50 cursor-pointer"
+                    aria-label={pauseLabel}
+                    title={pauseLabel}
+                >
+                    <PauseIcon size={20} />
+                </button>
+            )}
+        </>
+    )
+})
+
+// Hook to handle game actions
+function useSnakeGameHandlers() {
+    const stateManager = useMemo(() => SnakeGameStateManager.getInstance(), [])
+
+    const startGame = useCallback(() => {
+        const currentState = stateManager.getSnapshot()
+        if (currentState.gameState === "gameOver") {
+            stateManager.performReset()
+        }
+        stateManager.setGameState("playing")
+    }, [stateManager])
+
+    const pauseGame = useCallback(() => {
+        const currentState = stateManager.getSnapshot()
+        stateManager.setGameState(currentState.gameState === "playing" ? "paused" : "playing")
+    }, [stateManager])
+
+    const resetGame = useCallback(() => {
+        stateManager.performReset()
+        stateManager.setGameState("menu")
+    }, [stateManager])
+
+    return { startGame, pauseGame, resetGame }
 }

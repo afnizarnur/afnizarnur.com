@@ -3,12 +3,12 @@ import { useEffect, useState } from "react"
 /**
  * Hook to detect user's reduced motion preference
  * Respects the prefers-reduced-motion media query
- * 
+ *
  * @deprecated Prefer using Framer Motion's built-in `useReducedMotion` hook instead:
  * ```typescript
  * import { useReducedMotion } from "framer-motion"
  * ```
- * 
+ *
  * This custom hook is kept for reference and non-Framer Motion use cases.
  */
 export function useReducedMotion(): boolean {

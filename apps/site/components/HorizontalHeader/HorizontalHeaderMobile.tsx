@@ -14,7 +14,7 @@ export function HorizontalHeaderMobile(): React.ReactElement {
 
     return (
         <div className="flex flex-col bg-background-primary">
-            <div 
+            <div
                 className="relative bg-background-secondary"
                 role="region"
                 aria-label="Content widgets"
@@ -59,10 +59,7 @@ export function HorizontalHeaderMobile(): React.ReactElement {
                     <div className="h-32" />
                 </div>
             </div>
-            <div 
-                className="bg-background-primary px-6"
-                aria-hidden="true"
-            >
+            <div className="bg-background-primary px-6" aria-hidden="true">
                 <FooterSegment
                     label="Current Location"
                     width="100%"

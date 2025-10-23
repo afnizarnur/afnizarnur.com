@@ -29,9 +29,7 @@ export const FooterSegment = React.memo(function FooterSegment({
         <div className={containerClassName} style={{ width: resolvedWidth }}>
             <div className={contentClassName}>
                 {/* Triangle pointer */}
-                <div
-                    className="absolute -top-2.5 transition-all duration-200 z-10 left-10 xl:left-24 lg:left-0 md:left-24 "
-                >
+                <div className="absolute -top-2.5 transition-all duration-200 z-10 left-10 xl:left-24 lg:left-0 md:left-24 ">
                     <div
                         className="w-0 h-0"
                         style={{

@@ -305,7 +305,11 @@ export const AvatarActions = React.memo(
                     aria-label={drawModeLabel}
                     title={drawModeLabel}
                 >
-                    {isDrawMode ? <CheckIcon size={24} /> : <PencilSimpleIcon size={24} weight={pencilWeight} />}
+                    {isDrawMode ? (
+                        <CheckIcon size={24} />
+                    ) : (
+                        <PencilSimpleIcon size={24} weight={pencilWeight} />
+                    )}
                 </button>
 
                 <button
