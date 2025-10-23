@@ -33,6 +33,14 @@ const INITIAL_DIRECTION: Direction = "right"
 const BASE_SPEED = 250
 const LEVEL_UP = 25
 
+// Direction opposites (memoized)
+const OPPOSITE_DIRECTIONS: Record<Direction, Direction> = {
+    up: "down",
+    down: "up",
+    left: "right",
+    right: "left",
+}
+
 // Global state manager for snake game (singleton pattern)
 class SnakeGameStateManager {
     private static instance: SnakeGameStateManager | null = null
@@ -125,15 +133,20 @@ export function SnakeGame(): React.ReactElement {
         return unsubscribe
     }, [stateManager])
 
-    // Generate random food position
+    // Generate random food position with Set-based collision check
     const generateFood = useCallback((currentSnake: Position[]): Position => {
+        // Create set for O(1) lookup instead of O(n) array search
+        const snakePositions = new Set<string>(
+            currentSnake.map((segment) => `${segment.x},${segment.y}`)
+        )
+
         let newFood: Position
         do {
             newFood = {
                 x: Math.floor(Math.random() * WIDTH),
                 y: Math.floor(Math.random() * HEIGHT),
             }
-        } while (currentSnake.some((segment) => segment.x === newFood.x && segment.y === newFood.y))
+        } while (snakePositions.has(`${newFood.x},${newFood.y}`))
         return newFood
     }, [])
 
@@ -170,24 +183,17 @@ export function SnakeGame(): React.ReactElement {
 
     // Handle direction change
     const emitDirection = useCallback((dir: Direction): void => {
-        const opposite: Record<Direction, Direction> = {
-            up: "down",
-            down: "up",
-            left: "right",
-            right: "left",
-        }
-
         const lastDir =
             directionQueueRef.current.length > 0
                 ? directionQueueRef.current[directionQueueRef.current.length - 1]
                 : directionRef.current
 
-        if (opposite[lastDir] !== dir) {
+        if (OPPOSITE_DIRECTIONS[lastDir] !== dir) {
             directionQueueRef.current.push(dir)
         }
     }, [])
 
-    // Move snake
+    // Move snake - use refs to avoid dependency issues
     const moveSnake = useCallback((): void => {
         // Process queued direction
         if (directionQueueRef.current.length > 0) {
@@ -219,8 +225,11 @@ export function SnakeGame(): React.ReactElement {
                 return prevSnake
             }
 
-            // Check self collision
-            if (prevSnake.some((segment) => segment.x === newHead.x && segment.y === newHead.y)) {
+            // Check self collision using Set for O(1) lookup
+            const snakeSet = new Set<string>(
+                prevSnake.map((segment) => `${segment.x},${segment.y}`)
+            )
+            if (snakeSet.has(`${newHead.x},${newHead.y}`)) {
                 setGameState("gameOver")
                 return prevSnake
             }
@@ -328,65 +337,73 @@ export function SnakeGame(): React.ReactElement {
         }
     }, [gameState, speed, moveSnake])
 
+    // Pre-compute static borders (never changes)
+    const borders = useMemo(() => {
+        const border = "+" + "-".repeat(WIDTH) + "+"
+        return { border, verticalBorder: "|" }
+    }, [])
+
     // Render ASCII game board
     const renderBoard = useCallback((): string => {
-        // Create empty matrix
-        const matrix: number[][] = []
-        for (let y = 0; y < HEIGHT; y++) {
-            matrix.push(new Array(WIDTH).fill(0))
-        }
+        // Use a single flat string representation for faster rendering
+        let board = borders.border + "\n"
 
-        // Place snake (1 for body)
-        snake.forEach((segment) => {
-            if (segment.y >= 0 && segment.y < HEIGHT && segment.x >= 0 && segment.x < WIDTH) {
-                matrix[segment.y][segment.x] = 1
-            }
-        })
-
-        // Place food (2 for food)
-        if (food.y >= 0 && food.y < HEIGHT && food.x >= 0 && food.x < WIDTH) {
-            matrix[food.y][food.x] = 2
-        }
-
-        // Convert to ASCII
-        const lines = matrix.map((row) =>
-            row
-                .map((cell) => {
-                    if (cell === 2) return "@"
-                    if (cell === 1) return "#"
-                    return " "
-                })
-                .join("")
-        )
-
-        // Add border
-        const topBorder = "+" + "-".repeat(WIDTH) + "+"
-        const bottomBorder = "+" + "-".repeat(WIDTH) + "+"
-
-        // Create status line with padding
+        // Add header with score and controls hint
         const padding = "  "
         const statusText = `Score:${score.toString().padStart(2, " ")} | Level:${level.toString().padStart(2, " ")}`
-        const spaceBetween = Math.max(1, WIDTH - statusText.length - padding.length * 2)
-        const headerLine = "|" + padding + statusText + " ".repeat(spaceBetween) + padding + "|"
-        const headerBorder = "+" + "-".repeat(WIDTH) + "+"
+        const controlsHint = "Use Arrow"
+        const totalContentLength = statusText.length + controlsHint.length + padding.length * 3
+        const spaceBetween = Math.max(1, WIDTH - totalContentLength)
 
-        return [
-            topBorder,
-            headerLine,
-            headerBorder,
-            ...lines.map((line) => "|" + line + "|"),
-            bottomBorder,
-        ].join("\n")
-    }, [snake, food, score, level])
+        board +=
+            borders.verticalBorder +
+            padding +
+            statusText +
+            " ".repeat(spaceBetween) +
+            controlsHint +
+            padding +
+            padding +
+            borders.verticalBorder +
+            "\n"
+        board += borders.border + "\n"
+
+        // Create set for snake positions (O(1) lookup instead of O(n))
+        const snakePositions = new Set<string>(snake.map((segment) => `${segment.x},${segment.y}`))
+
+        // Render game area line by line
+        for (let y = 0; y < HEIGHT; y++) {
+            let line = borders.verticalBorder
+            for (let x = 0; x < WIDTH; x++) {
+                if (snakePositions.has(`${x},${y}`)) {
+                    line += "#"
+                } else if (food.x === x && food.y === y) {
+                    line += "@"
+                } else {
+                    line += " "
+                }
+            }
+            line += borders.verticalBorder
+            board += line + "\n"
+        }
+
+        board += borders.border
+        return board
+    }, [snake, food, score, level, borders])
+
+    // Memoize style to prevent unnecessary re-renders
+    const preStyle = useMemo(
+        () => ({
+            fontSize: "16px",
+            lineHeight: "1.4",
+            whiteSpace: "pre" as const,
+        }),
+        []
+    )
 
     return (
         <pre
             className="font-mono text-text-primary m-0 select-none w-full flex items-center justify-center overflow-hidden"
-            style={{
-                fontSize: "16px",
-                lineHeight: "1.4",
-                whiteSpace: "pre",
-            }}
+            style={preStyle}
         >
             {renderBoard()}
         </pre>
