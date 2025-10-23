@@ -118,7 +118,7 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
                 </div>
 
                 {/* Footer section */}
-                <div 
+                <div
                     className="bg-background-primary grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]"
                     aria-hidden="true"
                 >

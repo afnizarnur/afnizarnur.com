@@ -1,5 +1,6 @@
 import type { WidgetConfig } from "./types"
-import { SnakeGame } from "./components/SnakeGame"
+import { SnakeGame } from "./components/widgets/SnakeGame"
+import { AvatarContent, AvatarActions } from "./components/widgets/Avatar"
 
 /**
  * Widget configurations with default positions and content
@@ -44,7 +45,9 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
             src: "/avatar.png",
             alt: "Afnizar's avatar",
         },
-        content: <div />,
+        noPadding: true,
+        customActions: <AvatarActions widgetId="avatar" />,
+        content: <AvatarContent widgetId="avatar" />,
     },
     {
         id: "work",

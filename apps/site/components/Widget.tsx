@@ -19,6 +19,7 @@ export interface WidgetProps {
     }
     noPadding?: boolean
     triggerTitleAnimation?: number
+    customActions?: React.ReactNode
     children: React.ReactNode
 }
 
@@ -61,6 +62,7 @@ export function Widget({
     imageProps,
     noPadding = false,
     triggerTitleAnimation,
+    customActions,
     children,
 }: WidgetProps): React.ReactElement {
     const hasBackgroundImage = !!backgroundImage || !!imageProps
@@ -71,8 +73,8 @@ export function Widget({
         typeof height === "number"
             ? height
             : height === "auto"
-              ? undefined
-              : parseInt(height as string)
+                ? undefined
+                : parseInt(height as string)
 
     return (
         <article
@@ -91,7 +93,8 @@ export function Widget({
                     alt={imageProps.alt}
                     fill
                     priority
-                    className="object-cover pointer-events-none"
+                    draggable={false}
+                    className="object-cover pointer-events-none select-none"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             )}
@@ -108,12 +111,11 @@ export function Widget({
                 />
             )}
 
-            {/* Widget Header - Only render if there's a title or close button */}
-            {(title || showClose) && (
+            {/* Widget Header - Only render if there's a title, close button, or custom actions */}
+            {(title || showClose || customActions) && (
                 <div
-                    className={`self-stretch inline-flex justify-start items-center gap-1 relative z-10 ${
-                        hasBackgroundImage ? "px-16 py-12" : "pl-24 md:pl-32 pr-24 py-16"
-                    }`}
+                    className={`self-stretch inline-flex justify-start items-center gap-1 relative z-10 ${hasBackgroundImage ? "pr-20 pl-32 py-16" : "pl-24 md:pl-32 pr-24 py-16"
+                        }`}
                 >
                     {title && (
                         <div className="flex-1 opacity-50 justify-start text-text-primary text-eyebrow-1 uppercase">
@@ -126,15 +128,19 @@ export function Widget({
                         </div>
                     )}
                     {!title && <div className="flex-1" />}
+                    {customActions && (
+                        <div className="flex items-center gap-16">
+                            {customActions}
+                        </div>
+                    )}
                     {showClose && (
                         <button
                             type="button"
                             onClick={onClose}
-                            className={`w-5 h-5 relative overflow-hidden flex items-center justify-center transition-colors rounded ${
-                                hasBackgroundImage || isDark
+                            className={`w-5 h-5 relative overflow-hidden flex items-center justify-center transition-colors rounded ${hasBackgroundImage || isDark
                                     ? "text-white hover:text-gray-200"
                                     : "text-icon-tertiary hover:text-icon-secondary"
-                            }`}
+                                }`}
                             aria-label={`Close ${title || "widget"}`}
                         >
                             <X size={20} />
@@ -144,13 +150,13 @@ export function Widget({
             )}
 
             {/* Widget Content */}
-            {!hasBackgroundImage && !noPadding && (
-                <div className="self-stretch px-24 md:px-32 py-32 inline-flex justify-center items-center gap-1">
+            {!noPadding && (
+                <div className="self-stretch px-24 md:px-32 py-32 inline-flex justify-center items-center gap-1 relative z-10">
                     {children}
                 </div>
             )}
-            {!hasBackgroundImage && noPadding && (
-                <div className="self-stretch inline-flex justify-center items-center gap-1">
+            {noPadding && (
+                <div className="self-stretch inline-flex justify-center items-center gap-1 relative z-10 h-full">
                     {children}
                 </div>
             )}

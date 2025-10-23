@@ -11,6 +11,7 @@ import {
     TOTAL_CONTENT_WIDTH,
 } from "../constants"
 import { getClientX } from "../utils"
+import { useDragContext } from "../contexts/DragContext"
 
 interface DraggableWidgetProps {
     config: WidgetConfig
@@ -63,6 +64,8 @@ export const DraggableWidget = React.memo(function DraggableWidget({
     const isMountedRef = useRef(false)
     const [isKeyboardGrabbed, setIsKeyboardGrabbed] = useState(false)
     const KEYBOARD_MOVE_STEP = 10 // pixels to move per arrow key press
+    const { isWidgetDragDisabled } = useDragContext()
+    const isDragDisabled = isWidgetDragDisabled(config.id)
 
     // Use a ref for constraints to keep object reference stable
     // This prevents Framer Motion from auto-repositioning widgets when constraints change
@@ -152,7 +155,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             // Arrow keys to move widget (only when grabbed)
             if (isKeyboardGrabbed && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)) {
                 event.preventDefault()
-                
+
                 let newX = position.x
                 let newY = position.y
 
@@ -190,11 +193,11 @@ export const DraggableWidget = React.memo(function DraggableWidget({
     const motionStyle = useMemo(
         () => ({
             position: "absolute" as const,
-            cursor: isActive ? "grabbing" : "grab",
-            touchAction: "none" as const,
+            cursor: isDragDisabled ? "default" : isActive ? "grabbing" : "grab",
+            touchAction: isDragDisabled ? "auto" : ("none" as const),
             zIndex,
         }),
-        [isActive, zIndex]
+        [isActive, zIndex, isDragDisabled]
     )
 
     // Memoize animation values to prevent re-creation
@@ -229,7 +232,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
                 internalWidgetRef.current = el
                 widgetRef(el)
             }}
-            drag
+            drag={!isDragDisabled}
             dragConstraints={dragConstraintsRef.current}
             dragElastic={0}
             dragMomentum={false}
@@ -277,6 +280,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
                 backgroundImage={config.backgroundImage}
                 imageProps={config.imageProps}
                 noPadding={config.noPadding}
+                customActions={config.customActions}
                 triggerTitleAnimation={hoverTrigger}
             >
                 {config.content}
