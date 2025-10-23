@@ -23,6 +23,7 @@
         "next-sanity": "^11.5.5",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
+        "react-sketch-canvas": "^6.2.0",
         "server-only": "^0.0.1",
         "tailwindcss": "^4.1.14"
     },

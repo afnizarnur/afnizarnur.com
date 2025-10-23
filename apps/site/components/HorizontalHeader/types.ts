@@ -49,6 +49,10 @@ export interface WidgetConfig {
     showClose?: boolean
     /** Whether to disable padding on content (for full-fill content like games) */
     noPadding?: boolean
+    /** Callback to control drag state */
+    onDragDisabledChange?: (disabled: boolean) => void
+    /** Custom actions to render in widget header */
+    customActions?: React.ReactNode
     /** Widget content */
     content: React.ReactNode
 }
