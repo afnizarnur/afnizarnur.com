@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useCallback } from "react"
+import React, { useRef, useCallback, useState } from "react"
 import { Segment, FooterSegment, WidgetContainer } from "./components"
 import { useWidgetPositions, useWidgetDimensions, useAutoScroll, useStackOrder } from "./hooks"
 import { WIDGET_CONFIGS } from "./config"
@@ -11,6 +11,7 @@ import type { ConstraintBounds } from "./types"
  * Desktop implementation keeps the draggable behavior with horizontal scrolling.
  */
 export function HorizontalHeaderDesktop(): React.ReactElement {
+    const [announcement, setAnnouncement] = useState("")
     const scrollContainerRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
 
@@ -50,16 +51,38 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
 
             savePosition(widgetId, finalX, finalY, config.width, widgetHeight, bounds)
             setDragging(null)
+
+            // Announce position change for screen readers
+            const widgetTitle = config.title || config.id
+            setAnnouncement(`${widgetTitle} widget repositioned`)
+            setTimeout(() => setAnnouncement(""), 1000)
         },
         [stopAutoScroll, getWidgetHeight, savePosition, setDragging]
     )
 
     return (
         <div className="flex flex-col">
+            {/* Screen reader announcements */}
+            <div
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                className="sr-only"
+            >
+                {announcement}
+            </div>
+
+            {/* Instructions for screen readers */}
+            <div id="widget-instructions" className="sr-only">
+                Interactive widgets. Use Tab to navigate between widgets. Use arrow keys to reposition widgets when focused. Press Enter or Space to grab a widget, then use arrow keys to move it, and press Enter or Space again to release.
+            </div>
+
             <div
                 ref={scrollContainerRef}
                 className="overflow-x-auto scrollbar-hide w-full overscroll-x-none"
                 data-scroll-container="horizontal-header"
+                role="region"
+                aria-label="Interactive header with draggable widgets"
                 style={
                     {
                         "--grid-template-mobile": GRID_TEMPLATE_MOBILE,
@@ -95,7 +118,10 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
                 </div>
 
                 {/* Footer section */}
-                <div className="bg-background-primary grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]">
+                <div 
+                    className="bg-background-primary grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]"
+                    aria-hidden="true"
+                >
                     <div className="flex" style={{ gridColumn: "2" }}>
                         <FooterSegment label="Current Location" width={SEGMENT_WIDTH} />
                         <FooterSegment label="50m" width={SEGMENT_WIDTH} />

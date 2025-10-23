@@ -14,7 +14,11 @@ export function HorizontalHeaderMobile(): React.ReactElement {
 
     return (
         <div className="flex flex-col bg-background-primary">
-            <div className="relative bg-background-secondary">
+            <div 
+                className="relative bg-background-secondary"
+                role="region"
+                aria-label="Content widgets"
+            >
                 <div
                     aria-hidden
                     className="pointer-events-none absolute inset-y-0 left-6 w-44"
@@ -26,13 +30,14 @@ export function HorizontalHeaderMobile(): React.ReactElement {
                 />
                 <div className="relative pb-6">
                     {filteredConfigs.map((config, index) => (
-                        <div
+                        <article
                             key={config.id}
                             className="sticky px-6 pt-5 pb-2"
                             style={{
                                 top: "var(--navbar-height, 66px)",
                                 zIndex: index + 1,
                             }}
+                            aria-label={`${config.title || config.id} section`}
                         >
                             <div className="flex w-full justify-center pb-4">
                                 <Widget
@@ -49,12 +54,15 @@ export function HorizontalHeaderMobile(): React.ReactElement {
                                     {config.content}
                                 </Widget>
                             </div>
-                        </div>
+                        </article>
                     ))}
                     <div className="h-32" />
                 </div>
             </div>
-            <div className="bg-background-primary px-6">
+            <div 
+                className="bg-background-primary px-6"
+                aria-hidden="true"
+            >
                 <FooterSegment
                     label="Current Location"
                     width="100%"

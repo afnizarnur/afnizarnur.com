@@ -167,6 +167,25 @@
 }
 
 @layer utilities {
+    /* Focus Ring Utilities - Standardized focus states for accessibility */
+    .focus-ring {
+        outline: none;
+        box-shadow: 0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
+                    0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
+    }
+
+    .focus-ring-inset {
+        outline: none;
+        box-shadow: inset 0 0 0 var(--ringWidth-) var(--color-focus-ring);
+    }
+
+    /* Apply focus ring on focus-visible (keyboard navigation only) */
+    *:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 var(--ringOffsetWidth-) var(--color-focus-ring-offset),
+                    0 0 0 calc(var(--ringOffsetWidth-) + var(--ringWidth-)) var(--color-focus-ring);
+    }
+
     .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -174,5 +193,17 @@
 
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
+    }
+
+    /* Reduced Motion Support - Respect user preferences */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
     }
 }

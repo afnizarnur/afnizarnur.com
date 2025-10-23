@@ -3,6 +3,7 @@ import { draftMode } from "next/headers"
 import { VisualEditing } from "next-sanity/visual-editing"
 import { getNavigation, getSiteSettings } from "@/lib/sanity/queries"
 import { NavigationBar } from "@/components/NavigationBar"
+import { SkipToMainContent } from "@/components/SkipToMainContent"
 import { SanityLive } from "@/lib/sanity/live"
 import { themeInitScript } from "@/lib/theme"
 import "./styles/global.css"
@@ -23,13 +24,13 @@ export async function generateMetadata(): Promise<Metadata> {
             siteName: siteSettings?.title || "Afnizar Nur Ghifari",
             images: siteSettings?.ogImage
                 ? [
-                      {
-                          url: siteSettings.ogImage,
-                          width: 1200,
-                          height: 630,
-                          alt: siteSettings?.title || "Afnizar Nur Ghifari",
-                      },
-                  ]
+                    {
+                        url: siteSettings.ogImage,
+                        width: 1200,
+                        height: 630,
+                        alt: siteSettings?.title || "Afnizar Nur Ghifari",
+                    },
+                ]
                 : [],
         },
         twitter: {
@@ -79,6 +80,8 @@ export default async function RootLayout({
                 />
             </head>
             <body className="min-h-screen flex flex-col bg-background-primary text-text-primary">
+                <SkipToMainContent />
+
                 {navigation && (
                     <NavigationBar
                         items={navigation.items}
@@ -87,7 +90,7 @@ export default async function RootLayout({
                     />
                 )}
 
-                <main className="flex-grow">{children}</main>
+                <main id="main-content" className="flex-grow">{children}</main>
 
                 {/* Live preview components - only active in draft mode */}
                 {isDraftMode && (
