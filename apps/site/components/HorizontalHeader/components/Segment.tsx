@@ -19,7 +19,7 @@ export const Segment = React.memo(function Segment({
         <div className="flex-shrink-0" style={{ width: resolvedWidth }}>
             <div className="flex flex-col py-86 md:pt-86 lg:py-86 items-center justify-center bg-background-secondary relative h-full">
                 <div
-                    className="absolute inset-y-0 left-24 overflow-hidden"
+                    className="absolute inset-y-0 left-24 xl:left-24 lg:left-0 overflow-hidden"
                     style={{
                         width: "24px",
                         backgroundImage:

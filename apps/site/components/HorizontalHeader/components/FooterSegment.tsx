@@ -23,22 +23,15 @@ export const FooterSegment = React.memo(function FooterSegment({
 }: FooterSegmentProps): React.ReactElement {
     const resolvedWidth = typeof width === "number" ? `${width}px` : width
     const containerClassName = className ? `flex-shrink-0 ${className}` : "flex-shrink-0"
-    const contentClassName = innerClassName ?? "relative py-16 px-6"
+    const contentClassName = innerClassName ?? "relative py-16 px-6 xl:px-6 lg:px-0"
     const pointerColor = triangleColor ?? "var(--color-background-primary)"
-    const pointerLeft =
-        triangleOffset === undefined
-            ? "24px"
-            : typeof triangleOffset === "number"
-              ? `${triangleOffset}px`
-              : triangleOffset
 
     return (
         <div className={containerClassName} style={{ width: resolvedWidth }}>
             <div className={contentClassName}>
                 {/* Triangle pointer */}
                 <div
-                    className="absolute -top-2.5 transition-all duration-200 z-10"
-                    style={{ left: pointerLeft }}
+                    className="absolute -top-2.5 transition-all duration-200 z-10 left-10 xl:left-24 lg:left-0 md:left-24 "
                 >
                     <div
                         className="w-0 h-0"
