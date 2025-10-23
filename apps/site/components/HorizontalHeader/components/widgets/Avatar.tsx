@@ -129,12 +129,14 @@ export const AvatarContent = React.memo(function AvatarContent({
         userSelect: "none" as const,
         WebkitUserSelect: "none" as const,
         cursor: isDrawMode ? ("crosshair" as const) : ("default" as const),
+        willChange: isDrawMode ? "transform" : "auto",
     }), [isDrawMode])
 
     // Memoize canvas styles
     const canvasStyle = useMemo(() => ({
         border: "none",
         cursor: isDrawMode ? ("crosshair" as const) : ("default" as const),
+        willChange: "contents",
     }), [isDrawMode])
 
     return (
@@ -155,6 +157,9 @@ export const AvatarContent = React.memo(function AvatarContent({
                 withTimestamp={false}
                 allowOnlyPointerType="all"
                 style={canvasStyle}
+                svgStyle={{
+                    pointerEvents: isDrawMode ? "auto" : "none",
+                }}
             />
         </div>
     )
