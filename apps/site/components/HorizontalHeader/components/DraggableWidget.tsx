@@ -142,13 +142,11 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             // Enter or Space to grab/release widget
             if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault()
-                setIsKeyboardGrabbed((prev) => {
-                    const newState = !prev
-                    if (newState) {
-                        onDragStart()
-                    }
-                    return newState
-                })
+                setIsKeyboardGrabbed((prev) => !prev)
+                // Defer the onDragStart call to avoid setState during render
+                if (!isKeyboardGrabbed) {
+                    setTimeout(() => onDragStart(), 0)
+                }
                 return
             }
 
