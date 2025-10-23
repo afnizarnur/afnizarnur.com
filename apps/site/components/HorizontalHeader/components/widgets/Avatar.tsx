@@ -147,7 +147,7 @@ export const AvatarContent = React.memo(function AvatarContent({
         >
             <ReactSketchCanvas
                 ref={canvasRef}
-                strokeWidth={2}
+                strokeWidth={4}
                 strokeColor="#000000"
                 canvasColor="transparent"
                 exportWithBackgroundImage={false}
