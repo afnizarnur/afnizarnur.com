@@ -6,9 +6,6 @@ import { PencilSimpleIcon, ClockClockwiseIcon } from "@phosphor-icons/react/dist
 import { useDragContext } from "../../contexts/DragContext"
 import { getWidgetStorageKey, parseStorageData, writeStorageData } from "../../utils"
 
-// Constants
-const CANVAS_LOAD_DELAY = 300 // ms - delay to ensure canvas is fully initialized
-
 // Types
 interface AvatarStateData {
     isDrawMode: boolean
@@ -17,7 +14,7 @@ interface AvatarStateData {
 // Global state manager for avatar widget (singleton pattern with optimized subscription)
 class AvatarState {
     private static instances = new Map<string, AvatarState>()
-    
+
     private canvasRefInternal: React.RefObject<ReactSketchCanvasRef | null> | null = null
     private state: AvatarStateData = { isDrawMode: false }
     private listeners = new Set<() => void>()
@@ -93,7 +90,7 @@ class AvatarState {
 
             const storageKey = getWidgetStorageKey(widgetId, "canvas")
             const savedData = parseStorageData<unknown>(storageKey, null)
-            
+
             // exportPaths() returns an array directly, not wrapped in an object
             if (Array.isArray(savedData) && savedData.length > 0) {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -165,126 +162,165 @@ function useAvatarState(widgetId: string) {
 }
 
 // Content component (rendered in widget body)
-export const AvatarContent = React.memo(function AvatarContent({ 
-    widgetId 
-}: { 
-    widgetId: string 
-}): React.ReactElement {
-    const { canvasRef, isDrawMode, handleSave } = useAvatarState(widgetId)
-    const stateManager = useMemo(() => AvatarState.getInstance(widgetId), [widgetId])
-    const hasAttemptedLoad = useRef(false)
+export const AvatarContent = React.memo(
+    function AvatarContent({ widgetId }: { widgetId: string }): React.ReactElement {
+        const { canvasRef, isDrawMode, handleSave } = useAvatarState(widgetId)
+        const stateManager = useMemo(() => AvatarState.getInstance(widgetId), [widgetId])
+        const hasAttemptedLoad = useRef(false)
 
-    const handlePointerDown = useCallback((e: React.PointerEvent) => {
-        if (isDrawMode) {
-            e.stopPropagation()
-        }
-    }, [isDrawMode])
+        const handlePointerDown = useCallback(
+            (e: React.PointerEvent) => {
+                if (isDrawMode) {
+                    e.stopPropagation()
+                }
+            },
+            [isDrawMode]
+        )
 
-    // Auto-save when stroke ends
-    const handleStrokeEnd = useCallback(() => {
-        handleSave()
-    }, [handleSave])
+        // Debounced auto-save to prevent blocking on every stroke
+        const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+        const handleStrokeEnd = useCallback(() => {
+            // Clear previous timeout
+            if (saveTimeoutRef.current) {
+                clearTimeout(saveTimeoutRef.current)
+            }
+            // Debounce save by 1000ms - Firefox needs longer delay to avoid blocking
+            saveTimeoutRef.current = setTimeout(() => {
+                handleSave()
+            }, 1000)
+        }, [handleSave])
 
-    // Load canvas data when canvas is ready (single attempt)
-    useEffect(() => {
-        if (canvasRef.current && !hasAttemptedLoad.current) {
-            hasAttemptedLoad.current = true
-            const timeoutId = setTimeout(() => {
-                void stateManager.loadCanvasData(widgetId)
-            }, CANVAS_LOAD_DELAY)
-            return () => clearTimeout(timeoutId)
-        }
-    }, [canvasRef, stateManager, widgetId])
+        // Load canvas data when canvas is ready (single attempt, immediate load)
+        useEffect(() => {
+            if (canvasRef.current && !hasAttemptedLoad.current) {
+                hasAttemptedLoad.current = true
+                // Use requestAnimationFrame for optimal timing without blocking
+                const frameId = requestAnimationFrame(() => {
+                    void stateManager.loadCanvasData(widgetId)
+                })
+                return () => cancelAnimationFrame(frameId)
+            }
+        }, [stateManager, widgetId])
 
-    // Memoize container styles to prevent unnecessary recalculations
-    const containerStyle = useMemo(() => ({
-        pointerEvents: isDrawMode ? ("auto" as const) : ("none" as const),
-        touchAction: isDrawMode ? ("none" as const) : ("auto" as const),
-        userSelect: "none" as const,
-        WebkitUserSelect: "none" as const,
-        cursor: isDrawMode ? ("crosshair" as const) : ("default" as const),
-        willChange: isDrawMode ? "transform" : "auto",
-    }), [isDrawMode])
+        // Cleanup save timeout on unmount
+        useEffect(() => {
+            return () => {
+                if (saveTimeoutRef.current) {
+                    clearTimeout(saveTimeoutRef.current)
+                    // Save immediately on unmount to not lose data
+                    handleSave()
+                }
+            }
+        }, [handleSave])
 
-    // Memoize canvas styles
-    const canvasStyle = useMemo(() => ({
-        border: "none",
-        cursor: isDrawMode ? ("crosshair" as const) : ("default" as const),
-        willChange: "contents",
-    }), [isDrawMode])
+        // Static styles - optimized for Firefox performance
+        const containerStyle = useMemo(
+            () => ({
+                pointerEvents: isDrawMode ? ("auto" as const) : ("none" as const),
+                touchAction: "none" as const, // Always none for better Firefox performance
+                userSelect: "none" as const,
+                WebkitUserSelect: "none" as const,
+                cursor: isDrawMode ? ("crosshair" as const) : ("default" as const),
+                // Firefox-specific: force GPU acceleration
+                transform: "translateZ(0)",
+                WebkitTransform: "translateZ(0)",
+            }),
+            [isDrawMode]
+        )
 
-    return (
-        <div
-            className="relative w-full h-full z-10 select-none"
-            onPointerDown={handlePointerDown}
-            style={containerStyle}
-        >
-            <ReactSketchCanvas
-                ref={canvasRef}
-                strokeWidth={4}
-                strokeColor="#000000"
-                canvasColor="transparent"
-                exportWithBackgroundImage={false}
-                width="100%"
-                height="100%"
-                preserveBackgroundImageAspectRatio="none"
-                withTimestamp={false}
-                allowOnlyPointerType="all"
-                style={canvasStyle}
-                svgStyle={{
-                    pointerEvents: isDrawMode ? "auto" : "none",
-                }}
-                onStroke={handleStrokeEnd}
-            />
-        </div>
-    )
-}, (prevProps, nextProps) => {
-    // Custom comparison function for better memoization
-    return prevProps.widgetId === nextProps.widgetId
-})
+        // Canvas style - optimized for Firefox SVG rendering
+        const canvasStyle = useMemo(
+            () => ({
+                border: "none",
+                cursor: isDrawMode ? ("crosshair" as const) : ("default" as const),
+                // Firefox optimization: reduce repaints
+                backfaceVisibility: "hidden" as const,
+                WebkitBackfaceVisibility: "hidden" as const,
+            }),
+            [isDrawMode]
+        )
+
+        // Memoize SVG style - critical for Firefox performance
+        const svgStyle = useMemo(
+            () => ({
+                pointerEvents: isDrawMode ? ("auto" as const) : ("none" as const),
+                // Firefox SVG optimization: trade quality for speed
+                shapeRendering: "optimizeSpeed" as const,
+                // Firefox: hint for faster path rendering
+                vectorEffect: "non-scaling-stroke" as const,
+            }),
+            [isDrawMode]
+        )
+
+        return (
+            <div
+                className="relative w-full h-full z-10 select-none"
+                onPointerDown={handlePointerDown}
+                style={containerStyle}
+            >
+                <ReactSketchCanvas
+                    ref={canvasRef}
+                    strokeWidth={4}
+                    strokeColor="#000000"
+                    canvasColor="transparent"
+                    exportWithBackgroundImage={false}
+                    width="100%"
+                    height="100%"
+                    preserveBackgroundImageAspectRatio="none"
+                    withTimestamp={false}
+                    style={canvasStyle}
+                    svgStyle={svgStyle}
+                    onStroke={handleStrokeEnd}
+                />
+            </div>
+        )
+    },
+    (prevProps, nextProps) => {
+        // Custom comparison function for better memoization
+        return prevProps.widgetId === nextProps.widgetId
+    }
+)
 
 // Actions component (rendered in widget header)
-export const AvatarActions = React.memo(function AvatarActions({ 
-    widgetId 
-}: { 
-    widgetId: string 
-}): React.ReactElement {
-    const { isDrawMode, handleToggleDrawMode, handleClear } = useAvatarState(widgetId)
+export const AvatarActions = React.memo(
+    function AvatarActions({ widgetId }: { widgetId: string }): React.ReactElement {
+        const { isDrawMode, handleToggleDrawMode, handleClear } = useAvatarState(widgetId)
 
-    // Memoize aria labels
-    const drawModeLabel = useMemo(
-        () => isDrawMode ? "Disable draw mode" : "Enable draw mode",
-        [isDrawMode]
-    )
+        // Memoize aria labels
+        const drawModeLabel = useMemo(
+            () => (isDrawMode ? "Disable draw mode" : "Enable draw mode"),
+            [isDrawMode]
+        )
 
-    const pencilWeight = useMemo(
-        () => isDrawMode ? "fill" : "regular",
-        [isDrawMode]
-    ) as "fill" | "regular"
+        const pencilWeight = useMemo(() => (isDrawMode ? "fill" : "regular"), [isDrawMode]) as
+            | "fill"
+            | "regular"
 
-    return (
-        <>
-            <button
-                type="button"
-                onClick={handleToggleDrawMode}
-                className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-white hover:text-gray-200"
-                aria-label={drawModeLabel}
-                title={drawModeLabel}
-            >
-                <PencilSimpleIcon size={24} weight={pencilWeight} />
-            </button>
+        return (
+            <>
+                <button
+                    type="button"
+                    onClick={handleToggleDrawMode}
+                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-white hover:text-gray-200 cursor-pointer"
+                    aria-label={drawModeLabel}
+                    title={drawModeLabel}
+                >
+                    <PencilSimpleIcon size={24} weight={pencilWeight} />
+                </button>
 
-            <button
-                type="button"
-                onClick={handleClear}
-                className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-white hover:text-gray-200"
-                aria-label="Clear drawing"
-                title="Clear drawing"
-            >
-                <ClockClockwiseIcon size={24} />
-            </button>
-        </>
-    )
-}, (prevProps, nextProps) => {
-    return prevProps.widgetId === nextProps.widgetId
-})
+                <button
+                    type="button"
+                    onClick={handleClear}
+                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-white hover:text-gray-200 cursor-pointer"
+                    aria-label="Clear drawing"
+                    title="Clear drawing"
+                >
+                    <ClockClockwiseIcon size={24} />
+                </button>
+            </>
+        )
+    },
+    (prevProps, nextProps) => {
+        return prevProps.widgetId === nextProps.widgetId
+    }
+)
