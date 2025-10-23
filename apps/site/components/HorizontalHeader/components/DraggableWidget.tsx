@@ -61,6 +61,8 @@ export const DraggableWidget = React.memo(function DraggableWidget({
     const internalWidgetRef = useRef<HTMLDivElement | null>(null)
     const constraintsInitialized = useRef(false)
     const isMountedRef = useRef(false)
+    const [isKeyboardGrabbed, setIsKeyboardGrabbed] = useState(false)
+    const KEYBOARD_MOVE_STEP = 10 // pixels to move per arrow key press
 
     // Use a ref for constraints to keep object reference stable
     // This prevents Framer Motion from auto-repositioning widgets when constraints change
@@ -129,6 +131,59 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             onDragEnd(finalX, finalY)
         },
         [onDragEnd]
+    )
+
+    // Keyboard navigation handler
+    const handleKeyDown = useCallback(
+        (event: React.KeyboardEvent): void => {
+            // Enter or Space to grab/release widget
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault()
+                setIsKeyboardGrabbed((prev) => {
+                    const newState = !prev
+                    if (newState) {
+                        onDragStart()
+                    }
+                    return newState
+                })
+                return
+            }
+
+            // Arrow keys to move widget (only when grabbed)
+            if (isKeyboardGrabbed && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)) {
+                event.preventDefault()
+                
+                let newX = position.x
+                let newY = position.y
+
+                switch (event.key) {
+                    case "ArrowLeft":
+                        newX = Math.max(dragConstraintsRef.current.left, position.x - KEYBOARD_MOVE_STEP)
+                        break
+                    case "ArrowRight":
+                        newX = Math.min(dragConstraintsRef.current.right, position.x + KEYBOARD_MOVE_STEP)
+                        break
+                    case "ArrowUp":
+                        newY = Math.max(dragConstraintsRef.current.top, position.y - KEYBOARD_MOVE_STEP)
+                        break
+                    case "ArrowDown":
+                        newY = Math.min(dragConstraintsRef.current.bottom, position.y + KEYBOARD_MOVE_STEP)
+                        break
+                }
+
+                // Only trigger drag end if position actually changed
+                if (newX !== position.x || newY !== position.y) {
+                    onDragEnd(newX, newY)
+                }
+            }
+
+            // Escape to release widget
+            if (event.key === "Escape" && isKeyboardGrabbed) {
+                event.preventDefault()
+                setIsKeyboardGrabbed(false)
+            }
+        },
+        [isKeyboardGrabbed, position.x, position.y, onDragStart, onDragEnd, KEYBOARD_MOVE_STEP]
     )
 
     // Memoize motion style object to prevent re-creation on every render
@@ -203,7 +258,14 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}
             onMouseEnter={() => setHoverTrigger((prev) => prev + 1)}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            role="application"
+            aria-label={`${config.title || config.id} widget. ${isKeyboardGrabbed ? "Grabbed. Use arrow keys to move, Enter or Escape to release." : "Press Enter or Space to grab and reposition."}`}
+            aria-describedby="widget-instructions"
+            aria-grabbed={isKeyboardGrabbed}
             style={motionStyle}
+            className={isKeyboardGrabbed ? "ring-2 ring-offset-2 ring-blue-500 rounded-2xl" : "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 focus-visible:rounded-2xl outline-none"}
         >
             <Widget
                 title={config.title}

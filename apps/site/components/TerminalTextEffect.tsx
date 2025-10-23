@@ -1,7 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
-import React, { useCallback, useRef, useState } from "react"
+import { motion, useReducedMotion } from "framer-motion"
+import React, { useCallback, useRef, useState, useEffect } from "react"
 
 const lettersAndSymbols = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -37,6 +37,7 @@ export function TerminalTextEffect({
     const [isHovered, setIsHovered] = useState(false)
     const isAnimatingRef = useRef(false)
     const chars = children.split('')
+    const prefersReducedMotion = useReducedMotion()
 
     // Get timing based on effect type
     const getTimingConfig = (effectType: EffectType) => {
@@ -53,6 +54,12 @@ export function TerminalTextEffect({
     }
 
     const handleMouseEnter = useCallback(() => {
+        // Skip animation if user prefers reduced motion
+        if (prefersReducedMotion) {
+            onHoverStart?.()
+            return
+        }
+
         if (isAnimatingRef.current) return
 
         isAnimatingRef.current = true
@@ -65,7 +72,7 @@ export function TerminalTextEffect({
         setTimeout(() => {
             isAnimatingRef.current = false
         }, textAnimationDuration)
-    }, [chars.length, onHoverStart, effect])
+    }, [chars.length, onHoverStart, effect, prefersReducedMotion])
 
     const handleMouseLeave = useCallback(() => {
         setIsHovered(false)
@@ -103,7 +110,7 @@ export function TerminalTextEffect({
             ))}
 
             {/* Background effect for background variant */}
-            {effect === "background" && (
+            {effect === "background" && !prefersReducedMotion && (
                 <motion.span
                     style={{
                         content: '',
@@ -142,6 +149,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
     const [displayChar, setDisplayChar] = useState(char)
     const [currentColor, setCurrentColor] = useState('currentColor')
     const [cursorOpacity, setCursorOpacity] = useState(0)
+    const prefersReducedMotion = useReducedMotion()
 
     // Get timing config for this effect
     const getTimingConfig = (effectType: EffectType) => {
@@ -159,7 +167,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
 
     // Handle animation based on effect type
     React.useEffect(() => {
-        if (!shouldAnimate) {
+        if (!shouldAnimate || prefersReducedMotion) {
             setDisplayChar(char)
             setCurrentColor('currentColor')
             setCursorOpacity(0)
@@ -212,7 +220,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
         }, delay)
 
         return () => clearTimeout(timeout)
-    }, [shouldAnimate, char, index, effect, colors])
+    }, [shouldAnimate, char, index, effect, colors, prefersReducedMotion])
 
     return (
         <motion.span

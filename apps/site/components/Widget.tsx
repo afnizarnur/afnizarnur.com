@@ -75,13 +75,14 @@ export function Widget({
               : parseInt(height as string)
 
     return (
-        <div
+        <article
             className="bg-background-primary rounded-2xl inline-flex flex-col justify-start items-end flex-none relative overflow-hidden"
             style={{
                 width: typeof width === "number" ? `${width}px` : width,
                 height: typeof height === "number" ? `${height}px` : height,
                 backgroundColor: backgroundColor,
             }}
+            aria-label={title ? `${title} widget` : undefined}
         >
             {/* Background Image using Next.js Image */}
             {imageProps && containerWidth && containerHeight && (
@@ -128,12 +129,12 @@ export function Widget({
                     <button
                         type="button"
                         onClick={onClose}
-                        className={`w-5 h-5 relative overflow-hidden flex items-center justify-center transition-colors ${
+                        className={`w-5 h-5 relative overflow-hidden flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded ${
                             hasBackgroundImage || isDark
-                                ? "text-white hover:text-gray-200"
+                                ? "text-white hover:text-gray-200 focus-visible:ring-white"
                                 : "text-icon-tertiary hover:text-icon-secondary"
                         }`}
-                        aria-label="Close"
+                        aria-label={`Close ${title || "widget"}`}
                     >
                         <X size={20} />
                     </button>
@@ -151,6 +152,6 @@ export function Widget({
                     {children}
                 </div>
             )}
-        </div>
+        </article>
     )
 }
