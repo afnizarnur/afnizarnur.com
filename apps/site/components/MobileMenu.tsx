@@ -14,6 +14,8 @@ interface MobileMenuProps {
         timeZone?: string
         displayLabel?: string
     }
+    isOpen?: boolean
+    onToggle?: () => void
 }
 
 function normalizeHref(href: string): string {
@@ -96,42 +98,53 @@ function TimeDisplay({
     )
 }
 
-export function MobileMenu({ items, timezone }: MobileMenuProps): React.ReactElement {
-    const [isOpen, setIsOpen] = useState(false)
+export function MobileMenu({ 
+    items, 
+    timezone,
+    isOpen: externalIsOpen,
+    onToggle: externalOnToggle 
+}: MobileMenuProps): React.ReactElement {
+    const [internalIsOpen, setInternalIsOpen] = useState(false)
     const [triggerAnimation, setTriggerAnimation] = useState(0)
     const pathname = usePathname()
     const menuPanelRef = useRef<HTMLDivElement>(null)
     const closeTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
+    const firstFocusableRef = useRef<HTMLElement | null>(null)
+    const lastFocusableRef = useRef<HTMLElement | null>(null)
+
+    // Use external state if provided, otherwise use internal state
+    const isOpen = externalIsOpen ?? internalIsOpen
+    const setIsOpen = externalOnToggle ? () => externalOnToggle() : setInternalIsOpen
 
     const closeMenu = useCallback((): void => {
-        setIsOpen(false)
+        if (externalOnToggle) {
+            externalOnToggle()
+        } else {
+            setInternalIsOpen(false)
+        }
         closeTimeoutRef.current = setTimeout(() => {
             const hamburgerBtn = document.getElementById(
                 "hamburger-menu-button"
             ) as HTMLButtonElement | null
             hamburgerBtn?.focus()
         }, 300)
-    }, [])
+    }, [externalOnToggle])
 
-    const handleToggle = useCallback((): void => {
-        setIsOpen((prev) => !prev)
-    }, [])
-
-    // Handle menu toggle - only run once on mount
+    // Sync with external hamburger button if no external control
     useEffect(() => {
+        if (externalIsOpen !== undefined) return
+
         const hamburgerBtn = document.getElementById("hamburger-menu-button")
 
         if (hamburgerBtn) {
-            hamburgerBtn.addEventListener("click", handleToggle)
-        }
+            const clickHandler = () => setInternalIsOpen((prev) => !prev)
+            hamburgerBtn.addEventListener("click", clickHandler)
 
-        return () => {
-            if (hamburgerBtn) {
-                hamburgerBtn.removeEventListener("click", handleToggle)
+            return () => {
+                hamburgerBtn.removeEventListener("click", clickHandler)
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [externalIsOpen])
 
     // Handle menu state changes
     useEffect(() => {
@@ -152,24 +165,64 @@ export function MobileMenu({ items, timezone }: MobileMenuProps): React.ReactEle
             // Trigger animation when menu opens
             setTriggerAnimation(prev => prev + 1)
 
-            // Focus trap - focus first focusable element
-            const firstFocusable = menuPanelRef.current?.querySelector<HTMLElement>(
-                'a[href], button:not([disabled])'
-            )
-            firstFocusable?.focus()
+            // Get all focusable elements for focus trap
+            const getFocusableElements = (): HTMLElement[] => {
+                if (!menuPanelRef.current) return []
+                const focusableSelectors = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                return Array.from(menuPanelRef.current.querySelectorAll<HTMLElement>(focusableSelectors))
+            }
 
-            const handleEscape = (e: KeyboardEvent): void => {
-                if (e.key === "Escape") {
-                    e.preventDefault()
-                    closeMenu()
+            // Focus first element after menu is visible
+            const focusFirstElement = () => {
+                const focusableElements = getFocusableElements()
+                if (focusableElements.length > 0) {
+                    firstFocusableRef.current = focusableElements[0]
+                    lastFocusableRef.current = focusableElements[focusableElements.length - 1]
+                    firstFocusableRef.current?.focus()
                 }
             }
 
-            document.addEventListener("keydown", handleEscape)
+            // Use requestAnimationFrame for better timing
+            requestAnimationFrame(() => {
+                requestAnimationFrame(focusFirstElement)
+            })
+
+            // Handle keyboard events
+            const handleKeyDown = (e: KeyboardEvent): void => {
+                // Escape key closes menu
+                if (e.key === "Escape") {
+                    e.preventDefault()
+                    closeMenu()
+                    return
+                }
+
+                // Tab key focus trap
+                if (e.key === "Tab") {
+                    const focusableElements = getFocusableElements()
+                    if (focusableElements.length === 0) return
+
+                    const firstElement = focusableElements[0]
+                    const lastElement = focusableElements[focusableElements.length - 1]
+
+                    // Shift + Tab on first element -> go to last
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault()
+                        lastElement?.focus()
+                    }
+                    // Tab on last element -> go to first
+                    else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault()
+                        firstElement?.focus()
+                    }
+                }
+            }
+
+            document.addEventListener("keydown", handleKeyDown)
+            
             return () => {
                 document.body.style.overflow = ""
                 document.body.style.paddingRight = ""
-                document.removeEventListener("keydown", handleEscape)
+                document.removeEventListener("keydown", handleKeyDown)
             }
         }
     }, [isOpen, closeMenu])
