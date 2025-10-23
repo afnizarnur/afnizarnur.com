@@ -649,7 +649,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.300}",
-                            "dark": "{color.primitive.gray.700}"
+                            "dark": "{color.primitive.gray.600}"
                         }
                     }
                 },
@@ -658,7 +658,7 @@
                     "$extensions": {
                         "mode": {
                             "light": "{color.primitive.gray.200}",
-                            "dark": "{color.primitive.gray.800}"
+                            "dark": "{color.primitive.gray.700}"
                         }
                     }
                 },

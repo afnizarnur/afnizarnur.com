@@ -19,13 +19,11 @@ export const Segment = React.memo(function Segment({
         <div className="flex-shrink-0" style={{ width: resolvedWidth }}>
             <div className="flex flex-col py-86 md:pt-86 lg:py-86 items-center justify-center bg-background-secondary relative h-full">
                 <div
-                    className="absolute inset-y-0 left-24 xl:left-24 lg:left-0 overflow-hidden"
+                    className="absolute inset-y-0 left-24 xl:left-24 lg:left-0 overflow-hidden diagonal-stripes"
                     style={{
                         width: "24px",
-                        backgroundImage:
-                            "repeating-linear-gradient(-40deg, rgba(0,0,0,0.06) 0 8px, transparent 0px 20px)",
-                        backgroundRepeat: "repeat-y",
                     }}
+                    aria-hidden="true"
                 />
 
                 {/* Content on top, fill the whole segment */}
