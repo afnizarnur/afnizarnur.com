@@ -130,9 +130,9 @@ export function Widget({
                         <button
                             type="button"
                             onClick={onClose}
-                            className={`w-5 h-5 relative overflow-hidden flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded ${
+                            className={`w-5 h-5 relative overflow-hidden flex items-center justify-center transition-colors rounded ${
                                 hasBackgroundImage || isDark
-                                    ? "text-white hover:text-gray-200 focus-visible:ring-white"
+                                    ? "text-white hover:text-gray-200"
                                     : "text-icon-tertiary hover:text-icon-secondary"
                             }`}
                             aria-label={`Close ${title || "widget"}`}

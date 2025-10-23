@@ -27,7 +27,7 @@ export function ThemeToggle({ size = 24, className = "" }: ThemeToggleProps): JS
     return (
         <button
             onClick={toggleTheme}
-            className={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-icon-primary active:text-icon-primary transition-colors rounded-radius-8 ${className}`}
+            className={`w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary active:text-icon-primary transition-colors rounded-radius-8 ${className}`}
             aria-label="Toggle theme"
             type="button"
             suppressHydrationWarning

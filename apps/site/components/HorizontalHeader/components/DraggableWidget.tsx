@@ -265,7 +265,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             aria-describedby="widget-instructions"
             aria-grabbed={isKeyboardGrabbed}
             style={motionStyle}
-            className={isKeyboardGrabbed ? "ring-2 ring-offset-2 ring-blue-500 rounded-2xl" : "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 focus-visible:rounded-2xl outline-none"}
+            className={isKeyboardGrabbed ? "focus-ring rounded-2xl" : "rounded-2xl"}
         >
             <Widget
                 title={config.title}

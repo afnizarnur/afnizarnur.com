@@ -267,7 +267,7 @@ export function MobileMenu({ items, timezone }: MobileMenuProps): React.ReactEle
                                 </>
                             )
 
-                            const linkClassName = `group p-24 flex items-center justify-start transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary bg-background-primary ${isActive
+                            const linkClassName = `group p-24 flex items-center justify-start transition-all duration-150 bg-background-primary ${isActive
                                 ? "text-text-primary"
                                 : "text-text-secondary hover:text-text-primary active:text-text-primary"
                                 }`
