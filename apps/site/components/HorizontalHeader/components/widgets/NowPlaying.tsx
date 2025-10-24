@@ -1,8 +1,10 @@
 "use client"
 
-import React, { useEffect, useState, useCallback, useMemo } from "react"
+import React, { useEffect, useState, useCallback, useMemo, useLayoutEffect } from "react"
 import Image from "next/image"
 import { useReducedMotion } from "@/contexts/UserPreferencesContext"
+import { STORAGE_KEYS } from "@/lib/storage"
+import { parseStorageData, writeStorageData } from "../../utils"
 
 interface NowPlayingData {
     isPlaying: boolean
@@ -10,6 +12,10 @@ interface NowPlayingData {
     artist: string
     albumArt?: string
     songUrl?: string
+}
+
+interface CachedNowPlayingData extends NowPlayingData {
+    timestamp: number
 }
 
 interface NowPlayingProps {
@@ -75,6 +81,7 @@ const UPDATE_INTERVAL = 150
 const MIN_HEIGHT = 20
 const MAX_HEIGHT = 80
 const CHARS_PER_HEIGHT = 6
+const CACHE_EXPIRY_MS = 10 * 60 * 1000 // 10 minutes
 
 const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
     isLoading = false,
@@ -165,6 +172,18 @@ export function NowPlaying({
     const [nowPlaying, setNowPlaying] = useState<NowPlayingData | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
+    // Load cached data immediately on mount (before first paint)
+    useLayoutEffect(() => {
+        const cached = parseStorageData<CachedNowPlayingData | null>(STORAGE_KEYS.nowPlaying, null)
+        if (cached) {
+            const isCacheValid = Date.now() - cached.timestamp < CACHE_EXPIRY_MS
+            if (isCacheValid) {
+                setNowPlaying(cached)
+                setIsLoading(false)
+            }
+        }
+    }, [])
+
     useEffect(() => {
         let isMounted = true
 
@@ -174,6 +193,12 @@ export function NowPlaying({
                 if (isMounted) {
                     setNowPlaying(data)
                     setIsLoading(false)
+                    // Cache the data with timestamp
+                    const cachedData: CachedNowPlayingData = {
+                        ...data,
+                        timestamp: Date.now(),
+                    }
+                    writeStorageData(STORAGE_KEYS.nowPlaying, cachedData)
                 }
             } catch (error) {
                 console.error("Failed to fetch now playing:", error)

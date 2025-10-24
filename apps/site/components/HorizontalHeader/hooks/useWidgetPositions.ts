@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from "react"
+import { useState, useCallback, useMemo, useLayoutEffect } from "react"
 import type { WidgetConfig, WidgetPosition, ConstraintBounds } from "../types"
 import { STORAGE_KEYS } from "@/lib/storage"
 import { clampPosition, parseStorageData, writeStorageData } from "../utils"
@@ -34,13 +34,16 @@ export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsR
         return defaults
     }, [configs])
 
-    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => ({
-        ...defaultPositions,
-    }))
+    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => defaultPositions)
 
-    // Load positions from localStorage on mount
-    useEffect(() => {
-        const savedPositions = parseStorageData<Record<string, WidgetPosition>>(STORAGE_KEYS.widgetPositions, {})
+    // Load positions from localStorage after mount (client-side only)
+    // useLayoutEffect runs synchronously after DOM mutations but before browser paint,
+    // minimizing the visual jump compared to useEffect
+    useLayoutEffect(() => {
+        const savedPositions = parseStorageData<Record<string, WidgetPosition>>(
+            STORAGE_KEYS.widgetPositions,
+            {}
+        )
         if (Object.keys(savedPositions).length > 0) {
             setPositions((prev) => ({ ...prev, ...savedPositions }))
         }

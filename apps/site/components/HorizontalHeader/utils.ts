@@ -48,8 +48,12 @@ export function getClientX(event: DragMouseEvent): number {
 
 /**
  * Safely parses JSON from localStorage
+ * Returns fallback if not in browser environment
  */
 export function parseStorageData<T>(key: string, fallback: T): T {
+    if (typeof window === "undefined") {
+        return fallback
+    }
     try {
         const stored = localStorage.getItem(key)
         if (!stored) return fallback
@@ -62,8 +66,12 @@ export function parseStorageData<T>(key: string, fallback: T): T {
 
 /**
  * Safely writes JSON to localStorage
+ * Does nothing if not in browser environment
  */
 export function writeStorageData<T>(key: string, data: T): void {
+    if (typeof window === "undefined") {
+        return
+    }
     try {
         localStorage.setItem(key, JSON.stringify(data))
     } catch (error) {
@@ -120,8 +128,12 @@ export function getWidgetStorageKey(widgetId: string, dataType: string): string 
 
 /**
  * Clears all widget data for a specific widget
+ * Does nothing if not in browser environment
  */
 export function clearWidgetData(widgetId: string): void {
+    if (typeof window === "undefined") {
+        return
+    }
     try {
         const keysToRemove: string[] = []
         const prefix = `afnizarnur-horizontal-header-widget-data-${widgetId}-`
