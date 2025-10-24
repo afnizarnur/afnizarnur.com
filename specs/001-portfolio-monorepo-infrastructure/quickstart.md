@@ -104,7 +104,6 @@ Expected output:
 ```
 @afnizarnur/config-eslint:build: Build completed
 @afnizarnur/config-typescript:build: Build completed
-@afnizarnur/config-tailwind:build: Build completed
 @afnizarnur/tokens:build: ✓ Tokens generated
 ```
 

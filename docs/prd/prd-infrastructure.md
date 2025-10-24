@@ -42,7 +42,7 @@ This is the core sequence of tasks required to build the project. Each phase bui
     2.  Set up **Turborepo** for task orchestration (`turbo.json`).
     3.  Create the basic directory structure (`apps/`, `packages/`).
     4.  Create placeholder `package.json` files for all planned apps and packages.
-    5.  Implement the shared configuration packages: `@afnizarnur/config-eslint`, `@afnizarnur/config-typescript`, and `@afnizarnur/config-tailwind`.
+    5.  Implement the shared configuration packages: `@afnizarnur/config-eslint` and `@afnizarnur/config-typescript`.
     6.  Set up basic **GitHub Actions** for linting and type-checking on pull requests.
 
 - **Definition of Done:**
@@ -160,7 +160,6 @@ afnizarnur/
 │  ├─ ui-primitives/      → (optional) shadcn/ui primitives
 │  ├─ config-eslint/      → Shared ESLint config
 │  ├─ config-typescript/  → Shared TypeScript config
-│  └─ config-tailwind/    → Shared Tailwind preset
 ├─ .changeset/
 ├─ turbo.json
 ├─ pnpm-workspace.yaml

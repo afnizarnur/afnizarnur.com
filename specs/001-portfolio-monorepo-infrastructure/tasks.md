@@ -34,7 +34,7 @@ This is a monorepo with apps and packages:
 - [x] T006 Create `.changeset/` directory with Changesets configuration
 - [x] T007 [P] Create `packages/config-eslint/` with shared ESLint configuration
 - [x] T008 [P] Create `packages/config-typescript/` with base and React TypeScript configs
-- [x] T009 [P] Create `packages/config-tailwind/` with shared Tailwind preset
+- [x] T009 [P] ~~Create `packages/config-tailwind/` with shared Tailwind preset~~ (deprecated; Tailwind v4 relies on app-level config)
 - [x] T010 Install root dependencies: `pnpm`, `turbo`, `@changesets/cli`
 
 **Checkpoint**: Monorepo structure established, shared configs available

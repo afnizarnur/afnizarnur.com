@@ -165,9 +165,6 @@ packages/
 ├── config-eslint/         # Shared ESLint configuration
 │   └── index.js           # ESLint flat config
 │
-├── config-tailwind/       # Shared Tailwind preset
-│   └── index.js           # Tailwind config
-│
 ├── config-typescript/     # Shared TypeScript config
 │   └── tsconfig.json      # Base tsconfig
 │
@@ -270,7 +267,6 @@ pnpm build
 ├─> Turborepo: Build dependency graph
 │   ├─> Phase 1: Build shared packages
 │   │   ├─> config-eslint
-│   │   ├─> config-tailwind
 │   │   ├─> config-typescript
 │   │   └─> tokens
 │   │

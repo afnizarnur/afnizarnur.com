@@ -210,10 +210,6 @@ afnizarnur/                          # Monorepo root
 │  │  ├─ react.json                  # React-specific config
 │  │  └─ package.json
 │  │
-│  └─ config-tailwind/               # @afnizarnur/config-tailwind
-│     ├─ index.js                    # Shared Tailwind preset
-│     └─ package.json
-│
 ├─ .changeset/                       # Changesets configuration
 ├─ .github/
 │  └─ workflows/

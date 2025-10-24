@@ -158,7 +158,6 @@ The monorepo includes several shared packages:
 **Config Packages:**
 
 - `@afnizarnur/config-eslint` - ESLint configuration
-- `@afnizarnur/config-tailwind` - Tailwind preset
 - `@afnizarnur/config-typescript` - TypeScript config
 
 **Library Packages:**
