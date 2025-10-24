@@ -19,4 +19,7 @@ export const STORAGE_KEYS = {
     /** Horizontal header widget-specific data (e.g., canvas drawings) */
     widgetData: (widgetId: string, dataType: string): string =>
         `${APP_PREFIX}horizontal-header-widget-data-${widgetId}-${dataType}`,
+
+    /** Now Playing widget cached data */
+    nowPlaying: `${APP_PREFIX}now-playing`,
 } as const
