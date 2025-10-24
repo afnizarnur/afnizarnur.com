@@ -7,6 +7,7 @@ import { SkipToMainContent } from "@/components/SkipToMainContent"
 import { SanityLive } from "@/lib/sanity/live"
 import { themeInitScript } from "@/lib/theme"
 import { LayoutProvider } from "@/components/LayoutProvider"
+import { UserPreferencesProvider } from "@/contexts/UserPreferencesContext"
 import "./styles/global.css"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -81,29 +82,31 @@ export default async function RootLayout({
                 />
             </head>
             <body className="min-h-screen flex flex-col bg-background-primary text-text-primary">
-                <LayoutProvider>
-                    <SkipToMainContent />
+                <UserPreferencesProvider>
+                    <LayoutProvider>
+                        <SkipToMainContent />
 
-                    {navigation && (
-                        <NavigationBar
-                            items={navigation.items}
-                            logo={siteSettings?.logo}
-                            timezone={siteSettings?.timezone}
-                        />
-                    )}
+                        {navigation && (
+                            <NavigationBar
+                                items={navigation.items}
+                                logo={siteSettings?.logo}
+                                timezone={siteSettings?.timezone}
+                            />
+                        )}
 
-                    <main id="main-content" className="flex-grow">
-                        {children}
-                    </main>
+                        <main id="main-content" className="flex-grow">
+                            {children}
+                        </main>
 
-                    {/* Live preview components - only active in draft mode */}
-                    {isDraftMode && (
-                        <>
-                            <SanityLive />
-                            <VisualEditing />
-                        </>
-                    )}
-                </LayoutProvider>
+                        {/* Live preview components - only active in draft mode */}
+                        {isDraftMode && (
+                            <>
+                                <SanityLive />
+                                <VisualEditing />
+                            </>
+                        )}
+                    </LayoutProvider>
+                </UserPreferencesProvider>
             </body>
         </html>
     )

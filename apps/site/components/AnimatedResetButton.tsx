@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { BroomIcon, CheckIcon } from "@phosphor-icons/react"
+import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 
 interface AnimatedResetButtonProps {
     onClick: () => void
@@ -55,6 +56,7 @@ export function AnimatedResetButton({
 }: AnimatedResetButtonProps): React.ReactElement {
     const [isClicked, setIsClicked] = useState(false)
     const [forceShow, setForceShow] = useState(false)
+    const prefersReducedMotion = useReducedMotion()
     const timeoutRefs = useRef<NodeJS.Timeout[]>([])
 
     // Cleanup timeouts on unmount to prevent memory leaks
@@ -101,10 +103,10 @@ export function AnimatedResetButton({
                     type="button"
                     onClick={handleClick}
                     disabled={isClicked}
-                    initial={buttonVariants.initial}
+                    initial={prefersReducedMotion ? buttonVariants.animate : buttonVariants.initial}
                     animate={buttonVariants.animate}
                     exit={buttonVariants.exit}
-                    transition={buttonTransition}
+                    transition={prefersReducedMotion ? { duration: 0 } : buttonTransition}
                 >
                     <AnimatePresence mode="wait">
                         {!isClicked ? (
@@ -113,7 +115,11 @@ export function AnimatedResetButton({
                                 initial={iconVariants.broom.initial}
                                 animate={iconVariants.broom.animate}
                                 exit={iconVariants.broom.exit}
-                                transition={{ duration: ANIMATION_TIMING.ICON_EXIT_DURATION }}
+                                transition={
+                                    prefersReducedMotion
+                                        ? { duration: 0 }
+                                        : { duration: ANIMATION_TIMING.ICON_EXIT_DURATION }
+                                }
                                 className="absolute inset-0 flex items-center justify-center"
                             >
                                 <BroomIcon size={24} color="currentColor" />
@@ -124,7 +130,11 @@ export function AnimatedResetButton({
                                 initial={iconVariants.check.initial}
                                 animate={iconVariants.check.animate}
                                 exit={iconVariants.check.exit}
-                                transition={{ duration: ANIMATION_TIMING.ICON_ENTER_DURATION }}
+                                transition={
+                                    prefersReducedMotion
+                                        ? { duration: 0 }
+                                        : { duration: ANIMATION_TIMING.ICON_ENTER_DURATION }
+                                }
                                 className="absolute inset-0 flex items-center justify-center"
                             >
                                 <CheckIcon size={24} color="currentColor" weight="bold" />

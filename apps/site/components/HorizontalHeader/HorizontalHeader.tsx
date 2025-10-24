@@ -2,6 +2,7 @@
 
 import React from "react"
 import { MotionConfig } from "framer-motion"
+import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 import { HorizontalHeaderDesktop } from "./HorizontalHeaderDesktop"
 import { HorizontalHeaderMobile } from "./HorizontalHeaderMobile"
 
@@ -10,8 +11,10 @@ import { HorizontalHeaderMobile } from "./HorizontalHeaderMobile"
  * Wrapped in MotionConfig to automatically respect reduced motion preferences.
  */
 export function HorizontalHeader(): React.ReactElement {
+    const prefersReducedMotion = useReducedMotion()
+
     return (
-        <MotionConfig reducedMotion="user">
+        <MotionConfig reducedMotion={prefersReducedMotion ? "always" : "never"}>
             <div className="bg-background-primary">
                 <div className="md:hidden">
                     <HorizontalHeaderMobile />
