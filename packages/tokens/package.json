@@ -16,6 +16,7 @@
     ],
     "scripts": {
         "build": "terrazzo build && node scripts/process-theme.js",
+        "watch": "terrazzo build --watch",
         "clean": "rm -rf dist"
     },
     "devDependencies": {
