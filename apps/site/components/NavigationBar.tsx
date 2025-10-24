@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import type { NavigationItem } from "@afnizarnur/ui"
-import { GearSix, List, X, Broom } from "@phosphor-icons/react"
+import { GearSix, List, X } from "@phosphor-icons/react"
 import { IconButton } from "./IconButton"
 import { MobileMenu } from "./MobileMenu"
 import { ThemeToggle } from "./ThemeToggle"
@@ -11,6 +11,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
+import { AnimatedResetButton } from "./AnimatedResetButton"
+import { AnimatePresence } from "framer-motion"
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -247,14 +249,11 @@ export function NavigationBar({
                     {/* Icon Buttons + Hamburger Menu */}
                     <div className="flex justify-end gap-4 md:col-span-1 lg:col-span-1">
                         {/* Reset Button (Shown only when there are changes) */}
-                        {hasChanges && (
-                            <IconButton
-                                icon={Broom}
-                                ariaLabel="Reset widget positions and states"
-                                size={24}
-                                onClick={resetAll}
-                            />
-                        )}
+                        <AnimatePresence>
+                            {hasChanges && resetAll && (
+                                <AnimatedResetButton onClick={resetAll} />
+                            )}
+                        </AnimatePresence>
 
                         {/* Theme Toggle (Shown on all screens) */}
                         <ThemeToggle size={24} />
