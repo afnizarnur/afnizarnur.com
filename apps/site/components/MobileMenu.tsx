@@ -4,8 +4,6 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import type { NavigationItem } from "@afnizarnur/ui"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { GearSixIcon } from "@phosphor-icons/react"
-import { IconButton } from "./IconButton"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 
 interface MobileMenuProps {
@@ -375,10 +373,9 @@ export function MobileMenu({
                     </ul>
                 </nav>
 
-                {/* Bottom Section with Time and Settings */}
+                {/* Bottom Section with Time */}
                 <div className="p-24 flex items-center justify-between bg-background-primary flex-shrink-0">
                     <TimeDisplay timezone={timezone} />
-                    <IconButton icon={GearSixIcon} ariaLabel="Open settings" size={24} />
                 </div>
             </div>
         </div>
