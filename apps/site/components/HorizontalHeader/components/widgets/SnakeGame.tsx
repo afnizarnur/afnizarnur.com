@@ -42,7 +42,7 @@ const OPPOSITE_DIRECTIONS: Record<Direction, Direction> = {
 }
 
 // Global state manager for snake game (singleton pattern)
-class SnakeGameStateManager {
+export class SnakeGameStateManager {
     private static instance: SnakeGameStateManager | null = null
     private state: SnakeGameStateData = { gameState: "menu" }
     private listeners = new Set<() => void>()

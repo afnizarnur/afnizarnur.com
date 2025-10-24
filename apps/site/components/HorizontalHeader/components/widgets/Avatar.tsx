@@ -12,7 +12,7 @@ interface AvatarStateData {
 }
 
 // Global state manager for avatar widget (singleton pattern with optimized subscription)
-class AvatarState {
+export class AvatarState {
     private static instances = new Map<string, AvatarState>()
 
     private canvasRefInternal: React.RefObject<ReactSketchCanvasRef | null> | null = null
