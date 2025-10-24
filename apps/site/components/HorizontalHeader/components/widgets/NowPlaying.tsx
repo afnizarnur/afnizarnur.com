@@ -120,7 +120,7 @@ const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
                 bars.map((bar, i) => (
                     <div
                         key={i}
-                        className="w-12 flex flex-col items-center justify-end font-mono text-text-primary text-[12px] transition-all duration-150 overflow-hidden"
+                        className="w-24 md:w-12 flex flex-col items-center justify-end font-mono text-text-primary text-[12px] transition-all duration-150 overflow-hidden"
                         style={{
                             height: `${bar.height}%`,
                             opacity: isLoading ? 0.3 : 1,
@@ -194,51 +194,71 @@ export function NowPlaying({
     const albumArtAlt = useMemo(() => `${title} by ${artist} album art`, [title, artist])
 
     return (
-        <article className="w-full px-24 pb-24 pt-0" aria-label="Now playing">
-            <div className="grid grid-cols-[44px_minmax(0,1fr)_auto] gap-16 items-center min-h-[68px]">
-                {/* Album Art */}
+        <article className="w-full px-24 md:px-24 pb-24 pt-0" aria-label="Now playing">
+            <div className="flex flex-col gap-16">
+                {/* Content container - album art + track info */}
+                <div className="grid grid-cols-[44px_minmax(0,1fr)] md:grid-cols-[44px_minmax(0,1fr)_auto] gap-16 items-center min-h-[68px]">
+                    {/* Album Art */}
+                    <div
+                        className="w-44 h-44 rounded-lg overflow-hidden bg-background-secondary flex-shrink-0 relative"
+                        role="img"
+                        aria-label={albumArt ? albumArtAlt : "No album art"}
+                    >
+                        {albumArt ? (
+                            <Image
+                                src={albumArt}
+                                alt=""
+                                fill
+                                className="object-cover"
+                                sizes="44px"
+                                unoptimized
+                            />
+                        ) : (
+                            <div
+                                className="w-full h-full grid place-items-center text-text-disabled text-xs"
+                                aria-hidden="true"
+                            ></div>
+                        )}
+                    </div>
+
+                    {/* Track Info */}
+                    <div className="grid gap-8 min-w-0">
+                        <h3
+                            className="text-text-primary text-base font-normal leading-tight truncate"
+                            title={title}
+                            style={{ opacity: isLoading ? 0.5 : 1 }}
+                        >
+                            {title}
+                        </h3>
+                        <p
+                            className="text-text-secondary text-eyebrow-2 truncate"
+                            title={artist}
+                            style={{ opacity: isLoading ? 0.5 : 1 }}
+                        >
+                            {artist}
+                        </p>
+                    </div>
+
+                    {/* Visualizer - only on desktop */}
+                    <div
+                        className="hidden md:flex flex-shrink-0"
+                        aria-live="polite"
+                        aria-atomic="true"
+                    >
+                        {isPlaying ? (
+                            <MusicWaveVisualizer isLoading={isLoading} />
+                        ) : (
+                            <div className="h-64 min-w-[160px]" aria-label="Music paused" />
+                        )}
+                    </div>
+                </div>
+
+                {/* Visualizer - only on mobile */}
                 <div
-                    className="w-44 h-44 rounded-lg overflow-hidden bg-background-secondary flex-shrink-0 relative"
-                    role="img"
-                    aria-label={albumArt ? albumArtAlt : "No album art"}
+                    className="flex md:hidden justify-center flex-shrink-0"
+                    aria-live="polite"
+                    aria-atomic="true"
                 >
-                    {albumArt ? (
-                        <Image
-                            src={albumArt}
-                            alt=""
-                            fill
-                            className="object-cover"
-                            sizes="44px"
-                            unoptimized
-                        />
-                    ) : (
-                        <div
-                            className="w-full h-full grid place-items-center text-text-disabled text-xs"
-                            aria-hidden="true"
-                        ></div>
-                    )}
-                </div>
-
-                {/* Track Info */}
-                <div className="grid gap-8 min-w-0">
-                    <h3
-                        className="text-text-primary text-base font-normal leading-tight truncate"
-                        title={title}
-                        style={{ opacity: isLoading ? 0.5 : 1 }}
-                    >
-                        {title}
-                    </h3>
-                    <p
-                        className="text-text-secondary text-eyebrow-2 truncate"
-                        title={artist}
-                        style={{ opacity: isLoading ? 0.5 : 1 }}
-                    >
-                        {artist}
-                    </p>
-                </div>
-
-                {/* Visualizer */}
-                <div className="flex-shrink-0" aria-live="polite" aria-atomic="true">
                     {isPlaying ? (
                         <MusicWaveVisualizer isLoading={isLoading} />
                     ) : (

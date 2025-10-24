@@ -51,6 +51,16 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         content: <AvatarContent widgetId="avatar" />,
     },
     {
+        id: "now_playing",
+        defaultX: 566,
+        defaultY: 474,
+        width: 488,
+        minHeight: 127,
+        noPadding: true,
+        title: "Now Playing",
+        content: <NowPlaying />,
+    },
+    {
         id: "work",
         defaultX: 1090,
         defaultY: 60,
@@ -76,15 +86,5 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         noPadding: true,
         customActions: <SnakeGameActions />,
         content: <SnakeGame />,
-    },
-    {
-        id: "now_playing",
-        defaultX: 566,
-        defaultY: 474,
-        width: 488,
-        minHeight: 127,
-        noPadding: true,
-        title: "Now Playing",
-        content: <NowPlaying />,
     },
 ]
