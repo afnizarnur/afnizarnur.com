@@ -247,8 +247,8 @@ export function NavigationBar({
 
                     {/* Icon Buttons + Hamburger Menu */}
                     <div className="flex justify-end gap-4 md:col-span-1 lg:col-span-1">
-                        {/* Reset Button (Shown only when there are changes) */}
-                        {resetAll && <AnimatedResetButton onClick={resetAll} show={hasChanges} />}
+                        {/* Reset Button (Shown only when there are changes, hidden on mobile/tablet) */}
+                        {resetAll && <div className="hidden lg:block"><AnimatedResetButton onClick={resetAll} show={hasChanges} /></div>}
 
                         {/* Theme Toggle (Shown on all screens) */}
                         <ThemeToggle size={24} />
