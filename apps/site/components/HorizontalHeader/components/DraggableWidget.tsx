@@ -55,7 +55,6 @@ export const DraggableWidget = React.memo(function DraggableWidget({
 }: DraggableWidgetProps): React.ReactElement {
     // Track the position at drag start to calculate absolute position
     const dragStartPosRef = useRef<WidgetPosition>({ x: 0, y: 0 })
-    const [hoverTrigger, setHoverTrigger] = useState(0)
     const internalWidgetRef = useRef<HTMLDivElement | null>(null)
     const constraintsInitialized = useRef(false)
     const isMountedRef = useRef(false)
@@ -270,7 +269,6 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             onDragStart={handleDragStart}
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}
-            onMouseEnter={() => setHoverTrigger((prev) => prev + 1)}
             onKeyDown={handleKeyDown}
             tabIndex={0}
             role="application"
@@ -291,7 +289,6 @@ export const DraggableWidget = React.memo(function DraggableWidget({
                 imageProps={config.imageProps}
                 noPadding={config.noPadding}
                 customActions={config.customActions}
-                triggerTitleAnimation={hoverTrigger}
             >
                 {config.content}
             </Widget>
