@@ -2,10 +2,11 @@
 
 import React, { useRef, useCallback, useState } from "react"
 import { Segment, FooterSegment, WidgetContainer } from "./components"
-import { useWidgetPositions, useWidgetDimensions, useAutoScroll, useStackOrder } from "./hooks"
+import { useWidgetDimensions, useAutoScroll, useStackOrder } from "./hooks"
 import { WIDGET_CONFIGS } from "./config"
 import { SEGMENT_WIDTH, GRID_TEMPLATE_MOBILE, GRID_TEMPLATE_DESKTOP } from "./constants"
 import type { ConstraintBounds } from "./types"
+import { useDragContext } from "./contexts/DragContext"
 
 /**
  * Desktop implementation keeps the draggable behavior with horizontal scrolling.
@@ -15,8 +16,8 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
 
-    // Custom hooks for state management
-    const { positions, savePosition } = useWidgetPositions(WIDGET_CONFIGS)
+    // Get positions from context (shared state)
+    const { positions, savePosition } = useDragContext()
     const { widgetHeights, widgetRefs, getWidgetHeight } = useWidgetDimensions(WIDGET_CONFIGS)
     const { startAutoScroll, stopAutoScroll } = useAutoScroll(scrollContainerRef)
     const { draggingId, getZIndex, bringToFront, setDragging } = useStackOrder(WIDGET_CONFIGS)

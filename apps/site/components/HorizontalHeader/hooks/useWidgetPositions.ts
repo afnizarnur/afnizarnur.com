@@ -14,21 +14,27 @@ interface UseWidgetPositionsReturn {
         bounds: ConstraintBounds
     ) => void
     updatePosition: (id: string, position: WidgetPosition) => void
+    resetPositions: () => void
+    hasChanges: boolean
 }
 
 /**
  * Manages widget positions with localStorage persistence
  */
 export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsReturn {
-    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => {
-        // Initialize with default positions
-        const defaultPositions: Record<string, WidgetPosition> = {}
+    // Memoize default positions so we can compare against them
+    const defaultPositions = useState<Record<string, WidgetPosition>>(() => {
+        const defaults: Record<string, WidgetPosition> = {}
         configs.forEach((config) => {
-            defaultPositions[config.id] = {
+            defaults[config.id] = {
                 x: config.defaultX,
                 y: config.defaultY,
             }
         })
+        return defaults
+    })[0]
+
+    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => {
         return defaultPositions
     })
 
@@ -65,9 +71,28 @@ export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsR
         setPositions((prev) => ({ ...prev, [id]: position }))
     }, [])
 
+    // Reset all positions to defaults
+    const resetPositions = useCallback((): void => {
+        setPositions(defaultPositions)
+        try {
+            localStorage.removeItem(STORAGE_KEY)
+        } catch (error) {
+            console.error("Failed to clear widget positions from localStorage:", error)
+        }
+    }, [defaultPositions])
+
+    // Check if current positions differ from defaults
+    const hasChanges = Object.keys(positions).some((id) => {
+        const current = positions[id]
+        const defaultPos = defaultPositions[id]
+        return current?.x !== defaultPos?.x || current?.y !== defaultPos?.y
+    })
+
     return {
         positions,
         savePosition,
         updatePosition,
+        resetPositions,
+        hasChanges,
     }
 }

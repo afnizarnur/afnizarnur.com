@@ -10,6 +10,8 @@ import { ThemeToggle } from "./ThemeToggle"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { TerminalTextEffect } from "./TerminalTextEffect"
+import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
+import { AnimatedResetButton } from "./AnimatedResetButton"
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -124,6 +126,11 @@ export function NavigationBar({
 }: Omit<NavigationBarProps, "currentPath">): JSX.Element {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    // Use drag context if available (only available on pages with HorizontalHeader)
+    const dragContext = useDragContextSafe()
+    const resetAll = dragContext?.resetAll
+    const hasChanges = dragContext?.hasChanges ?? false
 
     useEffect(() => {
         const hamburgerBtn = document.getElementById("hamburger-menu-button")
@@ -240,6 +247,9 @@ export function NavigationBar({
 
                     {/* Icon Buttons + Hamburger Menu */}
                     <div className="flex justify-end gap-4 md:col-span-1 lg:col-span-1">
+                        {/* Reset Button (Shown only when there are changes) */}
+                        {resetAll && <AnimatedResetButton onClick={resetAll} show={hasChanges} />}
+
                         {/* Theme Toggle (Shown on all screens) */}
                         <ThemeToggle size={24} />
 

@@ -3,7 +3,6 @@
 import React from "react"
 import Image from "next/image"
 import { X } from "@phosphor-icons/react"
-import { TerminalTextEffect } from "./TerminalTextEffect"
 
 export interface WidgetProps {
     title?: string
@@ -18,7 +17,6 @@ export interface WidgetProps {
         alt: string
     }
     noPadding?: boolean
-    triggerTitleAnimation?: number
     customActions?: React.ReactNode
     children: React.ReactNode
 }
@@ -61,7 +59,6 @@ export function Widget({
     backgroundImage,
     imageProps,
     noPadding = false,
-    triggerTitleAnimation,
     customActions,
     children,
 }: WidgetProps): React.ReactElement {
@@ -119,14 +116,9 @@ export function Widget({
                     }`}
                 >
                     {title && (
-                        <div className="flex-1 opacity-50 justify-start text-text-primary text-eyebrow-1 uppercase">
-                            <TerminalTextEffect
-                                effect="cursor"
-                                triggerAnimation={triggerTitleAnimation}
-                            >
-                                {title.replace(/ /g, "_")}
-                            </TerminalTextEffect>
-                        </div>
+                        <p className="flex-1 opacity-50 justify-start text-text-primary text-eyebrow-1 uppercase">
+                            {title.replace(/ /g, "_")}
+                        </p>
                     )}
                     {!title && <div className="flex-1" />}
                     {customActions && (
