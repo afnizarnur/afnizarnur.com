@@ -29,6 +29,7 @@ export interface SpotifyAlbum {
 export interface SpotifyTrack {
     id: string
     name: string
+    explicit: boolean
     artists: SpotifyArtist[]
     album: SpotifyAlbum
     external_urls: {

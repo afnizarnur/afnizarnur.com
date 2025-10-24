@@ -5,12 +5,15 @@ import type { NowPlayingData } from "@/lib/spotify/types"
 /**
  * Now Playing API Endpoint
  *
- * Returns the most recently played track from Spotify.
+ * Returns the most recently played track from Spotify (non-explicit).
+ * Automatically skips explicit tracks.
  * Cached for 5 minutes to minimize API calls.
  */
 export async function GET(): Promise<NextResponse<NowPlayingData | { error: string }>> {
     try {
-        const data = await getRecentlyPlayed(1)
+        // Fetch more tracks to account for explicit songs that we'll filter out
+        // Spotify limits to max 50 items, so we fetch 50 and filter
+        const data = await getRecentlyPlayed(50)
 
         if (!data.items || data.items.length === 0) {
             return NextResponse.json({
@@ -20,8 +23,18 @@ export async function GET(): Promise<NextResponse<NowPlayingData | { error: stri
             })
         }
 
-        const mostRecent = data.items[0]
-        const track = mostRecent.track
+        // Find the first non-explicit track
+        const nonExplicitTrack = data.items.find((item) => !item.track.explicit)
+
+        if (!nonExplicitTrack) {
+            return NextResponse.json({
+                isPlaying: false,
+                title: "No clean tracks in recent history",
+                artist: "Spotify",
+            })
+        }
+
+        const track = nonExplicitTrack.track
 
         // Get the smallest album art (usually 64x64)
         const albumArt = track.album.images[track.album.images.length - 1]?.url
