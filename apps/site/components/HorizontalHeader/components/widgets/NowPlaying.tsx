@@ -112,7 +112,7 @@ const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
 
     return (
         <div
-            className="flex items-end gap-2 h-64 min-w-[120px]"
+            className="flex items-end gap-2 h-64 min-w-[160px]"
             role="img"
             aria-label="Music visualizer animation"
         >
@@ -120,7 +120,7 @@ const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
                 bars.map((bar, i) => (
                     <div
                         key={i}
-                        className="w-8 flex flex-col items-center justify-end font-mono text-text-primary text-[12px] transition-all duration-150 overflow-hidden"
+                        className="w-12 flex flex-col items-center justify-end font-mono text-text-primary text-[12px] transition-all duration-150 overflow-hidden"
                         style={{
                             height: `${bar.height}%`,
                             opacity: isLoading ? 0.3 : 1,
@@ -242,7 +242,7 @@ export function NowPlaying({
                     {isPlaying ? (
                         <MusicWaveVisualizer isLoading={isLoading} />
                     ) : (
-                        <div className="h-64 min-w-[120px]" aria-label="Music paused" />
+                        <div className="h-64 min-w-[160px]" aria-label="Music paused" />
                     )}
                 </div>
             </div>
