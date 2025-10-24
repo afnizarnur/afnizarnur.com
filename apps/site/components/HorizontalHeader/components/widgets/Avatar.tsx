@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useCallback, useRef, useMemo, useSyncExternalStore, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { ReactSketchCanvas, type ReactSketchCanvasRef } from "react-sketch-canvas"
 import { PencilSimpleIcon, ClockClockwiseIcon, CheckIcon } from "@phosphor-icons/react/dist/ssr"
 import { useDragContext } from "../../contexts/DragContext"
@@ -9,6 +10,7 @@ import { getWidgetStorageKey, parseStorageData, writeStorageData } from "../../u
 // Types
 interface AvatarStateData {
     isDrawMode: boolean
+    hasDrawnContent: boolean
 }
 
 // Global state manager for avatar widget (singleton pattern with optimized subscription)
@@ -16,7 +18,7 @@ export class AvatarState {
     private static instances = new Map<string, AvatarState>()
 
     private canvasRefInternal: React.RefObject<ReactSketchCanvasRef | null> | null = null
-    private state: AvatarStateData = { isDrawMode: false }
+    private state: AvatarStateData = { isDrawMode: false, hasDrawnContent: false }
     private listeners = new Set<() => void>()
     private hasLoadedData = false
 
@@ -63,6 +65,13 @@ export class AvatarState {
         }
     }
 
+    setHasDrawnContent(value: boolean): void {
+        if (this.state.hasDrawnContent !== value) {
+            this.state = { ...this.state, hasDrawnContent: value }
+            this.notify()
+        }
+    }
+
     clearCanvas(): void {
         this.canvasRefInternal?.current?.clearCanvas()
     }
@@ -96,6 +105,8 @@ export class AvatarState {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 canvas.loadPaths(savedData as any)
                 this.hasLoadedData = true
+                // Mark as having drawn content if data was loaded
+                this.setHasDrawnContent(true)
             }
         } catch (error) {
             console.error("Failed to load canvas data:", error)
@@ -144,6 +155,7 @@ function useAvatarState(widgetId: string) {
     const handleClear = useCallback(() => {
         stateManager.clearCanvas()
         stateManager.resetLoadState()
+        stateManager.setHasDrawnContent(false)
         const storageKey = getWidgetStorageKey(widgetId, "canvas")
         writeStorageData(storageKey, null)
     }, [stateManager, widgetId])
@@ -155,6 +167,7 @@ function useAvatarState(widgetId: string) {
     return {
         canvasRef,
         isDrawMode: state.isDrawMode,
+        hasDrawnContent: state.hasDrawnContent,
         handleToggleDrawMode,
         handleClear,
         handleSave,
@@ -180,6 +193,9 @@ export const AvatarContent = React.memo(
         // Debounced auto-save to prevent blocking on every stroke
         const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
         const handleStrokeEnd = useCallback(() => {
+            // Mark as having drawn content
+            stateManager.setHasDrawnContent(true)
+
             // Clear previous timeout
             if (saveTimeoutRef.current) {
                 clearTimeout(saveTimeoutRef.current)
@@ -188,7 +204,7 @@ export const AvatarContent = React.memo(
             saveTimeoutRef.current = setTimeout(() => {
                 handleSave()
             }, 1000)
-        }, [handleSave])
+        }, [handleSave, stateManager])
 
         // Load canvas data when canvas is ready (single attempt, immediate load)
         useEffect(() => {
@@ -281,10 +297,23 @@ export const AvatarContent = React.memo(
     }
 )
 
+// Animation variants for buttons
+const buttonVariants = {
+    initial: { opacity: 0, scale: 0.8 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.8 },
+}
+
+const buttonTransition = {
+    type: "spring" as const,
+    stiffness: 260,
+    damping: 20,
+}
+
 // Actions component (rendered in widget header)
 export const AvatarActions = React.memo(
     function AvatarActions({ widgetId }: { widgetId: string }): React.ReactElement {
-        const { isDrawMode, handleToggleDrawMode, handleClear } = useAvatarState(widgetId)
+        const { isDrawMode, hasDrawnContent, handleToggleDrawMode, handleClear } = useAvatarState(widgetId)
 
         // Memoize aria labels
         const drawModeLabel = useMemo(
@@ -298,29 +327,39 @@ export const AvatarActions = React.memo(
 
         return (
             <>
-                <button
+                <AnimatePresence>
+                    {isDrawMode && hasDrawnContent && (
+                        <motion.button
+                            type="button"
+                            onClick={handleClear}
+                            className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-icon-inverse hover:opacity-50 cursor-pointer"
+                            aria-label="Clear drawing"
+                            title="Clear drawing"
+                            initial={buttonVariants.initial}
+                            animate={buttonVariants.animate}
+                            exit={buttonVariants.exit}
+                            transition={buttonTransition}
+                        >
+                            <ClockClockwiseIcon size={24} />
+                        </motion.button>
+                    )}
+                </AnimatePresence>
+
+                <motion.button
                     type="button"
                     onClick={handleToggleDrawMode}
                     className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-icon-inverse hover:opacity-50 cursor-pointer"
                     aria-label={drawModeLabel}
                     title={drawModeLabel}
+                    animate={{ scale: 1 }}
+                    whileHover={{ scale: 1 }}
                 >
                     {isDrawMode ? (
                         <CheckIcon size={24} />
                     ) : (
                         <PencilSimpleIcon size={24} weight={pencilWeight} />
                     )}
-                </button>
-
-                <button
-                    type="button"
-                    onClick={handleClear}
-                    className="relative overflow-hidden flex items-center justify-center transition-colors rounded text-icon-inverse hover:opacity-50 cursor-pointer"
-                    aria-label="Clear drawing"
-                    title="Clear drawing"
-                >
-                    <ClockClockwiseIcon size={24} />
-                </button>
+                </motion.button>
             </>
         )
     },
