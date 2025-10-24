@@ -1,6 +1,7 @@
 import type { WidgetConfig } from "./types"
 import { SnakeGame, SnakeGameActions } from "./components/widgets/SnakeGame"
 import { AvatarContent, AvatarActions } from "./components/widgets/Avatar"
+import { NowPlaying } from "./components/widgets/NowPlaying"
 
 /**
  * Widget configurations with default positions and content
@@ -24,7 +25,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "bio",
         defaultX: 0,
-        defaultY: 408,
+        defaultY: 390,
         width: 443,
         minHeight: 200,
         title: "Short bio",
@@ -40,7 +41,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         defaultX: 634,
         defaultY: 60,
         width: 420,
-        height: 420,
+        height: 380,
         imageProps: {
             src: "/avatar.png",
             alt: "Afnizar's avatar",
@@ -68,12 +69,22 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
     {
         id: "game_snake",
         defaultX: 1090,
-        defaultY: 368,
+        defaultY: 350,
         width: 443,
         height: 250,
         title: "Play Snake Game",
         noPadding: true,
         customActions: <SnakeGameActions />,
         content: <SnakeGame />,
+    },
+    {
+        id: "now_playing",
+        defaultX: 566,
+        defaultY: 474,
+        width: 488,
+        minHeight: 127,
+        noPadding: true,
+        title: "Now Playing",
+        content: <NowPlaying />,
     },
 ]
