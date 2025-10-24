@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useCallback, useMemo } from "react"
 import Image from "next/image"
+import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 
 interface NowPlayingData {
     isPlaying: boolean
@@ -81,6 +82,7 @@ const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
     isLoading?: boolean
 }): React.ReactElement {
     const [isMounted, setIsMounted] = useState(false)
+    const prefersReducedMotion = useReducedMotion()
 
     const generateBars = useCallback((): Bar[] => {
         return Array.from({ length: BAR_COUNT }, () => {
@@ -102,13 +104,18 @@ const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
     useEffect(() => {
         setIsMounted(true)
         setBars(generateBars())
+    }, [generateBars])
+
+    useEffect(() => {
+        // Only set interval if motion is not reduced
+        if (prefersReducedMotion) return
 
         const interval = setInterval(() => {
             setBars(generateBars())
         }, UPDATE_INTERVAL)
 
         return () => clearInterval(interval)
-    }, [generateBars])
+    }, [generateBars, prefersReducedMotion])
 
     return (
         <div
@@ -120,7 +127,9 @@ const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
                 bars.map((bar, i) => (
                     <div
                         key={i}
-                        className="w-24 md:w-12 flex flex-col items-center justify-end font-mono text-text-primary text-[12px] transition-all duration-150 overflow-hidden"
+                        className={`w-24 md:w-12 flex flex-col items-center justify-end font-mono text-text-primary text-[12px] overflow-hidden${
+                            prefersReducedMotion ? "" : " transition-all duration-150"
+                        }`}
                         style={{
                             height: `${bar.height}%`,
                             opacity: isLoading ? 0.3 : 1,

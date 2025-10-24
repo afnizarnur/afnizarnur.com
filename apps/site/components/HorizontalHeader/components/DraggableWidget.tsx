@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect, useMemo } from "react"
 import { motion, type PanInfo } from "framer-motion"
+import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 import { Widget } from "../../Widget"
 import type { WidgetConfig, WidgetPosition, DragMouseEvent } from "../types"
 import {
@@ -62,6 +63,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
     const KEYBOARD_MOVE_STEP = 10 // pixels to move per arrow key press
     const { isWidgetDragDisabled } = useDragContext()
     const isDragDisabled = isWidgetDragDisabled(config.id)
+    const prefersReducedMotion = useReducedMotion()
 
     // Use a ref for constraints to keep object reference stable
     // This prevents Framer Motion from auto-repositioning widgets when constraints change
@@ -245,27 +247,47 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             dragConstraints={dragConstraintsRef.current}
             dragElastic={0}
             dragMomentum={false}
-            dragTransition={{
-                power: 0.1,
-                timeConstant: 200,
-            }}
+            dragTransition={
+                prefersReducedMotion
+                    ? {
+                          power: 0,
+                          timeConstant: 0,
+                      }
+                    : {
+                          power: 0.1,
+                          timeConstant: 200,
+                      }
+            }
             initial={initialValues}
             animate={animateValues}
-            whileDrag={{
-                scale: DRAG_SCALE,
-                rotate: DRAG_ROTATION,
-                transition: {
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 25,
-                },
-            }}
-            transition={{
-                type: "spring",
-                stiffness: SPRING_STIFFNESS,
-                damping: SPRING_DAMPING,
-                mass: SPRING_MASS,
-            }}
+            whileDrag={
+                prefersReducedMotion
+                    ? {
+                          scale: 1,
+                          rotate: 0,
+                      }
+                    : {
+                          scale: DRAG_SCALE,
+                          rotate: DRAG_ROTATION,
+                          transition: {
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 25,
+                          },
+                      }
+            }
+            transition={
+                prefersReducedMotion
+                    ? {
+                          duration: 0,
+                      }
+                    : {
+                          type: "spring",
+                          stiffness: SPRING_STIFFNESS,
+                          damping: SPRING_DAMPING,
+                          mass: SPRING_MASS,
+                      }
+            }
             onDragStart={handleDragStart}
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}

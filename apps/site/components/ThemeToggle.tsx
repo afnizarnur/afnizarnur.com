@@ -1,6 +1,7 @@
 "use client"
 
 import { MoonIcon, SunIcon } from "@phosphor-icons/react"
+import { useDarkMode, useThemePreference } from "@/contexts/UserPreferencesContext"
 
 interface ThemeToggleProps {
     size?: number
@@ -8,19 +9,18 @@ interface ThemeToggleProps {
 }
 
 export function ThemeToggle({ size = 24, className = "" }: ThemeToggleProps): JSX.Element {
+    const isDarkMode = useDarkMode()
+    const { theme, setTheme } = useThemePreference()
+
     const toggleTheme = (): void => {
-        // Read current theme from DOM
-        const currentTheme = document.documentElement.getAttribute("data-theme")
-        const newTheme = currentTheme === "light" ? "dark" : "light"
-
-        // Apply theme to DOM
-        document.documentElement.setAttribute("data-theme", newTheme)
-
-        // Save to localStorage
-        try {
-            localStorage.setItem("theme-preference", newTheme)
-        } catch {
-            // Silently fail if localStorage is not available
+        // Toggle between light and dark
+        // If currently in system mode, switch to explicit theme
+        if (theme === "system") {
+            // Toggle from current system preference
+            setTheme(isDarkMode ? "light" : "dark")
+        } else {
+            // Toggle explicit preference
+            setTheme(theme === "light" ? "dark" : "light")
         }
     }
 
@@ -32,7 +32,7 @@ export function ThemeToggle({ size = 24, className = "" }: ThemeToggleProps): JS
             type="button"
             suppressHydrationWarning
         >
-            {/* Both icons rendered, CSS controls visibility based on data-theme */}
+            {/* Show moon icon in light mode, sun icon in dark mode */}
             <MoonIcon
                 size={size}
                 color="currentColor"

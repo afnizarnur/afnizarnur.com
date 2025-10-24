@@ -106,16 +106,23 @@ export function setTheme(theme: Theme): void {
  * Inline script for theme initialization
  * This should be added to the document <head> before any content renders
  * to prevent FOUC (Flash of Unstyled Content)
+ *
+ * NOTE: This reads from the unified "user-preferences" localStorage key
+ * which is managed by UserPreferencesContext
  */
 export const themeInitScript = `
 ;(function () {
-    const THEME_KEY = "theme-preference"
+    const STORAGE_KEY = "afnizarnur-user-preferences"
     const THEME_ATTRIBUTE = "data-theme"
 
-    function getSavedTheme() {
+    function getSavedThemePreference() {
         try {
-            const saved = localStorage.getItem(THEME_KEY)
-            return saved === "light" || saved === "dark" ? saved : null
+            const stored = localStorage.getItem(STORAGE_KEY)
+            if (!stored) return null
+
+            const preferences = JSON.parse(stored)
+            const theme = preferences.theme
+            return theme === "light" || theme === "dark" || theme === "system" ? theme : null
         } catch {
             return null
         }
@@ -134,9 +141,18 @@ export const themeInitScript = `
     }
 
     function initializeTheme() {
-        const savedTheme = getSavedTheme()
+        const savedThemePreference = getSavedThemePreference()
         const systemTheme = getSystemTheme()
-        const theme = savedTheme || systemTheme
+
+        // Resolve actual theme from preference
+        let theme
+        if (savedThemePreference === "light" || savedThemePreference === "dark") {
+            theme = savedThemePreference
+        } else {
+            // "system" or no preference - use system theme
+            theme = systemTheme
+        }
+
         applyTheme(theme)
     }
 
@@ -147,8 +163,9 @@ export const themeInitScript = `
     window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", (e) => {
-            // Only apply system theme if user hasn't saved a preference
-            if (!getSavedTheme()) {
+            const savedThemePreference = getSavedThemePreference()
+            // Only apply system theme if user preference is "system" or not set
+            if (!savedThemePreference || savedThemePreference === "system") {
                 applyTheme(e.matches ? "dark" : "light")
             }
         })

@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useMemo } from "react"
 import type { WidgetConfig, WidgetPosition, ConstraintBounds } from "../types"
-import { STORAGE_KEY } from "../constants"
+import { STORAGE_KEYS } from "@/lib/storage"
 import { clampPosition, parseStorageData, writeStorageData } from "../utils"
 
 interface UseWidgetPositionsReturn {
@@ -22,8 +22,8 @@ interface UseWidgetPositionsReturn {
  * Manages widget positions with localStorage persistence
  */
 export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsReturn {
-    // Memoize default positions so we can compare against them
-    const defaultPositions = useState<Record<string, WidgetPosition>>(() => {
+    // Compute default positions from configs
+    const defaultPositions = useMemo<Record<string, WidgetPosition>>(() => {
         const defaults: Record<string, WidgetPosition> = {}
         configs.forEach((config) => {
             defaults[config.id] = {
@@ -32,15 +32,15 @@ export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsR
             }
         })
         return defaults
-    })[0]
+    }, [configs])
 
-    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => {
-        return defaultPositions
-    })
+    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => ({
+        ...defaultPositions,
+    }))
 
     // Load positions from localStorage on mount
     useEffect(() => {
-        const savedPositions = parseStorageData<Record<string, WidgetPosition>>(STORAGE_KEY, {})
+        const savedPositions = parseStorageData<Record<string, WidgetPosition>>(STORAGE_KEYS.widgetPositions, {})
         if (Object.keys(savedPositions).length > 0) {
             setPositions((prev) => ({ ...prev, ...savedPositions }))
         }
@@ -59,7 +59,7 @@ export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsR
             const clamped = clampPosition(x, y, width, height, bounds)
             setPositions((prev) => {
                 const newPositions = { ...prev, [id]: clamped }
-                writeStorageData(STORAGE_KEY, newPositions)
+                writeStorageData(STORAGE_KEYS.widgetPositions, newPositions)
                 return newPositions
             })
         },
@@ -75,7 +75,7 @@ export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsR
     const resetPositions = useCallback((): void => {
         setPositions(defaultPositions)
         try {
-            localStorage.removeItem(STORAGE_KEY)
+            localStorage.removeItem(STORAGE_KEYS.widgetPositions)
         } catch (error) {
             console.error("Failed to clear widget positions from localStorage:", error)
         }

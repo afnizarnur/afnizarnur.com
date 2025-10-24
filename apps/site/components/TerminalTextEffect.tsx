@@ -1,7 +1,8 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion } from "framer-motion"
 import React, { useCallback, useRef, useState } from "react"
+import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 
 const lettersAndSymbols = [
     "a",
