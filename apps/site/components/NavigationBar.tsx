@@ -12,7 +12,6 @@ import { usePathname } from "next/navigation"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
 import { AnimatedResetButton } from "./AnimatedResetButton"
-import { AnimatePresence } from "framer-motion"
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -249,11 +248,7 @@ export function NavigationBar({
                     {/* Icon Buttons + Hamburger Menu */}
                     <div className="flex justify-end gap-4 md:col-span-1 lg:col-span-1">
                         {/* Reset Button (Shown only when there are changes) */}
-                        <AnimatePresence>
-                            {hasChanges && resetAll && (
-                                <AnimatedResetButton onClick={resetAll} />
-                            )}
-                        </AnimatePresence>
+                        {resetAll && <AnimatedResetButton onClick={resetAll} show={hasChanges} />}
 
                         {/* Theme Toggle (Shown on all screens) */}
                         <ThemeToggle size={24} />

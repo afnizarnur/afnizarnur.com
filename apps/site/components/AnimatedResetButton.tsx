@@ -7,6 +7,7 @@ import { BroomIcon, CheckIcon } from "@phosphor-icons/react"
 interface AnimatedResetButtonProps {
     onClick: () => void
     ariaLabel?: string
+    show: boolean
 }
 
 /**
@@ -16,40 +17,52 @@ interface AnimatedResetButtonProps {
 export function AnimatedResetButton({
     onClick,
     ariaLabel = "Reset widget positions and states",
+    show,
 }: AnimatedResetButtonProps): React.ReactElement {
     const [isClicked, setIsClicked] = useState(false)
+    const [forceShow, setForceShow] = useState(false)
 
     const handleClick = (): void => {
         if (isClicked) return // Prevent multiple clicks
 
+        // Show check icon first
         setIsClicked(true)
 
-        // Call onClick after showing the check icon
+        // Keep button visible even after hasChanges becomes false
+        setForceShow(true)
+
+        // Reset widgets immediately after icon transition starts
         setTimeout(() => {
             onClick()
-        }, 1000)
+        }, 150)
 
-        // Reset the clicked state after animation completes
+        // Hide button after showing check icon
         setTimeout(() => {
             setIsClicked(false)
+            setForceShow(false)
         }, 1000)
     }
 
+    // Show button if either hasChanges or we're in the middle of animation
+    const shouldShow = show || forceShow
+
     return (
-        <motion.button
-            className="w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary active:text-icon-primary transition-colors rounded-radius-8 cursor-pointer relative overflow-hidden"
-            aria-label={ariaLabel}
-            type="button"
-            onClick={handleClick}
-            initial={{ opacity: 0, rotateY: -90, transformOrigin: "left" }}
-            animate={{ opacity: 1, rotateY: 0 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 20,
-            }}
-        >
+        <AnimatePresence>
+            {shouldShow && (
+                <motion.button
+                    className="w-[40px] h-[40px] p-[8px] flex items-center justify-center text-icon-secondary hover:text-icon-primary active:text-icon-primary transition-colors rounded-radius-8 cursor-pointer relative overflow-hidden"
+                    aria-label={ariaLabel}
+                    type="button"
+                    onClick={handleClick}
+                    initial={{ opacity: 0, rotateY: -90, transformOrigin: "left" }}
+                    animate={{ opacity: 1, rotateY: 0 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20,
+                    }}
+                >
             <AnimatePresence mode="wait">
                 {!isClicked ? (
                     <motion.div
@@ -76,5 +89,7 @@ export function AnimatedResetButton({
                 )}
             </AnimatePresence>
         </motion.button>
+            )}
+        </AnimatePresence>
     )
 }
