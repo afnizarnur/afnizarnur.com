@@ -283,7 +283,6 @@
 ┌─────────────────────────┐
 │  config-eslint          │ (no dependencies)
 │  config-typescript      │
-│  config-tailwind        │
 └───────────┬─────────────┘
             │
             ▼
