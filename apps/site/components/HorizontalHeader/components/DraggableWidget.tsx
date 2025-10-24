@@ -224,6 +224,9 @@ export const DraggableWidget = React.memo(function DraggableWidget({
 
     // Set initial position only on first mount, then use animate values
     // This prevents animation from (0,0) on mount while avoiding re-animations on updates
+    // NOTE: Empty dependency array is intentional - we only want to capture the initial
+    // position once on mount. Adding position.x/y as dependencies would cause the useMemo
+    // to recalculate when positions load from localStorage, defeating the purpose.
     const initialValues = useMemo(() => {
         if (!isMountedRef.current) {
             isMountedRef.current = true
@@ -235,7 +238,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             }
         }
         return undefined
-    }, [position.x, position.y])
+    }, [])
 
     return (
         <motion.div

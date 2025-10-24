@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useCallback, useState } from "react"
+import React, { useRef, useCallback, useState, useEffect } from "react"
 import { Segment, FooterSegment, WidgetContainer } from "./components"
 import { useWidgetDimensions, useAutoScroll, useStackOrder } from "./hooks"
 import { WIDGET_CONFIGS } from "./config"
@@ -13,6 +13,7 @@ import { useDragContext } from "./contexts/DragContext"
  */
 export function HorizontalHeaderDesktop(): React.ReactElement {
     const [announcement, setAnnouncement] = useState("")
+    const [mounted, setMounted] = useState(false)
     const scrollContainerRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
 
@@ -21,6 +22,12 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
     const { widgetHeights, widgetRefs, getWidgetHeight } = useWidgetDimensions(WIDGET_CONFIGS)
     const { startAutoScroll, stopAutoScroll } = useAutoScroll(scrollContainerRef)
     const { draggingId, getZIndex, bringToFront, setDragging } = useStackOrder(WIDGET_CONFIGS)
+
+    // Wait for client-side hydration before rendering widgets
+    // This prevents visual jump from server-rendered positions to localStorage positions
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     // Handle drag start
     const handleDragStart = useCallback(
@@ -90,22 +97,24 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
             >
                 {/* Header section with segments as background */}
                 <div className="bg-background-secondary relative grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]">
-                    {/* Draggable widgets container */}
-                    <div className="absolute inset-0 z-20 pointer-events-none grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]">
-                        <WidgetContainer
-                            configs={WIDGET_CONFIGS}
-                            positions={positions}
-                            widgetHeights={widgetHeights}
-                            draggingId={draggingId}
-                            contentRef={contentRef}
-                            widgetRefs={widgetRefs}
-                            getWidgetHeight={getWidgetHeight}
-                            getZIndex={getZIndex}
-                            onDragStart={handleDragStart}
-                            onDrag={handleDrag}
-                            onDragEnd={handleDragEnd}
-                        />
-                    </div>
+                    {/* Draggable widgets container - only render after client-side mount */}
+                    {mounted && (
+                        <div className="absolute inset-0 z-20 pointer-events-none grid [grid-template-columns:var(--grid-template-mobile)] lg:[grid-template-columns:var(--grid-template-desktop)]">
+                            <WidgetContainer
+                                configs={WIDGET_CONFIGS}
+                                positions={positions}
+                                widgetHeights={widgetHeights}
+                                draggingId={draggingId}
+                                contentRef={contentRef}
+                                widgetRefs={widgetRefs}
+                                getWidgetHeight={getWidgetHeight}
+                                getZIndex={getZIndex}
+                                onDragStart={handleDragStart}
+                                onDrag={handleDrag}
+                                onDragEnd={handleDragEnd}
+                            />
+                        </div>
+                    )}
 
                     {/* Segments as background */}
                     <div className="flex h-full" style={{ gridColumn: "2" }}>
