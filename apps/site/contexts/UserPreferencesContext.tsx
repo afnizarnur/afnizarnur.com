@@ -1,6 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react"
+import { STORAGE_KEYS } from "@/lib/storage"
 
 /**
  * User preference types
@@ -35,7 +36,6 @@ interface UserPreferencesContextValue {
     resetToDefaults: () => void
 }
 
-const STORAGE_KEY = "user-preferences"
 const DEFAULT_PREFERENCES: UserPreferences = {
     motion: "system",
     theme: "system",
@@ -82,7 +82,7 @@ export function UserPreferencesProvider({ children }: { children: React.ReactNod
 
     // Load from localStorage on mount
     useEffect(() => {
-        const stored = localStorage.getItem(STORAGE_KEY)
+        const stored = localStorage.getItem(STORAGE_KEYS.userPreferences)
         if (stored) {
             try {
                 const parsed = JSON.parse(stored) as Partial<UserPreferences>
@@ -98,7 +98,7 @@ export function UserPreferencesProvider({ children }: { children: React.ReactNod
 
     // Save to localStorage whenever preferences change
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences))
+        localStorage.setItem(STORAGE_KEYS.userPreferences, JSON.stringify(preferences))
     }, [preferences])
 
     // Apply theme when it changes (skip initial mount to prevent FOUC)

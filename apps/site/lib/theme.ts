@@ -112,7 +112,7 @@ export function setTheme(theme: Theme): void {
  */
 export const themeInitScript = `
 ;(function () {
-    const STORAGE_KEY = "user-preferences"
+    const STORAGE_KEY = "afnizarnur-user-preferences"
     const THEME_ATTRIBUTE = "data-theme"
 
     function getSavedThemePreference() {
@@ -124,13 +124,7 @@ export const themeInitScript = `
             const theme = preferences.theme
             return theme === "light" || theme === "dark" || theme === "system" ? theme : null
         } catch {
-            // Fallback: check old theme-preference key for migration
-            try {
-                const oldSaved = localStorage.getItem("theme-preference")
-                return oldSaved === "light" || oldSaved === "dark" ? oldSaved : null
-            } catch {
-                return null
-            }
+            return null
         }
     }
 

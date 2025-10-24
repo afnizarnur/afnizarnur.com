@@ -17,12 +17,6 @@ export const GRID_TEMPLATE_MOBILE = "1fr 100% 1fr"
 /** Grid template for the header layout - Desktop (max 1220px) */
 export const GRID_TEMPLATE_DESKTOP = "1fr min(1220px, 100% - 48px) 1fr"
 
-/** LocalStorage key for persisting widget positions */
-export const STORAGE_KEY = "horizontal-header-widget-positions"
-
-/** LocalStorage key prefix for widget-specific data */
-export const WIDGET_DATA_KEY_PREFIX = "horizontal-header-widget-data"
-
 /**
  * Auto-scroll configuration
  */

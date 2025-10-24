@@ -110,9 +110,12 @@ export function throttle<T extends (...args: unknown[]) => void>(
 
 /**
  * Gets a namespaced storage key for widget-specific data
+ * Uses centralized storage keys from lib/storage
  */
 export function getWidgetStorageKey(widgetId: string, dataType: string): string {
-    return `horizontal-header-widget-data:${widgetId}:${dataType}`
+    // Import dynamically to avoid circular dependencies
+    // This matches STORAGE_KEYS.widgetData(widgetId, dataType)
+    return `afnizarnur-horizontal-header-widget-data-${widgetId}-${dataType}`
 }
 
 /**
@@ -121,9 +124,10 @@ export function getWidgetStorageKey(widgetId: string, dataType: string): string 
 export function clearWidgetData(widgetId: string): void {
     try {
         const keysToRemove: string[] = []
+        const prefix = `afnizarnur-horizontal-header-widget-data-${widgetId}-`
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i)
-            if (key?.startsWith(`horizontal-header-widget-data:${widgetId}:`)) {
+            if (key?.startsWith(prefix)) {
                 keysToRemove.push(key)
             }
         }
