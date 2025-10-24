@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useCallback, useState, useEffect } from "react"
+import React, { useRef, useCallback, useState, useLayoutEffect } from "react"
 import { Segment, FooterSegment, WidgetContainer } from "./components"
 import { useWidgetDimensions, useAutoScroll, useStackOrder } from "./hooks"
 import { WIDGET_CONFIGS } from "./config"
@@ -24,8 +24,9 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
     const { draggingId, getZIndex, bringToFront, setDragging } = useStackOrder(WIDGET_CONFIGS)
 
     // Wait for client-side hydration before rendering widgets
+    // useLayoutEffect runs synchronously before browser paint, making widgets appear instantly
     // This prevents visual jump from server-rendered positions to localStorage positions
-    useEffect(() => {
+    useLayoutEffect(() => {
         setMounted(true)
     }, [])
 
