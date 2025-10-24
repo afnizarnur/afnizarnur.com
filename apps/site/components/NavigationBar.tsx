@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import type { NavigationItem } from "@afnizarnur/ui"
-import { GearSix, List, X } from "@phosphor-icons/react"
-import { IconButton } from "./IconButton"
+import { List, X } from "@phosphor-icons/react"
 import { MobileMenu } from "./MobileMenu"
 import { ThemeToggle } from "./ThemeToggle"
 import Link from "next/link"
@@ -252,11 +251,6 @@ export function NavigationBar({
 
                         {/* Theme Toggle (Shown on all screens) */}
                         <ThemeToggle size={24} />
-
-                        {/* Settings Icon (Hidden on mobile, shown on tablet+) */}
-                        <div className="hidden md:flex">
-                            <IconButton icon={GearSix} ariaLabel="Open settings" size={24} />
-                        </div>
 
                         {/* Hamburger Menu Button (Shown on tablet and mobile) */}
                         <button
