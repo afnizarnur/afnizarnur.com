@@ -26,7 +26,7 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         id: "bio",
         defaultX: 0,
         defaultY: 390,
-        width: 443,
+        width: 534,
         minHeight: 200,
         title: "Short bio",
         content: (
