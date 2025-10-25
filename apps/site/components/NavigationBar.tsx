@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import Image from "next/image"
 import type { NavigationItem } from "@afnizarnur/ui"
 import { List, X } from "@phosphor-icons/react"
@@ -11,6 +11,10 @@ import { usePathname } from "next/navigation"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
 import { AnimatedResetButton } from "./AnimatedResetButton"
+
+// Constants
+const NAVBAR_HEIGHT = 66
+const MOBILE_BREAKPOINT = 768
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -132,148 +136,137 @@ export function NavigationBar({
     const resetAll = dragContext?.resetAll
     const hasChanges = dragContext?.hasChanges ?? false
 
-    // Observe horizontal header sentinel to change background when navbar touches end of header
-    useEffect(() => {
+    // Ref to track if this is the first IntersectionObserver callback
+    const isFirstCallbackRef = useRef(true)
+    // Ref to store current observer for cleanup
+    const observerRef = useRef<IntersectionObserver | null>(null)
+
+    // Setup and manage IntersectionObserver based on viewport
+    const setupObserver = useCallback(() => {
         const navbar = document.querySelector("nav[role='navigation']") as HTMLElement
-
-        // Check if we're on mobile viewport
-        const isMobileViewport = window.innerWidth < 768
-
-        // Use mobile sentinel on mobile, desktop sentinel on desktop
-        const mobileSentinel = document.getElementById("mobile-header-widgets-sentinel")
-        const desktopSentinel = document.getElementById("horizontal-header-sentinel")
-        const sentinel = isMobileViewport ? mobileSentinel : desktopSentinel
-
-        if (!sentinel || !navbar) {
-            // No header on this page, keep default background
+        if (!navbar) {
             setIsPastHeader(false)
             return
         }
 
-        // Get the actual navbar height dynamically to support responsive changes
-        const navbarHeight = navbar.offsetHeight
+        // Determine which sentinel to observe based on current viewport
+        const isMobileViewport = window.innerWidth < MOBILE_BREAKPOINT
+        const mobileSentinel = document.getElementById("mobile-header-widgets-sentinel")
+        const desktopSentinel = document.getElementById("horizontal-header-sentinel")
+        const sentinel = isMobileViewport ? mobileSentinel : desktopSentinel
 
-        // Check initial state: if sentinel is below the navbar, we've scrolled past it yet
+        if (!sentinel) {
+            // No header sentinel on this page, keep default background
+            setIsPastHeader(false)
+            return
+        }
+
+        // Calculate initial state based on sentinel position
         const sentinelRect = sentinel.getBoundingClientRect()
-        const initialIsPastHeader = sentinelRect.top < navbarHeight
-
-        // Debug logging
-        console.log('NavigationBar Initial State Debug:', {
-            navbarHeight,
-            sentinelTop: sentinelRect.top,
-            sentinelBottom: sentinelRect.bottom,
-            initialIsPastHeader,
-            isMobileViewport,
-            sentinelId: sentinel.id
-        })
-
+        const initialIsPastHeader = sentinelRect.top < NAVBAR_HEIGHT
         setIsPastHeader(initialIsPastHeader)
 
-        // Flag to skip the first IntersectionObserver callback since we already set initial state
-        let isFirstCallback = true
+        // Reset the first callback flag
+        isFirstCallbackRef.current = true
 
+        // Clean up existing observer if any
+        if (observerRef.current) {
+            observerRef.current.disconnect()
+        }
+
+        // Create IntersectionObserver to track when we scroll past the header
         const observer = new IntersectionObserver(
             (entries: IntersectionObserverEntry[]) => {
-                // Skip the first callback - we already calculated the correct initial state above
-                if (isFirstCallback) {
-                    console.log('IntersectionObserver: Skipping first callback')
-                    isFirstCallback = false
+                // Skip first callback since we already set initial state above
+                if (isFirstCallbackRef.current) {
+                    isFirstCallbackRef.current = false
                     return
                 }
 
-                // Only update if we have a valid entry
-                if (entries.length > 0) {
-                    const entry = entries[0]
+                const entry = entries[0]
+                if (!entry) return
 
-                    // Determine if we've scrolled past the header
-                    // When isIntersecting = false, check if sentinel is above or below viewport
-                    let newIsPastHeader: boolean
-                    if (entry.isIntersecting) {
-                        // Sentinel is visible in the adjusted viewport - we're at the transition point
-                        // Use the top position to determine if we're scrolling down or up
-                        newIsPastHeader = entry.boundingClientRect.top <= navbarHeight
-                    } else {
-                        // Sentinel is not visible - could be above or below viewport
-                        // If top < navbarHeight, sentinel is above (scrolled past)
-                        // If top >= navbarHeight, sentinel is below (not reached yet)
-                        newIsPastHeader = entry.boundingClientRect.top < navbarHeight
-                    }
+                // Determine if we've scrolled past the header by checking sentinel position
+                // isIntersecting = false can mean either:
+                //   1. Sentinel is ABOVE viewport (scrolled past) → isPastHeader = true
+                //   2. Sentinel is BELOW viewport (not reached) → isPastHeader = false
+                // We check boundingClientRect.top to distinguish between these cases
+                const newIsPastHeader = entry.isIntersecting
+                    ? entry.boundingClientRect.top <= NAVBAR_HEIGHT
+                    : entry.boundingClientRect.top < NAVBAR_HEIGHT
 
-                    console.log('IntersectionObserver Callback:', {
-                        isIntersecting: entry.isIntersecting,
-                        sentinelTop: entry.boundingClientRect.top,
-                        navbarHeight,
-                        intersectionRatio: entry.intersectionRatio,
-                        newIsPastHeader,
-                        scrollY: window.scrollY
-                    })
-
-                    setIsPastHeader(newIsPastHeader)
-                }
+                setIsPastHeader(newIsPastHeader)
             },
             {
                 threshold: 0,
-                // Negative top margin equal to navbar height to trigger when navbar touches sentinel
-                rootMargin: `-${navbarHeight}px 0px 0px 0px`,
+                rootMargin: `-${NAVBAR_HEIGHT}px 0px 0px 0px`,
             }
         )
 
         observer.observe(sentinel)
+        observerRef.current = observer
+    }, [])
 
-        // Re-observe on resize to handle viewport changes
+    // Setup IntersectionObserver and handle viewport resize
+    useEffect(() => {
+        // Initial setup
+        setupObserver()
+
+        // Track viewport state to detect mobile/desktop transitions
+        let currentIsMobile = window.innerWidth < MOBILE_BREAKPOINT
+
+        // Handle resize events - re-setup observer if viewport crosses breakpoint
         const handleResize = (): void => {
-            const newIsMobileViewport = window.innerWidth < 768
-            if (newIsMobileViewport !== isMobileViewport) {
-                // Viewport changed, component will re-render
-                window.location.reload()
+            const newIsMobile = window.innerWidth < MOBILE_BREAKPOINT
+
+            // Only re-setup if we've crossed the mobile/desktop breakpoint
+            if (newIsMobile !== currentIsMobile) {
+                currentIsMobile = newIsMobile
+                setupObserver()
             }
         }
 
         window.addEventListener("resize", handleResize)
 
+        // Cleanup on unmount
         return () => {
-            observer.disconnect()
             window.removeEventListener("resize", handleResize)
+            if (observerRef.current) {
+                observerRef.current.disconnect()
+            }
         }
-    }, [])
+    }, [setupObserver])
 
+    // Observe hamburger menu button state for icon toggling
     useEffect(() => {
         const hamburgerBtn = document.getElementById("hamburger-menu-button")
+        if (!hamburgerBtn) return
 
-        if (hamburgerBtn) {
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (
-                        mutation.type === "attributes" &&
-                        mutation.attributeName === "data-menu-open"
-                    ) {
-                        const isOpen = hamburgerBtn.getAttribute("data-menu-open") === "true"
-                        setIsMenuOpen(isOpen)
-                    }
-                })
-            })
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (mutation.type === "attributes" && mutation.attributeName === "data-menu-open") {
+                    const isOpen = hamburgerBtn.getAttribute("data-menu-open") === "true"
+                    setIsMenuOpen(isOpen)
+                    break
+                }
+            }
+        })
 
-            observer.observe(hamburgerBtn, { attributes: true })
+        observer.observe(hamburgerBtn, { attributes: true })
 
-            return () => observer.disconnect()
+        return () => {
+            observer.disconnect()
         }
     }, [])
-
-    const navBackgroundClass = isPastHeader ? "bg-background-primary" : "bg-background-secondary"
-
-    // Debug logging for background class
-    console.log('NavigationBar Render:', {
-        isPastHeader,
-        navBackgroundClass,
-        fullClassName: `sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary transition-colors duration-300 ${navBackgroundClass}`
-    })
 
     return (
         <>
             <MobileMenu items={items} timezone={timezone} />
 
             <nav
-                className={`sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary transition-colors duration-300 ${navBackgroundClass}`}
+                className={`sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary transition-colors duration-300 ${
+                    isPastHeader ? "bg-background-primary" : "bg-background-secondary"
+                }`}
                 role="navigation"
                 aria-label="Main navigation"
                 data-scrolled={isPastHeader}
