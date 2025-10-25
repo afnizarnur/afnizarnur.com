@@ -125,11 +125,117 @@ export function NavigationBar({
 }: Omit<NavigationBarProps, "currentPath">): JSX.Element {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isPastHeader, setIsPastHeader] = useState(false)
 
     // Use drag context if available (only available on pages with HorizontalHeader)
     const dragContext = useDragContextSafe()
     const resetAll = dragContext?.resetAll
     const hasChanges = dragContext?.hasChanges ?? false
+
+    // Observe horizontal header sentinel to change background when navbar touches end of header
+    useEffect(() => {
+        const navbar = document.querySelector("nav[role='navigation']") as HTMLElement
+
+        // Check if we're on mobile viewport
+        const isMobileViewport = window.innerWidth < 768
+
+        // Use mobile sentinel on mobile, desktop sentinel on desktop
+        const mobileSentinel = document.getElementById("mobile-header-widgets-sentinel")
+        const desktopSentinel = document.getElementById("horizontal-header-sentinel")
+        const sentinel = isMobileViewport ? mobileSentinel : desktopSentinel
+
+        if (!sentinel || !navbar) {
+            // No header on this page, keep default background
+            setIsPastHeader(false)
+            return
+        }
+
+        // Get the actual navbar height dynamically to support responsive changes
+        const navbarHeight = navbar.offsetHeight
+
+        // Check initial state: if sentinel is below the navbar, we've scrolled past it yet
+        const sentinelRect = sentinel.getBoundingClientRect()
+        const initialIsPastHeader = sentinelRect.top < navbarHeight
+
+        // Debug logging
+        console.log('NavigationBar Initial State Debug:', {
+            navbarHeight,
+            sentinelTop: sentinelRect.top,
+            sentinelBottom: sentinelRect.bottom,
+            initialIsPastHeader,
+            isMobileViewport,
+            sentinelId: sentinel.id
+        })
+
+        setIsPastHeader(initialIsPastHeader)
+
+        // Flag to skip the first IntersectionObserver callback since we already set initial state
+        let isFirstCallback = true
+
+        const observer = new IntersectionObserver(
+            (entries: IntersectionObserverEntry[]) => {
+                // Skip the first callback - we already calculated the correct initial state above
+                if (isFirstCallback) {
+                    console.log('IntersectionObserver: Skipping first callback')
+                    isFirstCallback = false
+                    return
+                }
+
+                // Only update if we have a valid entry
+                if (entries.length > 0) {
+                    const entry = entries[0]
+
+                    // Determine if we've scrolled past the header
+                    // When isIntersecting = false, check if sentinel is above or below viewport
+                    let newIsPastHeader: boolean
+                    if (entry.isIntersecting) {
+                        // Sentinel is visible in the adjusted viewport - we're at the transition point
+                        // Use the top position to determine if we're scrolling down or up
+                        newIsPastHeader = entry.boundingClientRect.top <= navbarHeight
+                    } else {
+                        // Sentinel is not visible - could be above or below viewport
+                        // If top < navbarHeight, sentinel is above (scrolled past)
+                        // If top >= navbarHeight, sentinel is below (not reached yet)
+                        newIsPastHeader = entry.boundingClientRect.top < navbarHeight
+                    }
+
+                    console.log('IntersectionObserver Callback:', {
+                        isIntersecting: entry.isIntersecting,
+                        sentinelTop: entry.boundingClientRect.top,
+                        navbarHeight,
+                        intersectionRatio: entry.intersectionRatio,
+                        newIsPastHeader,
+                        scrollY: window.scrollY
+                    })
+
+                    setIsPastHeader(newIsPastHeader)
+                }
+            },
+            {
+                threshold: 0,
+                // Negative top margin equal to navbar height to trigger when navbar touches sentinel
+                rootMargin: `-${navbarHeight}px 0px 0px 0px`,
+            }
+        )
+
+        observer.observe(sentinel)
+
+        // Re-observe on resize to handle viewport changes
+        const handleResize = (): void => {
+            const newIsMobileViewport = window.innerWidth < 768
+            if (newIsMobileViewport !== isMobileViewport) {
+                // Viewport changed, component will re-render
+                window.location.reload()
+            }
+        }
+
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            observer.disconnect()
+            window.removeEventListener("resize", handleResize)
+        }
+    }, [])
 
     useEffect(() => {
         const hamburgerBtn = document.getElementById("hamburger-menu-button")
@@ -153,14 +259,24 @@ export function NavigationBar({
         }
     }, [])
 
+    const navBackgroundClass = isPastHeader ? "bg-background-primary" : "bg-background-secondary"
+
+    // Debug logging for background class
+    console.log('NavigationBar Render:', {
+        isPastHeader,
+        navBackgroundClass,
+        fullClassName: `sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary transition-colors duration-300 ${navBackgroundClass}`
+    })
+
     return (
         <>
             <MobileMenu items={items} timezone={timezone} />
 
             <nav
-                className="sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary bg-background-secondary"
+                className={`sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary transition-colors duration-300 ${navBackgroundClass}`}
                 role="navigation"
                 aria-label="Main navigation"
+                data-scrolled={isPastHeader}
             >
                 <div className="h-full px-6 md:px-6 lg:px-6 flex md:grid items-center md:grid-cols-2 lg:grid-cols-8 gap-6 mx-auto lg:max-w-[1220px]">
                     {/* Logo */}

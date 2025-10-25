@@ -58,6 +58,8 @@ export function HorizontalHeaderMobile(): React.ReactElement {
                     ))}
                     <div className="h-32" />
                 </div>
+                {/* Sentinel for mobile navbar background transition - placed outside sticky container */}
+                <div id="mobile-header-widgets-sentinel" className="h-0" aria-hidden="true" />
             </div>
             <div className="bg-background-primary px-6" aria-hidden="true">
                 <FooterSegment

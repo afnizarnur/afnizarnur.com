@@ -22,6 +22,8 @@ export function HorizontalHeader(): React.ReactElement {
                 <div className="hidden md:block">
                     <HorizontalHeaderDesktop />
                 </div>
+                {/* Sentinel element for Intersection Observer to detect when header is scrolled past */}
+                <div id="horizontal-header-sentinel" className="h-0" aria-hidden="true" />
             </div>
         </MotionConfig>
     )
