@@ -1,6 +1,6 @@
-import { useState, useCallback, useMemo, useEffect } from "react"
-import type { WidgetConfig, WidgetPosition, ConstraintBounds } from "../types"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { STORAGE_KEYS } from "@/lib/storage"
+import type { ConstraintBounds, WidgetConfig, WidgetPosition } from "../types"
 import { clampPosition, parseStorageData, writeStorageData } from "../utils"
 
 interface UseWidgetPositionsReturn {

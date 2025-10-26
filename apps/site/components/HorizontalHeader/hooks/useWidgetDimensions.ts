@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from "react"
-import type { WidgetConfig } from "../types"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { DEFAULT_MIN_HEIGHT, RESIZE_DEBOUNCE_DELAY } from "../constants"
+import type { WidgetConfig } from "../types"
 import { debounce } from "../utils"
 
 interface UseWidgetDimensionsReturn {

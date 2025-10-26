@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { getAllPostSlugs, getPostBySlug } from "@/lib/sanity/queries"
 import { PageHeader } from "@/components/PageHeader"
 import { PortableText } from "@/components/PortableText"
+import { getAllPostSlugs, getPostBySlug } from "@/lib/sanity/queries"
 
 interface BlogPostPageProps {
     params: Promise<{ slug: string }>
@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps): Promi
                     meta={
                         hasTags ? (
                             <div className="flex flex-wrap gap-8">
-                                {post.tags!.map((tag) => (
+                                {post.tags?.map((tag) => (
                                     <span
                                         key={tag.slug}
                                         className="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary"

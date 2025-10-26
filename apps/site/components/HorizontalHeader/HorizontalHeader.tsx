@@ -1,7 +1,7 @@
 "use client"
 
-import React from "react"
 import { MotionConfig } from "framer-motion"
+import type React from "react"
 import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 import { HorizontalHeaderDesktop } from "./HorizontalHeaderDesktop"
 import { HorizontalHeaderMobile } from "./HorizontalHeaderMobile"

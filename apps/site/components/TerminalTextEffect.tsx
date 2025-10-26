@@ -82,7 +82,7 @@ export function TerminalTextEffect({
     const prefersReducedMotion = useReducedMotion()
 
     // Get timing based on effect type
-    const getTimingConfig = (effectType: EffectType) => {
+    const getTimingConfig = React.useCallback((effectType: EffectType) => {
         switch (effectType) {
             case "cursor":
                 return { charDelay: 70, duration: 30, repeatDelay: 40, repeats: 3 }
@@ -93,7 +93,7 @@ export function TerminalTextEffect({
             default:
                 return { charDelay: 70, duration: 30, repeatDelay: 40, repeats: 3 }
         }
-    }
+    }, [])
 
     const handleMouseEnter = useCallback(() => {
         // Skip animation if user prefers reduced motion
@@ -117,7 +117,7 @@ export function TerminalTextEffect({
         setTimeout(() => {
             isAnimatingRef.current = false
         }, textAnimationDuration)
-    }, [chars.length, onHoverStart, effect, prefersReducedMotion])
+    }, [chars.length, onHoverStart, effect, prefersReducedMotion, getTimingConfig])
 
     const handleMouseLeave = useCallback(() => {
         setIsHovered(false)
@@ -197,7 +197,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
     const prefersReducedMotion = useReducedMotion()
 
     // Get timing config for this effect
-    const getTimingConfig = (effectType: EffectType) => {
+    const getTimingConfig = React.useCallback((effectType: EffectType) => {
         switch (effectType) {
             case "cursor":
                 return { charDelay: 70, duration: 30, repeatDelay: 40, repeats: 3 }
@@ -208,7 +208,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
             default:
                 return { charDelay: 70, duration: 30, repeatDelay: 40, repeats: 3 }
         }
-    }
+    }, [])
 
     // Handle animation based on effect type
     React.useEffect(() => {
@@ -266,7 +266,7 @@ function CharSpan({ char, index, effect, shouldAnimate, colors }: CharSpanProps)
         }, delay)
 
         return () => clearTimeout(timeout)
-    }, [shouldAnimate, char, index, effect, colors, prefersReducedMotion])
+    }, [shouldAnimate, char, index, effect, colors, prefersReducedMotion, getTimingConfig])
 
     return (
         <motion.span

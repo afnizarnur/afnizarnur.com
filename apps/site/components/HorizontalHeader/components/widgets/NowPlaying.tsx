@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useEffect, useState, useCallback, useMemo, useLayoutEffect } from "react"
 import Image from "next/image"
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react"
 import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 import { STORAGE_KEYS } from "@/lib/storage"
 import { parseStorageData, writeStorageData } from "../../utils"
@@ -133,6 +133,7 @@ const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
             {isMounted &&
                 bars.map((bar, i) => (
                     <div
+                        // biome-ignore lint/suspicious/noArrayIndexKey: Visualizer bars have stable order
                         key={i}
                         className={`w-24 md:w-12 flex flex-col items-center justify-end font-mono text-text-primary text-[12px] overflow-hidden${
                             prefersReducedMotion ? "" : " transition-all duration-150"
@@ -144,6 +145,7 @@ const MusicWaveVisualizer = React.memo(function MusicWaveVisualizer({
                         aria-hidden="true"
                     >
                         {bar.chars.map((char, j) => (
+                            // biome-ignore lint/suspicious/noArrayIndexKey: Characters have stable order within bar
                             <span key={`${i}-${j}`}>{char}</span>
                         ))}
                     </div>
@@ -282,7 +284,7 @@ export function NowPlaying({
                         {isPlaying ? (
                             <MusicWaveVisualizer isLoading={isLoading} />
                         ) : (
-                            <div className="h-64 min-w-[160px]" aria-label="Music paused" />
+                            <div className="h-64 min-w-[160px]" />
                         )}
                     </div>
                 </div>
@@ -296,7 +298,7 @@ export function NowPlaying({
                     {isPlaying ? (
                         <MusicWaveVisualizer isLoading={isLoading} />
                     ) : (
-                        <div className="h-64 min-w-[160px]" aria-label="Music paused" />
+                        <div className="h-64 min-w-[160px]" />
                     )}
                 </div>
             </div>

@@ -1,9 +1,9 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
 import type { NavigationItem } from "@afnizarnur/ui"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 
 interface MobileMenuProps {
@@ -263,7 +263,7 @@ export function MobileMenu({
             }}
         >
             {/* Backdrop */}
-            <div
+            <button
                 onClick={closeMenu}
                 onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
@@ -272,16 +272,14 @@ export function MobileMenu({
                     }
                 }}
                 className={`absolute inset-0 bg-background-inverse/70 backdrop-blur-sm transition-opacity duration-300 ease-out ${isOpen ? "opacity-100" : "opacity-0"}`}
-                aria-hidden="true"
-                role="button"
-                tabIndex={-1}
+                type="button"
+                aria-label="Close menu"
             />
 
             {/* Menu Panel */}
-            <div
+            <nav
                 ref={menuPanelRef}
                 className={`fixed left-0 right-0 bottom-0 w-screen bg-background-primary flex flex-col transform transition-transform duration-300 ease-out ${isOpen ? "translate-y-0" : "translate-y-full"} shadow-lg`}
-                role="navigation"
                 aria-label="Primary navigation"
                 style={{
                     top: "var(--navbar-height, 66px)",
@@ -314,7 +312,6 @@ export function MobileMenu({
                                     {item.newTab && (
                                         <span
                                             className="text-icon-tertiary group-hover:text-icon-secondary transition-colors duration-150 text-xs"
-                                            aria-label="Opens in new window"
                                             title="Opens in new window"
                                         >
                                             ↗
@@ -377,7 +374,7 @@ export function MobileMenu({
                 <div className="p-24 flex items-center justify-between bg-background-primary flex-shrink-0">
                     <TimeDisplay timezone={timezone} />
                 </div>
-            </div>
+            </nav>
         </div>
     )
 }

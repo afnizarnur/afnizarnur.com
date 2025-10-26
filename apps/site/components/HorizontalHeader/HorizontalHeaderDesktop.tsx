@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useRef, useCallback, useState } from "react"
-import { Segment, FooterSegment, WidgetContainer } from "./components"
-import { useWidgetDimensions, useAutoScroll, useStackOrder } from "./hooks"
+import type React from "react"
+import { useCallback, useRef, useState } from "react"
+import { FooterSegment, Segment, WidgetContainer } from "./components"
 import { WIDGET_CONFIGS } from "./config"
-import { SEGMENT_WIDTH, GRID_TEMPLATE_MOBILE, GRID_TEMPLATE_DESKTOP } from "./constants"
-import type { ConstraintBounds } from "./types"
+import { GRID_TEMPLATE_DESKTOP, GRID_TEMPLATE_MOBILE, SEGMENT_WIDTH } from "./constants"
 import { useDragContext } from "./contexts/DragContext"
+import { useAutoScroll, useStackOrder, useWidgetDimensions } from "./hooks"
+import type { ConstraintBounds } from "./types"
 
 /**
  * Desktop implementation keeps the draggable behavior with horizontal scrolling.
@@ -64,7 +65,7 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
     return (
         <div className="flex flex-col">
             {/* Screen reader announcements */}
-            <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+            <div aria-live="polite" aria-atomic="true" className="sr-only">
                 {announcement}
             </div>
 
@@ -75,11 +76,10 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
                 arrow keys to move it, and press Enter or Space again to release.
             </div>
 
-            <div
+            <section
                 ref={scrollContainerRef}
                 className="overflow-x-auto scrollbar-hide w-full overscroll-x-none"
                 data-scroll-container="horizontal-header"
-                role="region"
                 aria-label="Interactive header with draggable widgets"
                 style={
                     {
@@ -126,7 +126,7 @@ export function HorizontalHeaderDesktop(): React.ReactElement {
                         <FooterSegment label="100m" width={SEGMENT_WIDTH} />
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     )
 }

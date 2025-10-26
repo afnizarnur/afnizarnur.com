@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
-import { getAllPosts } from "@/lib/sanity/queries"
 import { PageHeader } from "@/components/PageHeader"
 import { PostCard } from "@/components/PostCard"
+import { getAllPosts } from "@/lib/sanity/queries"
 
 export const metadata: Metadata = {
     title: "Blog",

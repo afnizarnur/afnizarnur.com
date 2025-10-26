@@ -15,7 +15,7 @@
  */
 export type PortableTextBlock = {
     _type: "block" | "code" | "image"
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: Portable Text blocks have dynamic properties
     [key: string]: any
 }
 

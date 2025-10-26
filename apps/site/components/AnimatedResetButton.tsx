@@ -1,8 +1,9 @@
 "use client"
 
-import React, { useState, useCallback, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { BroomIcon, CheckIcon } from "@phosphor-icons/react"
+import { AnimatePresence, motion } from "framer-motion"
+import type React from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 
 interface AnimatedResetButtonProps {

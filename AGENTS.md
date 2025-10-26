@@ -16,7 +16,6 @@ AI agent guidelines for the afnizarnur.com monorepo (Next.js + Sanity CMS).
 - `apps/studio` - Sanity Studio 4.10.3 CMS (port 3333)
 - `packages/ui/` - Shared React components library
 - `packages/tokens/` - Design tokens (Terrazzo 0.10.3)
-- `packages/config-eslint/` - Shared ESLint configuration (ESLint 9.18.0)
 - `packages/config-typescript/` - Shared TypeScript configuration
 - `docs/` - Comprehensive documentation
 - `specs/` - Feature specifications and PRDs
@@ -32,7 +31,7 @@ cd afnizarnur.com
 pnpm install
 
 # Build shared packages first (required)
-pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
+pnpm turbo run build --filter="@afnizarnur/tokens"
 ```
 
 ### Environment Configuration
@@ -95,8 +94,8 @@ pnpm --filter @afnizarnur/site start      # Start Next.js production server
 
 ```bash
 pnpm typecheck        # TypeScript validation (must pass)
-pnpm lint             # ESLint checks (must pass)
-pnpm format           # Auto-format with Prettier
+pnpm check:fix        # Biome linting + formatting (must pass)
+pnpm lint             # Verify linting passes
 pnpm format:check     # Verify formatting
 ```
 
@@ -106,7 +105,7 @@ pnpm format:check     # Verify formatting
 # Clean build artifacts and reinstall
 pnpm clean
 pnpm install
-pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"
+pnpm turbo run build --filter="@afnizarnur/tokens"
 ```
 
 ## Code Style Guidelines
@@ -119,15 +118,15 @@ pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/token
 - Utilities: `camelCase.ts`
 - Routes: `kebab-case/page.tsx` (App Router convention)
 
-**Formatting (Prettier 3.3.3):**
+**Formatting (Biome 2.3.0):**
 
 - No semicolons
-- Double quotes (except JS strings)
+- Double quotes
 - 4-space indentation (no tabs)
 - 100 character line limit
 - ES5 trailing commas
 - Always parentheses in arrow functions
-- Run `pnpm format` before committing
+- Run `pnpm check:fix` before committing (lints and formats in one command)
 
 ### TypeScript
 
@@ -237,8 +236,7 @@ All must pass before committing:
 
 ```bash
 pnpm typecheck        # ✅ Zero TypeScript errors
-pnpm lint             # ✅ Zero ESLint errors
-pnpm format:check     # ✅ Properly formatted
+pnpm check:fix        # ✅ Biome linting + formatting
 pnpm build            # ✅ Successful build
 ```
 
@@ -294,7 +292,7 @@ Note: Config packages (`@afnizarnur/config-eslint`, `@afnizarnur/config-typescri
 **Testing:**
 
 - [ ] `pnpm typecheck` passes
-- [ ] `pnpm lint` passes
+- [ ] `pnpm check:fix` passes (Biome linting + formatting)
 - [ ] `pnpm build` succeeds
 - [ ] Manual testing completed
 
@@ -331,7 +329,7 @@ pnpm --filter @afnizarnur/studio deploy
 - `turbo.json` - Turborepo pipeline and caching configuration
 - `pnpm-workspace.yaml` - Workspace packages definition
 - `netlify.toml` - Netlify deployment config (build commands, headers, redirects)
-- `.prettierrc.json` - Prettier formatting rules (4-space, no semicolons)
+- `biome.json` - Biome linting and formatting configuration (4-space, no semicolons)
 - `.changeset/config.json` - Version management configuration
 
 **Frontend (apps/site):**

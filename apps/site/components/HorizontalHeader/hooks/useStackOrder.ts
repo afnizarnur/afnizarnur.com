@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
+import { ACTIVE_Z_INDEX, BASE_Z_INDEX } from "../constants"
 import type { WidgetConfig } from "../types"
-import { BASE_Z_INDEX, ACTIVE_Z_INDEX } from "../constants"
 
 interface UseStackOrderReturn {
     stackOrder: string[]

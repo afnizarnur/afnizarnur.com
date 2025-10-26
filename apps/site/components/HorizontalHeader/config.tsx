@@ -1,7 +1,7 @@
-import type { WidgetConfig } from "./types"
-import { SnakeGame, SnakeGameActions } from "./components/widgets/SnakeGame"
-import { AvatarContent, AvatarActions } from "./components/widgets/Avatar"
+import { AvatarActions, AvatarContent } from "./components/widgets/Avatar"
 import { NowPlaying } from "./components/widgets/NowPlaying"
+import { SnakeGame, SnakeGameActions } from "./components/widgets/SnakeGame"
+import type { WidgetConfig } from "./types"
 
 /**
  * Widget configurations with default positions and content

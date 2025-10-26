@@ -1,5 +1,5 @@
-import type { WidgetPosition, ConstraintBounds, DragMouseEvent } from "./types"
 import { TOTAL_CONTENT_WIDTH } from "./constants"
+import type { ConstraintBounds, DragMouseEvent, WidgetPosition } from "./types"
 
 /**
  * Clamps a position to valid bounds
@@ -7,8 +7,8 @@ import { TOTAL_CONTENT_WIDTH } from "./constants"
 export function clampPosition(
     x: number,
     y: number,
-    widgetWidth: number,
-    widgetHeight: number,
+    _widgetWidth: number,
+    _widgetHeight: number,
     bounds: ConstraintBounds
 ): WidgetPosition {
     return {

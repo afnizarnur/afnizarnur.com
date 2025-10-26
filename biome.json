@@ -1,0 +1,120 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.3.0/schema.json",
+    "files": {
+        "ignoreUnknown": true,
+        "includes": [
+            "**",
+            "!!packages/tokens/dist",
+            "!!**/.next",
+            "!!**/.sanity",
+            "!!**/node_modules",
+            "!!**/dist",
+            "!!**/build"
+        ]
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "suspicious": {
+                "noExplicitAny": "warn",
+                "noDoubleEquals": "error",
+                "noArrayIndexKey": "warn",
+                "useIterableCallbackReturn": "off"
+            },
+            "security": {
+                "noDangerouslySetInnerHtml": "warn"
+            },
+            "a11y": {
+                "useSemanticElements": "warn",
+                "useAriaPropsSupportedByRole": "warn"
+            },
+            "style": {
+                "noUnusedTemplateLiteral": "error",
+                "useConst": "error",
+                "useTemplate": "warn",
+                "noNonNullAssertion": "warn"
+            },
+            "complexity": {
+                "noImportantStyles": "off"
+            },
+            "correctness": {
+                "noUnusedVariables": "error",
+                "useExhaustiveDependencies": "warn"
+            }
+        }
+    },
+    "formatter": {
+        "enabled": true,
+        "formatWithErrors": false,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 100,
+        "lineEnding": "lf"
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "double",
+            "semicolons": "asNeeded",
+            "trailingCommas": "es5",
+            "arrowParentheses": "always"
+        }
+    },
+    "json": {
+        "formatter": {
+            "enabled": true,
+            "indentWidth": 4
+        }
+    },
+    "css": {
+        "parser": {
+            "cssModules": false,
+            "tailwindDirectives": true
+        },
+        "formatter": {
+            "enabled": true,
+            "indentWidth": 4
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["packages/tokens/dist/**"],
+            "linter": {
+                "enabled": false
+            },
+            "formatter": {
+                "enabled": false
+            }
+        },
+        {
+            "includes": ["specs/**/*", "docs/**/*"],
+            "linter": {
+                "enabled": false
+            }
+        },
+        {
+            "includes": ["apps/site/**/*", "apps/studio/**/*"],
+            "linter": {
+                "rules": {
+                    "recommended": true
+                }
+            }
+        },
+        {
+            "includes": ["apps/studio/schemas/**/*", "apps/studio/sanity.config.ts"],
+            "linter": {
+                "rules": {
+                    "suspicious": {
+                        "noExplicitAny": "off"
+                    }
+                }
+            }
+        },
+        {
+            "includes": ["**/*.json", "**/*.jsonc"],
+            "formatter": {
+                "indentWidth": 4
+            }
+        }
+    ]
+}

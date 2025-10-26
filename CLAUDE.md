@@ -2,7 +2,7 @@
 
 Personal portfolio and blog platform. Monorepo built with Next.js, React, Sanity CMS, TypeScript, and Tailwind CSS.
 
-**Tech Stack:** Next.js 15.5.6, React 19.2.0, Sanity Studio 4.10.3, TypeScript 5.6.3 (strict), Tailwind CSS 4.1.14, Turborepo 2.0.0, Node.js 20+, pnpm 9.0.0+
+**Tech Stack:** Next.js 15.5.6, React 19.2.0, Sanity Studio 4.10.3, TypeScript 5.6.3 (strict), Tailwind CSS 4.1.14, Biome 2.3.0, Turborepo 2.0.0, Node.js 20+, pnpm 9.0.0+
 
 ## Structure
 
@@ -10,7 +10,6 @@ Personal portfolio and blog platform. Monorepo built with Next.js, React, Sanity
 - `apps/studio/` - Sanity Studio CMS (runs on port 3333)
 - `packages/ui/` - Shared React components library
 - `packages/tokens/` - Design tokens (Terrazzo 0.10.3)
-- `packages/config-eslint/` - Shared ESLint configuration (ESLint 9.18.0)
 - `packages/config-typescript/` - Shared TypeScript configuration
 - `docs/` - Project documentation (architecture, workflow, CMS, design system, etc.)
 - `specs/` - Feature specifications and PRDs
@@ -22,9 +21,12 @@ Root commands:
 - `pnpm dev` - Start all apps in dev mode
 - `pnpm build` - Build all apps
 - `pnpm typecheck` - Type check all apps (IMPORTANT: run after code changes)
-- `pnpm lint` - Lint all apps
-- `pnpm format` - Format code with Prettier
-- `pnpm format:check` - Check formatting
+- `pnpm lint` - Lint all files with Biome
+- `pnpm lint:fix` - Lint and fix issues with Biome
+- `pnpm format` - Format code with Biome
+- `pnpm format:check` - Check formatting with Biome
+- `pnpm check` - Run both linting and formatting (Biome check)
+- `pnpm check:fix` - Run both linting and formatting with fixes
 - `pnpm clean` - Clean build artifacts
 - `pnpm changeset` - Create changeset for version management
 - `pnpm version-packages` - Bump versions based on changesets
@@ -43,7 +45,7 @@ App-specific (using --filter):
 Initial setup:
 
 1. Clone repo and run `pnpm install`
-2. Build shared packages: `pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"`
+2. Build shared packages: `pnpm turbo run build --filter="@afnizarnur/tokens"`
 3. Start development: `pnpm dev`
 
 Making changes:
@@ -51,9 +53,8 @@ Making changes:
 1. Create feature branch from `main`
 2. Make changes in relevant apps/packages
 3. YOU MUST run `pnpm typecheck` after code changes
-4. YOU MUST run `pnpm lint` before committing
+4. YOU MUST run `pnpm check:fix` before committing (lints and formats)
 5. Test locally with `pnpm dev`
-6. Format code: `pnpm format`
 
 Version management (uses Changesets):
 
@@ -61,7 +62,7 @@ Version management (uses Changesets):
 2. Bump versions: `pnpm version-packages`
 3. Publish: `pnpm release`
 
-IMPORTANT: Versioned packages are `@afnizarnur/tokens` and `@afnizarnur/ui` only. Config packages (`@afnizarnur/config-eslint`, `@afnizarnur/config-typescript`) are ignored from changesets.
+IMPORTANT: Versioned packages are `@afnizarnur/tokens` and `@afnizarnur/ui` only. Config packages (`@afnizarnur/config-typescript`) are ignored from changesets.
 
 ## Code Style
 
@@ -85,15 +86,16 @@ File naming:
 - Utils/Helpers: `camelCase.ts`
 - Config files: `kebab-case.ts` or `.js`
 
-Formatting (Prettier 3.3.3):
+Formatting and Linting (Biome 2.3.0):
 
-- No semicolons
-- Double quotes (except JS strings)
+- No semicolons (`semicolons: "asNeeded"`)
+- Double quotes (`quoteStyle: "double"`)
 - 4-space indentation (no tabs)
 - 100 character line limit
 - ES5 trailing commas
 - Always parentheses in arrow functions
-- Run `pnpm format` before committing
+- Automatic import organization
+- Run `pnpm check:fix` before committing (lints and formats in one command)
 
 ## Key Files
 
@@ -102,7 +104,7 @@ Formatting (Prettier 3.3.3):
 - `pnpm-workspace.yaml` - Workspace configuration
 - `.changeset/config.json` - Changeset configuration
 - `netlify.toml` - Netlify deployment config
-- `.prettierrc.json` - Prettier formatting rules (4-space, no semicolons)
+- `biome.json` - Biome linting and formatting rules (4-space, no semicolons)
 
 **Design System:**
 - `packages/tokens/terrazzo.config.js` - Design tokens configuration (Terrazzo)
@@ -144,7 +146,7 @@ Pull Requests:
 - Include description of changes and testing done
 - Ensure all checks pass before requesting review
 
-IMPORTANT: Never commit without running `pnpm typecheck` and `pnpm lint` first.
+IMPORTANT: Never commit without running `pnpm typecheck` and `pnpm check:fix` first.
 
 ## Sanity CMS Integration
 
@@ -268,18 +270,24 @@ Build issues:
 
 1. Clean everything: `pnpm clean`
 2. Reinstall: `pnpm install`
-3. Build shared packages: `pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"`
+3. Build shared packages: `pnpm turbo run build --filter="@afnizarnur/tokens"`
 4. Build all: `pnpm build`
 
 Type errors:
 
 - Run `pnpm typecheck` across all packages to identify issues
 
-IMPORTANT: If build fails, check that shared config packages are built first before apps.
+Linting/Formatting issues:
+
+- Run `pnpm check:fix` to automatically fix linting and formatting issues
+- Run `pnpm lint` to see linting errors
+- Run `pnpm format` to format code
+
+IMPORTANT: If build fails, check that the tokens package is built first before apps.
 
 ## Important Gotchas
 
-- **Shared packages must build first**: Config packages and tokens must be built before apps can use them (`pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"`)
+- **Shared packages must build first**: Tokens package must be built before apps can use them (`pnpm turbo run build --filter="@afnizarnur/tokens"`)
 - **Port conflicts**: Site runs on port 3000, Sanity Studio runs on port 3333
 - **Changesets**: Only applies to `@afnizarnur/tokens` and `@afnizarnur/ui`. Config packages are ignored.
 - **Strict TypeScript**: All code must pass strict type checking. No build errors allowed.
@@ -326,6 +334,45 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 - Uses `@terrazzo/plugin-tailwind` with custom theme structure for clean utility names
 - Build script `process-theme.js` processes the generated theme file
 
+## Biome Configuration
+
+This project uses **Biome** (v2.3.0) as an all-in-one toolchain for linting and formatting, replacing both ESLint and Prettier.
+
+**Configuration:**
+
+- Root configuration: `biome.json` at monorepo root
+- Single source of truth for all linting and formatting rules
+- Applies to all TypeScript, JavaScript, JSON, and CSS files
+
+**Key Features:**
+
+- ⚡ 10-100x faster than ESLint + Prettier combined
+- 🎯 Single tool for both linting and formatting
+- 📦 Zero configuration required (opinionated defaults)
+- 🔧 Automatic import organization
+- 🚀 Instant feedback in editors via Biome extension
+
+**Commands:**
+
+- `pnpm check:fix` - Recommended: Lint + format + fix all issues
+- `pnpm lint` - Lint only
+- `pnpm lint:fix` - Lint with auto-fix
+- `pnpm format` - Format only
+- `pnpm format:check` - Check formatting without fixing
+
+**Rules:**
+
+- Preserves existing code style (no semicolons, 4-space indents, double quotes)
+- TypeScript-aware linting (unused vars, explicit any, etc.)
+- Automatic import sorting and organization
+- Consistent with previous ESLint + Prettier setup
+
+**Editor Integration:**
+
+- Install Biome extension for VSCode, WebStorm, or your editor
+- Automatic formatting on save
+- Inline linting errors and warnings
+
 ## Resources
 
 - Next.js 15: https://nextjs.org/docs
@@ -336,3 +383,4 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 - Turborepo: https://turbo.build/repo/docs
 - Changesets: https://github.com/changesets/changesets
 - Tailwind CSS v4: https://tailwindcss.com/docs
+- Biome: https://biomejs.dev

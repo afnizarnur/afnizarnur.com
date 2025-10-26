@@ -10,7 +10,11 @@
             "persistent": true
         },
         "lint": {
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build"],
+            "outputs": [".biome/**"]
+        },
+        "format": {
+            "outputs": [".biome/**"]
         },
         "typecheck": {
             "dependsOn": ["^build"]
