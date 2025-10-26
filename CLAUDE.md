@@ -2,17 +2,18 @@
 
 Personal portfolio and blog platform. Monorepo built with Next.js, React, Sanity CMS, TypeScript, and Tailwind CSS.
 
-**Tech Stack:** Next.js 15.x, React 19.x, Sanity Studio 4.x, TypeScript 5.6.x (strict), Tailwind CSS 4.x, Turborepo 2.x, Node.js 20+, pnpm 9.x
+**Tech Stack:** Next.js 15.5.6, React 19.2.0, Sanity Studio 4.10.3, TypeScript 5.6.3 (strict), Tailwind CSS 4.1.14, Turborepo 2.0.0, Node.js 20+, pnpm 9.0.0+
 
 ## Structure
 
 - `apps/site/` - Next.js 15 frontend (React 19, App Router, ISR, Server Components)
 - `apps/studio/` - Sanity Studio CMS (runs on port 3333)
-- `packages/ui/` - Shared React components
-- `packages/tokens/` - Design tokens (Terrazzo)
-- `packages/config-*` - Shared configs (ESLint, Tailwind, TypeScript)
-- `docs/` - Project documentation
-- `specs/` - Feature specifications
+- `packages/ui/` - Shared React components library
+- `packages/tokens/` - Design tokens (Terrazzo 0.10.3)
+- `packages/config-eslint/` - Shared ESLint configuration (ESLint 9.18.0)
+- `packages/config-typescript/` - Shared TypeScript configuration
+- `docs/` - Project documentation (architecture, workflow, CMS, design system, etc.)
+- `specs/` - Feature specifications and PRDs
 
 ## Bash Commands
 
@@ -60,7 +61,7 @@ Version management (uses Changesets):
 2. Bump versions: `pnpm version-packages`
 3. Publish: `pnpm release`
 
-IMPORTANT: Versioned packages are `@afnizarnur/tokens`, `@afnizarnur/ui`, `@afnizarnur/ui-primitives` only. Config packages are ignored from changesets.
+IMPORTANT: Versioned packages are `@afnizarnur/tokens` and `@afnizarnur/ui` only. Config packages (`@afnizarnur/config-eslint`, `@afnizarnur/config-typescript`) are ignored from changesets.
 
 ## Code Style
 
@@ -84,32 +85,50 @@ File naming:
 - Utils/Helpers: `camelCase.ts`
 - Config files: `kebab-case.ts` or `.js`
 
-Formatting:
+Formatting (Prettier 3.3.3):
 
-- Prettier handles all formatting
-- ESLint enforces code quality
+- No semicolons
+- Double quotes (except JS strings)
+- 4-space indentation (no tabs)
+- 100 character line limit
+- ES5 trailing commas
+- Always parentheses in arrow functions
 - Run `pnpm format` before committing
 
 ## Key Files
 
+**Root Configuration:**
 - `turbo.json` - Turborepo task definitions and caching
 - `pnpm-workspace.yaml` - Workspace configuration
 - `.changeset/config.json` - Changeset configuration
 - `netlify.toml` - Netlify deployment config
-- `.prettierrc.json` - Prettier rules
-- `packages/tokens/terrazzo.config.js` - Design tokens configuration
-- `apps/site/next.config.ts` - Next.js configuration
-- `apps/site/postcss.config.mjs` - PostCSS with Tailwind CSS v4 plugin
-- `apps/site/app/layout.tsx` - Root layout with navigation, metadata, and live preview
-- `apps/site/app/styles/global.css` - Tailwind v4 CSS configuration
-- `apps/site/app/api/draft-mode/enable/route.ts` - Draft mode enable endpoint
-- `apps/site/app/api/draft-mode/disable/route.ts` - Draft mode disable endpoint
-- `apps/site/lib/sanity/client.ts` - Sanity client with visual editing support
-- `apps/site/lib/sanity/live.ts` - Live Content API configuration
-- `apps/site/lib/sanity/fetch.ts` - Unified fetch wrapper (draft mode + ISR)
-- `apps/site/lib/sanity/queries.ts` - Sanity queries with ISR and sanitization
-- `apps/site/lib/sanity/sanitize.ts` - Text sanitization utilities
-- `apps/studio/sanity.config.ts` - Sanity Studio with Presentation Tool
+- `.prettierrc.json` - Prettier formatting rules (4-space, no semicolons)
+
+**Design System:**
+- `packages/tokens/terrazzo.config.js` - Design tokens configuration (Terrazzo)
+- `packages/tokens/process-theme.js` - Post-build theme processing script
+
+**Frontend (apps/site):**
+- `next.config.ts` - Next.js configuration (standalone output, image optimization)
+- `postcss.config.mjs` - PostCSS with Tailwind CSS v4 plugin
+- `app/layout.tsx` - Root layout with navigation, metadata, and live preview
+- `app/styles/global.css` - Tailwind v4 CSS configuration with design tokens
+- `lib/sanity/client.ts` - Sanity client with visual editing support (stega enabled)
+- `lib/sanity/live.ts` - Live Content API configuration
+- `lib/sanity/fetch.ts` - Unified fetch wrapper (draft mode + ISR)
+- `lib/sanity/queries.ts` - GROQ queries with ISR tags and sanitization
+- `lib/sanity/sanitize.ts` - Text sanitization utilities
+- `components/UserPreferencesContext.tsx` - User preference state management
+- `components/LayoutProvider.tsx` - Layout state provider
+
+**API Routes:**
+- `app/api/draft-mode/enable/route.ts` - Draft mode enable endpoint
+- `app/api/draft-mode/disable/route.ts` - Draft mode disable endpoint
+- `app/api/revalidate/route.ts` - On-demand ISR webhook endpoint
+- `app/api/spotify/now-playing/route.ts` - Spotify integration (5-min ISR cache)
+
+**CMS (apps/studio):**
+- `sanity.config.ts` - Sanity Studio with Presentation Tool and Vision
 
 ## Repository Etiquette
 
@@ -129,7 +148,7 @@ IMPORTANT: Never commit without running `pnpm typecheck` and `pnpm lint` first.
 
 ## Sanity CMS Integration
 
-This project uses **next-sanity** (v11.5.5) for seamless Next.js integration with Sanity Studio.
+This project uses **next-sanity** (v11.5.5) for seamless Next.js integration with Sanity Studio, plus additional integrations like Spotify API for the Now Playing widget.
 
 ### Architecture
 
@@ -143,11 +162,13 @@ This project uses **next-sanity** (v11.5.5) for seamless Next.js integration wit
 
 **Features:**
 
-- ✅ Live preview with Live Content API
+- ✅ Live preview with Live Content API (real-time content updates)
 - ✅ Visual editing in Sanity Studio's Presentation Tool
 - ✅ Draft mode for content preview before publishing
-- ✅ ISR with on-demand revalidation via cache tags
+- ✅ ISR (Incremental Static Regeneration) with 1-hour default revalidation
+- ✅ On-demand revalidation via webhook endpoint (`/api/revalidate`)
 - ✅ Automatic sanitization of CMS content (removes invisible Unicode characters)
+- ✅ Spotify Now Playing widget with 5-minute ISR caching
 
 ### Draft Mode & Visual Editing
 
@@ -155,6 +176,8 @@ This project uses **next-sanity** (v11.5.5) for seamless Next.js integration wit
 
 - `/api/draft-mode/enable` - Enables draft mode from Sanity Studio
 - `/api/draft-mode/disable` - Disables draft mode
+- `/api/revalidate` - On-demand ISR cache revalidation webhook (requires `SANITY_REVALIDATE_SECRET`)
+- `/api/spotify/now-playing` - Spotify Now Playing data (5-minute ISR cache)
 
 **Components:**
 
@@ -191,18 +214,31 @@ Required for CMS connection:
 **Frontend (apps/site/.env.local):**
 
 ```env
+# Sanity CMS
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_READ_TOKEN=your_read_token  # Required for draft mode
+SANITY_API_READ_TOKEN=your_read_token  # Required for draft mode and live preview
 NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3333  # For visual editing
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=http://localhost:3000  # Production: https://afnizarnur.com
+
+# Webhook Security
+SANITY_REVALIDATE_SECRET=your_secret_key  # For on-demand ISR revalidation
+
+# Spotify Integration (Optional)
+SPOTIFY_CLIENT_ID=your_client_id
+SPOTIFY_CLIENT_SECRET=your_client_secret
+SPOTIFY_REFRESH_TOKEN=your_refresh_token
 ```
 
-**Studio (apps/studio/.env.local):**
+**Studio (apps/studio/.env or .env.local):**
 
 ```env
 SANITY_STUDIO_PROJECT_ID=your_project_id
 SANITY_STUDIO_DATASET=production
-SANITY_STUDIO_PREVIEW_URL=http://localhost:3000  # Optional
+SANITY_STUDIO_PREVIEW_URL=http://localhost:3000  # Optional, for preview links
+NEXT_PUBLIC_SITE_URL=http://localhost:3000  # Production: https://afnizarnur.com
 ```
 
 See `.env.example` files for complete documentation.
@@ -212,10 +248,14 @@ See `.env.example` files for complete documentation.
 Frontend (`apps/site`):
 
 - Platform: Netlify with ISR support
-- Build command: `pnpm build`
+- Build command: `pnpm turbo run build --filter=@afnizarnur/site`
 - Output: `apps/site/.next`
-- Plugin: `@netlify/plugin-nextjs`
+- Output mode: `standalone` (for Netlify adapter)
+- Plugin: `@netlify/plugin-nextjs` v5.7.4
 - Node: `>=20.0.0`
+- pnpm: `>=9.0.0`
+- Image optimization: AVIF and WebP formats
+- Security headers configured in `netlify.toml`
 
 CMS (`apps/studio`):
 
@@ -239,11 +279,13 @@ IMPORTANT: If build fails, check that shared config packages are built first bef
 
 ## Important Gotchas
 
-- **Shared packages must build first**: Config packages and tokens must be built before apps can use them
-- **Port conflicts**: Sanity Studio runs on port 3333 by default
-- **Changesets**: Only applies to `@afnizarnur/tokens`, `@afnizarnur/ui`, and `@afnizarnur/ui-primitives`
-- **Strict TypeScript**: All code must pass strict type checking
+- **Shared packages must build first**: Config packages and tokens must be built before apps can use them (`pnpm turbo run build --filter="@afnizarnur/config-*" --filter="@afnizarnur/tokens"`)
+- **Port conflicts**: Site runs on port 3000, Sanity Studio runs on port 3333
+- **Changesets**: Only applies to `@afnizarnur/tokens` and `@afnizarnur/ui`. Config packages are ignored.
+- **Strict TypeScript**: All code must pass strict type checking. No build errors allowed.
 - **Tailwind v4**: Uses CSS-first configuration (no JS config file). Custom colors and theme extensions are defined in `global.css` using `@theme` directive
+- **Image optimization**: Configured for AVIF and WebP. Remote patterns for `cdn.sanity.io` and `i.scdn.co` (Spotify)
+- **Package optimization**: Next.js optimizes imports for `@phosphor-icons/react` and `framer-motion`
 
 ## Tailwind CSS v4 Configuration
 
@@ -264,17 +306,18 @@ This project uses Tailwind CSS v4, which introduces a CSS-first configuration ap
 
 **Design tokens integration:**
 
-- Terrazzo generates two outputs:
-    - `packages/tokens/dist/tokens.css` - Raw CSS custom properties (not imported, reference only)
+- **Terrazzo (v0.10.3)** generates two outputs:
+    - `packages/tokens/dist/tokens.css` - Raw CSS custom properties (reference only, not imported)
     - `packages/tokens/dist/tailwind-theme.css` - Auto-generated Tailwind v4 theme (imported via `@afnizarnur/tokens/tailwind`)
-- Build process: `pnpm build` runs `process-theme.js` script to:
+- **Build process**: `pnpm build` runs `process-theme.js` script to:
     - Remove `@import "tailwindcss"` from generated theme
     - Fix variable references (--color-primitive-_ → --color-_)
-- Theme mapping uses custom keys for clean utility names:
+- **Theme mapping** uses custom keys for clean utility names:
     - Primitive colors: `bg-gray-900`, `text-red-500`
     - Semantic colors: `bg-background-primary`, `text-text-primary`, `border-border-accent-primary`
-- Supports dark mode via `@variant dark` directive
-- **Single source of truth**: Only `@afnizarnur/tokens/tailwind` is imported in global.css
+- **Dark mode**: Supports dark mode via `@variant dark` directive
+- **Single source of truth**: Only `@afnizarnur/tokens/tailwind` is imported in `global.css`
+- **Package export**: `packages/tokens/package.json` exports `./tailwind` pointing to processed theme file
 
 **Migration notes:**
 
