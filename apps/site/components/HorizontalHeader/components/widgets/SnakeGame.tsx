@@ -1,14 +1,14 @@
 "use client"
 
+import { PauseIcon, PlayIcon } from "@phosphor-icons/react/dist/ssr"
 import React, {
+    useCallback,
     useEffect,
+    useMemo,
     useRef,
     useState,
-    useCallback,
-    useMemo,
     useSyncExternalStore,
 } from "react"
-import { PlayIcon, PauseIcon } from "@phosphor-icons/react/dist/ssr"
 
 interface Position {
     x: number
@@ -49,10 +49,10 @@ export class SnakeGameStateManager {
     private resetCallback: (() => void) | null = null
 
     static getInstance(): SnakeGameStateManager {
-        if (!this.instance) {
-            this.instance = new SnakeGameStateManager()
+        if (!SnakeGameStateManager.instance) {
+            SnakeGameStateManager.instance = new SnakeGameStateManager()
         }
-        return this.instance
+        return SnakeGameStateManager.instance
     }
 
     subscribe = (listener: () => void): (() => void) => {
@@ -197,6 +197,7 @@ export function SnakeGame(): React.ReactElement {
     const moveSnake = useCallback((): void => {
         // Process queued direction
         if (directionQueueRef.current.length > 0) {
+            // biome-ignore lint/style/noNonNullAssertion: Length check guarantees element exists
             directionRef.current = directionQueueRef.current.shift()!
         }
 
@@ -339,14 +340,14 @@ export function SnakeGame(): React.ReactElement {
 
     // Pre-compute static borders (never changes)
     const borders = useMemo(() => {
-        const border = "+" + "-".repeat(WIDTH) + "+"
+        const border = `+${"-".repeat(WIDTH)}+`
         return { border, verticalBorder: "|" }
     }, [])
 
     // Render ASCII game board
     const renderBoard = useCallback((): string => {
         // Use a single flat string representation for faster rendering
-        let board = borders.border + "\n"
+        let board = `${borders.border}\n`
 
         // Add header with score and controls hint
         const padding = "  "
@@ -365,7 +366,7 @@ export function SnakeGame(): React.ReactElement {
             padding +
             borders.verticalBorder +
             "\n"
-        board += borders.border + "\n"
+        board += `${borders.border}\n`
 
         // Create set for snake positions (O(1) lookup instead of O(n))
         const snakePositions = new Set<string>(snake.map((segment) => `${segment.x},${segment.y}`))
@@ -383,7 +384,7 @@ export function SnakeGame(): React.ReactElement {
                 }
             }
             line += borders.verticalBorder
-            board += line + "\n"
+            board += `${line}\n`
         }
 
         board += borders.border

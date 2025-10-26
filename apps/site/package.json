@@ -8,9 +8,10 @@
         "build": "next build",
         "start": "next start",
         "typecheck": "tsc --noEmit",
-        "lint": "eslint .",
-        "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\"",
-        "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx}\""
+        "lint": "biome lint .",
+        "format": "biome format --write .",
+        "format:check": "biome format .",
+        "check": "biome check --write ."
     },
     "dependencies": {
         "@afnizarnur/tokens": "workspace:*",
@@ -33,9 +34,6 @@
         "@types/react": "^19.2.2",
         "@types/react-dom": "^19.2.2",
         "dotenv": "^16.4.5",
-        "eslint": "^9.18.0",
-        "eslint-config-next": "^15.5.6",
-        "prettier": "^3.4.2",
         "typescript": "^5.6.3"
     }
 }

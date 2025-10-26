@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useCallback, useRef, useMemo, useSyncExternalStore, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { CheckIcon, ClockClockwiseIcon, PencilSimpleIcon } from "@phosphor-icons/react/dist/ssr"
+import { AnimatePresence, motion } from "framer-motion"
+import React, { useCallback, useEffect, useMemo, useRef, useSyncExternalStore } from "react"
 import { ReactSketchCanvas, type ReactSketchCanvasRef } from "react-sketch-canvas"
-import { PencilSimpleIcon, ClockClockwiseIcon, CheckIcon } from "@phosphor-icons/react/dist/ssr"
 import { useDragContext } from "../../contexts/DragContext"
 import { getWidgetStorageKey, parseStorageData, writeStorageData } from "../../utils"
 
@@ -23,18 +23,19 @@ export class AvatarState {
     private hasLoadedData = false
 
     static getInstance(widgetId: string): AvatarState {
-        if (!this.instances.has(widgetId)) {
-            this.instances.set(widgetId, new AvatarState())
+        if (!AvatarState.instances.has(widgetId)) {
+            AvatarState.instances.set(widgetId, new AvatarState())
         }
-        return this.instances.get(widgetId)!
+        // biome-ignore lint/style/noNonNullAssertion: Instance is guaranteed to exist after set
+        return AvatarState.instances.get(widgetId)!
     }
 
     static cleanup(widgetId: string): void {
-        const instance = this.instances.get(widgetId)
+        const instance = AvatarState.instances.get(widgetId)
         if (instance) {
             instance.resetLoadState()
         }
-        this.instances.delete(widgetId)
+        AvatarState.instances.delete(widgetId)
     }
 
     setCanvasRef(ref: React.RefObject<ReactSketchCanvasRef | null>): void {
@@ -102,7 +103,7 @@ export class AvatarState {
 
             // exportPaths() returns an array directly, not wrapped in an object
             if (Array.isArray(savedData) && savedData.length > 0) {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // biome-ignore lint/suspicious/noExplicitAny: Canvas library requires any type
                 canvas.loadPaths(savedData as any)
                 this.hasLoadedData = true
                 // Mark as having drawn content if data was loaded
@@ -216,7 +217,7 @@ export const AvatarContent = React.memo(
                 })
                 return () => cancelAnimationFrame(frameId)
             }
-        }, [stateManager, widgetId])
+        }, [stateManager, widgetId, canvasRef.current])
 
         // Cleanup save timeout on unmount
         useEffect(() => {
@@ -313,7 +314,8 @@ const buttonTransition = {
 // Actions component (rendered in widget header)
 export const AvatarActions = React.memo(
     function AvatarActions({ widgetId }: { widgetId: string }): React.ReactElement {
-        const { isDrawMode, hasDrawnContent, handleToggleDrawMode, handleClear } = useAvatarState(widgetId)
+        const { isDrawMode, hasDrawnContent, handleToggleDrawMode, handleClear } =
+            useAvatarState(widgetId)
 
         // Memoize aria labels
         const drawModeLabel = useMemo(

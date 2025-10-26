@@ -1,13 +1,13 @@
 import type { Metadata } from "next"
 import { draftMode } from "next/headers"
 import { VisualEditing } from "next-sanity/visual-editing"
-import { getNavigation, getSiteSettings } from "@/lib/sanity/queries"
+import { LayoutProvider } from "@/components/LayoutProvider"
 import { NavigationBar } from "@/components/NavigationBar"
 import { SkipToMainContent } from "@/components/SkipToMainContent"
-import { SanityLive } from "@/lib/sanity/live"
-import { themeInitScript } from "@/lib/theme"
-import { LayoutProvider } from "@/components/LayoutProvider"
 import { UserPreferencesProvider } from "@/contexts/UserPreferencesContext"
+import { SanityLive } from "@/lib/sanity/live"
+import { getNavigation, getSiteSettings } from "@/lib/sanity/queries"
+import { themeInitScript } from "@/lib/theme"
 import "./styles/global.css"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -63,6 +63,7 @@ export default async function RootLayout({
                     to prevent FART (Flash of inAccurate coloR Theme)
                     Runs synchronously before any content renders
                 */}
+                {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Required for blocking theme script to prevent FOUC */}
                 <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
 
                 {/* Preload critical fonts */}

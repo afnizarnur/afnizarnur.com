@@ -1,8 +1,8 @@
 import React, { useCallback } from "react"
-import { DraggableWidget } from "./DraggableWidget"
-import type { WidgetConfig, WidgetPosition, ConstraintBounds } from "../types"
 import { TOTAL_CONTENT_WIDTH } from "../constants"
+import type { ConstraintBounds, WidgetConfig, WidgetPosition } from "../types"
 import { calculateConstraintBounds } from "../utils"
+import { DraggableWidget } from "./DraggableWidget"
 
 interface WidgetContainerProps {
     configs: WidgetConfig[]
@@ -24,7 +24,7 @@ interface WidgetContainerProps {
 export const WidgetContainer = React.memo(function WidgetContainer({
     configs,
     positions,
-    widgetHeights,
+    widgetHeights: _widgetHeights,
     draggingId,
     contentRef,
     widgetRefs,
@@ -74,7 +74,6 @@ export const WidgetContainer = React.memo(function WidgetContainer({
         },
         [
             positions,
-            widgetHeights,
             draggingId,
             contentRef,
             widgetRefs,

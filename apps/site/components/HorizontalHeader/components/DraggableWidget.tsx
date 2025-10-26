@@ -1,18 +1,18 @@
-import React, { useCallback, useRef, useState, useEffect, useMemo } from "react"
 import { motion, type PanInfo } from "framer-motion"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useReducedMotion } from "@/contexts/UserPreferencesContext"
 import { Widget } from "../../Widget"
-import type { WidgetConfig, WidgetPosition, DragMouseEvent } from "../types"
 import {
-    SPRING_STIFFNESS,
+    DRAG_ROTATION,
+    DRAG_SCALE,
     SPRING_DAMPING,
     SPRING_MASS,
-    DRAG_SCALE,
-    DRAG_ROTATION,
+    SPRING_STIFFNESS,
     TOTAL_CONTENT_WIDTH,
 } from "../constants"
-import { getClientX } from "../utils"
 import { useDragContext } from "../contexts/DragContext"
+import type { DragMouseEvent, WidgetConfig, WidgetPosition } from "../types"
+import { getClientX } from "../utils"
 
 interface DraggableWidgetProps {
     config: WidgetConfig
@@ -196,7 +196,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
                 setIsKeyboardGrabbed(false)
             }
         },
-        [isKeyboardGrabbed, position.x, position.y, onDragStart, onDragEnd, KEYBOARD_MOVE_STEP]
+        [isKeyboardGrabbed, position.x, position.y, onDragStart, onDragEnd]
     )
 
     // Memoize motion style object to prevent re-creation on every render

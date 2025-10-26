@@ -1,18 +1,18 @@
-import { sanityFetch } from "./fetch"
-import { sanitizeNavigationItems, sanitizeSiteSettings } from "./sanitize"
 import type {
-    PostPreview,
-    Post,
-    PostSlug,
-    ProjectPreview,
     FeaturedProject,
-    Project,
-    ProjectSlug,
-    Page,
     Navigation,
+    Page,
+    Post,
+    PostPreview,
+    PostSlug,
+    Project,
+    ProjectPreview,
+    ProjectSlug,
     SiteSettings,
     Tag,
 } from "@afnizarnur/ui"
+import { sanityFetch } from "./fetch"
+import { sanitizeNavigationItems, sanitizeSiteSettings } from "./sanitize"
 
 // =============================================================================
 // PROJECT QUERIES

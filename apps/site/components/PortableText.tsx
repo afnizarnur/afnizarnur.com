@@ -1,7 +1,7 @@
 "use client"
 
-import { PortableText as ReactPortableText } from "@portabletext/react"
 import type { PortableTextBlock } from "@afnizarnur/ui"
+import { PortableText as ReactPortableText } from "@portabletext/react"
 
 interface PortableTextProps {
     value: PortableTextBlock[]

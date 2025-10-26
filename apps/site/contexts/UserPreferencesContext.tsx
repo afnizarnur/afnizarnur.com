@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react"
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react"
 import { STORAGE_KEYS } from "@/lib/storage"
 
 /**
@@ -47,7 +47,11 @@ const UserPreferencesContext = createContext<UserPreferencesContextValue | null>
  * Provider component that manages all user preferences
  * Handles both motion and theme preferences with system detection and localStorage persistence
  */
-export function UserPreferencesProvider({ children }: { children: React.ReactNode }): React.ReactElement {
+export function UserPreferencesProvider({
+    children,
+}: {
+    children: React.ReactNode
+}): React.ReactElement {
     const [preferences, setPreferences] = useState<UserPreferences>(DEFAULT_PREFERENCES)
 
     // System preferences detection
@@ -111,7 +115,13 @@ export function UserPreferencesProvider({ children }: { children: React.ReactNod
 
         // Apply theme when user changes preference or system preference changes
         const theme =
-            preferences.theme === "dark" ? "dark" : preferences.theme === "light" ? "light" : systemPrefersDark ? "dark" : "light"
+            preferences.theme === "dark"
+                ? "dark"
+                : preferences.theme === "light"
+                  ? "light"
+                  : systemPrefersDark
+                    ? "dark"
+                    : "light"
 
         document.documentElement.setAttribute("data-theme", theme)
         document.documentElement.style.colorScheme = theme
@@ -119,9 +129,18 @@ export function UserPreferencesProvider({ children }: { children: React.ReactNod
 
     // Computed values
     const prefersReducedMotion =
-        preferences.motion === "always" ? true : preferences.motion === "never" ? false : systemPrefersReducedMotion
+        preferences.motion === "always"
+            ? true
+            : preferences.motion === "never"
+              ? false
+              : systemPrefersReducedMotion
 
-    const isDarkMode = preferences.theme === "dark" ? true : preferences.theme === "light" ? false : systemPrefersDark
+    const isDarkMode =
+        preferences.theme === "dark"
+            ? true
+            : preferences.theme === "light"
+              ? false
+              : systemPrefersDark
 
     // Setters
     const setMotionPreference = useCallback((value: MotionPreference): void => {

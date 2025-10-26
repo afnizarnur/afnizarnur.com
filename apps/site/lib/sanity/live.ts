@@ -38,7 +38,9 @@ if (!token && process.env.NODE_ENV === "development") {
  */
 export const { sanityFetch, SanityLive } = defineLive({
     client,
+    // biome-ignore lint/style/noNonNullAssertion: Token is required for live preview functionality
     serverToken: token!,
+    // biome-ignore lint/style/noNonNullAssertion: Token is required for live preview functionality
     browserToken: token!,
     // Optional: Configure polling interval for live updates (default: 1000ms)
     // fetchOptions: {

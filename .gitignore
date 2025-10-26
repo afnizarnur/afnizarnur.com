@@ -30,17 +30,8 @@ pnpm-debug.log*
 # turborepo
 .turbo
 
-# AI assistant configs
-.claude/
-.codex/
-.cursor/
-.specify/
-.kiro/
-
-# changesets
-.changeset/*.md
-!.changeset/README.md
-!.changeset/config.json
+# sanity studio runtime
+.sanity/
 
 # AI assistant configs
 .claude/
@@ -49,3 +40,8 @@ pnpm-debug.log*
 .specify/
 .kiro/
 .vscode/
+
+# changesets
+.changeset/*.md
+!.changeset/README.md
+!.changeset/config.json

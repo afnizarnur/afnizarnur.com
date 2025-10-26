@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { getPageBySlug } from "@/lib/sanity/queries"
 import { PageHeader } from "@/components/PageHeader"
 import { PortableText } from "@/components/PortableText"
+import { getPageBySlug } from "@/lib/sanity/queries"
 
 export async function generateMetadata(): Promise<Metadata> {
     const page = await getPageBySlug("about")

@@ -1,16 +1,16 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback } from "react"
-import Image from "next/image"
 import type { NavigationItem } from "@afnizarnur/ui"
 import { List, X } from "@phosphor-icons/react"
-import { MobileMenu } from "./MobileMenu"
-import { ThemeToggle } from "./ThemeToggle"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { TerminalTextEffect } from "./TerminalTextEffect"
-import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { AnimatedResetButton } from "./AnimatedResetButton"
+import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
+import { MobileMenu } from "./MobileMenu"
+import { TerminalTextEffect } from "./TerminalTextEffect"
+import { ThemeToggle } from "./ThemeToggle"
 
 // Constants
 const NAVBAR_HEIGHT = 66
@@ -267,7 +267,6 @@ export function NavigationBar({
                 className={`sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary transition-colors duration-300 ${
                     isPastHeader ? "bg-background-primary" : "bg-background-secondary"
                 }`}
-                role="navigation"
                 aria-label="Main navigation"
                 data-scrolled={isPastHeader}
             >
@@ -356,7 +355,11 @@ export function NavigationBar({
                     {/* Icon Buttons + Hamburger Menu */}
                     <div className="flex justify-end gap-4 md:col-span-1 lg:col-span-1">
                         {/* Reset Button (Shown only when there are changes, hidden on mobile/tablet) */}
-                        {resetAll && <div className="hidden lg:block"><AnimatedResetButton onClick={resetAll} show={hasChanges} /></div>}
+                        {resetAll && (
+                            <div className="hidden lg:block">
+                                <AnimatedResetButton onClick={resetAll} show={hasChanges} />
+                            </div>
+                        )}
 
                         {/* Theme Toggle (Shown on all screens) */}
                         <ThemeToggle size={24} />

@@ -1,5 +1,5 @@
-import { useRef, useCallback, useEffect } from "react"
-import { AUTO_SCROLL_THRESHOLD, AUTO_SCROLL_SPEED } from "../constants"
+import { useCallback, useEffect, useRef } from "react"
+import { AUTO_SCROLL_SPEED, AUTO_SCROLL_THRESHOLD } from "../constants"
 import type { ScrollDirection } from "../types"
 
 interface UseAutoScrollReturn {

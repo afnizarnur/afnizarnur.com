@@ -27,10 +27,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 
         if (!expectedSecret) {
             console.error("SANITY_REVALIDATE_SECRET is not configured")
-            return NextResponse.json(
-                { message: "Revalidation not configured" },
-                { status: 500 }
-            )
+            return NextResponse.json({ message: "Revalidation not configured" }, { status: 500 })
         }
 
         if (secret !== expectedSecret) {
@@ -41,10 +38,7 @@ export async function POST(request: NextRequest): Promise<Response> {
         const body = (await request.json()) as SanityWebhookPayload
 
         if (!body._type) {
-            return NextResponse.json(
-                { message: "Missing _type in payload" },
-                { status: 400 }
-            )
+            return NextResponse.json({ message: "Missing _type in payload" }, { status: 400 })
         }
 
         // Determine which tags to revalidate based on document type

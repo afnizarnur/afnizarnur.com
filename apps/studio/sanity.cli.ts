@@ -1,7 +1,7 @@
-import { config as loadEnvConfig } from "dotenv"
-import { defineCliConfig } from "sanity/cli"
 import { dirname, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
+import { config as loadEnvConfig } from "dotenv"
+import { defineCliConfig } from "sanity/cli"
 
 // Load environment variables when commands execute from repo root
 loadEnvConfig()

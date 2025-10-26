@@ -1,8 +1,8 @@
 "use client"
 
-import React from "react"
-import Image from "next/image"
 import { X } from "@phosphor-icons/react"
+import Image from "next/image"
+import type React from "react"
 
 export interface WidgetProps {
     title?: string
@@ -38,9 +38,9 @@ function isDarkColor(color: string | undefined): boolean {
     if (color.startsWith("rgb")) {
         const match = color.match(/\d+/g)
         if (match && match.length >= 3) {
-            const r = parseInt(match[0])
-            const g = parseInt(match[1])
-            const b = parseInt(match[2])
+            const r = parseInt(match[0], 10)
+            const g = parseInt(match[1], 10)
+            const b = parseInt(match[2], 10)
             const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
             return luminance < 0.5
         }
@@ -65,13 +65,17 @@ export function Widget({
     const hasBackgroundImage = !!backgroundImage || !!imageProps
     const isDark = isDarkColor(backgroundColor)
     const containerWidth =
-        typeof width === "number" ? width : width === "auto" ? undefined : parseInt(width as string)
+        typeof width === "number"
+            ? width
+            : width === "auto"
+              ? undefined
+              : parseInt(width as string, 10)
     const containerHeight =
         typeof height === "number"
             ? height
             : height === "auto"
               ? undefined
-              : parseInt(height as string)
+              : parseInt(height as string, 10)
 
     return (
         <article

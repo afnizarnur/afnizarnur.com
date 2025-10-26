@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { getAllProjectSlugs, getProjectBySlug } from "@/lib/sanity/queries"
 import { PageHeader } from "@/components/PageHeader"
 import { PortableText } from "@/components/PortableText"
+import { getAllProjectSlugs, getProjectBySlug } from "@/lib/sanity/queries"
 
 interface WorkProjectPageProps {
     params: Promise<{ slug: string }>
@@ -83,7 +83,7 @@ export default async function WorkProjectPage({
                                             Role
                                         </p>
                                         <p className="text-sm text-text-secondary">
-                                            {project.role!.join(", ")}
+                                            {project.role?.join(", ")}
                                         </p>
                                     </div>
                                 )}
@@ -105,7 +105,7 @@ export default async function WorkProjectPage({
                                             Technologies
                                         </p>
                                         <div className="flex flex-wrap gap-8">
-                                            {project.technologies!.map((tech) => (
+                                            {project.technologies?.map((tech) => (
                                                 <span
                                                     key={tech}
                                                     className="inline-flex items-center gap-8 rounded-full bg-background-secondary px-12 py-4 text-xs font-medium text-text-primary"
@@ -131,8 +131,8 @@ export default async function WorkProjectPage({
                     <div className="mt-48">
                         <h2 className="mb-24 text-2xl font-bold text-text-primary">Gallery</h2>
                         <div className="grid grid-cols-1 gap-24 md:grid-cols-2">
-                            {project.gallery.slice(1).map((image, index) => (
-                                <figure key={index} className="relative w-full aspect-video">
+                            {project.gallery.slice(1).map((image) => (
+                                <figure key={image.url} className="relative w-full aspect-video">
                                     <Image
                                         src={`${image.url}?w=800&auto=format`}
                                         alt={image.alt || ""}

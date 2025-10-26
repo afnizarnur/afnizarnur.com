@@ -1,4 +1,4 @@
-export { useWidgetPositions } from "./useWidgetPositions"
-export { useWidgetDimensions } from "./useWidgetDimensions"
 export { useAutoScroll } from "./useAutoScroll"
 export { useStackOrder } from "./useStackOrder"
+export { useWidgetDimensions } from "./useWidgetDimensions"
+export { useWidgetPositions } from "./useWidgetPositions"

@@ -1,11 +1,12 @@
 "use client"
 
-import React, { createContext, useContext, useState, useCallback } from "react"
-import { clearWidgetData } from "../utils"
-import { WIDGET_CONFIGS } from "../config"
-import { SnakeGameStateManager } from "../components/widgets/SnakeGame"
+import type React from "react"
+import { createContext, useCallback, useContext, useState } from "react"
 import { AvatarState } from "../components/widgets/Avatar"
-import type { WidgetPosition, ConstraintBounds } from "../types"
+import { SnakeGameStateManager } from "../components/widgets/SnakeGame"
+import { WIDGET_CONFIGS } from "../config"
+import type { ConstraintBounds, WidgetPosition } from "../types"
+import { clearWidgetData } from "../utils"
 
 interface DragContextValue {
     dragDisabledWidgets: Set<string>

@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import type React from "react"
 import { Widget } from "../Widget"
 import { FooterSegment } from "./components"
 import { WIDGET_CONFIGS } from "./config"
@@ -14,11 +14,7 @@ export function HorizontalHeaderMobile(): React.ReactElement {
 
     return (
         <div className="flex flex-col bg-background-primary">
-            <div
-                className="relative bg-background-secondary"
-                role="region"
-                aria-label="Content widgets"
-            >
+            <section className="relative bg-background-secondary" aria-label="Content widgets">
                 <div
                     aria-hidden
                     className="pointer-events-none absolute inset-y-0 left-6 w-44"
@@ -60,7 +56,7 @@ export function HorizontalHeaderMobile(): React.ReactElement {
                 </div>
                 {/* Sentinel for mobile navbar background transition - placed outside sticky container */}
                 <div id="mobile-header-widgets-sentinel" className="h-0" aria-hidden="true" />
-            </div>
+            </section>
             <div className="bg-background-primary px-6" aria-hidden="true">
                 <FooterSegment
                     label="Current Location"

@@ -13,10 +13,10 @@
  *   4. Copy the refresh token to your .env or .env.local
  */
 
-import http from "http"
-import { URL } from "url"
+import http from "node:http"
+import { resolve } from "node:path"
+import { URL } from "node:url"
 import { config } from "dotenv"
-import { resolve } from "path"
 
 // Load environment variables from .env.local and .env
 config({ path: resolve(process.cwd(), ".env.local") })
@@ -32,7 +32,9 @@ const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET
 
 if (!CLIENT_ID || !CLIENT_SECRET) {
     console.error("\n❌ Error: Missing Spotify credentials")
-    console.error("Please set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET in your .env or .env.local file\n")
+    console.error(
+        "Please set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET in your .env or .env.local file\n"
+    )
     process.exit(1)
 }
 
@@ -84,7 +86,9 @@ function startCallbackServer() {
 
                 if (error) {
                     res.writeHead(400, { "Content-Type": "text/html" })
-                    res.end(`<html><body><h1>Authorization Failed</h1><p>${error}</p></body></html>`)
+                    res.end(
+                        `<html><body><h1>Authorization Failed</h1><p>${error}</p></body></html>`
+                    )
                     server.close()
                     reject(new Error(error))
                     return
@@ -92,7 +96,9 @@ function startCallbackServer() {
 
                 if (!code) {
                     res.writeHead(400, { "Content-Type": "text/html" })
-                    res.end("<html><body><h1>Error</h1><p>No authorization code received</p></body></html>")
+                    res.end(
+                        "<html><body><h1>Error</h1><p>No authorization code received</p></body></html>"
+                    )
                     server.close()
                     reject(new Error("No code received"))
                     return
@@ -137,7 +143,7 @@ function startCallbackServer() {
             console.log()
 
             // Try to open browser
-            import("child_process").then(({ exec }) => {
+            import("node:child_process").then(({ exec }) => {
                 const start =
                     process.platform === "darwin"
                         ? "open"

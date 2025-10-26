@@ -1,9 +1,9 @@
 "use client"
 
-import React from "react"
+import type React from "react"
+import { WIDGET_CONFIGS } from "./HorizontalHeader/config"
 import { DragProvider } from "./HorizontalHeader/contexts/DragContext"
 import { useWidgetPositions } from "./HorizontalHeader/hooks/useWidgetPositions"
-import { WIDGET_CONFIGS } from "./HorizontalHeader/config"
 
 interface LayoutProviderProps {
     children: React.ReactNode
