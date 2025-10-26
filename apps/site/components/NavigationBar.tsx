@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import Image from "next/image"
 import type { NavigationItem } from "@afnizarnur/ui"
 import { List, X } from "@phosphor-icons/react"
@@ -11,6 +11,10 @@ import { usePathname } from "next/navigation"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
 import { AnimatedResetButton } from "./AnimatedResetButton"
+
+// Constants
+const NAVBAR_HEIGHT = 66
+const MOBILE_BREAKPOINT = 768
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -125,31 +129,133 @@ export function NavigationBar({
 }: Omit<NavigationBarProps, "currentPath">): JSX.Element {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isPastHeader, setIsPastHeader] = useState(false)
 
     // Use drag context if available (only available on pages with HorizontalHeader)
     const dragContext = useDragContextSafe()
     const resetAll = dragContext?.resetAll
     const hasChanges = dragContext?.hasChanges ?? false
 
+    // Ref to track if this is the first IntersectionObserver callback
+    const isFirstCallbackRef = useRef(true)
+    // Ref to store current observer for cleanup
+    const observerRef = useRef<IntersectionObserver | null>(null)
+
+    // Setup and manage IntersectionObserver based on viewport
+    const setupObserver = useCallback(() => {
+        const navbar = document.querySelector("nav[role='navigation']") as HTMLElement
+        if (!navbar) {
+            setIsPastHeader(false)
+            return
+        }
+
+        // Determine which sentinel to observe based on current viewport
+        const isMobileViewport = window.innerWidth < MOBILE_BREAKPOINT
+        const mobileSentinel = document.getElementById("mobile-header-widgets-sentinel")
+        const desktopSentinel = document.getElementById("horizontal-header-sentinel")
+        const sentinel = isMobileViewport ? mobileSentinel : desktopSentinel
+
+        if (!sentinel) {
+            // No header sentinel on this page, keep default background
+            setIsPastHeader(false)
+            return
+        }
+
+        // Calculate initial state based on sentinel position
+        const sentinelRect = sentinel.getBoundingClientRect()
+        const initialIsPastHeader = sentinelRect.top < NAVBAR_HEIGHT
+        setIsPastHeader(initialIsPastHeader)
+
+        // Reset the first callback flag
+        isFirstCallbackRef.current = true
+
+        // Clean up existing observer if any
+        if (observerRef.current) {
+            observerRef.current.disconnect()
+        }
+
+        // Create IntersectionObserver to track when we scroll past the header
+        const observer = new IntersectionObserver(
+            (entries: IntersectionObserverEntry[]) => {
+                // Skip first callback since we already set initial state above
+                if (isFirstCallbackRef.current) {
+                    isFirstCallbackRef.current = false
+                    return
+                }
+
+                const entry = entries[0]
+                if (!entry) return
+
+                // Determine if we've scrolled past the header by checking sentinel position
+                // isIntersecting = false can mean either:
+                //   1. Sentinel is ABOVE viewport (scrolled past) → isPastHeader = true
+                //   2. Sentinel is BELOW viewport (not reached) → isPastHeader = false
+                // We check boundingClientRect.top to distinguish between these cases
+                const newIsPastHeader = entry.isIntersecting
+                    ? entry.boundingClientRect.top <= NAVBAR_HEIGHT
+                    : entry.boundingClientRect.top < NAVBAR_HEIGHT
+
+                setIsPastHeader(newIsPastHeader)
+            },
+            {
+                threshold: 0,
+                rootMargin: `-${NAVBAR_HEIGHT}px 0px 0px 0px`,
+            }
+        )
+
+        observer.observe(sentinel)
+        observerRef.current = observer
+    }, [])
+
+    // Setup IntersectionObserver and handle viewport resize
+    useEffect(() => {
+        // Initial setup
+        setupObserver()
+
+        // Track viewport state to detect mobile/desktop transitions
+        let currentIsMobile = window.innerWidth < MOBILE_BREAKPOINT
+
+        // Handle resize events - re-setup observer if viewport crosses breakpoint
+        const handleResize = (): void => {
+            const newIsMobile = window.innerWidth < MOBILE_BREAKPOINT
+
+            // Only re-setup if we've crossed the mobile/desktop breakpoint
+            if (newIsMobile !== currentIsMobile) {
+                currentIsMobile = newIsMobile
+                setupObserver()
+            }
+        }
+
+        window.addEventListener("resize", handleResize)
+
+        // Cleanup on unmount
+        return () => {
+            window.removeEventListener("resize", handleResize)
+            if (observerRef.current) {
+                observerRef.current.disconnect()
+            }
+        }
+    }, [setupObserver])
+
+    // Observe hamburger menu button state for icon toggling
     useEffect(() => {
         const hamburgerBtn = document.getElementById("hamburger-menu-button")
+        if (!hamburgerBtn) return
 
-        if (hamburgerBtn) {
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (
-                        mutation.type === "attributes" &&
-                        mutation.attributeName === "data-menu-open"
-                    ) {
-                        const isOpen = hamburgerBtn.getAttribute("data-menu-open") === "true"
-                        setIsMenuOpen(isOpen)
-                    }
-                })
-            })
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (mutation.type === "attributes" && mutation.attributeName === "data-menu-open") {
+                    const isOpen = hamburgerBtn.getAttribute("data-menu-open") === "true"
+                    setIsMenuOpen(isOpen)
+                    break
+                }
+            }
+        })
 
-            observer.observe(hamburgerBtn, { attributes: true })
+        observer.observe(hamburgerBtn, { attributes: true })
 
-            return () => observer.disconnect()
+        return () => {
+            observer.disconnect()
         }
     }, [])
 
@@ -158,9 +264,12 @@ export function NavigationBar({
             <MobileMenu items={items} timezone={timezone} />
 
             <nav
-                className="sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary bg-background-secondary"
+                className={`sticky top-0 z-40 h-[66px] border-b-[1px] border-border-tertiary transition-colors duration-300 ${
+                    isPastHeader ? "bg-background-primary" : "bg-background-secondary"
+                }`}
                 role="navigation"
                 aria-label="Main navigation"
+                data-scrolled={isPastHeader}
             >
                 <div className="h-full px-6 md:px-6 lg:px-6 flex md:grid items-center md:grid-cols-2 lg:grid-cols-8 gap-6 mx-auto lg:max-w-[1220px]">
                     {/* Logo */}
