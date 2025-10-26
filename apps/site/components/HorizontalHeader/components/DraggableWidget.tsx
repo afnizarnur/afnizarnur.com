@@ -250,6 +250,7 @@ export const DraggableWidget = React.memo(function DraggableWidget({
             dragConstraints={dragConstraintsRef.current}
             dragElastic={0}
             dragMomentum={false}
+            suppressHydrationWarning
             dragTransition={
                 prefersReducedMotion
                     ? {

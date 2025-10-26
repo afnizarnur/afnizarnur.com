@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useLayoutEffect } from "react"
+import { useState, useCallback, useMemo, useEffect } from "react"
 import type { WidgetConfig, WidgetPosition, ConstraintBounds } from "../types"
 import { STORAGE_KEYS } from "@/lib/storage"
 import { clampPosition, parseStorageData, writeStorageData } from "../utils"
@@ -34,19 +34,22 @@ export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsR
         return defaults
     }, [configs])
 
-    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => defaultPositions)
-
-    // Load positions from localStorage after mount (client-side only)
-    // useLayoutEffect runs synchronously after DOM mutations but before browser paint,
-    // minimizing the visual jump compared to useEffect
-    useLayoutEffect(() => {
+    // Initialize positions with localStorage data merged with defaults
+    // Lazy initialization ensures this runs synchronously before first render
+    // This prevents any visual jump from default positions to saved positions
+    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => {
         const savedPositions = parseStorageData<Record<string, WidgetPosition>>(
             STORAGE_KEYS.widgetPositions,
             {}
         )
-        if (Object.keys(savedPositions).length > 0) {
-            setPositions((prev) => ({ ...prev, ...savedPositions }))
-        }
+        // Merge saved positions with defaults (saved positions take precedence)
+        return { ...defaultPositions, ...savedPositions }
+    })
+
+    // Track client-side mount to prevent hydration mismatch with hasChanges
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => {
+        setMounted(true)
     }, [])
 
     // Save position to localStorage with clamping
@@ -85,11 +88,14 @@ export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsR
     }, [defaultPositions])
 
     // Check if current positions differ from defaults
-    const hasChanges = Object.keys(positions).some((id) => {
-        const current = positions[id]
-        const defaultPos = defaultPositions[id]
-        return current?.x !== defaultPos?.x || current?.y !== defaultPos?.y
-    })
+    // Only calculate after mount to prevent hydration mismatch
+    const hasChanges =
+        mounted &&
+        Object.keys(positions).some((id) => {
+            const current = positions[id]
+            const defaultPos = defaultPositions[id]
+            return current?.x !== defaultPos?.x || current?.y !== defaultPos?.y
+        })
 
     return {
         positions,
