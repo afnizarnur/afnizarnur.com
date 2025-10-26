@@ -260,6 +260,159 @@ Global site configuration.
 - **Default SEO** (optional)
     - Default meta tags for pages
 
+## On-Demand Revalidation Setup
+
+By default, ISR (Incremental Static Regeneration) caches content for a specific duration. To get instant updates when you publish content in Sanity Studio, you need to set up webhooks for on-demand revalidation.
+
+### Prerequisites
+
+1. Deployed Next.js site with the revalidation endpoint
+2. Access to Sanity project settings
+
+### Step 1: Generate a Secret Token
+
+Generate a secure random string to authenticate webhook requests:
+
+```bash
+openssl rand -base64 32
+```
+
+Copy the generated string.
+
+### Step 2: Add Secret to Environment Variables
+
+**Local Development (.env.local):**
+
+```env
+SANITY_REVALIDATE_SECRET=your_generated_secret_here
+```
+
+**Production (Netlify):**
+
+1. Go to your Netlify site dashboard
+2. Navigate to Site configuration → Environment variables
+3. Add new variable:
+   - Key: `SANITY_REVALIDATE_SECRET`
+   - Value: Your generated secret
+4. Redeploy your site
+
+### Step 3: Create Sanity Webhook
+
+1. Go to [Sanity Manage](https://www.sanity.io/manage)
+2. Select your project
+3. Navigate to **API** → **Webhooks**
+4. Click **Create webhook**
+5. Configure the webhook:
+
+**Webhook Configuration:**
+
+```
+Name: Production Revalidation
+Description: Trigger ISR revalidation on content changes
+URL: https://your-site.com/api/revalidate?secret=YOUR_SECRET
+Dataset: production (or your dataset name)
+Trigger on: Create, Update, Delete
+Filter: Leave empty (revalidates all content types)
+HTTP method: POST
+API version: v2021-03-25 (or latest)
+Include drafts: No
+```
+
+Replace:
+- `https://your-site.com` with your actual site URL
+- `YOUR_SECRET` with the secret you generated in Step 1
+
+### Step 4: Test the Webhook
+
+**Testing in Production:**
+
+1. Click **Save** to create the webhook
+2. Click **Test webhook** button
+3. You should see a successful response:
+
+```json
+{
+  "revalidated": true,
+  "tags": ["settings"],
+  "now": 1234567890
+}
+```
+
+**Testing Locally:**
+
+To test the endpoint during development:
+
+1. Add `SANITY_REVALIDATE_SECRET=test-secret` to your `.env.local`
+2. Start your dev server: `pnpm --filter @afnizarnur/site dev`
+3. Run the test script:
+
+```bash
+cd apps/site
+./scripts/test-revalidation.sh test-secret http://localhost:3000/api/revalidate
+```
+
+Or test manually with curl:
+
+```bash
+curl -X POST "http://localhost:3000/api/revalidate?secret=test-secret" \
+  -H "Content-Type: application/json" \
+  -d '{"_type": "siteSettings", "_id": "siteSettings"}'
+```
+
+### Step 5: Verify Revalidation Works
+
+1. In Sanity Studio, make a change to Site Settings (e.g., update site description)
+2. Click **Publish**
+3. Check your deployed site immediately
+4. The change should appear within 1-2 seconds (no need to wait for ISR cache)
+
+### Supported Content Types
+
+The webhook automatically revalidates the correct cache tags based on document type:
+
+| Document Type | Cache Tags Revalidated |
+|---------------|------------------------|
+| `siteSettings` | `settings` |
+| `navigation` | `navigation` |
+| `post` | `posts`, `post-{slug}` |
+| `project` | `projects`, `project-{slug}` |
+| `page` | `page-{slug}` |
+| `tag` | `tags`, `tag-{slug}` |
+
+### Webhook Security
+
+- The secret token must match between Sanity and your environment variables
+- Requests without valid secrets are rejected with `401 Unauthorized`
+- Only POST requests are accepted
+- Webhook endpoint logs all revalidation attempts
+
+### Troubleshooting Webhooks
+
+**Webhook fails with 401 Unauthorized:**
+- Check that `SANITY_REVALIDATE_SECRET` is set in production
+- Verify the secret in the webhook URL matches the environment variable
+- Ensure your site has been redeployed after adding the environment variable
+
+**Webhook succeeds but content doesn't update:**
+- Check that the correct cache tags are being revalidated (check webhook response)
+- Verify ISR is working by checking `revalidate` values in queries
+- Clear browser cache (hard refresh with Cmd+Shift+R or Ctrl+Shift+F5)
+
+**Webhook fails with 500 error:**
+- Check Netlify function logs for errors
+- Verify the Next.js deployment is healthy
+- Test the endpoint manually: `POST https://your-site.com/api/revalidate?secret=YOUR_SECRET`
+
+### Multiple Environments
+
+To set up webhooks for multiple environments (staging, production):
+
+1. Create separate webhooks for each environment
+2. Use different URLs:
+   - Production: `https://afnizarnur.com/api/revalidate?secret=PROD_SECRET`
+   - Staging: `https://staging.afnizarnur.com/api/revalidate?secret=STAGING_SECRET`
+3. Use the same or different secrets per environment
+
 ## Content Workflows
 
 ### Publishing a New Blog Post
@@ -283,12 +436,15 @@ Global site configuration.
     - Preview content in Studio
     - Check for typos and formatting
     - Click "Publish" button
-    - Content will trigger automatic site rebuild (via webhook)
+    - Content will trigger automatic revalidation (if webhooks are set up)
 
 5. **Verify**
-    - Wait for Netlify deployment (~2-5 minutes)
+    - With webhooks: Changes appear instantly (1-2 seconds)
+    - Without webhooks: Wait for ISR cache to expire (based on revalidate time)
     - Visit the live post URL
     - Check formatting, images, and links
+
+**Note:** For instant updates, set up [on-demand revalidation webhooks](#on-demand-revalidation-setup)
 
 ### Adding a New Project
 
