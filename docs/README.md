@@ -92,6 +92,20 @@ Common issues and solutions for:
 
 **Best for:** Debugging issues, finding quick solutions, understanding error messages.
 
+### Setup Guides
+
+#### [Spotify Integration Setup](./spotify-setup.md)
+
+Complete guide to setting up the Spotify API integration for the Now Playing widget:
+
+- Creating a Spotify app and getting credentials
+- Configuring environment variables
+- Authorization and refresh token setup
+- Testing and troubleshooting
+- Deployment configuration
+
+**Best for:** Setting up the Now Playing feature, integrating third-party APIs, troubleshooting Spotify integration issues.
+
 ### Additional Resources
 
 #### Product Requirements Documents (PRD)

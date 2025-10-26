@@ -27,8 +27,32 @@ Add the following variables in **Site settings → Build & deploy → Environmen
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | `abcd1234`               | Sanity project ID used by both apps      |
 | `NEXT_PUBLIC_SANITY_DATASET`    | `production`             | Dataset that Next.js queries             |
 | `PUBLIC_SITE_URL`               | `https://afnizarnur.com` | Absolute site URL for sitemap/open graph |
+| `SANITY_REVALIDATE_SECRET`      | (auto-generated token)   | Secret key for on-demand ISR revalidation |
+| `SPOTIFY_CLIENT_ID`             | (from Spotify Dashboard) | Spotify API client ID for Now Playing widget |
+| `SPOTIFY_CLIENT_SECRET`         | (from Spotify Dashboard) | Spotify API client secret (keep confidential) |
+| `SPOTIFY_REFRESH_TOKEN`         | (from auth script)       | Refresh token for persistent API access |
 
 > Update values in the Netlify UI; the defaults in `netlify.toml` are placeholders only.
+
+### Sanity Revalidation Secret
+
+For on-demand ISR (Incremental Static Regeneration) to work:
+
+1. Generate a secure random token (e.g., `openssl rand -hex 32`)
+2. Add it as `SANITY_REVALIDATE_SECRET` in Netlify environment variables
+3. Use the same secret in your Sanity webhook revalidation endpoint
+
+> ⚠️ **Security**: Never expose this secret in client-side code. It's server-only.
+
+### Spotify Integration
+
+For the Now Playing widget to function:
+
+1. See [Spotify Integration Setup](./spotify-setup.md) for detailed credential setup
+2. Follow those steps to get your `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REFRESH_TOKEN`
+3. Add all three to Netlify environment variables
+
+> **Note**: These can be the same credentials used locally in development.
 
 ## 4. First Production Deploy (T092)
 
