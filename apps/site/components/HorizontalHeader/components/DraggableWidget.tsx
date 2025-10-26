@@ -58,7 +58,6 @@ export const DraggableWidget = React.memo(function DraggableWidget({
     const dragStartPosRef = useRef<WidgetPosition>({ x: 0, y: 0 })
     const internalWidgetRef = useRef<HTMLDivElement | null>(null)
     const constraintsInitialized = useRef(false)
-    const isMountedRef = useRef(false)
     const [isKeyboardGrabbed, setIsKeyboardGrabbed] = useState(false)
     const KEYBOARD_MOVE_STEP = 10 // pixels to move per arrow key press
     const { isWidgetDragDisabled } = useDragContext()
@@ -222,23 +221,18 @@ export const DraggableWidget = React.memo(function DraggableWidget({
         [position.x, position.y]
     )
 
-    // Set initial position only on first mount, then use animate values
-    // This prevents animation from (0,0) on mount while avoiding re-animations on updates
-    // NOTE: Empty dependency array is intentional - we only want to capture the initial
-    // position once on mount. Adding position.x/y as dependencies would cause the useMemo
-    // to recalculate when positions load from localStorage, defeating the purpose.
-    const initialValues = useMemo(() => {
-        if (!isMountedRef.current) {
-            isMountedRef.current = true
-            return {
-                x: position.x,
-                y: position.y,
-                scale: 1,
-                rotate: 0,
-            }
-        }
-        return undefined
-    }, [])
+    // Set initial position from config defaults
+    // This ensures widgets start at their configured position, not (0,0)
+    // The useEffect in useWidgetPositions will then animate to saved positions
+    const initialValues = useMemo(
+        () => ({
+            x: config.defaultX,
+            y: config.defaultY,
+            scale: 1,
+            rotate: 0,
+        }),
+        [config.defaultX, config.defaultY]
+    )
 
     return (
         <motion.div

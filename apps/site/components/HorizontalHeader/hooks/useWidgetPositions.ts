@@ -34,22 +34,23 @@ export function useWidgetPositions(configs: WidgetConfig[]): UseWidgetPositionsR
         return defaults
     }, [configs])
 
-    // Initialize positions with localStorage data merged with defaults
-    // Lazy initialization ensures this runs synchronously before first render
-    // This prevents any visual jump from default positions to saved positions
-    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(() => {
+    // Initialize with default positions first
+    const [positions, setPositions] = useState<Record<string, WidgetPosition>>(defaultPositions)
+
+    // Track client-side mount to prevent hydration mismatch with hasChanges
+    const [mounted, setMounted] = useState(false)
+
+    // Load saved positions from localStorage after mount to enable smooth animation
+    useEffect(() => {
+        setMounted(true)
         const savedPositions = parseStorageData<Record<string, WidgetPosition>>(
             STORAGE_KEYS.widgetPositions,
             {}
         )
-        // Merge saved positions with defaults (saved positions take precedence)
-        return { ...defaultPositions, ...savedPositions }
-    })
-
-    // Track client-side mount to prevent hydration mismatch with hasChanges
-    const [mounted, setMounted] = useState(false)
-    useEffect(() => {
-        setMounted(true)
+        if (Object.keys(savedPositions).length > 0) {
+            // Merge saved positions with defaults (saved positions take precedence)
+            setPositions((prev) => ({ ...prev, ...savedPositions }))
+        }
     }, [])
 
     // Save position to localStorage with clamping
