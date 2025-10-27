@@ -143,7 +143,7 @@ export function NavigationBar({
 
     // Setup and manage IntersectionObserver based on viewport
     const setupObserver = useCallback(() => {
-        const navbar = document.querySelector("nav[role='navigation']") as HTMLElement
+        const navbar = document.querySelector("nav") as HTMLElement
         if (!navbar) {
             setIsPastHeader(false)
             return
