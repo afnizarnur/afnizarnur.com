@@ -39,6 +39,7 @@ interface DragProviderProps {
     ) => void
     updatePosition: (id: string, position: WidgetPosition) => void
     resetPositions: () => void
+    resetStackOrder: () => void
     hasPositionChanges: boolean
 }
 
@@ -50,6 +51,7 @@ export function DragProvider({
     savePosition,
     updatePosition,
     resetPositions,
+    resetStackOrder,
     hasPositionChanges,
 }: DragProviderProps): React.ReactElement {
     const [dragDisabledWidgets, setDragDisabledWidgets] = useState<Set<string>>(new Set())
@@ -80,6 +82,11 @@ export function DragProvider({
             resetPositions()
         }
 
+        // Reset widget z-index stack order
+        if (resetStackOrder) {
+            resetStackOrder()
+        }
+
         // Reset Snake game state
         try {
             SnakeGameStateManager.getInstance().performReset()
@@ -100,7 +107,7 @@ export function DragProvider({
         WIDGET_CONFIGS.forEach((config) => {
             clearWidgetData(config.id)
         })
-    }, [resetPositions])
+    }, [resetPositions, resetStackOrder])
 
     return (
         <DragContext.Provider

@@ -16,6 +16,9 @@ export const STORAGE_KEYS = {
     /** Horizontal header widget positions */
     widgetPositions: `${APP_PREFIX}horizontal-header-widget-positions`,
 
+    /** Horizontal header widget z-index stack order */
+    widgetStackOrder: `${APP_PREFIX}horizontal-header-widget-stack-order`,
+
     /** Horizontal header widget-specific data (e.g., canvas drawings) */
     widgetData: (widgetId: string, dataType: string): string =>
         `${APP_PREFIX}horizontal-header-widget-data-${widgetId}-${dataType}`,
