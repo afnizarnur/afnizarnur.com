@@ -3,7 +3,7 @@
 import type React from "react"
 import { WIDGET_CONFIGS } from "./HorizontalHeader/config"
 import { DragProvider } from "./HorizontalHeader/contexts/DragContext"
-import { useWidgetPositions } from "./HorizontalHeader/hooks/useWidgetPositions"
+import { useStackOrder, useWidgetPositions } from "./HorizontalHeader/hooks"
 
 interface LayoutProviderProps {
     children: React.ReactNode
@@ -16,6 +16,7 @@ interface LayoutProviderProps {
 export function LayoutProvider({ children }: LayoutProviderProps): React.ReactElement {
     const { positions, savePosition, updatePosition, resetPositions, hasChanges } =
         useWidgetPositions(WIDGET_CONFIGS)
+    const { resetStackOrder } = useStackOrder(WIDGET_CONFIGS)
 
     return (
         <DragProvider
@@ -23,6 +24,7 @@ export function LayoutProvider({ children }: LayoutProviderProps): React.ReactEl
             savePosition={savePosition}
             updatePosition={updatePosition}
             resetPositions={resetPositions}
+            resetStackOrder={resetStackOrder}
             hasPositionChanges={hasChanges}
         >
             {children}
