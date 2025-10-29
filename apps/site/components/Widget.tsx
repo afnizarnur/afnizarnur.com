@@ -5,7 +5,7 @@ import Image from "next/image"
 import type React from "react"
 
 export interface WidgetProps {
-    title?: string
+    title?: string | React.ReactNode
     showClose?: boolean
     onClose?: () => void
     width?: number | string
@@ -121,12 +121,12 @@ export function Widget({
                 >
                     {title && (
                         <p className="flex-1 opacity-50 justify-start text-text-primary text-eyebrow-1 uppercase">
-                            {title.replace(/ /g, "_")}
+                            {typeof title === "string" ? title.replace(/ /g, "_") : title}
                         </p>
                     )}
                     {!title && <div className="flex-1" />}
                     {customActions && (
-                        <div className="flex items-center gap-16">{customActions}</div>
+                        <div className="flex items-center gap-8">{customActions}</div>
                     )}
                     {showClose && (
                         <button
