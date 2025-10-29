@@ -10,7 +10,9 @@ import { CACHE_EXPIRY_MS } from "../constants"
 async function fetchRecentGame(): Promise<RecentGameData> {
     const response = await fetch("/api/psn/recent-games")
     if (!response.ok) {
-        throw new Error("Failed to fetch recent game")
+        throw new Error(
+            `PSN recent games request returned ${response.status} ${response.statusText}`.trim(),
+        )
     }
     return response.json()
 }
@@ -54,7 +56,12 @@ export function usePSNData(): {
                     writeStorageData(STORAGE_KEYS.recentGames, cachedData)
                 }
             } catch (error) {
-                console.error("Failed to fetch recent game:", error)
+                const isOffline = typeof navigator !== "undefined" && navigator.onLine === false
+                if (isOffline) {
+                    console.info("Skipping PSN recent game fetch - offline mode detected")
+                } else {
+                    console.warn("PSN recent game data unavailable; will retry automatically", error)
+                }
                 if (isMounted) {
                     setIsLoading(false)
                 }
