@@ -7,6 +7,7 @@ import { useMemo, useState } from "react"
 import { TerminalTextEffect } from "@/components/TerminalTextEffect"
 import { MOCK_GAMES } from "./constants"
 import { useCurrentActivityState } from "./hooks/useCurrentActivityState"
+import { usePSNData } from "./hooks/usePSNData"
 import { useSpotifyData } from "./hooks/useSpotifyData"
 import type { CurrentActivityProps } from "./types"
 import { GameVisualizer } from "./visualizers/GameVisualizer"
@@ -29,14 +30,17 @@ export function CurrentActivity({
     // Fetch Spotify data
     const { nowPlaying, isLoading } = useSpotifyData()
 
+    // Fetch PSN data
+    const { recentGame, isLoading: isPSNLoading } = usePSNData()
+
     // Use fetched data or fallback to props/defaults
     const title = nowPlaying?.title ?? defaultTitle ?? "On a Cherry Blossom Night"
     const artist = nowPlaying?.artist ?? defaultArtist ?? "Aimyon"
     const albumArt = nowPlaying?.albumArt ?? defaultAlbumArt
     const isPlaying = nowPlaying?.isPlaying ?? defaultIsPlaying ?? true
 
-    // Get current game data
-    const currentGame = MOCK_GAMES[currentGameIndex]
+    // Get current game data - use PSN data if available, otherwise fallback to mock
+    const currentGame = recentGame ?? MOCK_GAMES[currentGameIndex]
 
     // Determine display content based on type
     const displayTitle = contentType === "spotify" ? title : currentGame.name
@@ -87,7 +91,11 @@ export function CurrentActivity({
                             className="text-text-primary text-base font-normal leading-tight truncate"
                             title={displayTitle}
                             style={{
-                                opacity: isLoading && contentType === "spotify" ? 0.5 : 1,
+                                opacity:
+                                    (isLoading && contentType === "spotify") ||
+                                    (isPSNLoading && contentType === "games")
+                                        ? 0.5
+                                        : 1,
                             }}
                         >
                             <TerminalTextEffect triggerAnimation={animationTrigger} effect="cursor">
@@ -98,7 +106,11 @@ export function CurrentActivity({
                             className="text-text-secondary text-eyebrow-2 truncate"
                             title={displaySubtitle}
                             style={{
-                                opacity: isLoading && contentType === "spotify" ? 0.5 : 1,
+                                opacity:
+                                    (isLoading && contentType === "spotify") ||
+                                    (isPSNLoading && contentType === "games")
+                                        ? 0.5
+                                        : 1,
                             }}
                         >
                             <TerminalTextEffect triggerAnimation={animationTrigger} effect="cursor">

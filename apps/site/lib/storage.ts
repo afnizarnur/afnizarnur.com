@@ -25,4 +25,7 @@ export const STORAGE_KEYS = {
 
     /** Now Playing widget cached data */
     nowPlaying: `${APP_PREFIX}now-playing`,
+
+    /** Recent Games widget cached data */
+    recentGames: `${APP_PREFIX}recent-games`,
 } as const
