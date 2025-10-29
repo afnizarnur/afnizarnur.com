@@ -76,14 +76,14 @@ export const CACHE_EXPIRY_MS = 10 * 60 * 1000 // 10 minutes
 export const MOCK_GAMES: GameData[] = [
     {
         name: "Elden Ring",
-        playtime: "Last played 2 hours ago",
+        playtime: "2 hrs ago",
     },
     {
         name: "Baldur's Gate 3",
-        playtime: "Last played 5 hours ago",
+        playtime: "5 hrs ago",
     },
     {
         name: "Cyberpunk 2077",
-        playtime: "Last played yesterday",
+        playtime: "yesterday",
     },
 ]
