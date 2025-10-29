@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { STORAGE_KEYS } from "@/lib/storage"
 import { ACTIVE_Z_INDEX, BASE_Z_INDEX } from "../constants"
 import type { WidgetConfig } from "../types"
@@ -13,76 +13,120 @@ interface UseStackOrderReturn {
     resetStackOrder: () => void
 }
 
+// Helper to generate default stack order from configs
+function getDefaultStackOrder(configs: WidgetConfig[]): string[] {
+    return configs.map((config) => config.id)
+}
+
+// Load and validate saved stack order from localStorage
+function loadSavedStackOrder(defaultOrder: string[]): string[] {
+    try {
+        const savedStackOrder = parseStorageData<string[]>(STORAGE_KEYS.widgetStackOrder, [])
+
+        if (savedStackOrder.length === 0) {
+            return defaultOrder
+        }
+
+        // Filter to only include widgets that exist in current configs
+        const validIds = new Set(defaultOrder)
+        const filteredStackOrder = savedStackOrder.filter((id) => validIds.has(id))
+
+        // Add any new widgets not in saved order
+        const newIds = defaultOrder.filter((id) => !filteredStackOrder.includes(id))
+
+        return [...filteredStackOrder, ...newIds]
+    } catch (error) {
+        console.error("Failed to load widget stack order from localStorage:", error)
+        return defaultOrder
+    }
+}
+
 /**
  * Manages z-index stack order for overlapping widgets with localStorage persistence
  */
 export function useStackOrder(configs: WidgetConfig[]): UseStackOrderReturn {
-    const [stackOrder, setStackOrder] = useState<string[]>([])
+    // Memoize default stack order to prevent unnecessary recalculations
+    const defaultStackOrder = useMemo(() => getDefaultStackOrder(configs), [configs])
+
+    // Track if component is mounted to prevent hydration issues
+    const isMountedRef = useRef(false)
+
+    // Initialize state with lazy initialization to prevent double renders
+    const [stackOrder, setStackOrder] = useState<string[]>(() => defaultStackOrder)
     const [draggingId, setDraggingId] = useState<string | null>(null)
-    const [mounted, setMounted] = useState(false)
 
-    // Initialize with default stack order, then load from localStorage
+    // Load saved stack order from localStorage after mount
     useEffect(() => {
-        const defaultStackOrder = configs.map((config) => config.id)
-        setStackOrder(defaultStackOrder)
-        setMounted(true)
+        isMountedRef.current = true
 
-        // Load saved stack order from localStorage
-        const savedStackOrder = parseStorageData<string[]>(STORAGE_KEYS.widgetStackOrder, [])
-        if (savedStackOrder.length > 0) {
-            // Filter to only include widgets that exist in current configs
-            const validIds = new Set(defaultStackOrder)
-            const filteredStackOrder = savedStackOrder.filter((id) => validIds.has(id))
+        const initialStackOrder = loadSavedStackOrder(defaultStackOrder)
+        setStackOrder(initialStackOrder)
 
-            // Add any new widgets not in saved order
-            const newIds = defaultStackOrder.filter((id) => !filteredStackOrder.includes(id))
-            setStackOrder([...filteredStackOrder, ...newIds])
+        return () => {
+            isMountedRef.current = false
         }
-    }, [configs])
+    }, [defaultStackOrder])
 
-    // Bring a widget to the front of the stack
+    // Bring widget to front and persist to localStorage
     const bringToFront = useCallback(
         (widgetId: string): void => {
+            // Validate widget ID exists
+            if (!defaultStackOrder.includes(widgetId)) {
+                console.warn(`Attempted to bring non-existent widget to front: ${widgetId}`)
+                return
+            }
+
             setStackOrder((prev) => {
                 const filtered = prev.filter((id) => id !== widgetId)
                 const newStackOrder = [...filtered, widgetId]
-                // Persist to localStorage
-                if (mounted) {
-                    writeStorageData(STORAGE_KEYS.widgetStackOrder, newStackOrder)
+
+                // Persist to localStorage after mount
+                if (isMountedRef.current) {
+                    try {
+                        writeStorageData(STORAGE_KEYS.widgetStackOrder, newStackOrder)
+                    } catch (error) {
+                        console.error(
+                            "Failed to persist widget stack order to localStorage:",
+                            error
+                        )
+                    }
                 }
+
                 return newStackOrder
             })
         },
-        [mounted]
+        [defaultStackOrder]
     )
 
-    // Calculate z-index for a widget
+    // Calculate z-index based on stack position
+    // Dragging widget gets ACTIVE_Z_INDEX (100), others get stackPosition + BASE_Z_INDEX (10+)
     const getZIndex = useCallback(
         (widgetId: string): number => {
             if (draggingId === widgetId) {
                 return ACTIVE_Z_INDEX
             }
+
             const stackIndex = stackOrder.indexOf(widgetId)
             return stackIndex >= 0 ? stackIndex + BASE_Z_INDEX : BASE_Z_INDEX
         },
         [stackOrder, draggingId]
     )
 
-    // Set the currently dragging widget
+    // Set currently dragging widget
     const setDragging = useCallback((widgetId: string | null): void => {
         setDraggingId(widgetId)
     }, [])
 
     // Reset stack order to defaults
     const resetStackOrder = useCallback((): void => {
-        const defaultStackOrder = configs.map((config) => config.id)
         setStackOrder(defaultStackOrder)
+
         try {
             localStorage.removeItem(STORAGE_KEYS.widgetStackOrder)
         } catch (error) {
             console.error("Failed to clear widget stack order from localStorage:", error)
         }
-    }, [configs])
+    }, [defaultStackOrder])
 
     return {
         stackOrder,
