@@ -46,6 +46,7 @@ export function HorizontalHeaderMobile(): React.ReactElement {
                                     backgroundImage={config.backgroundImage}
                                     imageProps={config.imageProps}
                                     noPadding={config.noPadding}
+                                    customActions={config.customActions}
                                 >
                                     {config.content}
                                 </Widget>

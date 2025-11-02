@@ -1,5 +1,9 @@
 import { AvatarActions, AvatarContent } from "./components/widgets/Avatar"
-import { NowPlaying } from "./components/widgets/NowPlaying"
+import {
+    CurrentActivity,
+    CurrentActivityActions,
+    CurrentActivityTitle,
+} from "./components/widgets/CurrentActivity"
 import { SnakeGame, SnakeGameActions } from "./components/widgets/SnakeGame"
 import type { WidgetConfig } from "./types"
 
@@ -57,8 +61,9 @@ export const WIDGET_CONFIGS: WidgetConfig[] = [
         width: 488,
         minHeight: 127,
         noPadding: true,
-        title: "Now Playing",
-        content: <NowPlaying />,
+        title: <CurrentActivityTitle />,
+        customActions: <CurrentActivityActions />,
+        content: <CurrentActivity />,
     },
     {
         id: "work",
