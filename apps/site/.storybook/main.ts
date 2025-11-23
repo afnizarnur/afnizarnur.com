@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite"
+import react from "@vitejs/plugin-react"
 
 const config: StorybookConfig = {
     stories: ["../components/**/*.stories.@(ts|tsx)"],
@@ -16,6 +17,15 @@ const config: StorybookConfig = {
         autodocs: "tag",
     },
     staticDirs: ["../public"],
+    viteFinal: async (config) => {
+        config.plugins = config.plugins || []
+        config.plugins.push(
+            react({
+                jsxRuntime: "automatic",
+            })
+        )
+        return config
+    },
 }
 
 export default config
