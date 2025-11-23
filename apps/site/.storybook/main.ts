@@ -23,7 +23,7 @@ const config: StorybookConfig = {
         config.plugins.push(
             react({
                 jsxRuntime: "automatic",
-            }),
+            })
         )
 
         // Configure path aliases to match tsconfig

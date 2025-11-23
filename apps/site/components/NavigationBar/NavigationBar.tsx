@@ -8,12 +8,12 @@ import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { LAYOUT } from "@/lib/constants"
 import { isNavItemActive, normalizeHref } from "@/lib/utils"
-import { AnimatedResetButton } from "./AnimatedResetButton"
-import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
-import { MobileMenu } from "./MobileMenu"
-import { TerminalTextEffect } from "./TerminalTextEffect"
-import { ThemeToggle } from "./ThemeToggle"
-import { TimeDisplay } from "./TimeDisplay"
+import { AnimatedResetButton } from "../AnimatedResetButton"
+import { useDragContextSafe } from "../HorizontalHeader/contexts/DragContext"
+import { MobileMenu } from "../MobileMenu"
+import { TerminalTextEffect } from "../TerminalTextEffect"
+import { ThemeToggle } from "../ThemeToggle"
+import { TimeDisplay } from "../TimeDisplay"
 
 const { NAVBAR_HEIGHT, MOBILE_BREAKPOINT } = LAYOUT
 

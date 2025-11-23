@@ -5,8 +5,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { isNavItemActive, normalizeHref } from "@/lib/utils"
-import { TerminalTextEffect } from "./TerminalTextEffect"
-import { TimeDisplay } from "./TimeDisplay"
+import { TerminalTextEffect } from "../TerminalTextEffect"
+import { TimeDisplay } from "../TimeDisplay"
 
 interface MobileMenuProps {
     items: NavigationItem[]
