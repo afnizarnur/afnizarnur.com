@@ -23,7 +23,7 @@ const config: StorybookConfig = {
         config.plugins.push(
             react({
                 jsxRuntime: "automatic",
-            })
+            }),
         )
 
         // Configure path aliases to match tsconfig
@@ -34,6 +34,13 @@ const config: StorybookConfig = {
             "@/components": resolve(__dirname, "../components"),
             "@/lib": resolve(__dirname, "../lib"),
             "@/app": resolve(__dirname, "../app"),
+            "@/contexts": resolve(__dirname, "../contexts"),
+        }
+
+        // Define process.env for browser compatibility
+        config.define = {
+            ...config.define,
+            "process.env": {},
         }
 
         return config
