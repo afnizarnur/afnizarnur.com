@@ -574,26 +574,71 @@ This improvement plan has been **fully implemented** for the afnizarnur.com Next
 apps/site/
 ├── .storybook/
 │   ├── main.ts
-│   └── preview.tsx
+│   ├── preview.tsx
+│   └── mocks/
+│       └── next-image.tsx
 ├── app/
 │   ├── sitemap.ts
 │   └── robots.ts
 ├── components/
-│   ├── ErrorBoundary.tsx
-│   ├── ErrorBoundary.stories.tsx
-│   ├── TimeDisplay.tsx
-│   ├── TimeDisplay.stories.tsx
-│   ├── TerminalTextEffect.stories.tsx
-│   ├── ThemeToggle.stories.tsx
-│   ├── SkipToMainContent.stories.tsx
-│   ├── AnimatedResetButton.stories.tsx
-│   ├── IconButton.stories.tsx
-│   ├── Widget.stories.tsx
-│   ├── PageHeader.stories.tsx
-│   ├── PostCard.stories.tsx
-│   ├── ProjectCard.stories.tsx
-│   ├── NavigationBar.stories.tsx
-│   └── MobileMenu.stories.tsx
+│   ├── AnimatedResetButton/
+│   │   ├── AnimatedResetButton.tsx
+│   │   ├── AnimatedResetButton.stories.tsx
+│   │   └── index.ts
+│   ├── ErrorBoundary/
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── ErrorBoundary.stories.tsx
+│   │   └── index.ts
+│   ├── IconButton/
+│   │   ├── IconButton.tsx
+│   │   ├── IconButton.stories.tsx
+│   │   └── index.ts
+│   ├── LayoutProvider/
+│   │   ├── LayoutProvider.tsx
+│   │   └── index.ts
+│   ├── MobileMenu/
+│   │   ├── MobileMenu.tsx
+│   │   ├── MobileMenu.stories.tsx
+│   │   └── index.ts
+│   ├── NavigationBar/
+│   │   ├── NavigationBar.tsx
+│   │   ├── NavigationBar.stories.tsx
+│   │   └── index.ts
+│   ├── PageHeader/
+│   │   ├── PageHeader.tsx
+│   │   ├── PageHeader.stories.tsx
+│   │   └── index.ts
+│   ├── PortableText/
+│   │   ├── PortableText.tsx
+│   │   └── index.ts
+│   ├── PostCard/
+│   │   ├── PostCard.tsx
+│   │   ├── PostCard.stories.tsx
+│   │   └── index.ts
+│   ├── ProjectCard/
+│   │   ├── ProjectCard.tsx
+│   │   ├── ProjectCard.stories.tsx
+│   │   └── index.ts
+│   ├── SkipToMainContent/
+│   │   ├── SkipToMainContent.tsx
+│   │   ├── SkipToMainContent.stories.tsx
+│   │   └── index.ts
+│   ├── TerminalTextEffect/
+│   │   ├── TerminalTextEffect.tsx
+│   │   ├── TerminalTextEffect.stories.tsx
+│   │   └── index.ts
+│   ├── ThemeToggle/
+│   │   ├── ThemeToggle.tsx
+│   │   ├── ThemeToggle.stories.tsx
+│   │   └── index.ts
+│   ├── TimeDisplay/
+│   │   ├── TimeDisplay.tsx
+│   │   ├── TimeDisplay.stories.tsx
+│   │   └── index.ts
+│   └── Widget/
+│       ├── Widget.tsx
+│       ├── Widget.stories.tsx
+│       └── index.ts
 └── lib/
     ├── constants.ts
     ├── rate-limit.ts
