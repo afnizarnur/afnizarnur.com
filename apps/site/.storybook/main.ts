@@ -1,5 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-vite"
 import react from "@vitejs/plugin-react"
+import { resolve } from "path"
 
 const config: StorybookConfig = {
     stories: ["../components/**/*.stories.@(ts|tsx)"],
@@ -24,6 +25,17 @@ const config: StorybookConfig = {
                 jsxRuntime: "automatic",
             })
         )
+
+        // Configure path aliases to match tsconfig
+        config.resolve = config.resolve || {}
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            "@": resolve(__dirname, ".."),
+            "@/components": resolve(__dirname, "../components"),
+            "@/lib": resolve(__dirname, "../lib"),
+            "@/app": resolve(__dirname, "../app"),
+        }
+
         return config
     },
 }
