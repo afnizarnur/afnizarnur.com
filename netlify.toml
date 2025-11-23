@@ -1,15 +1,18 @@
 [build]
-  command = "pnpm turbo run build --filter=@afnizarnur/web"
-  publish = "apps/web/dist"
+  command = "pnpm turbo run build --filter=@afnizarnur/site"
+  publish = "apps/site/.next"
 
 [build.environment]
   NODE_VERSION = "20"
   PNPM_VERSION = "9"
 
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [context.production.environment]
-  PUBLIC_SANITY_PROJECT_ID = "replace-with-sanity-project-id"
-  PUBLIC_SANITY_DATASET = "production"
-  PUBLIC_SITE_URL = "https://afnizarnur.com"
+  NEXT_PUBLIC_SANITY_PROJECT_ID = "replace-with-sanity-project-id"
+  NEXT_PUBLIC_SANITY_DATASET = "production"
+  NEXT_PUBLIC_SITE_URL = "https://afnizarnur.com"
 
 [[headers]]
     for = "/*"

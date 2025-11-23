@@ -6,15 +6,16 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { LAYOUT } from "@/lib/constants"
+import { isNavItemActive, normalizeHref } from "@/lib/utils"
 import { AnimatedResetButton } from "./AnimatedResetButton"
 import { useDragContextSafe } from "./HorizontalHeader/contexts/DragContext"
 import { MobileMenu } from "./MobileMenu"
 import { TerminalTextEffect } from "./TerminalTextEffect"
 import { ThemeToggle } from "./ThemeToggle"
+import { TimeDisplay } from "./TimeDisplay"
 
-// Constants
-const NAVBAR_HEIGHT = 66
-const MOBILE_BREAKPOINT = 768
+const { NAVBAR_HEIGHT, MOBILE_BREAKPOINT } = LAYOUT
 
 interface NavigationBarProps {
     items: NavigationItem[]
@@ -32,93 +33,6 @@ interface NavigationBarProps {
         displayLabel?: string
     }
     _hoverEffect?: "cursor" | "background" | "colorful"
-}
-
-function getFormattedTime(tzConfig?: { timeZone?: string; displayLabel?: string }): string {
-    const now = new Date()
-
-    // Base options without timezone
-    const baseOptions = {
-        hour: "2-digit" as const,
-        minute: "2-digit" as const,
-        hour12: true,
-    }
-
-    let formatter: Intl.DateTimeFormat
-
-    // Try to use the provided timezone, fall back to browser timezone if invalid
-    if (tzConfig?.timeZone) {
-        try {
-            formatter = new Intl.DateTimeFormat("en-US", {
-                ...baseOptions,
-                timeZone: tzConfig.timeZone,
-            })
-        } catch {
-            // Log warning for invalid timezone and fall back
-            console.warn(
-                `Invalid timezone "${tzConfig.timeZone}", falling back to browser timezone`
-            )
-            formatter = new Intl.DateTimeFormat("en-US", baseOptions)
-        }
-    } else {
-        formatter = new Intl.DateTimeFormat("en-US", baseOptions)
-    }
-
-    const parts = formatter.formatToParts(now)
-
-    const hourPart = parts.find((p) => p.type === "hour")?.value || "00"
-    const minutePart = parts.find((p) => p.type === "minute")?.value || "00"
-    const periodPart = parts.find((p) => p.type === "dayPeriod")?.value || "AM"
-
-    const displayLabel = tzConfig?.displayLabel || "ID"
-
-    return `${displayLabel} ${hourPart}:${minutePart}_${periodPart}`
-}
-
-function TimeDisplay({
-    timezone,
-}: {
-    timezone?: { timeZone?: string; displayLabel?: string }
-}): JSX.Element {
-    // Initialize with actual server-rendered time to prevent layout shift
-    const [timeString, setTimeString] = useState<string>(() => {
-        // Get real time on both server and client initial render
-        return getFormattedTime(timezone)
-    })
-
-    useEffect(() => {
-        // Update to client time immediately (might differ slightly from server)
-        setTimeString(getFormattedTime(timezone))
-
-        // Update time every minute
-        const interval = setInterval(() => {
-            setTimeString(getFormattedTime(timezone))
-        }, 60000)
-
-        return () => clearInterval(interval)
-    }, [timezone])
-
-    return (
-        <time
-            className="text-eyebrow-1 text-text-secondary"
-            dateTime={new Date().toISOString()}
-            suppressHydrationWarning
-        >
-            {timeString}
-        </time>
-    )
-}
-
-function normalizeHref(href: string): string {
-    if (href.startsWith("http")) {
-        return href
-    }
-    return href.startsWith("/") ? href : `/${href}`
-}
-
-function isNavItemActive(itemHref: string, path: string): boolean {
-    const normalizedHref = normalizeHref(itemHref)
-    return path === normalizedHref
 }
 
 export function NavigationBar({

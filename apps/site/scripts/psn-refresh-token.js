@@ -13,8 +13,8 @@
  */
 
 import { resolve } from "node:path"
-import { createInterface } from "node:readline/promises"
 import { stdin as input, stdout as output } from "node:process"
+import { createInterface } from "node:readline/promises"
 import { fileURLToPath } from "node:url"
 import { config } from "dotenv"
 import { exchangeAccessCodeForAuthTokens, exchangeNpssoForAccessCode } from "psn-api"
@@ -61,7 +61,9 @@ async function main() {
     const existingRefresh = process.env.PSN_REFRESH_TOKEN
     if (existingRefresh) {
         console.log("Warning: Detected PSN_REFRESH_TOKEN in environment. Generating a new token")
-        console.log("will not invalidate it, but replace the old value in your .env.local if you use the new token.\n")
+        console.log(
+            "will not invalidate it, but replace the old value in your .env.local if you use the new token.\n"
+        )
     }
 
     const npssoToken = await promptForNpsso(process.env.PSN_NPSSO_TOKEN)
@@ -87,10 +89,14 @@ async function main() {
 
     if (typeof refreshTokenExpiresIn === "number") {
         const days = (refreshTokenExpiresIn / 86400).toFixed(2)
-        console.log(`Refresh token expires in approximately ${days} days (${refreshTokenExpiresIn} seconds).\n`)
+        console.log(
+            `Refresh token expires in approximately ${days} days (${refreshTokenExpiresIn} seconds).\n`
+        )
     }
 
-    console.log("Keep your refresh token safe. When it expires, rerun this script with a fresh NPSSO token.\n")
+    console.log(
+        "Keep your refresh token safe. When it expires, rerun this script with a fresh NPSSO token.\n"
+    )
 }
 
 main().catch((error) => {

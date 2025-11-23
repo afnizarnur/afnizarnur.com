@@ -11,7 +11,7 @@ async function fetchNowPlaying(): Promise<SpotifyData> {
     const response = await fetch("/api/spotify/now-playing")
     if (!response.ok) {
         throw new Error(
-            `Spotify now playing request returned ${response.status} ${response.statusText}`.trim(),
+            `Spotify now playing request returned ${response.status} ${response.statusText}`.trim()
         )
     }
     return response.json()
@@ -60,7 +60,10 @@ export function useSpotifyData(): {
                 if (isOffline) {
                     console.info("Skipping Spotify now playing fetch - offline mode detected")
                 } else {
-                    console.warn("Spotify now playing data unavailable; will retry automatically", error)
+                    console.warn(
+                        "Spotify now playing data unavailable; will retry automatically",
+                        error
+                    )
                 }
                 if (isMounted) {
                     setIsLoading(false)

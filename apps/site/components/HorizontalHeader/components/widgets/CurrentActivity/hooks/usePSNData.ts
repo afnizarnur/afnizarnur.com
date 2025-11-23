@@ -11,7 +11,7 @@ async function fetchRecentGame(): Promise<RecentGameData> {
     const response = await fetch("/api/psn/recent-games")
     if (!response.ok) {
         throw new Error(
-            `PSN recent games request returned ${response.status} ${response.statusText}`.trim(),
+            `PSN recent games request returned ${response.status} ${response.statusText}`.trim()
         )
     }
     return response.json()
@@ -60,7 +60,10 @@ export function usePSNData(): {
                 if (isOffline) {
                     console.info("Skipping PSN recent game fetch - offline mode detected")
                 } else {
-                    console.warn("PSN recent game data unavailable; will retry automatically", error)
+                    console.warn(
+                        "PSN recent game data unavailable; will retry automatically",
+                        error
+                    )
                 }
                 if (isMounted) {
                     setIsLoading(false)
