@@ -1,6 +1,6 @@
+import { resolve } from "node:path"
 import type { StorybookConfig } from "@storybook/react-vite"
 import react from "@vitejs/plugin-react"
-import { resolve } from "path"
 
 const config: StorybookConfig = {
     stories: ["../components/**/*.stories.@(ts|tsx)"],

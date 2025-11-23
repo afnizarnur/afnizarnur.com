@@ -8,7 +8,7 @@ function MockImage({ src, alt, fill, priority, ...props }: ImageProps) {
         typeof src === "string" ? src : typeof src === "object" && "src" in src ? src.src : ""
 
     return (
-        // eslint-disable-next-line @next/next/no-img-element
+        // biome-ignore lint/performance/noImgElement: Intentional - this is a mock for next/image in Storybook
         <img
             src={imgSrc}
             alt={alt}
