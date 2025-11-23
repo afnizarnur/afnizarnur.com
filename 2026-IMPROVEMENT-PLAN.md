@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This document outlines a comprehensive improvement plan for the afnizarnur.com portfolio, a Next.js 15 monorepo with React 19, Sanity CMS, and Turborepo. The plan focuses on enhancing code quality, testing, performance monitoring, accessibility, and developer experience while following modern web development best practices.
+This document outlines a comprehensive improvement plan for the afnizarnur.com portfolio, a Next.js 15 monorepo with React 19, Sanity CMS, and Turborepo. The plan focuses on enhancing code quality, SEO, accessibility, security, and developer experience while following modern web development best practices.
 
 ---
 
@@ -46,12 +46,11 @@ afnizarnur-monorepo/
 - Design token system with Terrazzo
 
 ### Areas for Improvement
-- No automated testing framework
 - DRY violations (duplicated utility functions)
-- Missing error boundaries and monitoring
+- Missing error boundaries
 - No sitemap/robots.txt generation
-- Limited accessibility audit
-- No performance monitoring (Web Vitals)
+- Mobile menu focus management
+- Security headers and rate limiting
 
 ---
 
@@ -153,7 +152,6 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Send to error tracking service (Sentry, etc.)
     console.error('Error caught by boundary:', error, errorInfo)
   }
 
@@ -204,313 +202,9 @@ components/HorizontalHeader/
 
 ---
 
-### Phase 2: Testing Infrastructure
+### Phase 2: SEO & Discoverability
 
-#### 2.1 Set Up Vitest for Unit Testing
-
-**Best Practice Implementation**:
-```typescript
-// vitest.config.ts
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
-import path from 'path'
-
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    environment: 'jsdom',
-    globals: true,
-    setupFiles: ['./tests/setup.ts'],
-    include: ['**/*.test.{ts,tsx}'],
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'html', 'lcov'],
-      exclude: ['node_modules/', 'tests/'],
-      thresholds: {
-        lines: 70,
-        functions: 70,
-        branches: 70
-      }
-    }
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './apps/site')
-    }
-  }
-})
-```
-
-**Package.json Scripts**:
-```json
-{
-  "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
-  }
-}
-```
-
----
-
-#### 2.2 Set Up Playwright for E2E Testing
-
-**Best Practice Implementation**:
-```typescript
-// playwright.config.ts
-import { defineConfig, devices } from '@playwright/test'
-
-export default defineConfig({
-  testDir: './tests/e2e',
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],
-  use: {
-    baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure'
-  },
-  projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
-    { name: 'mobile-chrome', use: { ...devices['Pixel 5'] } },
-    { name: 'mobile-safari', use: { ...devices['iPhone 12'] } }
-  ],
-  webServer: {
-    command: 'pnpm dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI
-  }
-})
-```
-
----
-
-#### 2.3 Accessibility Testing with axe-core
-
-**Best Practice Implementation**:
-```typescript
-// tests/e2e/accessibility.spec.ts
-import { test, expect } from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
-
-const routes = ['/', '/work', '/blog', '/about']
-
-routes.forEach(route => {
-  test(`${route} should have no accessibility violations`, async ({ page }) => {
-    await page.goto(route)
-    await page.waitForLoadState('networkidle')
-
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-      .analyze()
-
-    expect(results.violations).toEqual([])
-  })
-})
-
-test('theme toggle should be accessible', async ({ page }) => {
-  await page.goto('/')
-
-  // Test keyboard navigation
-  await page.keyboard.press('Tab')
-  const focusedElement = page.locator(':focus')
-  await expect(focusedElement).toBeVisible()
-
-  // Test skip link
-  await page.keyboard.press('Tab')
-  await page.keyboard.press('Enter')
-  await expect(page.locator('#main-content')).toBeFocused()
-})
-```
-
----
-
-#### 2.4 Visual Regression Testing
-
-**Best Practice Implementation**:
-```typescript
-// tests/e2e/visual.spec.ts
-import { test, expect } from '@playwright/test'
-
-const themes = ['light', 'dark']
-const viewports = [
-  { width: 375, height: 667, name: 'mobile' },
-  { width: 768, height: 1024, name: 'tablet' },
-  { width: 1440, height: 900, name: 'desktop' }
-]
-
-themes.forEach(theme => {
-  viewports.forEach(viewport => {
-    test(`homepage ${theme} theme at ${viewport.name}`, async ({ page }) => {
-      await page.setViewportSize({ width: viewport.width, height: viewport.height })
-      await page.goto('/')
-
-      // Set theme
-      await page.evaluate((t) => {
-        document.documentElement.setAttribute('data-theme', t)
-      }, theme)
-
-      await expect(page).toHaveScreenshot(`home-${theme}-${viewport.name}.png`, {
-        fullPage: true,
-        animations: 'disabled'
-      })
-    })
-  })
-})
-```
-
----
-
-### Phase 3: Performance Monitoring
-
-#### 3.1 Web Vitals Integration
-
-**Best Practice Implementation**:
-```typescript
-// lib/analytics/web-vitals.ts
-import { onCLS, onINP, onLCP, onFCP, onTTFB, type Metric } from 'web-vitals'
-
-type VitalsMetric = {
-  name: string
-  value: number
-  rating: 'good' | 'needs-improvement' | 'poor'
-  delta: number
-  id: string
-}
-
-function sendToAnalytics(metric: Metric) {
-  const vitalsMetric: VitalsMetric = {
-    name: metric.name,
-    value: metric.value,
-    rating: metric.rating,
-    delta: metric.delta,
-    id: metric.id
-  }
-
-  // Send to your analytics endpoint
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon('/api/analytics/vitals', JSON.stringify(vitalsMetric))
-  }
-
-  // Log in development
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`[Web Vitals] ${metric.name}:`, metric.value, `(${metric.rating})`)
-  }
-}
-
-export function initWebVitals() {
-  onCLS(sendToAnalytics)
-  onINP(sendToAnalytics)
-  onLCP(sendToAnalytics)
-  onFCP(sendToAnalytics)
-  onTTFB(sendToAnalytics)
-}
-```
-
-**Integration in Root Layout**:
-```typescript
-// app/layout.tsx
-'use client'
-import { useEffect } from 'react'
-import { initWebVitals } from '@/lib/analytics/web-vitals'
-
-export function WebVitalsReporter() {
-  useEffect(() => {
-    initWebVitals()
-  }, [])
-  return null
-}
-```
-
-**Target Metrics**:
-| Metric | Target | Current |
-|--------|--------|---------|
-| LCP | < 2.5s | Unknown |
-| INP | < 200ms | Unknown |
-| CLS | < 0.1 | Unknown |
-| FCP | < 1.8s | Unknown |
-| TTFB | < 800ms | Unknown |
-
----
-
-#### 3.2 Error Tracking with Sentry
-
-**Best Practice Implementation**:
-```typescript
-// lib/sentry.ts
-import * as Sentry from '@sentry/nextjs'
-
-Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-  environment: process.env.NODE_ENV,
-  tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
-  replaysSessionSampleRate: 0.1,
-  replaysOnErrorSampleRate: 1.0,
-  integrations: [
-    Sentry.replayIntegration({
-      maskAllText: true,
-      blockAllMedia: true
-    })
-  ]
-})
-```
-
-**Sentry Config Files**:
-```javascript
-// sentry.client.config.ts
-import * as Sentry from '@sentry/nextjs'
-
-Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-  tracesSampleRate: 0.1,
-  debug: false
-})
-
-// sentry.server.config.ts
-import * as Sentry from '@sentry/nextjs'
-
-Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-  tracesSampleRate: 0.1
-})
-```
-
----
-
-#### 3.3 Bundle Analysis
-
-**Best Practice Implementation**:
-```javascript
-// next.config.ts additions
-import withBundleAnalyzer from '@next/bundle-analyzer'
-
-const bundleAnalyzer = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true'
-})
-
-export default bundleAnalyzer(nextConfig)
-```
-
-**Package.json Script**:
-```json
-{
-  "scripts": {
-    "analyze": "ANALYZE=true pnpm build"
-  }
-}
-```
-
----
-
-### Phase 4: SEO & Discoverability
-
-#### 4.1 Sitemap Generation
+#### 2.1 Sitemap Generation
 
 **Best Practice Implementation**:
 ```typescript
@@ -554,7 +248,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 ---
 
-#### 4.2 Robots.txt
+#### 2.2 Robots.txt
 
 **Best Practice Implementation**:
 ```typescript
@@ -577,7 +271,7 @@ export default function robots(): MetadataRoute.Robots {
 
 ---
 
-#### 4.3 JSON-LD Structured Data
+#### 2.3 JSON-LD Structured Data
 
 **Best Practice Implementation**:
 ```typescript
@@ -643,9 +337,9 @@ export function ArticleSchema({ title, description, publishedAt, updatedAt, imag
 
 ---
 
-### Phase 5: Accessibility Audit & Fixes
+### Phase 3: Accessibility Audit & Fixes
 
-#### 5.1 Focus Management for Mobile Menu
+#### 3.1 Focus Management for Mobile Menu
 
 **Current Issue**: Mobile menu doesn't trap focus or manage focus on close.
 
@@ -701,76 +395,9 @@ export function useFocusTrap(isActive: boolean) {
 
 ---
 
-#### 5.2 Keyboard Navigation for Draggable Widgets
+### Phase 4: Security Enhancements
 
-**Best Practice Implementation**:
-```typescript
-// hooks/useKeyboardDrag.ts
-import { useState, useCallback } from 'react'
-
-interface Position { x: number; y: number }
-
-export function useKeyboardDrag(initialPosition: Position, step = 10) {
-  const [position, setPosition] = useState(initialPosition)
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    const moves: Record<string, Partial<Position>> = {
-      ArrowUp: { y: -step },
-      ArrowDown: { y: step },
-      ArrowLeft: { x: -step },
-      ArrowRight: { x: step }
-    }
-
-    const move = moves[e.key]
-    if (move) {
-      e.preventDefault()
-      setPosition(prev => ({
-        x: prev.x + (move.x || 0),
-        y: prev.y + (move.y || 0)
-      }))
-    }
-  }, [step])
-
-  return { position, setPosition, handleKeyDown }
-}
-```
-
----
-
-#### 5.3 ARIA Live Regions for Dynamic Content
-
-**Best Practice Implementation**:
-```typescript
-// components/LiveRegion/LiveRegion.tsx
-interface LiveRegionProps {
-  message: string
-  politeness?: 'polite' | 'assertive'
-}
-
-export function LiveRegion({ message, politeness = 'polite' }: LiveRegionProps) {
-  return (
-    <div
-      role="status"
-      aria-live={politeness}
-      aria-atomic="true"
-      className="sr-only"
-    >
-      {message}
-    </div>
-  )
-}
-
-// Usage in CurrentActivity
-<LiveRegion
-  message={`Now playing: ${track.name} by ${track.artist}`}
-/>
-```
-
----
-
-### Phase 6: Security Enhancements
-
-#### 6.1 API Rate Limiting
+#### 4.1 API Rate Limiting
 
 **Best Practice Implementation**:
 ```typescript
@@ -833,7 +460,7 @@ export async function GET(request: Request) {
 
 ---
 
-#### 6.2 Content Security Policy
+#### 4.2 Content Security Policy
 
 **Best Practice Implementation**:
 ```typescript
@@ -872,9 +499,9 @@ export const config = {
 
 ---
 
-### Phase 7: Developer Experience
+### Phase 5: Developer Experience
 
-#### 7.1 Fix Netlify Build Configuration
+#### 5.1 Fix Netlify Build Configuration
 
 **Current Issue**: `netlify.toml` references `@afnizarnur/web` but app is `@afnizarnur/site`.
 
@@ -895,7 +522,7 @@ export const config = {
 
 ---
 
-#### 7.2 Component Documentation with Storybook
+#### 5.2 Component Documentation with Storybook
 
 **Best Practice Implementation**:
 ```typescript
@@ -956,120 +583,6 @@ export const Primary: Story = {
 
 ---
 
-#### 7.3 Git Hooks with Husky
-
-**Best Practice Implementation**:
-```json
-// package.json additions
-{
-  "scripts": {
-    "prepare": "husky install",
-    "lint": "biome check .",
-    "lint:fix": "biome check --apply .",
-    "type-check": "tsc --noEmit"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": ["biome check --apply", "biome format --write"],
-    "*.{json,md}": ["biome format --write"]
-  }
-}
-```
-
-```bash
-# .husky/pre-commit
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-pnpm lint-staged
-
-# .husky/pre-push
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-pnpm type-check
-pnpm test
-```
-
----
-
-### Phase 8: Content Features
-
-#### 8.1 Blog Tag Filtering
-
-**Current Issue**: Tag queries exist but no tag-based filtering UI.
-
-**Best Practice Implementation**:
-```typescript
-// app/blog/tag/[tag]/page.tsx
-import { sanityFetch } from '@/lib/sanity/fetch'
-import { postsByTagQuery } from '@/lib/sanity/queries'
-import { PostCard } from '@/components/PostCard'
-
-interface Props {
-  params: { tag: string }
-}
-
-export default async function TagPage({ params }: Props) {
-  const posts = await sanityFetch({
-    query: postsByTagQuery,
-    params: { tag: params.tag }
-  })
-
-  return (
-    <main>
-      <h1>Posts tagged with "{params.tag}"</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map(post => (
-          <PostCard key={post._id} post={post} />
-        ))}
-      </div>
-    </main>
-  )
-}
-```
-
----
-
-#### 8.2 Search Functionality
-
-**Best Practice Implementation**:
-```typescript
-// app/api/search/route.ts
-import { sanityFetch } from '@/lib/sanity/fetch'
-
-const searchQuery = `
-  *[_type in ["post", "project"] && (
-    title match $query ||
-    excerpt match $query ||
-    body[].children[].text match $query
-  )] | order(_createdAt desc) [0...20] {
-    _id,
-    _type,
-    title,
-    "slug": slug.current,
-    excerpt
-  }
-`
-
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const query = searchParams.get('q')
-
-  if (!query || query.length < 2) {
-    return Response.json({ results: [] })
-  }
-
-  const results = await sanityFetch({
-    query: searchQuery,
-    params: { query: `*${query}*` }
-  })
-
-  return Response.json({ results })
-}
-```
-
----
-
 ## Implementation Checklist
 
 ### Phase 1: Code Quality & DRY Fixes
@@ -1079,52 +592,27 @@ export async function GET(request: Request) {
 - [ ] Split HorizontalHeader into smaller components
 - [ ] Remove console.error calls, add structured logging
 
-### Phase 2: Testing Infrastructure
-- [ ] Set up Vitest configuration
-- [ ] Create test utilities and mocks
-- [ ] Set up Playwright for E2E
-- [ ] Add accessibility tests with axe-core
-- [ ] Add visual regression tests
-- [ ] Achieve 70% code coverage
-
-### Phase 3: Performance Monitoring
-- [ ] Integrate web-vitals library
-- [ ] Create analytics endpoint
-- [ ] Set up Sentry error tracking
-- [ ] Add bundle analyzer
-- [ ] Establish performance budgets
-
-### Phase 4: SEO & Discoverability
+### Phase 2: SEO & Discoverability
 - [ ] Implement dynamic sitemap.ts
 - [ ] Add robots.ts
 - [ ] Create JSON-LD schemas (Person, Article, Project)
 - [ ] Add dynamic OG images per page
 
-### Phase 5: Accessibility Audit & Fixes
+### Phase 3: Accessibility Audit & Fixes
 - [ ] Implement focus trap for mobile menu
-- [ ] Add keyboard navigation for draggable widgets
-- [ ] Add ARIA live regions for dynamic content
 - [ ] Audit color contrast for all themes
 - [ ] Verify heading hierarchy
 
-### Phase 6: Security Enhancements
+### Phase 4: Security Enhancements
 - [ ] Implement API rate limiting
 - [ ] Add Content Security Policy middleware
 - [ ] Validate all query parameters
 - [ ] Add request validation schemas
 
-### Phase 7: Developer Experience
+### Phase 5: Developer Experience
 - [ ] Fix Netlify build configuration
 - [ ] Set up Storybook
-- [ ] Configure Husky pre-commit hooks
-- [ ] Add lint-staged
 - [ ] Create CONTRIBUTING.md
-
-### Phase 8: Content Features
-- [ ] Implement tag filtering pages
-- [ ] Add search functionality
-- [ ] Create related content suggestions
-- [ ] Add reading time estimates
 
 ---
 
@@ -1139,7 +627,6 @@ export async function GET(request: Request) {
 | LCP | Unknown | < 2.5s |
 | INP | Unknown | < 200ms |
 | CLS | Unknown | < 0.1 |
-| Test Coverage | 0% | > 70% |
 | Accessibility Violations | Unknown | 0 |
 | Bundle Size (JS) | Unknown | < 200KB gzipped |
 
@@ -1147,19 +634,19 @@ export async function GET(request: Request) {
 
 ## Conclusion
 
-This improvement plan transforms the afnizarnur.com Next.js 15 portfolio into a robust, well-tested, and performant platform. The phased approach ensures incremental improvements without disrupting existing functionality.
+This improvement plan enhances the afnizarnur.com Next.js 15 portfolio with focused improvements across code quality, SEO, accessibility, security, and developer experience. The phased approach ensures incremental improvements without disrupting existing functionality.
 
 **Key priorities**:
-1. Testing infrastructure (foundation for all other improvements)
-2. Code quality fixes (DRY, error boundaries)
-3. Performance monitoring (visibility into real-world metrics)
-4. SEO enhancements (discoverability)
-5. Accessibility compliance (inclusive design)
+1. Code quality fixes (DRY, error boundaries, component splitting)
+2. SEO enhancements (sitemap, robots.txt, structured data)
+3. Accessibility compliance (focus management)
+4. Security hardening (rate limiting, CSP)
+5. Developer experience (Storybook, Netlify config)
 
 Each phase builds upon the previous, creating a sustainable development workflow that maintains code quality as the project grows.
 
 ---
 
-*Document Version: 1.0*
+*Document Version: 1.1*
 *Created: November 2024*
 *For: afnizarnur.com 2026 (Next.js 15 Monorepo)*
