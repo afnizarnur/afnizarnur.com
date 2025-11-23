@@ -271,72 +271,6 @@ export default function robots(): MetadataRoute.Robots {
 
 ---
 
-#### 2.3 JSON-LD Structured Data
-
-**Best Practice Implementation**:
-```typescript
-// components/StructuredData/PersonSchema.tsx
-export function PersonSchema() {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Afnizar Nur Ghifari',
-    url: 'https://afnizarnur.com',
-    jobTitle: 'Product Designer',
-    sameAs: [
-      'https://github.com/afnizarnur',
-      'https://linkedin.com/in/afnizarnur',
-      'https://figma.com/@afnizarnur'
-    ],
-    knowsAbout: ['Product Design', 'UI/UX', 'Design Systems', 'Figma']
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
-}
-
-// components/StructuredData/ArticleSchema.tsx
-interface ArticleSchemaProps {
-  title: string
-  description: string
-  publishedAt: string
-  updatedAt?: string
-  image?: string
-  slug: string
-}
-
-export function ArticleSchema({ title, description, publishedAt, updatedAt, image, slug }: ArticleSchemaProps) {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: title,
-    description: description,
-    image: image,
-    datePublished: publishedAt,
-    dateModified: updatedAt || publishedAt,
-    url: `https://afnizarnur.com/blog/${slug}`,
-    author: {
-      '@type': 'Person',
-      name: 'Afnizar Nur Ghifari',
-      url: 'https://afnizarnur.com'
-    }
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
-}
-```
-
----
-
 ### Phase 3: Accessibility Audit & Fixes
 
 #### 3.1 Focus Management for Mobile Menu
@@ -594,7 +528,6 @@ export const Primary: Story = {
 ### Phase 2: SEO & Discoverability
 - [x] Implement dynamic sitemap.ts → `app/sitemap.ts`
 - [x] Add robots.ts → `app/robots.ts`
-- [x] Create JSON-LD schemas (Person, Article, Project) → `components/StructuredData/`
 
 ### Phase 3: Accessibility Audit & Fixes
 - [x] Implement focus trap for mobile menu → Already implemented in `MobileMenu.tsx`
@@ -627,32 +560,40 @@ export const Primary: Story = {
 
 ## Conclusion
 
-This improvement plan has been **fully implemented** for the afnizarnur.com Next.js 15 portfolio. All 12 tasks across 5 phases have been completed:
+This improvement plan has been **fully implemented** for the afnizarnur.com Next.js 15 portfolio. All tasks across 5 phases have been completed:
 
 **Completed improvements**:
 1. ✅ Code quality fixes (DRY utilities, constants, error boundaries)
-2. ✅ SEO enhancements (sitemap, robots.txt, JSON-LD structured data)
+2. ✅ SEO enhancements (sitemap, robots.txt)
 3. ✅ Accessibility compliance (focus trap verified)
 4. ✅ Security hardening (rate limiting, CSP middleware)
-5. ✅ Developer experience (Storybook setup, Netlify config fix)
+5. ✅ Developer experience (Storybook setup with all component stories, Netlify config fix)
 
 ### New Files Added
 ```
 apps/site/
 ├── .storybook/
 │   ├── main.ts
-│   └── preview.ts
+│   └── preview.tsx
 ├── app/
 │   ├── sitemap.ts
 │   └── robots.ts
 ├── components/
 │   ├── ErrorBoundary.tsx
+│   ├── ErrorBoundary.stories.tsx
 │   ├── TimeDisplay.tsx
-│   └── StructuredData/
-│       ├── index.ts
-│       ├── PersonSchema.tsx
-│       ├── ArticleSchema.tsx
-│       └── ProjectSchema.tsx
+│   ├── TimeDisplay.stories.tsx
+│   ├── TerminalTextEffect.stories.tsx
+│   ├── ThemeToggle.stories.tsx
+│   ├── SkipToMainContent.stories.tsx
+│   ├── AnimatedResetButton.stories.tsx
+│   ├── IconButton.stories.tsx
+│   ├── Widget.stories.tsx
+│   ├── PageHeader.stories.tsx
+│   ├── PostCard.stories.tsx
+│   ├── ProjectCard.stories.tsx
+│   ├── NavigationBar.stories.tsx
+│   └── MobileMenu.stories.tsx
 └── lib/
     ├── constants.ts
     ├── rate-limit.ts
