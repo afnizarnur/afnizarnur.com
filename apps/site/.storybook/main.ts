@@ -35,6 +35,8 @@ const config: StorybookConfig = {
             "@/lib": resolve(__dirname, "../lib"),
             "@/app": resolve(__dirname, "../app"),
             "@/contexts": resolve(__dirname, "../contexts"),
+            // Mock next/image for Storybook (no image optimization)
+            "next/image": resolve(__dirname, "./mocks/next-image.tsx"),
         }
 
         // Define process.env for browser compatibility
