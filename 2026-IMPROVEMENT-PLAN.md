@@ -590,13 +590,11 @@ export const Primary: Story = {
 - [ ] Create centralized constants file
 - [ ] Implement ErrorBoundary component
 - [ ] Split HorizontalHeader into smaller components
-- [ ] Remove console.error calls, add structured logging
 
 ### Phase 2: SEO & Discoverability
 - [ ] Implement dynamic sitemap.ts
 - [ ] Add robots.ts
 - [ ] Create JSON-LD schemas (Person, Article, Project)
-- [ ] Add dynamic OG images per page
 
 ### Phase 3: Accessibility Audit & Fixes
 - [ ] Implement focus trap for mobile menu
@@ -604,8 +602,6 @@ export const Primary: Story = {
 ### Phase 4: Security Enhancements
 - [ ] Implement API rate limiting
 - [ ] Add Content Security Policy middleware
-- [ ] Validate all query parameters
-- [ ] Add request validation schemas
 
 ### Phase 5: Developer Experience
 - [ ] Fix Netlify build configuration
