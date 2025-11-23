@@ -143,11 +143,25 @@ apps/
 │   ├── app/
 │   │   ├── (pages)/       # Route segments
 │   │   ├── layout.tsx     # Root layout
+│   │   ├── sitemap.ts     # Dynamic sitemap generation
+│   │   ├── robots.ts      # Robots.txt generation
 │   │   └── styles/        # Global styles
+│   ├── .storybook/        # Storybook configuration
+│   │   ├── main.ts        # Storybook config
+│   │   ├── preview.tsx    # Global decorators
+│   │   └── mocks/         # Mock modules (next/image)
 │   ├── lib/
 │   │   ├── sanity/        # Sanity client and queries
-│   │   └── utils/         # Utility functions
-│   ├── components/        # Reusable components
+│   │   ├── utils/         # Shared utility functions
+│   │   ├── constants.ts   # Centralized constants
+│   │   └── rate-limit.ts  # API rate limiting
+│   ├── contexts/          # React context providers
+│   ├── components/        # Reusable components (folder-based)
+│   │   ├── ComponentName/
+│   │   │   ├── ComponentName.tsx
+│   │   │   ├── ComponentName.stories.tsx
+│   │   │   └── index.ts
+│   │   └── ...
 │   ├── public/            # Static assets
 │   ├── next.config.ts     # Next.js configuration
 │   └── package.json

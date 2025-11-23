@@ -77,6 +77,7 @@ Get credentials from https://sanity.io/manage
 ```bash
 pnpm dev                                  # Start all apps
 pnpm --filter @afnizarnur/site dev        # Next.js only (http://localhost:3000)
+pnpm --filter @afnizarnur/site storybook  # Storybook (http://localhost:6006)
 pnpm --filter @afnizarnur/studio dev      # Studio only (http://localhost:3333)
 ```
 
@@ -204,6 +205,8 @@ apps/site/
 ├── app/             # Next.js App Router
 │   ├── page.tsx                       # Homepage
 │   ├── layout.tsx                     # Root layout (navigation, metadata, live preview)
+│   ├── sitemap.ts                     # Dynamic sitemap generation
+│   ├── robots.ts                      # Robots.txt generation
 │   ├── styles/
 │   │   └── global.css                 # Tailwind v4 config + design tokens
 │   ├── about/                         # About page
@@ -213,13 +216,28 @@ apps/site/
 │       ├── draft-mode/                # Draft mode endpoints
 │       ├── revalidate/                # On-demand ISR webhook
 │       └── spotify/                   # Spotify integration
-├── components/      # React components (25+ components)
-│   ├── NavigationBar.tsx              # Client component
-│   ├── Widget.tsx                     # Now Playing widget
-│   ├── UserPreferencesContext.tsx     # User preferences state
-│   ├── LayoutProvider.tsx             # Layout state provider
-│   └── ...                            # Other components
-└── lib/             # Utilities and Sanity integration
+├── .storybook/      # Storybook configuration
+│   ├── main.ts                        # Storybook config
+│   ├── preview.tsx                    # Global decorators
+│   └── mocks/                         # Mock modules for Storybook
+├── components/      # React components (organized in folders)
+│   ├── NavigationBar/                 # Each component has its own folder
+│   │   ├── NavigationBar.tsx
+│   │   ├── NavigationBar.stories.tsx
+│   │   └── index.ts
+│   ├── Widget/                        # Contains component + stories + exports
+│   ├── ThemeToggle/
+│   ├── ErrorBoundary/
+│   └── ...                            # Other component folders
+├── contexts/        # React contexts
+│   └── UserPreferencesContext.tsx     # User preferences state
+└── lib/             # Utilities and integrations
+    ├── constants.ts                   # Centralized constants
+    ├── rate-limit.ts                  # API rate limiting
+    ├── utils/                         # Shared utilities
+    │   ├── index.ts
+    │   ├── time.ts                    # Time formatting helpers
+    │   └── navigation.ts              # Navigation helpers
     └── sanity/
         ├── client.ts                  # Sanity client (stega enabled)
         ├── live.ts                    # Live Content API config
