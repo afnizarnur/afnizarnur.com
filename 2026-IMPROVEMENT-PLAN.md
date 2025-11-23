@@ -600,8 +600,6 @@ export const Primary: Story = {
 
 ### Phase 3: Accessibility Audit & Fixes
 - [ ] Implement focus trap for mobile menu
-- [ ] Audit color contrast for all themes
-- [ ] Verify heading hierarchy
 
 ### Phase 4: Security Enhancements
 - [ ] Implement API rate limiting
@@ -612,7 +610,6 @@ export const Primary: Story = {
 ### Phase 5: Developer Experience
 - [ ] Fix Netlify build configuration
 - [ ] Set up Storybook
-- [ ] Create CONTRIBUTING.md
 
 ---
 
