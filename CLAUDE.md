@@ -37,6 +37,7 @@ App-specific (using --filter):
 - `pnpm --filter @afnizarnur/site dev` - Start Next.js dev server (port 3000)
 - `pnpm --filter @afnizarnur/site build` - Build Next.js app
 - `pnpm --filter @afnizarnur/site start` - Start Next.js production server
+- `pnpm --filter @afnizarnur/site storybook` - Start Storybook dev server (port 6006)
 - `pnpm --filter @afnizarnur/studio dev` - Start Sanity Studio (port 3333)
 - `pnpm --filter @afnizarnur/studio deploy` - Deploy Sanity Studio
 
@@ -86,6 +87,16 @@ File naming:
 - Utils/Helpers: `camelCase.ts`
 - Config files: `kebab-case.ts` or `.js`
 
+Component folder structure (each component in its own folder):
+
+```
+components/
+├── ComponentName/
+│   ├── ComponentName.tsx      # Main component
+│   ├── ComponentName.stories.tsx  # Storybook stories
+│   └── index.ts               # Barrel export
+```
+
 Formatting and Linting (Biome 2.3.0):
 
 - No semicolons (`semicolons: "asNeeded"`)
@@ -115,13 +126,19 @@ Formatting and Linting (Biome 2.3.0):
 - `postcss.config.mjs` - PostCSS with Tailwind CSS v4 plugin
 - `app/layout.tsx` - Root layout with navigation, metadata, and live preview
 - `app/styles/global.css` - Tailwind v4 CSS configuration with design tokens
+- `app/sitemap.ts` - Dynamic sitemap generation
+- `app/robots.ts` - Robots.txt generation
 - `lib/sanity/client.ts` - Sanity client with visual editing support (stega enabled)
 - `lib/sanity/live.ts` - Live Content API configuration
 - `lib/sanity/fetch.ts` - Unified fetch wrapper (draft mode + ISR)
 - `lib/sanity/queries.ts` - GROQ queries with ISR tags and sanitization
 - `lib/sanity/sanitize.ts` - Text sanitization utilities
-- `components/UserPreferencesContext.tsx` - User preference state management
-- `components/LayoutProvider.tsx` - Layout state provider
+- `lib/constants.ts` - Centralized constants (layout, cache, animation)
+- `lib/rate-limit.ts` - API rate limiting utility
+- `lib/utils/` - Shared utilities (time, navigation helpers)
+- `contexts/UserPreferencesContext.tsx` - User preference state management
+- `components/` - React components (organized in folders with barrel exports)
+- `.storybook/` - Storybook configuration for component documentation
 
 **API Routes:**
 - `app/api/draft-mode/enable/route.ts` - Draft mode enable endpoint

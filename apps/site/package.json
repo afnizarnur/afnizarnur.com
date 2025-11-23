@@ -11,7 +11,9 @@
         "lint": "biome lint .",
         "format": "biome format --write .",
         "format:check": "biome format .",
-        "check": "biome check --write ."
+        "check": "biome check --write .",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
     },
     "dependencies": {
         "@afnizarnur/tokens": "workspace:*",
@@ -20,6 +22,7 @@
         "@portabletext/react": "^3.1.0",
         "@sanity/client": "^7.12.0",
         "framer-motion": "^12.23.24",
+        "lru-cache": "^11.2.2",
         "next": "^15.5.6",
         "next-sanity": "^11.5.5",
         "psn-api": "^2.15.0",
@@ -30,11 +33,21 @@
         "tailwindcss": "^4.1.14"
     },
     "devDependencies": {
+        "@storybook/addon-a11y": "^8.6.14",
+        "@storybook/addon-essentials": "^8.6.14",
+        "@storybook/addon-interactions": "^8.6.14",
+        "@storybook/addon-links": "^8.6.14",
+        "@storybook/react": "^8.6.14",
+        "@storybook/react-vite": "^8.6.14",
+        "@storybook/test": "^8.6.14",
         "@tailwindcss/postcss": "^4.1.14",
         "@types/node": "^22.10.5",
         "@types/react": "^19.2.2",
         "@types/react-dom": "^19.2.2",
+        "@vitejs/plugin-react": "^5.1.1",
         "dotenv": "^16.4.5",
-        "typescript": "^5.6.3"
+        "storybook": "^8.6.14",
+        "typescript": "^5.6.3",
+        "vite": "^6.0.0"
     }
 }
