@@ -23,9 +23,11 @@ async function fetchRecentGame(): Promise<RecentGameData> {
 export function usePSNData(): {
     recentGame: RecentGameData | null
     isLoading: boolean
+    hasError: boolean
 } {
     const [recentGame, setRecentGame] = useState<RecentGameData | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [hasError, setHasError] = useState(false)
 
     // Load cached data immediately on mount (before first paint)
     useLayoutEffect(() => {
@@ -48,6 +50,7 @@ export function usePSNData(): {
                 if (isMounted) {
                     setRecentGame(data)
                     setIsLoading(false)
+                    setHasError(false)
                     // Cache the data with timestamp
                     const cachedData: CachedPSNData = {
                         ...data,
@@ -67,6 +70,7 @@ export function usePSNData(): {
                 }
                 if (isMounted) {
                     setIsLoading(false)
+                    setHasError(true)
                 }
             }
         }
@@ -85,5 +89,6 @@ export function usePSNData(): {
     return {
         recentGame,
         isLoading,
+        hasError,
     }
 }
